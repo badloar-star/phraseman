@@ -1,0 +1,1009 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна сейчас в сети. Скажите «Анна в сети»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна сейчас в сети. Скажите «Анна в сети»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna is online.",
+        "localizedMeaning": {
+          "ru": "Анна сейчас в сети. Скажите «Анна в сети»",
+          "uk": "Анна зараз у мережі. Скажіть «Анна в мережі»"
+        },
+        "orderedTokens": [
+          "Anna",
+          "is",
+          "online"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна сейчас в сети. Скажите «Анна в сети»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna is online.`",
+              "uk": "тут потрібно `is` — `Anna is online.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-29:i02:r1",
+          "text": "skateboard"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i02:r2",
+          "text": "tablet"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i02:r3",
+          "text": "suitcase"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i02:audio",
+          "transcript": "skateboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-29:i02:r1",
+            "targetText": "skateboard",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i02:r2",
+            "targetText": "tablet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i02:r3",
+            "targetText": "suitcase",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `skateboard`, а в этом варианте — `tablet`.",
+              "uk": "У записі перше слово — `skateboard`, а в цьому варіанті — `tablet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `skateboard`, а в этом варианте — `suitcase`.",
+              "uk": "У записі перше слово — `skateboard`, а в цьому варіанті — `suitcase`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите скейтборд",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-29:i03:r1",
+          "text": "skateboard"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i03:r2",
+          "text": "necklace"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i03:r3",
+          "text": "helmet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите скейтборд",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите скейтборд",
+          "uk": "Назвіть скейтборд"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-29:i03:r1",
+            "text": "skateboard"
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i03:r2",
+            "text": "necklace"
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i03:r3",
+            "text": "helmet"
+          }
+        ],
+        "testedDimension": "Назовите скейтборд",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите скейтборд",
+            "feedbackByLocale": {
+              "ru": "`necklace` — ожерелье; скейтборд — `skateboard`.",
+              "uk": "`necklace` — намисто; скейтборд — `skateboard`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите скейтборд",
+            "feedbackByLocale": {
+              "ru": "`helmet` — шлем; скейтборд — `skateboard`.",
+              "uk": "`helmet` — шолом; скейтборд — `skateboard`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-29:i04:p1",
+            "target": "skateboard",
+            "meaningByLocale": {
+              "ru": "скейтборд",
+              "uk": "скейтборд"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i04:p2",
+            "target": "local",
+            "meaningByLocale": {
+              "ru": "местный",
+              "uk": "місцевий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i04:p3",
+            "target": "foreign",
+            "meaningByLocale": {
+              "ru": "иностранный",
+              "uk": "іноземний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i04:p4",
+            "target": "online",
+            "meaningByLocale": {
+              "ru": "в сети",
+              "uk": "у мережі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "skateboard",
+          "local",
+          "foreign",
+          "online"
+        ],
+        "rightColumn": [
+          "скейтборд",
+          "местный",
+          "иностранный",
+          "в сети"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i05:audio",
+          "transcript": "This is Tom's skateboard."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is Tom's skateboard.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "Tom's",
+          "skateboard"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is Tom's skateboard.`",
+              "uk": "тут потрібно `is` — `This is Tom's skateboard.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Ожерелье Анны на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Ожерелье Анны на столе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna's necklace is on the table.",
+        "localizedMeaning": {
+          "ru": "Скажите «Ожерелье Анны на столе»",
+          "uk": "Скажіть «Намисто Анни на столі»"
+        },
+        "orderedTokens": [
+          "Anna's",
+          "necklace",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Ожерелье Анны на столе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna's necklace is on the table.`",
+              "uk": "тут потрібно `is` — `Anna's necklace is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Магазин находится в вашей местности. Скажите «Магазин местный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i07:audio"
+      ],
+      "accessibilityLabel": "Магазин находится в вашей местности. Скажите «Магазин местный»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i07:audio",
+          "transcript": "The shop is local."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shop is local.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скейтборд принадлежит Анне. Укажите владельца",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-29:i08:r1",
+          "text": "Anna's"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i08:r2",
+          "text": "Anna"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i08:r3",
+          "text": "Tom's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скейтборд принадлежит Анне. Укажите владельца",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скейтборд принадлежит Анне. Укажите владельца",
+          "uk": "Скейтборд належить Анні. Укажіть власницю"
+        },
+        "gappedTargetPhrase": "This is ___ skateboard.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-29:i08:r1",
+            "text": "Anna's"
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i08:r2",
+            "text": "Anna"
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i08:r3",
+            "text": "Tom's"
+          }
+        ],
+        "testedDimension": "Скейтборд принадлежит Анне. Укажите владельца",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Скейтборд принадлежит Анне. Укажите владельца",
+            "feedbackByLocale": {
+              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
+              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Скейтборд принадлежит Анне. Укажите владельца",
+            "feedbackByLocale": {
+              "ru": "Это принадлежность Тому; здесь владелица Анна.",
+              "uk": "Це належність Тому; тут власниця Анна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что друг сообщает о машине",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-29:i09:r1",
+          "text": "The car is foreign."
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i09:r2",
+          "text": "The car is local."
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i09:r3",
+          "text": "The car is available."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что друг сообщает о машине",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i09:audio",
+          "transcript": "The car is foreign."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-29:i09:r1",
+            "targetText": "The car is foreign.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i09:r2",
+            "targetText": "The car is local.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i09:r3",
+            "targetText": "The car is available.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг сообщает о машине",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `foreign`, а в этом варианте — `local`.",
+              "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `local`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг сообщает о машине",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `foreign`, а в этом варианте — `available`.",
+              "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `available`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-29:i10:p1",
+            "target": "skateboard",
+            "meaningByLocale": {
+              "ru": "скейтборд",
+              "uk": "скейтборд"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i10:p2",
+            "target": "tables",
+            "meaningByLocale": {
+              "ru": "столы",
+              "uk": "столи"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i10:p3",
+            "target": "bus stop",
+            "meaningByLocale": {
+              "ru": "автобусная остановка",
+              "uk": "автобусна зупинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i10:p4",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          }
+        ],
+        "leftColumn": [
+          "skateboard",
+          "tables",
+          "bus stop",
+          "necklace"
+        ],
+        "rightColumn": [
+          "скейтборд",
+          "столы",
+          "автобусная остановка",
+          "ожерелье"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i11:audio",
+          "transcript": "Tom is at the bus stop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom is at the bus stop.",
+        "orderedTokens": [
+          "Tom",
+          "is",
+          "at",
+          "the",
+          "bus",
+          "stop"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom is at the bus stop.`",
+              "uk": "тут потрібно `is` — `Tom is at the bus stop.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tables are outside.",
+        "localizedMeaning": {
+          "ru": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
+          "uk": "Столи кафе стоять зовні. Скажіть «Столи зовні»"
+        },
+        "orderedTokens": [
+          "The",
+          "tables",
+          "are",
+          "outside"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The tables are outside.`",
+              "uk": "тут потрібно `are` — `The tables are outside.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ищете свой скейтборд. Спросите «Где мой скейтборд?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i13:audio"
+      ],
+      "accessibilityLabel": "Вы ищете свой скейтборд. Спросите «Где мой скейтборд?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i13:audio",
+          "transcript": "Where is my skateboard?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is my skateboard?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-29:i14:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i14:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i14:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+          "uk": "Намисто належить подрузі. Скажіть «Намисто її»"
+        },
+        "gappedTargetPhrase": "The necklace is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-29:i14:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i14:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i14:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i14:r2",
+            "correct": false,
+            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i14:r3",
+            "correct": false,
+            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "feedbackByLocale": {
+              "ru": "`his` — его; её — `hers`.",
+              "uk": "`his` — його; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей скейтборд здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-29:i15:r1",
+          "text": "Your skateboard is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i15:r2",
+          "text": "My skateboard is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-29:i15:r3",
+          "text": "His skateboard is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей скейтборд здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i15:audio",
+          "transcript": "Your skateboard is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-29:i15:r1",
+            "targetText": "Your skateboard is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i15:r2",
+            "targetText": "My skateboard is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i15:r3",
+            "targetText": "His skateboard is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-29:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей скейтборд здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-29:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей скейтборд здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-29:i16:p1",
+            "target": "skateboard",
+            "meaningByLocale": {
+              "ru": "скейтборд",
+              "uk": "скейтборд"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i16:p2",
+            "target": "tables",
+            "meaningByLocale": {
+              "ru": "столы",
+              "uk": "столи"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i16:p3",
+            "target": "bus stop",
+            "meaningByLocale": {
+              "ru": "автобусная остановка",
+              "uk": "автобусна зупинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-29:i16:p4",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          }
+        ],
+        "leftColumn": [
+          "skateboard",
+          "tables",
+          "bus stop",
+          "necklace"
+        ],
+        "rightColumn": [
+          "скейтборд",
+          "столы",
+          "автобусная остановка",
+          "ожерелье"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о владельце скейтборда. Он принадлежит Тому. Скажите «Это скейтборд Тома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о владельце скейтборда. Он принадлежит Тому. Скажите «Это скейтборд Тома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:i17:audio",
+          "transcript": "This is Tom's skateboard."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is Tom's skateboard.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0a3f5d0ca613cb20258456e6b75f5e38ae3d63315a057325ce6eed5bf1d64674"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца вещей и уточнить место встречи",
+    "uk": "назвати власника речей і уточнити місце зустрічі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Доска на колёсах",
+        "uk": "Дошка на колесах"
+      },
+      "bodyByLocale": {
+        "ru": "`skateboard` — «скейтборд». `This is Tom’s skateboard` — «Это скейтборд Тома». `Anna’s skateboard is here` — «Скейтборд Анны здесь». Имя владельца с `’s` ставим перед названием вещи. Скейтборд уже у остановки: сегодня его колёса отдыхают, едем автобусом.",
+        "uk": "`skateboard` — «скейтборд». `This is Tom’s skateboard` — «Це скейтборд Тома». `Anna’s skateboard is here` — «Скейтборд Анни тут». Ім’я власника з `’s` ставимо перед назвою речі. Скейтборд уже біля зупинки: сьогодні його колеса відпочивають, їдемо автобусом."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Укажите на скейтборд Тома.",
+          "uk": "Укажіть на скейтборд Тома."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-29:intro1:r1",
+              "text": "This is Tom's skateboard."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro1:r2",
+              "text": "This is Tom skateboard."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro1:r3",
+              "text": "This is Anna's skateboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-29:intro1:r1",
+              "text": "This is Tom's skateboard."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro1:r2",
+              "text": "This is Tom skateboard."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro1:r3",
+              "text": "This is Anna's skateboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Укажите на скейтборд Тома.",
+          "uk": "Укажіть на скейтборд Тома."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Местный, иностранный, в сети",
+        "uk": "Місцевий, іноземний, у мережі"
+      },
+      "bodyByLocale": {
+        "ru": "`local` — «местный», `foreign` — «иностранный», `online` — «в сети». `The shop is local` — «Магазин местный». `The car is foreign` — «Машина иностранная», то есть из другой страны. `Anna is online` — «Анна в сети». Здесь `online` описывает присутствие в интернете, а не место на улице.",
+        "uk": "`local` — «місцевий», `foreign` — «іноземний», `online` — «у мережі». `The shop is local` — «Магазин місцевий». `The car is foreign` — «Машина іноземна», тобто з іншої країни. `Anna is online` — «Анна в мережі». Тут `online` описує присутність в інтернеті, а не місце на вулиці."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Анна сейчас в сети. Выберите фразу.",
+          "uk": "Анна зараз у мережі. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-29:intro2:r1",
+              "text": "Anna is online."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro2:r2",
+              "text": "Anna are online."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro2:r3",
+              "text": "Anna is outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-29:intro2:r1",
+              "text": "Anna is online."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro2:r2",
+              "text": "Anna are online."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro2:r3",
+              "text": "Anna is outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Анна сейчас в сети. Выберите фразу.",
+          "uk": "Анна зараз у мережі. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кафе у остановки",
+        "uk": "Кафе біля зупинки"
+      },
+      "bodyByLocale": {
+        "ru": "`tables` — «столы», `bus stop` — «автобусная остановка», `necklace` — «ожерелье». `The tables are outside` — «Столы снаружи». `Tom is at the bus stop` — «Том на автобусной остановке». `Anna’s necklace is on the table` — «Ожерелье Анны на столе». `Where is my skateboard?` — «Где мой скейтборд?»",
+        "uk": "`tables` — «столи», `bus stop` — «автобусна зупинка», `necklace` — «намисто». `The tables are outside` — «Столи зовні». `Tom is at the bus stop` — «Том на автобусній зупинці». `Anna’s necklace is on the table` — «Намисто Анни на столі». `Where is my skateboard?` — «Де мій скейтборд?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Том ждёт на автобусной остановке. Выберите фразу.",
+          "uk": "Том чекає на автобусній зупинці. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-29:intro3:r1",
+              "text": "Tom is at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro3:r2",
+              "text": "Tom are at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro3:r3",
+              "text": "Anna is at the bus stop."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-29:intro3:r1",
+              "text": "Tom is at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro3:r2",
+              "text": "Tom are at the bus stop."
+            },
+            {
+              "responseId": "en:lesson-05:session-29:intro3:r3",
+              "text": "Anna is at the bus stop."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Том ждёт на автобусной остановке. Выберите фразу.",
+          "uk": "Том чекає на автобусній зупинці. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b5add1e4340a108a08380cd66323d578dabf9d1cf3c2febbea0c0a13bbc85752"
+}

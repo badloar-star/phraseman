@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-50:intro1:r2": {
+          "ru": "Перед одной рекой нужно `a`: `a river`.",
+          "uk": "Перед однією річкою потрібне `a`: `a river`."
+        },
+        "en:lesson-04:session-50:intro1:r3": {
+          "ru": "Здесь одна река: `This is a river`.",
+          "uk": "Тут одна річка: `This is a river`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-50:intro2:r2": {
+          "ru": "`next to` — рядом; здесь внутри: `in`.",
+          "uk": "`next to` — поруч; тут усередині: `in`."
+        },
+        "en:lesson-04:session-50:intro2:r3": {
+          "ru": "С `He` нужно `is`.",
+          "uk": "З `He` потрібне `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-50:intro3:r2": {
+          "ru": "`ineffective` — неэффективно; здесь `effective`.",
+          "uk": "`ineffective` — неефективно; тут `effective`."
+        },
+        "en:lesson-04:session-50:intro3:r3": {
+          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
+          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0d24ebafa97121fa38b6c50892cc503311a3769fc91533bf1d38df13b467a9c8"
+}

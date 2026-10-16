@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "назвать реку, описать расположение и сказать, что способ даёт результат",
+    "uk": "назвати річку, описати розташування й сказати, що спосіб дає результат"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вода течёт",
+        "uk": "Вода тече"
+      },
+      "bodyByLocale": {
+        "ru": "`river` — «река», естественный водный поток. В прошлом занятии был искусственный канал, `canal`; теперь река, `river`. Одна река — `a river`. `This is a river` — «Это река». Река течёт без расписания: в отличие от автобуса, её не нужно ждать на остановке.",
+        "uk": "`river` — «річка», природний водний потік. У минулому занятті був штучний канал, `canal`; тепер річка, `river`. Одна річка — `a river`. `This is a river` — «Це річка». Річка тече без розкладу: на відміну від автобуса, її не потрібно чекати на зупинці."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну реку рядом.",
+          "uk": "Назвіть одну річку поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-50:intro1:r1",
+              "text": "This is a river."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro1:r2",
+              "text": "This is river."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro1:r3",
+              "text": "These are rivers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-50:intro1:r1",
+              "text": "This is a river."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro1:r2",
+              "text": "This is river."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro1:r3",
+              "text": "These are rivers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну реку рядом.",
+          "uk": "Назвіть одну річку поруч."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где встречаемся",
+        "uk": "Де зустрічаємося"
+      },
+      "bodyByLocale": {
+        "ru": "`cinema` — «кинотеатр», `bus shelter` — «остановочный павильон». `The cinema is next to the river` — «Кинотеатр рядом с рекой». `He is in the bus shelter` — «Он в остановочном павильоне». `Is there a cinema?` — «Есть кинотеатр?» Один кинотеатр или павильон требует `is`.",
+        "uk": "`cinema` — «кінотеатр», `bus shelter` — «зупинковий павільйон». `The cinema is next to the river` — «Кінотеатр поруч із річкою». `He is in the bus shelter` — «Він у зупинковому павільйоні». `Is there a cinema?` — «Є кінотеатр?» Один кінотеатр чи павільйон потребує `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг внутри остановочного павильона. Выберите описание.",
+          "uk": "Друг усередині зупинкового павільйону. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-50:intro2:r1",
+              "text": "He is in the bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro2:r2",
+              "text": "He is next to the bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro2:r3",
+              "text": "He are in the bus shelter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-50:intro2:r1",
+              "text": "He is in the bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro2:r2",
+              "text": "He is next to the bus shelter."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro2:r3",
+              "text": "He are in the bus shelter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг внутри остановочного павильона. Выберите описание.",
+          "uk": "Друг усередині зупинкового павільйону. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Даёт результат",
+        "uk": "Дає результат"
+      },
+      "bodyByLocale": {
+        "ru": "`effective` — «эффективный, действенный»: способ даёт нужный результат. Вы объясняете дорогу через знакомые ориентиры, и люди находят место: `It is effective`, короче `It’s effective`. Это не просто красивый способ: он помогает достичь цели.",
+        "uk": "`effective` — «ефективний, дієвий»: спосіб дає потрібний результат. Ви пояснюєте дорогу через знайомі орієнтири, і люди знаходять місце: `It is effective`, коротше `It’s effective`. Це не просто гарний спосіб: він допомагає досягти мети."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Способ помогает людям находить место. Скажите «Это эффективно» с сокращением.",
+          "uk": "Спосіб допомагає людям знаходити місце. Скажіть «Це ефективно» зі скороченням."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-50:intro3:r1",
+              "text": "It's effective."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro3:r2",
+              "text": "It's ineffective."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro3:r3",
+              "text": "It are effective."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-50:intro3:r1",
+              "text": "It's effective."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro3:r2",
+              "text": "It's ineffective."
+            },
+            {
+              "responseId": "en:lesson-04:session-50:intro3:r3",
+              "text": "It are effective."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Способ помогает людям находить место. Скажите «Это эффективно» с сокращением.",
+          "uk": "Спосіб допомагає людям знаходити місце. Скажіть «Це ефективно» зі скороченням."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7abd2ffcf0d0cf5aaebae69777c219dfcd461922371740a4f2c3ce676c1e10af"
+}

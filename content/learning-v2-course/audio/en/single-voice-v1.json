@@ -132880,6 +132880,309 @@
           "byteSize": 26880
         }
       ]
+    },
+    "l08/s47/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can adapt.",
+          "file": "41e388d5b7c3d553f8f9085b7f097f4f979030d2f34d58089d6737f4fa1a2657.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41e388d5b7c3d553f8f9085b7f097f4f979030d2f34d58089d6737f4fa1a2657.mp3",
+          "contentHash": "2e3dd4a79511b20e6607fc943cfd4be8c02e41978b48f19618d7c5e4af08359c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l08/s47/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "53bbc6b5b6be01677e0ef30b4f4053ddfff48b103286bfdbaebe56753a9b693d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53bbc6b5b6be01677e0ef30b4f4053ddfff48b103286bfdbaebe56753a9b693d.mp3",
+          "contentHash": "9e4323ff5ae91c3b047579b1b8331b43105e046aa59be55d18c09c789e0edba3",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s47/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can whistle.",
+          "file": "3ccc6ac731ada2a6162c982bf3fed6cf4085ee4e94c123a2346b73c9a89e1c77.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3ccc6ac731ada2a6162c982bf3fed6cf4085ee4e94c123a2346b73c9a89e1c77.mp3",
+          "contentHash": "8db7f7213bbddf409224af981cf74334c40c2d65a3a44c1f4af2907a13b9a3bf",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l08/s47/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can adapt.",
+          "file": "41e388d5b7c3d553f8f9085b7f097f4f979030d2f34d58089d6737f4fa1a2657.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41e388d5b7c3d553f8f9085b7f097f4f979030d2f34d58089d6737f4fa1a2657.mp3",
+          "contentHash": "2e3dd4a79511b20e6607fc943cfd4be8c02e41978b48f19618d7c5e4af08359c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l08/s47/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "adapt",
+          "file": "ebcae59cedb09eba6fd9ef66bdc7f2eae1739fa6691f45ed8443ec908e4dabb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebcae59cedb09eba6fd9ef66bdc7f2eae1739fa6691f45ed8443ec908e4dabb7.mp3",
+          "contentHash": "34946f3911f815a68ce9964b5cb3437c8ce7337c1fd6761d1d2e5ac524b4a485",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l08/s47/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can adapt.",
+          "file": "0e3787901051411f4a65effa2f44f32bb9ddefc3fb7dd39451b53fcf234d2d08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e3787901051411f4a65effa2f44f32bb9ddefc3fb7dd39451b53fcf234d2d08.mp3",
+          "contentHash": "996d39fd080dcfa7794e1b761d6b7c908786ec79988e3e1392fc19acbe277bd1",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s47/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "adapt",
+          "file": "a83f2064c790bef6e515ca9380b9f49e8eae4a31302554ada4d96f34fa5aca14.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a83f2064c790bef6e515ca9380b9f49e8eae4a31302554ada4d96f34fa5aca14.mp3",
+          "contentHash": "1d4402a03899a749ea1ea0a94d776a5bf40049095497d45da9c763769149a1c2",
+          "byteSize": 35712
+        },
+        {
+          "text": "leftover",
+          "file": "982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "contentHash": "fccb8ce11a0bf29108b552b254bdc4256609573277bae82529761f635039a325",
+          "byteSize": 20352
+        },
+        {
+          "text": "glove",
+          "file": "12b52760bec88c6051a880a801fd4b7fbfd2b0b60a0b4ef80be5a15408fcf979.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-nova.mp3",
+          "contentHash": "330ea8e560c967a08ad8330c57478e3df25fa6c16ca66276d3b9ad8e581c8e8a",
+          "byteSize": 18048
+        },
+        {
+          "text": "photograph",
+          "file": "ef264d7d92d7c818b1f4123b9958b7465bcdb1b20acd5ae3d955228905417ded.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef264d7d92d7c818b1f4123b9958b7465bcdb1b20acd5ae3d955228905417ded.mp3",
+          "contentHash": "f72def21336100672be6dd5fe114a12ad66d3d5591d3d41b05c11de5e1caf4d2",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l08/s47/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can adapt.",
+          "file": "0e3787901051411f4a65effa2f44f32bb9ddefc3fb7dd39451b53fcf234d2d08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e3787901051411f4a65effa2f44f32bb9ddefc3fb7dd39451b53fcf234d2d08.mp3",
+          "contentHash": "996d39fd080dcfa7794e1b761d6b7c908786ec79988e3e1392fc19acbe277bd1",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l08/s47/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "0d5d437a2eb68d7dafc9a32c45504c6dcfd2f6c2acbbd591f78e2fa76a082990.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0d5d437a2eb68d7dafc9a32c45504c6dcfd2f6c2acbbd591f78e2fa76a082990.mp3",
+          "contentHash": "7c917b07c05ffe74aa55cf43d3cd79ff1697b352175ffc50801819792b0491b3",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l08/s47/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can whistle.",
+          "file": "3ccc6ac731ada2a6162c982bf3fed6cf4085ee4e94c123a2346b73c9a89e1c77.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3ccc6ac731ada2a6162c982bf3fed6cf4085ee4e94c123a2346b73c9a89e1c77.mp3",
+          "contentHash": "8db7f7213bbddf409224af981cf74334c40c2d65a3a44c1f4af2907a13b9a3bf",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l08/s47/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "efa6a2163b6116cf401cd997ac2edb0791c5259d66b5b80b5c409bb17ed21a40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efa6a2163b6116cf401cd997ac2edb0791c5259d66b5b80b5c409bb17ed21a40.mp3",
+          "contentHash": "034324cd945e0d84d18e12d945415f6e297cb9e4f2c0448e3e33cdc1bd9db54a",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s47/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can adapt.",
+          "file": "41e388d5b7c3d553f8f9085b7f097f4f979030d2f34d58089d6737f4fa1a2657.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/41e388d5b7c3d553f8f9085b7f097f4f979030d2f34d58089d6737f4fa1a2657.mp3",
+          "contentHash": "2e3dd4a79511b20e6607fc943cfd4be8c02e41978b48f19618d7c5e4af08359c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l08/s47/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "shove",
+          "file": "b3cad19bb2b629657b9f8fb633ff228022a433ef9f10101243d0ab8679e06741.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3cad19bb2b629657b9f8fb633ff228022a433ef9f10101243d0ab8679e06741.mp3",
+          "contentHash": "937267f72909fb88da4e12368e1069f772071584ea1c75a37e89e741a1179ff5",
+          "byteSize": 24192
+        },
+        {
+          "text": "adapt",
+          "file": "ebcae59cedb09eba6fd9ef66bdc7f2eae1739fa6691f45ed8443ec908e4dabb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebcae59cedb09eba6fd9ef66bdc7f2eae1739fa6691f45ed8443ec908e4dabb7.mp3",
+          "contentHash": "34946f3911f815a68ce9964b5cb3437c8ce7337c1fd6761d1d2e5ac524b4a485",
+          "byteSize": 27648
+        },
+        {
+          "text": "glove",
+          "file": "1e2844c3513bd21dd90a7b97a39ca44727b1e77f1c51907ebf350a0e50c229e4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-ash.mp3",
+          "contentHash": "96c2be1e528269903c06ce837c8e680aa8a6969582f07c6c0ad7ebef04203413",
+          "byteSize": 34560
+        },
+        {
+          "text": "leftover",
+          "file": "59057e17cc9053142ad1fb7bc2afc51c08ac332f8b1e28ca2708f3ed7fc7739c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/59057e17cc9053142ad1fb7bc2afc51c08ac332f8b1e28ca2708f3ed7fc7739c.mp3",
+          "contentHash": "9d4f576e98b2dd1a5186b50e200c1d664b8874dc69f1170df39a36426a901b35",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l08/s47/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "1a7f51ceeb6bba6293108be55eda77faaab3781aa91bf7d0586f97fbccd1abb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a7f51ceeb6bba6293108be55eda77faaab3781aa91bf7d0586f97fbccd1abb3.mp3",
+          "contentHash": "1d21c8826a5861711c456f3f505687130c86936b686801713147f4a3661aad7c",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s47/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Don’t shove.",
+          "file": "b6e42ae5481094039b6ba2387676ea11e151d8e95d7d3cb8d1e0371a85f8cedd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b6e42ae5481094039b6ba2387676ea11e151d8e95d7d3cb8d1e0371a85f8cedd.mp3",
+          "contentHash": "4c5558332083cc2fe08f1685fc2f25aab2b96d4f3168143f6dde61d8169e5424",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l08/s47/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can photograph it.",
+          "file": "25201ead7d6eb858680b13a968a47822ddd3c4ed89f91058103c2ece1e4518d8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/25201ead7d6eb858680b13a968a47822ddd3c4ed89f91058103c2ece1e4518d8.mp3",
+          "contentHash": "106b1dea8474fdf217a8ddb3062480d2e32997d795e7332c6fb9e5381f4562c6",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s47/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can whistle.",
+          "file": "2b7696630e390b519598db66dd0df69e18a2b1cdc9e30af232964014b6ea0dae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2b7696630e390b519598db66dd0df69e18a2b1cdc9e30af232964014b6ea0dae.mp3",
+          "contentHash": "692d245c2608452529853d8811f1c81b95ec4f77eef9e226bf432d63ee961e47",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l08/s47/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can swim.",
+          "file": "6f039c43205f46334dfca80d49458e949f89081209cc933064bef5bbc17a03ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f039c43205f46334dfca80d49458e949f89081209cc933064bef5bbc17a03ef.mp3",
+          "contentHash": "ab115e3958a56f0c312bb6ec7e030c8c357153100df93aa006ea5ab296d6b26b",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s47/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "adapt",
+          "file": "a83f2064c790bef6e515ca9380b9f49e8eae4a31302554ada4d96f34fa5aca14.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a83f2064c790bef6e515ca9380b9f49e8eae4a31302554ada4d96f34fa5aca14.mp3",
+          "contentHash": "1d4402a03899a749ea1ea0a94d776a5bf40049095497d45da9c763769149a1c2",
+          "byteSize": 35712
+        },
+        {
+          "text": "photograph",
+          "file": "ef264d7d92d7c818b1f4123b9958b7465bcdb1b20acd5ae3d955228905417ded.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef264d7d92d7c818b1f4123b9958b7465bcdb1b20acd5ae3d955228905417ded.mp3",
+          "contentHash": "f72def21336100672be6dd5fe114a12ad66d3d5591d3d41b05c11de5e1caf4d2",
+          "byteSize": 44160
+        },
+        {
+          "text": "shove",
+          "file": "dba6d4aa4817026c91f1dd25327afa9f12dae2dc9936af2dd4926f40a9b10173.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dba6d4aa4817026c91f1dd25327afa9f12dae2dc9936af2dd4926f40a9b10173.mp3",
+          "contentHash": "4a13cd51ab72414595310973a0cccd5efee271200a2b706c4a951d6242bf71c3",
+          "byteSize": 24192
+        },
+        {
+          "text": "leftover",
+          "file": "982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/982e11b8944208c26945d899c127665206c9bab15eb62353cc55ce7ff3fbe33c.mp3",
+          "contentHash": "fccb8ce11a0bf29108b552b254bdc4256609573277bae82529761f635039a325",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l08/s47/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can adapt.",
+          "file": "0e3787901051411f4a65effa2f44f32bb9ddefc3fb7dd39451b53fcf234d2d08.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e3787901051411f4a65effa2f44f32bb9ddefc3fb7dd39451b53fcf234d2d08.mp3",
+          "contentHash": "996d39fd080dcfa7794e1b761d6b7c908786ec79988e3e1392fc19acbe277bd1",
+          "byteSize": 23040
+        }
+      ]
     }
   },
   "settings": {

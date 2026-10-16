@@ -1,0 +1,940 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть «Я можу адаптуватися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть «Я можу адаптуватися»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can adapt.",
+        "localizedMeaning": {
+          "ru": "Соберите «Я могу адаптироваться»",
+          "uk": "Складіть «Я можу адаптуватися»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "adapt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-47:i02:r1",
+          "text": "adapt"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i02:r2",
+          "text": "glove"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i02:r3",
+          "text": "photograph"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i02:audio",
+          "transcript": "adapt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-47:i02:r1",
+            "targetText": "adapt",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i02:r2",
+            "targetText": "glove",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i02:r3",
+            "targetText": "photograph",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `adapt`, а в этом варианте — `glove`.",
+              "uk": "У записі перше слово — `adapt`, а в цьому варіанті — `glove`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `adapt`, а в этом варианте — `photograph`.",
+              "uk": "У записі перше слово — `adapt`, а в цьому варіанті — `photograph`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що можете адаптуватися",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-47:i03:r1",
+          "text": "adapt"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i03:r2",
+          "text": "to adapt"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i03:r3",
+          "text": "adapts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що можете адаптуватися",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что можете адаптироваться",
+          "uk": "Скажіть, що можете адаптуватися"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-47:i03:r1",
+            "text": "adapt"
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i03:r2",
+            "text": "to adapt"
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i03:r3",
+            "text": "adapts"
+          }
+        ],
+        "testedDimension": "Скажіть, що можете адаптуватися",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що можете адаптуватися",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `adapt`, без `to`.",
+              "uk": "Після `can` потрібне `adapt`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що можете адаптуватися",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `adapt`, без `s`.",
+              "uk": "Після `can` потрібне `adapt`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-47:i04:p1",
+            "target": "adapt",
+            "meaningByLocale": {
+              "ru": "адаптироваться",
+              "uk": "адаптуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i04:p2",
+            "target": "leftover",
+            "meaningByLocale": {
+              "ru": "остаток еды",
+              "uk": "залишок їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i04:p3",
+            "target": "glove",
+            "meaningByLocale": {
+              "ru": "перчатка",
+              "uk": "рукавичка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i04:p4",
+            "target": "photograph",
+            "meaningByLocale": {
+              "ru": "фотографировать",
+              "uk": "фотографувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "adapt",
+          "leftover",
+          "glove",
+          "photograph"
+        ],
+        "rightColumn": [
+          "адаптуватися",
+          "залишок їжі",
+          "рукавичка",
+          "фотографувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i05:audio",
+          "transcript": "I can adapt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can adapt.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "adapt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть про подругу «Вона вміє водити»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть про подругу «Вона вміє водити»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can drive.",
+        "localizedMeaning": {
+          "ru": "Скажите о подруге «Она умеет водить»",
+          "uk": "Скажіть про подругу «Вона вміє водити»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "drive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Я вмію свистіти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i07:audio",
+          "transcript": "I can whistle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can whistle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що вона вміє водити",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-47:i08:r1",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i08:r2",
+          "text": "drives"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i08:r3",
+          "text": "to drive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вона вміє водити",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что она умеет водить",
+          "uk": "Скажіть, що вона вміє водити"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-47:i08:r1",
+            "text": "drive"
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i08:r2",
+            "text": "drives"
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i08:r3",
+            "text": "to drive"
+          }
+        ],
+        "testedDimension": "Скажіть, що вона вміє водити",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що вона вміє водити",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, даже с `she`.",
+              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що вона вміє водити",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, без `to`.",
+              "uk": "Після `can` потрібне `drive`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-47:i09:r1",
+          "text": "I can adapt."
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i09:r2",
+          "text": "I can swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i09:r3",
+          "text": "I can whistle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i09:audio",
+          "transcript": "I can adapt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-47:i09:r1",
+            "targetText": "I can adapt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i09:r2",
+            "targetText": "I can swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i09:r3",
+            "targetText": "I can whistle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `adapt`, а в этом варианте — `swim`.",
+              "uk": "У записі останнє слово — `adapt`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `adapt`, а в этом варианте — `whistle`.",
+              "uk": "У записі останнє слово — `adapt`, а в цьому варіанті — `whistle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-47:i10:p1",
+            "target": "shove",
+            "meaningByLocale": {
+              "ru": "грубо толкать",
+              "uk": "грубо штовхати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i10:p2",
+            "target": "adapt",
+            "meaningByLocale": {
+              "ru": "адаптироваться",
+              "uk": "адаптуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i10:p3",
+            "target": "glove",
+            "meaningByLocale": {
+              "ru": "перчатка",
+              "uk": "рукавичка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i10:p4",
+            "target": "leftover",
+            "meaningByLocale": {
+              "ru": "остаток еды",
+              "uk": "залишок їжі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shove",
+          "adapt",
+          "glove",
+          "leftover"
+        ],
+        "rightColumn": [
+          "грубо штовхати",
+          "адаптуватися",
+          "рукавичка",
+          "залишок їжі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i11:audio",
+          "transcript": "She can drive."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She can drive.",
+        "orderedTokens": [
+          "She",
+          "can",
+          "drive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг штовхає людей біля входу до зали. Скажіть «Не штовхайся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг штовхає людей біля входу до зали. Скажіть «Не штовхайся»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t shove.",
+        "localizedMeaning": {
+          "ru": "Друг толкает людей у входа в зал. Скажите «Не толкайся»",
+          "uk": "Друг штовхає людей біля входу до зали. Скажіть «Не штовхайся»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "shove"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажіть на будівлю. Використайте photograph: «Я можу її сфотографувати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Покажіть на будівлю. Використайте photograph: «Я можу її сфотографувати»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i13:audio",
+          "transcript": "I can photograph it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can photograph it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що вмієте свистіти",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-47:i14:r1",
+          "text": "whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i14:r2",
+          "text": "whistles"
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i14:r3",
+          "text": "to whistle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вмієте свистіти",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что умеете свистеть",
+          "uk": "Скажіть, що вмієте свистіти"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-47:i14:r1",
+            "text": "whistle"
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i14:r2",
+            "text": "whistles"
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i14:r3",
+            "text": "to whistle"
+          }
+        ],
+        "testedDimension": "Скажіть, що вмієте свистіти",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-47:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що вмієте свистіти",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `s`.",
+              "uk": "Після `can` потрібне `whistle`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що вмієте свистіти",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `to`.",
+              "uk": "Після `can` потрібне `whistle`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-47:i15:r1",
+          "text": "I can swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i15:r2",
+          "text": "I can drive."
+        },
+        {
+          "responseId": "en:lesson-08:session-47:i15:r3",
+          "text": "I can whistle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i15:audio",
+          "transcript": "I can swim."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-47:i15:r1",
+            "targetText": "I can swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i15:r2",
+            "targetText": "I can drive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i15:r3",
+            "targetText": "I can whistle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-47:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
+              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-47:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
+              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-47:i16:p1",
+            "target": "adapt",
+            "meaningByLocale": {
+              "ru": "адаптироваться",
+              "uk": "адаптуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i16:p2",
+            "target": "photograph",
+            "meaningByLocale": {
+              "ru": "фотографировать",
+              "uk": "фотографувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i16:p3",
+            "target": "shove",
+            "meaningByLocale": {
+              "ru": "грубо толкать",
+              "uk": "грубо штовхати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-47:i16:p4",
+            "target": "leftover",
+            "meaningByLocale": {
+              "ru": "остаток еды",
+              "uk": "залишок їжі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "adapt",
+          "photograph",
+          "shove",
+          "leftover"
+        ],
+        "rightColumn": [
+          "адаптуватися",
+          "фотографувати",
+          "грубо штовхати",
+          "залишок їжі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У новому офісі інший порядок роботи. Колега запитує, чи впораєтеся ви зі змінами. Скажіть «Я можу адаптуватися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "У новому офісі інший порядок роботи. Колега запитує, чи впораєтеся ви зі змінами. Скажіть «Я можу адаптуватися»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:i17:audio",
+          "transcript": "I can adapt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can adapt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a3bbd7a690613a24eceab52573f9ddcd09c60f3a6b08c5e651a88e614f6896c8"
+}

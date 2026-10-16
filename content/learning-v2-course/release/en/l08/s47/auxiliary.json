@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-47:intro1:r2": {
+          "ru": "После `can` нужно `adapt`, без `to`.",
+          "uk": "Після `can` потрібне `adapt`, без `to`."
+        },
+        "en:lesson-08:session-47:intro1:r3": {
+          "ru": "После `can` нужно `adapt`, без `s`.",
+          "uk": "Після `can` потрібне `adapt`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-47:intro2:r2": {
+          "ru": "После `can` нужно `drive`, без `s`.",
+          "uk": "Після `can` потрібне `drive`, без `s`."
+        },
+        "en:lesson-08:session-47:intro2:r3": {
+          "ru": "После `can` нужно `drive`, без `to`.",
+          "uk": "Після `can` потрібне `drive`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-47:intro3:r2": {
+          "ru": "После `can` нужно `whistle`, без `to`.",
+          "uk": "Після `can` потрібне `whistle`, без `to`."
+        },
+        "en:lesson-08:session-47:intro3:r3": {
+          "ru": "После `can` нужно `whistle`, без `s`.",
+          "uk": "Після `can` потрібне `whistle`, без `s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "903fc7543365cfb114f51c59f2cc465e2a5a4b97b8e302339d98f906f6b106e9"
+}

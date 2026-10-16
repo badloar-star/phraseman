@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-18:i01",
+    "correctText": "It is early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i02",
+    "correctText": "gloves",
+    "correctResponseId": "en:lesson-05:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i03",
+    "correctText": "gloves",
+    "correctResponseId": "en:lesson-05:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i04",
+    "correctText": "en:lesson-05:session-18:i04:p1=gloves\nen:lesson-05:session-18:i04:p2=wrong\nen:lesson-05:session-18:i04:p3=early\nen:lesson-05:session-18:i04:p4=lucky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i05",
+    "correctText": "The gloves are in my pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i06",
+    "correctText": "The boxes are ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i07",
+    "correctText": "I am wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i08",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i09",
+    "correctText": "You are lucky.",
+    "correctResponseId": "en:lesson-05:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i10",
+    "correctText": "en:lesson-05:session-18:i10:p1=gloves\nen:lesson-05:session-18:i10:p2=boxes\nen:lesson-05:session-18:i10:p3=milk\nen:lesson-05:session-18:i10:p4=pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i11",
+    "correctText": "Where are your gloves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i12",
+    "correctText": "There is no milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i13",
+    "correctText": "I have your gloves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-18:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i15",
+    "correctText": "The gloves are yours.",
+    "correctResponseId": "en:lesson-05:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i16",
+    "correctText": "en:lesson-05:session-18:i16:p1=gloves\nen:lesson-05:session-18:i16:p2=boxes\nen:lesson-05:session-18:i16:p3=milk\nen:lesson-05:session-18:i16:p4=pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-18:i17",
+    "correctText": "The gloves are mine.",
+    "correctResponseId": null
+  }
+]

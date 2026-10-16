@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "найти вещи и уточнить их владельца",
+    "uk": "знайти речі й уточнити їхнього власника"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Две руки — перчатки",
+        "uk": "Дві руки — рукавички"
+      },
+      "bodyByLocale": {
+        "ru": "`gloves` — «перчатки», множественное число. `The gloves are mine` — «Перчатки мои»: с несколькими перчатками нужно `are`. `my gloves` — «мои перчатки», но без повторения названия — `mine`. `The gloves are in my pocket` — «Перчатки в моём кармане». Перчатки уже в кармане, а руки всё ещё мёрзнут: вещи собрались быстрее хозяина.",
+        "uk": "`gloves` — «рукавички», множина. `The gloves are mine` — «Рукавички мої»: з кількома рукавичками потрібне `are`. `my gloves` — «мої рукавички», але без повторення назви — `mine`. `The gloves are in my pocket` — «Рукавички в моїй кишені». Рукавички вже в кишені, а руки досі мерзнуть: речі зібралися швидше за господаря."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Перчатки мои».",
+          "uk": "Скажіть «Рукавички мої»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-18:intro1:r1",
+              "text": "The gloves are mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro1:r2",
+              "text": "The gloves is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro1:r3",
+              "text": "The gloves are my."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-18:intro1:r1",
+              "text": "The gloves are mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro1:r2",
+              "text": "The gloves is mine."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro1:r3",
+              "text": "The gloves are my."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Перчатки мои».",
+          "uk": "Скажіть «Рукавички мої»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рано, повезло, ошиблись",
+        "uk": "Рано, пощастило, помилилися"
+      },
+      "bodyByLocale": {
+        "ru": "`early` — «рано»: `It is early` — «Сейчас рано». `lucky` — «везучий / удачливый»: `You are lucky` — «Тебе повезло». `wrong` — «неправ»: `I am wrong` — «Я неправ / неправа». Здесь `wrong` означает ошибку во мнении, а не плохой характер.",
+        "uk": "`early` — «рано»: `It is early` — «Зараз рано». `lucky` — «везучий»: `You are lucky` — «Тобі пощастило». `wrong` — «не має рації»: `I am wrong` — «Я не маю рації». Тут `wrong` означає помилку в думці, а не поганий характер."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы ошиблись, решив, что перчатки потеряны. Скажите «Я неправ» без сокращения.",
+          "uk": "Ви помилилися, вирішивши, що рукавички загубилися. Скажіть «Я не маю рації» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-18:intro2:r1",
+              "text": "I am wrong."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro2:r2",
+              "text": "I is wrong."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro2:r3",
+              "text": "I am lucky."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-18:intro2:r1",
+              "text": "I am wrong."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro2:r2",
+              "text": "I is wrong."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro2:r3",
+              "text": "I am lucky."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы ошиблись, решив, что перчатки потеряны. Скажите «Я неправ» без сокращения.",
+          "uk": "Ви помилилися, вирішивши, що рукавички загубилися. Скажіть «Я не маю рації» без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коробки, карман и молоко",
+        "uk": "Коробки, кишеня та молоко"
+      },
+      "bodyByLocale": {
+        "ru": "`boxes` — «коробки», `pocket` — «карман», `milk` — «молоко». `The boxes are ours` — «Коробки наши». `Where are your gloves?` — «Где твои перчатки?» `There is no milk` — «Молока нет»: в этом значении `milk` не считаем поштучно, поэтому `is`. `There are no boxes` — «Нет коробок»: множественное число, поэтому `are`.",
+        "uk": "`boxes` — «коробки», `pocket` — «кишеня», `milk` — «молоко». `The boxes are ours` — «Коробки наші». `Where are your gloves?` — «Де твої рукавички?» `There is no milk` — «Молока немає»: у цьому значенні `milk` не рахуємо поштучно, тому `is`. `There are no boxes` — «Немає коробок»: множина, тому `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите, что молока нет.",
+          "uk": "Повідомте, що молока немає."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-18:intro3:r1",
+              "text": "There is no milk."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro3:r2",
+              "text": "There are no milk."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro3:r3",
+              "text": "There is milk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-18:intro3:r1",
+              "text": "There is no milk."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro3:r2",
+              "text": "There are no milk."
+            },
+            {
+              "responseId": "en:lesson-05:session-18:intro3:r3",
+              "text": "There is milk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите, что молока нет.",
+          "uk": "Повідомте, що молока немає."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f9a7f090408b2ca0a6593d4bf144b6bc12484129388e9143ddfc0812fc7b49d1"
+}

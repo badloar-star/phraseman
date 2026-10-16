@@ -1,0 +1,995 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is early.",
+        "localizedMeaning": {
+          "ru": "До обычного времени выхода ещё далеко. Скажите «Сейчас рано» без сокращения",
+          "uk": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "early"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `It is early.`",
+              "uk": "тут потрібно `is` — `It is early.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-18:i02:r1",
+          "text": "gloves"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i02:r2",
+          "text": "glove"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i02:r3",
+          "text": "jacket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i02:audio",
+          "transcript": "gloves"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-18:i02:r1",
+            "targetText": "gloves",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i02:r2",
+            "targetText": "glove",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i02:r3",
+            "targetText": "jacket",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `gloves`, а в этом варианте — `glove`.",
+              "uk": "У записі перше слово — `gloves`, а в цьому варіанті — `glove`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `gloves`, а в этом варианте — `jacket`.",
+              "uk": "У записі перше слово — `gloves`, а в цьому варіанті — `jacket`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть рукавички",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-18:i03:r1",
+          "text": "gloves"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i03:r2",
+          "text": "boxes"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i03:r3",
+          "text": "jacket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть рукавички",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите перчатки",
+          "uk": "Назвіть рукавички"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-18:i03:r1",
+            "text": "gloves"
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i03:r2",
+            "text": "boxes"
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i03:r3",
+            "text": "jacket"
+          }
+        ],
+        "testedDimension": "Назвіть рукавички",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть рукавички",
+            "feedbackByLocale": {
+              "ru": "`boxes` — коробки; перчатки — `gloves`.",
+              "uk": "`boxes` — коробки; рукавички — `gloves`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть рукавички",
+            "feedbackByLocale": {
+              "ru": "`jacket` — куртка; перчатки — `gloves`.",
+              "uk": "`jacket` — куртка; рукавички — `gloves`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-18:i04:p1",
+            "target": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки",
+              "uk": "рукавички"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i04:p2",
+            "target": "wrong",
+            "meaningByLocale": {
+              "ru": "неправ",
+              "uk": "не має рації"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i04:p3",
+            "target": "early",
+            "meaningByLocale": {
+              "ru": "рано",
+              "uk": "рано"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i04:p4",
+            "target": "lucky",
+            "meaningByLocale": {
+              "ru": "везучий",
+              "uk": "везучий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gloves",
+          "wrong",
+          "early",
+          "lucky"
+        ],
+        "rightColumn": [
+          "рукавички",
+          "не має рації",
+          "рано",
+          "везучий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i05:audio",
+          "transcript": "The gloves are in my pocket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The gloves are in my pocket.",
+        "orderedTokens": [
+          "The",
+          "gloves",
+          "are",
+          "in",
+          "my",
+          "pocket"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The gloves are in my pocket.`",
+              "uk": "тут потрібно `are` — `The gloves are in my pocket.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коробки належать вам і другові. Скажіть «Коробки наші»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробки належать вам і другові. Скажіть «Коробки наші»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The boxes are ours.",
+        "localizedMeaning": {
+          "ru": "Коробки принадлежат вам и другу. Скажите «Коробки наши»",
+          "uk": "Коробки належать вам і другові. Скажіть «Коробки наші»"
+        },
+        "orderedTokens": [
+          "The",
+          "boxes",
+          "are",
+          "ours"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Коробки належать вам і другові. Скажіть «Коробки наші»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The boxes are ours.`",
+              "uk": "тут потрібно `are` — `The boxes are ours.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви помилилися щодо загублених рукавичок. Визнайте «Я не маю рації» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Ви помилилися щодо загублених рукавичок. Визнайте «Я не маю рації» без скорочення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i07:audio",
+          "transcript": "I am wrong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am wrong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-18:i08:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i08:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перчатки принадлежат подруге. Скажите «Перчатки её»",
+          "uk": "Рукавички належать подрузі. Скажіть «Рукавички її»"
+        },
+        "gappedTargetPhrase": "The gloves are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-18:i08:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i08:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+            "feedbackByLocale": {
+              "ru": "`his` — его; её — `hers`.",
+              "uk": "`his` — його; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що друг каже вам після знахідки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-18:i09:r1",
+          "text": "You are lucky."
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i09:r2",
+          "text": "You are early."
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i09:r3",
+          "text": "You are wrong."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що друг каже вам після знахідки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i09:audio",
+          "transcript": "You are lucky."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-18:i09:r1",
+            "targetText": "You are lucky.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i09:r2",
+            "targetText": "You are early.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i09:r3",
+            "targetText": "You are wrong.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг каже вам після знахідки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `lucky`, а в этом варианте — `early`.",
+              "uk": "У записі останнє слово — `lucky`, а в цьому варіанті — `early`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг каже вам після знахідки",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `lucky`, а в этом варианте — `wrong`.",
+              "uk": "У записі останнє слово — `lucky`, а в цьому варіанті — `wrong`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-18:i10:p1",
+            "target": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки",
+              "uk": "рукавички"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i10:p2",
+            "target": "boxes",
+            "meaningByLocale": {
+              "ru": "коробки",
+              "uk": "коробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i10:p3",
+            "target": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i10:p4",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gloves",
+          "boxes",
+          "milk",
+          "pocket"
+        ],
+        "rightColumn": [
+          "рукавички",
+          "коробки",
+          "молоко",
+          "кишеня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i11:audio",
+          "transcript": "Where are your gloves?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where are your gloves?",
+        "orderedTokens": [
+          "Where",
+          "are",
+          "your",
+          "gloves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Молоко закінчилося. Скажіть «Молока немає»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Молоко закінчилося. Скажіть «Молока немає»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is no milk.",
+        "localizedMeaning": {
+          "ru": "Молоко закончилось. Скажите «Молока нет»",
+          "uk": "Молоко закінчилося. Скажіть «Молока немає»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "no",
+          "milk"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Молоко закінчилося. Скажіть «Молока немає»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is no milk.`",
+              "uk": "тут потрібно `is` — `There is no milk.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Рукавички друга у вас. Скажіть йому «Твої рукавички в мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Рукавички друга у вас. Скажіть йому «Твої рукавички в мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i13:audio",
+          "transcript": "I have your gloves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your gloves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Немає жодної коробки. Виберіть форму для множини",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-18:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Немає жодної коробки. Виберіть форму для множини",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нет ни одной коробки. Выберите форму для множественного числа",
+          "uk": "Немає жодної коробки. Виберіть форму для множини"
+        },
+        "gappedTargetPhrase": "There ___ no boxes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-18:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Немає жодної коробки. Виберіть форму для множини",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i14:r2",
+            "correct": false,
+            "testedDimension": "Немає жодної коробки. Виберіть форму для множини",
+            "feedbackByLocale": {
+              "ru": "`boxes` — множественное число: `There are`.",
+              "uk": "`boxes` — множина: `There are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i14:r3",
+            "correct": false,
+            "testedDimension": "Немає жодної коробки. Виберіть форму для множини",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `There are`.",
+              "uk": "`am` використовується з `I`; тут `There are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належать рукавички",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-18:i15:r1",
+          "text": "The gloves are yours."
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i15:r2",
+          "text": "The gloves are mine."
+        },
+        {
+          "responseId": "en:lesson-05:session-18:i15:r3",
+          "text": "The gloves are theirs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належать рукавички",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i15:audio",
+          "transcript": "The gloves are yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-18:i15:r1",
+            "targetText": "The gloves are yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i15:r2",
+            "targetText": "The gloves are mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i15:r3",
+            "targetText": "The gloves are theirs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належать рукавички",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належать рукавички",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
+              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-18:i16:p1",
+            "target": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки",
+              "uk": "рукавички"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i16:p2",
+            "target": "boxes",
+            "meaningByLocale": {
+              "ru": "коробки",
+              "uk": "коробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i16:p3",
+            "target": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-18:i16:p4",
+            "target": "pocket",
+            "meaningByLocale": {
+              "ru": "карман",
+              "uk": "кишеня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gloves",
+          "boxes",
+          "milk",
+          "pocket"
+        ],
+        "rightColumn": [
+          "рукавички",
+          "коробки",
+          "молоко",
+          "кишеня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, кому належать знайдені рукавички. Дайте відповідь «Рукавички мої»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, кому належать знайдені рукавички. Дайте відповідь «Рукавички мої»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:i17:audio",
+          "transcript": "The gloves are mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The gloves are mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1c4d93fb39aa2e08e8a007cf155dc92de8ead2badca5ad432d815554d52309b2"
+}

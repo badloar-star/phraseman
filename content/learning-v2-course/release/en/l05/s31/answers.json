@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-31:i01",
+    "correctText": "The bags are similar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i02",
+    "correctText": "guitar",
+    "correctResponseId": "en:lesson-05:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i03",
+    "correctText": "guitar",
+    "correctResponseId": "en:lesson-05:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i04",
+    "correctText": "en:lesson-05:session-31:i04:p1=guitar\nen:lesson-05:session-31:i04:p2=equal\nen:lesson-05:session-31:i04:p3=similar\nen:lesson-05:session-31:i04:p4=separate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i05",
+    "correctText": "This is Tom's guitar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i06",
+    "correctText": "Anna's camera is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i07",
+    "correctText": "The numbers are equal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i08",
+    "correctText": "Anna's",
+    "correctResponseId": "en:lesson-05:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i09",
+    "correctText": "The rooms are separate.",
+    "correctResponseId": "en:lesson-05:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i10",
+    "correctText": "en:lesson-05:session-31:i10:p1=guitar\nen:lesson-05:session-31:i10:p2=parks\nen:lesson-05:session-31:i10:p3=car park\nen:lesson-05:session-31:i10:p4=camera",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i11",
+    "correctText": "Tom is in the car park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i12",
+    "correctText": "The parks are open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i13",
+    "correctText": "Where is my guitar?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i14",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-05:session-31:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i15",
+    "correctText": "Your guitar is here.",
+    "correctResponseId": "en:lesson-05:session-31:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i16",
+    "correctText": "en:lesson-05:session-31:i16:p1=guitar\nen:lesson-05:session-31:i16:p2=parks\nen:lesson-05:session-31:i16:p3=car park\nen:lesson-05:session-31:i16:p4=camera",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:i17",
+    "correctText": "This is Tom's guitar.",
+    "correctResponseId": null
+  }
+]

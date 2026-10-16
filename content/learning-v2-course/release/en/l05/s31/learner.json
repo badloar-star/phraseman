@@ -1,0 +1,1010 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумки похожи друг на друга. Скажите «Сумки похожи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумки похожи друг на друга. Скажите «Сумки похожи»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bags are similar.",
+        "localizedMeaning": {
+          "ru": "Сумки похожи друг на друга. Скажите «Сумки похожи»",
+          "uk": "Сумки схожі одна на одну. Скажіть «Сумки схожі»"
+        },
+        "orderedTokens": [
+          "The",
+          "bags",
+          "are",
+          "similar"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сумки похожи друг на друга. Скажите «Сумки похожи»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bags are similar.`",
+              "uk": "тут потрібно `are` — `The bags are similar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-31:i02:r1",
+          "text": "guitar"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i02:r2",
+          "text": "camera"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i02:r3",
+          "text": "tablet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i02:audio",
+          "transcript": "guitar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-31:i02:r1",
+            "targetText": "guitar",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i02:r2",
+            "targetText": "camera",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i02:r3",
+            "targetText": "tablet",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `guitar`, а в этом варианте — `camera`.",
+              "uk": "У записі перше слово — `guitar`, а в цьому варіанті — `camera`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `guitar`, а в этом варианте — `tablet`.",
+              "uk": "У записі перше слово — `guitar`, а в цьому варіанті — `tablet`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите гитару",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-31:i03:r1",
+          "text": "guitar"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i03:r2",
+          "text": "camera"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i03:r3",
+          "text": "headphones"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите гитару",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите гитару",
+          "uk": "Назвіть гітару"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-31:i03:r1",
+            "text": "guitar"
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i03:r2",
+            "text": "camera"
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i03:r3",
+            "text": "headphones"
+          }
+        ],
+        "testedDimension": "Назовите гитару",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите гитару",
+            "feedbackByLocale": {
+              "ru": "`camera` — камера; гитара — `guitar`.",
+              "uk": "`camera` — камера; гітара — `guitar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите гитару",
+            "feedbackByLocale": {
+              "ru": "`headphones` — наушники; гитара — `guitar`.",
+              "uk": "`headphones` — навушники; гітара — `guitar`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-31:i04:p1",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i04:p2",
+            "target": "equal",
+            "meaningByLocale": {
+              "ru": "равные",
+              "uk": "рівні"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i04:p3",
+            "target": "similar",
+            "meaningByLocale": {
+              "ru": "похожие",
+              "uk": "схожі"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i04:p4",
+            "target": "separate",
+            "meaningByLocale": {
+              "ru": "отдельные",
+              "uk": "окремі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "guitar",
+          "equal",
+          "similar",
+          "separate"
+        ],
+        "rightColumn": [
+          "гитара",
+          "равные",
+          "похожие",
+          "отдельные"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i05:audio",
+          "transcript": "This is Tom's guitar."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is Tom's guitar.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "Tom's",
+          "guitar"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is Tom's guitar.`",
+              "uk": "тут потрібно `is` — `This is Tom's guitar.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Камера Анны на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Камера Анны на столе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna's camera is on the table.",
+        "localizedMeaning": {
+          "ru": "Скажите «Камера Анны на столе»",
+          "uk": "Скажіть «Камера Анни на столі»"
+        },
+        "orderedTokens": [
+          "Anna's",
+          "camera",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Камера Анны на столе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna's camera is on the table.`",
+              "uk": "тут потрібно `is` — `Anna's camera is on the table.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед вами два одинаковых числа. Скажите «Числа равны»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Перед вами два одинаковых числа. Скажите «Числа равны»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i07:audio",
+          "transcript": "The numbers are equal."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The numbers are equal.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гитара принадлежит Анне. Укажите владельца",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-31:i08:r1",
+          "text": "Anna's"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i08:r2",
+          "text": "Anna"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i08:r3",
+          "text": "Tom's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гитара принадлежит Анне. Укажите владельца",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Гитара принадлежит Анне. Укажите владельца",
+          "uk": "Гітара належить Анні. Укажіть власницю"
+        },
+        "gappedTargetPhrase": "This is ___ guitar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-31:i08:r1",
+            "text": "Anna's"
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i08:r2",
+            "text": "Anna"
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i08:r3",
+            "text": "Tom's"
+          }
+        ],
+        "testedDimension": "Гитара принадлежит Анне. Укажите владельца",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Гитара принадлежит Анне. Укажите владельца",
+            "feedbackByLocale": {
+              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
+              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Гитара принадлежит Анне. Укажите владельца",
+            "feedbackByLocale": {
+              "ru": "Это принадлежность Тому; здесь владелица Анна.",
+              "uk": "Це належність Тому; тут власниця Анна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что друг сообщает о комнатах",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-31:i09:r1",
+          "text": "The rooms are separate."
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i09:r2",
+          "text": "The rooms are similar."
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i09:r3",
+          "text": "The rooms are open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что друг сообщает о комнатах",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i09:audio",
+          "transcript": "The rooms are separate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-31:i09:r1",
+            "targetText": "The rooms are separate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i09:r2",
+            "targetText": "The rooms are similar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i09:r3",
+            "targetText": "The rooms are open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг сообщает о комнатах",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `separate`, а в этом варианте — `similar`.",
+              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `similar`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг сообщает о комнатах",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `separate`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `open`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-31:i10:p1",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i10:p2",
+            "target": "parks",
+            "meaningByLocale": {
+              "ru": "парки",
+              "uk": "парки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i10:p3",
+            "target": "car park",
+            "meaningByLocale": {
+              "ru": "автостоянка",
+              "uk": "автостоянка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i10:p4",
+            "target": "camera",
+            "meaningByLocale": {
+              "ru": "камера",
+              "uk": "камера"
+            }
+          }
+        ],
+        "leftColumn": [
+          "guitar",
+          "parks",
+          "car park",
+          "camera"
+        ],
+        "rightColumn": [
+          "гитара",
+          "парки",
+          "автостоянка",
+          "камера"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i11:audio",
+          "transcript": "Tom is in the car park."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom is in the car park.",
+        "orderedTokens": [
+          "Tom",
+          "is",
+          "in",
+          "the",
+          "car",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom is in the car park.`",
+              "uk": "тут потрібно `is` — `Tom is in the car park.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В парки можно войти. Скажите «Парки открыты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В парки можно войти. Скажите «Парки открыты»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The parks are open.",
+        "localizedMeaning": {
+          "ru": "В парки можно войти. Скажите «Парки открыты»",
+          "uk": "До парків можна зайти. Скажіть «Парки відкриті»"
+        },
+        "orderedTokens": [
+          "The",
+          "parks",
+          "are",
+          "open"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "В парки можно войти. Скажите «Парки открыты»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The parks are open.`",
+              "uk": "тут потрібно `are` — `The parks are open.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ищете свою гитару. Спросите «Где моя гитара?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Вы ищете свою гитару. Спросите «Где моя гитара?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i13:audio",
+          "transcript": "Where is my guitar?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is my guitar?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Камера принадлежит подруге. Скажите «Камера её»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-31:i14:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i14:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i14:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Камера принадлежит подруге. Скажите «Камера её»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Камера принадлежит подруге. Скажите «Камера её»",
+          "uk": "Камера належить подрузі. Скажіть «Камера її»"
+        },
+        "gappedTargetPhrase": "The camera is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-31:i14:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i14:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i14:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Камера принадлежит подруге. Скажите «Камера её»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i14:r2",
+            "correct": false,
+            "testedDimension": "Камера принадлежит подруге. Скажите «Камера её»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i14:r3",
+            "correct": false,
+            "testedDimension": "Камера принадлежит подруге. Скажите «Камера её»",
+            "feedbackByLocale": {
+              "ru": "`his` — его; её — `hers`.",
+              "uk": "`his` — його; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чья гитара здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-31:i15:r1",
+          "text": "Your guitar is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i15:r2",
+          "text": "My guitar is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-31:i15:r3",
+          "text": "His guitar is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чья гитара здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i15:audio",
+          "transcript": "Your guitar is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-31:i15:r1",
+            "targetText": "Your guitar is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i15:r2",
+            "targetText": "My guitar is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i15:r3",
+            "targetText": "His guitar is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-31:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чья гитара здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-31:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чья гитара здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-31:i16:p1",
+            "target": "guitar",
+            "meaningByLocale": {
+              "ru": "гитара",
+              "uk": "гітара"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i16:p2",
+            "target": "parks",
+            "meaningByLocale": {
+              "ru": "парки",
+              "uk": "парки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i16:p3",
+            "target": "car park",
+            "meaningByLocale": {
+              "ru": "автостоянка",
+              "uk": "автостоянка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-31:i16:p4",
+            "target": "camera",
+            "meaningByLocale": {
+              "ru": "камера",
+              "uk": "камера"
+            }
+          }
+        ],
+        "leftColumn": [
+          "guitar",
+          "parks",
+          "car park",
+          "camera"
+        ],
+        "rightColumn": [
+          "гитара",
+          "парки",
+          "автостоянка",
+          "камера"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о владельце гитары. Она принадлежит Тому. Скажите «Это гитара Тома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о владельце гитары. Она принадлежит Тому. Скажите «Это гитара Тома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:i17:audio",
+          "transcript": "This is Tom's guitar."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is Tom's guitar.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "eb7f9f7c1d14bf7a6e0a2b3534229aca96852dc2abec3c31f089a4be2e04ef90"
+}

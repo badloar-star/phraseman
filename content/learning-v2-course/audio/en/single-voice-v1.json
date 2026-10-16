@@ -83794,6 +83794,309 @@
           "byteSize": 36480
         }
       ]
+    },
+    "l05/s53/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the court?",
+          "file": "8a1d5b706d558c9d59866dd9b868c09b410141c27ffc28ddc4774a941651e01c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a1d5b706d558c9d59866dd9b868c09b410141c27ffc28ddc4774a941651e01c.mp3",
+          "contentHash": "49ad061389a01a443b9dcfd4378902f2f25dca9aa3b97ea17b17e0bfaf1bf5f6",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s53/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This bag is full.",
+          "file": "896fc1bd9452f4e3202d999a4149904a4e4b514a7d4891cc2b3c36f17bbaae93.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/896fc1bd9452f4e3202d999a4149904a4e4b514a7d4891cc2b3c36f17bbaae93.mp3",
+          "contentHash": "a5ed28409039f1de6c0b6ea658bf96d416dedd00c848aa78a6e3b27434489196",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l05/s53/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The museum is next to the police station.",
+          "file": "a64f32c728dfff16daf79179be778281264be4195653cd8fbbb282a380b3617b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a64f32c728dfff16daf79179be778281264be4195653cd8fbbb282a380b3617b.mp3",
+          "contentHash": "b2b975bcb44527416be4d09eb9e4bdd68c6f742ab55dced2f3c1c3b1cbe527ef",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s53/task/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This bag is full.",
+          "file": "43a02e55c54c1c6d93e0f981c1806e85a2c333ca0bfd5d1e20c442132fabbe86.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43a02e55c54c1c6d93e0f981c1806e85a2c333ca0bfd5d1e20c442132fabbe86.mp3",
+          "contentHash": "9d74d1db9ec52143f91aea9b8989138a563e0bc895eed954983e235583373235",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s53/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "court",
+          "file": "9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "contentHash": "7fccb82769606132bcbd0d0eab98b0bedc476fa45759acb9bf9f7aa2ad29548c",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s53/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "court",
+          "file": "7c1003e2f9c2ec2568b0d2409125ca7ac58fbd9d4db3f4f4aec83f397a894474.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c1003e2f9c2ec2568b0d2409125ca7ac58fbd9d4db3f4f4aec83f397a894474.mp3",
+          "contentHash": "cd8684c8772b724aa9ce224560e421f12a8a541854673228c50880fa6a3c0a7b",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s53/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "court",
+          "file": "7c1003e2f9c2ec2568b0d2409125ca7ac58fbd9d4db3f4f4aec83f397a894474.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c1003e2f9c2ec2568b0d2409125ca7ac58fbd9d4db3f4f4aec83f397a894474.mp3",
+          "contentHash": "cd8684c8772b724aa9ce224560e421f12a8a541854673228c50880fa6a3c0a7b",
+          "byteSize": 23040
+        },
+        {
+          "text": "motorbike",
+          "file": "fd36548bf1a80308b1a91797d9e8f700883687bfd4e6d156f4ac3278314ae39f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fd36548bf1a80308b1a91797d9e8f700883687bfd4e6d156f4ac3278314ae39f.mp3",
+          "contentHash": "172c432d55d9ad3308169b01049abcb91bf20aa7fe80fd65c09aa59e96cca06a",
+          "byteSize": 22656
+        },
+        {
+          "text": "museum",
+          "file": "1b1bc5546aec783f2ff11cf0ad5d729cae101759edf57704b946589b844fdd29.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1b1bc5546aec783f2ff11cf0ad5d729cae101759edf57704b946589b844fdd29.mp3",
+          "contentHash": "00d02844fbefef23ebbdd41001b4d3c5e5810c71917b9c1090d0f5ff4e28121b",
+          "byteSize": 23040
+        },
+        {
+          "text": "police station",
+          "file": "2033cd7f8ee5ed7d6a39b81252658266e44c0d655c3eeada47a02eb6f90a97a7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2033cd7f8ee5ed7d6a39b81252658266e44c0d655c3eeada47a02eb6f90a97a7.mp3",
+          "contentHash": "6654cd9ed01b4939764cf5f26ee907b8d07a77afe59c415a6929ae92f711b80b",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s53/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the court?",
+          "file": "2cd1a534c2034b18413b5c2283d0d203c41064ffd63fd6cedaaf31f78099a8c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2cd1a534c2034b18413b5c2283d0d203c41064ffd63fd6cedaaf31f78099a8c0.mp3",
+          "contentHash": "44e60e28f3ac8582ff7fe6c9857cb0da1367d472b195eef1dba2abf54af7c15e",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s53/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The museum is next to the police station.",
+          "file": "a64f32c728dfff16daf79179be778281264be4195653cd8fbbb282a380b3617b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a64f32c728dfff16daf79179be778281264be4195653cd8fbbb282a380b3617b.mp3",
+          "contentHash": "b2b975bcb44527416be4d09eb9e4bdd68c6f742ab55dced2f3c1c3b1cbe527ef",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s53/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The court is near the museum.",
+          "file": "84e9005deab57d112755db1d9c085b2396ab4c01a66cc9dd46997d6a77f20a6e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84e9005deab57d112755db1d9c085b2396ab4c01a66cc9dd46997d6a77f20a6e.mp3",
+          "contentHash": "b5d707f8be4b9780e23984d706d2e01aabbd23cf605f9c8a1a68d96bf4b30d5a",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l05/s53/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose motorbike is this?",
+          "file": "fadecc0c0d71f133ae522c4d283779e8561c8c61b841279d7dae2a0eb4310542.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fadecc0c0d71f133ae522c4d283779e8561c8c61b841279d7dae2a0eb4310542.mp3",
+          "contentHash": "b48481955d354345faead8173da5d63a63c2ea729ad5afc933ed48e2b3fca702",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s53/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Tom's motorbike.",
+          "file": "99097b2321a551288546a26aa397dc11ec20a6137c7ea68998eb1bb61d6e9bc8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/99097b2321a551288546a26aa397dc11ec20a6137c7ea68998eb1bb61d6e9bc8.mp3",
+          "contentHash": "72677918defacd77a15406486e7e8b32a5a213e6424af3423fd60d39b436151f",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s53/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "court",
+          "file": "9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "contentHash": "7fccb82769606132bcbd0d0eab98b0bedc476fa45759acb9bf9f7aa2ad29548c",
+          "byteSize": 14976
+        },
+        {
+          "text": "full",
+          "file": "1de842441d2549676f3e2ddb669dd6984f5db248b18201240795e98eb04d426b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a18b869b2e81c0c529552a3c-nova.mp3",
+          "contentHash": "1e68ad0867d809d32bbfcc8118165bd014b786a43a819d4eefd7446350b5bd5e",
+          "byteSize": 17280
+        },
+        {
+          "text": "police station",
+          "file": "68992a79ee13558b2557f3b35418e3eb3a5f6775408b456918e7136e5e16a3ea.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/68992a79ee13558b2557f3b35418e3eb3a5f6775408b456918e7136e5e16a3ea.mp3",
+          "contentHash": "bc8df077ba3e97bade0f3e0b23a187b0a6d0437a1fc83034e30dbce3f6d48a9b",
+          "byteSize": 28416
+        },
+        {
+          "text": "motorbike",
+          "file": "62210070d0e9d4989623f4d2a70832197c4a48fc1f390ca9c91f5eeff93ab423.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/62210070d0e9d4989623f4d2a70832197c4a48fc1f390ca9c91f5eeff93ab423.mp3",
+          "contentHash": "fcc3ec6a69f556ece5d503eb806868afecfbd161a4f0618eb2d2da6e064bb8d1",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s53/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The motorbike is near the court.",
+          "file": "d461499c88dcd9733406bffff43db9c4c2c2a30df670cb2544a701b748794758.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d461499c88dcd9733406bffff43db9c4c2c2a30df670cb2544a701b748794758.mp3",
+          "contentHash": "c9d267364348d911afbfa40417074e251b893216e78d2edbab9a407ec2e9cf6d",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l05/s53/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The motorbike is hers.",
+          "file": "1c48dd57f4e45cdfd3d8d7c5d59b2b23317f43b363093afaa0d3fa6f65f22cf1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c48dd57f4e45cdfd3d8d7c5d59b2b23317f43b363093afaa0d3fa6f65f22cf1.mp3",
+          "contentHash": "c149a085f9779acb9a100e376bd1f5399a5cc2140dec7933de1f73669429ecc6",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s53/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Your motorbike is here.",
+          "file": "09664594f70219499feab5e34469d95d580b0035f875e2087b81a728c69567da.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09664594f70219499feab5e34469d95d580b0035f875e2087b81a728c69567da.mp3",
+          "contentHash": "8f8cc7af417f34d1a59098969b20f1386f2061994780c7b6e1586fc7472c2323",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s53/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is the court?",
+          "file": "b4b28046bbda363980f389aa32c261801944c969a01fc9c5d474cc8c163b82a3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b4b28046bbda363980f389aa32c261801944c969a01fc9c5d474cc8c163b82a3.mp3",
+          "contentHash": "6a83b8f462019f13d870c113fc2ddbc662ab3c0aaf00fcddef9e1292ceef670c",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s53/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The motorbike is mine.",
+          "file": "56cc7f91118e3ba28eaca7898dc69cec4e1051f8260b366db28fda7fac6e90bc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/56cc7f91118e3ba28eaca7898dc69cec4e1051f8260b366db28fda7fac6e90bc.mp3",
+          "contentHash": "47fe490bdf3e5eef01f16148475f48281e04b7e185ce839e95ee3fd92addaae8",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l05/s53/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "court",
+          "file": "9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9aa547a56a980cd56d4454b874e5ad8b86bfc8fdf7440804141283d49f60e6fb.mp3",
+          "contentHash": "7fccb82769606132bcbd0d0eab98b0bedc476fa45759acb9bf9f7aa2ad29548c",
+          "byteSize": 14976
+        },
+        {
+          "text": "full",
+          "file": "1de842441d2549676f3e2ddb669dd6984f5db248b18201240795e98eb04d426b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/a18b869b2e81c0c529552a3c-nova.mp3",
+          "contentHash": "1e68ad0867d809d32bbfcc8118165bd014b786a43a819d4eefd7446350b5bd5e",
+          "byteSize": 17280
+        },
+        {
+          "text": "museum",
+          "file": "e61bba90ae50ba6edd3d86a2ce6956881e80e951736e80232f86f411974fe692.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e61bba90ae50ba6edd3d86a2ce6956881e80e951736e80232f86f411974fe692.mp3",
+          "contentHash": "a9e4ab60efc80544cc64e35d3243b61f3e2364f2d7338eee3e088ef0670a25ba",
+          "byteSize": 20352
+        },
+        {
+          "text": "motorbike",
+          "file": "62210070d0e9d4989623f4d2a70832197c4a48fc1f390ca9c91f5eeff93ab423.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/62210070d0e9d4989623f4d2a70832197c4a48fc1f390ca9c91f5eeff93ab423.mp3",
+          "contentHash": "fcc3ec6a69f556ece5d503eb806868afecfbd161a4f0618eb2d2da6e064bb8d1",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s53/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose motorbike is this?",
+          "file": "fc5d883904dd9fb39a262dbe0a7270e4e4e8990225b1d9f5ece0599009b929eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc5d883904dd9fb39a262dbe0a7270e4e4e8990225b1d9f5ece0599009b929eb.mp3",
+          "contentHash": "701a28b13b7d02ec40182b6bd59048f542758eec1a99d5f344de5cc12404b19a",
+          "byteSize": 42624
+        }
+      ]
     }
   },
   "settings": {

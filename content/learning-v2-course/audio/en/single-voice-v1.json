@@ -110155,6 +110155,309 @@
           "byteSize": 38784
         }
       ]
+    },
+    "l07/s28/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where do you eat?",
+          "file": "17b5f31464533c63d9e63468ba4b74bffbf810c62997f4b9bdb5a6dbf3e4a946.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/17b5f31464533c63d9e63468ba4b74bffbf810c62997f4b9bdb5a6dbf3e4a946.mp3",
+          "contentHash": "2cf50db9357d4fd85ee9f64e4f932995efd6f6cba751500992525bc1f741c2bb",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l07/s28/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where do you stretch?",
+          "file": "f2621655dabc5f8afa9d694e28763cb9e94f0436659524dcca1d32cdd5d5f896.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2621655dabc5f8afa9d694e28763cb9e94f0436659524dcca1d32cdd5d5f896.mp3",
+          "contentHash": "aa044088f755583f935c7eb61c31f0654beed14adbcedd1b2f1ea46632a9c852",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l07/s28/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "When does she start?",
+          "file": "5fa31624bd3c517c5970125bdda1e6cfd63833db426c5c288ed681e483e4de64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5fa31624bd3c517c5970125bdda1e6cfd63833db426c5c288ed681e483e4de64.mp3",
+          "contentHash": "b35598579f36efc58735a42d27bea13588787abdc08794cc5bad596c676bf783",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l07/s28/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where do you eat?",
+          "file": "d967543cc7907a016c72a877e4fc82846afb336564742b02fa597768a18a8fa9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d967543cc7907a016c72a877e4fc82846afb336564742b02fa597768a18a8fa9.mp3",
+          "contentHash": "f48e2273de7f606b04292fb0d6e09a6050ddaa171b6e727c74f45805619b76dc",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l07/s28/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "eat",
+          "file": "5d99125838f766b276f6fcc43c8e5c5b6b3ac03d21352480688143c62d33e028.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d99125838f766b276f6fcc43c8e5c5b6b3ac03d21352480688143c62d33e028.mp3",
+          "contentHash": "38964bd454e9c1fe9a571be54bbebc678739928ad1ec4d063d11891f7253a344",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s28/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where do you eat?",
+          "file": "75e6b92231c219b746daef98eab4101118170edb61bd5f25c00f2f32e06d4166.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75e6b92231c219b746daef98eab4101118170edb61bd5f25c00f2f32e06d4166.mp3",
+          "contentHash": "b6b75a291a52cd42fe8a9c9f0a41cd0a3d5915410aace094cbd335bbdcbc0027",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s28/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "eat",
+          "file": "31d70fa87aeee9abc886df9269d0b3b8815536568f1d4c7400379f5b8784e368.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31d70fa87aeee9abc886df9269d0b3b8815536568f1d4c7400379f5b8784e368.mp3",
+          "contentHash": "091b9870374b498847d203c53ab3ffa99907825af6acbdd63553ea51c497dc8a",
+          "byteSize": 16512
+        },
+        {
+          "text": "stretch",
+          "file": "9aff44acb6766b5e544455bb9b5f099187c5b2819c16708ad9fdf4e59409caa2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9aff44acb6766b5e544455bb9b5f099187c5b2819c16708ad9fdf4e59409caa2.mp3",
+          "contentHash": "a32c735d5aecc76d951fd1f9f5915210e95e4287f04ec097b6b5cf85f8b482a1",
+          "byteSize": 24192
+        },
+        {
+          "text": "keycard",
+          "file": "0deb0efcfea20c86dc69c5a35ca806135b40d96e3f279e23113c5eda5a71d257.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0deb0efcfea20c86dc69c5a35ca806135b40d96e3f279e23113c5eda5a71d257.mp3",
+          "contentHash": "0e818e3e348b89a166b1eff767467e425fe47462354d9cc34b8060654add7bd2",
+          "byteSize": 18816
+        },
+        {
+          "text": "chairs",
+          "file": "74a16d79c95175dc2424f37c1f683e89a0dff33a2b92d9562eeab91509360e7e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/74a16d79c95175dc2424f37c1f683e89a0dff33a2b92d9562eeab91509360e7e.mp3",
+          "contentHash": "6070482dce085f5df308df1ecfbdebae347688994b86a3842fdbc9a77c5f56e9",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l07/s28/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where do you eat?",
+          "file": "17b5f31464533c63d9e63468ba4b74bffbf810c62997f4b9bdb5a6dbf3e4a946.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/17b5f31464533c63d9e63468ba4b74bffbf810c62997f4b9bdb5a6dbf3e4a946.mp3",
+          "contentHash": "2cf50db9357d4fd85ee9f64e4f932995efd6f6cba751500992525bc1f741c2bb",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l07/s28/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where do you stretch?",
+          "file": "968d2598815c101f8616114aebad0b0acefb51b790fa0579a4887a20a37d5ffe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/968d2598815c101f8616114aebad0b0acefb51b790fa0579a4887a20a37d5ffe.mp3",
+          "contentHash": "5a4ffea8eafc158b47f7cdef077e196e292ff79eee7019a733fc8c9f1751c819",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s28/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "When does she start?",
+          "file": "266b62309ffc683c57fd7a201b7e9672dd81fc63af511ff821a430006f9fa16a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/266b62309ffc683c57fd7a201b7e9672dd81fc63af511ff821a430006f9fa16a.mp3",
+          "contentHash": "0752607174f73df118f09798063906ac5783f7fa7caab556da978cd99292f542",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s28/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "When does she start?",
+          "file": "6988762eb8aba2a402685193d78dc7e461087ecc67743b5ecddc97282a114a4b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6988762eb8aba2a402685193d78dc7e461087ecc67743b5ecddc97282a114a4b.mp3",
+          "contentHash": "77e0c33d30cc1341563a187a478395a93a72628000382799cae02b8992e80bb7",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s28/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where do you eat?",
+          "file": "75e6b92231c219b746daef98eab4101118170edb61bd5f25c00f2f32e06d4166.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75e6b92231c219b746daef98eab4101118170edb61bd5f25c00f2f32e06d4166.mp3",
+          "contentHash": "b6b75a291a52cd42fe8a9c9f0a41cd0a3d5915410aace094cbd335bbdcbc0027",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s28/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "shout",
+          "file": "b3a662696ccd25dafcd3d166457ddb5fc0f69395297ee9c4ce2ddb04e7e5b33f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b3a662696ccd25dafcd3d166457ddb5fc0f69395297ee9c4ce2ddb04e7e5b33f.mp3",
+          "contentHash": "b92af1e6959334c30f48383056d7ece233a9e6f9ce0cf37c590d86d98869df06",
+          "byteSize": 17280
+        },
+        {
+          "text": "eat",
+          "file": "ea77e8e7e9e0227f4e65b77aca590a7c1946d531f2acf6dbe01f025277fb0055.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ea77e8e7e9e0227f4e65b77aca590a7c1946d531f2acf6dbe01f025277fb0055.mp3",
+          "contentHash": "efddaa76acd752df1dc32926ef14ed679bce467a42ec5ffcd1c0a8a259bf48d0",
+          "byteSize": 15744
+        },
+        {
+          "text": "chairs",
+          "file": "a23215cdb58f87df718c51cb9d237949298d9c8ad6f6aca06f24bc36379bb44f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a23215cdb58f87df718c51cb9d237949298d9c8ad6f6aca06f24bc36379bb44f.mp3",
+          "contentHash": "734fa80afe936df928ed00330e2595a6c6a8bff772c680636bff084a97926ee1",
+          "byteSize": 21888
+        },
+        {
+          "text": "stretch",
+          "file": "da7ac496d479760c27f23458588dc29453943881be4231240ca4fb53856a1346.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da7ac496d479760c27f23458588dc29453943881be4231240ca4fb53856a1346.mp3",
+          "contentHash": "fdc7b8379e825ebea02fc1adb739c5cc0c3fa454b9ce9b975e9a7e728a6d0585",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l07/s28/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where do you stretch?",
+          "file": "3155673c0a8ca33711d06e0c246304b4e1aa05fcdd6b14d6d624b91b99a4038f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3155673c0a8ca33711d06e0c246304b4e1aa05fcdd6b14d6d624b91b99a4038f.mp3",
+          "contentHash": "f329ce012f0a71ff5e964954ef27ec92b25d0dac076277da5be555f9331277c0",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l07/s28/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a keycard?",
+          "file": "6be645d76f025acb76f9a8f716971b6433ec14f8dde63ecd57cdaa9a6cc1d414.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6be645d76f025acb76f9a8f716971b6433ec14f8dde63ecd57cdaa9a6cc1d414.mp3",
+          "contentHash": "dd6d2d7dc954dff5e3c283cbc231811b71be65b2a09d03e487fd3edfac53e0e2",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s28/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I don’t shout.",
+          "file": "1914a61c39942d294b9ac098c1f927f53c320c58bebeec52537ffdbc0e190427.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1914a61c39942d294b9ac098c1f927f53c320c58bebeec52537ffdbc0e190427.mp3",
+          "contentHash": "30aa69828540a917a71f0c0b1241b5d36c50e703f664d2d06cdc11a425a22306",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s28/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where does Tom eat?",
+          "file": "feed176b16af466818288745069a67033715b30f637d59fb5a3d578ff2d3c0af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/feed176b16af466818288745069a67033715b30f637d59fb5a3d578ff2d3c0af.mp3",
+          "contentHash": "ec074515b36a7ff03cccb437cb5f70d9faa59babfdf5dba55977ca1506b47aee",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s28/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The chairs are here.",
+          "file": "6029ee948b17a997dc281e46ceb370d09356b52675985eda648084de2a98e79a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6029ee948b17a997dc281e46ceb370d09356b52675985eda648084de2a98e79a.mp3",
+          "contentHash": "26f460a84eb833ba5fa95cd45fac8cec224dbabe74979b5c81d300ade276b7c2",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s28/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "eat",
+          "file": "f1c50a96efdcdeeb9baae688a447e672cb4de3dd64140610db35751299205855.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f1c50a96efdcdeeb9baae688a447e672cb4de3dd64140610db35751299205855.mp3",
+          "contentHash": "c9f16cf2e24e43846037697ba9fdc9252f01ffd00625eac273674365e1e60db8",
+          "byteSize": 21120
+        },
+        {
+          "text": "keycard",
+          "file": "5ca6cb0f4dd2c5155da6372ae0216120316c5c513262406ccbdf44e54308ea14.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5ca6cb0f4dd2c5155da6372ae0216120316c5c513262406ccbdf44e54308ea14.mp3",
+          "contentHash": "1a4fdc4b2d5aba1daba18442a372b7d7b98b7c758c11c25fe9abf948613fdc8d",
+          "byteSize": 26880
+        },
+        {
+          "text": "shout",
+          "file": "4548e9a8e33c66e91831b7db19c710c651d2340b18f9974a69cfcf7d0c8a9f56.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4548e9a8e33c66e91831b7db19c710c651d2340b18f9974a69cfcf7d0c8a9f56.mp3",
+          "contentHash": "42df187e4b39bc8b88f8dd871958ed7cc06d3306fe84745649fa801c886c7c6d",
+          "byteSize": 27648
+        },
+        {
+          "text": "chairs",
+          "file": "3a4c5603e1bda39c9b843e7665819b267b16ab1b45bf4abd07d09e6a845f9c58.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a4c5603e1bda39c9b843e7665819b267b16ab1b45bf4abd07d09e6a845f9c58.mp3",
+          "contentHash": "ec106e2e3d323d3481d9f54055994dbd25115d9b5fd9c8e6fde97a7552ce03b9",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s28/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "When does Tom eat?",
+          "file": "26f3ee222d3cca33fd750d9705280ef0738a95bcbc5a2408cea75b6596d4bbd6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26f3ee222d3cca33fd750d9705280ef0738a95bcbc5a2408cea75b6596d4bbd6.mp3",
+          "contentHash": "d4d8a41eb4c3b22fbaef6e1c98cc95e7697938e68e1f845389490d41b4a3e85c",
+          "byteSize": 36480
+        }
+      ]
     }
   },
   "settings": {

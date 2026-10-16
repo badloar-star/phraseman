@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-06:i01",
+    "correctText": "I can whisper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i02",
+    "correctText": "whisper",
+    "correctResponseId": "en:lesson-08:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i03",
+    "correctText": "whisper",
+    "correctResponseId": "en:lesson-08:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i04",
+    "correctText": "en:lesson-08:session-06:i04:p1=whisper\nen:lesson-08:session-06:i04:p2=clinic\nen:lesson-08:session-06:i04:p3=bookmark\nen:lesson-08:session-06:i04:p4=customer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i05",
+    "correctText": "I can whisper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i06",
+    "correctText": "She can translate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i07",
+    "correctText": "Whose bookmark is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i08",
+    "correctText": "translate",
+    "correctResponseId": "en:lesson-08:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i09",
+    "correctText": "I can whisper.",
+    "correctResponseId": "en:lesson-08:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i10",
+    "correctText": "en:lesson-08:session-06:i10:p1=browse\nen:lesson-08:session-06:i10:p2=whisper\nen:lesson-08:session-06:i10:p3=clinic\nen:lesson-08:session-06:i10:p4=customer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i11",
+    "correctText": "Whose bookmark is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i12",
+    "correctText": "The customer is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i13",
+    "correctText": "I usually browse online.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i14",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-08:session-06:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i15",
+    "correctText": "Where is the clinic?",
+    "correctResponseId": "en:lesson-08:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i16",
+    "correctText": "en:lesson-08:session-06:i16:p1=whisper\nen:lesson-08:session-06:i16:p2=bookmark\nen:lesson-08:session-06:i16:p3=customer\nen:lesson-08:session-06:i16:p4=browse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-06:i17",
+    "correctText": "Tom can whisper.",
+    "correctResponseId": null
+  }
+]

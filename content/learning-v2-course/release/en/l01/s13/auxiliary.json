@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-13:intro1:r2": {
-          "ru": "После `I` здесь нужно `am`; `are` используют с `you`.",
-          "uk": "Після `I` тут потрібне `am`; `are` вживають із `you`."
+          "ru": "Вы говорите о себе: I am, а не You are.",
+          "uk": "Ви говорите про себе: I am, а не You are."
         },
         "en:lesson-01:session-13:intro1:r3": {
-          "ru": "После `I` нужно `am`. По-русски «я готов/готова» обходится без этого слова, а по-английски оно необходимо.",
-          "uk": "Після `I` потрібне `am`. Українською «я готовий/готова» обходиться без цього слова, а англійською воно потрібне."
+          "ru": "В этой фразе с I нужно am.",
+          "uk": "У цій фразі з I потрібне am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-13:intro2:r2": {
-          "ru": "После `you` здесь нужно `are`; `am` ставят после `I`.",
-          "uk": "Після `you` тут потрібне `are`; `am` ставлять після `I`."
+          "ru": "Вы отмечаете силу Миры, обращаясь к ней: You are strong.",
+          "uk": "Ви відзначаєте силу Міри, звертаючись до неї: You are strong."
         },
         "en:lesson-01:session-13:intro2:r3": {
-          "ru": "После `you` нужно `are`: You are young.",
-          "uk": "Після `you` потрібне `are`: You are young."
+          "ru": "С you здесь нужно are, а не am.",
+          "uk": "З you тут потрібне are, а не am."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-13:intro3:r2": {
-          "ru": "`are` уехало от `you`. Про себя — `am`.",
-          "uk": "`are` поїхало від `you`. Про себе — `am`."
+          "ru": "Виктор говорит о себе, а не о собеседнике: I am old.",
+          "uk": "Віктор говорить про себе, а не про співрозмовника: I am old."
         },
         "en:lesson-01:session-13:intro3:r3": {
-          "ru": "Так спрашивают, а не рассказывают. В рассказе `I` идёт первым.",
-          "uk": "Так питають, а не розповідають. У розповіді `I` іде першим."
+          "ru": "Между I и old нужно am.",
+          "uk": "Між I та old потрібне am."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "960271f4fb811f04b8454a8c6f3647389cf539f8b3766ae23e35e493fe79d88a"
+  "auxiliaryFingerprint": "b8b4e9e21eec42a02fda7f2358cff399960f838a5d850d764f217f996eb75e5b"
 }

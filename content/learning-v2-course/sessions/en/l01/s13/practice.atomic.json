@@ -1,8 +1,6 @@
 {
   "schemaVersion": "learning_v2_atomic_practice_source_v1",
   "courseSessionId": "en:lesson-01:session-13",
-  "sourceSnapshotSha256": "aaae1e6820daa578a06b258c47150b46f7ec849fc3c97bbe8b42fc99c676103e",
-  "preservationLedgerSha256": "bd7238c4231c376af544c0606f39e6c7b158ee7f315644d12bfebcfe2dcc7095",
   "interactionsByLocale": {
     "ru": [
       {
@@ -11,27 +9,27 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — young",
+        "prompt": "Карточка слова — proud",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i01:audio"
         ],
-        "accessibilityLabel": "Карточка слова — young",
+        "accessibilityLabel": "Карточка слова — proud",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i01:audio",
-            "transcript": "young"
+            "transcript": "proud"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i01:r1",
-              "targetText": "young",
+              "targetText": "proud",
               "meaningByLocale": {
-                "ru": "«молодой/молодая». Человек прожил на свете мало.",
-                "uk": "«молодий/молода». Людина прожила на світі мало."
+                "ru": "гордый; испытывающий гордость. I am proud — «Я горжусь»: например, своим первым самостоятельно испечённым хлебом.",
+                "uk": "гордий; той, хто відчуває гордість. I am proud — «Я пишаюся»: наприклад, своїм першим самостійно спеченим хлібом."
               }
             }
           ],
@@ -39,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "young",
+            "word": "proud",
             "definitionByLocale": {
-              "ru": "«молодой/молодая». Человек прожил на свете мало.",
-              "uk": "«молодий/молода». Людина прожила на світі мало."
+              "ru": "гордый; испытывающий гордость. I am proud — «Я горжусь»: например, своим первым самостоятельно испечённым хлебом.",
+              "uk": "гордий; той, хто відчуває гордість. I am proud — «Я пишаюся»: наприклад, своїм першим самостійно спеченим хлібом."
             }
           }
         },
@@ -58,15 +56,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i02:r1",
-            "text": "young"
+            "text": "proud"
           },
           {
             "responseId": "en:lesson-01:session-13:i02:r2",
-            "text": "yellow"
+            "text": "polite"
           },
           {
             "responseId": "en:lesson-01:session-13:i02:r3",
-            "text": "your"
+            "text": "tired"
           }
         ],
         "mediaIds": [],
@@ -78,23 +76,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i02:audio",
-            "transcript": "young"
+            "transcript": "proud"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i02:r1",
-              "targetText": "young",
+              "targetText": "proud",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i02:r2",
-              "targetText": "yellow",
+              "targetText": "polite",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i02:r3",
-              "targetText": "your",
+              "targetText": "tired",
               "meaningByLocale": null
             }
           ],
@@ -105,8 +103,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`yellow` значит «жёлтый», а `young` — «молодой/молодая».",
-                "uk": "`yellow` означає «жовтий», а `young` — «молодий/молода»."
+                "ru": "В записи звучит proud, а не polite.",
+                "uk": "У записі звучить proud, а не polite."
               }
             },
             {
@@ -114,8 +112,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`your` значит «твой/твоя», а `young` — «молодой/молодая».",
-                "uk": "`your` означає «твій/твоя», а `young` — «молодий/молода»."
+                "ru": "В записи звучит proud, а не tired.",
+                "uk": "У записі звучить proud, а не tired."
               }
             }
           ],
@@ -149,8 +147,8 @@
               "responseId": "en:lesson-01:session-13:i03:r1",
               "targetText": "old",
               "meaningByLocale": {
-                "ru": "«старый/старая». Так говорят о возрасте человека или вещи.",
-                "uk": "«старий/стара». Так кажуть про вік людини чи речі."
+                "ru": "старый; пожилой, если о человеке. I am old — «Я старый». Прямое замечание You are old собеседнику может прозвучать обидно.",
+                "uk": "старий; літній, якщо про людину. I am old — «Я старий». Пряме зауваження You are old співрозмовнику може прозвучати образливо."
               }
             }
           ],
@@ -160,8 +158,8 @@
           "wordCard": {
             "word": "old",
             "definitionByLocale": {
-              "ru": "«старый/старая». Так говорят о возрасте человека или вещи.",
-              "uk": "«старий/стара». Так кажуть про вік людини чи речі."
+              "ru": "старый; пожилой, если о человеке. I am old — «Я старый». Прямое замечание You are old собеседнику может прозвучать обидно.",
+              "uk": "старий; літній, якщо про людину. I am old — «Я старий». Пряме зауваження You are old співрозмовнику може прозвучати образливо."
             }
           }
         },
@@ -191,7 +189,11 @@
             "young"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -223,7 +225,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "В анкете о возрасте вы описываете себя как человека старшего возраста. Вставьте слово в эту фразу о себе.",
-            "uk": "Вставте слово — ви говорите про себе"
+            "uk": "В анкеті про вік ви описуєте себе як людину поважного віку. Вставте слово в цю фразу про себе."
           },
           "gappedTargetPhrase": "I ___ old.",
           "gapOptions": [
@@ -289,8 +291,8 @@
               "responseId": "en:lesson-01:session-13:i06:r1",
               "targetText": "strong",
               "meaningByLocale": {
-                "ru": "«сильный/сильная». Человек донёс две сумки и не запыхался/не запыхалась.",
-                "uk": "«сильний/сильна». Людина донесла дві сумки й не захекалася."
+                "ru": "сильный. Человек без труда поднимает тяжёлый предмет. You are strong — «Ты сильный / сильная».",
+                "uk": "сильний. Людина легко піднімає важкий предмет. You are strong — «Ти сильний / сильна»."
               }
             }
           ],
@@ -300,8 +302,8 @@
           "wordCard": {
             "word": "strong",
             "definitionByLocale": {
-              "ru": "«сильный/сильная». Человек донёс две сумки и не запыхался/не запыхалась.",
-              "uk": "«сильний/сильна». Людина донесла дві сумки й не захекалася."
+              "ru": "сильный. Человек без труда поднимает тяжёлый предмет. You are strong — «Ты сильный / сильная».",
+              "uk": "сильний. Людина легко піднімає важкий предмет. You are strong — «Ти сильний / сильна»."
             }
           }
         },
@@ -325,7 +327,7 @@
           },
           {
             "responseId": "en:lesson-01:session-13:i07:r3",
-            "text": "string"
+            "text": "smart"
           }
         ],
         "mediaIds": [],
@@ -353,7 +355,7 @@
             },
             {
               "responseId": "en:lesson-01:session-13:i07:r3",
-              "targetText": "string",
+              "targetText": "smart",
               "meaningByLocale": null
             }
           ],
@@ -364,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`wrong` значит «неправильный», а `strong` — «сильный/сильная»; написание различается.",
-                "uk": "`wrong` означає «неправильний», а `strong` — «сильний/сильна»; написання різне."
+                "ru": "В записи звучит strong, а не wrong.",
+                "uk": "У записі звучить strong, а не wrong."
               }
             },
             {
@@ -373,8 +375,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В `string` в середине `i`, а в `strong` — `o`; это разные слова.",
-                "uk": "У `string` усередині `i`, а у `strong` — `o`; це різні слова."
+                "ru": "В записи звучит strong, а не smart.",
+                "uk": "У записі звучить strong, а не smart."
               }
             }
           ],
@@ -389,27 +391,27 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — tall",
+        "prompt": "Карточка слова — weak",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i08:audio"
         ],
-        "accessibilityLabel": "Карточка слова — tall",
+        "accessibilityLabel": "Карточка слова — weak",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i08:audio",
-            "transcript": "tall"
+            "transcript": "weak"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i08:r1",
-              "targetText": "tall",
+              "targetText": "weak",
               "meaningByLocale": {
-                "ru": "«высокий/высокая». Так описывают высокий рост человека, дерево или здание.",
-                "uk": "«високий/висока». Так описують зріст людини, дерево чи будівлю."
+                "ru": "слабый: здесь о недостатке физических сил. I am weak — «Я слаб / слаба». Слово может описывать временное состояние, а не постоянное качество.",
+                "uk": "слабкий: тут про брак фізичних сил. I am weak — «Я слабкий / слабка». Слово може описувати тимчасовий стан, а не постійну рису."
               }
             }
           ],
@@ -417,10 +419,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tall",
+            "word": "weak",
             "definitionByLocale": {
-              "ru": "«высокий/высокая». Так описывают высокий рост человека, дерево или здание.",
-              "uk": "«високий/висока». Так описують зріст людини, дерево чи будівлю."
+              "ru": "слабый: здесь о недостатке физических сил. I am weak — «Я слаб / слаба». Слово может описывать временное состояние, а не постоянное качество.",
+              "uk": "слабкий: тут про брак фізичних сил. I am weak — «Я слабкий / слабка». Слово може описувати тимчасовий стан, а не постійну рису."
             }
           }
         },
@@ -436,15 +438,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i09:r1",
-            "text": "tall"
+            "text": "weak"
           },
           {
             "responseId": "en:lesson-01:session-13:i09:r2",
-            "text": "tell"
+            "text": "quiet"
           },
           {
             "responseId": "en:lesson-01:session-13:i09:r3",
-            "text": "ball"
+            "text": "young"
           }
         ],
         "mediaIds": [],
@@ -456,23 +458,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i09:audio",
-            "transcript": "tall"
+            "transcript": "weak"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i09:r1",
-              "targetText": "tall",
+              "targetText": "weak",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i09:r2",
-              "targetText": "tell",
+              "targetText": "quiet",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i09:r3",
-              "targetText": "ball",
+              "targetText": "young",
               "meaningByLocale": null
             }
           ],
@@ -483,8 +485,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`tell` значит «рассказывать», а `tall` — «высокий/высокая»; в написании `tell` содержит `e`, а `tall` — `a`.",
-                "uk": "`tell` означає «розповідати», а `tall` — «високий/висока»; у написанні `tell` має `e`, а `tall` — `a`."
+                "ru": "В записи звучит weak, а не quiet.",
+                "uk": "У записі звучить weak, а не quiet."
               }
             },
             {
@@ -492,8 +494,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`ball` значит «мяч» и начинается с `b`; `tall` начинается с `t`.",
-                "uk": "`ball` означає «м'яч» і починається з `b`; `tall` починається з `t`."
+                "ru": "В записи звучит weak, а не young.",
+                "uk": "У записі звучить weak, а не young."
               }
             }
           ],
@@ -530,7 +532,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Мира без труда подняла тяжёлую коробку с книгами. Похвалите Миру напрямую: «ты сильная».",
-            "uk": "Вставте слово — колега легко підняла коробку"
+            "uk": "Міра легко підняла важку коробку з книжками. Похваліть Міру прямо: «ти сильна»."
           },
           "gappedTargetPhrase": "You are ___ .",
           "gapOptions": [
@@ -587,17 +589,17 @@
           "pairGrid": [
             {
               "pairId": "en:lesson-01:session-13:i11:p1",
-              "target": "young",
+              "target": "proud",
               "meaningByLocale": {
-                "ru": "молодой/молодая",
-                "uk": "молодий"
+                "ru": "гордый",
+                "uk": "гордий"
               }
             },
             {
               "pairId": "en:lesson-01:session-13:i11:p2",
               "target": "old",
               "meaningByLocale": {
-                "ru": "старый/старая",
+                "ru": "старый",
                 "uk": "старий"
               }
             },
@@ -605,30 +607,30 @@
               "pairId": "en:lesson-01:session-13:i11:p3",
               "target": "strong",
               "meaningByLocale": {
-                "ru": "сильный/сильная",
+                "ru": "сильный",
                 "uk": "сильний"
               }
             },
             {
               "pairId": "en:lesson-01:session-13:i11:p4",
-              "target": "tall",
+              "target": "weak",
               "meaningByLocale": {
-                "ru": "высокий/высокая",
-                "uk": "високий"
+                "ru": "слабый",
+                "uk": "слабкий"
               }
             }
           ],
           "leftColumn": [
-            "young",
+            "proud",
             "old",
             "strong",
-            "tall"
+            "weak"
           ],
           "rightColumn": [
-            "молодой/молодая",
-            "старый/старая",
-            "сильный/сильная",
-            "высокий/высокая"
+            "гордый",
+            "старый",
+            "сильный",
+            "слабый"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -660,7 +662,7 @@
           "targetPhrase": "I am strong.",
           "localizedMeaning": {
             "ru": "Вы сами подняли тяжёлую коробку. Скажите о себе: «я сильный/сильная».",
-            "uk": "Складіть фразу — «я сильний»"
+            "uk": "Ви самі підняли важку коробку. Скажіть про себе: «я сильний/сильна»."
           },
           "orderedTokens": [
             "I",
@@ -676,11 +678,15 @@
               "correct": false,
               "testedDimension": "Вы сами подняли тяжёлую коробку. Скажите о себе: «я сильный/сильная».",
               "feedbackByLocale": {
-                "ru": "`are` здесь относится к `you`; о себе скажите `I am`.",
-                "uk": "`are` тут уживають із `you`; про себе скажіть `I am`."
+                "ru": "С I здесь нужно am.",
+                "uk": "З I тут потрібне am."
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -712,7 +718,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Мира стоит рядом с дверью, и заметно, что у неё высокий рост. Скажите ей: «ты высокая».",
-            "uk": "Вставте слово — ви кажете співрозмовнику, що він високий"
+            "uk": "Міра стоїть біля дверей, і помітно, що вона високого зросту. Скажіть їй: «ти висока»."
           },
           "gappedTargetPhrase": "You ___ tall.",
           "gapOptions": [
@@ -757,42 +763,68 @@
         "interactionId": "en:lesson-01:session-13:i14",
         "ordinal": 17,
         "purpose": "retrieval_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — brave",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-13:i14:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — brave",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-13:i14:audio",
-            "transcript": "brave"
+        "prompt": "Вставьте слово — после болезни вы ещё физически слабы. Скажите о себе: «Я слаб / слаба»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-13:i14:r1",
+            "text": "weak"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i14:r2",
+            "text": "strong"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i14:r3",
+            "text": "young"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — после болезни вы ещё физически слабы. Скажите о себе: «Я слаб / слаба»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — после болезни вы ещё физически слабы. Скажите о себе: «Я слаб / слаба»",
+            "uk": "Вставте слово — після хвороби ви ще фізично слабкі. Скажіть про себе: «Я слабкий / слабка»"
+          },
+          "gappedTargetPhrase": "I am ___ .",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-13:i14:r1",
-              "targetText": "brave",
-              "meaningByLocale": {
-                "ru": "«смелый/смелая». Так говорят о человеке, который решается на трудное, даже если ему страшно.",
-                "uk": "«сміливий/смілива». Людина наважується на складне, навіть коли їй страшно."
-              }
+              "text": "weak"
+            },
+            {
+              "responseId": "en:lesson-01:session-13:i14:r2",
+              "text": "strong"
+            },
+            {
+              "responseId": "en:lesson-01:session-13:i14:r3",
+              "text": "young"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "brave",
-            "definitionByLocale": {
-              "ru": "«смелый/смелая». Так говорят о человеке, который решается на трудное, даже если ему страшно.",
-              "uk": "«сміливий/смілива». Людина наважується на складне, навіть коли їй страшно."
+          "testedDimension": "Вставьте слово — после болезни вы ещё физически слабы. Скажите о себе: «Я слаб / слаба»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-13:i14:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — после болезни вы ещё физически слабы. Скажите о себе: «Я слаб / слаба»",
+              "feedbackByLocale": {
+                "ru": "Strong — «сильный». По условию сил пока мало: weak.",
+                "uk": "Strong — «сильний». За умовою сил поки мало: weak."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-13:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — после болезни вы ещё физически слабы. Скажите о себе: «Я слаб / слаба»",
+              "feedbackByLocale": {
+                "ru": "Young описывает возраст, а здесь речь о недостатке сил.",
+                "uk": "Young описує вік, а тут ідеться про брак сил."
+              }
             }
-          }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -810,11 +842,11 @@
           },
           {
             "responseId": "en:lesson-01:session-13:i15:r2",
-            "text": "grave"
+            "text": "back"
           },
           {
             "responseId": "en:lesson-01:session-13:i15:r3",
-            "text": "bread"
+            "text": "busy"
           }
         ],
         "mediaIds": [],
@@ -837,12 +869,12 @@
             },
             {
               "responseId": "en:lesson-01:session-13:i15:r2",
-              "targetText": "grave",
+              "targetText": "back",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i15:r3",
-              "targetText": "bread",
+              "targetText": "busy",
               "meaningByLocale": null
             }
           ],
@@ -853,8 +885,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`grave` начинается с `g`, а `brave` — с `b`; это разные слова.",
-                "uk": "`grave` починається з `g`, а `brave` — з `b`; це різні слова."
+                "ru": "В записи звучит brave, а не back.",
+                "uk": "У записі звучить brave, а не back."
               }
             },
             {
@@ -862,8 +894,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "`bread` — «хлеб» и оканчивается на `d`; `brave` оканчивается на `e`.",
-                "uk": "`bread` — «хліб» і закінчується на `d`; `brave` закінчується на `e`."
+                "ru": "В записи звучит brave, а не busy.",
+                "uk": "У записі звучить brave, а не busy."
               }
             }
           ],
@@ -875,43 +907,33 @@
       {
         "interactionId": "en:lesson-01:session-13:i16",
         "ordinal": 19,
-        "purpose": "independent_check",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — kind",
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите вслух — вы сами починили велосипед и гордитесь результатом. Сообщите об этом чувстве",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i16:audio"
         ],
-        "accessibilityLabel": "Карточка слова — kind",
+        "accessibilityLabel": "Скажите вслух — вы сами починили велосипед и гордитесь результатом. Сообщите об этом чувстве",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i16:audio",
-            "transcript": "kind"
+            "transcript": "I am proud."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-13:i16:r1",
-              "targetText": "kind",
-              "meaningByLocale": {
-                "ru": "«добрый/добрая». Заметил/заметила, что вам тяжело, и помог/помогла.",
-                "uk": "«добрий/добра». Людина помітила, що вам важко, і допомогла."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "kind",
-            "definitionByLocale": {
-              "ru": "«добрый/добрая». Заметил/заметила, что вам тяжело, и помог/помогла.",
-              "uk": "«добрий/добра». Людина помітила, що вам важко, і допомогла."
-            }
-          }
+          "targetPhrase": "I am proud.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -931,7 +953,7 @@
           "targetPhrase": "You are brave.",
           "localizedMeaning": {
             "ru": "Мире было непросто сообщить руководителю о серьёзной ошибке в расписании, но она сделала это первой. Похвалите её: «ты смелая».",
-            "uk": "Складіть фразу — колега перша заговорила з начальником, скажіть їй про це"
+            "uk": "Мірі було непросто повідомити керівнику про серйозну помилку в розкладі, але вона зробила це першою. Похваліть її: «ти смілива»."
           },
           "orderedTokens": [
             "You",
@@ -947,27 +969,31 @@
               "correct": false,
               "testedDimension": "Мире было непросто сообщить руководителю о серьёзной ошибке в расписании, но она сделала это первой. Похвалите её: «ты смелая».",
               "feedbackByLocale": {
-                "ru": "`I` говорит о вас; вы обращаетесь к Мире, поэтому начинайте с `You`.",
-                "uk": "`I` говорить про вас; ви звертаєтеся до Міри, тому починайте з `You`."
+                "ru": "Вы обращаетесь к Мире: You are brave. I означало бы «я».",
+                "uk": "Ви звертаєтеся до Міри: You are brave. I означало б «я»."
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-13:i18",
         "ordinal": 21,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Лина заметила ваши тяжёлые сумки и помогла донести их. Поблагодарите её и скажите ей: «ты добрая».",
+        "prompt": "Лина заметила ваши тяжёлые сумки и помогла донести их. В благодарность скажите ей: «ты добрая».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i18:audio"
         ],
-        "accessibilityLabel": "Лина заметила ваши тяжёлые сумки и помогла донести их. Поблагодарите её и скажите ей: «ты добрая».",
+        "accessibilityLabel": "Лина заметила ваши тяжёлые сумки и помогла донести их. В благодарность скажите ей: «ты добрая».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -996,27 +1022,27 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — young",
+        "prompt": "Картка слова — proud",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i01:audio"
         ],
-        "accessibilityLabel": "Картка слова — young",
+        "accessibilityLabel": "Картка слова — proud",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i01:audio",
-            "transcript": "young"
+            "transcript": "proud"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i01:r1",
-              "targetText": "young",
+              "targetText": "proud",
               "meaningByLocale": {
-                "ru": "«молодой/молодая». Человек прожил на свете мало.",
-                "uk": "«молодий/молода». Людина прожила на світі мало."
+                "ru": "гордый; испытывающий гордость. I am proud — «Я горжусь»: например, своим первым самостоятельно испечённым хлебом.",
+                "uk": "гордий; той, хто відчуває гордість. I am proud — «Я пишаюся»: наприклад, своїм першим самостійно спеченим хлібом."
               }
             }
           ],
@@ -1024,10 +1050,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "young",
+            "word": "proud",
             "definitionByLocale": {
-              "ru": "«молодой/молодая». Человек прожил на свете мало.",
-              "uk": "«молодий/молода». Людина прожила на світі мало."
+              "ru": "гордый; испытывающий гордость. I am proud — «Я горжусь»: например, своим первым самостоятельно испечённым хлебом.",
+              "uk": "гордий; той, хто відчуває гордість. I am proud — «Я пишаюся»: наприклад, своїм першим самостійно спеченим хлібом."
             }
           }
         },
@@ -1043,15 +1069,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i02:r1",
-            "text": "young"
+            "text": "proud"
           },
           {
             "responseId": "en:lesson-01:session-13:i02:r2",
-            "text": "yellow"
+            "text": "polite"
           },
           {
             "responseId": "en:lesson-01:session-13:i02:r3",
-            "text": "your"
+            "text": "tired"
           }
         ],
         "mediaIds": [],
@@ -1063,23 +1089,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i02:audio",
-            "transcript": "young"
+            "transcript": "proud"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i02:r1",
-              "targetText": "young",
+              "targetText": "proud",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i02:r2",
-              "targetText": "yellow",
+              "targetText": "polite",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i02:r3",
-              "targetText": "your",
+              "targetText": "tired",
               "meaningByLocale": null
             }
           ],
@@ -1090,8 +1116,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`yellow` значит «жёлтый», а `young` — «молодой/молодая».",
-                "uk": "`yellow` означає «жовтий», а `young` — «молодий/молода»."
+                "ru": "В записи звучит proud, а не polite.",
+                "uk": "У записі звучить proud, а не polite."
               }
             },
             {
@@ -1099,8 +1125,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`your` значит «твой/твоя», а `young` — «молодой/молодая».",
-                "uk": "`your` означає «твій/твоя», а `young` — «молодий/молода»."
+                "ru": "В записи звучит proud, а не tired.",
+                "uk": "У записі звучить proud, а не tired."
               }
             }
           ],
@@ -1134,8 +1160,8 @@
               "responseId": "en:lesson-01:session-13:i03:r1",
               "targetText": "old",
               "meaningByLocale": {
-                "ru": "«старый/старая». Так говорят о возрасте человека или вещи.",
-                "uk": "«старий/стара». Так говорять про вік людини чи речі."
+                "ru": "старый; пожилой, если о человеке. I am old — «Я старый». Прямое замечание You are old собеседнику может прозвучать обидно.",
+                "uk": "старий; літній, якщо про людину. I am old — «Я старий». Пряме зауваження You are old співрозмовнику може прозвучати образливо."
               }
             }
           ],
@@ -1145,8 +1171,8 @@
           "wordCard": {
             "word": "old",
             "definitionByLocale": {
-              "ru": "«старый/старая». Так говорят о возрасте человека или вещи.",
-              "uk": "«старий/стара». Так говорять про вік людини чи речі."
+              "ru": "старый; пожилой, если о человеке. I am old — «Я старый». Прямое замечание You are old собеседнику может прозвучать обидно.",
+              "uk": "старий; літній, якщо про людину. I am old — «Я старий». Пряме зауваження You are old співрозмовнику може прозвучати образливо."
             }
           }
         },
@@ -1167,7 +1193,7 @@
           "family": "phrase_builder",
           "targetPhrase": "You are young.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — «ты молодая»",
+            "ru": "Соберите фразу — Мира говорит, что чувствует себя немолодой; скажите ей: «ты молодая»",
             "uk": "Складіть фразу — Міра каже, що почувається немолодою; скажіть їй: «ти молода»"
           },
           "orderedTokens": [
@@ -1176,7 +1202,11 @@
             "young"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -1207,7 +1237,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — вы говорите про себя",
+            "ru": "В анкете о возрасте вы описываете себя как человека старшего возраста. Вставьте слово в эту фразу о себе.",
             "uk": "В анкеті про вік ви описуєте себе як людину поважного віку. Вставте слово в цю фразу про себе."
           },
           "gappedTargetPhrase": "I ___ old.",
@@ -1274,8 +1304,8 @@
               "responseId": "en:lesson-01:session-13:i06:r1",
               "targetText": "strong",
               "meaningByLocale": {
-                "ru": "«сильный/сильная». Человек донёс две сумки и не запыхался/не запыхалась.",
-                "uk": "«сильний/сильна». Людина донесла дві сумки й не захекалася."
+                "ru": "сильный. Человек без труда поднимает тяжёлый предмет. You are strong — «Ты сильный / сильная».",
+                "uk": "сильний. Людина легко піднімає важкий предмет. You are strong — «Ти сильний / сильна»."
               }
             }
           ],
@@ -1285,8 +1315,8 @@
           "wordCard": {
             "word": "strong",
             "definitionByLocale": {
-              "ru": "«сильный/сильная». Человек донёс две сумки и не запыхался/не запыхалась.",
-              "uk": "«сильний/сильна». Людина донесла дві сумки й не захекалася."
+              "ru": "сильный. Человек без труда поднимает тяжёлый предмет. You are strong — «Ты сильный / сильная».",
+              "uk": "сильний. Людина легко піднімає важкий предмет. You are strong — «Ти сильний / сильна»."
             }
           }
         },
@@ -1310,7 +1340,7 @@
           },
           {
             "responseId": "en:lesson-01:session-13:i07:r3",
-            "text": "string"
+            "text": "smart"
           }
         ],
         "mediaIds": [],
@@ -1338,7 +1368,7 @@
             },
             {
               "responseId": "en:lesson-01:session-13:i07:r3",
-              "targetText": "string",
+              "targetText": "smart",
               "meaningByLocale": null
             }
           ],
@@ -1349,8 +1379,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`wrong` значит «неправильный», а `strong` — «сильный/сильная»; написание различается.",
-                "uk": "`wrong` означає «неправильний», а `strong` — «сильний/сильна»; написання різне."
+                "ru": "В записи звучит strong, а не wrong.",
+                "uk": "У записі звучить strong, а не wrong."
               }
             },
             {
@@ -1358,8 +1388,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "В `string` в середине `i`, а в `strong` — `o`; это разные слова.",
-                "uk": "У `string` усередині `i`, а у `strong` — `o`; це різні слова."
+                "ru": "В записи звучит strong, а не smart.",
+                "uk": "У записі звучить strong, а не smart."
               }
             }
           ],
@@ -1374,27 +1404,27 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — tall",
+        "prompt": "Картка слова — weak",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i08:audio"
         ],
-        "accessibilityLabel": "Картка слова — tall",
+        "accessibilityLabel": "Картка слова — weak",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i08:audio",
-            "transcript": "tall"
+            "transcript": "weak"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i08:r1",
-              "targetText": "tall",
+              "targetText": "weak",
               "meaningByLocale": {
-                "ru": "«высокий/высокая». Так описывают рост человека, дерево или здание.",
-                "uk": "«високий/висока». Так описують високий зріст людини, дерево чи будівлю."
+                "ru": "слабый: здесь о недостатке физических сил. I am weak — «Я слаб / слаба». Слово может описывать временное состояние, а не постоянное качество.",
+                "uk": "слабкий: тут про брак фізичних сил. I am weak — «Я слабкий / слабка». Слово може описувати тимчасовий стан, а не постійну рису."
               }
             }
           ],
@@ -1402,10 +1432,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tall",
+            "word": "weak",
             "definitionByLocale": {
-              "ru": "«высокий/высокая». Так описывают рост человека, дерево или здание.",
-              "uk": "«високий/висока». Так описують високий зріст людини, дерево чи будівлю."
+              "ru": "слабый: здесь о недостатке физических сил. I am weak — «Я слаб / слаба». Слово может описывать временное состояние, а не постоянное качество.",
+              "uk": "слабкий: тут про брак фізичних сил. I am weak — «Я слабкий / слабка». Слово може описувати тимчасовий стан, а не постійну рису."
             }
           }
         },
@@ -1421,15 +1451,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i09:r1",
-            "text": "tall"
+            "text": "weak"
           },
           {
             "responseId": "en:lesson-01:session-13:i09:r2",
-            "text": "tell"
+            "text": "quiet"
           },
           {
             "responseId": "en:lesson-01:session-13:i09:r3",
-            "text": "ball"
+            "text": "young"
           }
         ],
         "mediaIds": [],
@@ -1441,23 +1471,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i09:audio",
-            "transcript": "tall"
+            "transcript": "weak"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-13:i09:r1",
-              "targetText": "tall",
+              "targetText": "weak",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i09:r2",
-              "targetText": "tell",
+              "targetText": "quiet",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i09:r3",
-              "targetText": "ball",
+              "targetText": "young",
               "meaningByLocale": null
             }
           ],
@@ -1468,8 +1498,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`tell` значит «рассказывать», а `tall` — «высокий/высокая»; в написании `tell` содержит `e`, а `tall` — `a`.",
-                "uk": "`tell` означає «розповідати», а `tall` — «високий/висока»; у написанні `tell` має `e`, а `tall` — `a`."
+                "ru": "В записи звучит weak, а не quiet.",
+                "uk": "У записі звучить weak, а не quiet."
               }
             },
             {
@@ -1477,8 +1507,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`ball` значит «мяч» и начинается с `b`; `tall` начинается с `t`.",
-                "uk": "`ball` означає «м'яч» і починається з `b`; `tall` починається з `t`."
+                "ru": "В записи звучит weak, а не young.",
+                "uk": "У записі звучить weak, а не young."
               }
             }
           ],
@@ -1514,7 +1544,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — коллега легко подняла коробку",
+            "ru": "Мира без труда подняла тяжёлую коробку с книгами. Похвалите Миру напрямую: «ты сильная».",
             "uk": "Міра легко підняла важку коробку з книжками. Похваліть Міру прямо: «ти сильна»."
           },
           "gappedTargetPhrase": "You are ___ .",
@@ -1562,20 +1592,20 @@
         "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З'єднайте пари",
+        "prompt": "З’єднайте пари",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З'єднайте пари",
+        "accessibilityLabel": "З’єднайте пари",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-01:session-13:i11:p1",
-              "target": "young",
+              "target": "proud",
               "meaningByLocale": {
-                "ru": "молодой",
-                "uk": "молодий/молода"
+                "ru": "гордый",
+                "uk": "гордий"
               }
             },
             {
@@ -1583,7 +1613,7 @@
               "target": "old",
               "meaningByLocale": {
                 "ru": "старый",
-                "uk": "старий/стара"
+                "uk": "старий"
               }
             },
             {
@@ -1591,29 +1621,29 @@
               "target": "strong",
               "meaningByLocale": {
                 "ru": "сильный",
-                "uk": "сильний/сильна"
+                "uk": "сильний"
               }
             },
             {
               "pairId": "en:lesson-01:session-13:i11:p4",
-              "target": "tall",
+              "target": "weak",
               "meaningByLocale": {
-                "ru": "высокий",
-                "uk": "високий/висока"
+                "ru": "слабый",
+                "uk": "слабкий"
               }
             }
           ],
           "leftColumn": [
-            "young",
+            "proud",
             "old",
             "strong",
-            "tall"
+            "weak"
           ],
           "rightColumn": [
-            "молодий/молода",
-            "старий/стара",
-            "сильний/сильна",
-            "високий/висока"
+            "гордий",
+            "старий",
+            "сильний",
+            "слабкий"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -1644,7 +1674,7 @@
           "family": "phrase_builder",
           "targetPhrase": "I am strong.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — «я сильный»",
+            "ru": "Вы сами подняли тяжёлую коробку. Скажите о себе: «я сильный/сильная».",
             "uk": "Ви самі підняли важку коробку. Скажіть про себе: «я сильний/сильна»."
           },
           "orderedTokens": [
@@ -1661,11 +1691,15 @@
               "correct": false,
               "testedDimension": "Ви самі підняли важку коробку. Скажіть про себе: «я сильний/сильна».",
               "feedbackByLocale": {
-                "ru": "`are` здесь относится к `you`; о себе скажите `I am`.",
-                "uk": "`are` тут уживають із `you`; про себе скажіть `I am`."
+                "ru": "С I здесь нужно am.",
+                "uk": "З I тут потрібне am."
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -1696,7 +1730,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — вы говорите собеседнику, что он высокий",
+            "ru": "Мира стоит рядом с дверью, и заметно, что у неё высокий рост. Скажите ей: «ты высокая».",
             "uk": "Міра стоїть біля дверей, і помітно, що вона високого зросту. Скажіть їй: «ти висока»."
           },
           "gappedTargetPhrase": "You ___ tall.",
@@ -1742,42 +1776,68 @@
         "interactionId": "en:lesson-01:session-13:i14",
         "ordinal": 17,
         "purpose": "retrieval_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — brave",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-13:i14:audio"
-        ],
-        "accessibilityLabel": "Картка слова — brave",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-13:i14:audio",
-            "transcript": "brave"
+        "prompt": "Вставте слово — після хвороби ви ще фізично слабкі. Скажіть про себе: «Я слабкий / слабка»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-13:i14:r1",
+            "text": "weak"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i14:r2",
+            "text": "strong"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i14:r3",
+            "text": "young"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — після хвороби ви ще фізично слабкі. Скажіть про себе: «Я слабкий / слабка»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — после болезни вы ещё физически слабы. Скажите о себе: «Я слаб / слаба»",
+            "uk": "Вставте слово — після хвороби ви ще фізично слабкі. Скажіть про себе: «Я слабкий / слабка»"
+          },
+          "gappedTargetPhrase": "I am ___ .",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-13:i14:r1",
-              "targetText": "brave",
-              "meaningByLocale": {
-                "ru": "«смелый/смелая». Человек решается на трудное, даже если ему страшно.",
-                "uk": "«сміливий/смілива». Так кажуть про людину, яка наважується на складне, навіть коли їй страшно."
-              }
+              "text": "weak"
+            },
+            {
+              "responseId": "en:lesson-01:session-13:i14:r2",
+              "text": "strong"
+            },
+            {
+              "responseId": "en:lesson-01:session-13:i14:r3",
+              "text": "young"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "brave",
-            "definitionByLocale": {
-              "ru": "«смелый/смелая». Человек решается на трудное, даже если ему страшно.",
-              "uk": "«сміливий/смілива». Так кажуть про людину, яка наважується на складне, навіть коли їй страшно."
+          "testedDimension": "Вставте слово — після хвороби ви ще фізично слабкі. Скажіть про себе: «Я слабкий / слабка»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-13:i14:r2",
+              "correct": false,
+              "testedDimension": "Вставте слово — після хвороби ви ще фізично слабкі. Скажіть про себе: «Я слабкий / слабка»",
+              "feedbackByLocale": {
+                "ru": "Strong — «сильный». По условию сил пока мало: weak.",
+                "uk": "Strong — «сильний». За умовою сил поки мало: weak."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-13:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — після хвороби ви ще фізично слабкі. Скажіть про себе: «Я слабкий / слабка»",
+              "feedbackByLocale": {
+                "ru": "Young описывает возраст, а здесь речь о недостатке сил.",
+                "uk": "Young описує вік, а тут ідеться про брак сил."
+              }
             }
-          }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1795,11 +1855,11 @@
           },
           {
             "responseId": "en:lesson-01:session-13:i15:r2",
-            "text": "grave"
+            "text": "back"
           },
           {
             "responseId": "en:lesson-01:session-13:i15:r3",
-            "text": "bread"
+            "text": "busy"
           }
         ],
         "mediaIds": [],
@@ -1822,12 +1882,12 @@
             },
             {
               "responseId": "en:lesson-01:session-13:i15:r2",
-              "targetText": "grave",
+              "targetText": "back",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-13:i15:r3",
-              "targetText": "bread",
+              "targetText": "busy",
               "meaningByLocale": null
             }
           ],
@@ -1838,8 +1898,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`grave` начинается с `g`, а `brave` — с `b`; это разные слова.",
-                "uk": "`grave` починається з `g`, а `brave` — з `b`; це різні слова."
+                "ru": "В записи звучит brave, а не back.",
+                "uk": "У записі звучить brave, а не back."
               }
             },
             {
@@ -1847,8 +1907,8 @@
               "correct": false,
               "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
-                "ru": "`bread` — «хлеб» и оканчивается на `d`; `brave` оканчивается на `e`.",
-                "uk": "`bread` — «хліб» і закінчується на `d`; `brave` закінчується на `e`."
+                "ru": "В записи звучит brave, а не busy.",
+                "uk": "У записі звучить brave, а не busy."
               }
             }
           ],
@@ -1860,43 +1920,33 @@
       {
         "interactionId": "en:lesson-01:session-13:i16",
         "ordinal": 19,
-        "purpose": "independent_check",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — kind",
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть уголос — ви самі полагодили велосипед і пишаєтеся результатом. Повідомте про це почуття",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i16:audio"
         ],
-        "accessibilityLabel": "Картка слова — kind",
+        "accessibilityLabel": "Скажіть уголос — ви самі полагодили велосипед і пишаєтеся результатом. Повідомте про це почуття",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-13:i16:audio",
-            "transcript": "kind"
+            "transcript": "I am proud."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-13:i16:r1",
-              "targetText": "kind",
-              "meaningByLocale": {
-                "ru": "«добрый/добрая». Заметил/заметила, что вам тяжело, и помог/помогла.",
-                "uk": "«добрий/добра». Людина помітила, що вам важко, і допомогла."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "kind",
-            "definitionByLocale": {
-              "ru": "«добрый/добрая». Заметил/заметила, что вам тяжело, и помог/помогла.",
-              "uk": "«добрий/добра». Людина помітила, що вам важко, і допомогла."
-            }
-          }
+          "targetPhrase": "I am proud.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1915,7 +1965,7 @@
           "family": "phrase_builder",
           "targetPhrase": "You are brave.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — коллега первой заговорила с начальником, скажите ей про это",
+            "ru": "Мире было непросто сообщить руководителю о серьёзной ошибке в расписании, но она сделала это первой. Похвалите её: «ты смелая».",
             "uk": "Мірі було непросто повідомити керівнику про серйозну помилку в розкладі, але вона зробила це першою. Похваліть її: «ти смілива»."
           },
           "orderedTokens": [
@@ -1932,27 +1982,31 @@
               "correct": false,
               "testedDimension": "Мірі було непросто повідомити керівнику про серйозну помилку в розкладі, але вона зробила це першою. Похваліть її: «ти смілива».",
               "feedbackByLocale": {
-                "ru": "`I` говорит о вас; вы обращаетесь к Мире, поэтому начинайте с `You`.",
-                "uk": "`I` говорить про вас; ви звертаєтеся до Міри, тому починайте з `You`."
+                "ru": "Вы обращаетесь к Мире: You are brave. I означало бы «я».",
+                "uk": "Ви звертаєтеся до Міри: You are brave. I означало б «я»."
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-13:i18",
         "ordinal": 21,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ліна помітила ваші важкі сумки й допомогла їх донести. Подякуйте їй і скажіть їй: «ти добра».",
+        "prompt": "Ліна помітила ваші важкі сумки й допомогла їх донести. На знак подяки скажіть їй: «ти добра».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-13:i18:audio"
         ],
-        "accessibilityLabel": "Ліна помітила ваші важкі сумки й допомогла їх донести. Подякуйте їй і скажіть їй: «ти добра».",
+        "accessibilityLabel": "Ліна помітила ваші важкі сумки й допомогла їх донести. На знак подяки скажіть їй: «ти добра».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1978,12 +2032,12 @@
   "answers": [
     {
       "interactionId": "en:lesson-01:session-13:i01",
-      "correctText": "young",
+      "correctText": "proud",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-13:i02",
-      "correctText": "young",
+      "correctText": "proud",
       "correctResponseId": "en:lesson-01:session-13:i02:r1"
     },
     {
@@ -2013,12 +2067,12 @@
     },
     {
       "interactionId": "en:lesson-01:session-13:i08",
-      "correctText": "tall",
+      "correctText": "weak",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-13:i09",
-      "correctText": "tall",
+      "correctText": "weak",
       "correctResponseId": "en:lesson-01:session-13:i09:r1"
     },
     {
@@ -2028,7 +2082,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-13:i11",
-      "correctText": "en:lesson-01:session-13:i11:p1=young\nen:lesson-01:session-13:i11:p2=old\nen:lesson-01:session-13:i11:p3=strong\nen:lesson-01:session-13:i11:p4=tall",
+      "correctText": "",
       "correctResponseId": null
     },
     {
@@ -2043,8 +2097,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-13:i14",
-      "correctText": "brave",
-      "correctResponseId": null
+      "correctText": "weak",
+      "correctResponseId": "en:lesson-01:session-13:i14:r1"
     },
     {
       "interactionId": "en:lesson-01:session-13:i15",
@@ -2053,7 +2107,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-13:i16",
-      "correctText": "kind",
+      "correctText": "I am proud.",
       "correctResponseId": null
     },
     {

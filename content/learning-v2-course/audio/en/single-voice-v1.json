@@ -75613,6 +75613,309 @@
           "byteSize": 39552
         }
       ]
+    },
+    "l05/s26/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Anna's badge.",
+          "file": "cbfb6dcd2e97a95f1a0e541b18b9092a27a7f3ee907bf3e81ea029bfbba45fce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cbfb6dcd2e97a95f1a0e541b18b9092a27a7f3ee907bf3e81ea029bfbba45fce.mp3",
+          "contentHash": "4baf76517284c35c1819c4046cc0370af5057a8f48752fd07e9c224078c720e1",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s26/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I am worried.",
+          "file": "84617daeec71f80fdbfd35b59cb5105379c02d13071d4a700691e7275dbe7833.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84617daeec71f80fdbfd35b59cb5105379c02d13071d4a700691e7275dbe7833.mp3",
+          "contentHash": "c5b3ca534d2d9173eb062e300d966d2f562aaccd8cb6ef375e8f231bbb738878",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s26/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Anna's gloves are on the worktop.",
+          "file": "6d5adec483485f4d925eb0ebcfd5e1e47661e83e8eb56ec2de11ea7c78668622.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d5adec483485f4d925eb0ebcfd5e1e47661e83e8eb56ec2de11ea7c78668622.mp3",
+          "contentHash": "1389cd82ca5f44310a079c80e7b96e5a0236e9dec1603a3d55d9a9ecd027821f",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s26/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I am worried.",
+          "file": "84617daeec71f80fdbfd35b59cb5105379c02d13071d4a700691e7275dbe7833.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84617daeec71f80fdbfd35b59cb5105379c02d13071d4a700691e7275dbe7833.mp3",
+          "contentHash": "c5b3ca534d2d9173eb062e300d966d2f562aaccd8cb6ef375e8f231bbb738878",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s26/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "badge",
+          "file": "e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "contentHash": "59c07ad813e54fe0ede388035e8362c5e0c41880dd795a5c0480086434b70c31",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l05/s26/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "badge",
+          "file": "ca2008a4a9c41675e5f17afdcc425dae2e5d233e23a17499171d466fd0939be5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca2008a4a9c41675e5f17afdcc425dae2e5d233e23a17499171d466fd0939be5.mp3",
+          "contentHash": "deeb8bda2f782e419c7b7586e5954f7d42450b0d90da60cd33effbb99dca7f47",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s26/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "badge",
+          "file": "f484d0b1bb1b860ed9929b097e063946b8bb204d9731074b3f682d2eb6bcbf53.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f484d0b1bb1b860ed9929b097e063946b8bb204d9731074b3f682d2eb6bcbf53.mp3",
+          "contentHash": "12e84142393d736a56dd1b2d9205966ad31e50a4abea0802a070f94c40b8054a",
+          "byteSize": 17280
+        },
+        {
+          "text": "bored",
+          "file": "a03e1bcb3fd79712b99481dcd9dba4388f91b1fc7dca4aedf0aff146ed02b826.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/60e6aa4ad2d315ff8ab59a82-onyx.mp3",
+          "contentHash": "529d086626e413a812d826f819e1130a94dbf2e14dc9380254c6fdc506db2866",
+          "byteSize": 21120
+        },
+        {
+          "text": "confused",
+          "file": "2417a53d9b4a5b2c1142631d9f59f0134e223f64f1a67bb666f670c9efcea5ee.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2417a53d9b4a5b2c1142631d9f59f0134e223f64f1a67bb666f670c9efcea5ee.mp3",
+          "contentHash": "302c5b13b61b57f05701bd8aad0b412db44d82e6a2fb26b3d74eef36f8c7bf6e",
+          "byteSize": 25344
+        },
+        {
+          "text": "worried",
+          "file": "6928c14ed0b5f16040bdab46ba10194bc37fd0f0a374f74edef45a5a71263130.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6928c14ed0b5f16040bdab46ba10194bc37fd0f0a374f74edef45a5a71263130.mp3",
+          "contentHash": "611dad43d4cc672aa88fda2874679d1138eaedae58bd8cc74486fe7a8bcd225a",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s26/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's badge.",
+          "file": "f10f0ad6ec49d488bc3ab829d147eaa005401d3c8dbffde2f59c8b273aa981d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f10f0ad6ec49d488bc3ab829d147eaa005401d3c8dbffde2f59c8b273aa981d6.mp3",
+          "contentHash": "28076426ec04099bed493e3a728f7cd8b9414e227be8bbc3627a316e3d88d0c9",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s26/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom's badge is here.",
+          "file": "2d07885786c5d199a84ecf3ee07dd2f53e8450be21abfee3ae13c68405bf905c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2d07885786c5d199a84ecf3ee07dd2f53e8450be21abfee3ae13c68405bf905c.mp3",
+          "contentHash": "584d0f0213838189ae13c3bcce9cdf605656604b38ac4b44ade317c4326b3ad2",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s26/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I am bored.",
+          "file": "a4a5a96bba0166955f013aac54318bc24237e846102e3323191166c0856ce2cc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a4a5a96bba0166955f013aac54318bc24237e846102e3323191166c0856ce2cc.mp3",
+          "contentHash": "1bd89be288286699ca1338e754f3adc1d06006601ebf3a265a4a961abd2a1f49",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s26/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "These are Anna's gloves.",
+          "file": "cf4d0b4300f012c0cf586a5f8a5235f33721c4e2faf7e2c63ff62f9e4cea3692.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf4d0b4300f012c0cf586a5f8a5235f33721c4e2faf7e2c63ff62f9e4cea3692.mp3",
+          "contentHash": "d3454723e55a0afed4be9cd2379c7dc1e09d97fa1dbc0f78530a1ee2e859f853",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s26/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I am confused.",
+          "file": "8a7cf7bad72df5b7b5f0d1d367c8e24da30dc79621c02ca5aab5447ffc99b2ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8a7cf7bad72df5b7b5f0d1d367c8e24da30dc79621c02ca5aab5447ffc99b2ef.mp3",
+          "contentHash": "3435c16de9d773edf4287f7414e0e780200dd2fda497fed6101a1541ed02e717",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s26/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "badge",
+          "file": "e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8a1cccc9897ae5a4880db9cca52ac7d0c1a6f57c8d435852c570dea6dbf83b9.mp3",
+          "contentHash": "59c07ad813e54fe0ede388035e8362c5e0c41880dd795a5c0480086434b70c31",
+          "byteSize": 14976
+        },
+        {
+          "text": "cats",
+          "file": "49e76e5c801fde4037a831ad73a0a2d7ab17f8b6a3ec04134ae0c89c8dad6e2e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49e76e5c801fde4037a831ad73a0a2d7ab17f8b6a3ec04134ae0c89c8dad6e2e.mp3",
+          "contentHash": "4e9155cf5e878739e30d2ecdf8a17fa2b99017b698f0f347fc4424c932b41a1d",
+          "byteSize": 17280
+        },
+        {
+          "text": "worktop",
+          "file": "4cd47d79f0aa59adbd458bee0e8503c928b4e635a8f119808ca4de61127c1225.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cd47d79f0aa59adbd458bee0e8503c928b4e635a8f119808ca4de61127c1225.mp3",
+          "contentHash": "ecf5a952c3f99bdd11650f60c29afd0b683d652202eaabacdfc24ef0857c1db4",
+          "byteSize": 21888
+        },
+        {
+          "text": "gloves",
+          "file": "e1577510bed883f76af1116eb5e5017245aa3b846e390be4e48cb8ea73187a89.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e1577510bed883f76af1116eb5e5017245aa3b846e390be4e48cb8ea73187a89.mp3",
+          "contentHash": "c3c8ba1142c24d9a5627abc7bf63451ecc15a8e89368c13b0a91373db3a22a28",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s26/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna's gloves are on the worktop.",
+          "file": "5c15e46d3412502cd41b4f9d9a4a7fc050f5e7c64f819157ff63bd42ad4387eb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c15e46d3412502cd41b4f9d9a4a7fc050f5e7c64f819157ff63bd42ad4387eb.mp3",
+          "contentHash": "88b706c89bab8bad1217c9a6255a0e1f6fd5773e12bfe1b2e3cbd86face40be5",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s26/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The cats are under the table.",
+          "file": "0f03d9560b6652bac06b0490069a93cd0c2a629f50adc77873c806aef7d909ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f03d9560b6652bac06b0490069a93cd0c2a629f50adc77873c806aef7d909ad.mp3",
+          "contentHash": "deb4c59c4040a953d7eccca9f7ded6f40f5ec69e44f0750ab21b21c48731abf4",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s26/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Where is my badge?",
+          "file": "8464cf3e641a853ecc75d788c45dfc888c056593a26826d5483855043a24c4b8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8464cf3e641a853ecc75d788c45dfc888c056593a26826d5483855043a24c4b8.mp3",
+          "contentHash": "91ffb8d152c30238dba114192f8a1bde3dcc350f70c7b69c974e3a506ad7f27c",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l05/s26/task/13": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The badge is hers.",
+          "file": "0a7a218cc13ca161cf9c89daeb97cbd6a88f2e7f61f67e52ba462a282a106b7d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0a7a218cc13ca161cf9c89daeb97cbd6a88f2e7f61f67e52ba462a282a106b7d.mp3",
+          "contentHash": "d1fd21f32fe48ab75cb8959cdc947f87f4bdafdee48dc82aff74ab18cb02ee95",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s26/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your badge is on the worktop.",
+          "file": "e495ec62c433385e3b10d722a937427a8199a51c8f3f18c6d8ed7ba7733e90c1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e495ec62c433385e3b10d722a937427a8199a51c8f3f18c6d8ed7ba7733e90c1.mp3",
+          "contentHash": "c5ebfbed66950dd57422327e0b38d703acb5b4907ef31eacabdc1f7ba246647b",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s26/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "badge",
+          "file": "ca2008a4a9c41675e5f17afdcc425dae2e5d233e23a17499171d466fd0939be5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca2008a4a9c41675e5f17afdcc425dae2e5d233e23a17499171d466fd0939be5.mp3",
+          "contentHash": "deeb8bda2f782e419c7b7586e5954f7d42450b0d90da60cd33effbb99dca7f47",
+          "byteSize": 18816
+        },
+        {
+          "text": "cats",
+          "file": "61a2cb462514f6934a56169ba77f4dd7a4345aa232dea16b3b9a503e081f61b8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/61a2cb462514f6934a56169ba77f4dd7a4345aa232dea16b3b9a503e081f61b8.mp3",
+          "contentHash": "640e98d43faa4b3b458b949aaa1c3135a2fe19c399587d60d6fb18546f27f2cb",
+          "byteSize": 24576
+        },
+        {
+          "text": "worktop",
+          "file": "af8ee122a0580eff59300746b252903196866942b7c6e31597e24929fd7a93a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/af8ee122a0580eff59300746b252903196866942b7c6e31597e24929fd7a93a5.mp3",
+          "contentHash": "2f9f7383ab0ec9363b999e56348bed8c920e61cce3095c26755b658d9d560971",
+          "byteSize": 21120
+        },
+        {
+          "text": "gloves",
+          "file": "19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/19c781fdc72535a3b8812d967c797a4277fef3dc8ee75e90f9aded4e993c531f.mp3",
+          "contentHash": "d09593d16a53d0b9ced5a6e3b51f1f000b84437d43123caeeb1d6e313d0b2668",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s26/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Anna's badge.",
+          "file": "44f3f4edc707e4cf4b2fb1bcf7395fa7d4c152d71afe3c8f2bedd66cad0a2b8a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44f3f4edc707e4cf4b2fb1bcf7395fa7d4c152d71afe3c8f2bedd66cad0a2b8a.mp3",
+          "contentHash": "2728c7ebc1a158298e476da6896c05e431dc36f413e2dfc0938a6bf6ef41154c",
+          "byteSize": 38784
+        }
+      ]
     }
   },
   "settings": {

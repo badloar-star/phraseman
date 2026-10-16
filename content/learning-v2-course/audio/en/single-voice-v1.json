@@ -85915,6 +85915,309 @@
           "byteSize": 38784
         }
       ]
+    },
+    "l06/s04/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose receipt is this?",
+          "file": "270b0f1937259c5d71a36821f347b3a0ad995c6eb0fe4800ee1d9b8117a2b337.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/270b0f1937259c5d71a36821f347b3a0ad995c6eb0fe4800ee1d9b8117a2b337.mp3",
+          "contentHash": "09082e8ba40977cbac474995745067e49422c116204c1c461afc10fbf8217dd5",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s04/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The pool is visible.",
+          "file": "3336b63af9ce3d8b082ca52b82c3706cb0647a31c6db2a67c12b680219e7891d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3336b63af9ce3d8b082ca52b82c3706cb0647a31c6db2a67c12b680219e7891d.mp3",
+          "contentHash": "36f829c9f122f44c09adf66d8b7a927764cf79e32bea514d90150f25e3def924",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l06/s04/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I work in a post office.",
+          "file": "7d79183e4643a64a1fdba862c50961f403d2303ac54f77dda71093cc4265246c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d79183e4643a64a1fdba862c50961f403d2303ac54f77dda71093cc4265246c.mp3",
+          "contentHash": "301c0a5d04f966156c3b66fad97340c26a441e724613e1fbb53ef62acdee3a30",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l06/s04/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I work in a post office.",
+          "file": "a7bbaec26ade137f61cfc81e15f764a54ecb48f7ff033357c29e9f0a6013c5f8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a7bbaec26ade137f61cfc81e15f764a54ecb48f7ff033357c29e9f0a6013c5f8.mp3",
+          "contentHash": "fe7adf275f89d0b3dd9e0a4672ecbb5e8b8eece071d9ebc19164e5f70f078f49",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l06/s04/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "receipt",
+          "file": "7ea8fc082e393afdaec4124b5058d74c3fa529bb2feacc70ffcf7ee179aaeba8.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-coral.mp3",
+          "contentHash": "46891c8ab1b1bd102e35cfc372a149d05e8616e153eeb9b364e42dc9774a4ba2",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l06/s04/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "receipt",
+          "file": "0745a13ed9cc254557daf5cc6f101b0bc2c6b0fd9db0fddaeb285e791b11c9de.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-ash.mp3",
+          "contentHash": "27f8169c2ab1b7652adfd97178aa0a76ecd19ec08c80701eea98c35e4ed9850a",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l06/s04/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "receipt",
+          "file": "0745a13ed9cc254557daf5cc6f101b0bc2c6b0fd9db0fddaeb285e791b11c9de.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-ash.mp3",
+          "contentHash": "27f8169c2ab1b7652adfd97178aa0a76ecd19ec08c80701eea98c35e4ed9850a",
+          "byteSize": 15744
+        },
+        {
+          "text": "visible",
+          "file": "e969ffcc93fb32df66948b265ba2a515f9c8f2b707e4d689bdaa9724b7a1f13f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e969ffcc93fb32df66948b265ba2a515f9c8f2b707e4d689bdaa9724b7a1f13f.mp3",
+          "contentHash": "4fdfe1e66f33f013346a47156f28105584b22c6691b7f1c3acf74131ad2faff9",
+          "byteSize": 23040
+        },
+        {
+          "text": "hidden",
+          "file": "de85e0cc310ee056458e41ccf360168a36cdd637b82f64808e5cf90a062cdad8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de85e0cc310ee056458e41ccf360168a36cdd637b82f64808e5cf90a062cdad8.mp3",
+          "contentHash": "2aaccc5aec9cf4d3680ee760f71b677bd98e90f71c12d58203275b17650e1a45",
+          "byteSize": 38784
+        },
+        {
+          "text": "clear",
+          "file": "c3cde5b55bbf0acac877a5a81921e398d04a40fcdfd594fcf948e72a8b1f4fc6.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/913a4cb91be20332f3559f80-ash.mp3",
+          "contentHash": "9c0e246922f58f1c9c2587d6b0ecb92bb0f58934b30ec17980d41e73dee06542",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s04/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is my receipt.",
+          "file": "016af3c7f0952d870808ca7e72e1de627059ed37b23dba8664030de779428949.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/016af3c7f0952d870808ca7e72e1de627059ed37b23dba8664030de779428949.mp3",
+          "contentHash": "099c7b49f12d2ec324564cb9b18c83e5ffdbb2a1e63f49f16d991711723b7c46",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s04/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose receipt is this?",
+          "file": "c6452459bfd4def1a53e1023b6b81d81fb8d78b2c61725d86b24085546615ccd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6452459bfd4def1a53e1023b6b81d81fb8d78b2c61725d86b24085546615ccd.mp3",
+          "contentHash": "e9638e3a25b4b4418dac6052274272123723404e051304dca0460fb95ecad75d",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s04/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The pool is visible.",
+          "file": "a4aff0cdda38b4b52033beb82e8309d0187f1734c69e59fc480125e061346b35.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a4aff0cdda38b4b52033beb82e8309d0187f1734c69e59fc480125e061346b35.mp3",
+          "contentHash": "40fc2940b341c21de0600e19c83ba2ad387f111f7cc229dd1a15d26e84a910b4",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s04/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bag is hidden.",
+          "file": "caf26607b9bbfbcc9204e4bc6078acf7670b038965d7b8371bb999138f84c889.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/caf26607b9bbfbcc9204e4bc6078acf7670b038965d7b8371bb999138f84c889.mp3",
+          "contentHash": "d1fa920d500e0e30a20d9953ae0a2b84fb18d1229cb5efd860bfab84d2380115",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l06/s04/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "That receipt is yours.",
+          "file": "00adb9f7f4405f542b4862e22d9c31de8f6701496874e7f40f9532b87e4cc15b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/00adb9f7f4405f542b4862e22d9c31de8f6701496874e7f40f9532b87e4cc15b.mp3",
+          "contentHash": "e1204046a57bcce9d17798765e14d05ee6d2e7d5b6f50e808f47cfba9d92adac",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l06/s04/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "receipt",
+          "file": "7ea8fc082e393afdaec4124b5058d74c3fa529bb2feacc70ffcf7ee179aaeba8.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-coral.mp3",
+          "contentHash": "46891c8ab1b1bd102e35cfc372a149d05e8616e153eeb9b364e42dc9774a4ba2",
+          "byteSize": 29952
+        },
+        {
+          "text": "post office",
+          "file": "6feb90a25c89bcb5123714ccb01633675c543d6be8736f319ff6afab5aadef5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6feb90a25c89bcb5123714ccb01633675c543d6be8736f319ff6afab5aadef5d.mp3",
+          "contentHash": "cb7efda9b2dccca2b8130818c264d7b0c2bc22058b690465cc99236a836e9fdd",
+          "byteSize": 25344
+        },
+        {
+          "text": "curtain",
+          "file": "57face8d331ba5b4b247b74ebd5c6456d3248582f75d4f402468377ba6e75ec1.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/05e884950dccb9aad0801f6e-coral.mp3",
+          "contentHash": "21e01ca22daaaa11ab54f7eeb7d147cf2c97a1aa185e4fc76d29af1e5f7f7226",
+          "byteSize": 25344
+        },
+        {
+          "text": "pool",
+          "file": "433e5bc9c29193f6882d3d90665dc5c6dc4d1cf5b599b97c9c3991ddf4a6650b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/433e5bc9c29193f6882d3d90665dc5c6dc4d1cf5b599b97c9c3991ddf4a6650b.mp3",
+          "contentHash": "a602a1ac20246b831858dc8c603715943fa5615868e9bab66f53b95d20159e22",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l06/s04/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bag is behind the curtain.",
+          "file": "a61a103eadddb07cb830366512f8462119f3c3a2d5846a7ea063c548216861ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a61a103eadddb07cb830366512f8462119f3c3a2d5846a7ea063c548216861ed.mp3",
+          "contentHash": "8b5bc81f38a657018b37634f61cbedfe6786c829b7111788fa92be1a94f4ea86",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l06/s04/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The post office is near the pool.",
+          "file": "2eb4edbb9f9a271a09606afdd0e24a23f2f747c0dd864314152724984c42ebc7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2eb4edbb9f9a271a09606afdd0e24a23f2f747c0dd864314152724984c42ebc7.mp3",
+          "contentHash": "8640e6a850eed517444fcb5589ca7f991ed53eb402f61c93577db45bc9cae1fa",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l06/s04/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is clear.",
+          "file": "8df716097c4b4b00d90167eb3b70a8c382ffa35ae5275770306e7c2fe9fb46ea.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8df716097c4b4b00d90167eb3b70a8c382ffa35ae5275770306e7c2fe9fb46ea.mp3",
+          "contentHash": "7a6d10cd1f7f45620bde4fbc1edd828e2e8419026db1e3ca619c2e2205f814f0",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s04/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I work here.",
+          "file": "be4edf1280422c9378d66f8d146b4cb259e970e9c02a2ca731be7ab2b7550f40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/be4edf1280422c9378d66f8d146b4cb259e970e9c02a2ca731be7ab2b7550f40.mp3",
+          "contentHash": "15e8c386e765dcdb7e51ea61e8df5d580e765395aa3f5a732572ee8979d3d21c",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s04/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The receipt is mine.",
+          "file": "1cef10bb685c2fecb250cea1f3b1871c684fe7db3b524e8562be8e997a50e9ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1cef10bb685c2fecb250cea1f3b1871c684fe7db3b524e8562be8e997a50e9ae.mp3",
+          "contentHash": "2edc41dc63e0ab0df7af04f6db52755d61e66e30ed71c6684fc6390be8bdf4f4",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l06/s04/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "receipt",
+          "file": "b3569ea281d135253453fb9032a6c136474b05052bb1951a0c55a482d4e94808.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-onyx.mp3",
+          "contentHash": "4f2cd42124742016b8c23fab53dea9dab2d072359a1398e68cb357e7b7ecc02f",
+          "byteSize": 14208
+        },
+        {
+          "text": "visible",
+          "file": "6bc157e2be9729b7873257dd7697de9f127ba680b69febfda5746af80843199f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6bc157e2be9729b7873257dd7697de9f127ba680b69febfda5746af80843199f.mp3",
+          "contentHash": "9595970a621e22f2dc7d6452654f0044170b79c8fb1a226512469463385b9e31",
+          "byteSize": 18816
+        },
+        {
+          "text": "hidden",
+          "file": "4afffb35efe89da821af579e60869e3b1e7b33432928fbe655c88d2c23907985.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4afffb35efe89da821af579e60869e3b1e7b33432928fbe655c88d2c23907985.mp3",
+          "contentHash": "69ba08a68693e98d8d3683b6be89dadc7a2283c9718dd8068400e79221c1059c",
+          "byteSize": 14976
+        },
+        {
+          "text": "clear",
+          "file": "7ea4d832421bd6cd61a04487d76ac4c6a113adac7c51aa2dba890752a35fd433.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/913a4cb91be20332f3559f80-onyx.mp3",
+          "contentHash": "8d996e5aac5eddc25dce6ddfbe0aaaed1fa5c19c23511bae73d208a9d12ba32c",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s04/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose receipt is this?",
+          "file": "1446719d3238aa4c04367d244e1f13ec58a5393cf755165572a60a9e4ddde811.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1446719d3238aa4c04367d244e1f13ec58a5393cf755165572a60a9e4ddde811.mp3",
+          "contentHash": "3537315dc20260831b04c0f3d765d9318950dd416d0da0e03e4b70ad52a4601f",
+          "byteSize": 37248
+        }
+      ]
     }
   },
   "settings": {

@@ -72886,6 +72886,309 @@
           "byteSize": 57216
         }
       ]
+    },
+    "l05/s17/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The jacket is mine.",
+          "file": "4c52ad3bc6d6014b6778b44e824102508b9bbf80bcc38fd26d35536de774f704.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4c52ad3bc6d6014b6778b44e824102508b9bbf80bcc38fd26d35536de774f704.mp3",
+          "contentHash": "8a0d9add8aa51aa60bd06d6881ef2bf5183f613facfc5b9113b929286b39dda3",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l05/s17/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The books are ours.",
+          "file": "c99de3823372a298d5c4ac0f7be45903bc089065014895c1e5a6d217218433c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c99de3823372a298d5c4ac0f7be45903bc089065014895c1e5a6d217218433c2.mp3",
+          "contentHash": "73d6e6e7f223c021c2f3c29a9872b5fdafe5ea34d8ba3555e6ffc57d32796aa8",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s17/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "You are right.",
+          "file": "bee82a4ba639476c749dda980e20bcdca7127286fdf1b42b60a28e0f52b4e1b8.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22726a99c7e8b0eb96330229-coral.mp3",
+          "contentHash": "320b2eab4db580ad7467cd9fa8ff117d3da1f444b7668b1b28150eb0e63e436b",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s17/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "You are welcome here.",
+          "file": "3fdafc2bddf167d854d942abeb768bed7a67096503243e246b412d730f70de0b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/b40c675c1b2b95dcfc65e313-ash.mp3",
+          "contentHash": "9d565204c9219d2da0be09b76fc4344edd0b386a0333b9f7e10c74d03b6331cb",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s17/task/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "jacket",
+          "file": "aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "contentHash": "a1ae4230f83f0c367bd66688878902f797b90943cb94fdae13760a6442c21258",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s17/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "jacket",
+          "file": "24a7e4b379de2fd5c2157dda8a91b5e5e4b2fc046ade454cf207c3b0b3cab16f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/24a7e4b379de2fd5c2157dda8a91b5e5e4b2fc046ade454cf207c3b0b3cab16f.mp3",
+          "contentHash": "0604f9677b75c8bf12aa37f5e93fe56e66e777db311b8de3f05db36a07500242",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s17/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "jacket",
+          "file": "5dba692723f9227db9c66e699d8351a01d1744675109b85c274425e4153977e9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5dba692723f9227db9c66e699d8351a01d1744675109b85c274425e4153977e9.mp3",
+          "contentHash": "09814bd96379f7bada895a96ec252059fef8c6f722d88bd0d5f068652a6dc8c7",
+          "byteSize": 20352
+        },
+        {
+          "text": "welcome",
+          "file": "cf9ba7e0facc799d1e32386a35d683ce715a4c47a932e5174bb3fe4f9aaf8420.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/280d44ab1e9f79b5cce2dd4f-nova.mp3",
+          "contentHash": "2b09fa860c05800e0018c79478cd8ca9f8f1277f6be741ace33dfcd802ac0800",
+          "byteSize": 26112
+        },
+        {
+          "text": "safe",
+          "file": "a04a96b3544f597fcd37558f75b2d4b1b4f9c467859ad6ee5a363bd5f58b566d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8b3369944dd2a3fab39e32d1-nova.mp3",
+          "contentHash": "1d71d96e616923634f6f17adc0e0a951badf33dbbca73b001e57b66ae1f91cb2",
+          "byteSize": 16512
+        },
+        {
+          "text": "right",
+          "file": "ed0edb2e36d26f5900da3c6a4997d7e8287e71990a738f06ec4ee5c4d4f071cf.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/27042f4e6eca7d0b2a7ee402-nova.mp3",
+          "contentHash": "e79f5ab1dedbb3fc5c3cd6fdc872b5f3fbf4eb768435b5c1206ef002699fb272",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s17/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The jacket is mine.",
+          "file": "98dd6c4da86f7f983058f6c0267ad9857123c33d6dea22fcf52d1b6943df7abb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98dd6c4da86f7f983058f6c0267ad9857123c33d6dea22fcf52d1b6943df7abb.mp3",
+          "contentHash": "e81853291916767431451b89573930c56af5333e4298169390e3fe767e0ca8a4",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s17/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The charger is yours.",
+          "file": "c0edbc36ada394a1e5ad09099fc61e76926e199a6fbf3f4502110a4778b39e70.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c0edbc36ada394a1e5ad09099fc61e76926e199a6fbf3f4502110a4778b39e70.mp3",
+          "contentHash": "d6217fd50c84f6ea12d9e07b14b67d4e1a5ae3be37a5d9bbf85d58a6a34e9ceb",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s17/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "You are right.",
+          "file": "d6b1fd0a6effc5bcab869ea55c8c5f890cbdc9a1e8e0b7c048bca927dd4fde01.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/22726a99c7e8b0eb96330229-nova.mp3",
+          "contentHash": "74f7630ed6ef50836f23c7fe31d3ebb47473a8b87667f94dccea2a54ea149c05",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s17/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The berry is hers.",
+          "file": "1442bc6faf04092f070f0aaf4b00cd2321f05cf8e7de680e00ca8f3f4449d47c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1442bc6faf04092f070f0aaf4b00cd2321f05cf8e7de680e00ca8f3f4449d47c.mp3",
+          "contentHash": "6f91ed53a30b7637c6c1f1932ecc498de2e50b41227fba6b75c6b4556eeebeb3",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l05/s17/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The books are ours.",
+          "file": "ef999d55aaac851371dcfeead9685d918b170ed22e976926897004cd52396bc0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ef999d55aaac851371dcfeead9685d918b170ed22e976926897004cd52396bc0.mp3",
+          "contentHash": "05a1ea3f09620311854a2b6df0e98abdb6184d07e494c68719549aab0cf276e6",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s17/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "jacket",
+          "file": "aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aa89799577ddad2b055e7201d42199cd254d6fc237b381f46613767197175567.mp3",
+          "contentHash": "a1ae4230f83f0c367bd66688878902f797b90943cb94fdae13760a6442c21258",
+          "byteSize": 26880
+        },
+        {
+          "text": "books",
+          "file": "65ec6bb85c430cc12be1857c81943e505021a43785bec0304a1e80ae816ffc18.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/65ec6bb85c430cc12be1857c81943e505021a43785bec0304a1e80ae816ffc18.mp3",
+          "contentHash": "74b46d771d224cc1efb5510f9b1f785ed8c3ff19c413e1b1fdd646187de8d86f",
+          "byteSize": 44160
+        },
+        {
+          "text": "berry",
+          "file": "04e8dd00c59949958f294851787408fb8f46684385bd589a7562cff377b0cd9a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/04e8dd00c59949958f294851787408fb8f46684385bd589a7562cff377b0cd9a.mp3",
+          "contentHash": "20a4a5ce7e39ee6fe61dd8a329ad976831fd1e442224eaf601ccb8479ac31383",
+          "byteSize": 26880
+        },
+        {
+          "text": "charger",
+          "file": "f70e7a1f6b26358a1bc9db8ab2aa813a8b3a9421558fd3675700b66ea6f36e06.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-onyx.mp3",
+          "contentHash": "4c16a1b2709cf9d5deebfd35f0ad38f4613a71c12ec06c5dd1908fdf8cd833ec",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l05/s17/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The jacket is his.",
+          "file": "36eef228ffbfbd4db00e2e6dd29717d72be812d7c00ca31e8496b3912ad3cf30.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36eef228ffbfbd4db00e2e6dd29717d72be812d7c00ca31e8496b3912ad3cf30.mp3",
+          "contentHash": "b4a3896248f0e1b8af42da294b7e1d6664e9fe4b4843167849cf23fb1af33a83",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s17/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The books are safe.",
+          "file": "b49d82d533bd82601601af0af687b98c383b19c7da5151a28075201806f93d73.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b49d82d533bd82601601af0af687b98c383b19c7da5151a28075201806f93d73.mp3",
+          "contentHash": "8573893a987fd941ce7cc1c840484eca26cc18137f3a7a68cea37e0ea2f44594",
+          "byteSize": 44544
+        }
+      ]
+    },
+    "l05/s17/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The charger is theirs.",
+          "file": "4a3b399a9a1de0c4333a2798369f1ed7235e171c72902c4875579cc4282680ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a3b399a9a1de0c4333a2798369f1ed7235e171c72902c4875579cc4282680ed.mp3",
+          "contentHash": "791bc51a1f83597be9242f1fc0d38f3478e12c6ae75b88794b0036fc8bcbf812",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s17/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The jacket is yours.",
+          "file": "e34db62e9a598fae5817e7a8ff4b5f9decedb181e4e9e55b7bd19694d43ed469.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e34db62e9a598fae5817e7a8ff4b5f9decedb181e4e9e55b7bd19694d43ed469.mp3",
+          "contentHash": "a4fa220d77560c30469e434ad64630ce6dcebec35e8457f6721896a1cc3e1fa4",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s17/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The books are hers.",
+          "file": "43fabbc637b687a2ee9c1aa563bb134c375b4c061089c3fad0c9154562d15b06.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43fabbc637b687a2ee9c1aa563bb134c375b4c061089c3fad0c9154562d15b06.mp3",
+          "contentHash": "d05384165335b9f047884dfc92a94733faafade0e4a2f00a37a1a1e02824bce4",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s17/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "mine",
+          "file": "2821acdc4824e61a1bb060dde43cdad686eb8dddcbb79323b3cb93d658573e16.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2821acdc4824e61a1bb060dde43cdad686eb8dddcbb79323b3cb93d658573e16.mp3",
+          "contentHash": "05487e97884730d6e028a6a2ba513d56fd5150e19bb18e54a3f894c6372eaeed",
+          "byteSize": 18048
+        },
+        {
+          "text": "yours",
+          "file": "8f15f2a55d1e70b07b50f3d3bc1ee1eb582a0863964f405b179810ee3b17491c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f15f2a55d1e70b07b50f3d3bc1ee1eb582a0863964f405b179810ee3b17491c.mp3",
+          "contentHash": "3df3729fa92194ee94e889270ac6c3eb6de5b6345c30c8f34632f507146bb2ed",
+          "byteSize": 14976
+        },
+        {
+          "text": "ours",
+          "file": "4cb00eba8686ff22e7641df6c28d8d8320c6130ce7bec2cd5ef67401c8a63d25.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4cb00eba8686ff22e7641df6c28d8d8320c6130ce7bec2cd5ef67401c8a63d25.mp3",
+          "contentHash": "ad7beebe0af5d8b072b580b6ba54b0a373ab875d080be4f7ff4a82525a8817d0",
+          "byteSize": 17280
+        },
+        {
+          "text": "theirs",
+          "file": "fb3af429bf7f8ac3bb29450024a996f29421bdc68736b9c0abcf194874670669.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fb3af429bf7f8ac3bb29450024a996f29421bdc68736b9c0abcf194874670669.mp3",
+          "contentHash": "ad5c069d7105eed236cfad6e6c242dd2cb6a4dce45be8a3145d82e13a2163047",
+          "byteSize": 18816
+        }
+      ]
+    },
+    "l05/s17/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The jacket is mine.",
+          "file": "63fa9f9d4740d232288b1d2102570433441cd57c5fffa3251424b84e71ec14bd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63fa9f9d4740d232288b1d2102570433441cd57c5fffa3251424b84e71ec14bd.mp3",
+          "contentHash": "94f270b2bbab9a3e96f96366ba0ed5fab242633aee90782363681b51e069f1d7",
+          "byteSize": 25344
+        }
+      ]
     }
   },
   "settings": {

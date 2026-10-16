@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-04:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "описать район и спросить о нужных местах",
+    "uk": "описати район і запитати про потрібні місця"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Магазин у дома",
+        "uk": "Магазин біля дому"
+      },
+      "bodyByLocale": {
+        "ru": "`corner shop` — небольшой «магазин у дома», где покупают повседневные мелочи. `This is a corner shop` — «Это магазин у дома». В названии есть «угол», но магазин не обязан стоять точно на углу: линейку для проверки брать не надо. Перед одним магазином нужно `a`: `a corner shop`.",
+        "uk": "`corner shop` — невеликий «магазин біля дому», де купують повсякденні дрібниці. `This is a corner shop` — «Це магазин біля дому». У назві є «кут», але магазин не обов’язково має стояти саме на розі: лінійку для перевірки брати не треба. Перед одним магазином потрібне `a`: `a corner shop`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите один магазин у дома.",
+          "uk": "Покажіть один магазин біля дому."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-56:intro1:r1",
+              "text": "This is a corner shop."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro1:r2",
+              "text": "This is corner shop."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro1:r3",
+              "text": "These are corner shops."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-56:intro1:r1",
+              "text": "This is a corner shop."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro1:r2",
+              "text": "This is corner shop."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro1:r3",
+              "text": "These are corner shops."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите один магазин у дома.",
+          "uk": "Покажіть один магазин біля дому."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Места для соседей",
+        "uk": "Місця для сусідів"
+      },
+      "bodyByLocale": {
+        "ru": "`community centre` — «общественный центр», `community kitchen` — «общая кухня», `nursery` — «детский сад». `The nursery is next to the community centre` — «Детский сад рядом с общественным центром». `Is there a community kitchen?` — «Есть ли общая кухня?» В ответ о её наличии можно сказать `There is a community kitchen`.",
+        "uk": "`community centre` — «громадський центр», `community kitchen` — «спільна кухня», `nursery` — «дитячий садок». `The nursery is next to the community centre` — «Дитячий садок поруч із громадським центром». `Is there a community kitchen?` — «Чи є спільна кухня?» У відповідь про її наявність можна сказати `There is a community kitchen`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, есть ли общая кухня.",
+          "uk": "Запитайте, чи є спільна кухня."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-56:intro2:r1",
+              "text": "Is there a community kitchen?"
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro2:r2",
+              "text": "Are there a community kitchen?"
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro2:r3",
+              "text": "There is a community kitchen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-56:intro2:r1",
+              "text": "Is there a community kitchen?"
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro2:r2",
+              "text": "Are there a community kitchen?"
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro2:r3",
+              "text": "There is a community kitchen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, есть ли общая кухня.",
+          "uk": "Запитайте, чи є спільна кухня."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вода и дорога",
+        "uk": "Вода й дорога"
+      },
+      "bodyByLocale": {
+        "ru": "`canal` — «канал», `river` — «река», `police station` — «полицейский участок», `petrol station` — «заправка», `shortcut` — «короткий путь». `There isn’t a petrol station` — «Заправки нет». `Are there any shortcuts?` — «Есть ли какие-нибудь короткие пути?» Если их нет: `There aren’t any shortcuts`.",
+        "uk": "`canal` — «канал», `river` — «річка», `police station` — «поліцейський відділок», `petrol station` — «заправка», `shortcut` — «короткий шлях». `There isn’t a petrol station` — «Заправки немає». `Are there any shortcuts?` — «Чи є якісь короткі шляхи?» Якщо їх немає: `There aren’t any shortcuts`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Коротких путей нет. Выберите ответ.",
+          "uk": "Коротких шляхів немає. Виберіть відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-56:intro3:r1",
+              "text": "There aren't any shortcuts."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro3:r2",
+              "text": "There isn't any shortcuts."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro3:r3",
+              "text": "There are some shortcuts."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-56:intro3:r1",
+              "text": "There aren't any shortcuts."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro3:r2",
+              "text": "There isn't any shortcuts."
+            },
+            {
+              "responseId": "en:lesson-04:session-56:intro3:r3",
+              "text": "There are some shortcuts."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коротких путей нет. Выберите ответ.",
+          "uk": "Коротких шляхів немає. Виберіть відповідь."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "26acaa55688e1e96936a6cfa1bc6095034c5965d4af79e4a9ed87d018902f705"
+}

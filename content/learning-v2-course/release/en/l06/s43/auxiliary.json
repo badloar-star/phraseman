@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-43:intro1:r2": {
+          "ru": "После `I` — `speak`, без `s`.",
+          "uk": "Після `I` — `speak`, без `s`."
+        },
+        "en:lesson-06:session-43:intro1:r3": {
+          "ru": "Нужно `I speak`, без `am`.",
+          "uk": "Потрібно `I speak`, без `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-43:intro2:r2": {
+          "ru": "После `she` — `speaks`.",
+          "uk": "Після `she` — `speaks`."
+        },
+        "en:lesson-06:session-43:intro2:r3": {
+          "ru": "Нужно `She speaks`, без `is`.",
+          "uk": "Потрібно `She speaks`, без `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-43:intro3:r2": {
+          "ru": "Нужно `I am uncertain`, с `am`.",
+          "uk": "Потрібно `I am uncertain`, з `am`."
+        },
+        "en:lesson-06:session-43:intro3:r3": {
+          "ru": "С `I` — `am`, не `is`.",
+          "uk": "З `I` — `am`, не `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2dd302616b127aa8b843c9399447d1416486abfc41653123319c276fd466c10"
+}

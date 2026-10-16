@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, на каком языке вы говорите, и рассказать о другом человеке",
+    "uk": "сказати, якою мовою ви говорите, й розповісти про іншу людину"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я говорю по-английски",
+        "uk": "Я говорю англійською"
+      },
+      "bodyByLocale": {
+        "ru": "Новый сосед не знает, на каком языке к вам обратиться. `speak` — «говорить». `I speak English` — «Я говорю по-английски». Название языка идёт сразу после `speak`: здесь не нужно переводить русское «по-» отдельным словом. Можно говорить по-английски с ошибками — для этой фразы идеальный акцент не требуется.",
+        "uk": "Новий сусід не знає, якою мовою до вас звернутися. `speak` — «говорити». `I speak English` — «Я говорю англійською». Назва мови йде одразу після `speak`: між ними не потрібне додаткове слово. Можна говорити англійською з помилками — для цієї фрази ідеальна вимова не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Помогите соседу выбрать язык: скажите «Я говорю по-английски».",
+          "uk": "Допоможіть сусідові обрати мову: скажіть «Я говорю англійською»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-43:intro1:r1",
+              "text": "I speak English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro1:r2",
+              "text": "I speaks English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro1:r3",
+              "text": "I am speak English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-43:intro1:r1",
+              "text": "I speak English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro1:r2",
+              "text": "I speaks English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro1:r3",
+              "text": "I am speak English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Помогите соседу выбрать язык: скажите «Я говорю по-английски».",
+          "uk": "Допоможіть сусідові обрати мову: скажіть «Я говорю англійською»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Анна тоже говорит",
+        "uk": "Анна теж говорить"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, можно ли обратиться к Анне по-английски. `She speaks English` — «Она говорит по-английски». После `she` добавляем `s`: `speak → speaks`. Можно назвать имя: `Anna speaks English`. Фраза сообщает о языке, которым она владеет; Анна может сейчас молчать.",
+        "uk": "Сусід запитує, чи можна звернутися до Анни англійською. `She speaks English` — «Вона говорить англійською». Після `she` додаємо `s`: `speak → speaks`. Можна назвати ім’я: `Anna speaks English`. Фраза повідомляє про мову, якою вона володіє; Анна може зараз мовчати."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте соседу об Анне: «Она говорит по-английски».",
+          "uk": "Дайте сусідові відповідь про Анну: «Вона говорить англійською»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-43:intro2:r1",
+              "text": "She speaks English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro2:r2",
+              "text": "She speak English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro2:r3",
+              "text": "She is speaks English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-43:intro2:r1",
+              "text": "She speaks English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro2:r2",
+              "text": "She speak English."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro2:r3",
+              "text": "She is speaks English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте соседу об Анне: «Она говорит по-английски».",
+          "uk": "Дайте сусідові відповідь про Анну: «Вона говорить англійською»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не уверены во времени",
+        "uk": "Не впевнені щодо часу"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, во сколько придёт Том, но вы ещё не знаете точно. `I am uncertain` — «Я не уверен». `uncertain` описывает неуверенность, поэтому здесь нужно `am`. Это не действие вроде `speak`: вы сообщаете, что точного ответа пока нет.",
+        "uk": "Сусід запитує, о котрій прийде Том, але ви ще не знаєте точно. `I am uncertain` — «Я не впевнений». `uncertain` описує невпевненість, тому тут потрібне `am`. Це не дія на зразок `speak`: ви повідомляєте, що точної відповіді поки немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте соседу «Я не уверен».",
+          "uk": "Дайте сусідові відповідь «Я не впевнений»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-43:intro3:r1",
+              "text": "I am uncertain."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro3:r2",
+              "text": "I uncertain."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro3:r3",
+              "text": "I is uncertain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-43:intro3:r1",
+              "text": "I am uncertain."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro3:r2",
+              "text": "I uncertain."
+            },
+            {
+              "responseId": "en:lesson-06:session-43:intro3:r3",
+              "text": "I is uncertain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте соседу «Я не уверен».",
+          "uk": "Дайте сусідові відповідь «Я не впевнений»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "efacc5f17e3bcd34bf2457db9c42ec6ac60612bc9146253f11ad70e13b38eb2b"
+}

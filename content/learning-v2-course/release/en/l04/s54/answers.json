@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-54:i01",
+    "correctText": "The car is reliable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i02",
+    "correctText": "petrol station",
+    "correctResponseId": "en:lesson-04:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i03",
+    "correctText": "petrol station",
+    "correctResponseId": "en:lesson-04:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i04",
+    "correctText": "en:lesson-04:session-54:i04:p1=petrol station\nen:lesson-04:session-54:i04:p2=reliable\nen:lesson-04:session-54:i04:p3=striped\nen:lesson-04:session-54:i04:p4=pantry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i05",
+    "correctText": "This is a petrol station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i06",
+    "correctText": "The bag is striped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i07",
+    "correctText": "It's reliable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i08",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i09",
+    "correctText": "The bag is in the pantry.",
+    "correctResponseId": "en:lesson-04:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i10",
+    "correctText": "en:lesson-04:session-54:i10:p1=petrol station\nen:lesson-04:session-54:i10:p2=reliable\nen:lesson-04:session-54:i10:p3=striped\nen:lesson-04:session-54:i10:p4=pantry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i11",
+    "correctText": "Is there a petrol station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i12",
+    "correctText": "There isn't a petrol station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i13",
+    "correctText": "Is there a pantry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i14",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-54:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i15",
+    "correctText": "The shirt is striped.",
+    "correctResponseId": "en:lesson-04:session-54:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i16",
+    "correctText": "en:lesson-04:session-54:i16:p1=petrol station\nen:lesson-04:session-54:i16:p2=reliable\nen:lesson-04:session-54:i16:p3=striped\nen:lesson-04:session-54:i16:p4=pantry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i17",
+    "correctText": "The petrol station is next to the supermarket.",
+    "correctResponseId": null
+  }
+]

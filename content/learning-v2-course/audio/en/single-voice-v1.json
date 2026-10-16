@@ -78340,6 +78340,309 @@
           "byteSize": 29952
         }
       ]
+    },
+    "l05/s35/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0de2dfe923888bfc2538faeda3bbf01e0b75f8dd210f82d17339b58a2e051e1e.mp3",
+          "contentHash": "9aa305f08646eed3b3cf49af88e04ccb0a92bb3e475567fbd7d9211a0d847344",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s35/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose photos are these?",
+          "file": "737e0dfb8a660c2a181bbd0ed5fed9d2e3e5cdd94d7d78c80bdf8a7a571277ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/737e0dfb8a660c2a181bbd0ed5fed9d2e3e5cdd94d7d78c80bdf8a7a571277ff.mp3",
+          "contentHash": "7b87e7d871ccc7ca7c0fb41737ac41f49104d0618a8cbba64d2047bac3d22bba",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s35/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna is ill.",
+          "file": "71073ccb5c5ae4102cc0259b44b4e4e43a7f14cb516780e0151414163c0e1e36.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71073ccb5c5ae4102cc0259b44b4e4e43a7f14cb516780e0151414163c0e1e36.mp3",
+          "contentHash": "bd799ab7433b2a693be59306640b629f1366dbb64cddff1bb8f460357a1ccd2d",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l05/s35/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Anna is ill.",
+          "file": "8f26136e3d841282c4c786af8a579811866a0c64641413bc3756467e18129d5f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f26136e3d841282c4c786af8a579811866a0c64641413bc3756467e18129d5f.mp3",
+          "contentHash": "170d90f7ed01ae6290a20d0593fe1f6c82213b48fbf5f09efdb9764fd801d199",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l05/s35/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bracelet",
+          "file": "3cc4a0501649e252dbc438055bfe98ea0f97573e83114c4480c8745f7befa758.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-ash.mp3",
+          "contentHash": "6ce3f2ac1ede2c0a13cf87523a0a1f02a2d1c71d18b43989bbb922dc62c2693e",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s35/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bracelet",
+          "file": "3cc4a0501649e252dbc438055bfe98ea0f97573e83114c4480c8745f7befa758.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-ash.mp3",
+          "contentHash": "6ce3f2ac1ede2c0a13cf87523a0a1f02a2d1c71d18b43989bbb922dc62c2693e",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l05/s35/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bracelet",
+          "file": "fc1dca4740a56edc62aa67602a02309fc11eb7d26b7f7af9bdd70bd65165e959.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-coral.mp3",
+          "contentHash": "8182203e7c491cc082bb9d1337ff2ccbe493339a50d697cc1ffcdaf5f8a6cb07",
+          "byteSize": 21120
+        },
+        {
+          "text": "photos",
+          "file": "4b2b8999a7289a6146a1e9a89a4fbcdf0aaeb6bd6877b6b5d20b22bb1427bbc5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-coral.mp3",
+          "contentHash": "1bd27a7a373fe728859700bad580340834fa70045d66f95625bd3c82ce38454f",
+          "byteSize": 30720
+        },
+        {
+          "text": "ramp",
+          "file": "e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "contentHash": "38078ff5900b16bc7c20182e999f1ebd4cd21f4addefbaa70213436e8f9ece8e",
+          "byteSize": 12672
+        },
+        {
+          "text": "passport",
+          "file": "d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "contentHash": "6feaf1f71a02d2e2c8372da8cd9500b1e6c683f02a6b5be9a79bbe7b115a1ac9",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s35/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "b9f3a408c56b84d8f02ed002b9d3d5e0859b2cde209d7a44050d08af47e3df32.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9f3a408c56b84d8f02ed002b9d3d5e0859b2cde209d7a44050d08af47e3df32.mp3",
+          "contentHash": "5468aa26faba2e40e6595d1b4c1069ef64d772d86fe23399c7f84218f4f90dca",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s35/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose passport is this?",
+          "file": "ff558c8551eac153ecd0db4d2ce86be778e855ba8cc7beed5a3e06591a1bd32c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff558c8551eac153ecd0db4d2ce86be778e855ba8cc7beed5a3e06591a1bd32c.mp3",
+          "contentHash": "4ba172c49432faa4e9cc3a4b27cf0758bb29eb2e4669a6ce1a39e7c4c76c39fc",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s35/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bracelet is mine.",
+          "file": "21eeef20abbf3ff7e25ade3c3885e2d6d36f4a6400f47cc01351eccbb49f0c35.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/21eeef20abbf3ff7e25ade3c3885e2d6d36f4a6400f47cc01351eccbb49f0c35.mp3",
+          "contentHash": "cfd079b83565f1efa0d38529cf1a813436f4b0a1de4f45103fd1ae8619729557",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s35/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose photos are these?",
+          "file": "737e0dfb8a660c2a181bbd0ed5fed9d2e3e5cdd94d7d78c80bdf8a7a571277ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/737e0dfb8a660c2a181bbd0ed5fed9d2e3e5cdd94d7d78c80bdf8a7a571277ff.mp3",
+          "contentHash": "7b87e7d871ccc7ca7c0fb41737ac41f49104d0618a8cbba64d2047bac3d22bba",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s35/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This is Anna's bracelet.",
+          "file": "ebcc72075e71cd451d036cfee0ce245c5dba3705c9311e239139432d4e5cf9ff.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ebcc72075e71cd451d036cfee0ce245c5dba3705c9311e239139432d4e5cf9ff.mp3",
+          "contentHash": "7db0c500c6f4917e88b9d85efaea08143a93eb458edd03409d6af355f876d9eb",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l05/s35/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "bracelet",
+          "file": "fc1dca4740a56edc62aa67602a02309fc11eb7d26b7f7af9bdd70bd65165e959.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-coral.mp3",
+          "contentHash": "8182203e7c491cc082bb9d1337ff2ccbe493339a50d697cc1ffcdaf5f8a6cb07",
+          "byteSize": 21120
+        },
+        {
+          "text": "ill",
+          "file": "a4ddbc169d45361035e72504a29ddeb6f61d0350207142dc0d7eff17dcaec90a.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c426a5fe614fcd11a22eeb45-coral.mp3",
+          "contentHash": "519c14ff0f43cd1e6f0bd425025cce41f9bee26e6cb9c4060c274da1c11b92b5",
+          "byteSize": 12672
+        },
+        {
+          "text": "ramp",
+          "file": "e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0098a4314ce6a1986f247c60cd3ad57a618ecd0ef11b9ea18c0aa86a3bc1d5a.mp3",
+          "contentHash": "38078ff5900b16bc7c20182e999f1ebd4cd21f4addefbaa70213436e8f9ece8e",
+          "byteSize": 12672
+        },
+        {
+          "text": "passport",
+          "file": "d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d42921f4a38433be40c8d9d288fc8d1744dd13d56ca29e9cd06479d2d0be8657.mp3",
+          "contentHash": "6feaf1f71a02d2e2c8372da8cd9500b1e6c683f02a6b5be9a79bbe7b115a1ac9",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s35/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom is next to the ramp.",
+          "file": "f537bf6bcacb500c2ef104330a14dea6f8ae93180c7ca845c3298f72c3711c0a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f537bf6bcacb500c2ef104330a14dea6f8ae93180c7ca845c3298f72c3711c0a.mp3",
+          "contentHash": "f88a20518bc763d428ac547aa3ed90ffb4da55ec980ee6d4c76928fa2691ea38",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s35/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The photos are hers.",
+          "file": "ff81b5f75c40a330e2d6d629974a08fd15aa3bf4979051b7fcbbfdbd9142a77c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff81b5f75c40a330e2d6d629974a08fd15aa3bf4979051b7fcbbfdbd9142a77c.mp3",
+          "contentHash": "45f0d2c5065c59df5be43f5051334f0d86dcf021b4fe202e583ffc007a1c5bd7",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l05/s35/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I have your passport.",
+          "file": "9b8fe405f86d035b069b1bb944980879923e842f1d13fc5ea40292a666702cc6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9b8fe405f86d035b069b1bb944980879923e842f1d13fc5ea40292a666702cc6.mp3",
+          "contentHash": "5be6e6ef8a8a2bd55563b12a6942c677200360f67261a5e9558b928c63da96bc",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s35/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose bracelet is this?",
+          "file": "1a7e80ce0090988317fb7dae87eccced9b2e7af1c65ff21095642b884655995a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a7e80ce0090988317fb7dae87eccced9b2e7af1c65ff21095642b884655995a.mp3",
+          "contentHash": "2151aeea9d081dc23e62c6d45b699e1c42e5f1cc595621b0284c74ea005a1f3b",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s35/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your bracelet is here.",
+          "file": "e3c592bfc396a047b9f74611ce4e2be99aad05ed578c305f7d932e71f39169fe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e3c592bfc396a047b9f74611ce4e2be99aad05ed578c305f7d932e71f39169fe.mp3",
+          "contentHash": "cc5ba322ef57680c195dc6f8ea6c3aea5d7986a8481ad5d4d8961d9be00e6b7e",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l05/s35/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "bracelet",
+          "file": "3cc4a0501649e252dbc438055bfe98ea0f97573e83114c4480c8745f7befa758.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/da7fc2ffdb753178e421e652-ash.mp3",
+          "contentHash": "6ce3f2ac1ede2c0a13cf87523a0a1f02a2d1c71d18b43989bbb922dc62c2693e",
+          "byteSize": 19584
+        },
+        {
+          "text": "ill",
+          "file": "0b029731bf3c8fc45804e0279b1f1072400831aed17b08e3454a5ee8d8287b63.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c426a5fe614fcd11a22eeb45-ash.mp3",
+          "contentHash": "07d50f9b848112081b637a6518ba97bebbf7099cb8effa0b611e0d5c5a28ab8c",
+          "byteSize": 26880
+        },
+        {
+          "text": "photos",
+          "file": "f0ef4a5e75a3e2f9582a19b4c3c4836b79db81e0ce638c9651695580fd49c9c0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-ash.mp3",
+          "contentHash": "021273c4847ad358e880e86b6ce2563f04e09b016578be315dbbd52e89d642c2",
+          "byteSize": 29952
+        },
+        {
+          "text": "passport",
+          "file": "1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d5acb10a5b9de231b6b9122c7bd3ecdd7303ac53ce9d8c65be00139279bc27b.mp3",
+          "contentHash": "2e5e13924b405ffea60a06bdd859d4f50673d19dba1c43e0a9cfd1e38de247ee",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s35/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose photos are these?",
+          "file": "4530a332304d10ee9bc9452ef982ed10bae89a101a097dc036ab178ab4dce66b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4530a332304d10ee9bc9452ef982ed10bae89a101a097dc036ab178ab4dce66b.mp3",
+          "contentHash": "dfc42f774985f609dc72792bb6f8cbcb5d53e757e1cd928eb09ed2f57d4fdd74",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

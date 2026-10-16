@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить короткие указания со словом wipe",
+    "uk": "закріпити короткі вказівки зі словом wipe"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чай на столе",
+        "uk": "Чай на столі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг пролил немного чая на стол. Салфетка рядом. `Wipe` — «вытереть, протереть». `Wipe it` — «Вытри его». Здесь `it` — стол. Начните сразу с `Wipe`, без `to`. Стол уже попробовал чай — теперь ему нужна салфетка.",
+        "uk": "Друг розлив трохи чаю на стіл. Серветка поруч. `Wipe` — «витерти, протерти». `Wipe it` — «Витри його». Тут `it` — стіл. Почніть одразу з `Wipe`, без `to`. Стіл уже скуштував чай — тепер йому потрібна серветка."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу вытереть стол.",
+          "uk": "Скажіть другові витерти стіл."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-31:intro1:r1",
+              "text": "Wipe it."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro1:r2",
+              "text": "To wipe it."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro1:r3",
+              "text": "Wipes it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-31:intro1:r1",
+              "text": "Wipe it."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro1:r2",
+              "text": "To wipe it."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro1:r3",
+              "text": "Wipes it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу вытереть стол.",
+          "uk": "Скажіть другові витерти стіл."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дорога к машине",
+        "uk": "Дорога до машини"
+      },
+      "bodyByLocale": {
+        "ru": "Вы идёте с другом к автостоянке. На ближайшем повороте нужно налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем `left`.",
+        "uk": "Ви йдете з другом до автостоянки. На найближчому повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім `left`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-31:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro2:r3",
+              "text": "To turn left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-31:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro2:r3",
+              "text": "To turn left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Столик для ужина",
+        "uk": "Столик для вечері"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом хотите поужинать в популярном ресторане. Попросите его заранее забронировать столик: `Can you reserve a table?` — «Можешь забронировать столик?» После `Can you` нужно `reserve a table`, без `to`.",
+        "uk": "Ви з другом хочете повечеряти в популярному ресторані. Попросіть його заздалегідь забронювати столик: `Can you reserve a table?` — «Можеш забронювати столик?» Після `Can you` потрібне `reserve a table`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга забронировать столик.",
+          "uk": "Попросіть друга забронювати столик."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-31:intro3:r1",
+              "text": "Can you reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro3:r2",
+              "text": "Can you reserves a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro3:r3",
+              "text": "Can you to reserve a table?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-31:intro3:r1",
+              "text": "Can you reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro3:r2",
+              "text": "Can you reserves a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-31:intro3:r3",
+              "text": "Can you to reserve a table?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга забронировать столик.",
+          "uk": "Попросіть друга забронювати столик."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8bedea6c7c82a13f271580c06aa9140e47b6d8fc7ffb617bc2abb047989b997a"
+}

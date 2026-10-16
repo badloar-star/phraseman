@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-31:intro1:r2": {
+          "ru": "Для указания начните с `Wipe`, без `to`.",
+          "uk": "Для вказівки почніть із `Wipe`, без `to`."
+        },
+        "en:lesson-08:session-31:intro1:r3": {
+          "ru": "Нужно `Wipe`, без `s`.",
+          "uk": "Потрібне `Wipe`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-31:intro2:r2": {
+          "ru": "Для указания нужно `Turn`, без `s`.",
+          "uk": "Для вказівки потрібне `Turn`, без `s`."
+        },
+        "en:lesson-08:session-31:intro2:r3": {
+          "ru": "Начните с `Turn`, без `to`.",
+          "uk": "Почніть із `Turn`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-31:intro3:r2": {
+          "ru": "После `can` нужно `reserve`, без `s`.",
+          "uk": "Після `can` потрібне `reserve`, без `s`."
+        },
+        "en:lesson-08:session-31:intro3:r3": {
+          "ru": "После `can` нужно `reserve`, без `to`.",
+          "uk": "Після `can` потрібне `reserve`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "273bbb58403edb6261eb9f7240db07e097374c2f48dbcd142b8bf81cf9d3258b"
+}

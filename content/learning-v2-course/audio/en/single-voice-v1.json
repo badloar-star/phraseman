@@ -65008,6 +65008,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l04/s47/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "There are some leftovers.",
+          "file": "11840643590c839af4742833e64d5816bc976247061936401266f4f8d61c44f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/11840643590c839af4742833e64d5816bc976247061936401266f4f8d61c44f2.mp3",
+          "contentHash": "51df9e0d7d7eb198e581b4798fa93cbb90f91714a6921363d42c85b4905c1a50",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l04/s47/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The restaurants are next to the hotel.",
+          "file": "0481f55965982416454d75623c3860baf3b6b6c19a1ab53fcd30e03680b3087a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0481f55965982416454d75623c3860baf3b6b6c19a1ab53fcd30e03680b3087a.mp3",
+          "contentHash": "e43806d8a36770235c4be9c9f250cc9d60f5f6af264b961fa6670fc4e48f6c30",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l04/s47/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's acceptable.",
+          "file": "05ee28422d25aebc29bcb10cd404140ce8f743401bca8657487ad7f74d36c4ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/05ee28422d25aebc29bcb10cd404140ce8f743401bca8657487ad7f74d36c4ec.mp3",
+          "contentHash": "3d83d8dc1f1de25021f1e7cc78282e47dceb99edd875b1147ee21ed2e51e0382",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l04/s47/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It is acceptable.",
+          "file": "75259fdece706efaa6c512c07a81744ec5b4a51fdb90de5f599ed41bcdc66c9f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75259fdece706efaa6c512c07a81744ec5b4a51fdb90de5f599ed41bcdc66c9f.mp3",
+          "contentHash": "66726b190c89eb056ed967268b209038a2c6c2be1d55381eb25706553737be1f",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l04/s47/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "leftover",
+          "file": "2ad86b934097302ee54f7cac77d44fff4853f584bcf6c3589b59090d74f814cf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ad86b934097302ee54f7cac77d44fff4853f584bcf6c3589b59090d74f814cf.mp3",
+          "contentHash": "1e3344c5e43e4c51f66d51dd07677a60b8358d39d5fecf2854ea03614935c83b",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s47/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "leftover",
+          "file": "59057e17cc9053142ad1fb7bc2afc51c08ac332f8b1e28ca2708f3ed7fc7739c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/59057e17cc9053142ad1fb7bc2afc51c08ac332f8b1e28ca2708f3ed7fc7739c.mp3",
+          "contentHash": "9d4f576e98b2dd1a5186b50e200c1d664b8874dc69f1170df39a36426a901b35",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s47/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "leftover",
+          "file": "59057e17cc9053142ad1fb7bc2afc51c08ac332f8b1e28ca2708f3ed7fc7739c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/59057e17cc9053142ad1fb7bc2afc51c08ac332f8b1e28ca2708f3ed7fc7739c.mp3",
+          "contentHash": "9d4f576e98b2dd1a5186b50e200c1d664b8874dc69f1170df39a36426a901b35",
+          "byteSize": 29184
+        },
+        {
+          "text": "acceptable",
+          "file": "c6c91e7f0ce053a65b31b4d1a2557595f6fe0b3c8b8848441a598bdb3fba1d03.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c6c91e7f0ce053a65b31b4d1a2557595f6fe0b3c8b8848441a598bdb3fba1d03.mp3",
+          "contentHash": "03e09bfa7b8ada03a1a63a7d6d48d9c363062f77890f5b4a92a6cc6ceaa806e5",
+          "byteSize": 20352
+        },
+        {
+          "text": "restaurants",
+          "file": "121971cca22d1de27f39663f54e432809d9d122e02589a3a921805ac9c3aa90c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/121971cca22d1de27f39663f54e432809d9d122e02589a3a921805ac9c3aa90c.mp3",
+          "contentHash": "b7e796b82745bb5ecec1aa6d4a5979032ce5e4590fc9ba3e49624bcb7f3f6f93",
+          "byteSize": 23040
+        },
+        {
+          "text": "boiler",
+          "file": "ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab0252d0131df4387c00645c80c272d3c7d96fc3abee78e53a0a8c8f3d3f035c.mp3",
+          "contentHash": "55cbe02e9bb74f72c5119a3bf1c3bbc9970fe59e76d894ee90d5cf603f57d7b5",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l04/s47/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are some leftovers.",
+          "file": "7bd4ca555eeb6f95275df091d6e0a603fbfac981a092cfed867c20c2c0f97914.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7bd4ca555eeb6f95275df091d6e0a603fbfac981a092cfed867c20c2c0f97914.mp3",
+          "contentHash": "cea680ae679c634ddf592070d0f53892cf6b68f7a2f4f48f3a0fc7bfaff60125",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l04/s47/task/5": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The restaurants are next to the hotel.",
+          "file": "f5926c6cb94b974a22a5efbc27a9e6539bac600f3ea5e40cb3f73e524ef0b964.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f5926c6cb94b974a22a5efbc27a9e6539bac600f3ea5e40cb3f73e524ef0b964.mp3",
+          "contentHash": "04314c9880524301343bc33c2632b0bbec46139dd0b2845bbe0788861326f87c",
+          "byteSize": 57216
+        }
+      ]
+    },
+    "l04/s47/task/6": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "It's acceptable.",
+          "file": "dbd8e5b0caf135327ce06f3f4cb8e26a6b7e452710573da2217a11efbc09c9c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dbd8e5b0caf135327ce06f3f4cb8e26a6b7e452710573da2217a11efbc09c9c0.mp3",
+          "contentHash": "31c7ac55a9086b68f3258fb9e4f2d7d6c9f331e0a7116faa51b330142aa16659",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s47/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There aren't any leftovers.",
+          "file": "f46a194f260737c9720726bfc7a751cf68a9eb11d2b930209ccee3808523c96f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f46a194f260737c9720726bfc7a751cf68a9eb11d2b930209ccee3808523c96f.mp3",
+          "contentHash": "6a420272fb3f01586247ca20424eeeddf98c74d16b2f57f6f12c080ff32c6ee9",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l04/s47/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The boiler is in the kitchen.",
+          "file": "e3ee00d1eda5d7e610fcd204eef4bd7ac266247f79861b8ed5cdbfbe492b677c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e3ee00d1eda5d7e610fcd204eef4bd7ac266247f79861b8ed5cdbfbe492b677c.mp3",
+          "contentHash": "0cb76c75c9fc66a27af9dbe6e4d0248a426ea668320d26300fc76a0ded38c1c3",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s47/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "leftovers",
+          "file": "df79cae071991330be7c84aa395736858dd1a9693e5bcf471abce150dece0a15.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/df79cae071991330be7c84aa395736858dd1a9693e5bcf471abce150dece0a15.mp3",
+          "contentHash": "f0cc7e3825b3302206023a055dcf699ba4af09a2be692e3387a99aeb89dc83bb",
+          "byteSize": 20352
+        },
+        {
+          "text": "acceptable",
+          "file": "00dd797b3ce32d9dd007b30200c2fff146018d958287fac1d9574d9ff2b1db17.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/00dd797b3ce32d9dd007b30200c2fff146018d958287fac1d9574d9ff2b1db17.mp3",
+          "contentHash": "000879c9415f63d702c3a1c574431a2856b02b3e47b1591f2d870ab35aa74305",
+          "byteSize": 16512
+        },
+        {
+          "text": "restaurants",
+          "file": "fc5fb454cf09f332683f308075ff153d15482f1015cd114441ed2e96f26809e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc5fb454cf09f332683f308075ff153d15482f1015cd114441ed2e96f26809e8.mp3",
+          "contentHash": "ab085c348f1971cba71413076081853c3ba39b66bf7382a0bb3dbceea8ff9b09",
+          "byteSize": 17280
+        },
+        {
+          "text": "boiler",
+          "file": "770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/770f198ff6272e99861d3c3ed4af5fa871e85ec5300f38290fa6b52e9053707c.mp3",
+          "contentHash": "3054c0de39c8d371c46c1d69d55586a67f57b3a0d647f28bf0f0a0c5e71b976e",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l04/s47/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Are there any leftovers?",
+          "file": "1eafed0ddfb79f2a80824332a1e935c3944cf63c72edcc8fa8ece39399f39647.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1eafed0ddfb79f2a80824332a1e935c3944cf63c72edcc8fa8ece39399f39647.mp3",
+          "contentHash": "e107fbe9ed260454ba6248ce06030b1160a76d7230ef211553d0aedc88248f1c",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l04/s47/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The leftovers are in the kitchen.",
+          "file": "4f06c9cf5d4481c9a1d1dc294eae2ec831183eb1dc750b5c2d7453718ebb328a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4f06c9cf5d4481c9a1d1dc294eae2ec831183eb1dc750b5c2d7453718ebb328a.mp3",
+          "contentHash": "708b836c22f2ea7d3b7ff705034caab62d7eb3f09f012affda669015399b2c20",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s47/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Is there a boiler?",
+          "file": "b7d1a4ffceb3e22543066e62e58fb96105500e60f824153a52b141fcc2c6c0be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b7d1a4ffceb3e22543066e62e58fb96105500e60f824153a52b141fcc2c6c0be.mp3",
+          "contentHash": "ee2196c7d6635baeaf275f22bb45598dac907f4b6b184bde0d42f54cb757031d",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l04/s47/task/13": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The leftovers are on the table.",
+          "file": "9aef39da4e490a756b528d77d3e5e5078c680e14d45f3c08e1831ab7b0216d59.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9aef39da4e490a756b528d77d3e5e5078c680e14d45f3c08e1831ab7b0216d59.mp3",
+          "contentHash": "35fd8d274ead93a68a1466e66dd046aa62569a32b1b830da7ab8c9acd4dbb7a3",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l04/s47/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There are some restaurants.",
+          "file": "26266d994db150f42fd7a19b711b759d74843faa313f722ad28407c8c2fd953f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26266d994db150f42fd7a19b711b759d74843faa313f722ad28407c8c2fd953f.mp3",
+          "contentHash": "9de103fe7f123015812fc341366b44c66ada00b7e1e04390a266fdc0185e60bf",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s47/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "leftovers",
+          "file": "ec97c1604e8b54df11d6bd4dd5eec8a0acf714fee1021414ddeedaa6fd1c4ab3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ec97c1604e8b54df11d6bd4dd5eec8a0acf714fee1021414ddeedaa6fd1c4ab3.mp3",
+          "contentHash": "a6ad195a2c221eef8777b4b4d51dbb17ee851ab8204b1832211a19f4c0f15fdc",
+          "byteSize": 27648
+        },
+        {
+          "text": "acceptable",
+          "file": "d2b36b6c97e9e9f9b64b1089589bc5060a33f45269ecc811b34b92834567c33a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2b36b6c97e9e9f9b64b1089589bc5060a33f45269ecc811b34b92834567c33a.mp3",
+          "contentHash": "62a81544e60fce1b796fa0cb55fcd1e4e0133fed1a21c1b29499ad64d0aaa141",
+          "byteSize": 23040
+        },
+        {
+          "text": "restaurants",
+          "file": "44b9cbc95acdf9e8745549cbc6ddcc5c30195663c5b41146edb10e3f2920cd51.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44b9cbc95acdf9e8745549cbc6ddcc5c30195663c5b41146edb10e3f2920cd51.mp3",
+          "contentHash": "19c052cccaa4045705e71d7efe4d0d755640aeb70f9c4067fff52559aa48b40e",
+          "byteSize": 31488
+        },
+        {
+          "text": "boiler",
+          "file": "1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1c3ea5264b7c88a2b7be5870ade0eff13c085ebe4bb917b595ba7430fe66fb95.mp3",
+          "contentHash": "9944b589c786c8db76f1e85ee744f970184a1d3c049908ce365f23ff9771783a",
+          "byteSize": 19584
+        }
+      ]
+    },
+    "l04/s47/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Are there any leftovers?",
+          "file": "ae0dd23018c4bd18945d8bef6ee60844dc1851d4a224a0969069f58c43bba012.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ae0dd23018c4bd18945d8bef6ee60844dc1851d4a224a0969069f58c43bba012.mp3",
+          "contentHash": "ca997ff10cf9ef41bebec4048556a7f09aa39721565e3bb2369828130ce50ada",
+          "byteSize": 41856
+        }
+      ]
     }
   },
   "settings": {

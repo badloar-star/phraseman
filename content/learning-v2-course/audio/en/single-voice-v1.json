@@ -82582,6 +82582,309 @@
           "byteSize": 31488
         }
       ]
+    },
+    "l05/s49/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose garage is this?",
+          "file": "1ca1cbca35a6b391c95945771f8ffdb83d8963abe52433d68d1eca7cf693a717.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ca1cbca35a6b391c95945771f8ffdb83d8963abe52433d68d1eca7cf693a717.mp3",
+          "contentHash": "c12a501dfb3fdf8f4f2d5efd989e452dee841a528894d3f11d43922b6bacdbd9",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s49/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This locker is cheap.",
+          "file": "f33f6414c99829497f75d12f89e273c06592fe5b67f03507c1b805a152fad2ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f33f6414c99829497f75d12f89e273c06592fe5b67f03507c1b805a152fad2ed.mp3",
+          "contentHash": "f36c3e70855b91204af23f11af541c66fd08631130c13d3f9cd271cb5e7b6a30",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s49/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The garage is ours.",
+          "file": "2ed31da50730b766eac54d85b907bc541e713c4fd8e827e1f7a0a371a08e4b36.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ed31da50730b766eac54d85b907bc541e713c4fd8e827e1f7a0a371a08e4b36.mp3",
+          "contentHash": "72dce89227baec781238115a4b27074a7c563b992e6b69104cdc934bd30d0ddc",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s49/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This locker is cheap.",
+          "file": "f33f6414c99829497f75d12f89e273c06592fe5b67f03507c1b805a152fad2ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f33f6414c99829497f75d12f89e273c06592fe5b67f03507c1b805a152fad2ed.mp3",
+          "contentHash": "f36c3e70855b91204af23f11af541c66fd08631130c13d3f9cd271cb5e7b6a30",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l05/s49/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "garage",
+          "file": "aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "contentHash": "6473d4f9dc79dcecef09a8dc8d06e43e0599ef0476500b3a63124f6de4d6a0dd",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s49/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "garage",
+          "file": "aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "contentHash": "6473d4f9dc79dcecef09a8dc8d06e43e0599ef0476500b3a63124f6de4d6a0dd",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s49/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "garage",
+          "file": "3f8721d46b4961230c8c8ef66774dea6d5df20b4f51700f88e9cb7a1dc3abaf2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f8721d46b4961230c8c8ef66774dea6d5df20b4f51700f88e9cb7a1dc3abaf2.mp3",
+          "contentHash": "7b35e7e7e128de417fbda29ad5aaf9b35445046bf11557c73e5be6a2777020a7",
+          "byteSize": 19584
+        },
+        {
+          "text": "locker",
+          "file": "8ba4efcd90e54b07ef44ecc96f7f9e1a6eb168e348d79c4fad0ea2a3402a3650.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-nova.mp3",
+          "contentHash": "3a26cbc3d051a8dd6e20f22be3aa59922fe8b8aea0d63aa47361ac91d75dffed",
+          "byteSize": 38784
+        },
+        {
+          "text": "hospital",
+          "file": "85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "contentHash": "8b6ca310b55b1267e000282e2b1550e268ca4aac6a640116fd44d4f4b3296674",
+          "byteSize": 20352
+        },
+        {
+          "text": "canal",
+          "file": "a2671d3a76fe3d3cd2ad575305d76f1728c5276c6fea39ff640730352cf1090f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a2671d3a76fe3d3cd2ad575305d76f1728c5276c6fea39ff640730352cf1090f.mp3",
+          "contentHash": "6c318df55ba513f8e3177d3f80d19fb74d7ac81d68aa5bfb7a67a30f824ec039",
+          "byteSize": 21888
+        }
+      ]
+    },
+    "l05/s49/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The bicycle is in the garage.",
+          "file": "7aa91aeb041ae6c5c7109f61e73018ca272b3d49c96a618cd1b2e825cbe4e26c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7aa91aeb041ae6c5c7109f61e73018ca272b3d49c96a618cd1b2e825cbe4e26c.mp3",
+          "contentHash": "c2b4e63efb210786f86bb22a2375f397d4b683795868d3d825988066803a8888",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s49/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose garage is this?",
+          "file": "e98a7ce7092f74bb8f3e13969a1ad2ea3e60a27310d6da310ab6796485e27a67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e98a7ce7092f74bb8f3e13969a1ad2ea3e60a27310d6da310ab6796485e27a67.mp3",
+          "contentHash": "837499bf3d83cb4c1e4b64683b3af8a1ac81ed4e1284a0ba1d893053a6749c80",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s49/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The locker is mine.",
+          "file": "789d71c21082eb8327240ab56cf0a5d55d2ded9f22084a4f2f59afc11765cab0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/789d71c21082eb8327240ab56cf0a5d55d2ded9f22084a4f2f59afc11765cab0.mp3",
+          "contentHash": "d128863162ca9e724116c9d5d1ac80dbb0f7d8e032ea2520fdcc887fbeb373ae",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s49/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The garage is ours.",
+          "file": "43ac2d267a5bb7be85079afc774e88d98958227c6a5052f9dc2fff5cf13b6eda.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/43ac2d267a5bb7be85079afc774e88d98958227c6a5052f9dc2fff5cf13b6eda.mp3",
+          "contentHash": "0c43ce5a272eff643340942e4dde3be101640ed9c3710e4532fc090f2146cead",
+          "byteSize": 65280
+        }
+      ]
+    },
+    "l05/s49/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Tom's garage.",
+          "file": "f2c07594c985c5c3ca9c43bdbc1c4acc7086d66cf5d65652698c804861916304.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f2c07594c985c5c3ca9c43bdbc1c4acc7086d66cf5d65652698c804861916304.mp3",
+          "contentHash": "8b161864da4c93a1e5236d2f00c2dcacf32e1382b75e8eecb28129af94377ef2",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l05/s49/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "garage",
+          "file": "aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/aae8371ae6252ebc11a37cb68c76dd89c2175c950f8e20908f44fb0f6f494073.mp3",
+          "contentHash": "6473d4f9dc79dcecef09a8dc8d06e43e0599ef0476500b3a63124f6de4d6a0dd",
+          "byteSize": 37248
+        },
+        {
+          "text": "cheap",
+          "file": "45c7ab3c18ca7bfa8bff5bee3848fa28bf00b7e52c1a1c220a174d83d20404d7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6f556046e0c00469fe2824a-ash.mp3",
+          "contentHash": "3a72cc38f3689de188e1888604f1bad1bd62fc52bd2eb139ed3d69cb39af2bdc",
+          "byteSize": 34560
+        },
+        {
+          "text": "canal",
+          "file": "9e773e9cf03cd315e119a7bdae3cf7c68e1f64f0212b9dfab4ba5fe0698e7252.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e773e9cf03cd315e119a7bdae3cf7c68e1f64f0212b9dfab4ba5fe0698e7252.mp3",
+          "contentHash": "9fd88387e734afc3eb6ef7b502bd46d02c03912d3453ce36bbf4078d51b733da",
+          "byteSize": 38784
+        },
+        {
+          "text": "locker",
+          "file": "b4bf28f22a66e3ae031eb6fb6c2b4255a8608b4f5c4ca2b47562fb4485f92166.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-ash.mp3",
+          "contentHash": "f3256a2854dfe1c7aac08da6a334732d4b3ee5a060ebdd9d4e68ef069a29d722",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l05/s49/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The hospital is near the canal.",
+          "file": "63ed02313228334c6d4f1518d39b689b03629e32cd72de95a8aac2aaa3919de6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/63ed02313228334c6d4f1518d39b689b03629e32cd72de95a8aac2aaa3919de6.mp3",
+          "contentHash": "c0f8ced6ce40f8a0522cfdf641b8f2ce6aab50dce4731d287d3de1db3fc91ab3",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s49/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the canal?",
+          "file": "c3bd12345d8695485c74117efa119aac49d552f113377446b3ff43074ba6a196.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c3bd12345d8695485c74117efa119aac49d552f113377446b3ff43074ba6a196.mp3",
+          "contentHash": "135ca76d0cc1af739b4bee27ea7e50a6989d188540c6f3341213b9c61678fcdd",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s49/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Your bicycle is in the garage.",
+          "file": "09baa626693f391c21b54f202ca1edcc7eb5232df36b3bfc91a0c11534a31ea8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/09baa626693f391c21b54f202ca1edcc7eb5232df36b3bfc91a0c11534a31ea8.mp3",
+          "contentHash": "8a64cb7125d5ac6f88874a4a9b9eb47b0ffca7ea21172da24c108cc555685fec",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s49/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose garage is this?",
+          "file": "1347faed89db118dfb5af6c688a88c43b063e22e4ae30ba19a1b559a8e8f16e2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1347faed89db118dfb5af6c688a88c43b063e22e4ae30ba19a1b559a8e8f16e2.mp3",
+          "contentHash": "12ea5498a02f58e218e9dd14544193d6ae46a5ab4646262f5b3be45b9aef090a",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s49/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "My garage is here.",
+          "file": "03a6906041d381ef9d001c74251231fdba2e1703751a59b61427514985b08463.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/03a6906041d381ef9d001c74251231fdba2e1703751a59b61427514985b08463.mp3",
+          "contentHash": "e14090131defd28b810d91d7a789e6c52d395add56373679d0e4dada62868c99",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s49/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "garage",
+          "file": "3f8721d46b4961230c8c8ef66774dea6d5df20b4f51700f88e9cb7a1dc3abaf2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3f8721d46b4961230c8c8ef66774dea6d5df20b4f51700f88e9cb7a1dc3abaf2.mp3",
+          "contentHash": "7b35e7e7e128de417fbda29ad5aaf9b35445046bf11557c73e5be6a2777020a7",
+          "byteSize": 19584
+        },
+        {
+          "text": "cheap",
+          "file": "547ceb2320293392cbcc34f96594159729f8d4cfd58ab8451062e766330ff535.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/c6f556046e0c00469fe2824a-nova.mp3",
+          "contentHash": "185b721b84bede7d804748bb165004119969354de2dd0ca67002b9a21c3bc1a4",
+          "byteSize": 12288
+        },
+        {
+          "text": "hospital",
+          "file": "85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/85edb5c03dd907f9e669eb3e0467ff3c313fda40487b8391aca5b5562aaacd7f.mp3",
+          "contentHash": "8b6ca310b55b1267e000282e2b1550e268ca4aac6a640116fd44d4f4b3296674",
+          "byteSize": 20352
+        },
+        {
+          "text": "locker",
+          "file": "8ba4efcd90e54b07ef44ecc96f7f9e1a6eb168e348d79c4fad0ea2a3402a3650.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-nova.mp3",
+          "contentHash": "3a26cbc3d051a8dd6e20f22be3aa59922fe8b8aea0d63aa47361ac91d75dffed",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s49/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose garage is this?",
+          "file": "1347faed89db118dfb5af6c688a88c43b063e22e4ae30ba19a1b559a8e8f16e2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1347faed89db118dfb5af6c688a88c43b063e22e4ae30ba19a1b559a8e8f16e2.mp3",
+          "contentHash": "12ea5498a02f58e218e9dd14544193d6ae46a5ab4646262f5b3be45b9aef090a",
+          "byteSize": 34560
+        }
+      ]
     }
   },
   "settings": {

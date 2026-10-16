@@ -87430,6 +87430,309 @@
           "byteSize": 39552
         }
       ]
+    },
+    "l06/s09/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I start at nine.",
+          "file": "e0709d75e526ab1d032afdf5535595a10d178b7bf50fe98966f7a33b4238b27c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0709d75e526ab1d032afdf5535595a10d178b7bf50fe98966f7a33b4238b27c.mp3",
+          "contentHash": "a2d09ae4d1a5ff87386dd985c57c619238ea05f8f441b857e5080850be62bf49",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l06/s09/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They work here.",
+          "file": "9375baa3603eda8cbb3e93d1d614d1df3b7ec9ffd7fbf2a6337a32e37e73e946.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9375baa3603eda8cbb3e93d1d614d1df3b7ec9ffd7fbf2a6337a32e37e73e946.mp3",
+          "contentHash": "3bb9e89cafa8cfb345776b9a8531ce1fec69d0b2e25a85ed15c3c04b811ef756",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s09/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I am a dentist.",
+          "file": "4a35de37ad9a1a38fc6d815d66257ba2088280f0373e5652cf6b35b5f265ff26.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a35de37ad9a1a38fc6d815d66257ba2088280f0373e5652cf6b35b5f265ff26.mp3",
+          "contentHash": "4767d1591067bda5bd590309f6fcf0dfc8f8093182abd905c049260b4f1a5567",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s09/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I start at nine.",
+          "file": "01d1dd39ad96016b2b38ec1b4ee218ed515b2c0602d6dc966dfdc0dce2ce9ad8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01d1dd39ad96016b2b38ec1b4ee218ed515b2c0602d6dc966dfdc0dce2ce9ad8.mp3",
+          "contentHash": "cd32cd2b2532dbba0fce705b61ec2fcde3accbf271da1ee8a6e7cab9838f0d9e",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s09/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "start",
+          "file": "e8d0e3d580769bf2feed266c147d2f80ed581a2b0140e23ca82604e4f867d3d8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8d0e3d580769bf2feed266c147d2f80ed581a2b0140e23ca82604e4f867d3d8.mp3",
+          "contentHash": "b1fbd7ffae40e7138499f0340598c2ca619aab59dbdf4cf259d8e3b13f812c5a",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l06/s09/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We start at nine.",
+          "file": "695c1856d7587a5baea90ed4cb6fa39efa8fdb8b3eae770185f43bd7e5fa10db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/695c1856d7587a5baea90ed4cb6fa39efa8fdb8b3eae770185f43bd7e5fa10db.mp3",
+          "contentHash": "250a04b9c88b73d0af8729c2e152d368200ec500948c091c63aa722139d80ccc",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s09/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "start",
+          "file": "d4cd329771830c198bf667d170b3827ab604cb87b9336ff7d7e0081709a070c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d4cd329771830c198bf667d170b3827ab604cb87b9336ff7d7e0081709a070c0.mp3",
+          "contentHash": "e746cb6c80aa41a0336466135638b6e2d1b2cf99182caabd9a8bc08449a652fd",
+          "byteSize": 18816
+        },
+        {
+          "text": "work",
+          "file": "13ba661c32ff224e7bdb35c447b7b5b777c0ae568a2077c0f8bf7057cf151a8c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13ba661c32ff224e7bdb35c447b7b5b777c0ae568a2077c0f8bf7057cf151a8c.mp3",
+          "contentHash": "d6a0c44b3454715be81ca364cfcfb8ba1039911185e139b26bcd5154605dbe19",
+          "byteSize": 16512
+        },
+        {
+          "text": "dentist",
+          "file": "ec8e87044aa7c8e57e81cbb536f291c9edaf8d11ddc33529c3b4644e040fbdba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ec8e87044aa7c8e57e81cbb536f291c9edaf8d11ddc33529c3b4644e040fbdba.mp3",
+          "contentHash": "51c408a6571f06ff3963c102304d7a31ebc795d622d1ce72984415303f6017ce",
+          "byteSize": 22656
+        },
+        {
+          "text": "charger",
+          "file": "fe07b9a9f3aafd47f52990fb502d4a97c157d9c0c16de4968ec90c78f271e2f7.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-nova.mp3",
+          "contentHash": "b37f33d2151025aa308c9183bf07abe85782dd2797cf60c24e0e39eda34b6180",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s09/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "You start at ten.",
+          "file": "7e72aadd5479cd7f4f3e32112a21b137879a26e7026ffe88a172d38745c7abdc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e72aadd5479cd7f4f3e32112a21b137879a26e7026ffe88a172d38745c7abdc.mp3",
+          "contentHash": "eb7b072a298bd393ce1ac3ed773ef5c942d2bca768841ecefe5190239c241653",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s09/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They work here.",
+          "file": "9375baa3603eda8cbb3e93d1d614d1df3b7ec9ffd7fbf2a6337a32e37e73e946.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9375baa3603eda8cbb3e93d1d614d1df3b7ec9ffd7fbf2a6337a32e37e73e946.mp3",
+          "contentHash": "3bb9e89cafa8cfb345776b9a8531ce1fec69d0b2e25a85ed15c3c04b811ef756",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s09/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I am a dentist.",
+          "file": "4a35de37ad9a1a38fc6d815d66257ba2088280f0373e5652cf6b35b5f265ff26.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a35de37ad9a1a38fc6d815d66257ba2088280f0373e5652cf6b35b5f265ff26.mp3",
+          "contentHash": "4767d1591067bda5bd590309f6fcf0dfc8f8093182abd905c049260b4f1a5567",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s09/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "You work in a clinic.",
+          "file": "bc7ca5eceb78e13d26e48a9783915f892a07eafeb6266b4d657a68ac75b8bdd2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc7ca5eceb78e13d26e48a9783915f892a07eafeb6266b4d657a68ac75b8bdd2.mp3",
+          "contentHash": "b8b339074838e951b79635158039f7eaee30407f674d8da933ccbae019c9a024",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l06/s09/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They start at eight.",
+          "file": "a01cc19a3c3b891e9f018f7c55dd117577bca456baeb4bae3c3ffa92952cc419.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a01cc19a3c3b891e9f018f7c55dd117577bca456baeb4bae3c3ffa92952cc419.mp3",
+          "contentHash": "8cf33bc353d246f3ef7c2413239c68d680c7323d85a737ab92119778a5f5a24f",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l06/s09/task/9": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "start",
+          "file": "e8d0e3d580769bf2feed266c147d2f80ed581a2b0140e23ca82604e4f867d3d8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e8d0e3d580769bf2feed266c147d2f80ed581a2b0140e23ca82604e4f867d3d8.mp3",
+          "contentHash": "b1fbd7ffae40e7138499f0340598c2ca619aab59dbdf4cf259d8e3b13f812c5a",
+          "byteSize": 39552
+        },
+        {
+          "text": "possible",
+          "file": "5794b8dc32bb620f971f31af603a88c636823a1632742b88890a6effee93f92e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5794b8dc32bb620f971f31af603a88c636823a1632742b88890a6effee93f92e.mp3",
+          "contentHash": "66f2394b2fede2a0da9e1e601ee771b4b76c383f1f5cb60685e1b7912a0cbacf",
+          "byteSize": 21888
+        },
+        {
+          "text": "charger",
+          "file": "b766905661bb9bb7ac3e055a7b3e763dcfca9a3ce6b3f974aa85238c4725b52b.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/38102b4b8d453fbae854c177-ash.mp3",
+          "contentHash": "0d21c547a4172b95b2a1d6357b59d06cd01bea13147f7fb8efaf4ac0caf9c5f8",
+          "byteSize": 21888
+        },
+        {
+          "text": "work",
+          "file": "80d913066675b7153b5da443194bd1b849f2c29e2ee94a6d72d94cb8d0a3a43e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80d913066675b7153b5da443194bd1b849f2c29e2ee94a6d72d94cb8d0a3a43e.mp3",
+          "contentHash": "4e4d1d97c28a825e691b4021c135520b7318339698c45247dd107b118906b4e1",
+          "byteSize": 22656
+        }
+      ]
+    },
+    "l06/s09/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We have a charger.",
+          "file": "535c271578d09485e7e8a8120427c6ba2277be715f9de12a1473fa816f526cfe.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/535c271578d09485e7e8a8120427c6ba2277be715f9de12a1473fa816f526cfe.mp3",
+          "contentHash": "0b107c0992e62e9395da437017cda35f06e9c42be19cf3d1ce3454e5818534af",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s09/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is possible.",
+          "file": "38c394812cd03b1070809268fb043084824c4c174cfcd7b2cc5da94e1a11108f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38c394812cd03b1070809268fb043084824c4c174cfcd7b2cc5da94e1a11108f.mp3",
+          "contentHash": "b366ff5c28903eeeb50e91881eb12e9348e74ac2ebc26cbc06a34c75adbd8331",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s09/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We work in this neighbourhood.",
+          "file": "01447d5b2bfd193a81aef689a4457a26d74e028462d67fe76a3cca2062940ade.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01447d5b2bfd193a81aef689a4457a26d74e028462d67fe76a3cca2062940ade.mp3",
+          "contentHash": "0f916145f8f2edb59176e597810bf3696b23a68b719a75b1b973b92f2f44ee97",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s09/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I start at eight.",
+          "file": "8bd8a393444c9d46404e87462d72a85440a4ff7f8d563b8bf658577d81b91a60.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8bd8a393444c9d46404e87462d72a85440a4ff7f8d563b8bf658577d81b91a60.mp3",
+          "contentHash": "50b7c8a770c463a5ae5bd98a6b4b3d5b1faa56a25f6ce5f986d8763ac8c34ab5",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l06/s09/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "My charger is here.",
+          "file": "2fc275b67fa38cc0333c772ee58e4b5cffe30ee28438e1eb97b3ab935e02905d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2fc275b67fa38cc0333c772ee58e4b5cffe30ee28438e1eb97b3ab935e02905d.mp3",
+          "contentHash": "6282789a6a5ef67d8abc090f9f8e085e047ab3b2270d0c1f956cf28b3a57d9a4",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l06/s09/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "dentist",
+          "file": "b0d1d861b299eb1c71b11492a5df72900fea1edc34ede755929a143ebc8eec62.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b0d1d861b299eb1c71b11492a5df72900fea1edc34ede755929a143ebc8eec62.mp3",
+          "contentHash": "0de297f44aaca6b6e27f8d85272c7a5c470ad1be6e1447cbec70f49609dde169",
+          "byteSize": 18816
+        },
+        {
+          "text": "possible",
+          "file": "49dee39903f2961b2893c6839c2d0387a932ac3fe5cbb9314f455633bd80e647.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49dee39903f2961b2893c6839c2d0387a932ac3fe5cbb9314f455633bd80e647.mp3",
+          "contentHash": "e7f9fbb0b1227b8bf702efb14362cf4cb9483e8afc228482a0cb87e459853e30",
+          "byteSize": 32640
+        },
+        {
+          "text": "start",
+          "file": "0edf8ae02fa9e4397917681e1ebbc84e9fa5f4e4e25a76d94de33850f811dee1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0edf8ae02fa9e4397917681e1ebbc84e9fa5f4e4e25a76d94de33850f811dee1.mp3",
+          "contentHash": "4813f3f26beb9991c03ca4bc66dfbd87f77103004b74ba9507019f77cd229eee",
+          "byteSize": 6912
+        },
+        {
+          "text": "work",
+          "file": "bbd4b72f5ef4b154196340d67c8b663214ab4fad3810e8638f51fa77c85f085c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bbd4b72f5ef4b154196340d67c8b663214ab4fad3810e8638f51fa77c85f085c.mp3",
+          "contentHash": "e440acb039abf1be8d52477a4201b392695e59d9c9e070d394a4ad11764faad4",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s09/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We start at nine.",
+          "file": "f458dbc5c6000a016cacc92329d482eab8aafc1789e5bc64a5824850c2ceae83.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f458dbc5c6000a016cacc92329d482eab8aafc1789e5bc64a5824850c2ceae83.mp3",
+          "contentHash": "e87d0be789dd48450b9792de6e5ad58aeaca7a621fb234e8dfe0a708fe7d80be",
+          "byteSize": 32256
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-14:i01",
+    "correctText": "Our ceiling is white.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i02",
+    "correctText": "suitcase",
+    "correctResponseId": "en:lesson-05:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i03",
+    "correctText": "suitcase",
+    "correctResponseId": "en:lesson-05:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i04",
+    "correctText": "en:lesson-05:session-14:i04:p1=suitcase\nen:lesson-05:session-14:i04:p2=dirty\nen:lesson-05:session-14:i04:p3=open\nen:lesson-05:session-14:i04:p4=closed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i05",
+    "correctText": "This is my suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i06",
+    "correctText": "Her suitcase is dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i07",
+    "correctText": "His suitcase is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i08",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-05:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i09",
+    "correctText": "Their picture is on the wall.",
+    "correctResponseId": "en:lesson-05:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i10",
+    "correctText": "en:lesson-05:session-14:i10:p1=suitcase\nen:lesson-05:session-14:i10:p2=picture\nen:lesson-05:session-14:i10:p3=laundrette\nen:lesson-05:session-14:i10:p4=ceiling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i11",
+    "correctText": "The laundrette is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i12",
+    "correctText": "Their ceiling is white.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i13",
+    "correctText": "I have your suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-14:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i15",
+    "correctText": "The laundrette is closed.",
+    "correctResponseId": "en:lesson-05:session-14:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i16",
+    "correctText": "en:lesson-05:session-14:i16:p1=suitcase\nen:lesson-05:session-14:i16:p2=picture\nen:lesson-05:session-14:i16:p3=laundrette\nen:lesson-05:session-14:i16:p4=ceiling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-14:i17",
+    "correctText": "Your suitcase is open.",
+    "correctResponseId": null
+  }
+]

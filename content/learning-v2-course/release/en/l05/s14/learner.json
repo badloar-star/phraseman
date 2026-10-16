@@ -1,0 +1,994 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Наш потолок белый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Наш потолок белый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our ceiling is white.",
+        "localizedMeaning": {
+          "ru": "Скажите «Наш потолок белый»",
+          "uk": "Скажіть «Наша стеля біла»"
+        },
+        "orderedTokens": [
+          "Our",
+          "ceiling",
+          "is",
+          "white"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Наш потолок белый»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Our ceiling is white.`",
+              "uk": "тут потрібно `is` — `Our ceiling is white.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-14:i02:r1",
+          "text": "suitcase"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i02:r2",
+          "text": "suitcases"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i02:r3",
+          "text": "backpack"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i02:audio",
+          "transcript": "suitcase"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-14:i02:r1",
+            "targetText": "suitcase",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i02:r2",
+            "targetText": "suitcases",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i02:r3",
+            "targetText": "backpack",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `suitcase`, а в этом варианте — `suitcases`.",
+              "uk": "У записі перше слово — `suitcase`, а в цьому варіанті — `suitcases`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `suitcase`, а в этом варианте — `backpack`.",
+              "uk": "У записі перше слово — `suitcase`, а в цьому варіанті — `backpack`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите чемодан",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-14:i03:r1",
+          "text": "suitcase"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i03:r2",
+          "text": "picture"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i03:r3",
+          "text": "umbrella"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите чемодан",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите чемодан",
+          "uk": "Назвіть валізу"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-14:i03:r1",
+            "text": "suitcase"
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i03:r2",
+            "text": "picture"
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i03:r3",
+            "text": "umbrella"
+          }
+        ],
+        "testedDimension": "Назовите чемодан",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите чемодан",
+            "feedbackByLocale": {
+              "ru": "`picture` — картинка; чемодан — `suitcase`.",
+              "uk": "`picture` — картинка; валіза — `suitcase`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите чемодан",
+            "feedbackByLocale": {
+              "ru": "`umbrella` — зонт; чемодан — `suitcase`.",
+              "uk": "`umbrella` — парасоля; валіза — `suitcase`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-14:i04:p1",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i04:p2",
+            "target": "dirty",
+            "meaningByLocale": {
+              "ru": "грязный",
+              "uk": "брудний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i04:p3",
+            "target": "open",
+            "meaningByLocale": {
+              "ru": "открытый",
+              "uk": "відкритий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i04:p4",
+            "target": "closed",
+            "meaningByLocale": {
+              "ru": "закрытый",
+              "uk": "закритий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "suitcase",
+          "dirty",
+          "open",
+          "closed"
+        ],
+        "rightColumn": [
+          "чемодан",
+          "грязный",
+          "открытый",
+          "закрытый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i05:audio",
+          "transcript": "This is my suitcase."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is my suitcase.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "suitcase"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Her suitcase is dirty.",
+        "localizedMeaning": {
+          "ru": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
+          "uk": "Валіза подруги брудна. Скажіть «Її валіза брудна»"
+        },
+        "orderedTokens": [
+          "Her",
+          "suitcase",
+          "is",
+          "dirty"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Чемодан подруги грязный. Скажите «Её чемодан грязный»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Her suitcase is dirty.`",
+              "uk": "тут потрібно `is` — `Her suitcase is dirty.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Его чемодан открыт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Его чемодан открыт»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i07:audio",
+          "transcript": "His suitcase is open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "His suitcase is open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-14:i08:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i08:r2",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i08:r3",
+          "text": "dirty"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+          "uk": "Ви застебнули валізу. Скажіть «Моя валіза закрита»"
+        },
+        "gappedTargetPhrase": "My suitcase is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-14:i08:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i08:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i08:r3",
+            "text": "dirty"
+          }
+        ],
+        "testedDimension": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+            "feedbackByLocale": {
+              "ru": "`open` — открыт; закрыт — `closed`.",
+              "uk": "`open` — відкрита; закрита — `closed`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы застегнули чемодан. Скажите «Мой чемодан закрыт»",
+            "feedbackByLocale": {
+              "ru": "`dirty` — грязный; закрыт — `closed`.",
+              "uk": "`dirty` — брудна; закрита — `closed`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте про картинку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-14:i09:r1",
+          "text": "Their picture is on the wall."
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i09:r2",
+          "text": "Their picture is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i09:r3",
+          "text": "Our picture is on the wall."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте про картинку",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i09:audio",
+          "transcript": "Their picture is on the wall."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-14:i09:r1",
+            "targetText": "Their picture is on the wall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i09:r2",
+            "targetText": "Their picture is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i09:r3",
+            "targetText": "Our picture is on the wall.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте про картинку",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `wall`, а в этом варианте — `table`.",
+              "uk": "У записі останнє слово — `wall`, а в цьому варіанті — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте про картинку",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Their`, а в этом варианте — `Our`.",
+              "uk": "У записі перше слово — `Their`, а в цьому варіанті — `Our`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-14:i10:p1",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i10:p2",
+            "target": "picture",
+            "meaningByLocale": {
+              "ru": "картинка",
+              "uk": "картинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i10:p3",
+            "target": "laundrette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания",
+              "uk": "пральня самообслуговування"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i10:p4",
+            "target": "ceiling",
+            "meaningByLocale": {
+              "ru": "потолок",
+              "uk": "стеля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "suitcase",
+          "picture",
+          "laundrette",
+          "ceiling"
+        ],
+        "rightColumn": [
+          "чемодан",
+          "картинка",
+          "прачечная самообслуживания",
+          "потолок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i11:audio",
+          "transcript": "The laundrette is open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The laundrette is open.",
+        "orderedTokens": [
+          "The",
+          "laundrette",
+          "is",
+          "open"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The laundrette is open.`",
+              "uk": "тут потрібно `is` — `The laundrette is open.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Их потолок белый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Их потолок белый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Their ceiling is white.",
+        "localizedMeaning": {
+          "ru": "Скажите «Их потолок белый»",
+          "uk": "Скажіть «Їхня стеля біла»"
+        },
+        "orderedTokens": [
+          "Their",
+          "ceiling",
+          "is",
+          "white"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Их потолок белый»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Their ceiling is white.`",
+              "uk": "тут потрібно `is` — `Their ceiling is white.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Чемодан друга у вас. Скажите ему «Твой чемодан у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Чемодан друга у вас. Скажите ему «Твой чемодан у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i13:audio",
+          "transcript": "I have your suitcase."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your suitcase.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Их чемодан закрыт. Чемодан один. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-14:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i14:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Их чемодан закрыт. Чемодан один. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Их чемодан закрыт. Чемодан один. Выберите форму",
+          "uk": "Їхня валіза закрита. Валіза одна. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Their suitcase ___ closed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-14:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i14:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i14:r2",
+            "correct": false,
+            "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Один чемодан: `suitcase is`, даже если владельцев несколько.",
+              "uk": "Одна валіза: `suitcase is`, навіть якщо власників кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i14:r3",
+            "correct": false,
+            "testedDimension": "Их чемодан закрыт. Чемодан один. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Здесь состояние чемодана: `suitcase is closed`.",
+              "uk": "Тут стан валізи: `suitcase is closed`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что друг говорит о прачечной",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-14:i15:r1",
+          "text": "The laundrette is closed."
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i15:r2",
+          "text": "The laundrette is open."
+        },
+        {
+          "responseId": "en:lesson-05:session-14:i15:r3",
+          "text": "The laundrette is dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что друг говорит о прачечной",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i15:audio",
+          "transcript": "The laundrette is closed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-14:i15:r1",
+            "targetText": "The laundrette is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i15:r2",
+            "targetText": "The laundrette is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i15:r3",
+            "targetText": "The laundrette is dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-14:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг говорит о прачечной",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `closed`, а в этом варианте — `open`.",
+              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `open`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-14:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, что друг говорит о прачечной",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `closed`, а в этом варианте — `dirty`.",
+              "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `dirty`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-14:i16:p1",
+            "target": "suitcase",
+            "meaningByLocale": {
+              "ru": "чемодан",
+              "uk": "валіза"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i16:p2",
+            "target": "picture",
+            "meaningByLocale": {
+              "ru": "картинка",
+              "uk": "картинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i16:p3",
+            "target": "laundrette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания",
+              "uk": "пральня самообслуговування"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-14:i16:p4",
+            "target": "ceiling",
+            "meaningByLocale": {
+              "ru": "потолок",
+              "uk": "стеля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "suitcase",
+          "picture",
+          "laundrette",
+          "ceiling"
+        ],
+        "rightColumn": [
+          "чемодан",
+          "картинка",
+          "прачечная самообслуживания",
+          "потолок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг собирается поднять чемодан, но не застегнул его. Предупредите «Твой чемодан открыт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Друг собирается поднять чемодан, но не застегнул его. Предупредите «Твой чемодан открыт»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-14:i17:audio",
+          "transcript": "Your suitcase is open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Your suitcase is open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1fdc90174ef132b716463a74fb6b49aa8b976d06d90546945471d116d2dc608a"
+}

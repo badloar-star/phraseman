@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "назвать чемодан, его владельца и состояние",
+    "uk": "назвати валізу, її власника й стан"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Для вещей в дорогу",
+        "uk": "Для речей у дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "`suitcase` — «чемодан». `my suitcase` — «мой чемодан», `your suitcase` — «твой / ваш чемодан». `This is my suitcase` — «Это мой чемодан». Перед `my suitcase` не ставим `a` или `the`. Чемодан легко закрывается, пока все вещи ещё на кровати.",
+        "uk": "`suitcase` — «валіза». `my suitcase` — «моя валіза», `your suitcase` — «твоя / ваша валіза». `This is my suitcase` — «Це моя валіза». Перед `my suitcase` не ставимо `a` чи `the`. Валіза легко закривається, поки всі речі ще на ліжку."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите свой чемодан.",
+          "uk": "Покажіть свою валізу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-14:intro1:r1",
+              "text": "This is my suitcase."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro1:r2",
+              "text": "This is a my suitcase."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro1:r3",
+              "text": "This is your suitcase."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-14:intro1:r1",
+              "text": "This is my suitcase."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro1:r2",
+              "text": "This is a my suitcase."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro1:r3",
+              "text": "This is your suitcase."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите свой чемодан.",
+          "uk": "Покажіть свою валізу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Открыт или закрыт",
+        "uk": "Відкрита чи закрита"
+      },
+      "bodyByLocale": {
+        "ru": "`dirty` — «грязный», `open` — «открытый», `closed` — «закрытый». `Her suitcase is dirty` — «Её чемодан грязный». `His suitcase is open` — «Его чемодан открыт». `My suitcase is closed` — «Мой чемодан закрыт». `his` и `her` выбираем по владельцу, а не по слову «чемодан».",
+        "uk": "`dirty` — «брудний», `open` — «відкритий», `closed` — «закритий». `Her suitcase is dirty` — «Її валіза брудна». `His suitcase is open` — «Його валіза відкрита». `My suitcase is closed` — «Моя валіза закрита». `his` і `her` вибираємо за власником, а не за словом «валіза»."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Чемодан вашего друга открыт. Выберите описание.",
+          "uk": "Валіза вашого друга відкрита. Виберіть опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-14:intro2:r1",
+              "text": "His suitcase is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro2:r2",
+              "text": "Her suitcase is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro2:r3",
+              "text": "His suitcase are open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-14:intro2:r1",
+              "text": "His suitcase is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro2:r2",
+              "text": "Her suitcase is open."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro2:r3",
+              "text": "His suitcase are open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Чемодан вашего друга открыт. Выберите описание.",
+          "uk": "Валіза вашого друга відкрита. Виберіть опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Картинка на стене",
+        "uk": "Картинка на стіні"
+      },
+      "bodyByLocale": {
+        "ru": "`picture` — «картинка», `laundrette` — «прачечная самообслуживания», `ceiling` — «потолок». `Their picture is on the wall` — «Их картинка на стене». `The laundrette is open` — «Прачечная открыта». `Our ceiling is white` — «Наш потолок белый». Даже если владельцев несколько, одна картинка или один потолок требуют `is`.",
+        "uk": "`picture` — «картинка», `laundrette` — «пральня самообслуговування», `ceiling` — «стеля». `Their picture is on the wall` — «Їхня картинка на стіні». `The laundrette is open` — «Пральня відкрита». `Our ceiling is white` — «Наша стеля біла». Навіть якщо власників кілька, одна картинка чи одна стеля потребують `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Их картинка на стене. Выберите фразу.",
+          "uk": "Їхня картинка на стіні. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-14:intro3:r1",
+              "text": "Their picture is on the wall."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro3:r2",
+              "text": "Their picture are on the wall."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro3:r3",
+              "text": "Our picture is on the wall."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-14:intro3:r1",
+              "text": "Their picture is on the wall."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro3:r2",
+              "text": "Their picture are on the wall."
+            },
+            {
+              "responseId": "en:lesson-05:session-14:intro3:r3",
+              "text": "Our picture is on the wall."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Их картинка на стене. Выберите фразу.",
+          "uk": "Їхня картинка на стіні. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6247682359c1507b65c1e805726fadd880ee904180923cd3ba256de9a979e6db"
+}

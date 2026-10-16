@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-14:intro1:r2": {
+          "ru": "Перед `my suitcase` не нужно `a`.",
+          "uk": "Перед `my suitcase` не потрібне `a`."
+        },
+        "en:lesson-05:session-14:intro1:r3": {
+          "ru": "`your` — твой / ваш; мой — `my`.",
+          "uk": "`your` — твоя / ваша; моя — `my`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-14:intro2:r2": {
+          "ru": "`her` — её; здесь его: `his`.",
+          "uk": "`her` — її; тут його: `his`."
+        },
+        "en:lesson-05:session-14:intro2:r3": {
+          "ru": "Один чемодан: `suitcase is`.",
+          "uk": "Одна валіза: `suitcase is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-14:intro3:r2": {
+          "ru": "Одна картинка: `picture is`.",
+          "uk": "Одна картинка: `picture is`."
+        },
+        "en:lesson-05:session-14:intro3:r3": {
+          "ru": "`our` — наша; здесь их: `their`.",
+          "uk": "`our` — наша; тут їхня: `their`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "08952978e2b5d3ab148536cff85802babc0bdba8472a7cf56d939e1d1836194d"
+}

@@ -1,0 +1,1006 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Наше окно чистое»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Наше окно чистое»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our window is clean.",
+        "localizedMeaning": {
+          "ru": "Скажите «Наше окно чистое»",
+          "uk": "Скажіть «Наше вікно чисте»"
+        },
+        "orderedTokens": [
+          "Our",
+          "window",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Наше окно чистое»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Our window is clean.`",
+              "uk": "тут потрібно `is` — `Our window is clean.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-13:i02:r1",
+          "text": "umbrella"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i02:r2",
+          "text": "umbrellas"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i02:r3",
+          "text": "window"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i02:audio",
+          "transcript": "umbrella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-13:i02:r1",
+            "targetText": "umbrella",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i02:r2",
+            "targetText": "umbrellas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i02:r3",
+            "targetText": "window",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `umbrella`, а в этом варианте — `umbrellas`.",
+              "uk": "У записі перше слово — `umbrella`, а в цьому варіанті — `umbrellas`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `umbrella`, а в этом варианте — `window`.",
+              "uk": "У записі перше слово — `umbrella`, а в цьому варіанті — `window`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите зонт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-13:i03:r1",
+          "text": "umbrella"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i03:r2",
+          "text": "drawer"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i03:r3",
+          "text": "backpack"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите зонт",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите зонт",
+          "uk": "Назвіть парасолю"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-13:i03:r1",
+            "text": "umbrella"
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i03:r2",
+            "text": "drawer"
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i03:r3",
+            "text": "backpack"
+          }
+        ],
+        "testedDimension": "Назовите зонт",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Назовите зонт",
+            "feedbackByLocale": {
+              "ru": "`drawer` — выдвижной ящик; зонт — `umbrella`.",
+              "uk": "`drawer` — шухляда; парасоля — `umbrella`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Назовите зонт",
+            "feedbackByLocale": {
+              "ru": "`backpack` — рюкзак; зонт — `umbrella`.",
+              "uk": "`backpack` — рюкзак; парасоля — `umbrella`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-13:i04:p1",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i04:p2",
+            "target": "small",
+            "meaningByLocale": {
+              "ru": "маленький",
+              "uk": "маленький"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i04:p3",
+            "target": "big",
+            "meaningByLocale": {
+              "ru": "большой",
+              "uk": "великий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i04:p4",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "чистый",
+              "uk": "чистий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "umbrella",
+          "small",
+          "big",
+          "clean"
+        ],
+        "rightColumn": [
+          "зонт",
+          "маленький",
+          "большой",
+          "чистый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i05:audio",
+          "transcript": "I have an umbrella."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have an umbrella.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "an",
+          "umbrella"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `an` — `I have an umbrella.`",
+              "uk": "тут потрібно `an` — `I have an umbrella.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Мой зонт маленький»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мой зонт маленький»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My umbrella is small.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мой зонт маленький»",
+          "uk": "Скажіть «Моя парасоля маленька»"
+        },
+        "orderedTokens": [
+          "My",
+          "umbrella",
+          "is",
+          "small"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Скажите «Мой зонт маленький»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My umbrella is small.`",
+              "uk": "тут потрібно `is` — `My umbrella is small.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зонт вашей подруги большой. Скажите «Её зонт большой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Зонт вашей подруги большой. Скажите «Её зонт большой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i07:audio",
+          "transcript": "Her umbrella is big."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Her umbrella is big.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зонт принадлежит вашему другу-мужчине. Скажите «Это его зонт»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-13:i08:r1",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i08:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i08:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зонт принадлежит вашему другу-мужчине. Скажите «Это его зонт»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Зонт принадлежит вашему другу-мужчине. Скажите «Это его зонт»",
+          "uk": "Парасоля належить вашому другу-чоловікові. Скажіть «Це його парасоля»"
+        },
+        "gappedTargetPhrase": "This is ___ umbrella.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-13:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i08:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i08:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Зонт принадлежит вашему другу-мужчине. Скажите «Это его зонт»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Зонт принадлежит вашему другу-мужчине. Скажите «Это его зонт»",
+            "feedbackByLocale": {
+              "ru": "`her` — её; здесь его: `his`.",
+              "uk": "`her` — її; тут його: `his`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Зонт принадлежит вашему другу-мужчине. Скажите «Это его зонт»",
+            "feedbackByLocale": {
+              "ru": "`their` — их; здесь его: `his`.",
+              "uk": "`their` — їхня; тут його: `his`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, где зонт",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-13:i09:r1",
+          "text": "The umbrella is in my drawer."
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i09:r2",
+          "text": "The umbrella is in my bag."
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i09:r3",
+          "text": "The umbrella is in my backpack."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где зонт",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i09:audio",
+          "transcript": "The umbrella is in my drawer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-13:i09:r1",
+            "targetText": "The umbrella is in my drawer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i09:r2",
+            "targetText": "The umbrella is in my bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i09:r3",
+            "targetText": "The umbrella is in my backpack.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, где зонт",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `drawer`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `drawer`, а в цьому варіанті — `bag`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, где зонт",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `drawer`, а в этом варианте — `backpack`.",
+              "uk": "У записі останнє слово — `drawer`, а в цьому варіанті — `backpack`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-13:i10:p1",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i10:p2",
+            "target": "window",
+            "meaningByLocale": {
+              "ru": "окно",
+              "uk": "вікно"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i10:p3",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "такси",
+              "uk": "таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i10:p4",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "выдвижной ящик",
+              "uk": "шухляда"
+            }
+          }
+        ],
+        "leftColumn": [
+          "umbrella",
+          "window",
+          "taxi",
+          "drawer"
+        ],
+        "rightColumn": [
+          "зонт",
+          "окно",
+          "такси",
+          "выдвижной ящик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i11:audio",
+          "transcript": "Their window is clean."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Their window is clean.",
+        "orderedTokens": [
+          "Their",
+          "window",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Their window is clean.`",
+              "uk": "тут потрібно `is` — `Their window is clean.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Такси приехало за вами с другом. Скажите «Наше такси здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Такси приехало за вами с другом. Скажите «Наше такси здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our taxi is here.",
+        "localizedMeaning": {
+          "ru": "Такси приехало за вами с другом. Скажите «Наше такси здесь»",
+          "uk": "Таксі приїхало по вас із другом. Скажіть «Наше таксі тут»"
+        },
+        "orderedTokens": [
+          "Our",
+          "taxi",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Такси приехало за вами с другом. Скажите «Наше такси здесь»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Our taxi is here.`",
+              "uk": "тут потрібно `is` — `Our taxi is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зонт собеседника у вас. Скажите «Твой зонт у меня»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Зонт собеседника у вас. Скажите «Твой зонт у меня»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i13:audio",
+          "transcript": "I have your umbrella."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your umbrella.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Их такси большое. Машина одна. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-13:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i14:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Их такси большое. Машина одна. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Их такси большое. Машина одна. Выберите форму",
+          "uk": "Їхнє таксі велике. Машина одна. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Their taxi ___ big.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-13:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i14:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Их такси большое. Машина одна. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i14:r2",
+            "correct": false,
+            "testedDimension": "Их такси большое. Машина одна. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна машина: `taxi is`, даже если пассажиров несколько.",
+              "uk": "Одна машина: `taxi is`, навіть якщо пасажирів кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i14:r3",
+            "correct": false,
+            "testedDimension": "Их такси большое. Машина одна. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Здесь описание размера: `taxi is big`.",
+              "uk": "Тут опис розміру: `taxi is big`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, чей зонт здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-13:i15:r1",
+          "text": "Your umbrella is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i15:r2",
+          "text": "My umbrella is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-13:i15:r3",
+          "text": "Her umbrella is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей зонт здесь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i15:audio",
+          "transcript": "Your umbrella is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-13:i15:r1",
+            "targetText": "Your umbrella is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i15:r2",
+            "targetText": "My umbrella is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i15:r3",
+            "targetText": "Her umbrella is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, чей зонт здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-13:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте, чей зонт здесь",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `Her`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `Her`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-13:i16:p1",
+            "target": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт",
+              "uk": "парасоля"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i16:p2",
+            "target": "window",
+            "meaningByLocale": {
+              "ru": "окно",
+              "uk": "вікно"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i16:p3",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "такси",
+              "uk": "таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-13:i16:p4",
+            "target": "drawer",
+            "meaningByLocale": {
+              "ru": "выдвижной ящик",
+              "uk": "шухляда"
+            }
+          }
+        ],
+        "leftColumn": [
+          "umbrella",
+          "window",
+          "taxi",
+          "drawer"
+        ],
+        "rightColumn": [
+          "зонт",
+          "окно",
+          "такси",
+          "выдвижной ящик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-13:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг ищет зонт перед выходом. Он внутри ящика друга. Скажите «Зонт в твоём ящике»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Друг ищет зонт перед выходом. Он внутри ящика друга. Скажите «Зонт в твоём ящике»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-13:i17:audio",
+          "transcript": "The umbrella is in your drawer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The umbrella is in your drawer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0e9dbd6c22fd15f0a491de88697642a80ce4ce5dc72c57186bcb1910ce4a69a4"
+}

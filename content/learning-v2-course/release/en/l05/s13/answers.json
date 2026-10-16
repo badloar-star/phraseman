@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-13:i01",
+    "correctText": "Our window is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i02",
+    "correctText": "umbrella",
+    "correctResponseId": "en:lesson-05:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i03",
+    "correctText": "umbrella",
+    "correctResponseId": "en:lesson-05:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i04",
+    "correctText": "en:lesson-05:session-13:i04:p1=umbrella\nen:lesson-05:session-13:i04:p2=small\nen:lesson-05:session-13:i04:p3=big\nen:lesson-05:session-13:i04:p4=clean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i05",
+    "correctText": "I have an umbrella.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i06",
+    "correctText": "My umbrella is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i07",
+    "correctText": "Her umbrella is big.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i08",
+    "correctText": "his",
+    "correctResponseId": "en:lesson-05:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i09",
+    "correctText": "The umbrella is in my drawer.",
+    "correctResponseId": "en:lesson-05:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i10",
+    "correctText": "en:lesson-05:session-13:i10:p1=umbrella\nen:lesson-05:session-13:i10:p2=window\nen:lesson-05:session-13:i10:p3=taxi\nen:lesson-05:session-13:i10:p4=drawer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i11",
+    "correctText": "Their window is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i12",
+    "correctText": "Our taxi is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i13",
+    "correctText": "I have your umbrella.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-13:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i15",
+    "correctText": "Your umbrella is here.",
+    "correctResponseId": "en:lesson-05:session-13:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i16",
+    "correctText": "en:lesson-05:session-13:i16:p1=umbrella\nen:lesson-05:session-13:i16:p2=window\nen:lesson-05:session-13:i16:p3=taxi\nen:lesson-05:session-13:i16:p4=drawer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-13:i17",
+    "correctText": "The umbrella is in your drawer.",
+    "correctResponseId": null
+  }
+]

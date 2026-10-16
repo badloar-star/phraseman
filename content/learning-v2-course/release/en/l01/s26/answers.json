@@ -1,7 +1,27 @@
 [
   {
+    "interactionId": "en:lesson-01:session-26:word:impatient",
+    "correctText": "impatient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:word:exhausted",
+    "correctText": "exhausted",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:word:worried",
+    "correctText": "worried",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:word:relaxed",
+    "correctText": "relaxed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-26:i01",
-    "correctText": "I am bored.",
+    "correctText": "I am impatient.",
     "correctResponseId": null
   },
   {
@@ -16,12 +36,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-26:i04",
-    "correctText": "en:lesson-01:session-26:i04:p1=bored\nen:lesson-01:session-26:i04:p2=confused\nen:lesson-01:session-26:i04:p3=worried\nen:lesson-01:session-26:i04:p4=surprised",
+    "correctText": "en:lesson-01:session-26:i04:p1=impatient\nen:lesson-01:session-26:i04:p2=exhausted\nen:lesson-01:session-26:i04:p3=worried\nen:lesson-01:session-26:i04:p4=relaxed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i05",
-    "correctText": "She is bored.",
+    "correctText": "She is relaxed.",
     "correctResponseId": null
   },
   {
@@ -31,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-26:i07",
-    "correctText": "I am confused.",
+    "correctText": "I am relaxed.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-26:i16",
-    "correctText": "en:lesson-01:session-26:i16:p1=lucky\nen:lesson-01:session-26:i16:p2=bored\nen:lesson-01:session-26:i16:p3=confused\nen:lesson-01:session-26:i16:p4=worried",
+    "correctText": "en:lesson-01:session-26:i16:p1=relaxed\nen:lesson-01:session-26:i16:p2=bored\nen:lesson-01:session-26:i16:p3=exhausted\nen:lesson-01:session-26:i16:p4=impatient",
     "correctResponseId": null
   },
   {

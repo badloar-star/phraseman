@@ -4,27 +4,199 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-26:i01",
+      "interactionId": "en:lesson-01:session-26:word:impatient",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — impatient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-26:word:impatient:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — impatient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-26:word:impatient:audio",
+          "transcript": "impatient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-26:word:impatient:r1",
+            "targetText": "impatient",
+            "meaningByLocale": {
+              "ru": "нетерпеливый: трудно спокойно ждать. I am impatient — «Мне не терпится», «Я проявляю нетерпение». Знакомое patient означает «терпеливый».",
+              "uk": "нетерплячий: важко спокійно чекати. I am impatient — «Мені не терпиться», «Я виявляю нетерпіння». Знайоме patient означає «терплячий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "impatient",
+          "definitionByLocale": {
+            "ru": "нетерпеливый: трудно спокойно ждать. I am impatient — «Мне не терпится», «Я проявляю нетерпение». Знакомое patient означает «терпеливый».",
+            "uk": "нетерплячий: важко спокійно чекати. I am impatient — «Мені не терпиться», «Я виявляю нетерпіння». Знайоме patient означає «терплячий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:word:exhausted",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exhausted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-26:word:exhausted:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exhausted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-26:word:exhausted:audio",
+          "transcript": "exhausted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-26:word:exhausted:r1",
+            "targetText": "exhausted",
+            "meaningByLocale": {
+              "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
+              "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exhausted",
+          "definitionByLocale": {
+            "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
+            "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:word:worried",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — worried",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-26:word:worried:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — worried",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-26:word:worried:audio",
+          "transcript": "worried"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-26:word:worried:r1",
+            "targetText": "worried",
+            "meaningByLocale": {
+              "ru": "обеспокоенный, встревоженный. She is worried — «Она волнуется»: например, боится потерять паспорт.",
+              "uk": "стурбований, стривожений. She is worried — «Вона хвилюється»: наприклад, боїться загубити паспорт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worried",
+          "definitionByLocale": {
+            "ru": "обеспокоенный, встревоженный. She is worried — «Она волнуется»: например, боится потерять паспорт.",
+            "uk": "стурбований, стривожений. She is worried — «Вона хвилюється»: наприклад, боїться загубити паспорт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:word:relaxed",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — relaxed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-26:word:relaxed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — relaxed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-26:word:relaxed:audio",
+          "transcript": "relaxed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-26:word:relaxed:r1",
+            "targetText": "relaxed",
+            "meaningByLocale": {
+              "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
+              "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "relaxed",
+          "definitionByLocale": {
+            "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
+            "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вам скучно ждать без дела. Соберите фразу о себе",
+      "prompt": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вам скучно ждать без дела. Соберите фразу о себе",
+      "accessibilityLabel": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am bored.",
+        "targetPhrase": "I am impatient.",
         "localizedMeaning": {
-          "ru": "Вам скучно ждать без дела. Соберите фразу о себе",
-          "uk": "Вам нудно чекати без діла. Складіть фразу про себе"
+          "ru": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
+          "uk": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння"
         },
         "orderedTokens": [
           "I",
           "am",
-          "bored"
+          "impatient"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -33,10 +205,10 @@
           {
             "responseId": "en:lesson-01:session-26:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вам скучно ждать без дела. Соберите фразу о себе",
+            "testedDimension": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am bored.`",
-              "uk": "тут потрібно `am` — `I am bored.`"
+              "ru": "после I нужно am.",
+              "uk": "після I потрібне am."
             }
           }
         ],
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг не понимает противоречивые объявления. Дополните фразу о нём",
+      "prompt": "После долгой дороги у друга почти нет сил. Дополните: «Он измотан»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-26:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг не понимает противоречивые объявления. Дополните фразу о нём",
+      "accessibilityLabel": "После долгой дороги у друга почти нет сил. Дополните: «Он измотан»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг не понимает противоречивые объявления. Дополните фразу о нём",
-          "uk": "Друг не розуміє суперечливих оголошень. Доповніть фразу про нього"
+          "ru": "После долгой дороги у друга почти нет сил. Дополните: «Он измотан»",
+          "uk": "Після довгої дороги у друга майже немає сил. Доповніть: «Він виснажений»"
         },
-        "gappedTargetPhrase": "He ___ confused.",
+        "gappedTargetPhrase": "He ___ exhausted.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-26:i03:r1",
@@ -168,24 +340,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Друг не понимает противоречивые объявления. Дополните фразу о нём",
+        "testedDimension": "После долгой дороги у друга почти нет сил. Дополните: «Он измотан»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-26:i03:r2",
             "correct": false,
-            "testedDimension": "Друг не понимает противоречивые объявления. Дополните фразу о нём",
+            "testedDimension": "После долгой дороги у друга почти нет сил. Дополните: «Он измотан»",
             "feedbackByLocale": {
-              "ru": "После `He` нужно `is`.",
-              "uk": "Після `He` потрібно `is`."
+              "ru": "После He нужно is.",
+              "uk": "Після He потрібне is."
             }
           },
           {
             "responseId": "en:lesson-01:session-26:i03:r3",
             "correct": false,
-            "testedDimension": "Друг не понимает противоречивые объявления. Дополните фразу о нём",
+            "testedDimension": "После долгой дороги у друга почти нет сил. Дополните: «Он измотан»",
             "feedbackByLocale": {
-              "ru": "О друге говорим `He is`.",
-              "uk": "Про друга кажемо `He is`."
+              "ru": "О друге говорим He is.",
+              "uk": "Про друга говоримо He is."
             }
           }
         ]
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова и значения",
+      "prompt": "Соедините новые слова и значения",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова и значения",
+      "accessibilityLabel": "Соедините новые слова и значения",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-26:i04:p1",
-            "target": "bored",
+            "target": "impatient",
             "meaningByLocale": {
-              "ru": "скучает",
-              "uk": "нудьгує"
+              "ru": "нетерпеливый",
+              "uk": "нетерплячий"
             }
           },
           {
             "pairId": "en:lesson-01:session-26:i04:p2",
-            "target": "confused",
+            "target": "exhausted",
             "meaningByLocale": {
-              "ru": "запутался",
-              "uk": "заплутався"
+              "ru": "измотанный",
+              "uk": "виснажений"
             }
           },
           {
             "pairId": "en:lesson-01:session-26:i04:p3",
             "target": "worried",
             "meaningByLocale": {
-              "ru": "волнуется",
-              "uk": "хвилюється"
+              "ru": "обеспокоенный",
+              "uk": "стурбований"
             }
           },
           {
             "pairId": "en:lesson-01:session-26:i04:p4",
-            "target": "surprised",
+            "target": "relaxed",
             "meaningByLocale": {
-              "ru": "удивлён",
-              "uk": "здивований"
+              "ru": "расслабленный",
+              "uk": "розслаблений"
             }
           }
         ],
         "leftColumn": [
-          "bored",
-          "confused",
+          "impatient",
+          "exhausted",
           "worried",
-          "surprised"
+          "relaxed"
         ],
         "rightColumn": [
-          "скучает",
-          "запутался",
-          "волнуется",
-          "удивлён"
+          "нетерпеливый",
+          "измотанный",
+          "обеспокоенный",
+          "расслабленный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -282,14 +454,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-26:i05:audio",
-          "transcript": "She is bored."
+          "transcript": "She is relaxed."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She is bored.",
+        "hiddenTargetPhrase": "She is relaxed.",
         "orderedTokens": [
           "She",
           "is",
-          "bored"
+          "relaxed"
         ],
         "authoredDistractorTokens": [
           "He"
@@ -300,8 +472,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `She` — `She is bored.`",
-              "uk": "тут потрібно `She` — `She is bored.`"
+              "ru": "в записи She.",
+              "uk": "у записі She."
             }
           }
         ],
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Вы с сестрой тревожитесь за друга, который не отвечает. Соберите фразу за вас обоих",
@@ -358,25 +530,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы не понимаете, почему в билете и на табло разные выходы. Скажите сотруднику: «Я запутался»",
+      "prompt": "Вы уже устроились в кресле, никуда не спешите и не чувствуете напряжения. Скажите: «Я расслаблен»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-26:i07:audio"
       ],
-      "accessibilityLabel": "Вы не понимаете, почему в билете и на табло разные выходы. Скажите сотруднику: «Я запутался»",
+      "accessibilityLabel": "Вы уже устроились в кресле, никуда не спешите и не чувствуете напряжения. Скажите: «Я расслаблен»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-26:i07:audio",
-          "transcript": "I am confused."
+          "transcript": "I am relaxed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am confused.",
+        "targetPhrase": "I am relaxed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова со значениями",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите услышанное",
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Сестра не понимает, почему на двух табло разное время. Дополните фразу о её непонимании",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,10 +1064,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-26:i16:p1",
-            "target": "lucky",
+            "target": "relaxed",
             "meaningByLocale": {
-              "ru": "везучий",
-              "uk": "везучий"
+              "ru": "расслабленный",
+              "uk": "розслаблений"
             }
           },
           {
@@ -908,32 +1080,32 @@
           },
           {
             "pairId": "en:lesson-01:session-26:i16:p3",
-            "target": "confused",
+            "target": "exhausted",
             "meaningByLocale": {
-              "ru": "запутался",
-              "uk": "заплутався"
+              "ru": "измотанный",
+              "uk": "виснажений"
             }
           },
           {
             "pairId": "en:lesson-01:session-26:i16:p4",
-            "target": "worried",
+            "target": "impatient",
             "meaningByLocale": {
-              "ru": "волнуется",
-              "uk": "хвилюється"
+              "ru": "нетерпеливый",
+              "uk": "нетерплячий"
             }
           }
         ],
         "leftColumn": [
-          "lucky",
+          "relaxed",
           "bored",
-          "confused",
-          "worried"
+          "exhausted",
+          "impatient"
         ],
         "rightColumn": [
-          "везучий",
+          "расслабленный",
           "скучает",
-          "запутался",
-          "волнуется"
+          "измотанный",
+          "нетерпеливый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -951,17 +1123,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-26:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваша кошка убежала из дома. Вы боитесь, что она попадёт под машину. Назовите своё чувство одной фразой",
+      "prompt": "Ваша кошка убежала из дома, и вы тревожитесь за неё. Скажите: «Я обеспокоен / обеспокоена»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-26:i17:audio"
       ],
-      "accessibilityLabel": "Ваша кошка убежала из дома. Вы боитесь, что она попадёт под машину. Назовите своё чувство одной фразой",
+      "accessibilityLabel": "Ваша кошка убежала из дома, и вы тревожитесь за неё. Скажите: «Я обеспокоен / обеспокоена»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d530571ad2e5785c82ae30e18394d26014db2777f7fe2ceaa49bef147114c642"
+  "learnerFingerprint": "deec288df95d7344d7af1079cf8773c10b9986c3ad07c757628dc943c2f7e28c"
 }

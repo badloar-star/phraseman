@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "повторить can для умения и сохранить действие без to и окончаний",
+    "uk": "повторити can для вміння та залишити дію без to і закінчень"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обсудим условия",
+        "uk": "Обговоримо умови"
+      },
+      "bodyByLocale": {
+        "ru": "Друг собирается обсуждать условия аренды и просит помочь. `Negotiate` — «вести переговоры». Вы умеете это делать: `I can negotiate` — «Я умею вести переговоры». После `can` нужно `negotiate`, без `to`. Сначала обсудим цену — цвет ручки для подписи подождёт.",
+        "uk": "Друг збирається обговорювати умови оренди й просить допомогти. `Negotiate` — «вести переговори». Ви вмієте це робити: `I can negotiate` — «Я вмію вести переговори». Після `can` потрібне `negotiate`, без `to`. Спочатку обговоримо ціну — колір ручки для підпису зачекає."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что умеете вести переговоры.",
+          "uk": "Скажіть, що вмієте вести переговори."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-41:intro1:r1",
+              "text": "I can negotiate."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro1:r2",
+              "text": "I can to negotiate."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro1:r3",
+              "text": "I can negotiates."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-41:intro1:r1",
+              "text": "I can negotiate."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro1:r2",
+              "text": "I can to negotiate."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro1:r3",
+              "text": "I can negotiates."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что умеете вести переговоры.",
+          "uk": "Скажіть, що вмієте вести переговори."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто поведёт машину",
+        "uk": "Хто поведе машину"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с подругой собираетесь на вокзал. Вас спрашивают, умеет ли она водить. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
+        "uk": "Ви з подругою збираєтеся на вокзал. Вас запитують, чи вміє вона водити. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что она умеет водить.",
+          "uk": "Скажіть, що вона вміє водити."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-41:intro2:r1",
+              "text": "She can drive."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro2:r2",
+              "text": "She can drives."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro2:r3",
+              "text": "She can to drive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-41:intro2:r1",
+              "text": "She can drive."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro2:r2",
+              "text": "She can drives."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro2:r3",
+              "text": "She can to drive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что она умеет водить.",
+          "uk": "Скажіть, що вона вміє водити."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Позовём собаку",
+        "uk": "Покличемо собаку"
+      },
+      "bodyByLocale": {
+        "ru": "Во дворе друг хочет позвать собаку свистом, но у него не получается. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
+        "uk": "У дворі друг хоче покликати собаку свистом, але в нього не виходить. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что умеете свистеть.",
+          "uk": "Скажіть, що вмієте свистіти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-41:intro3:r1",
+              "text": "I can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro3:r2",
+              "text": "I can to whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro3:r3",
+              "text": "I can whistles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-41:intro3:r1",
+              "text": "I can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro3:r2",
+              "text": "I can to whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-41:intro3:r3",
+              "text": "I can whistles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что умеете свистеть.",
+          "uk": "Скажіть, що вмієте свистіти."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7f5e4f5d215998e9e7de10dad59716610dda6cc52f32162fbd4b101d212e2a37"
+}

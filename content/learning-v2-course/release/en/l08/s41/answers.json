@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-41:i01",
+    "correctText": "I can negotiate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i02",
+    "correctText": "negotiate",
+    "correctResponseId": "en:lesson-08:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i03",
+    "correctText": "negotiate",
+    "correctResponseId": "en:lesson-08:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i04",
+    "correctText": "en:lesson-08:session-41:i04:p1=negotiate\nen:lesson-08:session-41:i04:p2=cashpoint\nen:lesson-08:session-41:i04:p3=chat\nen:lesson-08:session-41:i04:p4=meditate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i05",
+    "correctText": "I can negotiate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i06",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i07",
+    "correctText": "I can whistle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i08",
+    "correctText": "drive",
+    "correctResponseId": "en:lesson-08:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i09",
+    "correctText": "I can negotiate.",
+    "correctResponseId": "en:lesson-08:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i10",
+    "correctText": "en:lesson-08:session-41:i10:p1=rush\nen:lesson-08:session-41:i10:p2=negotiate\nen:lesson-08:session-41:i10:p3=chat\nen:lesson-08:session-41:i10:p4=cashpoint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i11",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i12",
+    "correctText": "Don’t rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i13",
+    "correctText": "I often meditate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i14",
+    "correctText": "whistle",
+    "correctResponseId": "en:lesson-08:session-41:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i15",
+    "correctText": "I can swim.",
+    "correctResponseId": "en:lesson-08:session-41:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i16",
+    "correctText": "en:lesson-08:session-41:i16:p1=negotiate\nen:lesson-08:session-41:i16:p2=meditate\nen:lesson-08:session-41:i16:p3=rush\nen:lesson-08:session-41:i16:p4=cashpoint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:i17",
+    "correctText": "I can negotiate.",
+    "correctResponseId": null
+  }
+]

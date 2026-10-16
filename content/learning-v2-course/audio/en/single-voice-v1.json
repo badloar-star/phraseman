@@ -131668,6 +131668,309 @@
           "byteSize": 22656
         }
       ]
+    },
+    "l08/s43/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I can assemble it.",
+          "file": "e9b308c7b699d0e199090f449b4aba4d95ee4c91a344c84ac7808d7bb979a21e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e9b308c7b699d0e199090f449b4aba4d95ee4c91a344c84ac7808d7bb979a21e.mp3",
+          "contentHash": "44a0e478927163d0ced434eada751c2da2cdc18e834e37ef534eeaf50440a85f",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l08/s43/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "1a7f51ceeb6bba6293108be55eda77faaab3781aa91bf7d0586f97fbccd1abb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1a7f51ceeb6bba6293108be55eda77faaab3781aa91bf7d0586f97fbccd1abb3.mp3",
+          "contentHash": "1d21c8826a5861711c456f3f505687130c86936b686801713147f4a3661aad7c",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s43/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can whistle.",
+          "file": "de76be496943d7eddf3813d4156b1345a0fb622bde806751a31315b173038640.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de76be496943d7eddf3813d4156b1345a0fb622bde806751a31315b173038640.mp3",
+          "contentHash": "61533adff3727fb070b8b0c6c42e370c09e96e8a2647e07c57ea7197d9eb3419",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l08/s43/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can assemble it.",
+          "file": "42c79ec30e302c665cc4c9cf157fccbde4308a170407ffe85c4e90e38908951d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/42c79ec30e302c665cc4c9cf157fccbde4308a170407ffe85c4e90e38908951d.mp3",
+          "contentHash": "a94febd04651561435bd62732a601c33d02a557a5637710a5fb660ec6af86e57",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l08/s43/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "assemble",
+          "file": "e0245caec0b372873c5ed9f5f35681e07e1efd3427c883d797ea747dcbea36bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0245caec0b372873c5ed9f5f35681e07e1efd3427c883d797ea747dcbea36bb.mp3",
+          "contentHash": "111dd1860acd591d1aa1119991f47b9e995c949513bd9d12ef9b0307d5189a1c",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l08/s43/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can assemble it.",
+          "file": "42c79ec30e302c665cc4c9cf157fccbde4308a170407ffe85c4e90e38908951d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/42c79ec30e302c665cc4c9cf157fccbde4308a170407ffe85c4e90e38908951d.mp3",
+          "contentHash": "a94febd04651561435bd62732a601c33d02a557a5637710a5fb660ec6af86e57",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l08/s43/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "assemble",
+          "file": "80f922dd58cc29dcfb2d01a6ff620888a4431909184cc2cc11daed6f307ad70e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80f922dd58cc29dcfb2d01a6ff620888a4431909184cc2cc11daed6f307ad70e.mp3",
+          "contentHash": "d333319c368335b5930f14b2ccbe3453232a066a0ff37c019b2e175c12726272",
+          "byteSize": 34560
+        },
+        {
+          "text": "recycling bin",
+          "file": "5409fc17dcb1f9df276683f30c3dc50f8f1770e52f44d463edb929d60e76fbb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5409fc17dcb1f9df276683f30c3dc50f8f1770e52f44d463edb929d60e76fbb3.mp3",
+          "contentHash": "6a78936f159c1e205e6fd82ca968274fbf70bc419c4c0ed00b11cae7067a474e",
+          "byteSize": 31488
+        },
+        {
+          "text": "speak",
+          "file": "92d305f6ba6da0b65ab1f8c69524c157cb986885540ef693ae2f29f5dcce885a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92d305f6ba6da0b65ab1f8c69524c157cb986885540ef693ae2f29f5dcce885a.mp3",
+          "contentHash": "f39544d5dd17549d2be3ee1dd38481c2f34bb71f6daa1f385abc6b9f7faffd70",
+          "byteSize": 37248
+        },
+        {
+          "text": "sew",
+          "file": "fdad895648a91577bb282e40c2fb11f175b08bef8bbb669316333552672dbf46.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fdad895648a91577bb282e40c2fb11f175b08bef8bbb669316333552672dbf46.mp3",
+          "contentHash": "7575a1c4a87ef34107f883a1f90529b99ccd7e4c2f8640ace5d1b32fb6ee7750",
+          "byteSize": 15744
+        }
+      ]
+    },
+    "l08/s43/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I can assemble it.",
+          "file": "e9b308c7b699d0e199090f449b4aba4d95ee4c91a344c84ac7808d7bb979a21e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e9b308c7b699d0e199090f449b4aba4d95ee4c91a344c84ac7808d7bb979a21e.mp3",
+          "contentHash": "44a0e478927163d0ced434eada751c2da2cdc18e834e37ef534eeaf50440a85f",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l08/s43/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "53bbc6b5b6be01677e0ef30b4f4053ddfff48b103286bfdbaebe56753a9b693d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53bbc6b5b6be01677e0ef30b4f4053ddfff48b103286bfdbaebe56753a9b693d.mp3",
+          "contentHash": "9e4323ff5ae91c3b047579b1b8331b43105e046aa59be55d18c09c789e0edba3",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s43/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can whistle.",
+          "file": "3ccc6ac731ada2a6162c982bf3fed6cf4085ee4e94c123a2346b73c9a89e1c77.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3ccc6ac731ada2a6162c982bf3fed6cf4085ee4e94c123a2346b73c9a89e1c77.mp3",
+          "contentHash": "8db7f7213bbddf409224af981cf74334c40c2d65a3a44c1f4af2907a13b9a3bf",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l08/s43/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "53bbc6b5b6be01677e0ef30b4f4053ddfff48b103286bfdbaebe56753a9b693d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53bbc6b5b6be01677e0ef30b4f4053ddfff48b103286bfdbaebe56753a9b693d.mp3",
+          "contentHash": "9e4323ff5ae91c3b047579b1b8331b43105e046aa59be55d18c09c789e0edba3",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s43/task/8": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can assemble it.",
+          "file": "da0b00e15d4388febc9195a3ea1ef7d5c5497e3ef1d30e06a53e45306fefc6ad.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da0b00e15d4388febc9195a3ea1ef7d5c5497e3ef1d30e06a53e45306fefc6ad.mp3",
+          "contentHash": "4c01367bf66df1c6b6f74d74bf1cf4ed1756d78e11a16d81ca867e2c7bb6708a",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l08/s43/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "spill",
+          "file": "3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "contentHash": "d3549aba88e14d5175bc1ea00c3f2a3a270c2379799d80b5333d64a1f9f4d0fc",
+          "byteSize": 17280
+        },
+        {
+          "text": "assemble",
+          "file": "e0245caec0b372873c5ed9f5f35681e07e1efd3427c883d797ea747dcbea36bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0245caec0b372873c5ed9f5f35681e07e1efd3427c883d797ea747dcbea36bb.mp3",
+          "contentHash": "111dd1860acd591d1aa1119991f47b9e995c949513bd9d12ef9b0307d5189a1c",
+          "byteSize": 15744
+        },
+        {
+          "text": "speak",
+          "file": "12d71a02179efe07785993d9a4ad5e90243b377f1cb5d08f94d0ca2c024da43d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/12d71a02179efe07785993d9a4ad5e90243b377f1cb5d08f94d0ca2c024da43d.mp3",
+          "contentHash": "e29d51938d0486aabb53fec8ebd8d5083fa1eb3ec8941020b03fe62e3b742777",
+          "byteSize": 33792
+        },
+        {
+          "text": "recycling bin",
+          "file": "52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "contentHash": "66e6618868d49ff16c5f117f9330266e6f51513f67791d0eb798f04a66ae2913",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l08/s43/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She can drive.",
+          "file": "efa6a2163b6116cf401cd997ac2edb0791c5259d66b5b80b5c409bb17ed21a40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efa6a2163b6116cf401cd997ac2edb0791c5259d66b5b80b5c409bb17ed21a40.mp3",
+          "contentHash": "034324cd945e0d84d18e12d945415f6e297cb9e4f2c0448e3e33cdc1bd9db54a",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l08/s43/task/11": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Don’t spill it.",
+          "file": "0c8c81f5cc8a1a0b1b9440bbdef07b0767058e44a5f952c07ffadb018af3f91a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c8c81f5cc8a1a0b1b9440bbdef07b0767058e44a5f952c07ffadb018af3f91a.mp3",
+          "contentHash": "e4abbba5677cd8162bdf786d0d02c1bfaed881ef8b5ac7256a0d4ae863b8ae07",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l08/s43/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I often sew.",
+          "file": "e88a714e69f076b7944dc1a469fc04f4672d8920530fad6354b55a9299b66a2b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e88a714e69f076b7944dc1a469fc04f4672d8920530fad6354b55a9299b66a2b.mp3",
+          "contentHash": "d6b4ad159ad5cd263361ec31bb87c590800c09d11dcb9fa7bfba8fc0365a95b4",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l08/s43/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I can whistle.",
+          "file": "de76be496943d7eddf3813d4156b1345a0fb622bde806751a31315b173038640.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de76be496943d7eddf3813d4156b1345a0fb622bde806751a31315b173038640.mp3",
+          "contentHash": "61533adff3727fb070b8b0c6c42e370c09e96e8a2647e07c57ea7197d9eb3419",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l08/s43/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I can swim.",
+          "file": "6f039c43205f46334dfca80d49458e949f89081209cc933064bef5bbc17a03ef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6f039c43205f46334dfca80d49458e949f89081209cc933064bef5bbc17a03ef.mp3",
+          "contentHash": "ab115e3958a56f0c312bb6ec7e030c8c357153100df93aa006ea5ab296d6b26b",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l08/s43/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "assemble",
+          "file": "e0245caec0b372873c5ed9f5f35681e07e1efd3427c883d797ea747dcbea36bb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0245caec0b372873c5ed9f5f35681e07e1efd3427c883d797ea747dcbea36bb.mp3",
+          "contentHash": "111dd1860acd591d1aa1119991f47b9e995c949513bd9d12ef9b0307d5189a1c",
+          "byteSize": 15744
+        },
+        {
+          "text": "sew",
+          "file": "0dcaf199ad70d8d2296379412d39f22bcc46c0f8ce82465735e9931982b8da5e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0dcaf199ad70d8d2296379412d39f22bcc46c0f8ce82465735e9931982b8da5e.mp3",
+          "contentHash": "e2cd704cb6d52067b50a08c96ab66be5723cecc30b71171919907900f6107cc0",
+          "byteSize": 21120
+        },
+        {
+          "text": "spill",
+          "file": "3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3954c2ba5547a23c765bc69ff6bf3efd3144c0f3d0656cc954e51921110045d9.mp3",
+          "contentHash": "d3549aba88e14d5175bc1ea00c3f2a3a270c2379799d80b5333d64a1f9f4d0fc",
+          "byteSize": 17280
+        },
+        {
+          "text": "recycling bin",
+          "file": "52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "contentHash": "66e6618868d49ff16c5f117f9330266e6f51513f67791d0eb798f04a66ae2913",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l08/s43/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I can assemble it.",
+          "file": "42c79ec30e302c665cc4c9cf157fccbde4308a170407ffe85c4e90e38908951d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/42c79ec30e302c665cc4c9cf157fccbde4308a170407ffe85c4e90e38908951d.mp3",
+          "contentHash": "a94febd04651561435bd62732a601c33d02a557a5637710a5fb660ec6af86e57",
+          "byteSize": 44160
+        }
+      ]
     }
   },
   "settings": {

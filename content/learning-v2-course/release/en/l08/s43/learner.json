@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите «Я могу это собрать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите «Я могу это собрать»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can assemble it.",
+        "localizedMeaning": {
+          "ru": "Соберите «Я могу это собрать»",
+          "uk": "Складіть «Я можу це зібрати»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "assemble",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-43:i02:r1",
+          "text": "assemble"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i02:r2",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i02:r3",
+          "text": "sew"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i02:audio",
+          "transcript": "assemble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-43:i02:r1",
+            "targetText": "assemble",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i02:r2",
+            "targetText": "speak",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i02:r3",
+            "targetText": "sew",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `assemble`, а в этом варианте — `speak`.",
+              "uk": "У записі перше слово — `assemble`, а в цьому варіанті — `speak`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `assemble`, а в этом варианте — `sew`.",
+              "uk": "У записі перше слово — `assemble`, а в цьому варіанті — `sew`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что можете это собрать",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-43:i03:r1",
+          "text": "assemble"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i03:r2",
+          "text": "to assemble"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i03:r3",
+          "text": "assembles"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что можете это собрать",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что можете это собрать",
+          "uk": "Скажіть, що можете це зібрати"
+        },
+        "gappedTargetPhrase": "I can ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-43:i03:r1",
+            "text": "assemble"
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i03:r2",
+            "text": "to assemble"
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i03:r3",
+            "text": "assembles"
+          }
+        ],
+        "testedDimension": "Скажите, что можете это собрать",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что можете это собрать",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `assemble`, без `to`.",
+              "uk": "Після `can` потрібне `assemble`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что можете это собрать",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `assemble`, без `s`.",
+              "uk": "Після `can` потрібне `assemble`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-43:i04:p1",
+            "target": "assemble",
+            "meaningByLocale": {
+              "ru": "собирать",
+              "uk": "збирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i04:p2",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i04:p3",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i04:p4",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "assemble",
+          "recycling bin",
+          "speak",
+          "sew"
+        ],
+        "rightColumn": [
+          "собирать",
+          "контейнер для переработки",
+          "говорить",
+          "шить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i05:audio",
+          "transcript": "I can assemble it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can assemble it.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "assemble",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о подруге «Она умеет водить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о подруге «Она умеет водить»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can drive.",
+        "localizedMeaning": {
+          "ru": "Скажите о подруге «Она умеет водить»",
+          "uk": "Скажіть про подругу «Вона вміє водити»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "drive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Я умею свистеть»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Я умею свистеть»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i07:audio",
+          "transcript": "I can whistle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can whistle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что она умеет водить",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-43:i08:r1",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i08:r2",
+          "text": "drives"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i08:r3",
+          "text": "to drive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что она умеет водить",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что она умеет водить",
+          "uk": "Скажіть, що вона вміє водити"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-43:i08:r1",
+            "text": "drive"
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i08:r2",
+            "text": "drives"
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i08:r3",
+            "text": "to drive"
+          }
+        ],
+        "testedDimension": "Скажите, что она умеет водить",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что она умеет водить",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, даже с `she`.",
+              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что она умеет водить",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, без `to`.",
+              "uk": "Після `can` потрібне `drive`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-43:i09:r1",
+          "text": "I can assemble it."
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i09:r2",
+          "text": "I can assemble this."
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i09:r3",
+          "text": "I can assemble that."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i09:audio",
+          "transcript": "I can assemble it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-43:i09:r1",
+            "targetText": "I can assemble it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i09:r2",
+            "targetText": "I can assemble this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i09:r3",
+            "targetText": "I can assemble that.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-43:i10:p1",
+            "target": "spill",
+            "meaningByLocale": {
+              "ru": "проливать",
+              "uk": "проливати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i10:p2",
+            "target": "assemble",
+            "meaningByLocale": {
+              "ru": "собирать",
+              "uk": "збирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i10:p3",
+            "target": "speak",
+            "meaningByLocale": {
+              "ru": "говорить",
+              "uk": "говорити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i10:p4",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "spill",
+          "assemble",
+          "speak",
+          "recycling bin"
+        ],
+        "rightColumn": [
+          "проливать",
+          "собирать",
+          "говорить",
+          "контейнер для переработки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i11:audio",
+          "transcript": "She can drive."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She can drive.",
+        "orderedTokens": [
+          "She",
+          "can",
+          "drive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг наклоняет стакан воды над деталями. Скажите «Не пролей это»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг наклоняет стакан воды над деталями. Скажите «Не пролей это»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t spill it.",
+        "localizedMeaning": {
+          "ru": "Друг наклоняет стакан воды над деталями. Скажите «Не пролей это»",
+          "uk": "Друг нахиляє склянку води над деталями. Скажіть «Не пролий це»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "spill",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите «Я часто шью»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Расскажите «Я часто шью»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i13:audio",
+          "transcript": "I often sew."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often sew.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что умеете свистеть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-43:i14:r1",
+          "text": "whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i14:r2",
+          "text": "whistles"
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i14:r3",
+          "text": "to whistle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что умеете свистеть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что умеете свистеть",
+          "uk": "Скажіть, що вмієте свистіти"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-43:i14:r1",
+            "text": "whistle"
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i14:r2",
+            "text": "whistles"
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i14:r3",
+            "text": "to whistle"
+          }
+        ],
+        "testedDimension": "Скажите, что умеете свистеть",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что умеете свистеть",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `s`.",
+              "uk": "Після `can` потрібне `whistle`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что умеете свистеть",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `to`.",
+              "uk": "Після `can` потрібне `whistle`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-43:i15:r1",
+          "text": "I can swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i15:r2",
+          "text": "I can drive."
+        },
+        {
+          "responseId": "en:lesson-08:session-43:i15:r3",
+          "text": "I can whistle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i15:audio",
+          "transcript": "I can swim."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-43:i15:r1",
+            "targetText": "I can swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i15:r2",
+            "targetText": "I can drive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i15:r3",
+            "targetText": "I can whistle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
+              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
+              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-43:i16:p1",
+            "target": "assemble",
+            "meaningByLocale": {
+              "ru": "собирать",
+              "uk": "збирати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i16:p2",
+            "target": "sew",
+            "meaningByLocale": {
+              "ru": "шить",
+              "uk": "шити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i16:p3",
+            "target": "spill",
+            "meaningByLocale": {
+              "ru": "проливать",
+              "uk": "проливати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-43:i16:p4",
+            "target": "recycling bin",
+            "meaningByLocale": {
+              "ru": "контейнер для переработки",
+              "uk": "контейнер для переробки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "assemble",
+          "sew",
+          "spill",
+          "recycling bin"
+        ],
+        "rightColumn": [
+          "собирать",
+          "шить",
+          "проливать",
+          "контейнер для переработки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-43:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг распаковывает стул из отдельных деталей и ищет помощь со сборкой. Скажите «Я могу это собрать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Друг распаковывает стул из отдельных деталей и ищет помощь со сборкой. Скажите «Я могу это собрать»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-43:i17:audio",
+          "transcript": "I can assemble it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can assemble it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f0c6d95c5b480716bdafe97c7274cfc1e9a297613e37daf0d2910ed60a11fb5f"
+}

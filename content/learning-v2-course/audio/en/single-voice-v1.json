@@ -64099,6 +64099,309 @@
           "byteSize": 41856
         }
       ]
+    },
+    "l04/s44/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is a freezer.",
+          "file": "e940ce9a3de69da1038bf1d28bf70eae48fda5c6cde31d20233c458e48a3bbd0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e940ce9a3de69da1038bf1d28bf70eae48fda5c6cde31d20233c458e48a3bbd0.mp3",
+          "contentHash": "f63ffc14ef4312f8fc1c968b6f9abdade4f0ea22dbc7afb642f0d04b70435f75",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l04/s44/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The hotels are next to the park.",
+          "file": "868597ae029c4eaec8cc0d7ba162a3ace43070998094c00f9c684d6f01f2f303.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/868597ae029c4eaec8cc0d7ba162a3ace43070998094c00f9c684d6f01f2f303.mp3",
+          "contentHash": "1f6ec7eff7a610f3d4879823f796d14e55df5003b97f70f474133b57de20f482",
+          "byteSize": 66816
+        }
+      ]
+    },
+    "l04/s44/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's legal.",
+          "file": "50257ee4a67dd711813879b90ae0f62921804be06ca3ed19e3564eccbed5120a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50257ee4a67dd711813879b90ae0f62921804be06ca3ed19e3564eccbed5120a.mp3",
+          "contentHash": "6f1195ce13bd0b9666785123359717c1e453beba9f4dfe9098ad40331187c4a9",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s44/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It is legal.",
+          "file": "26156babf55a4a80cbd1785fdb16820447c366b951193eb385bd2c034318a539.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/26156babf55a4a80cbd1785fdb16820447c366b951193eb385bd2c034318a539.mp3",
+          "contentHash": "e0654ad736c3b1858145bec178a9823abaadd50d1dcb8212b76cbc4c5317b038",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l04/s44/task/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "freezer",
+          "file": "cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "contentHash": "9ca93fca5a43698b646e8348a3448acb11e63ab02e943db007b407ad6ef88090",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s44/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "freezer",
+          "file": "cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cef544db3c66fab16095a95d80a65f2fd4d10d87194065a442790a4a1512a144.mp3",
+          "contentHash": "9ca93fca5a43698b646e8348a3448acb11e63ab02e943db007b407ad6ef88090",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s44/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "freezer",
+          "file": "38361b8ece80176b90fd8387d5e00adbe689d85e8d405725da0f25b4bc0cdf64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38361b8ece80176b90fd8387d5e00adbe689d85e8d405725da0f25b4bc0cdf64.mp3",
+          "contentHash": "863f7715210c981198cfddafd25c052c076a659fcc47a4e753322c7275b3def0",
+          "byteSize": 19584
+        },
+        {
+          "text": "legal",
+          "file": "167c4c88bd473357efed32c70d34de3439cd9933d691e5363f1c8e581ccbd571.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/167c4c88bd473357efed32c70d34de3439cd9933d691e5363f1c8e581ccbd571.mp3",
+          "contentHash": "b977856f2c59466d135013e437694611f02423e61e44e20135c1f81ad81a98b4",
+          "byteSize": 19584
+        },
+        {
+          "text": "hotels",
+          "file": "46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "contentHash": "3926fb31061fcf78cba8bed5a11d303dd38b8bdf1afeb834bfbf1a8d8396a0aa",
+          "byteSize": 40320
+        },
+        {
+          "text": "smoke alarm",
+          "file": "36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "contentHash": "a31cd60876769920589f8aa050560c14ea219e6b698f0706576723b2a4aa79ff",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s44/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a freezer.",
+          "file": "4d09cf228826919f40bc8b554d94a1dcf7bc7bbb6fb1bf36591ce5adfe05f455.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4d09cf228826919f40bc8b554d94a1dcf7bc7bbb6fb1bf36591ce5adfe05f455.mp3",
+          "contentHash": "3ca26f77bcb233f21047bab39fa067c4a9900cd2c537fd7d7087cccc0559b50f",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l04/s44/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The hotels are next to the park.",
+          "file": "6c6ee8ea92e192dd5eb63d7e1229af50542ac54f568ed57c600d41d36b2addd1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6c6ee8ea92e192dd5eb63d7e1229af50542ac54f568ed57c600d41d36b2addd1.mp3",
+          "contentHash": "5e2fb5696c866ebc4ba93a6a59064b29a562b5e9e84326682f66512e8ecd91bd",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l04/s44/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "It's legal.",
+          "file": "dd42aeb2a3e36a02f74f2a4dbd403c975aa4d1f83080c3f49500f2c76200f0e5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd42aeb2a3e36a02f74f2a4dbd403c975aa4d1f83080c3f49500f2c76200f0e5.mp3",
+          "contentHash": "7abb31a676dd2a71f259cc96620b71cdd092e9fc2f365cef0d08972daf1d5fc7",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l04/s44/task/7": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There isn't a freezer.",
+          "file": "3833600808528b8cedba323d591270bc3313ff9422c68105a9612aa806dd3234.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3833600808528b8cedba323d591270bc3313ff9422c68105a9612aa806dd3234.mp3",
+          "contentHash": "224393939ecd1b950594d33b02ac9b169ef45a896066d5401e8ae4d8070028bb",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l04/s44/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The hotels are next to the shop.",
+          "file": "a63b7d847a5fafe64f15c825747d5963ff808ba10aa9d347637eb0d39dbb96d6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a63b7d847a5fafe64f15c825747d5963ff808ba10aa9d347637eb0d39dbb96d6.mp3",
+          "contentHash": "7b1a4ff2be28eb043a6e8709ca0ac9ff0ea7a82331dd5d1a2e35496a12b646c8",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l04/s44/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "freezer",
+          "file": "311c2507308df7c41875b598295b2b01bb6fafaf5c51da1ca8fbc8d19c2a05c1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/311c2507308df7c41875b598295b2b01bb6fafaf5c51da1ca8fbc8d19c2a05c1.mp3",
+          "contentHash": "bbf3abb992a9738842465db25eb7c2dc5e09acbba389a75a0df833e2de2e443c",
+          "byteSize": 36480
+        },
+        {
+          "text": "legal",
+          "file": "2c9ba7e54351ea186363fe41f1f4f7dcc65e0d89054e2844a808fc29834d9f9d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2c9ba7e54351ea186363fe41f1f4f7dcc65e0d89054e2844a808fc29834d9f9d.mp3",
+          "contentHash": "2d3c0b15fa0d1316bb19ba424c374fd9b056bab73b4508a431cb9fd470eee484",
+          "byteSize": 14208
+        },
+        {
+          "text": "hotels",
+          "file": "974a2d7b20abc29c9f4261dba00cd2d1c95ec18d76bb8f02d3c41bb58f8031d7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/974a2d7b20abc29c9f4261dba00cd2d1c95ec18d76bb8f02d3c41bb58f8031d7.mp3",
+          "contentHash": "a80ef1f41910cfb39a050bf5e1c3f5bf5e663bf8cbf25ff4ed34634699eb47ee",
+          "byteSize": 30720
+        },
+        {
+          "text": "smoke alarm",
+          "file": "e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e75696da1d0f9e2f5ef149e409778a0539b3119f33d29e3f8df3d1373f11721c.mp3",
+          "contentHash": "67af62d7ae80c4839260dd9ac290663995ee6705fbcde11742f3317735e4bfef",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l04/s44/task/10": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There aren't any freezers.",
+          "file": "5f2c02ef520ba94d76f5ab0817eec6d65361be9f0a5ab94530f6d3964dc7a2ba.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5f2c02ef520ba94d76f5ab0817eec6d65361be9f0a5ab94530f6d3964dc7a2ba.mp3",
+          "contentHash": "34497a38136f67fa48da6579240f06f2b065ab4a89553b31a8e2010bf5bc04a6",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s44/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is a freezer.",
+          "file": "4b48bb87b541d380ef0fccaaa5a363041c48918f935670dbfce70ad0b08e44c0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4b48bb87b541d380ef0fccaaa5a363041c48918f935670dbfce70ad0b08e44c0.mp3",
+          "contentHash": "677a9ae3abc9983ed502588197a2e91518b4e32c7643dee4e5cbaf6476e693a4",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s44/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Is there a smoke alarm?",
+          "file": "25c2df2ca549f30e6332275674a2a23002147336ab7551fedeff85cc56938a67.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/25c2df2ca549f30e6332275674a2a23002147336ab7551fedeff85cc56938a67.mp3",
+          "contentHash": "e3c17428beda69ea9d765c826c219a41cc58969bcbeda80ad8142c7eba461165",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l04/s44/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The freezer is in the kitchen.",
+          "file": "92c3c912dfc94c1efaf237c9d7e7c9e3fcffd49d46a5d33edc6fa91c2e5675ce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92c3c912dfc94c1efaf237c9d7e7c9e3fcffd49d46a5d33edc6fa91c2e5675ce.mp3",
+          "contentHash": "ca810c076dd6a539113e78fe5f6a4d599c0028c071258b5ffba8736fd85a21ac",
+          "byteSize": 39552
+        }
+      ]
+    },
+    "l04/s44/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "That is a freezer.",
+          "file": "7efffffdedb62a357444a67d559ef8f11e1c335f53657b2dc599f3a2016ff62e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7efffffdedb62a357444a67d559ef8f11e1c335f53657b2dc599f3a2016ff62e.mp3",
+          "contentHash": "e9def0bce1e3fa4ca3a51608c635b84b18ef5300c7355d3822b16453e35b259e",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s44/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "freezer",
+          "file": "38361b8ece80176b90fd8387d5e00adbe689d85e8d405725da0f25b4bc0cdf64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38361b8ece80176b90fd8387d5e00adbe689d85e8d405725da0f25b4bc0cdf64.mp3",
+          "contentHash": "863f7715210c981198cfddafd25c052c076a659fcc47a4e753322c7275b3def0",
+          "byteSize": 19584
+        },
+        {
+          "text": "legal",
+          "file": "167c4c88bd473357efed32c70d34de3439cd9933d691e5363f1c8e581ccbd571.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/167c4c88bd473357efed32c70d34de3439cd9933d691e5363f1c8e581ccbd571.mp3",
+          "contentHash": "b977856f2c59466d135013e437694611f02423e61e44e20135c1f81ad81a98b4",
+          "byteSize": 19584
+        },
+        {
+          "text": "hotels",
+          "file": "46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/46e9235c9a1fbdbde043e2b242bbcdf0856713bec03fe2be28a3764833951d1a.mp3",
+          "contentHash": "3926fb31061fcf78cba8bed5a11d303dd38b8bdf1afeb834bfbf1a8d8396a0aa",
+          "byteSize": 40320
+        },
+        {
+          "text": "smoke alarm",
+          "file": "36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36284eed8a853b63e72f7c5444f6f4a09f1a4def3cc73f8969eda2bc3c9d78f0.mp3",
+          "contentHash": "a31cd60876769920589f8aa050560c14ea219e6b698f0706576723b2a4aa79ff",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s44/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a freezer?",
+          "file": "571d072083a0a15a461e45c42c26b948ef61eaeebda4100b39cf3d792fa36996.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/571d072083a0a15a461e45c42c26b948ef61eaeebda4100b39cf3d792fa36996.mp3",
+          "contentHash": "bf10688a4957d6d94adda22a776bf0832b25fb9179658f4eb3dd6f0e6d87e291",
+          "byteSize": 29952
+        }
+      ]
     }
   },
   "settings": {

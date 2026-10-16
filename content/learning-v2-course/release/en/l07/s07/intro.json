@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о расписании и работе людей, сообщить об отсутствии вещи",
+    "uk": "запитати про розклад і роботу людей, повідомити про відсутність речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда проходят занятия",
+        "uk": "Коли проходять заняття"
+      },
+      "bodyByLocale": {
+        "ru": "`schedule` — «расписание» или «график». Вы хотите узнать время занятий в мастерской. `Do you have a schedule?` — «У вас есть расписание?» Сначала `Do you`, затем `have`. Одно расписание — `a schedule`.",
+        "uk": "`schedule` — «розклад» або «графік». Ви хочете дізнатися час занять у майстерні. `Do you have a schedule?` — «У вас є розклад?» Спочатку `Do you`, потім `have`. Один розклад — `a schedule`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите сотрудника «У вас есть расписание?»",
+          "uk": "Запитайте працівника «У вас є розклад?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-07:intro1:r1",
+              "text": "Do you have a schedule?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro1:r2",
+              "text": "Are you have a schedule?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro1:r3",
+              "text": "Do you has a schedule?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-07:intro1:r1",
+              "text": "Do you have a schedule?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro1:r2",
+              "text": "Are you have a schedule?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro1:r3",
+              "text": "Do you has a schedule?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите сотрудника «У вас есть расписание?»",
+          "uk": "Запитайте працівника «У вас є розклад?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "К кому обратиться",
+        "uk": "До кого звернутися"
+      },
+      "bodyByLocale": {
+        "ru": "У входа стоит человек с чашкой. Вы не знаете, сотрудник ли он. `Do you work here?` — «Вы работаете здесь?» С действием `work` используем `Do you`. Чашка в руках ещё не служебное удостоверение — лучше спросить.",
+        "uk": "Біля входу стоїть людина з чашкою. Ви не знаєте, чи це працівник. `Do you work here?` — «Ви працюєте тут?» З дією `work` використовуємо `Do you`. Чашка в руках — ще не службове посвідчення, краще запитати."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите человека «Вы работаете здесь?»",
+          "uk": "Запитайте людину «Ви працюєте тут?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-07:intro2:r1",
+              "text": "Do you work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro2:r2",
+              "text": "Are you work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro2:r3",
+              "text": "Do you works here?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-07:intro2:r1",
+              "text": "Do you work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro2:r2",
+              "text": "Are you work here?"
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro2:r3",
+              "text": "Do you works here?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите человека «Вы работаете здесь?»",
+          "uk": "Запитайте людину «Ви працюєте тут?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Расписания на столе нет",
+        "uk": "Розкладу на столі немає"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник попросил посмотреть на столе. Вы проверили: `There is no schedule here` — «Здесь нет расписания». Говорим `There is no` и называем одну вещь. Эта фраза сообщает результат поиска; она не означает, что занятий вообще нет.",
+        "uk": "Працівник попросив подивитися на столі. Ви перевірили: `There is no schedule here` — «Тут немає розкладу». Кажемо `There is no` і називаємо одну річ. Ця фраза повідомляє результат пошуку; вона не означає, що занять узагалі немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите сотруднику «Здесь нет расписания».",
+          "uk": "Повідомте працівникові «Тут немає розкладу»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-07:intro3:r1",
+              "text": "There is no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro3:r2",
+              "text": "There are no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro3:r3",
+              "text": "There no schedule here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-07:intro3:r1",
+              "text": "There is no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro3:r2",
+              "text": "There are no schedule here."
+            },
+            {
+              "responseId": "en:lesson-07:session-07:intro3:r3",
+              "text": "There no schedule here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите сотруднику «Здесь нет расписания».",
+          "uk": "Повідомте працівникові «Тут немає розкладу»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "31583c1c492e1a0fbff5feaca08daa3e29c26ed2698e56fd4637f8547a105c3b"
+}

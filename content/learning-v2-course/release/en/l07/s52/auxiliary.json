@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-52:intro1:r2": {
+          "ru": "После `I` нужно `ski`.",
+          "uk": "Після `I` потрібне `ski`."
+        },
+        "en:lesson-07:session-52:intro1:r3": {
+          "ru": "Здесь нужна форма `ski`.",
+          "uk": "Тут потрібна форма `ski`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-52:intro2:r2": {
+          "ru": "После `I` нужно `polish`.",
+          "uk": "Після `I` потрібне `polish`."
+        },
+        "en:lesson-07:session-52:intro2:r3": {
+          "ru": "Здесь нужна форма `polish`.",
+          "uk": "Тут потрібна форма `polish`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-52:intro3:r2": {
+          "ru": "Бассейн один: нужно `is`.",
+          "uk": "Басейн один: потрібне `is`."
+        },
+        "en:lesson-07:session-52:intro3:r3": {
+          "ru": "В этом вопросе `is` стоит перед `the pool`.",
+          "uk": "У цьому запитанні `is` стоїть перед `the pool`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8837acbd879007f099368ef5935a0da28f6821375de2cb95d932a609c6280830"
+}

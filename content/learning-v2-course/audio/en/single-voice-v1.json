@@ -117427,6 +117427,309 @@
           "byteSize": 49920
         }
       ]
+    },
+    "l07/s52/intro/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually ski.",
+          "file": "f3e2c3636846b7ae0e7dd6c2c387ccefd126b383ebacb3ea9aa7665bd4d96417.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3e2c3636846b7ae0e7dd6c2c387ccefd126b383ebacb3ea9aa7665bd4d96417.mp3",
+          "contentHash": "ec1ea2a9c6e60470bbe720d9ae4800875dae6a2317b774f28593cdfd746c07c1",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s52/intro/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually polish the table.",
+          "file": "0d1dca4ae7aedb6fcc90111acd7c5810d5a0850b57d4c16e986f2932ab0e2882.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0d1dca4ae7aedb6fcc90111acd7c5810d5a0850b57d4c16e986f2932ab0e2882.mp3",
+          "contentHash": "f3bec8ad0f64e3a621d7df7931dc27d287bece094971717110789b54519055e0",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s52/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the pool?",
+          "file": "75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "contentHash": "a024d247164446e4e45e7bed5a641eb4fe41eeaf957287f0e540c6dce8572e41",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s52/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually ski.",
+          "file": "f3e2c3636846b7ae0e7dd6c2c387ccefd126b383ebacb3ea9aa7665bd4d96417.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3e2c3636846b7ae0e7dd6c2c387ccefd126b383ebacb3ea9aa7665bd4d96417.mp3",
+          "contentHash": "ec1ea2a9c6e60470bbe720d9ae4800875dae6a2317b774f28593cdfd746c07c1",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s52/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "ski",
+          "file": "a82a5c0233bb36479b9fcc312f82c328462a748ed78df1dcdb32d11f0684e4b1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a82a5c0233bb36479b9fcc312f82c328462a748ed78df1dcdb32d11f0684e4b1.mp3",
+          "contentHash": "c1bc33a147a0b6c5117719157ff5c3ce9e20cf17303b63981482e50dd57cc0e2",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l07/s52/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I usually ski.",
+          "file": "534bf061e9494add409ade66c9a01238052cf65f991213d41688c638a5935ce8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/534bf061e9494add409ade66c9a01238052cf65f991213d41688c638a5935ce8.mp3",
+          "contentHash": "0ad729644f17c0d1c2f7341f9988c1dc761d38caafa71edc412df4f336dc7305",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l07/s52/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "ski",
+          "file": "a82a5c0233bb36479b9fcc312f82c328462a748ed78df1dcdb32d11f0684e4b1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a82a5c0233bb36479b9fcc312f82c328462a748ed78df1dcdb32d11f0684e4b1.mp3",
+          "contentHash": "c1bc33a147a0b6c5117719157ff5c3ce9e20cf17303b63981482e50dd57cc0e2",
+          "byteSize": 21120
+        },
+        {
+          "text": "polish",
+          "file": "44608e813924a237fd280f64b50d31135fc058980a403296368886549d9d0e2a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/44608e813924a237fd280f64b50d31135fc058980a403296368886549d9d0e2a.mp3",
+          "contentHash": "81d7d828f8d5810ed848726d245c8c3f53fdf4c7be2f0a6b82db342b7723bd49",
+          "byteSize": 22656
+        },
+        {
+          "text": "stations",
+          "file": "cf555611087cced210bcc1fa51d76fb72ddf1d14df0e46580d450c17ed52eb2c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cf555611087cced210bcc1fa51d76fb72ddf1d14df0e46580d450c17ed52eb2c.mp3",
+          "contentHash": "20f250cd995d2234f3b792dc05d00854c2682b433221a1a730545294b426d60f",
+          "byteSize": 20352
+        },
+        {
+          "text": "pool",
+          "file": "ab8d0c7609d29d4de08de88a45af2b140a626aa93ea0ac6afdc1cc056ba12e68.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ab8d0c7609d29d4de08de88a45af2b140a626aa93ea0ac6afdc1cc056ba12e68.mp3",
+          "contentHash": "558aeee8f49d9493907b9df494808f918b29ad942f0e781d1008c6ffa303f263",
+          "byteSize": 16512
+        }
+      ]
+    },
+    "l07/s52/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually ski.",
+          "file": "51e01290231266df3bc065715cce31d47cca66b045bc14207d267cfe3930e07a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51e01290231266df3bc065715cce31d47cca66b045bc14207d267cfe3930e07a.mp3",
+          "contentHash": "831dd607a37fc575a4214262d262f7c49ab229db40b796e5d65697b4e713968e",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l07/s52/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually polish the table.",
+          "file": "0d1dca4ae7aedb6fcc90111acd7c5810d5a0850b57d4c16e986f2932ab0e2882.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0d1dca4ae7aedb6fcc90111acd7c5810d5a0850b57d4c16e986f2932ab0e2882.mp3",
+          "contentHash": "f3bec8ad0f64e3a621d7df7931dc27d287bece094971717110789b54519055e0",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s52/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where is the pool?",
+          "file": "7ad7c49ac9d5ed51de3965b0b4552cfd65d6626d082fd1c14039821a50f90131.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7ad7c49ac9d5ed51de3965b0b4552cfd65d6626d082fd1c14039821a50f90131.mp3",
+          "contentHash": "c06b75d9590e92ba7a3dedac8a8a0d3814349a712c9d1b54d4c657580ef576dc",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s52/task/7": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "I usually polish the table.",
+          "file": "e5a66a0a53d9b0b5c31616edb94894b986cce04d59861e73573270e2ca766517.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e5a66a0a53d9b0b5c31616edb94894b986cce04d59861e73573270e2ca766517.mp3",
+          "contentHash": "1ae1c8b77977930074dbfa08848a82cfe8761d8656c9dcc73641db63b761618c",
+          "byteSize": 52992
+        }
+      ]
+    },
+    "l07/s52/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "I usually ski.",
+          "file": "ea7395d0bebdef7be3492608def6c1cb78ad830c718f935c42650ee0b99087b5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ea7395d0bebdef7be3492608def6c1cb78ad830c718f935c42650ee0b99087b5.mp3",
+          "contentHash": "6b5b72383b6ddacc85049dc75a28bc2802b396ebe06f7398dfa539db0429ab7d",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l07/s52/task/9": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "wear",
+          "file": "a5361e2e427442f721e4cf358e062c6bbd1386a47c1d050e16492615b16d8946.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5361e2e427442f721e4cf358e062c6bbd1386a47c1d050e16492615b16d8946.mp3",
+          "contentHash": "e31accc244c9ff10069b73cd4f351cb6513aa1d12c53bd583285e4e4aa0594a2",
+          "byteSize": 36480
+        },
+        {
+          "text": "ski",
+          "file": "467156c29c13f537a43672d103dcdaba1f361952618b6c51ded7178b0d098550.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/467156c29c13f537a43672d103dcdaba1f361952618b6c51ded7178b0d098550.mp3",
+          "contentHash": "8c1f7bd87c357399c2301aec25885a3a1f4d99b7feaa922faa2fbde04e926c8c",
+          "byteSize": 25344
+        },
+        {
+          "text": "polish",
+          "file": "bdec4cf089494b2fb9be7c7d7b628b87860f2bfb3d84d0ecd3cb622d81dc87af.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bdec4cf089494b2fb9be7c7d7b628b87860f2bfb3d84d0ecd3cb622d81dc87af.mp3",
+          "contentHash": "50c749af02b6c58352a4a303bbec15a002810af87d50b0fc7885839f6394194c",
+          "byteSize": 21888
+        },
+        {
+          "text": "stations",
+          "file": "f16b6ea061f632f932436e0030585fcc8331006cb436705d71fdf5761c93b7ce.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f16b6ea061f632f932436e0030585fcc8331006cb436705d71fdf5761c93b7ce.mp3",
+          "contentHash": "4c807c2e42981bd904999f7ed62fd6fbb88097882ff8d031c45c8d091b2f8288",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l07/s52/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Where is the pool?",
+          "file": "f21dfcb59e6a47e59ae7eaf432ff8dab7c3e7cea38b57ea77fa0236ee3d6ade4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f21dfcb59e6a47e59ae7eaf432ff8dab7c3e7cea38b57ea77fa0236ee3d6ade4.mp3",
+          "contentHash": "d05a2e3611efd3e08af6a1fdf4f84c56a574ba18c78b74408e70a67430bd4745",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s52/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Where are the stations?",
+          "file": "465c4e2843d59d561cb14b837968960e64880725276dcf1a7d6fc69d95ec174c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/465c4e2843d59d561cb14b837968960e64880725276dcf1a7d6fc69d95ec174c.mp3",
+          "contentHash": "e80318b650d2f02fa87dbd989122113977c5d99298a81e5bb75029af9dbd8850",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l07/s52/task/12": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you wear a hat?",
+          "file": "842d8f93cfd00fb653979dd1adada25c185b79ec0fefc158b4ddd13d808faaaa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/842d8f93cfd00fb653979dd1adada25c185b79ec0fefc158b4ddd13d808faaaa.mp3",
+          "contentHash": "d5d6832e8d6b9fad56cdaae5e2d9ab9973c429f4ed233a0546b87dc1bde952a7",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l07/s52/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I usually ski.",
+          "file": "f3e2c3636846b7ae0e7dd6c2c387ccefd126b383ebacb3ea9aa7665bd4d96417.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f3e2c3636846b7ae0e7dd6c2c387ccefd126b383ebacb3ea9aa7665bd4d96417.mp3",
+          "contentHash": "ec1ea2a9c6e60470bbe720d9ae4800875dae6a2317b774f28593cdfd746c07c1",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s52/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is the pool?",
+          "file": "75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/75f6c1ca10a21112bdec32e2fedc552107d6b16b576e44d9cea4cad124905715.mp3",
+          "contentHash": "a024d247164446e4e45e7bed5a641eb4fe41eeaf957287f0e540c6dce8572e41",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s52/task/15": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "ski",
+          "file": "de32619c7ec65620d8681d340705325df10a33ff72179e331a65eeeaae659f4d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/de32619c7ec65620d8681d340705325df10a33ff72179e331a65eeeaae659f4d.mp3",
+          "contentHash": "1387e71959020cccbb71c49251aed625ef87c90d559b48c717101feaa9459371",
+          "byteSize": 21888
+        },
+        {
+          "text": "pool",
+          "file": "e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e034cef2a658786874f178df3e1170d548a675178856983307f4c952b2722863.mp3",
+          "contentHash": "416c6a037689d6dc6723d9f7e12059e25bc3e8c64340450b4894852ce4dd1cf9",
+          "byteSize": 6912
+        },
+        {
+          "text": "wear",
+          "file": "808e47fe77feeaa444b3862f129fe0567be4f261c7ffeb5cae86aaeab8cabe6a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/808e47fe77feeaa444b3862f129fe0567be4f261c7ffeb5cae86aaeab8cabe6a.mp3",
+          "contentHash": "799c3471697bc29d578c5971aa29f302a3a085ccc33e01fe65294290449024af",
+          "byteSize": 21120
+        },
+        {
+          "text": "polish",
+          "file": "13973a29cf93d68e7e259856f4fd5bd2befd237c8166a478c8b5d5aa3e1a3995.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13973a29cf93d68e7e259856f4fd5bd2befd237c8166a478c8b5d5aa3e1a3995.mp3",
+          "contentHash": "ce183ff42c777ae4872ca3f9df5105d4d85cbe0f28bd37b01b04c93370e317d1",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l07/s52/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom usually skis.",
+          "file": "25837e7afd2515efbc4f43a0f3833588b692e8e659e7321959318b4ee649f594.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/25837e7afd2515efbc4f43a0f3833588b692e8e659e7321959318b4ee649f594.mp3",
+          "contentHash": "ef7c8d06dc26b124b5fee87a2548df93a1679809e4a4b486885cc2f13148dc7a",
+          "byteSize": 38784
+        }
+      ]
     }
   },
   "settings": {

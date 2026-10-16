@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-52:i01",
+    "correctText": "I usually ski.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i02",
+    "correctText": "ski",
+    "correctResponseId": "en:lesson-07:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i03",
+    "correctText": "ski",
+    "correctResponseId": "en:lesson-07:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i04",
+    "correctText": "en:lesson-07:session-52:i04:p1=ski\nen:lesson-07:session-52:i04:p2=polish\nen:lesson-07:session-52:i04:p3=stations\nen:lesson-07:session-52:i04:p4=pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i05",
+    "correctText": "I usually ski.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i06",
+    "correctText": "I usually polish the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i07",
+    "correctText": "Where is the pool?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i08",
+    "correctText": "polish",
+    "correctResponseId": "en:lesson-07:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i09",
+    "correctText": "I usually ski.",
+    "correctResponseId": "en:lesson-07:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i10",
+    "correctText": "en:lesson-07:session-52:i10:p1=wear\nen:lesson-07:session-52:i10:p2=ski\nen:lesson-07:session-52:i10:p3=polish\nen:lesson-07:session-52:i10:p4=stations",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i11",
+    "correctText": "Where is the pool?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i12",
+    "correctText": "Where are the stations?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i13",
+    "correctText": "Do you wear a hat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-52:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i15",
+    "correctText": "Where is the pool?",
+    "correctResponseId": "en:lesson-07:session-52:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i16",
+    "correctText": "en:lesson-07:session-52:i16:p1=ski\nen:lesson-07:session-52:i16:p2=pool\nen:lesson-07:session-52:i16:p3=wear\nen:lesson-07:session-52:i16:p4=polish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-52:i17",
+    "correctText": "Tom usually skis.",
+    "correctResponseId": null
+  }
+]

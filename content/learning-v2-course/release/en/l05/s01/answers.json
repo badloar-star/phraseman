@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-01:i01",
+    "correctText": "I'm here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-05:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i03",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-05:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i04",
+    "correctText": "en:lesson-05:session-01:i04:p1=have\nen:lesson-05:session-01:i04:p2=here\nen:lesson-05:session-01:i04:p3=ready\nen:lesson-05:session-01:i04:p4=key",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i05",
+    "correctText": "You have a key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i06",
+    "correctText": "I have a key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i07",
+    "correctText": "I'm fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-05:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i09",
+    "correctText": "He's fine.",
+    "correctResponseId": "en:lesson-05:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i10",
+    "correctText": "en:lesson-05:session-01:i10:p1=pharmacy\nen:lesson-05:session-01:i10:p2=library\nen:lesson-05:session-01:i10:p3=bakery\nen:lesson-05:session-01:i10:p4=canal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i11",
+    "correctText": "We are ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i12",
+    "correctText": "They have a key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i13",
+    "correctText": "We are happy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i14",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-05:session-01:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i15",
+    "correctText": "She has a key.",
+    "correctResponseId": "en:lesson-05:session-01:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i16",
+    "correctText": "en:lesson-05:session-01:i16:p1=pharmacy\nen:lesson-05:session-01:i16:p2=library\nen:lesson-05:session-01:i16:p3=bakery\nen:lesson-05:session-01:i16:p4=canal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-01:i17",
+    "correctText": "She has a key.",
+    "correctResponseId": null
+  }
+]

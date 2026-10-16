@@ -6726,11 +6726,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "She is married.",
-          "file": "c265e2cd21f4776947cbd9c11d85b963e2a1075d54baec8780f0098ec3eb3875.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c265e2cd21f4776947cbd9c11d85b963e2a1075d54baec8780f0098ec3eb3875.mp3",
-          "contentHash": "b5158bb811b6de1db6d173b754b9fba7e712387c7bfc40b9fcdca76283100695",
-          "byteSize": 30720
+          "text": "married",
+          "file": "b330a979e34487c2732da205bd38b108bc0d7badcd11c744ecc06b051598f4b2.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9ce3beb80492facbec35863-nova.mp3",
+          "contentHash": "cfaf87380cb058639459c26ac84ece3e0d34c2fd925a899cb382b856b435bcd8",
+          "byteSize": 21120
         }
       ]
     },
@@ -6738,15 +6738,63 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "He is single.",
-          "file": "fedc63943445eaf938428a460cbbb730f273927007f13f8fb9b63254ca0d3c0b.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fedc63943445eaf938428a460cbbb730f273927007f13f8fb9b63254ca0d3c0b.mp3",
-          "contentHash": "da463ec5243630b44288c35eb16badfa0523a4b327b4a187c396bcbebcf069e2",
-          "byteSize": 26112
+          "text": "single",
+          "file": "324f7263d02f2fd60b44e5212dddb95e14dc4674716a76ad4b4a243b9370dc32.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/947f187506f7629c81c81879-ash.mp3",
+          "contentHash": "fcd5b7878fb3af678c8a8df1205c5ee55dbc6c8fe78bd98ebc7d6e84991e848f",
+          "byteSize": 23040
         }
       ]
     },
     "l01/s23/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "different",
+          "file": "4a52b34faa5fc740b77b3f8481054a94747d8a583aa49097c94dcaa4c3c4c64f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a52b34faa5fc740b77b3f8481054a94747d8a583aa49097c94dcaa4c3c4c64f.mp3",
+          "contentHash": "fbd4c2b0bbbec69089d19258c66f811db7dc2dd3a71612944a574eff82b3d66a",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l01/s23/task/3": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "engaged",
+          "file": "8e481f4a0218b693915c682ecb1b27fbc179cf624732ffa2120f978b05aaf0e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e481f4a0218b693915c682ecb1b27fbc179cf624732ffa2120f978b05aaf0e8.mp3",
+          "contentHash": "965f6b3c8725df9a12d1e4388a5b1433edefdaf28a6f19b3c00757c829c3b4dc",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l01/s23/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is married.",
+          "file": "6d2064f300883339fd86083cd698cbb9da03676afad26c6455e605a8236c173e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d2064f300883339fd86083cd698cbb9da03676afad26c6455e605a8236c173e.mp3",
+          "contentHash": "2fc69e1bb9bd8d442cb2b1a40ecb0fdeaa264b55fd0925484f834a328ef98a3f",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l01/s23/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He is single.",
+          "file": "2e9825b9f0121969ec989385d03399b12140dd8b5e0d4dea39670b64854e3dd3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2e9825b9f0121969ec989385d03399b12140dd8b5e0d4dea39670b64854e3dd3.mp3",
+          "contentHash": "b1df325b483fc1aad2e2280ee6d7101fffe10458146a2a7c61bafd90558e37cc",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l01/s23/task/6": {
       "voice": "ash",
       "clips": [
         {
@@ -6758,64 +6806,64 @@
         }
       ]
     },
-    "l01/s23/task/3": {
-      "voice": "coral",
-      "clips": [
-        {
-          "text": "married",
-          "file": "255dab01c985ab6111f870e4b52fb38348570804d89f64688a232e9cfa1c4848.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9ce3beb80492facbec35863-coral.mp3",
-          "contentHash": "4787badb721d15d099b5ffabc93c5bd3ea4016b9cdfe418c39cf88b848504bf5",
-          "byteSize": 27648
-        },
-        {
-          "text": "single",
-          "file": "337bbf82419e0911c0b8978bb37558321af449e02c3f2509992c8f1bf9ec4d7d.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/947f187506f7629c81c81879-coral.mp3",
-          "contentHash": "589409336b967ee2207be228cf00f473e229061533c79452ff7187869823e349",
-          "byteSize": 44160
-        },
-        {
-          "text": "different",
-          "file": "45e813c9d6ab6e08df1c10432a8fc926d3949158cc7b7bfc5a5eab40fd20aaab.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/45e813c9d6ab6e08df1c10432a8fc926d3949158cc7b7bfc5a5eab40fd20aaab.mp3",
-          "contentHash": "fee8cfde92a9de208830f322c48a3b6554231e12d453de4e37af39c3a8b7ebf2",
-          "byteSize": 32256
-        },
-        {
-          "text": "famous",
-          "file": "fc08db4faa50d0c6f804c92dd2f6303a5d5e1a459730de5182f3dc9b51b2adeb.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/79b1bc81314de30fec0e2a48-coral.mp3",
-          "contentHash": "1150c6c56a469c41e2f0f5878f3af9133b2895879ac8454117012e98383a5365",
-          "byteSize": 32640
-        }
-      ]
-    },
-    "l01/s23/task/4": {
+    "l01/s23/task/7": {
       "voice": "onyx",
       "clips": [
         {
-          "text": "I am married.",
-          "file": "c9cb1408b90a176b29798c9bd39a70e0bec62b51eabba0b5fe335478bb71a95e.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c9cb1408b90a176b29798c9bd39a70e0bec62b51eabba0b5fe335478bb71a95e.mp3",
-          "contentHash": "9e35f3123e804094412e0cbeed204703afc2f9466f992b5cae4f24d281b8926b",
+          "text": "married",
+          "file": "60849712cc4502f8e3d4885a5861bd7ca01902b130240029e055aad96ae32338.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9ce3beb80492facbec35863-onyx.mp3",
+          "contentHash": "e37478fc9aa025000184d7da1ff101494a2eb2906b5345bc9ecee64f51805f30",
+          "byteSize": 14976
+        },
+        {
+          "text": "single",
+          "file": "ededaeb6a926e917f1287a88122afd886460ec8fdb062198b73f0fdc34dca778.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/947f187506f7629c81c81879-onyx.mp3",
+          "contentHash": "fd173b1250f654ae92baaf6fb760487c3b9e6610f588cff1bf7c07ce880642f2",
           "byteSize": 33792
+        },
+        {
+          "text": "different",
+          "file": "14489da5f4d970540f254d65ae3d53c7905a915eaf9089a7b7cf435a1d7ee3c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14489da5f4d970540f254d65ae3d53c7905a915eaf9089a7b7cf435a1d7ee3c5.mp3",
+          "contentHash": "6800a3af7af6fe9f296f1814e04c6e0950f38695774ebba9863de4a330c40ddc",
+          "byteSize": 24192
+        },
+        {
+          "text": "engaged",
+          "file": "9df30e70674616f87050a961d20aff7cb2ee453e470bde6a858180dec89936b7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9df30e70674616f87050a961d20aff7cb2ee453e470bde6a858180dec89936b7.mp3",
+          "contentHash": "7a22ff09a90dc105f7e89772368e385fb5d2f176c5fa9c6a48b9fa30286936b7",
+          "byteSize": 26112
         }
       ]
     },
-    "l01/s23/task/5": {
-      "voice": "coral",
+    "l01/s23/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I am married.",
+          "file": "1ef69e896876b9dbeecf79523b67d64ff797be9991ecc4ccac1e0a44cbea535b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1ef69e896876b9dbeecf79523b67d64ff797be9991ecc4ccac1e0a44cbea535b.mp3",
+          "contentHash": "c089e6e2ab5fdb365e9a7a0779063dd31c00bd0f128672249fa0a6900b367b2e",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l01/s23/task/9": {
+      "voice": "onyx",
       "clips": [
         {
           "text": "They are different.",
-          "file": "3a6c9462ef009266687974cccaaace6342a98807af533b177caf224b1c8b4024.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a6c9462ef009266687974cccaaace6342a98807af533b177caf224b1c8b4024.mp3",
-          "contentHash": "f00d268a17806d5433628d7e951b35cb772a3947a8e08ec706e8252b0e0b512e",
-          "byteSize": 32640
+          "file": "cbe32fb069e85925d935909d9012e28833294744438669c0967491db82324569.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cbe32fb069e85925d935909d9012e28833294744438669c0967491db82324569.mp3",
+          "contentHash": "bfdc95606befd57868a278614ed67f400ca1df4b0908c2551456ff75d7f6c539",
+          "byteSize": 26112
         }
       ]
     },
-    "l01/s23/task/6": {
+    "l01/s23/task/10": {
       "voice": "ash",
       "clips": [
         {
@@ -6827,88 +6875,88 @@
         }
       ]
     },
-    "l01/s23/task/7": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "He is married.",
-          "file": "d7b1da984f4a92567c2470174ba0175e225766a0b30c5c8c43531003bacfa6ea.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d7b1da984f4a92567c2470174ba0175e225766a0b30c5c8c43531003bacfa6ea.mp3",
-          "contentHash": "69d8040f7dfbe30693819f4b22560d5ea6174277cf81b949ce4f1411d4456ba4",
-          "byteSize": 26112
-        }
-      ]
-    },
-    "l01/s23/task/8": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "We are married.",
-          "file": "6e8d4671b823c3fd0f5c6701228702237a442249d562e3ed1a2bedbe98989221.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e8d4671b823c3fd0f5c6701228702237a442249d562e3ed1a2bedbe98989221.mp3",
-          "contentHash": "c4e6bd9b1768bec6f719eb7e4caf788925576d5023d20bbf99e93af1b9bc1eeb",
-          "byteSize": 28416
-        }
-      ]
-    },
-    "l01/s23/task/9": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "rich",
-          "file": "c5f999480807cf8ce5102239c12a28b27f14595ee3c5e12be294a97093be446e.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/7baa68f2418ba82d2545a780-onyx.mp3",
-          "contentHash": "cd5bfe76ece58d3b355127d5abc942c47a569ed234aefd0a24166ba80bf12c4b",
-          "byteSize": 20352
-        },
-        {
-          "text": "poor",
-          "file": "a50624f9476dcca557ebd5a9c08888bcc54a9c6210e15a4786148186eb2a934e.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a50624f9476dcca557ebd5a9c08888bcc54a9c6210e15a4786148186eb2a934e.mp3",
-          "contentHash": "646bed690d879f3214a71074c1c344f29648051a2e1deb6c2ba45254d4b58ac9",
-          "byteSize": 21120
-        },
-        {
-          "text": "easy",
-          "file": "f8a66d22891531186610896508a9b2834050e237e007fb96ccfdb76b4b9306e8.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/97c10efe01d5c9c88704a12d-onyx.mp3",
-          "contentHash": "741dfd3ba537876e0142f5b531f8493ad9bb667828fdbf38b4e3aaf932e9620e",
-          "byteSize": 22656
-        },
-        {
-          "text": "difficult",
-          "file": "8e5ff5710dbf303a6a137d0a1d102511141b566897fb99c0c58a708c75206cd3.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e5ff5710dbf303a6a137d0a1d102511141b566897fb99c0c58a708c75206cd3.mp3",
-          "contentHash": "d4a91cc84f350c6c1b2d948918673b354e29e7da137f0bf6ef49fd5cd4836151",
-          "byteSize": 35712
-        }
-      ]
-    },
-    "l01/s23/task/10": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "She is single.",
-          "file": "74ca6e9ce93fd3775751864f92efae886788879a43c57e5ced0b1c4822ac54d2.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/74ca6e9ce93fd3775751864f92efae886788879a43c57e5ced0b1c4822ac54d2.mp3",
-          "contentHash": "5b975e5af8acadb0d32a311d8f2152dcf0bd9e4c5f226f1d3de25b2bc6594a21",
-          "byteSize": 34944
-        }
-      ]
-    },
     "l01/s23/task/11": {
       "voice": "coral",
       "clips": [
         {
-          "text": "You are different.",
-          "file": "1d54b693425af2ed407dc8c6adda1d4e148556f27e39940414136436f49dce2b.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1d54b693425af2ed407dc8c6adda1d4e148556f27e39940414136436f49dce2b.mp3",
-          "contentHash": "f93b4e3dd9c50e0de5d4fbc8fd4adc75871e784da4ff8daf818a1ad76cce5e17",
-          "byteSize": 40320
+          "text": "He is married.",
+          "file": "f7f07385d1b3edc4ea4eb41a7ff74375e471a71ecec18d206432a59134c82da2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f7f07385d1b3edc4ea4eb41a7ff74375e471a71ecec18d206432a59134c82da2.mp3",
+          "contentHash": "b3b7670d41fe110bb0a8daaf7b60a0a22c32621b71b484f29439697b0fee4cd4",
+          "byteSize": 29184
         }
       ]
     },
     "l01/s23/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We are married.",
+          "file": "3922aa31bacc5c4e24cb6cdb599d1711dd3e1c6fc7e8cc709e21590133500da0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3922aa31bacc5c4e24cb6cdb599d1711dd3e1c6fc7e8cc709e21590133500da0.mp3",
+          "contentHash": "20d7af0272ac8a3cc22394cb2d19ee0d2ba3f10309c15f314172d2d65744d72d",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l01/s23/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "rich",
+          "file": "70f6133d491e25ca39a3119d3a22a2e9f81e2fb3cf5dab7eeed3341efb021542.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/7baa68f2418ba82d2545a780-ash.mp3",
+          "contentHash": "df0851ae66ae6e9ee9b52be9c65865887920390fbe4164371922fb011b418e74",
+          "byteSize": 20352
+        },
+        {
+          "text": "poor",
+          "file": "7af7a23dad971bb335a886ea3583275c05501a608bcd493685c72091735d2a64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7af7a23dad971bb335a886ea3583275c05501a608bcd493685c72091735d2a64.mp3",
+          "contentHash": "a08c572424b34956566721c0c85ab7ba8e777a12b70b4cc6b1b81d4e353fb92a",
+          "byteSize": 29184
+        },
+        {
+          "text": "famous",
+          "file": "d3f38104b2e506d0daa07adb2b72d2bf6875738cd3e7682047aee2563cef819e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/79b1bc81314de30fec0e2a48-ash.mp3",
+          "contentHash": "1a0278774ee732b4aae73e0667516674b69f154cf395b156d8163fc4b9984d9b",
+          "byteSize": 42624
+        },
+        {
+          "text": "generous",
+          "file": "a1007291eb269d0543b955d37133d9aa6f53a45727b40d6caf7682af24eb065c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a1007291eb269d0543b955d37133d9aa6f53a45727b40d6caf7682af24eb065c.mp3",
+          "contentHash": "473f0134fd8ceed67f9f06169f1500e354266c7333becae58fa28b0436b63ce1",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l01/s23/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is single.",
+          "file": "38d2ef024962249aaa9c7dc8768f000d2c11e45e7d77d4a98e871b0c69ee0729.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/38d2ef024962249aaa9c7dc8768f000d2c11e45e7d77d4a98e871b0c69ee0729.mp3",
+          "contentHash": "dd8ef4c0d5e4dd9d69f84af6753279b43de0571dd39967797eb47e5bbdfe37d6",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l01/s23/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She is engaged.",
+          "file": "e2182610eb4b1bf938b2b5764b6baf052304dcc9cfe51d7fe8673cbb7acbe549.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e2182610eb4b1bf938b2b5764b6baf052304dcc9cfe51d7fe8673cbb7acbe549.mp3",
+          "contentHash": "346216a01f513928ecbbc8b54fb1a3729f6abbdd31b4b0a39138d8497999670d",
+          "byteSize": 35712
+        }
+      ]
+    },
+    "l01/s23/task/16": {
       "voice": "onyx",
       "clips": [
         {
@@ -6917,75 +6965,6 @@
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/088b3359d09378e8b898222c535da68869a1b50b2ecff640ad036398787fadb6.mp3",
           "contentHash": "98c5908cbe24abb73f42c8e0b1b902e39064d0b4aa2dc142c6c0397d4cede505",
           "byteSize": 30720
-        }
-      ]
-    },
-    "l01/s23/task/13": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "She is single .",
-          "file": "e7f7d396e5e3044bbb24f0ab2fb5c3d74fc43b23e72b7854b951056f54eba85e.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e7f7d396e5e3044bbb24f0ab2fb5c3d74fc43b23e72b7854b951056f54eba85e.mp3",
-          "contentHash": "6542e83d2a741e70f798672865d2fbbbecd83451f5c8b6527a53500a1cd05127",
-          "byteSize": 39552
-        }
-      ]
-    },
-    "l01/s23/task/14": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "It is important.",
-          "file": "d96dc80cdc2adfa9ba4c0383b3ed3fbc510100a9684f941d1183dea882ee5ae3.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d96dc80cdc2adfa9ba4c0383b3ed3fbc510100a9684f941d1183dea882ee5ae3.mp3",
-          "contentHash": "f02adf6968c69fcb1ee0871e0f266591599fc5691fffa50a54f64f9e35b34faa",
-          "byteSize": 30720
-        }
-      ]
-    },
-    "l01/s23/task/15": {
-      "voice": "ash",
-      "clips": [
-        {
-          "text": "important",
-          "file": "df7cba05ac0beb00f76f2b20c388af2af505f8708c4674a6faa9e36557ed1fb8.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/df7cba05ac0beb00f76f2b20c388af2af505f8708c4674a6faa9e36557ed1fb8.mp3",
-          "contentHash": "cf15e5ab6b5b2e43a1e2c9fbe775a66b27c90c736d82df29fd0b89c6e47ea40d",
-          "byteSize": 38784
-        },
-        {
-          "text": "different",
-          "file": "4a52b34faa5fc740b77b3f8481054a94747d8a583aa49097c94dcaa4c3c4c64f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4a52b34faa5fc740b77b3f8481054a94747d8a583aa49097c94dcaa4c3c4c64f.mp3",
-          "contentHash": "fbd4c2b0bbbec69089d19258c66f811db7dc2dd3a71612944a574eff82b3d66a",
-          "byteSize": 24576
-        },
-        {
-          "text": "married",
-          "file": "a768c64997c30726fc167a182dae04889e2216c7cbf670de116ba04797a040a7.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9ce3beb80492facbec35863-ash.mp3",
-          "contentHash": "40634656e40c099bafed873fdd2358b7fd1b60710b0ba39c904b50522ce1a372",
-          "byteSize": 17280
-        },
-        {
-          "text": "single",
-          "file": "324f7263d02f2fd60b44e5212dddb95e14dc4674716a76ad4b4a243b9370dc32.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/947f187506f7629c81c81879-ash.mp3",
-          "contentHash": "fcd5b7878fb3af678c8a8df1205c5ee55dbc6c8fe78bd98ebc7d6e84991e848f",
-          "byteSize": 23040
-        }
-      ]
-    },
-    "l01/s23/task/16": {
-      "voice": "onyx",
-      "clips": [
-        {
-          "text": "They are different.",
-          "file": "cbe32fb069e85925d935909d9012e28833294744438669c0967491db82324569.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cbe32fb069e85925d935909d9012e28833294744438669c0967491db82324569.mp3",
-          "contentHash": "bfdc95606befd57868a278614ed67f400ca1df4b0908c2551456ff75d7f6c539",
-          "byteSize": 26112
         }
       ]
     },
@@ -134228,6 +134207,75 @@
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/295b2c8ebad9131f3153345957e108a03ee7a04a8429a8dd9a897f4012681f65.mp3",
           "contentHash": "510a4753c09fbcd8f8e1e1eb40bdbf87c4e49a48d2c453bd307e233453b16e66",
           "byteSize": 32640
+        }
+      ]
+    },
+    "l01/s23/task/17": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She is single .",
+          "file": "890f5a091480e9750f0f1a93948807da0b9a96fc62977c8bdaf23cb080d63bb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/890f5a091480e9750f0f1a93948807da0b9a96fc62977c8bdaf23cb080d63bb7.mp3",
+          "contentHash": "5f2238ac0165d4eca0b36ab583f5303380ceb6f5fb2dcb4202ebe8349e246a9a",
+          "byteSize": 18048
+        }
+      ]
+    },
+    "l01/s23/task/18": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We are engaged.",
+          "file": "d5373ce8e9a60f361243475a1e1685ab46b2265e4b0c887757d7ac93f33b1daa.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d5373ce8e9a60f361243475a1e1685ab46b2265e4b0c887757d7ac93f33b1daa.mp3",
+          "contentHash": "f64373f7de43d05ad51372cd3e3817e969669b1a61f341786bec07f7343a1a90",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l01/s23/task/19": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "engaged",
+          "file": "9df30e70674616f87050a961d20aff7cb2ee453e470bde6a858180dec89936b7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9df30e70674616f87050a961d20aff7cb2ee453e470bde6a858180dec89936b7.mp3",
+          "contentHash": "7a22ff09a90dc105f7e89772368e385fb5d2f176c5fa9c6a48b9fa30286936b7",
+          "byteSize": 26112
+        },
+        {
+          "text": "different",
+          "file": "14489da5f4d970540f254d65ae3d53c7905a915eaf9089a7b7cf435a1d7ee3c5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/14489da5f4d970540f254d65ae3d53c7905a915eaf9089a7b7cf435a1d7ee3c5.mp3",
+          "contentHash": "6800a3af7af6fe9f296f1814e04c6e0950f38695774ebba9863de4a330c40ddc",
+          "byteSize": 24192
+        },
+        {
+          "text": "married",
+          "file": "60849712cc4502f8e3d4885a5861bd7ca01902b130240029e055aad96ae32338.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/f9ce3beb80492facbec35863-onyx.mp3",
+          "contentHash": "e37478fc9aa025000184d7da1ff101494a2eb2906b5345bc9ecee64f51805f30",
+          "byteSize": 14976
+        },
+        {
+          "text": "single",
+          "file": "ededaeb6a926e917f1287a88122afd886460ec8fdb062198b73f0fdc34dca778.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/947f187506f7629c81c81879-onyx.mp3",
+          "contentHash": "fd173b1250f654ae92baaf6fb760487c3b9e6610f588cff1bf7c07ce880642f2",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l01/s23/task/20": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They are different.",
+          "file": "0e335d36820eef1ffd3f9a35fca278585c6d4d92ae408d9755a97f0b5a2d2519.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0e335d36820eef1ffd3f9a35fca278585c6d4d92ae408d9755a97f0b5a2d2519.mp3",
+          "contentHash": "6cae47de89a2508535a25f2d26a5969f47ba7497462df649d857a980a87e2b9e",
+          "byteSize": 24192
         }
       ]
     }

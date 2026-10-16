@@ -1,0 +1,1009 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is correct.",
+        "localizedMeaning": {
+          "ru": "Друг назвал правильный номер. Подтвердите «Это верно» без сокращения",
+          "uk": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "correct"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That is correct.`",
+              "uk": "тут потрібно `is` — `That is correct.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-28:i02:r1",
+          "text": "keycard"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i02:r2",
+          "text": "key"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i02:r3",
+          "text": "passport"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i02:audio",
+          "transcript": "keycard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-28:i02:r1",
+            "targetText": "keycard",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i02:r2",
+            "targetText": "key",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i02:r3",
+            "targetText": "passport",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `keycard`, а в этом варианте — `key`.",
+              "uk": "У записі перше слово — `keycard`, а в цьому варіанті — `key`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `keycard`, а в этом варианте — `passport`.",
+              "uk": "У записі перше слово — `keycard`, а в цьому варіанті — `passport`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть ключ-картку для дверей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-28:i03:r1",
+          "text": "keycard"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i03:r2",
+          "text": "badge"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i03:r3",
+          "text": "scarf"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть ключ-картку для дверей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите ключ-карту для двери",
+          "uk": "Назвіть ключ-картку для дверей"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-28:i03:r1",
+            "text": "keycard"
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i03:r2",
+            "text": "badge"
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i03:r3",
+            "text": "scarf"
+          }
+        ],
+        "testedDimension": "Назвіть ключ-картку для дверей",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть ключ-картку для дверей",
+            "feedbackByLocale": {
+              "ru": "`badge` — значок; ключ-карта — `keycard`.",
+              "uk": "`badge` — значок; ключ-картка — `keycard`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть ключ-картку для дверей",
+            "feedbackByLocale": {
+              "ru": "`scarf` — шарф; ключ-карта — `keycard`.",
+              "uk": "`scarf` — шарф; ключ-картка — `keycard`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-28:i04:p1",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i04:p2",
+            "target": "correct",
+            "meaningByLocale": {
+              "ru": "правильный",
+              "uk": "правильний"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i04:p3",
+            "target": "certain",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i04:p4",
+            "target": "serious",
+            "meaningByLocale": {
+              "ru": "серьёзный",
+              "uk": "серйозний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "keycard",
+          "correct",
+          "certain",
+          "serious"
+        ],
+        "rightColumn": [
+          "ключ-картка",
+          "правильний",
+          "упевнений",
+          "серйозний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i05:audio",
+          "transcript": "This is Anna's keycard."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is Anna's keycard.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "Anna's",
+          "keycard"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is Anna's keycard.`",
+              "uk": "тут потрібно `is` — `This is Anna's keycard.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tom's keycard is here.",
+        "localizedMeaning": {
+          "ru": "Вы нашли ключ-карту Тома. Скажите «Ключ-карта Тома здесь»",
+          "uk": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»"
+        },
+        "orderedTokens": [
+          "Tom's",
+          "keycard",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom's keycard is here.`",
+              "uk": "тут потрібно `is` — `Tom's keycard is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви не сумніваєтеся в номері кімнати. Скажіть «Я впевнений» з certain, без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Ви не сумніваєтеся в номері кімнати. Скажіть «Я впевнений» з certain, без скорочення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i07:audio",
+          "transcript": "I am certain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am certain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Шарф належить Анні. Укажіть власницю",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-28:i08:r1",
+          "text": "Anna's"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i08:r2",
+          "text": "Anna"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i08:r3",
+          "text": "Tom's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шарф належить Анні. Укажіть власницю",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Шарф принадлежит Анне. Укажите владельца",
+          "uk": "Шарф належить Анні. Укажіть власницю"
+        },
+        "gappedTargetPhrase": "This is ___ scarf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-28:i08:r1",
+            "text": "Anna's"
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i08:r2",
+            "text": "Anna"
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i08:r3",
+            "text": "Tom's"
+          }
+        ],
+        "testedDimension": "Шарф належить Анні. Укажіть власницю",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Шарф належить Анні. Укажіть власницю",
+            "feedbackByLocale": {
+              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
+              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Шарф належить Анні. Укажіть власницю",
+            "feedbackByLocale": {
+              "ru": "Это принадлежность Тому; здесь владелица Анна.",
+              "uk": "Це належність Тому; тут власниця Анна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що друг каже про себе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-28:i09:r1",
+          "text": "I am serious."
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i09:r2",
+          "text": "I am certain."
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i09:r3",
+          "text": "I am worried."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що друг каже про себе",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i09:audio",
+          "transcript": "I am serious."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-28:i09:r1",
+            "targetText": "I am serious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i09:r2",
+            "targetText": "I am certain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i09:r3",
+            "targetText": "I am worried.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг каже про себе",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `serious`, а в этом варианте — `certain`.",
+              "uk": "У записі останнє слово — `serious`, а в цьому варіанті — `certain`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, що друг каже про себе",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `serious`, а в этом варианте — `worried`.",
+              "uk": "У записі останнє слово — `serious`, а в цьому варіанті — `worried`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-28:i10:p1",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i10:p2",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i10:p3",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "переулок",
+              "uk": "провулок"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i10:p4",
+            "target": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф",
+              "uk": "шарф"
+            }
+          }
+        ],
+        "leftColumn": [
+          "keycard",
+          "chairs",
+          "alley",
+          "scarf"
+        ],
+        "rightColumn": [
+          "ключ-картка",
+          "стільці",
+          "провулок",
+          "шарф"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i11:audio",
+          "transcript": "Anna's scarf is on the chair."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Anna's scarf is on the chair.",
+        "orderedTokens": [
+          "Anna's",
+          "scarf",
+          "is",
+          "on",
+          "the",
+          "chair"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna's scarf is on the chair.`",
+              "uk": "тут потрібно `is` — `Anna's scarf is on the chair.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стільці винесли в провулок. Скажіть «Стільці в провулку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стільці винесли в провулок. Скажіть «Стільці в провулку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chairs are in the alley.",
+        "localizedMeaning": {
+          "ru": "Стулья вынесли в переулок. Скажите «Стулья в переулке»",
+          "uk": "Стільці винесли в провулок. Скажіть «Стільці в провулку»"
+        },
+        "orderedTokens": [
+          "The",
+          "chairs",
+          "are",
+          "in",
+          "the",
+          "alley"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Стільці винесли в провулок. Скажіть «Стільці в провулку»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The chairs are in the alley.`",
+              "uk": "тут потрібно `are` — `The chairs are in the alley.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви шукаєте свою ключ-картку. Запитайте «Де моя ключ-картка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Ви шукаєте свою ключ-картку. Запитайте «Де моя ключ-картка?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i13:audio",
+          "transcript": "Where is my keycard?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is my keycard?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-28:i14:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i14:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i14:r3",
+          "text": "ours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ключ-карта принадлежит подруге. Скажите «Ключ-карта её»",
+          "uk": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»"
+        },
+        "gappedTargetPhrase": "The keycard is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-28:i14:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i14:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i14:r3",
+            "text": "ours"
+          }
+        ],
+        "testedDimension": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i14:r2",
+            "correct": false,
+            "testedDimension": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+            "feedbackByLocale": {
+              "ru": "Без названия вещи нужна форма `hers`.",
+              "uk": "Без назви речі потрібна форма `hers`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i14:r3",
+            "correct": false,
+            "testedDimension": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+            "feedbackByLocale": {
+              "ru": "`ours` — наша; её — `hers`.",
+              "uk": "`ours` — наша; її — `hers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де ключ-картка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-28:i15:r1",
+          "text": "Your keycard is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i15:r2",
+          "text": "My keycard is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-28:i15:r3",
+          "text": "Your keycard is on the desk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де ключ-картка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i15:audio",
+          "transcript": "Your keycard is on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-28:i15:r1",
+            "targetText": "Your keycard is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i15:r2",
+            "targetText": "My keycard is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i15:r3",
+            "targetText": "Your keycard is on the desk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-28:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де ключ-картка",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-28:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де ключ-картка",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `desk`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `desk`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-28:i16:p1",
+            "target": "keycard",
+            "meaningByLocale": {
+              "ru": "ключ-карта",
+              "uk": "ключ-картка"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i16:p2",
+            "target": "chairs",
+            "meaningByLocale": {
+              "ru": "стулья",
+              "uk": "стільці"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i16:p3",
+            "target": "alley",
+            "meaningByLocale": {
+              "ru": "переулок",
+              "uk": "провулок"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-28:i16:p4",
+            "target": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф",
+              "uk": "шарф"
+            }
+          }
+        ],
+        "leftColumn": [
+          "keycard",
+          "chairs",
+          "alley",
+          "scarf"
+        ],
+        "rightColumn": [
+          "ключ-картка",
+          "стільці",
+          "провулок",
+          "шарф"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Знайдена ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Знайдена ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:i17:audio",
+          "transcript": "This is Anna's keycard."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is Anna's keycard.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2c56faa7058f3368a7aba8917eebcb2102a1146e2eabd2823f4670e8cb20de94"
+}

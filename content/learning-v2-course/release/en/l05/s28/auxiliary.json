@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-28:intro1:r2": {
+          "ru": "К имени владельца добавляем `’s`: `Anna’s keycard`.",
+          "uk": "До імені власниці додаємо `’s`: `Anna’s keycard`."
+        },
+        "en:lesson-05:session-28:intro1:r3": {
+          "ru": "Это ключ-карта Тома; здесь владелица Анна.",
+          "uk": "Це ключ-картка Тома; тут власниця Анна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-28:intro2:r2": {
+          "ru": "С `That` нужна форма `is`.",
+          "uk": "З `That` потрібна форма `is`."
+        },
+        "en:lesson-05:session-28:intro2:r3": {
+          "ru": "Это «Я уверен»; подтвердить «Это верно» — `That is correct`.",
+          "uk": "Це «Я впевнений»; підтвердити «Це правильно» — `That is correct`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-28:intro3:r2": {
+          "ru": "Без названия вещи нужна форма `hers`.",
+          "uk": "Без назви речі потрібна форма `hers`."
+        },
+        "en:lesson-05:session-28:intro3:r3": {
+          "ru": "`his` — его; её — `hers`.",
+          "uk": "`his` — його; її — `hers`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7e4ab0026ddd5becaddbcb14da65023221551d6c91d64aac9e9c51d8fd39ee83"
+}

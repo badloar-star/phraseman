@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца ключ-карты и подтвердить информацию",
+    "uk": "назвати власника ключ-картки й підтвердити інформацію"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ключ в виде карты",
+        "uk": "Ключ у вигляді картки"
+      },
+      "bodyByLocale": {
+        "ru": "`keycard` — «ключ-карта», карточка для открытия двери. `This is Anna’s keycard` — «Это ключ-карта Анны». `Tom’s keycard is here` — «Ключ-карта Тома здесь». После имени владельца добавляем `’s`. Ключ-карта тонкая, но без неё даже большая дверь не уступает.",
+        "uk": "`keycard` — «ключ-картка», картка для відчинення дверей. `This is Anna’s keycard` — «Це ключ-картка Анни». `Tom’s keycard is here` — «Ключ-картка Тома тут». Після імені власника додаємо `’s`. Ключ-картка тонка, але без неї навіть великі двері не поступаються."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Укажите на ключ-карту Анны.",
+          "uk": "Укажіть на ключ-картку Анни."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-28:intro1:r1",
+              "text": "This is Anna's keycard."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro1:r2",
+              "text": "This is Anna keycard."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro1:r3",
+              "text": "This is Tom's keycard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-28:intro1:r1",
+              "text": "This is Anna's keycard."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro1:r2",
+              "text": "This is Anna keycard."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro1:r3",
+              "text": "This is Tom's keycard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Укажите на ключ-карту Анны.",
+          "uk": "Укажіть на ключ-картку Анни."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Верно и уверенно",
+        "uk": "Правильно й упевнено"
+      },
+      "bodyByLocale": {
+        "ru": "`correct` — «правильный, верный»: `That is correct` — «Это верно». `certain` — «уверен»: `I am certain` — «Я уверен / уверена». `serious` — «серьёзный»: `I am serious` — «Я серьёзно», то есть не шучу. `correct` оценивает верность информации, а `certain` — уверенность говорящего.",
+        "uk": "`correct` — «правильний»: `That is correct` — «Це правильно». `certain` — «упевнений»: `I am certain` — «Я впевнений / впевнена». `serious` — «серйозний»: `I am serious` — «Я серйозно», тобто не жартую. `correct` оцінює правильність інформації, а `certain` — упевненість мовця."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг верно назвал номер комнаты. Подтвердите «Это верно» без сокращения.",
+          "uk": "Друг правильно назвав номер кімнати. Підтвердьте «Це правильно» без скорочення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-28:intro2:r1",
+              "text": "That is correct."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro2:r2",
+              "text": "That are correct."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro2:r3",
+              "text": "I am certain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-28:intro2:r1",
+              "text": "That is correct."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro2:r2",
+              "text": "That are correct."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro2:r3",
+              "text": "I am certain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг верно назвал номер комнаты. Подтвердите «Это верно» без сокращения.",
+          "uk": "Друг правильно назвав номер кімнати. Підтвердьте «Це правильно» без скорочення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шарф и стулья",
+        "uk": "Шарф і стільці"
+      },
+      "bodyByLocale": {
+        "ru": "`chairs` — «стулья», `alley` — «переулок», `scarf` — «шарф». `Anna’s scarf is on the chair` — «Шарф Анны на стуле». `The chairs are in the alley` — «Стулья в переулке». `Where is my keycard?` — «Где моя ключ-карта?» `The keycard is hers` — «Ключ-карта её»: `hers` стоит без названия вещи.",
+        "uk": "`chairs` — «стільці», `alley` — «провулок», `scarf` — «шарф». `Anna’s scarf is on the chair` — «Шарф Анни на стільці». `The chairs are in the alley` — «Стільці в провулку». `Where is my keycard?` — «Де моя ключ-картка?» `The keycard is hers` — «Ключ-картка її»: `hers` стоїть без назви речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Ключ-карта принадлежит подруге. Скажите «Ключ-карта её».",
+          "uk": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-28:intro3:r1",
+              "text": "The keycard is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro3:r2",
+              "text": "The keycard is her."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro3:r3",
+              "text": "The keycard is his."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-28:intro3:r1",
+              "text": "The keycard is hers."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro3:r2",
+              "text": "The keycard is her."
+            },
+            {
+              "responseId": "en:lesson-05:session-28:intro3:r3",
+              "text": "The keycard is his."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ключ-карта принадлежит подруге. Скажите «Ключ-карта её».",
+          "uk": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "216fd9d64ef69d24bfbf9aba256c0407ff533e8482dffec5e8336dee090e4a24"
+}

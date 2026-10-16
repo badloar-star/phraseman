@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-43:intro1:r2": {
+          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
+          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+        },
+        "en:lesson-05:session-43:intro1:r3": {
+          "ru": "Один браслет: `is this`.",
+          "uk": "Один браслет: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-43:intro2:r2": {
+          "ru": "С `you` нужна форма `are`.",
+          "uk": "З `you` потрібна форма `are`."
+        },
+        "en:lesson-05:session-43:intro2:r3": {
+          "ru": "`polite` — вежливый; терпеливый — `patient`.",
+          "uk": "`polite` — ввічливий; терплячий — `patient`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-43:intro3:r2": {
+          "ru": "`bedrooms` — множественное число: `are`.",
+          "uk": "`bedrooms` — множина: `are`."
+        },
+        "en:lesson-05:session-43:intro3:r3": {
+          "ru": "Здесь одна спальня, а нужны несколько: `bedrooms are`.",
+          "uk": "Тут одна спальня, а потрібно кілька: `bedrooms are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f81a6a3d953624abfee31b77584f1ea341c609f053c10d269bd8d93968b97162"
+}

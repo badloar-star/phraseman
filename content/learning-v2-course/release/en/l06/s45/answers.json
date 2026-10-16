@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-45:i01",
+    "correctText": "This pencil is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i02",
+    "correctText": "pencil",
+    "correctResponseId": "en:lesson-06:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i03",
+    "correctText": "pencil",
+    "correctResponseId": "en:lesson-06:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i04",
+    "correctText": "en:lesson-06:session-45:i04:p1=pencil\nen:lesson-06:session-45:i04:p2=illegal\nen:lesson-06:session-45:i04:p3=microwave\nen:lesson-06:session-45:i04:p4=motorbike",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i05",
+    "correctText": "My pencil is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i06",
+    "correctText": "She shops here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i07",
+    "correctText": "This microwave is new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i08",
+    "correctText": "shop",
+    "correctResponseId": "en:lesson-06:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i09",
+    "correctText": "This motorbike is mine.",
+    "correctResponseId": "en:lesson-06:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i10",
+    "correctText": "en:lesson-06:session-45:i10:p1=pencil\nen:lesson-06:session-45:i10:p2=shop\nen:lesson-06:session-45:i10:p3=motorbike\nen:lesson-06:session-45:i10:p4=illegal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i11",
+    "correctText": "The microwave is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i12",
+    "correctText": "Whose motorbike is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i13",
+    "correctText": "We shop here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i14",
+    "correctText": "shops",
+    "correctResponseId": "en:lesson-06:session-45:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i15",
+    "correctText": "This pencil is mine.",
+    "correctResponseId": "en:lesson-06:session-45:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i16",
+    "correctText": "en:lesson-06:session-45:i16:p1=pencil\nen:lesson-06:session-45:i16:p2=microwave\nen:lesson-06:session-45:i16:p3=illegal\nen:lesson-06:session-45:i16:p4=shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-45:i17",
+    "correctText": "Whose pencil is this?",
+    "correctResponseId": null
+  }
+]

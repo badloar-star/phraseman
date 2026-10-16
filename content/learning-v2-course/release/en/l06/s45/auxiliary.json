@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-45:intro1:r2": {
+          "ru": "Без названия вещи после него нужно `mine`, не `my`.",
+          "uk": "Без назви речі після нього потрібне `mine`, не `my`."
+        },
+        "en:lesson-06:session-45:intro1:r3": {
+          "ru": "Один карандаш: `is`.",
+          "uk": "Один олівець: `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-45:intro2:r2": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-45:intro2:r3": {
+          "ru": "Один карандаш: `is this`.",
+          "uk": "Один олівець: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-45:intro3:r2": {
+          "ru": "После `she` — `shops`.",
+          "uk": "Після `she` — `shops`."
+        },
+        "en:lesson-06:session-45:intro3:r3": {
+          "ru": "Нужно `She shops`, без `is`.",
+          "uk": "Потрібно `She shops`, без `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "431c4bdeeb22591c29978215ae191568f4146310b1d3ab55ad2eb54da219fb55"
+}

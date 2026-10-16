@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "назвать карандаш, уточнить владельца вещи и рассказать, где покупаете принадлежности",
+    "uk": "назвати олівець, уточнити власника речі й розповісти, де купуєте приладдя"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вот мой карандаш",
+        "uk": "Ось мій олівець"
+      },
+      "bodyByLocale": {
+        "ru": "Том ищет, чем писать, и показывает на карандаш у вас на столе. `pencil` — «карандаш». `This pencil is mine` — «Этот карандаш мой». Один карандаш: `is`. После `mine` слово `pencil` не повторяем. Карандаш без имени — ещё не общий карандаш, даже если он лежит посередине стола.",
+        "uk": "Том шукає, чим писати, й показує на олівець у вас на столі. `pencil` — «олівець». `This pencil is mine` — «Цей олівець мій». Один олівець: `is`. Після `mine` слово `pencil` не повторюємо. Олівець без імені — ще не спільний олівець, навіть якщо лежить посередині столу."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите Тому «Этот карандаш мой».",
+          "uk": "Скажіть Тому «Цей олівець мій»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-45:intro1:r1",
+              "text": "This pencil is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro1:r2",
+              "text": "This pencil is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro1:r3",
+              "text": "This pencil are mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-45:intro1:r1",
+              "text": "This pencil is mine."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro1:r2",
+              "text": "This pencil is my."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro1:r3",
+              "text": "This pencil are mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите Тому «Этот карандаш мой».",
+          "uk": "Скажіть Тому «Цей олівець мій»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто оставил карандаш",
+        "uk": "Хто залишив олівець"
+      },
+      "bodyByLocale": {
+        "ru": "После занятия на столе остался ещё один карандаш. Спросите группу: `Whose pencil is this?` — «Чей это карандаш?» `Whose` спрашивает о владельце. Если карандашей несколько: `Whose pencils are these?` — «Чьи это карандаши?» Но сейчас перед вами один, поэтому `is this`.",
+        "uk": "Після заняття на столі залишився ще один олівець. Запитайте групу: `Whose pencil is this?` — «Чий це олівець?» `Whose` запитує про власника. Якщо олівців кілька: `Whose pencils are these?` — «Чиї це олівці?» Але зараз перед вами один, тому `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите группу «Чей это карандаш?»",
+          "uk": "Запитайте групу «Чий це олівець?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-45:intro2:r1",
+              "text": "Whose pencil is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro2:r2",
+              "text": "Who pencil is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro2:r3",
+              "text": "Whose pencil are these?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-45:intro2:r1",
+              "text": "Whose pencil is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro2:r2",
+              "text": "Who pencil is this?"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro2:r3",
+              "text": "Whose pencil are these?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите группу «Чей это карандаш?»",
+          "uk": "Запитайте групу «Чий це олівець?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где Анна покупает принадлежности",
+        "uk": "Де Анна купує приладдя"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хвалит карандаш Анны и спрашивает, где она обычно делает покупки. Вы показываете на знакомый магазин: `She shops here` — «Она делает покупки здесь». После `she` у `shop` появляется `s`. `Anna shops here` — тот же рассказ с именем.",
+        "uk": "Друг хвалить олівець Анни й запитує, де вона зазвичай робить покупки. Ви показуєте на знайомий магазин: `She shops here` — «Вона робить покупки тут». Після `she` у `shop` з’являється `s`. `Anna shops here` — та сама розповідь з ім’ям."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте другу об Анне «Она делает покупки здесь».",
+          "uk": "Дайте другові відповідь про Анну «Вона робить покупки тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-45:intro3:r1",
+              "text": "She shops here."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro3:r2",
+              "text": "She shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro3:r3",
+              "text": "She is shops here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-45:intro3:r1",
+              "text": "She shops here."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro3:r2",
+              "text": "She shop here."
+            },
+            {
+              "responseId": "en:lesson-06:session-45:intro3:r3",
+              "text": "She is shops here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте другу об Анне «Она делает покупки здесь».",
+          "uk": "Дайте другові відповідь про Анну «Вона робить покупки тут»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b7189427971f4aff5266ca93f27fb70cc5650af2fa9bf8c88a97f082f2380697"
+}

@@ -77734,6 +77734,309 @@
           "byteSize": 44160
         }
       ]
+    },
+    "l05/s33/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The watch is mine.",
+          "file": "6d2b7718b54d0ffe4ae42b7e52288eebe0ebcc8bf73e2662aad76b792d7be495.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6d2b7718b54d0ffe4ae42b7e52288eebe0ebcc8bf73e2662aad76b792d7be495.mp3",
+          "contentHash": "721e43391a7d915e10f1a10fbabb4339b4743a6bd28d286fd202ec9b699fe34a",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s33/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose watch is this?",
+          "file": "407dca60654dad82b5e1cf20c34c9dca3732b096f72ae70c8eb0640b9e2e610e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/407dca60654dad82b5e1cf20c34c9dca3732b096f72ae70c8eb0640b9e2e610e.mp3",
+          "contentHash": "3c22abe5d3dae97179f69b9eb94ef74fb399b9ed4443352b5dc9792595d6d77b",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s33/intro/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose lunchbox is this?",
+          "file": "a36ffeb2f8bccd81fe2d72296a1c0120222fdff493b69e692d49121a5d709a3b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a36ffeb2f8bccd81fe2d72296a1c0120222fdff493b69e692d49121a5d709a3b.mp3",
+          "contentHash": "5ed77af0aabca390d6519cc8e1ce67da468d18bf0d84ff7d2f07512a14ab9cfc",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s33/task/0": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The phone is okay.",
+          "file": "b62fd5cde4abc33a66805cbf9e4cb009aeb0486a01ece3982941975377d24027.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b62fd5cde4abc33a66805cbf9e4cb009aeb0486a01ece3982941975377d24027.mp3",
+          "contentHash": "e7ab3b11382332c4513ffd83d2b40db38338022f3f77712b84ee5e4310b05b8b",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s33/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "watch",
+          "file": "be036f1c665fdfd6b19ef5fa8847ab01b922bfe78d8ebd044b42fc789399690c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/baed831623943be39ebf0ef4-ash.mp3",
+          "contentHash": "851390958c16969170081b6907c942650c826d0f2685ef6aa2ce4d912a6a254b",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s33/task/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "watch",
+          "file": "be036f1c665fdfd6b19ef5fa8847ab01b922bfe78d8ebd044b42fc789399690c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/baed831623943be39ebf0ef4-ash.mp3",
+          "contentHash": "851390958c16969170081b6907c942650c826d0f2685ef6aa2ce4d912a6a254b",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l05/s33/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "watch",
+          "file": "be036f1c665fdfd6b19ef5fa8847ab01b922bfe78d8ebd044b42fc789399690c.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/baed831623943be39ebf0ef4-ash.mp3",
+          "contentHash": "851390958c16969170081b6907c942650c826d0f2685ef6aa2ce4d912a6a254b",
+          "byteSize": 21120
+        },
+        {
+          "text": "phone",
+          "file": "985efe1879601b4e2998dc80f3c82c12d020201dd5d380578f6051d10569f8b5.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/45569da57f4b7bf472d7a864-ash.mp3",
+          "contentHash": "05e6a487b4db556b3b52f70db6c3cf0ece68142d3c456d250059fe428733dccc",
+          "byteSize": 14976
+        },
+        {
+          "text": "doorbell",
+          "file": "129ec4298ee688e1c10e0472e4957bb98d96984e09d7f94e46a16a17f7f2ff66.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/129ec4298ee688e1c10e0472e4957bb98d96984e09d7f94e46a16a17f7f2ff66.mp3",
+          "contentHash": "afae317c4c52f02f6ddc6fa37f8f0fbae0757f772c4baef825bb45abf89d7258",
+          "byteSize": 25344
+        },
+        {
+          "text": "lunchbox",
+          "file": "dd862b0f16e6c1a6cac5728c77b9060238073a81b729582203adec05d80b4689.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dd862b0f16e6c1a6cac5728c77b9060238073a81b729582203adec05d80b4689.mp3",
+          "contentHash": "c30bcbf1a48371365733e492af96fcc65f482d0d1569b1975f15abd8cd60a1ea",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s33/task/4": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Whose watch is this?",
+          "file": "c10a74b0b7ebefe41819c28a4f4e2e79f72cab9af1c6a0d585e2849fb29d1cf0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c10a74b0b7ebefe41819c28a4f4e2e79f72cab9af1c6a0d585e2849fb29d1cf0.mp3",
+          "contentHash": "8ebef27e153323cdc1be8820ce9301c166d776c346a563a5f4488e9601e026fd",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s33/task/5": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose phone is this?",
+          "file": "31361298c0dd07beebe352aaa99ffa98bce5a8e655cf4371c437981c9cf4f29f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31361298c0dd07beebe352aaa99ffa98bce5a8e655cf4371c437981c9cf4f29f.mp3",
+          "contentHash": "4de83902cd14be3e00c5f05b45739f40ea76c8ae1265b585ac20f0a18f3c8a19",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l05/s33/task/6": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The watch is mine.",
+          "file": "36b4189e0e0655bcfd01b472d46b2b1340199383ab1550ff67a36b1f65d99176.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36b4189e0e0655bcfd01b472d46b2b1340199383ab1550ff67a36b1f65d99176.mp3",
+          "contentHash": "5fb00ef0776885a6c3f783477b66567a8e849be221e5d00ab7847b0b00625e88",
+          "byteSize": 46848
+        }
+      ]
+    },
+    "l05/s33/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose lunchbox is this?",
+          "file": "f8d3894aa5ff98aa24ff2faf6ca1a0e2a1427a8c23d98bb723b98dca94ffa004.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f8d3894aa5ff98aa24ff2faf6ca1a0e2a1427a8c23d98bb723b98dca94ffa004.mp3",
+          "contentHash": "e186fff770ace42dbd331826f28b121d3528c539667c03589eab2e633011fc3b",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l05/s33/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is Anna's watch.",
+          "file": "06c0ea55f5d12b95f33a43d09c81f0b9962e7ed5e5c58efca1f6f24d68fff3f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/06c0ea55f5d12b95f33a43d09c81f0b9962e7ed5e5c58efca1f6f24d68fff3f2.mp3",
+          "contentHash": "bc3a18e274ad20c564ce768af4c6c0a566eb95fed754514ff23a1dd3bef74c05",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s33/task/9": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "watch",
+          "file": "5e2dec9eeef2bf7cb4808820e302e14cd8da9026773a42c427687863bc3a103e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/baed831623943be39ebf0ef4-coral.mp3",
+          "contentHash": "e3a27b18e8717aeb7766616f64353cbebb81cc9aa3f8c7f7aa524a77897e719b",
+          "byteSize": 23040
+        },
+        {
+          "text": "okay",
+          "file": "f452b01f9014ce5706d3d4d51f48e76a3a9b39dbd348732402707bba73a3fbd0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f452b01f9014ce5706d3d4d51f48e76a3a9b39dbd348732402707bba73a3fbd0.mp3",
+          "contentHash": "a86a08153e2082c8e000ea9fee910f558b39b92fa0bd430c6fb19e5060a20629",
+          "byteSize": 21120
+        },
+        {
+          "text": "doorbell",
+          "file": "a38a950e51a47086f63541b32756f9cfd74cc3f36a9feedea309da57ba3c847a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a38a950e51a47086f63541b32756f9cfd74cc3f36a9feedea309da57ba3c847a.mp3",
+          "contentHash": "f945751e8b09333caf83555c6c3a260cdb5ee9cdf25693eefa6da0f2d2d33796",
+          "byteSize": 21120
+        },
+        {
+          "text": "lunchbox",
+          "file": "c26004dfca597bb217d6a9a7029bebf4c8c445edad23c684ae10e1a737b440ed.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c26004dfca597bb217d6a9a7029bebf4c8c445edad23c684ae10e1a737b440ed.mp3",
+          "contentHash": "09ba01c13db71d633ed21c9ed534803bec16f5d129e5fdf596a8597d536b59ce",
+          "byteSize": 52224
+        }
+      ]
+    },
+    "l05/s33/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The doorbell is next to the door.",
+          "file": "e6fe6f0486a2e3423fa5692bb88a7a4173ba665d15d9b8efea568756c6b91027.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e6fe6f0486a2e3423fa5692bb88a7a4173ba665d15d9b8efea568756c6b91027.mp3",
+          "contentHash": "9610779b459a7ae87d36c5b470ff020ad5768481c83a9887609006576ecf985a",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s33/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom's lunchbox is here.",
+          "file": "c954815ba6a587600eac9f38ed62886d18b1fbbcab502dd0892ea6d16d4a0af9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c954815ba6a587600eac9f38ed62886d18b1fbbcab502dd0892ea6d16d4a0af9.mp3",
+          "contentHash": "72af8557a9e1311ee545dfca19ab44c4b03967da7e7e5b421f656d68edd94d19",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l05/s33/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose gloves are these?",
+          "file": "7e1d015b30b8f1fabe31f901a81e3d63808fe7b82b12ddd9338efa078cf26426.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7e1d015b30b8f1fabe31f901a81e3d63808fe7b82b12ddd9338efa078cf26426.mp3",
+          "contentHash": "e614195f9ef255264791f4aebc741c807884dacc52ad5c88879930dce0656616",
+          "byteSize": 29952
+        }
+      ]
+    },
+    "l05/s33/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Whose watch is this?",
+          "file": "49dbe24ba3118fc9d2c84b6cda32a60eb51ba2954c1e2779c39ea5c2cb099b69.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/49dbe24ba3118fc9d2c84b6cda32a60eb51ba2954c1e2779c39ea5c2cb099b69.mp3",
+          "contentHash": "5044415686437f8a2821af1759eeabb5c0af1a77098e82b4b383a4fffaae2add",
+          "byteSize": 40320
+        }
+      ]
+    },
+    "l05/s33/task/14": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Your watch is on the table.",
+          "file": "da637c4407b536f80a4d3ab035dafa96d258011e316c056f42b8f4f5ceb6631d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da637c4407b536f80a4d3ab035dafa96d258011e316c056f42b8f4f5ceb6631d.mp3",
+          "contentHash": "461277159cffd79f08c33afb8e9852428a2970271d3fbc3b8050c7a6013bcbaf",
+          "byteSize": 38784
+        }
+      ]
+    },
+    "l05/s33/task/15": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "watch",
+          "file": "8baf03586bb5252de811b4bb53fc676f110b39f69544993222917014731bce8f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/baed831623943be39ebf0ef4-onyx.mp3",
+          "contentHash": "bb22608e37bc9529e937c441b8035ae10a66f0c8539c0310207ec89ba623e9a8",
+          "byteSize": 27648
+        },
+        {
+          "text": "okay",
+          "file": "cb39594880f0cd41926c687a13122992d6644121b26ffcb1003ad37c26802e8e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cb39594880f0cd41926c687a13122992d6644121b26ffcb1003ad37c26802e8e.mp3",
+          "contentHash": "e25755ccb80423065c2e70dcef107c5d3233b8a4d71060115449b4a04c178a83",
+          "byteSize": 26880
+        },
+        {
+          "text": "phone",
+          "file": "0eeb1dc4246204bc7ca2759f14ee52864e1411cb516b837c5e44541c512d8064.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/45569da57f4b7bf472d7a864-onyx.mp3",
+          "contentHash": "cb498be009695dcd62b0a3efb24a7ee062317cdd7a06c242374cff44cbdec358",
+          "byteSize": 18816
+        },
+        {
+          "text": "lunchbox",
+          "file": "6ecf64166e2a57c5de05abcac9113b5cd7c0c26bfe5e5a385d7db234fc4ef179.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6ecf64166e2a57c5de05abcac9113b5cd7c0c26bfe5e5a385d7db234fc4ef179.mp3",
+          "contentHash": "66c8380a05422adf4bb5cd1b473776e24f8f19a485287b7bb7ca609a5056074d",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s33/task/16": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Whose watch is this?",
+          "file": "407dca60654dad82b5e1cf20c34c9dca3732b096f72ae70c8eb0640b9e2e610e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/407dca60654dad82b5e1cf20c34c9dca3732b096f72ae70c8eb0640b9e2e610e.mp3",
+          "contentHash": "3c22abe5d3dae97179f69b9eb94ef74fb399b9ed4443352b5dc9792595d6d77b",
+          "byteSize": 26880
+        }
+      ]
     }
   },
   "settings": {

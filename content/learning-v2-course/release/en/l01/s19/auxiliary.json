@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-19:intro1:r2": {
-          "ru": "После `We` нужно `are`.",
-          "uk": "Після `We` потрібно `are`."
+          "ru": "They — о других людях. Вы говорите за себя и сестру: We.",
+          "uk": "They — про інших людей. Ви говорите за себе й сестру: We."
         },
         "en:lesson-01:session-19:intro1:r3": {
-          "ru": "Это «Они вместе». Вы говорите за себя и друга: `We are`.",
-          "uk": "Це «Вони разом». Ви говорите за себе та друга: `We are`."
+          "ru": "После We нужно are.",
+          "uk": "Після We потрібне are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-19:intro2:r2": {
-          "ru": "С `She` нужна форма `is`, даже если за соседним столом много людей.",
-          "uk": "Із `She` потрібна форма `is`, навіть якщо за сусіднім столом багато людей."
+          "ru": "Вы остались у входа. Наверху подруга: She is upstairs.",
+          "uk": "Ви залишилися біля входу. Нагорі подруга: She is upstairs."
         },
         "en:lesson-01:session-19:intro2:r3": {
-          "ru": "Это «Я один». Сейчас речь о подруге: `She is`.",
-          "uk": "Це «Я сам». Зараз ідеться про подругу: `She is`."
+          "ru": "После She нужно is.",
+          "uk": "Після She потрібне is."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9d90a50e46dcd81fdb9f9c016fe5853bffe1d5ea3d0ee3303871e53ea631e25a"
+  "auxiliaryFingerprint": "5f4adffa0b826bdcc578bb61093bf4768815b4dc593107709f8d8118e8967ee1"
 }

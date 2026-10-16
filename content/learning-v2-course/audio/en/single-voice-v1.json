@@ -5562,11 +5562,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "We are together.",
-          "file": "ee7198245e8859e9aa2099857d11930fecc80914a659869de5e67a2063f1ba64.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/50339389fdc5bfea082c6fe8-onyx.mp3",
-          "contentHash": "00ec1964876c5c7f81fe69aa0ad3fef2c6e86e2648f7f6db70b3725de4a8d6a9",
-          "byteSize": 24192
+          "text": "We are inside.",
+          "file": "f663f418a55c06e9443859519c92c4622ee752820de85a4c436dbccf38eabbef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f663f418a55c06e9443859519c92c4622ee752820de85a4c436dbccf38eabbef.mp3",
+          "contentHash": "3dd27e1eb355679746de8ef9b3545a91d010d68d596ed110dbb201b48a7c2953",
+          "byteSize": 30720
         }
       ]
     },
@@ -5574,11 +5574,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "She is alone.",
-          "file": "71f8698b3220e003bb6a5e52f461ea7fabb6f8689444065106b8aa500ad2f3f8.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71f8698b3220e003bb6a5e52f461ea7fabb6f8689444065106b8aa500ad2f3f8.mp3",
-          "contentHash": "24a6316a9e55b52ca2c0e983414bf7fe0aebc40f98cce16b89f4c92a6867c483",
-          "byteSize": 18048
+          "text": "She is upstairs.",
+          "file": "7c83a9569c626330cf7856d601025dbf448a3b5eac11c82bd3bdd646d12c613d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7c83a9569c626330cf7856d601025dbf448a3b5eac11c82bd3bdd646d12c613d.mp3",
+          "contentHash": "6cd57dbc65324544adda0c539218bc936a6414305485ed3f4892b7803cc2afe6",
+          "byteSize": 34944
         }
       ]
     },
@@ -5598,11 +5598,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "We are together.",
-          "file": "de7385e954bebe97a30ba790dd32beb02224879a37ef20c4e2ccbc6b710ecc73.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/50339389fdc5bfea082c6fe8-nova.mp3",
-          "contentHash": "22df86e6e72e66a817f5e928a2fa84667517d8097a534a17471afdee38f857ea",
-          "byteSize": 31488
+          "text": "inside",
+          "file": "b5608f5c2bedf58b8ad73491b85cb4e9fec3d8e262c887db26b1f85e40705bc0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/106b086224a4d945eae25f7b-nova.mp3",
+          "contentHash": "de55f243acabef5ab6ff453c0f059d5385ff236af5fd261ef3d0410ef7902370",
+          "byteSize": 20352
         }
       ]
     },
@@ -5610,11 +5610,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am alone.",
-          "file": "ca2ec765921dad1fa4f0b74bfea9127d0e5c64d9dbbb29368b8f2c8b8972aa5f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca2ec765921dad1fa4f0b74bfea9127d0e5c64d9dbbb29368b8f2c8b8972aa5f.mp3",
-          "contentHash": "ba190ed3725b2614ff460c10414cc97a48018f62640db515dde060f96e08a4b3",
-          "byteSize": 26880
+          "text": "outside",
+          "file": "b53e0060ceef0845c45bd43c470c1bf404e42596ea0e39abc7f5338c2f869340.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/31207a2065f46a5b948fce6f-ash.mp3",
+          "contentHash": "cb8700591f239e046632b8e6b68b54793c95a52a0265670ecb79cca38af89ead",
+          "byteSize": 41088
         }
       ]
     },
@@ -5622,11 +5622,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "She is nearby.",
-          "file": "290ad5eb0fd4306fb1cffaccbf68bdb66881a847436a58ba82cd3ac63f7465f6.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/290ad5eb0fd4306fb1cffaccbf68bdb66881a847436a58ba82cd3ac63f7465f6.mp3",
-          "contentHash": "5ba0d269b4d965046cdb8961c18dc6055b59bae66721ad8300cc053ea5e60acb",
-          "byteSize": 33792
+          "text": "upstairs",
+          "file": "8fab5d6ef8f6078c022cb963615d24d7468af42f1d9c991cd7b415500c1eb540.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ab5db4901670272a1c0d9f01-nova.mp3",
+          "contentHash": "a84705052d621affd13b6d3e2b3be897dcf47d1d91a8b62ce1081e85d6075bad",
+          "byteSize": 30720
         }
       ]
     },
@@ -5634,32 +5634,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "together",
-          "file": "a94505fceed5a2b30cf45d86a97fccbaa087abedfe602bb3294624fd9a3abc39.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/0c24734d7bf5954f08e5bfe4-onyx.mp3",
-          "contentHash": "e8522cb350ffcdd0d8ab9f3c3c4247cade1655e3cd871685835785029f0485d9",
-          "byteSize": 21888
-        },
-        {
-          "text": "alone",
-          "file": "c0a81ea0ecb7987c8637fb27147583d21187b6f0ab626ae5b21cafdf6c46cfbe.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/facf8b54e5c0b8c426bb1c4b-onyx.mp3",
-          "contentHash": "99b028b25ff02ea6719c9c33c870ddfd3030561406abac38779cbef11f608118",
-          "byteSize": 33792
-        },
-        {
           "text": "nearby",
           "file": "93287a6c80f1acf904bf087ef55ce1505b76258113acc9872a9692e6e57ad170.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/93287a6c80f1acf904bf087ef55ce1505b76258113acc9872a9692e6e57ad170.mp3",
           "contentHash": "d29773d341d8bcaafd5f8341a3e377efb5aa650b9cdc1bc2e4fcf2182ef1c088",
           "byteSize": 41856
-        },
-        {
-          "text": "early",
-          "file": "f18cb0115f04e87bd93e1be519b6df8b969cb279d8e4ef1b2a4b5f45eb6ae19f.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f408830bcc7fab3708191722-onyx.mp3",
-          "contentHash": "8e74c96ce152287e7255edd7e7dcfa6d1961b6dab32e4864493d196cedccdc82",
-          "byteSize": 19584
         }
       ]
     },
@@ -5667,11 +5646,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "They are together.",
-          "file": "84d279ab23ee7fa34857d16a89d95a5c04d503c7dbd04573faef2e41f6e334aa.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/84d279ab23ee7fa34857d16a89d95a5c04d503c7dbd04573faef2e41f6e334aa.mp3",
-          "contentHash": "15b4973635a7b3a8ffa91b5ed6054ea07c2b1818f711c423b3958b74041c717b",
-          "byteSize": 20352
+          "text": "We are inside.",
+          "file": "8308cb430c6f598bfd2ea8230352dc66f1c54516567509ad28eb008e7f85f770.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8308cb430c6f598bfd2ea8230352dc66f1c54516567509ad28eb008e7f85f770.mp3",
+          "contentHash": "524a3c2668f1fb1a04eb89632fa7f0b33b97ccb4220f8c68da7fbec520ab1478",
+          "byteSize": 29952
         }
       ]
     },
@@ -5679,11 +5658,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "He is alone.",
-          "file": "f46cacaa3a36b285be06fb31fcb926cf655ae03465217eb3e2325461a6196fc5.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f46cacaa3a36b285be06fb31fcb926cf655ae03465217eb3e2325461a6196fc5.mp3",
-          "contentHash": "82dc8f204603f618851b444a8778b0239f2b1ec8ae087a64ffae553033a2ed39",
-          "byteSize": 44160
+          "text": "I am outside.",
+          "file": "b939daa995f606f47eb9142ab3b1b18e7a48a79b97fd2511051ca67e3ba46178.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b939daa995f606f47eb9142ab3b1b18e7a48a79b97fd2511051ca67e3ba46178.mp3",
+          "contentHash": "b67487c442a4690e9b60b94234b9779ec30fd91a3b0ae316eb9edfd6fd17ce10",
+          "byteSize": 26112
         }
       ]
     },
@@ -5691,11 +5670,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am nearby.",
-          "file": "50106c831f01001a7f2e11e5fa4c73393c1145bc15a6903b9ab9b7e441f030b2.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/50106c831f01001a7f2e11e5fa4c73393c1145bc15a6903b9ab9b7e441f030b2.mp3",
-          "contentHash": "d0b5dc1a63468d626b19666d0c351dd40f1702627c41f8a81e33916d9a4860d4",
-          "byteSize": 41088
+          "text": "She is upstairs.",
+          "file": "acd8f0bc7daae265485868ade4ab9afe6a02fa6887d1ebd91d01a41406eec7fd.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/acd8f0bc7daae265485868ade4ab9afe6a02fa6887d1ebd91d01a41406eec7fd.mp3",
+          "contentHash": "24d1b40de72eb1175cdcdb1084b55e28aba0c893c79e91c2552dc1a64f5b1b7d",
+          "byteSize": 40320
         }
       ]
     },
@@ -5703,11 +5682,32 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "They are nearby.",
-          "file": "02faed7ccacea3409dca614bfe0e1062e181a61311dc28d16c4a9426ecf65c80.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/02faed7ccacea3409dca614bfe0e1062e181a61311dc28d16c4a9426ecf65c80.mp3",
-          "contentHash": "5010f1453968fc17f72d3eb8f810601a00a32fe023a44dcd3fe1d38996d03a60",
-          "byteSize": 26112
+          "text": "inside",
+          "file": "b5608f5c2bedf58b8ad73491b85cb4e9fec3d8e262c887db26b1f85e40705bc0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/106b086224a4d945eae25f7b-nova.mp3",
+          "contentHash": "de55f243acabef5ab6ff453c0f059d5385ff236af5fd261ef3d0410ef7902370",
+          "byteSize": 20352
+        },
+        {
+          "text": "outside",
+          "file": "b9cc7bd063a520c11f5b6658289a991753c46196a35075c5fc0f2a338c7cb61e.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/31207a2065f46a5b948fce6f-nova.mp3",
+          "contentHash": "1e6da32055bb0507b76be46842f06a776d1fe20b6f569f75a4af2d0e53048046",
+          "byteSize": 21120
+        },
+        {
+          "text": "upstairs",
+          "file": "8fab5d6ef8f6078c022cb963615d24d7468af42f1d9c991cd7b415500c1eb540.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ab5db4901670272a1c0d9f01-nova.mp3",
+          "contentHash": "a84705052d621affd13b6d3e2b3be897dcf47d1d91a8b62ce1081e85d6075bad",
+          "byteSize": 30720
+        },
+        {
+          "text": "nearby",
+          "file": "7f408c72fa79bc2f211b10223b032b87c1fbbe774b9f3e1c6b9d6067d18aa34d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f408c72fa79bc2f211b10223b032b87c1fbbe774b9f3e1c6b9d6067d18aa34d.mp3",
+          "contentHash": "faf5e15a152b8b5a50326cad0dd27fcbbf20c147cc3ddc5d9d8f35c530a5559b",
+          "byteSize": 25344
         }
       ]
     },
@@ -5715,11 +5715,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "You are alone.",
-          "file": "3222c72fee4029f73356377bf36747441e697bb3048962e8ec66ab19e91f96f3.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3222c72fee4029f73356377bf36747441e697bb3048962e8ec66ab19e91f96f3.mp3",
-          "contentHash": "786a905825f5436f5fbb67920f68ca8d73ae2141ee091f1979c6469a94ca23c8",
-          "byteSize": 30720
+          "text": "They are outside.",
+          "file": "6957208c139486ab24b91581d45a6623f3f8ae7c40dc00ac344b57da29433231.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6957208c139486ab24b91581d45a6623f3f8ae7c40dc00ac344b57da29433231.mp3",
+          "contentHash": "9bb01c879bcae45ac65565eafd676e56d8603ff35d0894bd177a41925ef25978",
+          "byteSize": 25344
         }
       ]
     },
@@ -5727,32 +5727,11 @@
       "voice": "nova",
       "clips": [
         {
-          "text": "wrong",
-          "file": "ed291940f1a4645fad0e16441558c4d62b4eb23f9c9f71cc953c3626dc1f4e31.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-nova.mp3",
-          "contentHash": "137633d1a052d6ab072c22a3870de9081e39a4fffafae55ad6efe23a86ef453d",
-          "byteSize": 18048
-        },
-        {
-          "text": "lucky",
-          "file": "016a1ba875b4ec6a5714a7d64d6d7a3a0af852636a22cd424da34049168de91b.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/db9fbddbd7caeff7a326645c-nova.mp3",
-          "contentHash": "1d85d54e533321cb96a63637df0b082e47fb86cb34d46b0f899bbe2a65ebef42",
-          "byteSize": 22656
-        },
-        {
-          "text": "smart",
-          "file": "915944dd8c75450213b945928be4949ff511b8644d32b1dd28e644287400c5c0.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/544e2d6145f6ea1d858b94f7-nova.mp3",
-          "contentHash": "83f042060e961f98cd21b4b71dbee77e808b7967a63f315d78e0be4cdf85a8dd",
-          "byteSize": 18816
-        },
-        {
-          "text": "strong",
-          "file": "5f971c9a9a43ebfda65814e975e4f3ed5c258b85d188c4b3b90fae392ad9760a.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/eda15ce4834ac303532bc697-nova.mp3",
-          "contentHash": "86399039bda658482e64a94e2655a994dde9a867f013e39e4b5521d6a9bb8570",
-          "byteSize": 34944
+          "text": "He is outside.",
+          "file": "81bd49e06cd54136a59461a7cc2b892f0c6e276af4a4c425d23d7d424d591b5c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/81bd49e06cd54136a59461a7cc2b892f0c6e276af4a4c425d23d7d424d591b5c.mp3",
+          "contentHash": "c9ee4ab22ebda6782df251f83c531e0dd440ccb106592454ebcd71c13b1cfc72",
+          "byteSize": 31488
         }
       ]
     },
@@ -5760,11 +5739,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "We are nearby.",
-          "file": "ee0fb94b9c88c5f1eb1e0f0477d253932ac54b1459acceaefaba937984cbdf1b.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee0fb94b9c88c5f1eb1e0f0477d253932ac54b1459acceaefaba937984cbdf1b.mp3",
-          "contentHash": "0f8a44931748a7c624dce626fc10b6fe308feca0e1dcd39f14bbdf4eeaa04843",
-          "byteSize": 24192
+          "text": "I am nearby.",
+          "file": "98db9bfa766f5f40b026ca0731d3962d9a217cc6683e9c18657e23fe722b46d4.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/98db9bfa766f5f40b026ca0731d3962d9a217cc6683e9c18657e23fe722b46d4.mp3",
+          "contentHash": "446de179fc60b9b77f5e9c45318527c7a5572122554748a6de354f4e4014a8c2",
+          "byteSize": 35712
         }
       ]
     },
@@ -5772,11 +5751,11 @@
       "voice": "coral",
       "clips": [
         {
-          "text": "They are together.",
-          "file": "5bdc466e924008bf6d45eabf1d27de130d066feb9e6923447fbbea6b469ab3d7.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5bdc466e924008bf6d45eabf1d27de130d066feb9e6923447fbbea6b469ab3d7.mp3",
-          "contentHash": "e8e6da8840ffc902f681c9ed9d487c3e88007ac0622b44c70de80b61c3d8b9ef",
-          "byteSize": 25344
+          "text": "They are nearby.",
+          "file": "3a55d76c93f8db11dfad353a9788e468c9754a77d18a3342107ab79df8688bf2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3a55d76c93f8db11dfad353a9788e468c9754a77d18a3342107ab79df8688bf2.mp3",
+          "contentHash": "4eca28df75a36a17b00f83d62098f1b272681d671e9e25e74f9151a4a6b680a3",
+          "byteSize": 24576
         }
       ]
     },
@@ -5784,11 +5763,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "She is quiet.",
-          "file": "f8668ce46db6c95f26bb0897559764cec8977fcd9c98b1ebe6ee8171373e8e64.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f8668ce46db6c95f26bb0897559764cec8977fcd9c98b1ebe6ee8171373e8e64.mp3",
-          "contentHash": "73875856029d67afaf47da4cc0283249bb84f23ae8210821ff900e1f1199121c",
-          "byteSize": 28416
+          "text": "You are alone.",
+          "file": "9e1b94f213fd06775469233a186d12a5ccb4c56fe6ad953a0d10b56eb355bdb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9e1b94f213fd06775469233a186d12a5ccb4c56fe6ad953a0d10b56eb355bdb7.mp3",
+          "contentHash": "ce59cdb2cccee9e4e2f0fa3e7251833d4bdffe959b15c6ff4f44ca000aead868",
+          "byteSize": 42624
         }
       ]
     },
@@ -5796,10 +5775,31 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "I am alone.",
-          "file": "ca2ec765921dad1fa4f0b74bfea9127d0e5c64d9dbbb29368b8f2c8b8972aa5f.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ca2ec765921dad1fa4f0b74bfea9127d0e5c64d9dbbb29368b8f2c8b8972aa5f.mp3",
-          "contentHash": "ba190ed3725b2614ff460c10414cc97a48018f62640db515dde060f96e08a4b3",
+          "text": "wrong",
+          "file": "2226ffe364f0f3328c642f306cf8f26a253258a92143b1f85c12cd96692ec672.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/8810ad581e59f2bc3928b261-ash.mp3",
+          "contentHash": "9f0c58df9c2e0a27214d35e6607a24d152faf6b4cec53156daf5f73abe29da4e",
+          "byteSize": 23040
+        },
+        {
+          "text": "lucky",
+          "file": "f2c61c64a99c2f0bfbad86a37e0bff3e892c3ebb72f0d44f77d4c811e3adda83.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/db9fbddbd7caeff7a326645c-ash.mp3",
+          "contentHash": "fd8d1b61af2ceac9abfd1ff4c257218eeaaabdb295c550571d51e8de58c891bc",
+          "byteSize": 18048
+        },
+        {
+          "text": "smart",
+          "file": "3ef6b6ea083e694ba3d32d8a0b68376d74057f29fd362362537ee98428cea1c0.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/544e2d6145f6ea1d858b94f7-ash.mp3",
+          "contentHash": "b154bbdb421e2e975fd62e4dfed486b044904d986be946460f396ef356888ed4",
+          "byteSize": 37248
+        },
+        {
+          "text": "strong",
+          "file": "4817197b17542aea3b4f80c52b1f9fb9e562e33ed9271dc832a881356db4f991.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/eda15ce4834ac303532bc697-ash.mp3",
+          "contentHash": "3972838b5d0876af19af6f71c400f11d1f6dba5b3b39209407a88bc4ccc6ddc7",
           "byteSize": 26880
         }
       ]
@@ -5808,11 +5808,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "They are lucky.",
-          "file": "b9a0a7a785825c179e9e4486ac4aa49ac6a544c4fa03b4717528dac8a90eb2d7.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b9a0a7a785825c179e9e4486ac4aa49ac6a544c4fa03b4717528dac8a90eb2d7.mp3",
-          "contentHash": "f076e764a4182d4a7a7ad1d2fe08bad754aebc4801a5ad25ad309220febf58c4",
-          "byteSize": 25344
+          "text": "We are nearby.",
+          "file": "ee0fb94b9c88c5f1eb1e0f0477d253932ac54b1459acceaefaba937984cbdf1b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee0fb94b9c88c5f1eb1e0f0477d253932ac54b1459acceaefaba937984cbdf1b.mp3",
+          "contentHash": "0f8a44931748a7c624dce626fc10b6fe308feca0e1dcd39f14bbdf4eeaa04843",
+          "byteSize": 24192
         }
       ]
     },
@@ -5820,32 +5820,11 @@
       "voice": "ash",
       "clips": [
         {
-          "text": "quiet",
-          "file": "685390b8ade4f766f965ee9e17c16e4b3bc913311be85b949a942530539e61ef.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/008f0747f4e27c8462baa991-ash.mp3",
-          "contentHash": "aefc499a163f556bdf8080be77f4bfeb4588f1a7345253a61c1ea035e5dd6efc",
-          "byteSize": 18816
-        },
-        {
-          "text": "alone",
-          "file": "4eb050d8fcc7a0b09b83506c1db78653df54b672c0d76381e74f2b4bc7faadb6.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/facf8b54e5c0b8c426bb1c4b-ash.mp3",
-          "contentHash": "01233e90db059ed4805202a7a4f99ebd392bbffcdcf2eeb411c5feb65b34b014",
-          "byteSize": 21120
-        },
-        {
-          "text": "together",
-          "file": "3f474dbf37cd21654661a1490c06ed14152691dc7f5acd7fd8f3e567b2be692d.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/0c24734d7bf5954f08e5bfe4-ash.mp3",
-          "contentHash": "62dd4612a6b596da3e7ff8a3fa4ca255e28f955076981682909533df49428c00",
-          "byteSize": 24576
-        },
-        {
-          "text": "nearby",
-          "file": "d2907e21369bc7e0f3b4e1d96535e6e5265ef35b7451761c1e9eb8297cdad0bf.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d2907e21369bc7e0f3b4e1d96535e6e5265ef35b7451761c1e9eb8297cdad0bf.mp3",
-          "contentHash": "ca97760cdce133a4892ed1472247a84cd4db166f4fc68e93b9f876b1b7682af3",
-          "byteSize": 25344
+          "text": "They are together.",
+          "file": "4e7dc451c75c448b5d4ad839f288201281bbeca4b284ab3322e54e78c162dfe0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4e7dc451c75c448b5d4ad839f288201281bbeca4b284ab3322e54e78c162dfe0.mp3",
+          "contentHash": "593e7bef526c6710a7991d63e229a6b831986bd747d76dd2534775cf67dd18e3",
+          "byteSize": 33792
         }
       ]
     },
@@ -5853,11 +5832,11 @@
       "voice": "onyx",
       "clips": [
         {
-          "text": "We are nearby.",
-          "file": "ee0fb94b9c88c5f1eb1e0f0477d253932ac54b1459acceaefaba937984cbdf1b.mp3",
-          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ee0fb94b9c88c5f1eb1e0f0477d253932ac54b1459acceaefaba937984cbdf1b.mp3",
-          "contentHash": "0f8a44931748a7c624dce626fc10b6fe308feca0e1dcd39f14bbdf4eeaa04843",
-          "byteSize": 24192
+          "text": "We are upstairs.",
+          "file": "dc3b8d42b22a6fdadb689afcd203aa80567c98b902c4c3e19a8e1ba40b8b2a5b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/dc3b8d42b22a6fdadb689afcd203aa80567c98b902c4c3e19a8e1ba40b8b2a5b.mp3",
+          "contentHash": "ea905e7c3b7679c9cfaec950b5a667b268951fdecfee942a7574efcf91d65472",
+          "byteSize": 26880
         }
       ]
     },
@@ -134036,6 +134015,75 @@
           "assetPath": "assets/audio/learning-v2/factory-production-v1/45e7cff0cafd8e1b1f595d05-nova.mp3",
           "contentHash": "e40adb63ecdd9a32a29a49a7a0137ab66ed32ee47fcceaf01f4d4347227151c4",
           "byteSize": 35712
+        }
+      ]
+    },
+    "l01/s19/task/17": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "I am alone.",
+          "file": "7f5017c46b456851e71a9097d84a188c97939e8814b2b88b5ec421d1828c0529.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7f5017c46b456851e71a9097d84a188c97939e8814b2b88b5ec421d1828c0529.mp3",
+          "contentHash": "e1a9140174979a3c84a21968091f3d4cdd3803fb188bc1048f8acc5dbed89ecf",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l01/s19/task/18": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "They are lucky.",
+          "file": "92d53ed602728ee79f3989eadc2f2659f274402eba7229337286d465c9e503b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/92d53ed602728ee79f3989eadc2f2659f274402eba7229337286d465c9e503b9.mp3",
+          "contentHash": "712da6027b740fd5a2ac5765001f1ed000c7c700aba8abcc6d560e65bfb1f72d",
+          "byteSize": 24576
+        }
+      ]
+    },
+    "l01/s19/task/19": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "quiet",
+          "file": "685390b8ade4f766f965ee9e17c16e4b3bc913311be85b949a942530539e61ef.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/008f0747f4e27c8462baa991-ash.mp3",
+          "contentHash": "aefc499a163f556bdf8080be77f4bfeb4588f1a7345253a61c1ea035e5dd6efc",
+          "byteSize": 18816
+        },
+        {
+          "text": "alone",
+          "file": "4eb050d8fcc7a0b09b83506c1db78653df54b672c0d76381e74f2b4bc7faadb6.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/facf8b54e5c0b8c426bb1c4b-ash.mp3",
+          "contentHash": "01233e90db059ed4805202a7a4f99ebd392bbffcdcf2eeb411c5feb65b34b014",
+          "byteSize": 21120
+        },
+        {
+          "text": "together",
+          "file": "3f474dbf37cd21654661a1490c06ed14152691dc7f5acd7fd8f3e567b2be692d.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/0c24734d7bf5954f08e5bfe4-ash.mp3",
+          "contentHash": "62dd4612a6b596da3e7ff8a3fa4ca255e28f955076981682909533df49428c00",
+          "byteSize": 24576
+        },
+        {
+          "text": "upstairs",
+          "file": "b75edf3168279ac56a9d97971db6642a733a83eba9f0798279155fe1b1e3b9dd.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/ab5db4901670272a1c0d9f01-ash.mp3",
+          "contentHash": "95b67752e379b429f4efdb698a4196518e266a483289140bb0bd33684c6aa400",
+          "byteSize": 45312
+        }
+      ]
+    },
+    "l01/s19/task/20": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "We are nearby.",
+          "file": "8ebc8bff277a0930f4a01e014e801fc3c82361fee0470be2a7f659a3eacc1ff5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ebc8bff277a0930f4a01e014e801fc3c82361fee0470be2a7f659a3eacc1ff5.mp3",
+          "contentHash": "d4ec86084e53380823300438a49b19fba7c1546c3f92a497f2f2fa579ce29eb2",
+          "byteSize": 26112
         }
       ]
     }

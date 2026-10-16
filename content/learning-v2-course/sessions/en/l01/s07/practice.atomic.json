@@ -1,8 +1,6 @@
 {
   "schemaVersion": "learning_v2_atomic_practice_source_v1",
   "courseSessionId": "en:lesson-01:session-07",
-  "sourceSnapshotSha256": "496c54a2b39f5c667f0821f0df1cbfdc56c2cd10007b2d9d185644b1954ce6fd",
-  "preservationLedgerSha256": "52de7cbc829b117ea71c0baa589f85cef4a80c0ac6ec6be30b5bb86f50a9dd9d",
   "interactionsByLocale": {
     "ru": [
       {
@@ -30,8 +28,8 @@
               "responseId": "en:lesson-01:session-07:i01:r1",
               "targetText": "glad",
               "meaningByLocale": {
-                "ru": "«мне приятно». Не праздник со свечами, а тихое «хорошо, что так получилось».",
-                "uk": "«мені приємно». Не свято зі свічками, а тихе «добре, що так вийшло»."
+                "ru": "«рад / рада»: вы довольны найденным пропуском или другой хорошей новостью.",
+                "uk": "«радий / рада»: ви задоволені знайденою перепусткою чи іншою доброю новиною."
               }
             }
           ],
@@ -41,8 +39,8 @@
           "wordCard": {
             "word": "glad",
             "definitionByLocale": {
-              "ru": "«мне приятно». Не праздник со свечами, а тихое «хорошо, что так получилось».",
-              "uk": "«мені приємно». Не свято зі свічками, а тихе «добре, що так вийшло»."
+              "ru": "«рад / рада»: вы довольны найденным пропуском или другой хорошей новостью.",
+              "uk": "«радий / рада»: ви задоволені знайденою перепусткою чи іншою доброю новиною."
             }
           }
         },
@@ -54,7 +52,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i02:r1",
@@ -62,18 +60,18 @@
           },
           {
             "responseId": "en:lesson-01:session-07:i02:r2",
-            "text": "glass"
+            "text": "sad"
           },
           {
             "responseId": "en:lesson-01:session-07:i02:r3",
-            "text": "gold"
+            "text": "done"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-07:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -89,12 +87,12 @@
             },
             {
               "responseId": "en:lesson-01:session-07:i02:r2",
-              "targetText": "glass",
+              "targetText": "sad",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-07:i02:r3",
-              "targetText": "gold",
+              "targetText": "done",
               "meaningByLocale": null
             }
           ],
@@ -103,19 +101,19 @@
             {
               "responseId": "en:lesson-01:session-07:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — glad",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "`glass` — «стакан», а здесь нужно `glad` — «мне приятно».",
-                "uk": "`glass` — «склянка», а тут потрібно `glad` — «мені приємно»."
+                "ru": "В записи glad, а не sad.",
+                "uk": "У записі glad, а не sad."
               }
             },
             {
               "responseId": "en:lesson-01:session-07:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — glad",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "`gold` — «золото», а здесь нужно `glad` — «мне приятно».",
-                "uk": "`gold` — «золото», а тут потрібно `glad` — «мені приємно»."
+                "ru": "В записи glad, а не done.",
+                "uk": "У записі glad, а не done."
               }
             }
           ],
@@ -149,8 +147,8 @@
               "responseId": "en:lesson-01:session-07:i03:r1",
               "targetText": "full",
               "meaningByLocale": {
-                "ru": "еды уже достаточно, больше не хочется.",
-                "uk": "їжі вже достатньо, більше не хочеться."
+                "ru": "«сыт / сыта»: вы уже наелись.",
+                "uk": "«ситий / сита»: ви вже наїлися."
               }
             }
           ],
@@ -160,8 +158,8 @@
           "wordCard": {
             "word": "full",
             "definitionByLocale": {
-              "ru": "еды уже достаточно, больше не хочется.",
-              "uk": "їжі вже достатньо, більше не хочеться."
+              "ru": "«сыт / сыта»: вы уже наелись.",
+              "uk": "«ситий / сита»: ви вже наїлися."
             }
           }
         },
@@ -183,7 +181,7 @@
           "targetPhrase": "I am full.",
           "localizedMeaning": {
             "ru": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
-            "uk": "Складіть фразу — у кафе офіціант пропонує ще порцію, але вам більше не хочеться їсти"
+            "uk": "Складіть фразу — у кафе офіціант пропонує ще порцію, але ви вже ситі"
           },
           "orderedTokens": [
             "I",
@@ -199,11 +197,15 @@
               "correct": false,
               "testedDimension": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
               "feedbackByLocale": {
-                "ru": "она меняет смысл на противоположный — еды ещё хочется",
-                "uk": "вона змінює зміст на протилежний — їсти ще хочеться"
+                "ru": "получится «Я ещё не сыт», а по условию вы уже сыты",
+                "uk": "вийде «Я ще не ситий», а за умовою ви вже ситі"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -232,8 +234,8 @@
               "responseId": "en:lesson-01:session-07:i05:r1",
               "targetText": "scared",
               "meaningByLocale": {
-                "ru": "«мне страшно». Не ужас из кино, а обычное «ой, боязно» — перед первым звонком клиенту.",
-                "uk": "«мені страшно». Не жах із кіно, а звичайне «ой, боязко» — перед першим дзвінком клієнтові."
+                "ru": "«испуган / испугана». I am scared означает «Мне страшно».",
+                "uk": "«наляканий / налякана». I am scared означає «Мені страшно»."
               }
             }
           ],
@@ -243,8 +245,8 @@
           "wordCard": {
             "word": "scared",
             "definitionByLocale": {
-              "ru": "«мне страшно». Не ужас из кино, а обычное «ой, боязно» — перед первым звонком клиенту.",
-              "uk": "«мені страшно». Не жах із кіно, а звичайне «ой, боязко» — перед першим дзвінком клієнтові."
+              "ru": "«испуган / испугана». I am scared означает «Мне страшно».",
+              "uk": "«наляканий / налякана». I am scared означає «Мені страшно»."
             }
           }
         },
@@ -256,7 +258,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i06:r1",
@@ -264,18 +266,18 @@
           },
           {
             "responseId": "en:lesson-01:session-07:i06:r2",
-            "text": "scarf"
+            "text": "glad"
           },
           {
             "responseId": "en:lesson-01:session-07:i06:r3",
-            "text": "score"
+            "text": "full"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-07:i06:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -291,12 +293,12 @@
             },
             {
               "responseId": "en:lesson-01:session-07:i06:r2",
-              "targetText": "scarf",
+              "targetText": "glad",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-07:i06:r3",
-              "targetText": "score",
+              "targetText": "full",
               "meaningByLocale": null
             }
           ],
@@ -305,19 +307,19 @@
             {
               "responseId": "en:lesson-01:session-07:i06:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — scared",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "`scarf` — «шарф», а здесь нужно `scared` — «мне страшно».",
-                "uk": "`scarf` — «шарф», а тут потрібно `scared` — «мені страшно»."
+                "ru": "В записи scared, а не glad.",
+                "uk": "У записі scared, а не glad."
               }
             },
             {
               "responseId": "en:lesson-01:session-07:i06:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — scared",
+              "testedDimension": "Послушайте и выберите слово",
               "feedbackByLocale": {
-                "ru": "`score` — «счёт», а здесь нужно `scared` — «мне страшно».",
-                "uk": "`score` — «рахунок», а тут потрібно `scared` — «мені страшно»."
+                "ru": "В записи scared, а не full.",
+                "uk": "У записі scared, а не full."
               }
             }
           ],
@@ -466,7 +468,11 @@
             "bored"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -535,11 +541,7 @@
                 "uk": "Ви вже завершили роботу, тому підходить `I am done`, а не `I am not done`."
               }
             }
-          ],
-          "localizedMeaning": {
-            "ru": "Вставьте слово — коллега спрашивает, нужны ли вам подсказки, как найти кабинет 4B. Вы устали после рабочего дня и уже закончили работу, но стоите у правильной двери кабинета 4B.",
-            "uk": "Вставте слово — колега питає, чи потрібні вам підказки, як знайти кабінет 4B. Ви втомилися після робочого дня й уже завершили роботу, але стоїте біля правильних дверей кабінету 4B."
-          }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -579,11 +581,15 @@
               "correct": false,
               "testedDimension": "Послушайте и соберите — «мне не страшно»",
               "feedbackByLocale": {
-                "ru": "«скучно», а целевая фраза использует scared — «мне страшно»",
-                "uk": "«нудно», а цільова фраза використовує scared — «мені страшно»"
+                "ru": "`bored` — «скучно», а целевая фраза использует `scared` — «мне страшно»",
+                "uk": "`bored` — «нудно», а цільова фраза використовує `scared` — «мені страшно»"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -605,16 +611,16 @@
               "pairId": "en:lesson-01:session-07:i12:p1",
               "target": "glad",
               "meaningByLocale": {
-                "ru": "мне приятно",
-                "uk": "мені приємно"
+                "ru": "рад / рада",
+                "uk": "радий / рада"
               }
             },
             {
               "pairId": "en:lesson-01:session-07:i12:p2",
               "target": "full",
               "meaningByLocale": {
-                "ru": "больше не хочется есть",
-                "uk": "більше не хочеться їсти"
+                "ru": "сыт / сыта",
+                "uk": "ситий / сита"
               }
             },
             {
@@ -641,8 +647,8 @@
             "bored"
           ],
           "rightColumn": [
-            "мне приятно",
-            "больше не хочется есть",
+            "рад / рада",
+            "сыт / сыта",
             "мне страшно",
             "мне скучно"
           ],
@@ -766,8 +772,8 @@
               "correct": false,
               "testedDimension": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
               "feedbackByLocale": {
-                "ru": "с I нельзя is; нужно I am not lost",
-                "uk": "з I не вживаємо is; потрібно I am not lost"
+                "ru": "с `I` нельзя `is`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `is`; потрібно `I am not lost`"
               }
             },
             {
@@ -775,11 +781,15 @@
               "correct": false,
               "testedDimension": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
               "feedbackByLocale": {
-                "ru": "с I нельзя are; нужно I am not lost",
-                "uk": "з I не вживаємо are; потрібно I am not lost"
+                "ru": "с `I` нельзя `are`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `are`; потрібно `I am not lost`"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -789,17 +799,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — Саша сомневается: вы точно знаете дорогу домой?",
+        "prompt": "Соберите фразу — вы точно знаете дорогу домой; подтвердите Саше, что уверены",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — Саша сомневается: вы точно знаете дорогу домой?",
+        "accessibilityLabel": "Соберите фразу — вы точно знаете дорогу домой; подтвердите Саше, что уверены",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am sure.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — Саша уточняет, знаете ли вы дорогу домой",
-            "uk": "Складіть фразу — Сашко уточнює, чи знаєте ви дорогу додому"
+            "ru": "Соберите фразу — вы точно знаете дорогу домой; подтвердите Саше, что уверены",
+            "uk": "Складіть фразу — ви точно знаєте дорогу додому; підтвердьте Сашкові, що впевнені"
           },
           "orderedTokens": [
             "I",
@@ -813,20 +823,24 @@
             {
               "responseId": "en:lesson-01:session-07:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Соберите фразу — Саша сомневается: вы точно знаете дорогу домой?",
+              "testedDimension": "Соберите фразу — вы точно знаете дорогу домой; подтвердите Саше, что уверены",
               "feedbackByLocale": {
-                "ru": "с I используется am, поэтому I is sure неверно",
-                "uk": "з I вживається am, тому I is sure неправильно"
+                "ru": "с `I` используется `am`, поэтому `I is sure` неверно",
+                "uk": "з `I` вживається `am`, тому `I is sure` неправильно"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-07:i16",
         "ordinal": 19,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
         "prompt": "Скажите вслух — после пропущенного обеда скажите Нине, что хотите есть",
@@ -932,16 +946,16 @@
       {
         "interactionId": "en:lesson-01:session-07:i18",
         "ordinal": 21,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — Дима спрашивает, устали ли вы после длинного дня",
+        "prompt": "Скажите вслух — вы устали после длинного дня; сообщите об этом Диме",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-07:i18:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — Дима спрашивает, устали ли вы после длинного дня",
+        "accessibilityLabel": "Скажите вслух — вы устали после длинного дня; сообщите об этом Диме",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -989,8 +1003,8 @@
               "responseId": "en:lesson-01:session-07:i01:r1",
               "targetText": "glad",
               "meaningByLocale": {
-                "ru": "«мне приятно». Не праздник со свечами, а тихое «хорошо, что так получилось».",
-                "uk": "«мені приємно». Не свято зі свічками, а тихе «добре, що так вийшло»."
+                "ru": "«рад / рада»: вы довольны найденным пропуском или другой хорошей новостью.",
+                "uk": "«радий / рада»: ви задоволені знайденою перепусткою чи іншою доброю новиною."
               }
             }
           ],
@@ -1000,8 +1014,8 @@
           "wordCard": {
             "word": "glad",
             "definitionByLocale": {
-              "ru": "«мне приятно». Не праздник со свечами, а тихое «хорошо, что так получилось».",
-              "uk": "«мені приємно». Не свято зі свічками, а тихе «добре, що так вийшло»."
+              "ru": "«рад / рада»: вы довольны найденным пропуском или другой хорошей новостью.",
+              "uk": "«радий / рада»: ви задоволені знайденою перепусткою чи іншою доброю новиною."
             }
           }
         },
@@ -1013,7 +1027,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i02:r1",
@@ -1021,18 +1035,18 @@
           },
           {
             "responseId": "en:lesson-01:session-07:i02:r2",
-            "text": "glass"
+            "text": "sad"
           },
           {
             "responseId": "en:lesson-01:session-07:i02:r3",
-            "text": "gold"
+            "text": "done"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-07:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1048,12 +1062,12 @@
             },
             {
               "responseId": "en:lesson-01:session-07:i02:r2",
-              "targetText": "glass",
+              "targetText": "sad",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-07:i02:r3",
-              "targetText": "gold",
+              "targetText": "done",
               "meaningByLocale": null
             }
           ],
@@ -1062,19 +1076,19 @@
             {
               "responseId": "en:lesson-01:session-07:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — glad",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "`glass` — «стакан», а здесь нужно `glad` — «мне приятно».",
-                "uk": "`glass` — «склянка», а тут потрібно `glad` — «мені приємно»."
+                "ru": "В записи glad, а не sad.",
+                "uk": "У записі glad, а не sad."
               }
             },
             {
               "responseId": "en:lesson-01:session-07:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — glad",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "`gold` — «золото», а здесь нужно `glad` — «мне приятно».",
-                "uk": "`gold` — «золото», а тут потрібно `glad` — «мені приємно»."
+                "ru": "В записи glad, а не done.",
+                "uk": "У записі glad, а не done."
               }
             }
           ],
@@ -1108,8 +1122,8 @@
               "responseId": "en:lesson-01:session-07:i03:r1",
               "targetText": "full",
               "meaningByLocale": {
-                "ru": "еды уже достаточно, больше не хочется.",
-                "uk": "їжі вже достатньо, більше не хочеться."
+                "ru": "«сыт / сыта»: вы уже наелись.",
+                "uk": "«ситий / сита»: ви вже наїлися."
               }
             }
           ],
@@ -1119,8 +1133,8 @@
           "wordCard": {
             "word": "full",
             "definitionByLocale": {
-              "ru": "еды уже достаточно, больше не хочется.",
-              "uk": "їжі вже достатньо, більше не хочеться."
+              "ru": "«сыт / сыта»: вы уже наелись.",
+              "uk": "«ситий / сита»: ви вже наїлися."
             }
           }
         },
@@ -1132,17 +1146,17 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — у кафе офіціант пропонує ще порцію, але вам більше не хочеться їсти",
+        "prompt": "Складіть фразу — у кафе офіціант пропонує ще порцію, але ви вже ситі",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — у кафе офіціант пропонує ще порцію, але вам більше не хочеться їсти",
+        "accessibilityLabel": "Складіть фразу — у кафе офіціант пропонує ще порцію, але ви вже ситі",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am full.",
           "localizedMeaning": {
             "ru": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
-            "uk": "Складіть фразу — у кафе офіціант пропонує ще порцію, але вам більше не хочеться їсти"
+            "uk": "Складіть фразу — у кафе офіціант пропонує ще порцію, але ви вже ситі"
           },
           "orderedTokens": [
             "I",
@@ -1156,13 +1170,17 @@
             {
               "responseId": "en:lesson-01:session-07:i04:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — у кафе офіціант пропонує ще порцію, але вам більше не хочеться їсти",
+              "testedDimension": "Складіть фразу — у кафе офіціант пропонує ще порцію, але ви вже ситі",
               "feedbackByLocale": {
-                "ru": "она меняет смысл на противоположный — еды ещё хочется",
-                "uk": "вона змінює зміст на протилежний — їсти ще хочеться"
+                "ru": "получится «Я ещё не сыт», а по условию вы уже сыты",
+                "uk": "вийде «Я ще не ситий», а за умовою ви вже ситі"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -1191,8 +1209,8 @@
               "responseId": "en:lesson-01:session-07:i05:r1",
               "targetText": "scared",
               "meaningByLocale": {
-                "ru": "«мне страшно». Не ужас из кино, а обычное «ой, боязно» — перед первым звонком клиенту.",
-                "uk": "«мені страшно». Не жах із кіно, а звичайне «ой, боязко» — перед першим дзвінком клієнтові."
+                "ru": "«испуган / испугана». I am scared означает «Мне страшно».",
+                "uk": "«наляканий / налякана». I am scared означає «Мені страшно»."
               }
             }
           ],
@@ -1202,8 +1220,8 @@
           "wordCard": {
             "word": "scared",
             "definitionByLocale": {
-              "ru": "«мне страшно». Не ужас из кино, а обычное «ой, боязно» — перед первым звонком клиенту.",
-              "uk": "«мені страшно». Не жах із кіно, а звичайне «ой, боязко» — перед першим дзвінком клієнтові."
+              "ru": "«испуган / испугана». I am scared означает «Мне страшно».",
+              "uk": "«наляканий / налякана». I am scared означає «Мені страшно»."
             }
           }
         },
@@ -1215,7 +1233,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i06:r1",
@@ -1223,18 +1241,18 @@
           },
           {
             "responseId": "en:lesson-01:session-07:i06:r2",
-            "text": "scarf"
+            "text": "glad"
           },
           {
             "responseId": "en:lesson-01:session-07:i06:r3",
-            "text": "score"
+            "text": "full"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-07:i06:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1250,12 +1268,12 @@
             },
             {
               "responseId": "en:lesson-01:session-07:i06:r2",
-              "targetText": "scarf",
+              "targetText": "glad",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-01:session-07:i06:r3",
-              "targetText": "score",
+              "targetText": "full",
               "meaningByLocale": null
             }
           ],
@@ -1264,19 +1282,19 @@
             {
               "responseId": "en:lesson-01:session-07:i06:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — scared",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "`scarf` — «шарф», а здесь нужно `scared` — «мне страшно».",
-                "uk": "`scarf` — «шарф», а тут потрібно `scared` — «мені страшно»."
+                "ru": "В записи scared, а не glad.",
+                "uk": "У записі scared, а не glad."
               }
             },
             {
               "responseId": "en:lesson-01:session-07:i06:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — scared",
+              "testedDimension": "Послухайте й виберіть слово",
               "feedbackByLocale": {
-                "ru": "`score` — «счёт», а здесь нужно `scared` — «мне страшно».",
-                "uk": "`score` — «рахунок», а тут потрібно `scared` — «мені страшно»."
+                "ru": "В записи scared, а не full.",
+                "uk": "У записі scared, а не full."
               }
             }
           ],
@@ -1425,7 +1443,11 @@
             "bored"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -1494,11 +1516,7 @@
                 "uk": "Ви вже завершили роботу, тому підходить `I am done`, а не `I am not done`."
               }
             }
-          ],
-          "localizedMeaning": {
-            "ru": "Вставьте слово — коллега спрашивает, нужны ли вам подсказки, как найти кабинет 4B. Вы устали после рабочего дня и уже закончили работу, но стоите у правильной двери кабинета 4B.",
-            "uk": "Вставте слово — колега питає, чи потрібні вам підказки, як знайти кабінет 4B. Ви втомилися після робочого дня й уже завершили роботу, але стоїте біля правильних дверей кабінету 4B."
-          }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1538,11 +1556,15 @@
               "correct": false,
               "testedDimension": "Послухайте і складіть — «мені не страшно»",
               "feedbackByLocale": {
-                "ru": "«скучно», а целевая фраза использует scared — «мне страшно»",
-                "uk": "«нудно», а цільова фраза використовує scared — «мені страшно»"
+                "ru": "`bored` — «скучно», а целевая фраза использует `scared` — «мне страшно»",
+                "uk": "`bored` — «нудно», а цільова фраза використовує `scared` — «мені страшно»"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -1564,16 +1586,16 @@
               "pairId": "en:lesson-01:session-07:i12:p1",
               "target": "glad",
               "meaningByLocale": {
-                "ru": "мне приятно",
-                "uk": "мені приємно"
+                "ru": "рад / рада",
+                "uk": "радий / рада"
               }
             },
             {
               "pairId": "en:lesson-01:session-07:i12:p2",
               "target": "full",
               "meaningByLocale": {
-                "ru": "больше не хочется есть",
-                "uk": "більше не хочеться їсти"
+                "ru": "сыт / сыта",
+                "uk": "ситий / сита"
               }
             },
             {
@@ -1600,8 +1622,8 @@
             "bored"
           ],
           "rightColumn": [
-            "мені приємно",
-            "більше не хочеться їсти",
+            "радий / рада",
+            "ситий / сита",
             "мені страшно",
             "мені нудно"
           ],
@@ -1725,8 +1747,8 @@
               "correct": false,
               "testedDimension": "Послухайте й складіть — Сашко питає, чи ви заблукали в будівлі",
               "feedbackByLocale": {
-                "ru": "с I нельзя is; нужно I am not lost",
-                "uk": "з I не вживаємо is; потрібно I am not lost"
+                "ru": "с `I` нельзя `is`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `is`; потрібно `I am not lost`"
               }
             },
             {
@@ -1734,11 +1756,15 @@
               "correct": false,
               "testedDimension": "Послухайте й складіть — Сашко питає, чи ви заблукали в будівлі",
               "feedbackByLocale": {
-                "ru": "с I нельзя are; нужно I am not lost",
-                "uk": "з I не вживаємо are; потрібно I am not lost"
+                "ru": "с `I` нельзя `are`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `are`; потрібно `I am not lost`"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -1748,17 +1774,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — Сашко сумнівається: ви точно знаєте дорогу додому?",
+        "prompt": "Складіть фразу — ви точно знаєте дорогу додому; підтвердьте Сашкові, що впевнені",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — Сашко сумнівається: ви точно знаєте дорогу додому?",
+        "accessibilityLabel": "Складіть фразу — ви точно знаєте дорогу додому; підтвердьте Сашкові, що впевнені",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am sure.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — Саша уточняет, знаете ли вы дорогу домой",
-            "uk": "Складіть фразу — Сашко уточнює, чи знаєте ви дорогу додому"
+            "ru": "Соберите фразу — вы точно знаете дорогу домой; подтвердите Саше, что уверены",
+            "uk": "Складіть фразу — ви точно знаєте дорогу додому; підтвердьте Сашкові, що впевнені"
           },
           "orderedTokens": [
             "I",
@@ -1772,20 +1798,24 @@
             {
               "responseId": "en:lesson-01:session-07:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Сашко сумнівається: ви точно знаєте дорогу додому?",
+              "testedDimension": "Складіть фразу — ви точно знаєте дорогу додому; підтвердьте Сашкові, що впевнені",
               "feedbackByLocale": {
-                "ru": "с I используется am, поэтому I is sure неверно",
-                "uk": "з I вживається am, тому I is sure неправильно"
+                "ru": "с `I` используется `am`, поэтому `I is sure` неверно",
+                "uk": "з `I` вживається `am`, тому `I is sure` неправильно"
               }
             }
-          ]
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-01:session-07:i16",
         "ordinal": 19,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
         "prompt": "Скажіть уголос — після пропущеного обіду скажіть Ніні, що хочеться їсти",
@@ -1891,16 +1921,16 @@
       {
         "interactionId": "en:lesson-01:session-07:i18",
         "ordinal": 21,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — Діма питає, чи ви втомилися після довгого дня",
+        "prompt": "Скажіть уголос — ви втомилися після довгого дня; повідомте про це Дімі",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-07:i18:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — Діма питає, чи ви втомилися після довгого дня",
+        "accessibilityLabel": "Скажіть уголос — ви втомилися після довгого дня; повідомте про це Дімі",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1981,7 +2011,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-07:i12",
-      "correctText": "en:lesson-01:session-07:i12:p1=glad\nen:lesson-01:session-07:i12:p2=full\nen:lesson-01:session-07:i12:p3=scared\nen:lesson-01:session-07:i12:p4=bored",
+      "correctText": "",
       "correctResponseId": null
     },
     {
@@ -1990,23 +2020,23 @@
       "correctResponseId": "en:lesson-01:session-07:i13:r1"
     },
     {
-      "interactionId": "en:lesson-01:session-07:i15",
-      "correctText": "I am sure.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-07:i17",
-      "correctText": "en:lesson-01:session-07:i17:p1=hungry\nen:lesson-01:session-07:i17:p2=tired\nen:lesson-01:session-07:i17:p3=done\nen:lesson-01:session-07:i17:p4=fine",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-07:i14",
       "correctText": "I am not lost.",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-01:session-07:i15",
+      "correctText": "I am sure.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-07:i16",
       "correctText": "I am hungry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i17",
+      "correctText": "",
       "correctResponseId": null
     },
     {

@@ -1,0 +1,983 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна захворіла. Скажіть «Анна хвора»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна захворіла. Скажіть «Анна хвора»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna is ill.",
+        "localizedMeaning": {
+          "ru": "Анна заболела. Скажите «Анна больна»",
+          "uk": "Анна захворіла. Скажіть «Анна хвора»"
+        },
+        "orderedTokens": [
+          "Anna",
+          "is",
+          "ill"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Анна захворіла. Скажіть «Анна хвора»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna is ill.`",
+              "uk": "тут потрібно `is` — `Anna is ill.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-35:i02:r1",
+          "text": "bracelet"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i02:r2",
+          "text": "ring"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i02:r3",
+          "text": "watch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i02:audio",
+          "transcript": "bracelet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-35:i02:r1",
+            "targetText": "bracelet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i02:r2",
+            "targetText": "ring",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i02:r3",
+            "targetText": "watch",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bracelet`, а в этом варианте — `ring`.",
+              "uk": "У записі перше слово — `bracelet`, а в цьому варіанті — `ring`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `bracelet`, а в этом варианте — `watch`.",
+              "uk": "У записі перше слово — `bracelet`, а в цьому варіанті — `watch`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть браслет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-35:i03:r1",
+          "text": "bracelet"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i03:r2",
+          "text": "ring"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i03:r3",
+          "text": "passport"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть браслет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите браслет",
+          "uk": "Назвіть браслет"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i03:r1",
+            "text": "bracelet"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i03:r2",
+            "text": "ring"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i03:r3",
+            "text": "passport"
+          }
+        ],
+        "testedDimension": "Назвіть браслет",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть браслет",
+            "feedbackByLocale": {
+              "ru": "`ring` — кольцо; браслет — `bracelet`.",
+              "uk": "`ring` — каблучка; браслет — `bracelet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть браслет",
+            "feedbackByLocale": {
+              "ru": "`passport` — паспорт; браслет — `bracelet`.",
+              "uk": "`passport` — паспорт; браслет — `bracelet`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-35:i04:p1",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i04:p2",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i04:p3",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i04:p4",
+            "target": "passport",
+            "meaningByLocale": {
+              "ru": "паспорт",
+              "uk": "паспорт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bracelet",
+          "photos",
+          "ramp",
+          "passport"
+        ],
+        "rightColumn": [
+          "браслет",
+          "фотографії",
+          "пандус",
+          "паспорт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i05:audio",
+          "transcript": "Whose bracelet is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose bracelet is this?",
+        "orderedTokens": [
+          "Whose",
+          "bracelet",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знайшли паспорт. Запитайте «Чий це паспорт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайшли паспорт. Запитайте «Чий це паспорт?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose passport is this?",
+        "localizedMeaning": {
+          "ru": "Вы нашли паспорт. Спросите «Чей это паспорт?»",
+          "uk": "Ви знайшли паспорт. Запитайте «Чий це паспорт?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "passport",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Браслет належить вам. Скажіть «Браслет мій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i07:audio"
+      ],
+      "accessibilityLabel": "Браслет належить вам. Скажіть «Браслет мій»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i07:audio",
+          "transcript": "The bracelet is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bracelet is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника кількох фотографій. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-35:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника кількох фотографій. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце нескольких фотографий. Выберите форму",
+          "uk": "Запитайте про власника кількох фотографій. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Whose photos ___ these?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Запитайте про власника кількох фотографій. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника кількох фотографій. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`photos` — множественное число: `are these`.",
+              "uk": "`photos` — множина: `are these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника кількох фотографій. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`; здесь `are these`.",
+              "uk": "`am` використовується з `I`; тут `are these`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, яку річ називає друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-35:i09:r1",
+          "text": "This is Anna's bracelet."
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i09:r2",
+          "text": "This is Anna's passport."
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i09:r3",
+          "text": "This is Anna's ring."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, яку річ називає друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i09:audio",
+          "transcript": "This is Anna's bracelet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-35:i09:r1",
+            "targetText": "This is Anna's bracelet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i09:r2",
+            "targetText": "This is Anna's passport.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i09:r3",
+            "targetText": "This is Anna's ring.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bracelet`, а в этом варианте — `passport`.",
+              "uk": "У записі останнє слово — `bracelet`, а в цьому варіанті — `passport`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, яку річ називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `bracelet`, а в этом варианте — `ring`.",
+              "uk": "У записі останнє слово — `bracelet`, а в цьому варіанті — `ring`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-35:i10:p1",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i10:p2",
+            "target": "ill",
+            "meaningByLocale": {
+              "ru": "болен",
+              "uk": "хворий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i10:p3",
+            "target": "ramp",
+            "meaningByLocale": {
+              "ru": "пандус",
+              "uk": "пандус"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i10:p4",
+            "target": "passport",
+            "meaningByLocale": {
+              "ru": "паспорт",
+              "uk": "паспорт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bracelet",
+          "ill",
+          "ramp",
+          "passport"
+        ],
+        "rightColumn": [
+          "браслет",
+          "хворий",
+          "пандус",
+          "паспорт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i11:audio",
+          "transcript": "Tom is next to the ramp."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tom is next to the ramp.",
+        "orderedTokens": [
+          "Tom",
+          "is",
+          "next",
+          "to",
+          "the",
+          "ramp"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom is next to the ramp.`",
+              "uk": "тут потрібно `is` — `Tom is next to the ramp.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фотографії належать подрузі. Скажіть «Фотографії її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фотографії належать подрузі. Скажіть «Фотографії її»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The photos are hers.",
+        "localizedMeaning": {
+          "ru": "Фотографии принадлежат подруге. Скажите «Фотографии её»",
+          "uk": "Фотографії належать подрузі. Скажіть «Фотографії її»"
+        },
+        "orderedTokens": [
+          "The",
+          "photos",
+          "are",
+          "hers"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Фотографії належать подрузі. Скажіть «Фотографії її»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The photos are hers.`",
+              "uk": "тут потрібно `are` — `The photos are hers.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Паспорт друга у вас. Скажіть йому «Твій паспорт у мене»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Паспорт друга у вас. Скажіть йому «Твій паспорт у мене»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i13:audio",
+          "transcript": "I have your passport."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have your passport.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про власника браслета",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-35:i14:r1",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i14:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i14:r3",
+          "text": "Who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про власника браслета",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о владельце браслета",
+          "uk": "Запитайте про власника браслета"
+        },
+        "gappedTargetPhrase": "___ bracelet is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-35:i14:r1",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i14:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i14:r3",
+            "text": "Who"
+          }
+        ],
+        "testedDimension": "Запитайте про власника браслета",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i14:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про власника браслета",
+            "feedbackByLocale": {
+              "ru": "`Where` — где; чей — `Whose`.",
+              "uk": "`Where` — де; чий — `Whose`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i14:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про власника браслета",
+            "feedbackByLocale": {
+              "ru": "`Who` — кто; чей — `Whose`.",
+              "uk": "`Who` — хто; чий — `Whose`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, чий браслет тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-35:i15:r1",
+          "text": "Your bracelet is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i15:r2",
+          "text": "My bracelet is here."
+        },
+        {
+          "responseId": "en:lesson-05:session-35:i15:r3",
+          "text": "His bracelet is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чий браслет тут",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i15:audio",
+          "transcript": "Your bracelet is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-35:i15:r1",
+            "targetText": "Your bracelet is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i15:r2",
+            "targetText": "My bracelet is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i15:r3",
+            "targetText": "His bracelet is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-35:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, чий браслет тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-35:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, чий браслет тут",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-35:i16:p1",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i16:p2",
+            "target": "ill",
+            "meaningByLocale": {
+              "ru": "болен",
+              "uk": "хворий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i16:p3",
+            "target": "photos",
+            "meaningByLocale": {
+              "ru": "фотографии",
+              "uk": "фотографії"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-35:i16:p4",
+            "target": "passport",
+            "meaningByLocale": {
+              "ru": "паспорт",
+              "uk": "паспорт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bracelet",
+          "ill",
+          "photos",
+          "passport"
+        ],
+        "rightColumn": [
+          "браслет",
+          "хворий",
+          "фотографії",
+          "паспорт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-35:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знайшли кілька фотографій і хочете повернути їх власникові. Запитайте «Чиї це фотографії?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Ви знайшли кілька фотографій і хочете повернути їх власникові. Запитайте «Чиї це фотографії?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-35:i17:audio",
+          "transcript": "Whose photos are these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose photos are these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "91b6d60382e0665e83ef894040aa5dad5f68482b853da03c3e3356a22effbfc7"
+}

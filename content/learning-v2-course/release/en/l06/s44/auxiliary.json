@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-44:intro1:r2": {
+          "ru": "О владельце спрашиваем `Whose`.",
+          "uk": "Про власника запитуємо `Whose`."
+        },
+        "en:lesson-06:session-44:intro1:r3": {
+          "ru": "Одна шляпа: `is this`.",
+          "uk": "Один капелюх: `is this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-44:intro2:r2": {
+          "ru": "В конце без названия вещи нужно `mine`, не `my`.",
+          "uk": "У кінці без назви речі потрібне `mine`, не `my`."
+        },
+        "en:lesson-06:session-44:intro2:r3": {
+          "ru": "Одна шляпа: `is`, не `are`.",
+          "uk": "Один капелюх: `is`, не `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-44:intro3:r2": {
+          "ru": "После `she` — `lives`.",
+          "uk": "Після `she` — `lives`."
+        },
+        "en:lesson-06:session-44:intro3:r3": {
+          "ru": "Нужно `She lives`, без `is`.",
+          "uk": "Потрібно `She lives`, без `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fee30dc21461bbadf9966c1a83b082956b2b40b0f673081a7f1fc9edcb0b43b2"
+}

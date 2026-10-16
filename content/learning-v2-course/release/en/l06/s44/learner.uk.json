@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-06:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-06:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Цей капелюх мій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Цей капелюх мій»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This hat is mine.",
+        "localizedMeaning": {
+          "ru": "Скажите «Эта шляпа моя»",
+          "uk": "Скажіть «Цей капелюх мій»"
+        },
+        "orderedTokens": [
+          "This",
+          "hat",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-44:i02:r1",
+          "text": "hat"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i02:r2",
+          "text": "bicycle"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i02:r3",
+          "text": "freezer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i02:audio",
+          "transcript": "hat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-44:i02:r1",
+            "targetText": "hat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i02:r2",
+            "targetText": "bicycle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i02:r3",
+            "targetText": "freezer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `hat`, а в этом варианте — `bicycle`.",
+              "uk": "У записі перше слово — `hat`, а в цьому варіанті — `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `hat`, а в этом варианте — `freezer`.",
+              "uk": "У записі перше слово — `hat`, а в цьому варіанті — `freezer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте «Чий це капелюх?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-44:i03:r1",
+          "text": "hat"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i03:r2",
+          "text": "hats"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i03:r3",
+          "text": "hat are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Чий це капелюх?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите «Чья это шляпа?»",
+          "uk": "Запитайте «Чий це капелюх?»"
+        },
+        "gappedTargetPhrase": "Whose ___ is this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i03:r1",
+            "text": "hat"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i03:r2",
+            "text": "hats"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i03:r3",
+            "text": "hat are"
+          }
+        ],
+        "testedDimension": "Запитайте «Чий це капелюх?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте «Чий це капелюх?»",
+            "feedbackByLocale": {
+              "ru": "Здесь одна шляпа: `hat`, с `is this`.",
+              "uk": "Тут один капелюх: `hat`, з `is this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте «Чий це капелюх?»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Whose hat is this?`, без дополнительного `are`.",
+              "uk": "Потрібно `Whose hat is this?`, без додаткового `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-44:i04:p1",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "головной убор",
+              "uk": "головний убір"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i04:p2",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i04:p3",
+            "target": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник",
+              "uk": "морозильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i04:p4",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hat",
+          "legal",
+          "freezer",
+          "bicycle"
+        ],
+        "rightColumn": [
+          "головний убір",
+          "законний",
+          "морозильник",
+          "велосипед"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i05:audio",
+          "transcript": "My hat is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My hat is here.",
+        "orderedTokens": [
+          "My",
+          "hat",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Вона живе тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона живе тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She lives here.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она живёт здесь»",
+          "uk": "Скажіть «Вона живе тут»"
+        },
+        "orderedTokens": [
+          "She",
+          "lives",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На кухні замінили морозильник. Скажіть «Цей морозильник новий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "На кухні замінили морозильник. Скажіть «Цей морозильник новий»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i07:audio",
+          "transcript": "This freezer is new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This freezer is new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вони живуть тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-44:i08:r1",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i08:r2",
+          "text": "lives"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i08:r3",
+          "text": "are live"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вони живуть тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Они живут здесь»",
+          "uk": "Скажіть «Вони живуть тут»"
+        },
+        "gappedTargetPhrase": "They ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i08:r1",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i08:r2",
+            "text": "lives"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i08:r3",
+            "text": "are live"
+          }
+        ],
+        "testedDimension": "Скажіть «Вони живуть тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони живуть тут»",
+            "feedbackByLocale": {
+              "ru": "После `they` — `live`, без `s`.",
+              "uk": "Після `they` — `live`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вони живуть тут»",
+            "feedbackByLocale": {
+              "ru": "Для «живут» нужно `They live`, без `are`.",
+              "uk": "Для «живуть» потрібно `They live`, без `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить велосипед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-44:i09:r1",
+          "text": "This bicycle is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i09:r2",
+          "text": "This bicycle is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i09:r3",
+          "text": "This bicycle is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить велосипед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i09:audio",
+          "transcript": "This bicycle is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-44:i09:r1",
+            "targetText": "This bicycle is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i09:r2",
+            "targetText": "This bicycle is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i09:r3",
+            "targetText": "This bicycle is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить велосипед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить велосипед",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-44:i10:p1",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "головной убор",
+              "uk": "головний убір"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i10:p2",
+            "target": "live",
+            "meaningByLocale": {
+              "ru": "жить",
+              "uk": "жити"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i10:p3",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i10:p4",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hat",
+          "live",
+          "bicycle",
+          "legal"
+        ],
+        "rightColumn": [
+          "головний убір",
+          "жити",
+          "велосипед",
+          "законний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i11:audio",
+          "transcript": "The freezer is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The freezer is here.",
+        "orderedTokens": [
+          "The",
+          "freezer",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-44:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The freezer is here.`",
+              "uk": "тут потрібно `is` — `The freezer is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Біля дверей стоїть велосипед. Запитайте «Чий це велосипед?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Біля дверей стоїть велосипед. Запитайте «Чий це велосипед?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Whose bicycle is this?",
+        "localizedMeaning": {
+          "ru": "У двери стоит велосипед. Спросите «Чей это велосипед?»",
+          "uk": "Біля дверей стоїть велосипед. Запитайте «Чий це велосипед?»"
+        },
+        "orderedTokens": [
+          "Whose",
+          "bicycle",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Ми живемо тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Ми живемо тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i13:audio",
+          "transcript": "We live here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We live here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Анна живе тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-44:i14:r1",
+          "text": "lives"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i14:r2",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i14:r3",
+          "text": "is lives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Анна живе тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Анна живёт здесь»",
+          "uk": "Скажіть «Анна живе тут»"
+        },
+        "gappedTargetPhrase": "Anna ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i14:r1",
+            "text": "lives"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i14:r2",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i14:r3",
+            "text": "is lives"
+          }
+        ],
+        "testedDimension": "Скажіть «Анна живе тут»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-44:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна живе тут»",
+            "feedbackByLocale": {
+              "ru": "Анна — она: `Anna lives`.",
+              "uk": "Анна — вона: `Anna lives`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Анна живе тут»",
+            "feedbackByLocale": {
+              "ru": "Нужно `Anna lives`, без `is`.",
+              "uk": "Потрібно `Anna lives`, без `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, кому належить капелюх",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-06:session-44:i15:r1",
+          "text": "This hat is mine."
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i15:r2",
+          "text": "This hat is yours."
+        },
+        {
+          "responseId": "en:lesson-06:session-44:i15:r3",
+          "text": "This hat is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому належить капелюх",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i15:audio",
+          "transcript": "This hat is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-44:i15:r1",
+            "targetText": "This hat is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i15:r2",
+            "targetText": "This hat is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i15:r3",
+            "targetText": "This hat is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-06:session-44:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить капелюх",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `yours`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `yours`."
+            }
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, кому належить капелюх",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
+              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-06:session-44:i16:p1",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "головной убор",
+              "uk": "головний убір"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i16:p2",
+            "target": "freezer",
+            "meaningByLocale": {
+              "ru": "морозильник",
+              "uk": "морозильник"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i16:p3",
+            "target": "legal",
+            "meaningByLocale": {
+              "ru": "законный",
+              "uk": "законний"
+            }
+          },
+          {
+            "pairId": "en:lesson-06:session-44:i16:p4",
+            "target": "live",
+            "meaningByLocale": {
+              "ru": "жить",
+              "uk": "жити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hat",
+          "freezer",
+          "legal",
+          "live"
+        ],
+        "rightColumn": [
+          "головний убір",
+          "морозильник",
+          "законний",
+          "жити"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після зустрічі залишився капелюх. Знайдіть власника: запитайте «Чий це капелюх?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Після зустрічі залишився капелюх. Знайдіть власника: запитайте «Чий це капелюх?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-44:i17:audio",
+          "transcript": "Whose hat is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose hat is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6f737a5fe14f250f9f76894c68d255e217d4dc699fc79a3c8559671b25b18fe6"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-05:session-45:i01",
+    "correctText": "The microwave is useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i02",
+    "correctText": "motorbike",
+    "correctResponseId": "en:lesson-05:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i03",
+    "correctText": "motorbike",
+    "correctResponseId": "en:lesson-05:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i04",
+    "correctText": "en:lesson-05:session-45:i04:p1=motorbike\nen:lesson-05:session-45:i04:p2=earrings\nen:lesson-05:session-45:i04:p3=office\nen:lesson-05:session-45:i04:p4=microwave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i05",
+    "correctText": "Whose motorbike is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i06",
+    "correctText": "The earrings are in the office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i07",
+    "correctText": "The motorbike is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-05:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i09",
+    "correctText": "This is Tom's motorbike.",
+    "correctResponseId": "en:lesson-05:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i10",
+    "correctText": "en:lesson-05:session-45:i10:p1=motorbike\nen:lesson-05:session-45:i10:p2=useful\nen:lesson-05:session-45:i10:p3=microwave\nen:lesson-05:session-45:i10:p4=earrings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i11",
+    "correctText": "The motorbike is near the office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i12",
+    "correctText": "The earrings are hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i13",
+    "correctText": "I have your earrings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i14",
+    "correctText": "Whose",
+    "correctResponseId": "en:lesson-05:session-45:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i15",
+    "correctText": "Your motorbike is here.",
+    "correctResponseId": "en:lesson-05:session-45:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i16",
+    "correctText": "en:lesson-05:session-45:i16:p1=motorbike\nen:lesson-05:session-45:i16:p2=useful\nen:lesson-05:session-45:i16:p3=office\nen:lesson-05:session-45:i16:p4=earrings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:i17",
+    "correctText": "Whose earrings are these?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-06:session-09:i01",
+    "correctText": "I start at nine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i02",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-06:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i03",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-06:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i04",
+    "correctText": "en:lesson-06:session-09:i04:p1=start\nen:lesson-06:session-09:i04:p2=work\nen:lesson-06:session-09:i04:p3=dentist\nen:lesson-06:session-09:i04:p4=charger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i05",
+    "correctText": "You start at ten.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i06",
+    "correctText": "They work here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i07",
+    "correctText": "I am a dentist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i08",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-06:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i09",
+    "correctText": "They start at eight.",
+    "correctResponseId": "en:lesson-06:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i10",
+    "correctText": "en:lesson-06:session-09:i10:p1=start\nen:lesson-06:session-09:i10:p2=possible\nen:lesson-06:session-09:i10:p3=charger\nen:lesson-06:session-09:i10:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i11",
+    "correctText": "We have a charger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i12",
+    "correctText": "It is possible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i13",
+    "correctText": "We work in this neighbourhood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i14",
+    "correctText": "start",
+    "correctResponseId": "en:lesson-06:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i15",
+    "correctText": "My charger is here.",
+    "correctResponseId": "en:lesson-06:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i16",
+    "correctText": "en:lesson-06:session-09:i16:p1=dentist\nen:lesson-06:session-09:i16:p2=possible\nen:lesson-06:session-09:i16:p3=start\nen:lesson-06:session-09:i16:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-09:i17",
+    "correctText": "We start at nine.",
+    "correctResponseId": null
+  }
+]

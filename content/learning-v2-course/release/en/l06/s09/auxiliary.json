@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-06:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-06:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-09:intro1:r2": {
+          "ru": "Перед `start` здесь не нужно `am`.",
+          "uk": "Перед `start` тут не потрібно `am`."
+        },
+        "en:lesson-06:session-09:intro1:r3": {
+          "ru": "`ten` — десять; девять — `nine`.",
+          "uk": "`ten` — десять; дев’ять — `nine`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-09:intro2:r2": {
+          "ru": "После `they` — `work`, без `s`.",
+          "uk": "Після `they` — `work`, без `s`."
+        },
+        "en:lesson-06:session-09:intro2:r3": {
+          "ru": "Здесь действие: `They work`, без `are`.",
+          "uk": "Тут дія: `They work`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-06:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-06:session-09:intro3:r2": {
+          "ru": "Когда называем профессию, после `I` нужно `am`.",
+          "uk": "Коли називаємо професію, після `I` потрібно `am`."
+        },
+        "en:lesson-06:session-09:intro3:r3": {
+          "ru": "Здесь называем профессию: `I am a dentist`.",
+          "uk": "Тут називаємо професію: `I am a dentist`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "896d55521db5b9228e98526294f4e9c07a2dfeb58e2b117f12aac9149b77aacd"
+}

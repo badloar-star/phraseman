@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-06:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, когда начинается работа, от своего лица и от лица группы",
+    "uk": "сказати, коли починається робота, від свого імені й від імені групи"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-06:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Во сколько начинаем",
+        "uk": "О котрій починаємо"
+      },
+      "bodyByLocale": {
+        "ru": "`start` — «начинать». `I start at nine` — «Я начинаю в девять». Перед часом ставим `at`: `at nine` — «в девять». Речь здесь о начале рабочего дня. Кофе в восемь — ещё не начало работы, хотя иногда самая важная подготовка.",
+        "uk": "`start` — «починати». `I start at nine` — «Я починаю о дев’ятій». Перед годиною ставимо `at`: `at nine` — «о дев’ятій». Тут ідеться про початок робочого дня. Кава о восьмій — ще не початок роботи, хоча іноді найважливіша підготовка."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я начинаю в девять».",
+          "uk": "Скажіть «Я починаю о дев’ятій»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-09:intro1:r1",
+              "text": "I start at nine."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro1:r2",
+              "text": "I am start at nine."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro1:r3",
+              "text": "I start at ten."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-09:intro1:r1",
+              "text": "I start at nine."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro1:r2",
+              "text": "I am start at nine."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro1:r3",
+              "text": "I start at ten."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я начинаю в девять».",
+          "uk": "Скажіть «Я починаю о дев’ятій»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-06:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я, ты, мы, они",
+        "uk": "Я, ти, ми, вони"
+      },
+      "bodyByLocale": {
+        "ru": "После `I`, `you`, `we`, `they` слово действия остаётся таким: `start`, `work`. `We start at nine` — «Мы начинаем в девять». `They work here` — «Они работают здесь». Не добавляйте `s` и не вставляйте `am`, `is`, `are` перед этими действиями.",
+        "uk": "Після `I`, `you`, `we`, `they` слово дії залишається таким: `start`, `work`. `We start at nine` — «Ми починаємо о дев’ятій». `They work here` — «Вони працюють тут». Не додавайте `s` і не вставляйте `am`, `is`, `are` перед цими діями."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Они работают здесь».",
+          "uk": "Скажіть «Вони працюють тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-09:intro2:r1",
+              "text": "They work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro2:r2",
+              "text": "They works here."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro2:r3",
+              "text": "They are work here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-09:intro2:r1",
+              "text": "They work here."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro2:r2",
+              "text": "They works here."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro2:r3",
+              "text": "They are work here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Они работают здесь».",
+          "uk": "Скажіть «Вони працюють тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-06:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Работа и вещи",
+        "uk": "Робота й речі"
+      },
+      "bodyByLocale": {
+        "ru": "`dentist` — «стоматолог», `charger` — «зарядное устройство», `possible` — «возможный». `I am a dentist` — «Я стоматолог»: здесь называем профессию, поэтому нужно `am`. `We have a charger` — «У нас есть зарядное устройство». `It is possible` — «Это возможно».",
+        "uk": "`dentist` — «стоматолог», `charger` — «зарядний пристрій», `possible` — «можливий». `I am a dentist` — «Я стоматолог»: тут називаємо професію, тому потрібно `am`. `We have a charger` — «У нас є зарядний пристрій». `It is possible` — «Це можливо»."
+      },
+      "question": {
+        "interactionId": "en:lesson-06:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я стоматолог».",
+          "uk": "Скажіть «Я стоматолог»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-06:session-09:intro3:r1",
+              "text": "I am a dentist."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro3:r2",
+              "text": "I a dentist."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro3:r3",
+              "text": "I work a dentist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-06:session-09:intro3:r1",
+              "text": "I am a dentist."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro3:r2",
+              "text": "I a dentist."
+            },
+            {
+              "responseId": "en:lesson-06:session-09:intro3:r3",
+              "text": "I work a dentist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я стоматолог».",
+          "uk": "Скажіть «Я стоматолог»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "70d84f08426bdb37b11191cbdb1590e97efc3d6c4315a36b5ab450517843e2f7"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "задавать вопросы о месте с where и о времени с when перед do или does",
+    "uk": "ставити запитання про місце з where і про час з when перед do або does"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место встречи",
+        "uk": "Місце зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказывает о регулярных встречах своей компании. `meet` — «встречаться». `Where do you meet?` — «Где вы встречаетесь?» Чтобы узнать место, ставим `where` перед `do you meet`. Здесь `you` относится к другу и его компании. Координаты стола полезнее ответа «где-то вместе».",
+        "uk": "Друг розповідає про регулярні зустрічі своєї компанії. `meet` — «зустрічатися». `Where do you meet?` — «Де ви зустрічаєтеся?» Щоб дізнатися місце, ставимо `where` перед `do you meet`. Тут `you` стосується друга та його компанії. Координати столу корисніші за відповідь «десь разом»."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга о привычном месте встреч его компании.",
+          "uk": "Запитайте друга про звичне місце зустрічей його компанії."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-25:intro1:r1",
+              "text": "Where do you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro1:r2",
+              "text": "Where does you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro1:r3",
+              "text": "Where you meet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-25:intro1:r1",
+              "text": "Where do you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro1:r2",
+              "text": "Where does you meet?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro1:r3",
+              "text": "Where you meet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга о привычном месте встреч его компании.",
+          "uk": "Запитайте друга про звичне місце зустрічей його компанії."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где ты работаешь?",
+        "uk": "Де ти працюєш?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знакомитесь с соседом и хотите узнать, где он работает. `Where do you work?` — «Где ты работаешь?» `Where` спрашивает о месте, затем идут `do`, `you` и действие `work`.",
+        "uk": "Ви знайомитеся із сусідом і хочете дізнатися, де він працює. `Where do you work?` — «Де ти працюєш?» `Where` запитує про місце, потім ідуть `do`, `you` і дія `work`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите соседа: «Где ты работаешь?»",
+          "uk": "Запитайте сусіда: «Де ти працюєш?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-25:intro2:r1",
+              "text": "Where do you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro2:r2",
+              "text": "Where does you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro2:r3",
+              "text": "Where do you works?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-25:intro2:r1",
+              "text": "Where do you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro2:r2",
+              "text": "Where does you work?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro2:r3",
+              "text": "Where do you works?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите соседа: «Где ты работаешь?»",
+          "uk": "Запитайте сусіда: «Де ти працюєш?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начало рабочего дня",
+        "uk": "Початок робочого дня"
+      },
+      "bodyByLocale": {
+        "ru": "Вы согласуете рабочее расписание и спрашиваете о коллеге. `When does she start?` — «Когда она начинает?» Здесь речь о начале её рабочего дня. `When` спрашивает о времени; после него ставим `does she start`. После `does` нужно `start`, без `s`.",
+        "uk": "Ви узгоджуєте робочий розклад і запитуєте про колегу. `When does she start?` — «Коли вона починає?» Тут ідеться про початок її робочого дня. `When` запитує про час; після нього ставимо `does she start`. Після `does` потрібне `start`, без `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о начале её рабочего дня: «Когда она начинает?»",
+          "uk": "Запитайте про початок її робочого дня: «Коли вона починає?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-25:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-25:intro3:r1",
+              "text": "When does she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro3:r2",
+              "text": "When do she start?"
+            },
+            {
+              "responseId": "en:lesson-07:session-25:intro3:r3",
+              "text": "When does she starts?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о начале её рабочего дня: «Когда она начинает?»",
+          "uk": "Запитайте про початок її робочого дня: «Коли вона починає?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1acf889b7a55325dc786d2a1cf34f2b2af2d5f9450459ed8b201620eb6d6f9a0"
+}

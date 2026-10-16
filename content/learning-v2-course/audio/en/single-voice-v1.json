@@ -96823,6 +96823,309 @@
           "byteSize": 27648
         }
       ]
+    },
+    "l06/s40/intro/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She lives here.",
+          "file": "ff937f7bd1c5d2039b6930cd71599bd0101c6a4c705a4115bda2cf566e20ae64.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ff937f7bd1c5d2039b6930cd71599bd0101c6a4c705a4115bda2cf566e20ae64.mp3",
+          "contentHash": "78751fabc11ccc8c80653fb6ab29244c8ae8568a5459304976711e44e4b9a99b",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l06/s40/intro/1": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "She studies at home.",
+          "file": "2ad0e29df9f9b5b0ccee67ab027a2e6d2574c61a70830004d1988e1d58b3ae80.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2ad0e29df9f9b5b0ccee67ab027a2e6d2574c61a70830004d1988e1d58b3ae80.mp3",
+          "contentHash": "3bf7b37da24e4ac817c0610b230ef0139b733f170fc30565c4691a1e8bc36e45",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s40/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "He cycles to work.",
+          "file": "52c301afbae49e2a725819a335a41c4aba6782a18cd7dd9034f6dfca42b05886.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52c301afbae49e2a725819a335a41c4aba6782a18cd7dd9034f6dfca42b05886.mp3",
+          "contentHash": "f4703e4a293d60504cbb0c364aca8fa4460eb1ad50cd1519cf0bbe3ba92f94c0",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l06/s40/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "We live here.",
+          "file": "f8cfdd06c0997b01c722cedd069ac92742acf4ba1f804e2a90df45143631d8cf.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f8cfdd06c0997b01c722cedd069ac92742acf4ba1f804e2a90df45143631d8cf.mp3",
+          "contentHash": "7cedffe7004cd6112905c54ed30acb83e2fceba6d22a2d77f083784b460c9186",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s40/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "She studies at home.",
+          "file": "269a1f99480a2c8d899ccbdca8fec041622bdd66ef4538262cf39fcf9c2abe03.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/269a1f99480a2c8d899ccbdca8fec041622bdd66ef4538262cf39fcf9c2abe03.mp3",
+          "contentHash": "f3efe7062d7aef13a2bdc32415028e64fd62f48df2579fdafe38592c18c1ce9d",
+          "byteSize": 25344
+        }
+      ]
+    },
+    "l06/s40/task/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Anna drinks water.",
+          "file": "0268ff2597ba4d5b4eb91b086f26b6e8d5391488810b689b5c85b802dfdbcfef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0268ff2597ba4d5b4eb91b086f26b6e8d5391488810b689b5c85b802dfdbcfef.mp3",
+          "contentHash": "2116fa3c5792b395d6cb78389d0fa36c973b81fa0447397180746b0e2a7abf62",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l06/s40/task/3": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "study",
+          "file": "f4e0170b95fa080818f93e26f92da83250e9f6cf3f63faf7c18c78a7fb9d5dc9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f4e0170b95fa080818f93e26f92da83250e9f6cf3f63faf7c18c78a7fb9d5dc9.mp3",
+          "contentHash": "a3812919213ae75d706b67d4899835b9c94cd81065297dbed2278ba68f6eb51f",
+          "byteSize": 23040
+        },
+        {
+          "text": "drink",
+          "file": "a10ed9c95129d77c761634d469ca1dc1896dfd7c0a8c3cac624255362f6f9b95.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a10ed9c95129d77c761634d469ca1dc1896dfd7c0a8c3cac624255362f6f9b95.mp3",
+          "contentHash": "56fa60733341efa99fe19d4cfe28b7d6b0157df08f6e9dece20c7c7f0deb0cc3",
+          "byteSize": 14208
+        },
+        {
+          "text": "sleep",
+          "file": "27c124b11ae9caf741e87a9f5aca2e844ab3ef2c7bc275a61ba82ecda2affa11.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/27c124b11ae9caf741e87a9f5aca2e844ab3ef2c7bc275a61ba82ecda2affa11.mp3",
+          "contentHash": "292c6b6ba538f29ab9b1032d04a57a8c6619a1ec22abed12b3ae349f592c2700",
+          "byteSize": 20352
+        },
+        {
+          "text": "live",
+          "file": "07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/07ce55c9f4434eec01cc6d06b3f188d3eac7841e1e78107ae0b8dd46c04e1f3e.mp3",
+          "contentHash": "b11b8914072ec6428b67f0f4d3a5eebac8eaf7c6a7cd39cbf0fb5a4c97bf19ce",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l06/s40/task/4": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "He cycles to work.",
+          "file": "ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ce9b9b1213af0e580952434e21d83d91d4dc1b03bd1a0446d2190c6da0e207a5.mp3",
+          "contentHash": "51ebbba23d38043055d9757ab1b6f4b1faa4684628498721235065396a883bcc",
+          "byteSize": 30720
+        }
+      ]
+    },
+    "l06/s40/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "She shops here.",
+          "file": "564402b416adb1d745b79421b8f907496baadbebc3c5dad70640d93fdc889e40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/564402b416adb1d745b79421b8f907496baadbebc3c5dad70640d93fdc889e40.mp3",
+          "contentHash": "c068d71294b01c88aaede63d042b492d435ec9f94fbf2b55aa6ebf7fa9e16586",
+          "byteSize": 28416
+        }
+      ]
+    },
+    "l06/s40/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The cat sleeps here.",
+          "file": "676642749b52ce3791281f2e64863c9fd8850eadf25e0fb4ba481fa347930188.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/676642749b52ce3791281f2e64863c9fd8850eadf25e0fb4ba481fa347930188.mp3",
+          "contentHash": "44230e3419fe1f0b9e4cbbc0bdad34d7bdc5cd4d8b963039e72e37fa5f7c3d8f",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l06/s40/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "They rest here.",
+          "file": "7fe75bcf0649428952ca36d191b5906f4e41bf12debc39345391d641ddd6c054.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fe75bcf0649428952ca36d191b5906f4e41bf12debc39345391d641ddd6c054.mp3",
+          "contentHash": "66fa22b19bac99146744ca217df81a17ccdbb22f24934bcfb6f5c52c727be312",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l06/s40/task/8": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "This thermostat is new.",
+          "file": "f8b15b1caaef7cac46f0814e6f135f1f72ee9ebab118f0b449cfdca0eddd02cb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f8b15b1caaef7cac46f0814e6f135f1f72ee9ebab118f0b449cfdca0eddd02cb.mp3",
+          "contentHash": "4011921f85e707fcd861d10949d58edd5b056b30df9d276578e08f121d8ea827",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l06/s40/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "shop",
+          "file": "53b4b2b76c145e1105506aa4cb372a1e5953fd157635d883036334b35babc82a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53b4b2b76c145e1105506aa4cb372a1e5953fd157635d883036334b35babc82a.mp3",
+          "contentHash": "d8309e1b5f13f5a505f223efe97f5760fd20e343d5e47c692101a9982b50a322",
+          "byteSize": 20352
+        },
+        {
+          "text": "rest",
+          "file": "5c6b7c545a265675facf29a860685ee7e129200bb260ebf5ff6664ccaeae9c5d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c6b7c545a265675facf29a860685ee7e129200bb260ebf5ff6664ccaeae9c5d.mp3",
+          "contentHash": "c894e0c1cfaeb226123104792045e8b7531b5339a1dd6eb253ea64394536231c",
+          "byteSize": 34560
+        },
+        {
+          "text": "cycle",
+          "file": "0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0453188d693bcc1dffd5bb31b03e46656fe683a67fbbe3a35cfdbee694cd7742.mp3",
+          "contentHash": "233221e23f3bb69410a0f56551bf8075e2f6ea43102bfffb074d5461b16e5558",
+          "byteSize": 28416
+        },
+        {
+          "text": "thermostat",
+          "file": "0f33b55257284647bd5d9db36dd9cd94445665130667296533e1b05a743d9d60.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0f33b55257284647bd5d9db36dd9cd94445665130667296533e1b05a743d9d60.mp3",
+          "contentHash": "13f25c2fe0ad101f10699dc9a1d4a097459acca9fc703ce429bddd7e372abb29",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l06/s40/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "I drink water.",
+          "file": "0c35e0cbafd5d6eab04a9ec003ba093057a7c1c9f35ea436f50c2753343d950b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0c35e0cbafd5d6eab04a9ec003ba093057a7c1c9f35ea436f50c2753343d950b.mp3",
+          "contentHash": "75aa0ce0649dc158def1f8d1b44150962b25963bc8a601915544df564179863a",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l06/s40/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Whose laptop is this?",
+          "file": "523ea228b9138aef937ae3754d5fd92fd986ae09e73392c94006ea0999495ee8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/523ea228b9138aef937ae3754d5fd92fd986ae09e73392c94006ea0999495ee8.mp3",
+          "contentHash": "b9ec6fedc39f855c656dfc9c431ca4c7c7604b4b20d15d471eb6cba1a67c2a1f",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s40/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "They study at home.",
+          "file": "51c067141f134aed982745a28f30240665eb112e29945eeab4e6bc0f191c2a9d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/51c067141f134aed982745a28f30240665eb112e29945eeab4e6bc0f191c2a9d.mp3",
+          "contentHash": "d900d1bb2aa91ad50ea46f5ce68e82bf5935620c96aa554cb965c9c814f6cc4f",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s40/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Tom lives here.",
+          "file": "1718a0582b6f3de8703f92cc7717620b31e54d6b9e8492da9d8d5a84045df5dc.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1718a0582b6f3de8703f92cc7717620b31e54d6b9e8492da9d8d5a84045df5dc.mp3",
+          "contentHash": "be62d7f5ae60d4a2e10ef36dee458af1cd33ae456680aa2d93e9313cafc4870d",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l06/s40/task/14": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "We shop here.",
+          "file": "8f0f5e80370db3a3a0587afefe1e6addded9346c6491e43adb0b102f822d86db.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8f0f5e80370db3a3a0587afefe1e6addded9346c6491e43adb0b102f822d86db.mp3",
+          "contentHash": "6c74a8b9d16a3f5e578b1aae7b35923812d76f924f91d28c00b18196803b1bf6",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l06/s40/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "sleep",
+          "file": "9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9762f92514d76a540151c80f3c1bc66c40eb5c7cdf9a28669230ab622701b7be.mp3",
+          "contentHash": "56ab1b213e04f8ae61f194bb9914ce1b97d3e73e2ea2010cc40d84aa2612e4c5",
+          "byteSize": 29184
+        },
+        {
+          "text": "cycle",
+          "file": "8cbc426c3ea126523b3d4102ca6f34aa672607dc1496a638852d7ae681278081.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8cbc426c3ea126523b3d4102ca6f34aa672607dc1496a638852d7ae681278081.mp3",
+          "contentHash": "4e563d689d2acbd2a34dc44dd81ce8523cb93e29f5786f81eab2b2ee51444616",
+          "byteSize": 23040
+        },
+        {
+          "text": "rest",
+          "file": "0a425db589f21aa7c087326d07918b723061644c159a5b7425fae66c37458b63.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0a425db589f21aa7c087326d07918b723061644c159a5b7425fae66c37458b63.mp3",
+          "contentHash": "3c8618f13565ead46c8347176510165c66fedf6e0bc067d0db0cc5a146e35320",
+          "byteSize": 19584
+        },
+        {
+          "text": "thermostat",
+          "file": "3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3fe27118828042784401351a3e5381a116f9bbc74d1eef517e374821524d199d.mp3",
+          "contentHash": "482244aeafe10c931f263134b871e70ae53a6dab9a70df7603aa45491e083197",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l06/s40/task/16": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "She studies at home.",
+          "file": "bc3e7befe13e95dd9af49b478496836f5d6089bdc69593f0a368ec1d2d7b61e9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bc3e7befe13e95dd9af49b478496836f5d6089bdc69593f0a368ec1d2d7b61e9.mp3",
+          "contentHash": "2363e9b4f0013a268a6ab91e32b5009bbad2be96a2183e3e93d6e7ab05a19958",
+          "byteSize": 38784
+        }
+      ]
     }
   },
   "settings": {

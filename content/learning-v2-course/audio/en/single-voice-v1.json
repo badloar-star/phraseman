@@ -102580,6 +102580,309 @@
           "byteSize": 29184
         }
       ]
+    },
+    "l07/s03/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a poster?",
+          "file": "3bb58684805758968c74d802fd0e3d6a7a5fca232ecf427be2c4b6adaf438d28.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3bb58684805758968c74d802fd0e3d6a7a5fca232ecf427be2c4b6adaf438d28.mp3",
+          "contentHash": "847c84461e0bf62d727176421cf64299f0ebf4b4b10f5f92a67ff5b0a69e1488",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s03/intro/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do they sell posters?",
+          "file": "53b6261c4d93bf48ddd7af15ae63bbcd3901d881124a7263bd7cd858a1de035a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53b6261c4d93bf48ddd7af15ae63bbcd3901d881124a7263bd7cd858a1de035a.mp3",
+          "contentHash": "e396b9d1d35be69d38809c53c4f312f73efc426d47fcca29274992be6866f36c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s03/intro/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "There is no poster above the desk.",
+          "file": "36ca789bd93400ac61114877a57a63bb7afe476ce7cbefb97c095467f992225e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/36ca789bd93400ac61114877a57a63bb7afe476ce7cbefb97c095467f992225e.mp3",
+          "contentHash": "81165c25df83f536c475be6a52f40dda976ab8ec198f26d3d8d91cfbdd6e437a",
+          "byteSize": 44160
+        }
+      ]
+    },
+    "l07/s03/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have a poster?",
+          "file": "374c77e6028f06c3e2635301d6e7dbf374d17726ad2371026a6b6f722abaf8c1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/374c77e6028f06c3e2635301d6e7dbf374d17726ad2371026a6b6f722abaf8c1.mp3",
+          "contentHash": "5d121744535dc607bdc19ff1be3a349e8be91e938f6fc274c0d6e8fe29ec96df",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s03/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "poster",
+          "file": "7fccb8df0a187a16012a9accb63763b8c357a16709270e2740ddc81c8262d4de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fccb8df0a187a16012a9accb63763b8c357a16709270e2740ddc81c8262d4de.mp3",
+          "contentHash": "30f6ab49f41bda81d07c364176e08f96ad457e30659b56449934b36609151f4b",
+          "byteSize": 36480
+        }
+      ]
+    },
+    "l07/s03/task/2": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do they sell posters?",
+          "file": "b17388cd63eab33ff57e0a8441dae55d78c8c3bb52caaf2a9f0d276956ad16b2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b17388cd63eab33ff57e0a8441dae55d78c8c3bb52caaf2a9f0d276956ad16b2.mp3",
+          "contentHash": "3dc59bd28a4cfb0fa6bb81d140d52b1a94aca2347ea8bf61ab2631af069c52ca",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s03/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "poster",
+          "file": "7d88e2193ebed5035708b1b8f0beb22f531de1ff227fd0d4b91677627fc46b6e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7d88e2193ebed5035708b1b8f0beb22f531de1ff227fd0d4b91677627fc46b6e.mp3",
+          "contentHash": "8b62f34575c342da862344aea6de37e374b86d4e2066304596be6a1a12e0bd21",
+          "byteSize": 20352
+        },
+        {
+          "text": "sell",
+          "file": "a54a26424836e932bac6f8ab3ef84dfc6ada87d79d0c3c5ce42560b7d1b5abef.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a54a26424836e932bac6f8ab3ef84dfc6ada87d79d0c3c5ce42560b7d1b5abef.mp3",
+          "contentHash": "41d27d8c788cb91b86bc8a0caa2d5c436dca442ca253252daae8ad13a730b3a4",
+          "byteSize": 16512
+        },
+        {
+          "text": "book",
+          "file": "bdbf340e8b004afa644d619d9a75cc69001258ce0387e197efb6d55d0150a8c7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/bdbf340e8b004afa644d619d9a75cc69001258ce0387e197efb6d55d0150a8c7.mp3",
+          "contentHash": "5129d011929bfc4e60e400a051953b04654997585884ce5e7d68f369d30a764e",
+          "byteSize": 14976
+        },
+        {
+          "text": "desk",
+          "file": "c8ddd7552f5818f463ba846c479ff85f2e48b2dea1a49a661598486049f3820f.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/49be417ad74080a0031b636b-onyx.mp3",
+          "contentHash": "71fa0526e8f0b4e7630e94581352d858895f920e7390645b377311b917150df3",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l07/s03/task/4": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do you have a poster?",
+          "file": "374c77e6028f06c3e2635301d6e7dbf374d17726ad2371026a6b6f722abaf8c1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/374c77e6028f06c3e2635301d6e7dbf374d17726ad2371026a6b6f722abaf8c1.mp3",
+          "contentHash": "5d121744535dc607bdc19ff1be3a349e8be91e938f6fc274c0d6e8fe29ec96df",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l07/s03/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do they sell posters?",
+          "file": "f77388a0e9b2233d80f3f10723c924bae4aa394013cea0628029cfaab6069ee2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f77388a0e9b2233d80f3f10723c924bae4aa394013cea0628029cfaab6069ee2.mp3",
+          "contentHash": "ada0e46e425b19c0fffa115b7eb84afd552751fe8f833017e45e5e6ed7cffc22",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l07/s03/task/6": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There is no poster above the desk.",
+          "file": "31663bd9cfa27c50cb6f2e6eaf14407f7d4d22094ba11ad53b66118523b78506.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/31663bd9cfa27c50cb6f2e6eaf14407f7d4d22094ba11ad53b66118523b78506.mp3",
+          "contentHash": "d89d2a2cf509febba300897974f3ebb0e5ff56e7595b35066c9720935f3346df",
+          "byteSize": 56448
+        }
+      ]
+    },
+    "l07/s03/task/7": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do you have a desk?",
+          "file": "55c09518c3dac98d20223424db735c7e1110acdda35c1f8c69fa13aa50c75c1c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/55c09518c3dac98d20223424db735c7e1110acdda35c1f8c69fa13aa50c75c1c.mp3",
+          "contentHash": "252641e1c9ab1931233d18dbeb6448a3506902d0d1dea7e0c2fe1cdfb9191718",
+          "byteSize": 49152
+        }
+      ]
+    },
+    "l07/s03/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Do you have a poster?",
+          "file": "3bb58684805758968c74d802fd0e3d6a7a5fca232ecf427be2c4b6adaf438d28.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/3bb58684805758968c74d802fd0e3d6a7a5fca232ecf427be2c4b6adaf438d28.mp3",
+          "contentHash": "847c84461e0bf62d727176421cf64299f0ebf4b4b10f5f92a67ff5b0a69e1488",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l07/s03/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "parcel",
+          "file": "2b0cf61a2d1c39c8efcaef07d3a4c6a03105f10116c0d771f9700a2a2af56353.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/550a49ead28c8f626c7026d5-nova.mp3",
+          "contentHash": "8dbef010fe621ab08c14164336a286d23e89563a20486c458c52b0f6f7295e7d",
+          "byteSize": 35712
+        },
+        {
+          "text": "poster",
+          "file": "33b81b74dcf8b137c8e39c3bc68c2fc6c59f611edd530906cce6f13f3640b3b9.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/33b81b74dcf8b137c8e39c3bc68c2fc6c59f611edd530906cce6f13f3640b3b9.mp3",
+          "contentHash": "d204780d4d3cd29287d4c1bc69488a64d779b55a9ff38cc997454d756d3b3d2c",
+          "byteSize": 31488
+        },
+        {
+          "text": "desk",
+          "file": "05775df44a4208aa0f7db535de27a445ebdb37ccd2a72378c5e0666e00d265e8.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/49be417ad74080a0031b636b-nova.mp3",
+          "contentHash": "0b23e737f22f79d4558a11d146936c78d57ba03b3c35dfb028f5ebf60541b7d6",
+          "byteSize": 16512
+        },
+        {
+          "text": "sell",
+          "file": "a5aa7c7400eb3855edffb3a5e5b2e34e5564dca47f3e0ac305bca41f8dc6b9b0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/a5aa7c7400eb3855edffb3a5e5b2e34e5564dca47f3e0ac305bca41f8dc6b9b0.mp3",
+          "contentHash": "f2cdcc7715802252f54ea342c133ac8575f20f36f1b0dd9177305f61ae9a3d33",
+          "byteSize": 14976
+        }
+      ]
+    },
+    "l07/s03/task/10": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do they sell books?",
+          "file": "2aac7b95fba17fe420d061b0d94c39ed7658c7b0f5856a726664a4600467077d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2aac7b95fba17fe420d061b0d94c39ed7658c7b0f5856a726664a4600467077d.mp3",
+          "contentHash": "012d18e724b51a453d0491ed7afe7ee8e7d4a1b82fa67e395ef8774f10a8f62a",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s03/task/11": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you have a parcel?",
+          "file": "6c8b89e104d495f1cef59a9535014dd07b7b3b99135f2ff0df0fc3fd9242985c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6c8b89e104d495f1cef59a9535014dd07b7b3b99135f2ff0df0fc3fd9242985c.mp3",
+          "contentHash": "4633ced76cdfbb0cf9426d0a64e3f0e9fb6a33c76885d9d6b025f900a58b2908",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l07/s03/task/12": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Do they sell books?",
+          "file": "2aac7b95fba17fe420d061b0d94c39ed7658c7b0f5856a726664a4600467077d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2aac7b95fba17fe420d061b0d94c39ed7658c7b0f5856a726664a4600467077d.mp3",
+          "contentHash": "012d18e724b51a453d0491ed7afe7ee8e7d4a1b82fa67e395ef8774f10a8f62a",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l07/s03/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is no poster here.",
+          "file": "58611908191709130a0cd747a435c5c41b8ce87f1b656b1500bd7a5034916283.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/58611908191709130a0cd747a435c5c41b8ce87f1b656b1500bd7a5034916283.mp3",
+          "contentHash": "ba780be5340b20d0ce25b6ac3f2988169bf9617acc9ac64f9e5c5f3e8a2932ea",
+          "byteSize": 38016
+        }
+      ]
+    },
+    "l07/s03/task/14": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Do they sell posters?",
+          "file": "53b6261c4d93bf48ddd7af15ae63bbcd3901d881124a7263bd7cd858a1de035a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/53b6261c4d93bf48ddd7af15ae63bbcd3901d881124a7263bd7cd858a1de035a.mp3",
+          "contentHash": "e396b9d1d35be69d38809c53c4f312f73efc426d47fcca29274992be6866f36c",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l07/s03/task/15": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "poster",
+          "file": "7fccb8df0a187a16012a9accb63763b8c357a16709270e2740ddc81c8262d4de.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7fccb8df0a187a16012a9accb63763b8c357a16709270e2740ddc81c8262d4de.mp3",
+          "contentHash": "30f6ab49f41bda81d07c364176e08f96ad457e30659b56449934b36609151f4b",
+          "byteSize": 36480
+        },
+        {
+          "text": "book",
+          "file": "844993842a51c7c28211b1862f74f44bef5d625355ef7f58195836cb4061f91c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/844993842a51c7c28211b1862f74f44bef5d625355ef7f58195836cb4061f91c.mp3",
+          "contentHash": "585317a27ac910ef9916ac1e57462fbe750122dc42af8cb56f4123062400c3d9",
+          "byteSize": 15744
+        },
+        {
+          "text": "parcel",
+          "file": "ea40103a7884ad000ae34bf8c10ce8158f175a6c198b25eeff6532e9fef0d1e4.mp3",
+          "assetPath": "assets/audio/learning-v2/factory-production-v1/550a49ead28c8f626c7026d5-ash.mp3",
+          "contentHash": "5e5b91f00f9065b556f4bf1f13e84063fa08eb503f674c29125d166469990483",
+          "byteSize": 39552
+        },
+        {
+          "text": "sell",
+          "file": "cc5b77289972859f09ad311bbfe8149f9947b9994b097edaca23ef4d393f1bf1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/cc5b77289972859f09ad311bbfe8149f9947b9994b097edaca23ef4d393f1bf1.mp3",
+          "contentHash": "2388ddf86239d6c3ea3baa10d9e6deb9d4f60591c120cf0c5f08646d06d6a878",
+          "byteSize": 21120
+        }
+      ]
+    },
+    "l07/s03/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Do you sell posters?",
+          "file": "7b1d0ab83cee106f2cd9b2d8e9634f0b92f3b94052c9a30b1b787927f437fd20.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7b1d0ab83cee106f2cd9b2d8e9634f0b92f3b94052c9a30b1b787927f437fd20.mp3",
+          "contentHash": "d470793f4827b7d7d0495f693426235891769fceffeeec4b5e0ddcc8d7204148",
+          "byteSize": 46848
+        }
+      ]
     }
   },
   "settings": {

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-07:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о товаре в магазине и сообщить, что вещи нет",
+    "uk": "запитати про товар у магазині й повідомити, що речі немає"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-07:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Плакат для комнаты",
+        "uk": "Плакат для кімнати"
+      },
+      "bodyByLocale": {
+        "ru": "`poster` — «плакат». В магазине вы спрашиваете продавца `Do you have a poster?` — «У вас есть плакат?» Вопрос начинается с `Do you`, дальше `have`. Один плакат — `a poster`.",
+        "uk": "`poster` — «плакат». У магазині ви запитуєте продавця `Do you have a poster?` — «У вас є плакат?» Запитання починається з `Do you`, далі `have`. Один плакат — `a poster`."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите продавца «У вас есть плакат?»",
+          "uk": "Запитайте продавця «У вас є плакат?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-03:intro1:r1",
+              "text": "Do you have a poster?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro1:r2",
+              "text": "Are you have a poster?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro1:r3",
+              "text": "Do you has a poster?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-03:intro1:r1",
+              "text": "Do you have a poster?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro1:r2",
+              "text": "Are you have a poster?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro1:r3",
+              "text": "Do you has a poster?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите продавца «У вас есть плакат?»",
+          "uk": "Запитайте продавця «У вас є плакат?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-07:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Магазин, который советует друг",
+        "uk": "Магазин, який радить друг"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает вам магазин. Вы уточняете `Do they sell posters?` — «Они продают плакаты?» После `Do they` — `sell`, без `s`. В слове `posters` буква `s` нужна: речь о плакатах. Здесь мы узнаём, чем торгует магазин.",
+        "uk": "Друг показує вам магазин. Ви уточнюєте `Do they sell posters?` — «Вони продають плакати?» Після `Do they` — `sell`, без `s`. У слові `posters` літера `s` потрібна: йдеться про плакати. Тут ми дізнаємося, чим торгує магазин."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «Они продают плакаты?»",
+          "uk": "Запитайте друга «Вони продають плакати?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-03:intro2:r1",
+              "text": "Do they sell posters?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro2:r2",
+              "text": "Do they sells posters?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro2:r3",
+              "text": "Are they sell posters?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-03:intro2:r1",
+              "text": "Do they sell posters?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro2:r2",
+              "text": "Do they sells posters?"
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro2:r3",
+              "text": "Are they sell posters?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «Они продают плакаты?»",
+          "uk": "Запитайте друга «Вони продають плакати?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-07:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пустая стена",
+        "uk": "Порожня стіна"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, висит ли у вас плакат над письменным столом. `There is no poster above the desk` — «Над письменным столом нет плаката». `There is no poster` сообщает, что плаката нет; `above the desk` уточняет место. Пустая стена пока изображает только пустую стену.",
+        "uk": "Друг запитує, чи висить у вас плакат над письмовим столом. `There is no poster above the desk` — «Над письмовим столом немає плаката». `There is no poster` повідомляє, що плаката немає; `above the desk` уточнює місце. Порожня стіна поки зображує лише порожню стіну."
+      },
+      "question": {
+        "interactionId": "en:lesson-07:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «Над письменным столом нет плаката».",
+          "uk": "Скажіть другові «Над письмовим столом немає плаката»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-07:session-03:intro3:r1",
+              "text": "There is no poster above the desk."
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro3:r2",
+              "text": "There are no poster above the desk."
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro3:r3",
+              "text": "There no poster above the desk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-07:session-03:intro3:r1",
+              "text": "There is no poster above the desk."
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro3:r2",
+              "text": "There are no poster above the desk."
+            },
+            {
+              "responseId": "en:lesson-07:session-03:intro3:r3",
+              "text": "There no poster above the desk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «Над письменным столом нет плаката».",
+          "uk": "Скажіть другові «Над письмовим столом немає плаката»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "682229807f817a985474a365300e31be22484b7e2f9b58117b3f25adbd357e95"
+}

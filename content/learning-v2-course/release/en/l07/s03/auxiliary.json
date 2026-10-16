@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-07:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-07:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-03:intro1:r2": {
+          "ru": "Здесь нужно `Do you have?`, без `are`.",
+          "uk": "Тут потрібно `Do you have?`, без `are`."
+        },
+        "en:lesson-07:session-03:intro1:r3": {
+          "ru": "После `Do you` нужно `have`.",
+          "uk": "Після `Do you` потрібне `have`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-03:intro2:r2": {
+          "ru": "После `Do they` нужно `sell`.",
+          "uk": "Після `Do they` потрібне `sell`."
+        },
+        "en:lesson-07:session-03:intro2:r3": {
+          "ru": "Нужно `Do they sell?`, без `are`.",
+          "uk": "Потрібно `Do they sell?`, без `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-07:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-07:session-03:intro3:r2": {
+          "ru": "Один плакат: `There is no poster`.",
+          "uk": "Один плакат: `There is no poster`."
+        },
+        "en:lesson-07:session-03:intro3:r3": {
+          "ru": "Нужно `There is no`, с `is`.",
+          "uk": "Потрібно `There is no`, з `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dab7883e9cdb08c4278f90a8e266fa0ef99d3f30f7d9c3183d83671b1f14c2c9"
+}

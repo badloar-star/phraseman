@@ -66220,6 +66220,309 @@
           "byteSize": 46848
         }
       ]
+    },
+    "l04/s51/intro/0": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is a community centre.",
+          "file": "1fff6438c98224b7153b078004694dbcd20922ab2550ea75170690a4e1e82880.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1fff6438c98224b7153b078004694dbcd20922ab2550ea75170690a4e1e82880.mp3",
+          "contentHash": "bfda70fe1c527281e5a573f6d6c5b13b409c31596cc6b21d69997f12a766ac2b",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l04/s51/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The libraries are next to the park.",
+          "file": "2848d73bd19b0ceb391b56984335d882c08ac78ebb807333dcdde3a8a7f57db0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2848d73bd19b0ceb391b56984335d882c08ac78ebb807333dcdde3a8a7f57db0.mp3",
+          "contentHash": "5e67e64803e6a7f70a80a77620df7683fff8af750bdd41bf00ac3c59472dfa62",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s51/intro/2": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It's ineffective.",
+          "file": "da820e87be30d55dad06da5221e21d5a776ff94ddbddfd681bd6b02e51e067c6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/da820e87be30d55dad06da5221e21d5a776ff94ddbddfd681bd6b02e51e067c6.mp3",
+          "contentHash": "cfef1925a83cf7b02969e31eecd4e11c66ee8b0abb39e33a1701e4e8044210af",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l04/s51/task/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "It is ineffective.",
+          "file": "efc760e535f07b905069541d8bb30e7a07590da4f249285dacb65c2a17519aa7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/efc760e535f07b905069541d8bb30e7a07590da4f249285dacb65c2a17519aa7.mp3",
+          "contentHash": "9b26ced1e24d280359a28fb4cca58e30ac82e4165ff7f2239fee708a2730a801",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s51/task/1": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "community centre",
+          "file": "255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "contentHash": "37b96bd7291b81b3ed2bbef444224d3148367dca8f708a406c2040b2057ebc1e",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l04/s51/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "community centre",
+          "file": "255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "contentHash": "37b96bd7291b81b3ed2bbef444224d3148367dca8f708a406c2040b2057ebc1e",
+          "byteSize": 50688
+        }
+      ]
+    },
+    "l04/s51/task/3": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "community centre",
+          "file": "1844662055d6908266906f074fc4b7913bd42ed618bb2592dcb45b1766c1b182.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/1844662055d6908266906f074fc4b7913bd42ed618bb2592dcb45b1766c1b182.mp3",
+          "contentHash": "3c3313429c675ddfde51aa9733d533188d90942259d2c21b2a3eec9ff72998db",
+          "byteSize": 38016
+        },
+        {
+          "text": "ineffective",
+          "file": "c099c4ec434a280962a70565bef4209866cd03b8c9baf6ee69d6e6e212d25ea8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c099c4ec434a280962a70565bef4209866cd03b8c9baf6ee69d6e6e212d25ea8.mp3",
+          "contentHash": "33914918e8afe681ea51e3c8f10486386982d82f5a3018c1dabb0af7108c9f07",
+          "byteSize": 32256
+        },
+        {
+          "text": "libraries",
+          "file": "01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/01407d9e48e8846d1a8006ab4e9b51b2b5c35a311fc469121e8c4a81c5dcb18a.mp3",
+          "contentHash": "6f71c5bc3ec8f45cab48f2e3da2079a7464f4cbd64836deff368ea94eefef327",
+          "byteSize": 20352
+        },
+        {
+          "text": "recycling bin",
+          "file": "d3bcad2ddf89eea1e2c86476cad4b4b68331f7e533aa0c4d3259c4a22e63c4ae.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d3bcad2ddf89eea1e2c86476cad4b4b68331f7e533aa0c4d3259c4a22e63c4ae.mp3",
+          "contentHash": "74d9bbedceecb021d611931ad39fbd263b27c7836874fac3c80a24e676c72936",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s51/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is a community centre.",
+          "file": "5c4af20fb2b494d8391ec1e283b187c347daf6bc3b77ba36e9c049d5ac151c11.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5c4af20fb2b494d8391ec1e283b187c347daf6bc3b77ba36e9c049d5ac151c11.mp3",
+          "contentHash": "3a6b5ce9b96e7572370019df269016ff599371890749739792cb7ed3d9ade444",
+          "byteSize": 41856
+        }
+      ]
+    },
+    "l04/s51/task/5": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The libraries are next to the park.",
+          "file": "2848d73bd19b0ceb391b56984335d882c08ac78ebb807333dcdde3a8a7f57db0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2848d73bd19b0ceb391b56984335d882c08ac78ebb807333dcdde3a8a7f57db0.mp3",
+          "contentHash": "5e67e64803e6a7f70a80a77620df7683fff8af750bdd41bf00ac3c59472dfa62",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s51/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "It's ineffective.",
+          "file": "4fe8b9706a9928f2d620260f6958ed4f1febf1b6e7ec9846ca0e57f0cf43b73a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4fe8b9706a9928f2d620260f6958ed4f1febf1b6e7ec9846ca0e57f0cf43b73a.mp3",
+          "contentHash": "17ae8ffc83ab8db5cdd9406333bc95dfcbc1455bd075d1562f8219bd0043860e",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l04/s51/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "There isn't a recycling bin.",
+          "file": "d9459e80667e46fd2f00ccd5ba27c8f6f1ff7e4103cbca415d371af970fc951d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d9459e80667e46fd2f00ccd5ba27c8f6f1ff7e4103cbca415d371af970fc951d.mp3",
+          "contentHash": "064063330b91014ad6b28390d4c932ec07b737e6ed2dfbcaac966a8265d4027e",
+          "byteSize": 47616
+        }
+      ]
+    },
+    "l04/s51/task/8": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The recycling bin is next to the door.",
+          "file": "71735f45114753b6d4c485d4feb94cd843448bc11292ecb58367d8ac6614b0f0.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/71735f45114753b6d4c485d4feb94cd843448bc11292ecb58367d8ac6614b0f0.mp3",
+          "contentHash": "e8cb337d30720fbdaa9fea0e1df83f3650fa29743e6dbc98efefeb489541966a",
+          "byteSize": 51456
+        }
+      ]
+    },
+    "l04/s51/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "community centre",
+          "file": "255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/255fe46df2eecba9d2fb3ff7b6cae68e9d6a20aac650c11b288f59af0a2a9276.mp3",
+          "contentHash": "37b96bd7291b81b3ed2bbef444224d3148367dca8f708a406c2040b2057ebc1e",
+          "byteSize": 50688
+        },
+        {
+          "text": "ineffective",
+          "file": "8ce564193e3c4707b3cbaf428ab39babc8e9dfc3e986db67b10dc33f1087f7cb.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8ce564193e3c4707b3cbaf428ab39babc8e9dfc3e986db67b10dc33f1087f7cb.mp3",
+          "contentHash": "5a4291d32ea7d6f00f945c2216c18700b2df0e9965d33da00fc828dc28728f1c",
+          "byteSize": 32640
+        },
+        {
+          "text": "libraries",
+          "file": "8e234035f43c1f1eccf828da85a6d996b904b0991b96003817cef6ee8e39ed66.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/8e234035f43c1f1eccf828da85a6d996b904b0991b96003817cef6ee8e39ed66.mp3",
+          "contentHash": "c970c9dabc7bb294fea74019d565d21da59ae65bb87bfa3f2fc3826ffb52101b",
+          "byteSize": 41088
+        },
+        {
+          "text": "recycling bin",
+          "file": "5409fc17dcb1f9df276683f30c3dc50f8f1770e52f44d463edb929d60e76fbb3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5409fc17dcb1f9df276683f30c3dc50f8f1770e52f44d463edb929d60e76fbb3.mp3",
+          "contentHash": "6a78936f159c1e205e6fd82ca968274fbf70bc419c4c0ed00b11cae7067a474e",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l04/s51/task/10": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "Is there a community centre?",
+          "file": "572e5b9b7d0511ca0ad3a242f2b2b6408e2f20d68f88945853696381e173bc8f.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/572e5b9b7d0511ca0ad3a242f2b2b6408e2f20d68f88945853696381e173bc8f.mp3",
+          "contentHash": "65da29780922b1ba80bf8122502bf522fe9b2fda606df7af5a8beae02d096646",
+          "byteSize": 34560
+        }
+      ]
+    },
+    "l04/s51/task/11": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "There is a community centre.",
+          "file": "7a50a3ab3d20ab82af84a9f8fa9cf308b2df7d5b62af488448429e646d75628c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7a50a3ab3d20ab82af84a9f8fa9cf308b2df7d5b62af488448429e646d75628c.mp3",
+          "contentHash": "a18894cc5278e46dfce09471c92129386692089d4e31d461e7b2d8706ec5583c",
+          "byteSize": 49920
+        }
+      ]
+    },
+    "l04/s51/task/12": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "Is there a recycling bin?",
+          "file": "420c7f32b481e39069888b483bc7edfa3f0470667069be2c3321be0a4662d51e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/420c7f32b481e39069888b483bc7edfa3f0470667069be2c3321be0a4662d51e.mp3",
+          "contentHash": "5a37b7a94e05f447681dbc033841e23204f7ec178a73f5f0355ba45cd5e7470e",
+          "byteSize": 34944
+        }
+      ]
+    },
+    "l04/s51/task/13": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The community centre is between the shops.",
+          "file": "263ca69d2fb195481b57fe4f2ee60f9f3c384909855049bee5c14a2d175dc61b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/263ca69d2fb195481b57fe4f2ee60f9f3c384909855049bee5c14a2d175dc61b.mp3",
+          "contentHash": "cc591b8ba78398f51569907bd6d1e7f90e2f1937de76f4f12f5ed19518c5a5c2",
+          "byteSize": 54912
+        }
+      ]
+    },
+    "l04/s51/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "That is a community centre.",
+          "file": "f497050aa3a246fb5b23c64bf7b70205142bd6060c0647708f19ecf8c3926a8a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f497050aa3a246fb5b23c64bf7b70205142bd6060c0647708f19ecf8c3926a8a.mp3",
+          "contentHash": "94e2920cdbcb0c2275eb345673b3a3fac4ca2172680ab779632125b1f2586a33",
+          "byteSize": 43008
+        }
+      ]
+    },
+    "l04/s51/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "community centre",
+          "file": "ea67320a7c19a975958ad7a142ff4f61aee8c320edfc4c794401de664f43389b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/ea67320a7c19a975958ad7a142ff4f61aee8c320edfc4c794401de664f43389b.mp3",
+          "contentHash": "b93f213cc263bc3b0f0c5525ea2468c0d645e41d9dc122ca94b30d76ea5c11e2",
+          "byteSize": 30720
+        },
+        {
+          "text": "ineffective",
+          "file": "643945af5a04a53ad316492f1486c8314fc75c4215918d43f7faf086e4ec4a1e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/643945af5a04a53ad316492f1486c8314fc75c4215918d43f7faf086e4ec4a1e.mp3",
+          "contentHash": "36248be39822261353b10e875db1389f9c90380a1a8ceaff49da047e5a8c49e8",
+          "byteSize": 28416
+        },
+        {
+          "text": "libraries",
+          "file": "7641bb15c2de2171f65d619457978d17dc4507e6719f3ba959fd11411a135364.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/7641bb15c2de2171f65d619457978d17dc4507e6719f3ba959fd11411a135364.mp3",
+          "contentHash": "3ddba3a205324bc7513af0fc787f9eff9b4825a78a0d5329194c64c4d034048b",
+          "byteSize": 40320
+        },
+        {
+          "text": "recycling bin",
+          "file": "52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/52d207e7d8fe21b2c8b515861c4ec32db8c3918e0208e0849b40e108bc626717.mp3",
+          "contentHash": "66e6618868d49ff16c5f117f9330266e6f51513f67791d0eb798f04a66ae2913",
+          "byteSize": 26112
+        }
+      ]
+    },
+    "l04/s51/task/16": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "The community centre is next to the park.",
+          "file": "b5bd1f10c111def91b2f5d9f040dab98c24f7bdfb9602c0630ba3ca9682c45c8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/b5bd1f10c111def91b2f5d9f040dab98c24f7bdfb9602c0630ba3ca9682c45c8.mp3",
+          "contentHash": "ce2d234a496231cbbfa3b29052b30f72d09ab65563a06b6785d0c50b2479bbff",
+          "byteSize": 34944
+        }
+      ]
     }
   },
   "settings": {

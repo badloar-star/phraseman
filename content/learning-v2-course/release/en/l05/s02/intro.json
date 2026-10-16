@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-05:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "различать состояние человека и то, что у него есть",
+    "uk": "розрізняти стан людини й те, що в неї є"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-05:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Устал, но не яблоко",
+        "uk": "Утомлений, але не яблуко"
+      },
+      "bodyByLocale": {
+        "ru": "`tired` — «усталый»: `I am tired` — «Я устал». `apple` — «яблоко»: `I have an apple` — «У меня есть яблоко». Перед `apple` нужно `an`. Перепутаете `am` и `have` — вместо человека с яблоком получится человек-яблоко. Лучше оставить яблоко в руке.",
+        "uk": "`tired` — «утомлений»: `I am tired` — «Я втомився». `apple` — «яблуко»: `I have an apple` — «У мене є яблуко». Перед `apple` потрібне `an`. Переплутаєте `am` і `have` — замість людини з яблуком вийде людина-яблуко. Краще залишити яблуко в руці."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что у вас есть яблоко.",
+          "uk": "Скажіть, що у вас є яблуко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-02:intro1:r1",
+              "text": "I have an apple."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro1:r2",
+              "text": "I am an apple."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro1:r3",
+              "text": "I have a apple."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-02:intro1:r1",
+              "text": "I have an apple."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro1:r2",
+              "text": "I am an apple."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro1:r3",
+              "text": "I have a apple."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что у вас есть яблоко.",
+          "uk": "Скажіть, що у вас є яблуко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-05:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У друга есть перекус",
+        "uk": "У друга є перекус"
+      },
+      "bodyByLocale": {
+        "ru": "`sad` — «грустный»: `He is sad` — «Он грустит». Но яблоко у него: `He has an apple` — «У него есть яблоко». С `he`, `she`, `it` нужно `has`; с `I`, `you`, `we`, `they` — `have`. `She is tired` описывает состояние, `She has an apple` — то, что у неё есть.",
+        "uk": "`sad` — «сумний»: `He is sad` — «Він сумує». А яблуко в нього: `He has an apple` — «У нього є яблуко». З `he`, `she`, `it` потрібне `has`; з `I`, `you`, `we`, `they` — `have`. `She is tired` описує стан, `She has an apple` — те, що в неї є."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг грустит. Выберите описание его состояния.",
+          "uk": "Друг сумує. Виберіть опис його стану."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-02:intro2:r1",
+              "text": "He is sad."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro2:r2",
+              "text": "He has sad."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro2:r3",
+              "text": "He are sad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-02:intro2:r1",
+              "text": "He is sad."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro2:r2",
+              "text": "He has sad."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro2:r3",
+              "text": "He are sad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг грустит. Выберите описание его состояния.",
+          "uk": "Друг сумує. Виберіть опис його стану."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-05:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сад при отеле",
+        "uk": "Сад при готелі"
+      },
+      "bodyByLocale": {
+        "ru": "`hotel` — «отель», `garden` — «сад», `river` — «река». `The hotel has a garden` — «У отеля есть сад». Один отель, как `it`, требует `has`. `The hotel is next to the river` — «Отель рядом с рекой»: здесь мы говорим, где он, поэтому `is`.",
+        "uk": "`hotel` — «готель», `garden` — «сад», `river` — «річка». `The hotel has a garden` — «У готелю є сад». Один готель, як `it`, потребує `has`. `The hotel is next to the river` — «Готель поруч із річкою»: тут ми кажемо, де він, тому `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-05:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "У отеля есть сад. Выберите фразу.",
+          "uk": "У готелю є сад. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-05:session-02:intro3:r1",
+              "text": "The hotel has a garden."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro3:r2",
+              "text": "The hotel have a garden."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro3:r3",
+              "text": "The hotel is a garden."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-05:session-02:intro3:r1",
+              "text": "The hotel has a garden."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro3:r2",
+              "text": "The hotel have a garden."
+            },
+            {
+              "responseId": "en:lesson-05:session-02:intro3:r3",
+              "text": "The hotel is a garden."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У отеля есть сад. Выберите фразу.",
+          "uk": "У готелю є сад. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "391e60613d1a3b491344b1979c5631f81123ee741cc97d1569332d97a43e55ae"
+}

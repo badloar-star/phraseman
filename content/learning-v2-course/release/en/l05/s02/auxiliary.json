@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-02:intro1:r2": {
+          "ru": "Это «Я яблоко»; у меня есть яблоко — `I have an apple`.",
+          "uk": "Це «Я яблуко»; у мене є яблуко — `I have an apple`."
+        },
+        "en:lesson-05:session-02:intro1:r3": {
+          "ru": "Перед `apple` нужно `an`.",
+          "uk": "Перед `apple` потрібне `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-02:intro2:r2": {
+          "ru": "Для состояния здесь нужно `is`: `He is sad`.",
+          "uk": "Для стану тут потрібне `is`: `He is sad`."
+        },
+        "en:lesson-05:session-02:intro2:r3": {
+          "ru": "С `He` нужно `is`.",
+          "uk": "З `He` потрібне `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-02:intro3:r2": {
+          "ru": "Один отель: `The hotel has`.",
+          "uk": "Один готель: `The hotel has`."
+        },
+        "en:lesson-05:session-02:intro3:r3": {
+          "ru": "Это «Отель — сад»; у отеля есть сад — `The hotel has a garden`.",
+          "uk": "Це «Готель — сад»; у готелю є сад — `The hotel has a garden`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "328fdbacd1e53d58fd3611ec2d38630cee356edb538862c8617f9f3776ee5ee8"
+}

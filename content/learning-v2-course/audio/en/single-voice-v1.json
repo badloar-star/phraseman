@@ -77128,6 +77128,309 @@
           "byteSize": 42624
         }
       ]
+    },
+    "l05/s31/intro/0": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "This is Tom's guitar.",
+          "file": "5d46b61b807193d6de4329e64cd9053fed597e2c2aab6e753e7610e4f189b5a1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/5d46b61b807193d6de4329e64cd9053fed597e2c2aab6e753e7610e4f189b5a1.mp3",
+          "contentHash": "5ad53205e0c3dcea75e2327d4a74d7296be11d4a657fb5986ca1f54239a7a744",
+          "byteSize": 37248
+        }
+      ]
+    },
+    "l05/s31/intro/1": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "The bags are similar.",
+          "file": "93526b34bfaa59fa585a1f7434bd90aad058df7e20120319e8c709e1da63d18d.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/93526b34bfaa59fa585a1f7434bd90aad058df7e20120319e8c709e1da63d18d.mp3",
+          "contentHash": "e3a8045871228d00d6c16f207eb7d0ed6d97c7ffabf4ed5508342cd95ae63240",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s31/intro/2": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Tom is in the car park.",
+          "file": "6e86ef1aa67c44d9006f45ba6092161cae9dea44ba8f4bb1e91d724ccfa48eb7.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6e86ef1aa67c44d9006f45ba6092161cae9dea44ba8f4bb1e91d724ccfa48eb7.mp3",
+          "contentHash": "0c16c324a335e06cec05d9dce09c5813f63aee5437a0890cb9b897bd85acdb35",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s31/task/0": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The bags are similar.",
+          "file": "f5d8b58fcb0272628a236746ffbb2fadda4468ddb281002a68f13be68e4eaf34.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f5d8b58fcb0272628a236746ffbb2fadda4468ddb281002a68f13be68e4eaf34.mp3",
+          "contentHash": "87da8c768098f205ed864f580bce4cd63361624f04a9d1ecaf19e43901b87667",
+          "byteSize": 24192
+        }
+      ]
+    },
+    "l05/s31/task/1": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "guitar",
+          "file": "afef0a58574b58d3e38e56d7a9b55d2ace3403b829dc25b129997e042d96b181.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afef0a58574b58d3e38e56d7a9b55d2ace3403b829dc25b129997e042d96b181.mp3",
+          "contentHash": "6fa59080a4aff88824183e4d2b6c8c1ff41280590ae5b9d30e933bb41ad63981",
+          "byteSize": 46080
+        }
+      ]
+    },
+    "l05/s31/task/2": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "guitar",
+          "file": "0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "contentHash": "b3766e12c86fb84addf49c0cb9a884201803db2ee9c0786c1124e41484373ace",
+          "byteSize": 20352
+        }
+      ]
+    },
+    "l05/s31/task/3": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "guitar",
+          "file": "afef0a58574b58d3e38e56d7a9b55d2ace3403b829dc25b129997e042d96b181.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/afef0a58574b58d3e38e56d7a9b55d2ace3403b829dc25b129997e042d96b181.mp3",
+          "contentHash": "6fa59080a4aff88824183e4d2b6c8c1ff41280590ae5b9d30e933bb41ad63981",
+          "byteSize": 46080
+        },
+        {
+          "text": "equal",
+          "file": "0a9f554abf15f7320400f6a4d6332ff3a13d4f0bd0b7ce5c530f6d1104408a74.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0a9f554abf15f7320400f6a4d6332ff3a13d4f0bd0b7ce5c530f6d1104408a74.mp3",
+          "contentHash": "61ab9af9f5b3799003a3266cbb9ac753d508fc5be161a6d86778cc50173673bf",
+          "byteSize": 17280
+        },
+        {
+          "text": "similar",
+          "file": "fde0953b355882f624e6f242fe04a524745d8cb3f11b4382bd1bc583e531e0a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fde0953b355882f624e6f242fe04a524745d8cb3f11b4382bd1bc583e531e0a6.mp3",
+          "contentHash": "0b940f737c0fd5159c52b69fea76b86af0d4230c355a6b781547180411388b2f",
+          "byteSize": 18048
+        },
+        {
+          "text": "separate",
+          "file": "65d67bd09ac67afc77e915e4450e85d4a9e2dbbc79f485977575f3218d908046.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/65d67bd09ac67afc77e915e4450e85d4a9e2dbbc79f485977575f3218d908046.mp3",
+          "contentHash": "9caa9b9dc26dc911205a6832fd6fe67a9e634b6647a1c773763a701467eff9d3",
+          "byteSize": 26880
+        }
+      ]
+    },
+    "l05/s31/task/4": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "This is Tom's guitar.",
+          "file": "2de9cf2750f328bb334f6709bb432684abb1afe851de759a69a6830ffce328e8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/2de9cf2750f328bb334f6709bb432684abb1afe851de759a69a6830ffce328e8.mp3",
+          "contentHash": "620cb96852adc6ef9b2e28368eda4223962456fb8bf3029a0046ca6172906b67",
+          "byteSize": 42624
+        }
+      ]
+    },
+    "l05/s31/task/5": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Anna's camera is on the table.",
+          "file": "80f1b923c1dd251ca9ff937b1542d5f0cd427380398c4efdd365c737c46d06d1.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/80f1b923c1dd251ca9ff937b1542d5f0cd427380398c4efdd365c737c46d06d1.mp3",
+          "contentHash": "4a7661d4057feb4ef1e9321e01232a6d830378ff88a6b56ea608af20c1f58e7b",
+          "byteSize": 41088
+        }
+      ]
+    },
+    "l05/s31/task/6": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The numbers are equal.",
+          "file": "25e3a835357056525850402f68647ccd28dc5e89949ea4cc4b978888e88c5d0c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/25e3a835357056525850402f68647ccd28dc5e89949ea4cc4b978888e88c5d0c.mp3",
+          "contentHash": "1fd76776cb813412cb2e7861323c727d62f667dba14ac0dbddaf216d03f157eb",
+          "byteSize": 61056
+        }
+      ]
+    },
+    "l05/s31/task/7": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Anna's guitar.",
+          "file": "6ebdfa022d146d87684750387f7054a061bc72955e15465833e74bd3e597c2a6.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6ebdfa022d146d87684750387f7054a061bc72955e15465833e74bd3e597c2a6.mp3",
+          "contentHash": "52ecac5ef262bff2fcd91f4aa0aaa2aef4d29048def0376fb3a5a022e8138c1b",
+          "byteSize": 32256
+        }
+      ]
+    },
+    "l05/s31/task/8": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The rooms are separate.",
+          "file": "f5a54a5bae35b2c19fa027ac2ed2769e71297b71bef831b76cc081888865ea40.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f5a54a5bae35b2c19fa027ac2ed2769e71297b71bef831b76cc081888865ea40.mp3",
+          "contentHash": "eb2697c0da009585815f2d8c33f735d3dcaa484ef97184676d7d5a77df2cd1fc",
+          "byteSize": 48384
+        }
+      ]
+    },
+    "l05/s31/task/9": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "guitar",
+          "file": "0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/0fc3009663d7d1d58295e41e0186f1d217bbcf5c974ecd67c58838e7d5a705f3.mp3",
+          "contentHash": "b3766e12c86fb84addf49c0cb9a884201803db2ee9c0786c1124e41484373ace",
+          "byteSize": 20352
+        },
+        {
+          "text": "parks",
+          "file": "6797f0bb5561b1fb2cca8009bf9fd790b474e8dde3f0f3407da67617987cafb8.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6797f0bb5561b1fb2cca8009bf9fd790b474e8dde3f0f3407da67617987cafb8.mp3",
+          "contentHash": "62b4451c6e81f6f8b9260b8b0f4b4aa82380e3811b1c5433e060cb9ab3f577da",
+          "byteSize": 26112
+        },
+        {
+          "text": "car park",
+          "file": "e0510370a891a0f58d8113e4d72fc520307b9154edb052d8bae6865cc1556071.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e0510370a891a0f58d8113e4d72fc520307b9154edb052d8bae6865cc1556071.mp3",
+          "contentHash": "0df6cecbd9142ba18391047deddc8d025bda5c10cdc309ec6c767118fcda8997",
+          "byteSize": 18048
+        },
+        {
+          "text": "camera",
+          "file": "6a16e7fe89bfea2ab08f17770f86046dbad2f171fca64c62123b7fd9363be1f2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/6a16e7fe89bfea2ab08f17770f86046dbad2f171fca64c62123b7fd9363be1f2.mp3",
+          "contentHash": "228cd4a0eb2b177b3e017db4d5e99bb8fd6c88709b9a7e3a285d07fac269310a",
+          "byteSize": 31488
+        }
+      ]
+    },
+    "l05/s31/task/10": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Tom is in the car park.",
+          "file": "13fe7f29a28e8cd6f590e0a0b144e63f4d037faef10b9be78b28d00617ee33ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/13fe7f29a28e8cd6f590e0a0b144e63f4d037faef10b9be78b28d00617ee33ec.mp3",
+          "contentHash": "bc3a420aad1e5e97b3e9073b4b0573c493cfb336a6d7071c9e46bcdb247e941f",
+          "byteSize": 27648
+        }
+      ]
+    },
+    "l05/s31/task/11": {
+      "voice": "nova",
+      "clips": [
+        {
+          "text": "The parks are open.",
+          "file": "4e6053f052ad017b61a50a6f2eda4600d102ac3792a680ab5f276b1fd25229ec.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/4e6053f052ad017b61a50a6f2eda4600d102ac3792a680ab5f276b1fd25229ec.mp3",
+          "contentHash": "e8b940ac1d74effa149ae7e887c5afba7ef2d26b39b43a65c91aa699dfc5380c",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s31/task/12": {
+      "voice": "onyx",
+      "clips": [
+        {
+          "text": "Where is my guitar?",
+          "file": "d08ffeb3842b09a05ab6150526fa13c7f5e5aaa78e6e106d1be18e7c7b60f96b.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d08ffeb3842b09a05ab6150526fa13c7f5e5aaa78e6e106d1be18e7c7b60f96b.mp3",
+          "contentHash": "31434f55119ff6c45f5b1c6fe946da1fc62d774d0f32a0fd4f8d8fc8052ec54e",
+          "byteSize": 29184
+        }
+      ]
+    },
+    "l05/s31/task/13": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "The camera is hers.",
+          "file": "10227cb099e56a3cc63a7d33c9f78cb24da79681e60d7c5ab13f66c72e46db6a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/10227cb099e56a3cc63a7d33c9f78cb24da79681e60d7c5ab13f66c72e46db6a.mp3",
+          "contentHash": "ccb1f8c0679831d6f7dd123d21ba020d573dfcb28d7832625c028e91f757b279",
+          "byteSize": 32640
+        }
+      ]
+    },
+    "l05/s31/task/14": {
+      "voice": "ash",
+      "clips": [
+        {
+          "text": "Your guitar is here.",
+          "file": "c33425d21187b1495f614c87b3574e60bce436ed232b4fa21ed7d4f31206e12e.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/c33425d21187b1495f614c87b3574e60bce436ed232b4fa21ed7d4f31206e12e.mp3",
+          "contentHash": "b1584cf4dff4ef7cba8267b16aabad85f554bc48aca130555d663ff3717788ff",
+          "byteSize": 33792
+        }
+      ]
+    },
+    "l05/s31/task/15": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "guitar",
+          "file": "929d5cccbb50a73726935a77f26de9fc7e56b972a97c2eee5cab6f4b1f996e37.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/929d5cccbb50a73726935a77f26de9fc7e56b972a97c2eee5cab6f4b1f996e37.mp3",
+          "contentHash": "d9fa7004a683d3a5c8f3a1e2987e16340e9e5bf9800bb7191dd92dc4d7c5412e",
+          "byteSize": 21888
+        },
+        {
+          "text": "parks",
+          "file": "9c9f2935ead4c7ec32cd894053a9a06f7e9e57839657e78164c32d1896357b2a.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9c9f2935ead4c7ec32cd894053a9a06f7e9e57839657e78164c32d1896357b2a.mp3",
+          "contentHash": "b395145c8c1b9b02a56697c1535debc54950ba5c0db50d64d4d186b3f64cd92b",
+          "byteSize": 42624
+        },
+        {
+          "text": "car park",
+          "file": "e945f93d7d1f1dafe07cb98c466d870dcf95a0a78140c085d51b91faa4359bca.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/e945f93d7d1f1dafe07cb98c466d870dcf95a0a78140c085d51b91faa4359bca.mp3",
+          "contentHash": "3db7d6cd35d9287035f9c3dca32081a0988bfe76eaa1eb5166d9a5bad6bbe5d6",
+          "byteSize": 21888
+        },
+        {
+          "text": "camera",
+          "file": "95d7331035cc1fe92f38e5d3a7eed1d5ea834fbc3e43da6d6f569e3d5cf1c3c2.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/95d7331035cc1fe92f38e5d3a7eed1d5ea834fbc3e43da6d6f569e3d5cf1c3c2.mp3",
+          "contentHash": "c0dbaf42c798b87f64501261cede24575f50f5b6dc04c9de4aac222ad700ca54",
+          "byteSize": 23040
+        }
+      ]
+    },
+    "l05/s31/task/16": {
+      "voice": "coral",
+      "clips": [
+        {
+          "text": "This is Tom's guitar.",
+          "file": "d9ccfb8f727ff11b834965f7c5c59095d051775496d5584857e53712b743af9c.mp3",
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/d9ccfb8f727ff11b834965f7c5c59095d051775496d5584857e53712b743af9c.mp3",
+          "contentHash": "08107f9346d36600fde2891e8c6519ecf13439b225609462edd05b6a89851b74",
+          "byteSize": 53760
+        }
+      ]
     }
   },
   "settings": {

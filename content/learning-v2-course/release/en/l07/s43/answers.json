@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-07:session-43:i01",
+    "correctText": "I often sew.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i02",
+    "correctText": "sew",
+    "correctResponseId": "en:lesson-07:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i03",
+    "correctText": "sew",
+    "correctResponseId": "en:lesson-07:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i04",
+    "correctText": "en:lesson-07:session-43:i04:p1=sew\nen:lesson-07:session-43:i04:p2=speak\nen:lesson-07:session-43:i04:p3=commute\nen:lesson-07:session-43:i04:p4=bedrooms",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i05",
+    "correctText": "I often sew.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i06",
+    "correctText": "I usually commute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i07",
+    "correctText": "She often calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i08",
+    "correctText": "calls",
+    "correctResponseId": "en:lesson-07:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i09",
+    "correctText": "I often sew.",
+    "correctResponseId": "en:lesson-07:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i10",
+    "correctText": "en:lesson-07:session-43:i10:p1=bedrooms\nen:lesson-07:session-43:i10:p2=sew\nen:lesson-07:session-43:i10:p3=speak\nen:lesson-07:session-43:i10:p4=commute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i11",
+    "correctText": "I usually commute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i12",
+    "correctText": "Do you speak English?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i13",
+    "correctText": "The bedrooms are upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i14",
+    "correctText": "usually",
+    "correctResponseId": "en:lesson-07:session-43:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i15",
+    "correctText": "The bedrooms are upstairs.",
+    "correctResponseId": "en:lesson-07:session-43:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i16",
+    "correctText": "en:lesson-07:session-43:i16:p1=sew\nen:lesson-07:session-43:i16:p2=commute\nen:lesson-07:session-43:i16:p3=bedrooms\nen:lesson-07:session-43:i16:p4=speak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-43:i17",
+    "correctText": "Tom often sews.",
+    "correctResponseId": null
+  }
+]

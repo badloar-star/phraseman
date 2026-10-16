@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "предупредить «не делай» и вежливо попросить не ждать",
+    "uk": "попередити «не роби» та ввічливо попросити не чекати"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Новый стол",
+        "uk": "Новий стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Друг двигает тяжёлую коробку по новому столу. `Scratch` — «царапать». `Don’t scratch it` — «Не поцарапай это». Здесь `it` относится к столу, а после `don’t` нужно `scratch`, без `to` и окончаний. У стола пока нет царапин — пусть так и останется.",
+        "uk": "Друг рухає важку коробку по новому столу. `Scratch` — «дряпати». `Don’t scratch it` — «Не подряпай це». Тут `it` стосується столу, а після `don’t` потрібне `scratch`, без `to` і закінчень. На столі поки немає подряпин — нехай так і залишиться."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Предупредите друга: «Не поцарапай это».",
+          "uk": "Попередьте друга: «Не подряпай це»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-36:intro1:r1",
+              "text": "Don’t scratch it."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro1:r2",
+              "text": "Don’t scratches it."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro1:r3",
+              "text": "Don’t to scratch it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-36:intro1:r1",
+              "text": "Don’t scratch it."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro1:r2",
+              "text": "Don’t scratches it."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro1:r3",
+              "text": "Don’t to scratch it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Предупредите друга: «Не поцарапай это».",
+          "uk": "Попередьте друга: «Не подряпай це»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Клей ещё не высох",
+        "uk": "Клей ще не висох"
+      },
+      "bodyByLocale": {
+        "ru": "Вы только что склеили модель самолёта. Друг тянется к ней, но клей ещё не высох. Покажите на модель: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.",
+        "uk": "Ви щойно склеїли модель літака. Друг тягнеться до неї, але клей ще не висох. Покажіть на модель: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Покажите на модель и скажите «Не трогай это».",
+          "uk": "Покажіть на модель й скажіть «Не чіпай це»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-36:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro2:r3",
+              "text": "Not touch this."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-36:intro2:r1",
+              "text": "Don’t touch this."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro2:r2",
+              "text": "Don’t touches this."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro2:r3",
+              "text": "Not touch this."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите на модель и скажите «Не трогай это».",
+          "uk": "Покажіть на модель й скажіть «Не чіпай це»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разговор затянулся",
+        "uk": "Розмова затягнулася"
+      },
+      "bodyByLocale": {
+        "ru": "Друг готов идти на обед, а вы ещё разговариваете по телефону. Пусть идёт без вас: `Please don’t wait` — «Пожалуйста, не жди». `Please` смягчает просьбу.",
+        "uk": "Друг готовий іти на обід, а ви ще розмовляєте телефоном. Нехай іде без вас: `Please don’t wait` — «Будь ласка, не чекай». `Please` пом’якшує прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга вежливо не ждать вас.",
+          "uk": "Ввічливо попросіть друга не чекати на вас."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-36:intro3:r1",
+              "text": "Please don’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro3:r2",
+              "text": "Please doesn’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro3:r3",
+              "text": "Please don’t to wait."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-36:intro3:r1",
+              "text": "Please don’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro3:r2",
+              "text": "Please doesn’t wait."
+            },
+            {
+              "responseId": "en:lesson-08:session-36:intro3:r3",
+              "text": "Please don’t to wait."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга вежливо не ждать вас.",
+          "uk": "Ввічливо попросіть друга не чекати на вас."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "82ddb5e56837de611d687d222f2b91c09741138170669e5c5e878d865b44082e"
+}

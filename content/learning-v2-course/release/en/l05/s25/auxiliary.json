@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-05:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-05:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-25:intro1:r2": {
+          "ru": "После имени владельца нужно `’s`: `Anna’s lunchbox`.",
+          "uk": "Після імені власниці потрібне `’s`: `Anna’s lunchbox`."
+        },
+        "en:lesson-05:session-25:intro1:r3": {
+          "ru": "Это ланчбокс Тома; здесь владелица Анна.",
+          "uk": "Це ланчбокс Тома; тут власниця Анна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-25:intro2:r2": {
+          "ru": "Для принадлежности нужно `Tom’s jacket`.",
+          "uk": "Для належності потрібне `Tom’s jacket`."
+        },
+        "en:lesson-05:session-25:intro2:r3": {
+          "ru": "Одна куртка: `jacket is`.",
+          "uk": "Одна куртка: `jacket is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-05:session-25:intro3:r2": {
+          "ru": "С `I` нужна форма `am`.",
+          "uk": "З `I` потрібна форма `am`."
+        },
+        "en:lesson-05:session-25:intro3:r3": {
+          "ru": "`ashamed` — стыдно; удивлён — `surprised`.",
+          "uk": "`ashamed` — соромно; здивований — `surprised`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a365ea249152e90ae23d277362f7e8f8fcddb11b0518fc406cc43b4fe032a6d8"
+}

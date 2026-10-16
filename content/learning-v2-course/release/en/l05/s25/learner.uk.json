@@ -1,0 +1,1011 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-05:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-05:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг уже все зібрав, і ви здивовані. Скажіть «Я здивований» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг уже все зібрав, і ви здивовані. Скажіть «Я здивований» без скорочення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am surprised.",
+        "localizedMeaning": {
+          "ru": "Друг уже всё собрал, и вы удивлены. Скажите «Я удивлён» без сокращения",
+          "uk": "Друг уже все зібрав, і ви здивовані. Скажіть «Я здивований» без скорочення"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "surprised"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг уже все зібрав, і ви здивовані. Скажіть «Я здивований» без скорочення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `am` — `I am surprised.`",
+              "uk": "тут потрібно `am` — `I am surprised.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-25:i02:r1",
+          "text": "lunchbox"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i02:r2",
+          "text": "backpack"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i02:r3",
+          "text": "suitcase"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i02:audio",
+          "transcript": "lunchbox"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-25:i02:r1",
+            "targetText": "lunchbox",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i02:r2",
+            "targetText": "backpack",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i02:r3",
+            "targetText": "suitcase",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `lunchbox`, а в этом варианте — `backpack`.",
+              "uk": "У записі перше слово — `lunchbox`, а в цьому варіанті — `backpack`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `lunchbox`, а в этом варианте — `suitcase`.",
+              "uk": "У записі перше слово — `lunchbox`, а в цьому варіанті — `suitcase`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть контейнер для обіду",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-25:i03:r1",
+          "text": "lunchbox"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i03:r2",
+          "text": "jacket"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i03:r3",
+          "text": "sink"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть контейнер для обіду",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите контейнер для обеда",
+          "uk": "Назвіть контейнер для обіду"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i03:r1",
+            "text": "lunchbox"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i03:r2",
+            "text": "jacket"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i03:r3",
+            "text": "sink"
+          }
+        ],
+        "testedDimension": "Назвіть контейнер для обіду",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Назвіть контейнер для обіду",
+            "feedbackByLocale": {
+              "ru": "`jacket` — куртка; контейнер для обеда — `lunchbox`.",
+              "uk": "`jacket` — куртка; контейнер для обіду — `lunchbox`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Назвіть контейнер для обіду",
+            "feedbackByLocale": {
+              "ru": "`sink` — раковина; контейнер для обеда — `lunchbox`.",
+              "uk": "`sink` — раковина; контейнер для обіду — `lunchbox`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-25:i04:p1",
+            "target": "lunchbox",
+            "meaningByLocale": {
+              "ru": "ланчбокс",
+              "uk": "ланчбокс"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i04:p2",
+            "target": "proud",
+            "meaningByLocale": {
+              "ru": "гордый",
+              "uk": "гордий"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i04:p3",
+            "target": "ashamed",
+            "meaningByLocale": {
+              "ru": "испытывающий стыд",
+              "uk": "той, кому соромно"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i04:p4",
+            "target": "surprised",
+            "meaningByLocale": {
+              "ru": "удивлённый",
+              "uk": "здивований"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lunchbox",
+          "proud",
+          "ashamed",
+          "surprised"
+        ],
+        "rightColumn": [
+          "ланчбокс",
+          "гордий",
+          "той, кому соромно",
+          "здивований"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i05:audio",
+          "transcript": "This is Anna's lunchbox."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is Anna's lunchbox.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "Anna's",
+          "lunchbox"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is Anna's lunchbox.`",
+              "uk": "тут потрібно `is` — `This is Anna's lunchbox.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Куртка належить Тому. Скажіть «Куртка Тома тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Куртка належить Тому. Скажіть «Куртка Тома тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tom's jacket is here.",
+        "localizedMeaning": {
+          "ru": "Куртка принадлежит Тому. Скажите «Куртка Тома здесь»",
+          "uk": "Куртка належить Тому. Скажіть «Куртка Тома тут»"
+        },
+        "orderedTokens": [
+          "Tom's",
+          "jacket",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Куртка належить Тому. Скажіть «Куртка Тома тут»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Tom's jacket is here.`",
+              "uk": "тут потрібно `is` — `Tom's jacket is here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви задоволені своїм досягненням. Скажіть «Я пишаюся» без скорочення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Ви задоволені своїм досягненням. Скажіть «Я пишаюся» без скорочення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i07:audio",
+          "transcript": "I am proud."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am proud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Укажіть на ланчбокс Тома",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-25:i08:r1",
+          "text": "Tom's"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i08:r2",
+          "text": "Tom"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i08:r3",
+          "text": "Anna's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть на ланчбокс Тома",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Укажите на ланчбокс Тома",
+          "uk": "Укажіть на ланчбокс Тома"
+        },
+        "gappedTargetPhrase": "This is ___ lunchbox.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i08:r1",
+            "text": "Tom's"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i08:r2",
+            "text": "Tom"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i08:r3",
+            "text": "Anna's"
+          }
+        ],
+        "testedDimension": "Укажіть на ланчбокс Тома",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Укажіть на ланчбокс Тома",
+            "feedbackByLocale": {
+              "ru": "К имени владельца добавляем `’s`: `Tom’s`.",
+              "uk": "До імені власника додаємо `’s`: `Tom’s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Укажіть на ланчбокс Тома",
+            "feedbackByLocale": {
+              "ru": "Это принадлежность Анне; здесь владелец Том.",
+              "uk": "Це належність Анні; тут власник Том."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, яке почуття називає друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-25:i09:r1",
+          "text": "I am ashamed."
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i09:r2",
+          "text": "I am proud."
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i09:r3",
+          "text": "I am surprised."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, яке почуття називає друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i09:audio",
+          "transcript": "I am ashamed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-25:i09:r1",
+            "targetText": "I am ashamed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i09:r2",
+            "targetText": "I am proud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i09:r3",
+            "targetText": "I am surprised.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, яке почуття називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ashamed`, а в этом варианте — `proud`.",
+              "uk": "У записі останнє слово — `ashamed`, а в цьому варіанті — `proud`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, яке почуття називає друг",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `ashamed`, а в этом варианте — `surprised`.",
+              "uk": "У записі останнє слово — `ashamed`, а в цьому варіанті — `surprised`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-25:i10:p1",
+            "target": "lunchbox",
+            "meaningByLocale": {
+              "ru": "ланчбокс",
+              "uk": "ланчбокс"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i10:p2",
+            "target": "dogs",
+            "meaningByLocale": {
+              "ru": "собаки",
+              "uk": "собаки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i10:p3",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i10:p4",
+            "target": "jacket",
+            "meaningByLocale": {
+              "ru": "куртка",
+              "uk": "куртка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lunchbox",
+          "dogs",
+          "sink",
+          "jacket"
+        ],
+        "rightColumn": [
+          "ланчбокс",
+          "собаки",
+          "раковина",
+          "куртка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i11:audio",
+          "transcript": "Anna's lunchbox is next to the sink."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Anna's lunchbox is next to the sink.",
+        "orderedTokens": [
+          "Anna's",
+          "lunchbox",
+          "is",
+          "next",
+          "to",
+          "the",
+          "sink"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Anna's lunchbox is next to the sink.`",
+              "uk": "тут потрібно `is` — `Anna's lunchbox is next to the sink.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вас один друг; його куртка на стільці. Скажіть «Куртка мого друга на стільці»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас один друг; його куртка на стільці. Скажіть «Куртка мого друга на стільці»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My friend's jacket is on the chair.",
+        "localizedMeaning": {
+          "ru": "У вас один друг; его куртка на стуле. Скажите «Куртка моего друга на стуле»",
+          "uk": "У вас один друг; його куртка на стільці. Скажіть «Куртка мого друга на стільці»"
+        },
+        "orderedTokens": [
+          "My",
+          "friend's",
+          "jacket",
+          "is",
+          "on",
+          "the",
+          "chair"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "У вас один друг; його куртка на стільці. Скажіть «Куртка мого друга на стільці»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My friend's jacket is on the chair.`",
+              "uk": "тут потрібно `is` — `My friend's jacket is on the chair.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Собаки чекають зовні будинку. Скажіть «Собаки зовні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Собаки чекають зовні будинку. Скажіть «Собаки зовні»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i13:audio",
+          "transcript": "The dogs are outside."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dogs are outside.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Миска належить одній собаці. Укажіть власника",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-25:i14:r1",
+          "text": "dog's"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i14:r2",
+          "text": "dog"
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i14:r3",
+          "text": "dogs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Миска належить одній собаці. Укажіть власника",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Миска принадлежит одной собаке. Укажите владельца",
+          "uk": "Миска належить одній собаці. Укажіть власника"
+        },
+        "gappedTargetPhrase": "The ___ bowl is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i14:r1",
+            "text": "dog's"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i14:r2",
+            "text": "dog"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i14:r3",
+            "text": "dogs"
+          }
+        ],
+        "testedDimension": "Миска належить одній собаці. Укажіть власника",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Миска належить одній собаці. Укажіть власника",
+            "feedbackByLocale": {
+              "ru": "Для принадлежности одной собаке нужно `dog’s`.",
+              "uk": "Для належності одній собаці потрібне `dog’s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Миска належить одній собаці. Укажіть власника",
+            "feedbackByLocale": {
+              "ru": "`dogs` — несколько собак; одной собаке принадлежит `the dog’s bowl`.",
+              "uk": "`dogs` — кілька собак; одній собаці належить `the dog’s bowl`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, де ланчбокс",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-05:session-25:i15:r1",
+          "text": "Her lunchbox is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i15:r2",
+          "text": "His lunchbox is on the table."
+        },
+        {
+          "responseId": "en:lesson-05:session-25:i15:r3",
+          "text": "Her lunchbox is on the chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де ланчбокс",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i15:audio",
+          "transcript": "Her lunchbox is on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-25:i15:r1",
+            "targetText": "Her lunchbox is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i15:r2",
+            "targetText": "His lunchbox is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i15:r3",
+            "targetText": "Her lunchbox is on the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-05:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, де ланчбокс",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
+              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+            }
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте, де ланчбокс",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `table`, а в этом варианте — `chair`.",
+              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `chair`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-05:session-25:i16:p1",
+            "target": "lunchbox",
+            "meaningByLocale": {
+              "ru": "ланчбокс",
+              "uk": "ланчбокс"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i16:p2",
+            "target": "dogs",
+            "meaningByLocale": {
+              "ru": "собаки",
+              "uk": "собаки"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i16:p3",
+            "target": "sink",
+            "meaningByLocale": {
+              "ru": "раковина",
+              "uk": "раковина"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-25:i16:p4",
+            "target": "jacket",
+            "meaningByLocale": {
+              "ru": "куртка",
+              "uk": "куртка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lunchbox",
+          "dogs",
+          "sink",
+          "jacket"
+        ],
+        "rightColumn": [
+          "ланчбокс",
+          "собаки",
+          "раковина",
+          "куртка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про власника контейнера з обідом. Він належить Анні. Скажіть «Це ланчбокс Анни»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про власника контейнера з обідом. Він належить Анні. Скажіть «Це ланчбокс Анни»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-25:i17:audio",
+          "transcript": "This is Anna's lunchbox."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is Anna's lunchbox.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6667db40879d67b4878361c11759272a8af6e2dd090f50a5654e6ee40f8134db"
+}

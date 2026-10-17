@@ -14,6 +14,7 @@
 import { DeviceEventEmitter } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_STORE_RELEASE } from './config';
+import { devSeenResetKeys, parseDevSeenRequest, type DevSeenRequest } from './dev_seen_reset';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
 import { setDevAnimationsOff } from './dev_animations_off';
@@ -243,6 +244,8 @@ export type DevStateRequest = Readonly<{
   friendEvent?: DevFriendEvent;
   /** Окна знакомства с разделами («Позже»): seen — пометить все показанными (не закрывать вручную на каждом кадре), reset — показать снова. */
   intros?: 'seen' | 'reset';
+  /** Сброс «уже показано» окон «один раз на аккаунт»: reset — все; energy | welcome | plus | referral | stories | team — одно (dev_seen_reset.ts). */
+  seen?: DevSeenRequest;
   /** Ранг монеты для ПОКАЗА (0..19): подмена значения хука useMyCoinRank в памяти процесса — монеты и ранг в хранилище/облако НЕ пишутся (dev_coin_rank.ts). off — снять. */
   coinRank?: number | 'off';
   /** Лига башни Шпиля для ПОКАЗА (0..11, Гранит…Алмаз): подмена выбора наряда башни в памяти процесса — неделя, комната и облако не меняются (dev_spire_tier.ts). off — снять. */
@@ -421,6 +424,11 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsPaused = onOff('dialogs_paused');
   request.shadows = onOff('shadows');
   request.intros = pick('intros', ['seen', 'reset'] as const);
+  if (params.seen !== undefined) {
+    const seen = parseDevSeenRequest(one(params.seen));
+    if (seen) request.seen = seen;
+    else rejected.seen = `ожидалось reset | energy | welcome | plus | referral | stories | team, пришло ${String(one(params.seen))}`;
+  }
   request.aiConsent = pick('aiConsent', ['granted', 'denied', 'off'] as const);
   request.inbox = pick('inbox', ['empty', 'off'] as const);
   {
@@ -1172,6 +1180,21 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         console.log('[DEV-STATE] notifnudge: событие notif_permission_nudge missedDays=3'); // guard-ok: трассировка подмены
         emitAppEvent('notif_permission_nudge', { missedDays: 3 });
       }, 2500);
+      return true;
+    });
+  }
+  // зачем (координатор 18.10, блокер Сверки): окна «один раз на аккаунт» снимаются повторно без pm clear. Шаг стоит
+  // после гейта isDevStateAvailable в начале applyDevState — в стор-сборке ссылка сюда не доходит.
+  if (request.seen) {
+    await step('seen', request.seen, async () => {
+      const { captureAccountGeneration } = await import('./account_generation');
+      const stableId = captureAccountGeneration().stableId ?? null;
+      const storedKeys = await AsyncStorage.getAllKeys();
+      const keys = devSeenResetKeys(request.seen!, stableId, storedKeys);
+      const present = keys.filter((key) => storedKeys.includes(key));
+      if (keys.length > 0) await AsyncStorage.multiRemove(keys);
+      const teamNote = request.seen === 'team' || request.seen === 'reset' ? ' team=server_ack_not_local' : '';
+      console.log(`[DEV-STATE] seen reset ${JSON.stringify({ window: request.seen, keys, removed: present.length })}${teamNote}`); // guard-ok: итог фикстуры
       return true;
     });
   }

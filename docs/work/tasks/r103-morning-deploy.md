@@ -3,7 +3,7 @@
 > Подготовил «9 · САЙТ» 17.10 вечером по заданию координатора. Ничего не выложено. Выкладка — только по слову владельца.
 > Функции из R103 (в том числе R110 автоназвание и R111 восстановление по коду) — отдельной строкой реестра, здесь только хостинг.
 
-**Порядок на утро одной строкой (для отчёта Макетов):** **0) владелец включает TTL по `expireAt` на `auth_recovery_rate_limits` и `auth_recovery_clean_rate_limits` (Ревизор 3.29, 19ddf5fed); без TTL сайт с текущим абзацем §4 НЕ выкладывать — сначала запасной абзац (§3.1)** → сайт `hosting:knowlywww` (с абзацем §4 — ✅ в HEAD) → админка `hosting:admin` → функции R111 (только после сайта с абзацем §4) → опросы: `shard_surveys_v2_seed --write` (когда «ready 13 из 13») → `shard_surveys_retire_v1 --write`; всё — словом владельца, откат у каждого шага ниже.
+**Порядок на утро одной строкой (для отчёта Макетов):** **0) владелец включает TTL по `expireAt` на `auth_recovery_rate_limits` и `auth_recovery_clean_rate_limits` — только сам и одной командой `bash scripts/deploy_from_clean_head.sh --only "firestore:indexes" --execute` (fieldOverrides уже в firestore.indexes.json); §4 в HEAD теперь без срока и верен при любом состоянии TTL (Ревизор 3.31)** → сайт `hosting:knowlywww` (с абзацем §4 — ✅ в HEAD) → админка `hosting:admin` → функции R111 (только после сайта с абзацем §4) → опросы: `shard_surveys_v2_seed --write` (когда «ready 13 из 13») → `shard_surveys_retire_v1 --write`; всё — словом владельца, откат у каждого шага ниже.
 
 ## 1. Сухой прогон (чистая выгрузка HEAD, без --execute)
 
@@ -98,6 +98,23 @@ secret)` от вида и значения; `expireAt` = начало окна +
 Условия, при которых абзац верен (проверить утром перед правкой политики): (1) коммит Входа с HMAC и expireAt есть в HEAD;
 (2) TTL-политика Firestore на `auth_recovery_rate_limits.expireAt` включена (R103, владелец) — без неё «не дольше суток» держится
 только на логике окна, а документы физически остаются; (3) выкладка функций R111 — не раньше выкладки сайта с этим абзацем.
+
+### 3.0. ИТОГ 18.10 ~01:00 — в сборку и на сайт идёт запасная фраза (Ревизор 3.31, 86d578776)
+
+Абзац §4 с «within two days» лежал и в `app/legal/privacy_policy_en*.json` — с ним уезжала сборка 18.10 раньше включения TTL. Поэтому
+в `legal/*.json` (обе версии) последняя фраза заменена запасной из §3.1 — «used only to limit repeated attempts during its limit period
+(at most one day), and is otherwise retained only as described in the "Retention" section below»; legal:sync (app/legal, сайт, админка),
+пины перепинены. Других языковых файлов политики нет (один канонический EN) — Переводчик не нужен.
+
+- TTL-политики подготовлены **только в файле** `firestore.indexes.json` → `fieldOverrides`: `auth_recovery_rate_limits.expireAt` и
+  `auth_recovery_clean_rate_limits.expireAt`, `ttl: true` (как у `promo_redeem_rate_limits`). **Выкладка индексов — только владелец и
+  только как включение TTL**: `bash scripts/deploy_from_clean_head.sh --only "firestore:indexes" --execute` (или Console → Firestore → TTL).
+  Проверка: в Console у обеих политик статус «Serving».
+  ⚠ `firestore:indexes` выкладывает файл целиком: если CLI спросит про УДАЛЕНИЕ индексов, которых нет в файле, — отвечать «N».
+  Безопаснее разово включить две TTL-политики в Console (Firestore → TTL), а файл выложить позже вместе с остальными индексами.
+- «within two days» вернуть отдельной правкой ПОСЛЕ релиза, когда TTL подтверждён «Serving»; тогда же разовая чистка старых документов
+  без `expireAt`.
+- Порядок «TTL → сайт» больше не блокирует выкладку сайта: запасная фраза верна и до, и после TTL.
 
 ### 3.1. Жёсткий порядок «TTL → сайт» и запасной абзац §4 (Ревизор 3.29, 19ddf5fed)
 

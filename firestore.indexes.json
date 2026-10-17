@@ -1231,6 +1231,18 @@
       "indexes": []
     },
     {
+      "collectionGroup": "auth_recovery_rate_limits",
+      "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
+      "collectionGroup": "auth_recovery_clean_rate_limits",
+      "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
       "collectionGroup": "error_reports",
       "fieldPath": "expireAt",
       "ttl": true,

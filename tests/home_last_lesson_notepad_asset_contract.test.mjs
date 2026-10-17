@@ -19,5 +19,13 @@ test('continue-learning card uses the supplied notepad asset for every selectabl
   // зачем (17.10): карточка рисует тот же переданный арт через ThemedArtLayers (основа + слой акцента темы), а не голым <Image>
   assert.match(continueCard, /<(?:Image|ThemedArtLayers) source=\{art\}/);
   assert.doesNotMatch(continueCard, /spiral_notepad\.png/);
-  assert.doesNotMatch(continueCard, /numberOfLines=/);
+  // зачем: А4 15.10 — длинное название урока в 2 строки, без ужатия (исключение разрешил координатор 17.10).
+  // Разрешено только numberOfLines ≤ 2 и только у названия карточки; ужимать шрифт по-прежнему нельзя.
+  const lineCaps = [...continueCard.matchAll(/<Text\b[^>]*numberOfLines=\{(\d+)\}[^>]*>/g)];
+  assert.equal((continueCard.match(/numberOfLines=/g) ?? []).length, lineCaps.length, 'numberOfLines только числом в <Text>');
+  for (const [tag, n] of lineCaps) {
+    assert.ok(Number(n) <= 2, `название — не больше 2 строк: ${tag.slice(0, 80)}`);
+    assert.match(tag, /testID="home-continue-lesson-title"/, 'обрезка разрешена только названию карточки');
+  }
+  assert.doesNotMatch(continueCard, /adjustsFontSizeToFit/);
 });

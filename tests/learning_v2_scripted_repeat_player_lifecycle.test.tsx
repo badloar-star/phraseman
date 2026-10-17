@@ -103,6 +103,10 @@ jest.mock("expo-router", () => ({
   useRouter: () => ({ replace: jest.fn(), push: jest.fn(), back: jest.fn() }),
 }));
 jest.mock("@expo/vector-icons/Ionicons", () => "Ionicons");
+// зачем (координатор 17.10): шторка голосового лимита (1c2823b95) — отдельный UI на старте занятия со своим тестом
+// (learning_v2_voice_headsup_v1.test.ts); её анимации (Animated/Easing/PanResponder/Modal) этому моку react-native не нужны.
+// Здесь проверяется жизненный цикл плеера повтора, поэтому шторка — пустая заглушка, а не расширение мока под чужой UI.
+jest.mock("../components/learning-v2/LearningV2VoiceHeadsupSheet", () => ({ __esModule: true, default: () => null }));
 jest.mock("expo-crypto", () => ({ randomUUID: () => "run-test" }));
 jest.mock("expo-image", () => ({ Image: "Image" }));
 jest.mock("expo-audio", () => ({

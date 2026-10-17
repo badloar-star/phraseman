@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-09:word:short",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — short",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-09:word:short:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — short",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-09:word:short:audio",
-          "transcript": "short"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-09:word:short:r1",
-            "targetText": "short",
-            "meaningByLocale": {
-              "ru": "«невысокий / невысокая»: о росте человека.",
-              "uk": "«невисокий / невисока»: про зріст людини."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "short",
-          "definitionByLocale": {
-            "ru": "«невысокий / невысокая»: о росте человека.",
-            "uk": "«невисокий / невисока»: про зріст людини."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-09:word:young",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — young",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-09:word:young:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — young",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-09:word:young:audio",
-          "transcript": "young"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-09:word:young:r1",
-            "targetText": "young",
-            "meaningByLocale": {
-              "ru": "«молодой / юный»: о возрасте, а не о росте.",
-              "uk": "«молодий / юний»: про вік, а не про зріст."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "young",
-          "definitionByLocale": {
-            "ru": "«молодой / юный»: о возрасте, а не о росте.",
-            "uk": "«молодий / юний»: про вік, а не про зріст."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-09:word:angry",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — angry",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-09:word:angry:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — angry",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-09:word:angry:audio",
-          "transcript": "angry"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-09:word:angry:r1",
-            "targetText": "angry",
-            "meaningByLocale": {
-              "ru": "«сердитый»: человек злится. He is angry — «Он сердится».",
-              "uk": "«сердитий»: людина злиться. He is angry — «Він сердиться»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "angry",
-          "definitionByLocale": {
-            "ru": "«сердитый»: человек злится. He is angry — «Он сердится».",
-            "uk": "«сердитий»: людина злиться. He is angry — «Він сердиться»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-09:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-09:word:short",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — short",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-09:word:short:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — short",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-09:word:short:audio",
+          "transcript": "short"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-09:word:short:r1",
+            "targetText": "short",
+            "meaningByLocale": {
+              "ru": "«невысокий / невысокая»: о росте человека.",
+              "uk": "«невисокий / невисока»: про зріст людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "short",
+          "definitionByLocale": {
+            "ru": "«невысокий / невысокая»: о росте человека.",
+            "uk": "«невисокий / невисока»: про зріст людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-09:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-09:word:young",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — young",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-09:word:young:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — young",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-09:word:young:audio",
+          "transcript": "young"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-09:word:young:r1",
+            "targetText": "young",
+            "meaningByLocale": {
+              "ru": "«молодой / юный»: о возрасте, а не о росте.",
+              "uk": "«молодий / юний»: про вік, а не про зріст."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "young",
+          "definitionByLocale": {
+            "ru": "«молодой / юный»: о возрасте, а не о росте.",
+            "uk": "«молодий / юний»: про вік, а не про зріст."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-09:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-09:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-09:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-09:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-09:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-09:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -627,6 +584,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:word:angry",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — angry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-09:word:angry:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — angry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-09:word:angry:audio",
+          "transcript": "angry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-09:word:angry:r1",
+            "targetText": "angry",
+            "meaningByLocale": {
+              "ru": "«сердитый»: человек злится. He is angry — «Он сердится».",
+              "uk": "«сердитий»: людина злиться. He is angry — «Він сердиться»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "angry",
+          "definitionByLocale": {
+            "ru": "«сердитый»: человек злится. He is angry — «Он сердится».",
+            "uk": "«сердитий»: людина злиться. He is angry — «Він сердиться»."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2ce3017c3471f8831bd77926d63775bbfbab5ebf7c1fe80c19fb31bd501d079e"
+  "learnerFingerprint": "af7384d608c8dbc823fd62acb72c84bfc9f90c86abd298d09224cb977e04f648"
 }

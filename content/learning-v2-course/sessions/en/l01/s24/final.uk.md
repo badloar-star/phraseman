@@ -52,52 +52,52 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — dim**
-<!-- interaction_id: en:lesson-01:session-24:word:dim; family: word_card -->
-> **dim** — тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно.
-
-**2 · Картка слова — bright**
-<!-- interaction_id: en:lesson-01:session-24:word:bright; family: word_card -->
-> **bright** — яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи.
-
-**3 · Картка слова — heavy**
-<!-- interaction_id: en:lesson-01:session-24:word:heavy; family: word_card -->
-> **heavy** — важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме.
-
-**4 · Картка слова — fragile**
-<!-- interaction_id: en:lesson-01:session-24:word:fragile; family: word_card -->
-> **fragile** — крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити.
-
-**5 · Новий гість вагається, чи можна зайти. Складіть фразу, щоб сказати йому, що раді його приходу**
+**1 · Новий гість вагається, чи можна зайти. Складіть фразу, щоб сказати йому, що раді його приходу**
 <!-- interaction_id: en:lesson-01:session-24:i01; family: phrase_builder -->
 Плитки: `welcome` `are` `You` `am` → **You are welcome.**
 *(плитка `am` зайва: тут потрібно `are` — `You are welcome.`)*
 
-**6 · Послухайте й виберіть почуте**
+**2 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-24:i02; family: listen_choose -->
 🔊 *We are prepared.* → **We are prepared.** · They are prepared. · We are lucky.
 - They are prepared. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
 - We are lucky. — *У записі останнє слово — `prepared`, а в цьому варіанті — `lucky`.*
 
-**7 · Ви неправильно назвали час початку. Вставте слово, щоб визнати свою помилку**
+**3 · Ви неправильно назвали час початку. Вставте слово, щоб визнати свою помилку**
 <!-- interaction_id: en:lesson-01:session-24:i03; family: context_gap_grammar -->
 I ___ wrong. → **am** · is · are
 - is — *Про себе кажемо `I am`.*
 - are — *Після `I` потрібно `am`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**4 · Картка слова — dim**
+<!-- interaction_id: en:lesson-01:session-24:word:dim; family: word_card -->
+> **dim** — тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно.
+
+**5 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-24:i04; family: speed_match -->
 dim — тьмяний · bright — яскравий · heavy — важкий · fragile — крихкий
 
-**9 · Послухайте й складіть фразу про освітлення**
+**6 · Картка слова — bright**
+<!-- interaction_id: en:lesson-01:session-24:word:bright; family: word_card -->
+> **bright** — яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи.
+
+**7 · Послухайте й складіть фразу про освітлення**
 <!-- interaction_id: en:lesson-01:session-24:i05; family: listen_build_dictation -->
 🔊 *It is bright.* Плитки: `bright` `is` `It` `am` → **It is bright.**
 Плитка `am` зайва: після It потрібне is.
 
-**10 · Коробку з реквізитом важко підняти через вагу. Складіть фразу про неї: «Вона важка»**
+**8 · Картка слова — heavy**
+<!-- interaction_id: en:lesson-01:session-24:word:heavy; family: word_card -->
+> **heavy** — важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме.
+
+**9 · Коробку з реквізитом важко підняти через вагу. Складіть фразу про неї: «Вона важка»**
 <!-- interaction_id: en:lesson-01:session-24:i06; family: phrase_builder -->
 Плитки: `heavy` `is` `It` `are` → **It is heavy.**
 Плитка `are` зайва: після It потрібне is.
+
+**10 · Картка слова — fragile**
+<!-- interaction_id: en:lesson-01:session-24:word:fragile; family: word_card -->
+> **fragile** — крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити.
 
 **11 · Працівник бере тонку скляну вазу. Повідомте про її крихкість: «Вона крихка»**
 <!-- interaction_id: en:lesson-01:session-24:i07; family: scripted_repeat_compare -->
@@ -152,4 +152,3 @@ rich — багатий · poor — бідний · famous — знаменит�
 **21 · Завтра ви з братом переїжджаєте. Коробки зібрані, машину замовили заздалегідь. Скажіть за вас обох: «Ми підготувалися»**
 <!-- interaction_id: en:lesson-01:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We are prepared.**
-

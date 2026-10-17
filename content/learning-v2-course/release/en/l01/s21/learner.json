@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-21:word:empty",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — empty",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-21:word:empty:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — empty",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-21:word:empty:audio",
-          "transcript": "empty"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-21:word:empty:r1",
-            "targetText": "empty",
-            "meaningByLocale": {
-              "ru": "пустой. It is empty — «Он пустой»: например, столик без людей и вещей.",
-              "uk": "порожній. It is empty — «Він порожній»: наприклад, столик без людей і речей."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "empty",
-          "definitionByLocale": {
-            "ru": "пустой. It is empty — «Он пустой»: например, столик без людей и вещей.",
-            "uk": "порожній. It is empty — «Він порожній»: наприклад, столик без людей і речей."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-21:word:small",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — small",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-21:word:small:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — small",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-21:word:small:audio",
-          "transcript": "small"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-21:word:small:r1",
-            "targetText": "small",
-            "meaningByLocale": {
-              "ru": "маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.",
-              "uk": "маленький. It is small — «Вона маленька»: наприклад, сумка, яка вміщується в невелику комірку."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "small",
-          "definitionByLocale": {
-            "ru": "маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.",
-            "uk": "маленький. It is small — «Вона маленька»: наприклад, сумка, яка вміщується в невелику комірку."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-21:word:noisy",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — noisy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-21:word:noisy:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — noisy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-21:word:noisy:audio",
-          "transcript": "noisy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-21:word:noisy:r1",
-            "targetText": "noisy",
-            "meaningByLocale": {
-              "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
-              "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "noisy",
-          "definitionByLocale": {
-            "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
-            "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-21:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-21:word:empty",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — empty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-21:word:empty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — empty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-21:word:empty:audio",
+          "transcript": "empty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-21:word:empty:r1",
+            "targetText": "empty",
+            "meaningByLocale": {
+              "ru": "пустой. It is empty — «Он пустой»: например, столик без людей и вещей.",
+              "uk": "порожній. It is empty — «Він порожній»: наприклад, столик без людей і речей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "empty",
+          "definitionByLocale": {
+            "ru": "пустой. It is empty — «Он пустой»: например, столик без людей и вещей.",
+            "uk": "порожній. It is empty — «Він порожній»: наприклад, столик без людей і речей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-21:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +211,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i03",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +280,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -438,8 +352,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-21:word:small",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — small",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-21:word:small:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — small",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-21:word:small:audio",
+          "transcript": "small"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-21:word:small:r1",
+            "targetText": "small",
+            "meaningByLocale": {
+              "ru": "маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.",
+              "uk": "маленький. It is small — «Вона маленька»: наприклад, сумка, яка вміщується в невелику комірку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "small",
+          "definitionByLocale": {
+            "ru": "маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.",
+            "uk": "маленький. It is small — «Вона маленька»: наприклад, сумка, яка вміщується в невелику комірку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-21:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -524,6 +481,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:word:noisy",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — noisy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-21:word:noisy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — noisy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-21:word:noisy:audio",
+          "transcript": "noisy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-21:word:noisy:r1",
+            "targetText": "noisy",
+            "meaningByLocale": {
+              "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
+              "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "noisy",
+          "definitionByLocale": {
+            "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
+            "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "05ccf1948db9511a77b634da1b3a060fc91c11f108ce5e63eb905047e53dda0a"
+  "learnerFingerprint": "cf4d9cec5d0a1d5b17ac2595350bf1ef55a27d40df41a78bec2fbc6982fd3afe"
 }

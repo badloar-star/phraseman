@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-09:word:short",
-    "correctText": "short",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-09:word:young",
-    "correctText": "young",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-09:word:angry",
-    "correctText": "angry",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-09:i01",
     "correctText": "He is tall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:word:short",
+    "correctText": "short",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i02",
     "correctText": "«она невысокая»",
     "correctResponseId": "en:lesson-01:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:word:young",
+    "correctText": "young",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i03",
@@ -58,6 +53,11 @@
     "interactionId": "en:lesson-01:session-09:i08",
     "correctText": "ready",
     "correctResponseId": "en:lesson-01:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:word:angry",
+    "correctText": "angry",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-09:i09",

@@ -56,62 +56,62 @@
 <!-- interaction_id: en:lesson-01:session-08:word:calm; family: word_card -->
 > **calm** — «спокійний / спокійна»: ви не хвилюєтеся й не метушитеся.
 
-**2 · Картка слова — nervous**
-<!-- interaction_id: en:lesson-01:session-08:word:nervous; family: word_card -->
-> **nervous** — «знервований»: ви хвилюєтеся перед виступом.
-
-**3 · Картка слова — excited**
-<!-- interaction_id: en:lesson-01:session-08:word:excited; family: word_card -->
-> **excited** — «радісно схвильований»: ви нетерпляче чекаєте приємної події.
-
-**4 · Картка слова — thirsty**
-<!-- interaction_id: en:lesson-01:session-08:word:thirsty; family: word_card -->
-> **thirsty** — «спраглий»: ви хочете пити.
-
-**5 · Вставте слово — ви спокійно чекаєте своєї черги й зовсім не хвилюєтеся**
+**2 · Вставте слово — ви спокійно чекаєте своєї черги й зовсім не хвилюєтеся**
 <!-- interaction_id: en:lesson-01:session-08:i01; family: context_gap_grammar -->
 I am ___. → **calm** · nervous · thirsty
 - ✅ calm
 - ❌ nervous — *Nervous означає, що ви нервуєте, а за умовою ви спокійні.*
 - ❌ thirsty — *Thirsty повідомляє про спрагу, а тут треба повідомити про спокій.*
 
-**6 · Послухайте й виберіть слово**
+**3 · Картка слова — nervous**
+<!-- interaction_id: en:lesson-01:session-08:word:nervous; family: word_card -->
+> **nervous** — «знервований»: ви хвилюєтеся перед виступом.
+
+**4 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-01:session-08:i02; family: listen_choose -->
 🔊 *nervous*
 - ✅ nervous
 - ❌ calm — *У записі nervous, а не calm.*
 - ❌ excited — *У записі nervous, а не excited.*
 
-**7 · Складіть фразу — ви радієте майбутньому концерту й нетерпляче на нього чекаєте**
+**5 · Картка слова — excited**
+<!-- interaction_id: en:lesson-01:session-08:word:excited; family: word_card -->
+> **excited** — «радісно схвильований»: ви нетерпляче чекаєте приємної події.
+
+**6 · Складіть фразу — ви радієте майбутньому концерту й нетерпляче на нього чекаєте**
 <!-- interaction_id: en:lesson-01:session-08:i03; family: phrase_builder -->
 Плитки: `excited` `I` `am` `not` → **I am excited.**
 Плитка `not` зайва: вона заперечує радісне хвилювання, а ви чекаєте на концерт із радістю.
 
-**8 · Вставте слово — Міра уточнює, чи ви тут уперше**
+**7 · Вставте слово — Міра уточнює, чи ви тут уперше**
 <!-- interaction_id: en:lesson-01:session-08:i04; family: context_gap_grammar -->
 I ___ new here. → **am** · is · are
 - am
 - is — *`Is` використовують з `he`, `she` або `it`. Про себе кажуть `I am`.*
 - are — *У цій фразі про себе після `I` потрібна форма `am`.*
 
-**9 · Послухайте і складіть — «голоду немає»**
+**8 · Послухайте і складіть — «голоду немає»**
 <!-- interaction_id: en:lesson-01:session-08:i05; family: listen_build_dictation -->
 🔊 *I am not hungry.* Плитки: `not` `I` `hungry` `am` → **I am not hungry.**
 
-**10 · З'єднайте пари**
+**9 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-08:i06; family: speed_match -->
 ready — можна вирушати · tired — відчуваю втому · lost — той, хто заблукав · hungry — голодний
 
-**11 · Вставте слово — ви поїли, тому відмовляєтеся від перекусу**
+**10 · Вставте слово — ви поїли, тому відмовляєтеся від перекусу**
 <!-- interaction_id: en:lesson-01:session-08:i07; family: context_gap_grammar -->
 I am not ___ . → **hungry** · sure · done
 - hungry
 - sure — *`I am not sure` означає «я не знаю напевно», це не відповідь про їжу.*
 - done — *`I am not done` означає «зі справами ще не все», а тут ідеться про голод.*
 
-**12 · Складіть речення — Міра питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час**
+**11 · Складіть речення — Міра питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час**
 <!-- interaction_id: en:lesson-01:session-08:i08; family: phrase_builder -->
 Плитки: `sure` `am` `not` `I` → **I am not sure.**
+
+**12 · Картка слова — thirsty**
+<!-- interaction_id: en:lesson-01:session-08:word:thirsty; family: word_card -->
+> **thirsty** — «спраглий»: ви хочете пити.
 
 **13 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-01:session-08:i09; family: listen_choose -->
@@ -179,4 +179,3 @@ sure — знаю напевно · free — маю час · done — зі сп
 🎙 Скажіть: **I am done.**
 
 ---
-

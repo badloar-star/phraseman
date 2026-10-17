@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-27:word:asleep",
-    "correctText": "asleep",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:word:available",
-    "correctText": "available",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-27:word:dressed",
-    "correctText": "dressed",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-27:i01",
     "correctText": "I am awake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:word:asleep",
+    "correctText": "asleep",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i02",
     "correctText": "She is asleep.",
     "correctResponseId": "en:lesson-01:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:word:available",
+    "correctText": "available",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i03",
@@ -72,6 +67,11 @@
   {
     "interactionId": "en:lesson-01:session-27:i11",
     "correctText": "They are asleep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:word:dressed",
+    "correctText": "dressed",
     "correctResponseId": null
   },
   {

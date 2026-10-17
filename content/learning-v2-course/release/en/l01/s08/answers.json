@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-08:word:nervous",
-    "correctText": "nervous",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-08:word:excited",
-    "correctText": "excited",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-08:word:thirsty",
-    "correctText": "thirsty",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-08:i01",
     "correctText": "calm",
     "correctResponseId": "en:lesson-01:session-08:i01:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-08:word:nervous",
+    "correctText": "nervous",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-08:i02",
     "correctText": "nervous",
     "correctResponseId": "en:lesson-01:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:word:excited",
+    "correctText": "excited",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-08:i03",
@@ -57,6 +52,11 @@
   {
     "interactionId": "en:lesson-01:session-08:i08",
     "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:word:thirsty",
+    "correctText": "thirsty",
     "correctResponseId": null
   },
   {

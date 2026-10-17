@@ -386,51 +386,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-12:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — smart",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-12:i08:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — smart",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-12:i08:audio",
-          "transcript": "smart"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-12:i08:r1",
-            "targetText": "smart",
-            "meaningByLocale": {
-              "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
-              "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "smart",
-          "definitionByLocale": {
-            "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
-            "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-12:i09",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -494,6 +451,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i08",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smart",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — smart",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i08:audio",
+          "transcript": "smart"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i08:r1",
+            "targetText": "smart",
+            "meaningByLocale": {
+              "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
+              "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smart",
+          "definitionByLocale": {
+            "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
+            "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1064,5 +1064,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8061560db010cd630c8ce96b2031dddad1ecbca23468e67732c419b1797f8fe8"
+  "learnerFingerprint": "fd8ad07c5b263fcd1873fd1d80b10a88f7a2c233fc365387b594476e1aa63c86"
 }

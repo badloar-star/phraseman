@@ -123,8 +123,40 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-13:i03",
+      "interactionId": "en:lesson-01:session-13:i04",
       "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Мира говорит, что чувствует себя немолодой; скажите ей: «ты молодая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Мира говорит, что чувствует себя немолодой; скажите ей: «ты молодая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are young.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Мира говорит, что чувствует себя немолодой; скажите ей: «ты молодая»",
+          "uk": "Складіть фразу — Міра каже, що почувається немолодою; скажіть їй: «ти молода»"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "young"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i03",
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -161,38 +193,6 @@
             "ru": "старый; пожилой, если о человеке. I am old — «Я старый». Прямое замечание You are old собеседнику может прозвучать обидно.",
             "uk": "старий; літній, якщо про людину. I am old — «Я старий». Пряме зауваження You are old співрозмовнику може прозвучати образливо."
           }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-13:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Мира говорит, что чувствует себя немолодой; скажите ей: «ты молодая»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Мира говорит, что чувствует себя немолодой; скажите ей: «ты молодая»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "You are young.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — Мира говорит, что чувствует себя немолодой; скажите ей: «ты молодая»",
-          "uk": "Складіть фразу — Міра каже, що почувається немолодою; скажіть їй: «ти молода»"
-        },
-        "orderedTokens": [
-          "You",
-          "are",
-          "young"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -1021,5 +1021,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ed03637238b48aed0b7372a893fe40d3c11ef39ee2a351b29872addf6f656d47"
+  "learnerFingerprint": "9462a07b574bcc65193aa58010d2d6fece18872c8358e4eccca56bce27ffd79e"
 }

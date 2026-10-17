@@ -76,7 +76,6 @@
 Плитки: `safe` `You` `are` `am` → **You are safe.**
 *(плитка `am` лишняя: С `you` нельзя `am`: правильная фраза — `You are safe.`)*
 
-
 **6 · Вставьте слово — Алекс заблудился и не знает, где вокзал; скажите ему, что он заблудился**
 <!-- interaction_id: en:lesson-01:session-14:i06; family: context_gap_grammar -->
 You are ___ . → **lost** · safe · ready
@@ -114,12 +113,10 @@ You ___ safe. → **are** · am · is
 🔊 *You are warm.* Плитки: `are` `warm` `You` `dry` → **You are warm.**
 *(плитка `dry` лишняя: `dry` значит «сухой», а `warm` — «тёплый».)*
 
-
 **13 · Соберите фразу — Алекс взял сумку и сказал, что готов идти; скажите ему: «ты готов идти»**
 <!-- interaction_id: en:lesson-01:session-14:i13; family: phrase_builder -->
 Плитки: `ready` `You` `are` `not` → **You are ready.**
 *(плитка `not` лишняя: `not` изменит смысл на «ты не готов». Нужна фраза `You are ready.`)*
-
 
 **14 · Соедините английские слова с их значениями**
 <!-- interaction_id: en:lesson-01:session-14:i14; family: speed_match -->
@@ -136,12 +133,10 @@ safe — в безопасности · warm — тёплый · dry — сух�
 Плитки: `You` `are` `scared` `is` → **You are scared.**
 *(плитка `is` лишняя: После `you` нужно `are`, не `is`: `You are scared.`)*
 
-
 **17 · Соберите фразу со значением «Тебе холодно»**
 <!-- interaction_id: en:lesson-01:session-14:i17; family: listen_build_dictation -->
 🔊 *You are cold.* Плитки: `cold` `You` `are` `scared` → **You are cold.**
 *(плитка `scared` лишняя: `scared` значит «испуган», а `cold` — «холодно».)*
-
 
 **18 · Лина пришла без зонта, её одежда промокла. Скажите ей: «Ты мокрая»**
 <!-- interaction_id: en:lesson-01:session-14:i18; family: scripted_repeat_compare -->
@@ -149,4 +144,3 @@ safe — в безопасности · warm — тёплый · dry — сух�
 
 
 ---
-

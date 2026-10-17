@@ -56,73 +56,73 @@
 <!-- interaction_id: en:lesson-01:session-23:word:married; family: word_card -->
 > **married** — перебуває у шлюбі: одружений або заміжня. She is married — «Вона заміжня».
 
-**2 · Картка слова — single**
-<!-- interaction_id: en:lesson-01:session-23:word:single; family: word_card -->
-> **single** — без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей.
-
-**3 · Картка слова — different**
-<!-- interaction_id: en:lesson-01:session-23:word:different; family: word_card -->
-> **different** — різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання.
-
-**4 · Картка слова — engaged**
-<!-- interaction_id: en:lesson-01:session-23:word:engaged; family: word_card -->
-> **engaged** — заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість.
-
-**5 · Анна розповіла, що нещодавно вийшла заміж. Складіть: «Вона заміжня»**
+**2 · Анна розповіла, що нещодавно вийшла заміж. Складіть: «Вона заміжня»**
 <!-- interaction_id: en:lesson-01:session-23:i01; family: phrase_builder -->
 Плитки: `married` `is` `She` `are` → **She is married.**
 *(плитка `are` зайва: тут потрібно `is` — `She is married.`)*
 
-**6 · Послухайте й виберіть фразу**
+**3 · Картка слова — single**
+<!-- interaction_id: en:lesson-01:session-23:word:single; family: word_card -->
+> **single** — без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей.
+
+**4 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-01:session-23:i02; family: listen_choose -->
 🔊 *He is single.* → **He is single.** · She is single. · He is married.
 - She is single. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is married. — *У записі останнє слово — `single`, а в цьому варіанті — `married`.*
 
-**7 · Вставте слово — ви із сестрою різні**
+**5 · Картка слова — different**
+<!-- interaction_id: en:lesson-01:session-23:word:different; family: word_card -->
+> **different** — різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання.
+
+**6 · Вставте слово — ви із сестрою різні**
 <!-- interaction_id: en:lesson-01:session-23:i03; family: context_gap_grammar -->
 We ___ different. → **are** · is · am
 - is — *Після `We` потрібна форма `are`.*
 - am — *`am` потрібне після `I`. Тут `We are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-23:i04; family: speed_match -->
 married — перебуває у шлюбі · single — без пари · different — різний · engaged — заручений
 
-**9 · Послухайте відповідь гостя й складіть почуте**
+**8 · Послухайте відповідь гостя й складіть почуте**
 <!-- interaction_id: en:lesson-01:session-23:i05; family: listen_build_dictation -->
 🔊 *I am married.* Плитки: `married` `am` `I` `are` → **I am married.**
 *(плитка `are` зайва: тут потрібно `am` — `I am married.`)*
 
-**10 · У двох братів різні характери. Складіть фразу про них: «Вони різні»**
+**9 · У двох братів різні характери. Складіть фразу про них: «Вони різні»**
 <!-- interaction_id: en:lesson-01:session-23:i06; family: phrase_builder -->
 Плитки: `different` `are` `They` `is` → **They are different.**
 *(плитка `is` зайва: тут потрібно `are` — `They are different.`)*
 
-**11 · Уявіть, що заповнюєте анкету про себе й не перебуваєте у шлюбі. Вимовте свою відповідь зі словом single**
+**10 · Уявіть, що заповнюєте анкету про себе й не перебуваєте у шлюбі. Вимовте свою відповідь зі словом single**
 <!-- interaction_id: en:lesson-01:session-23:i07; family: scripted_repeat_compare -->
 🎙 **I am single.**
 
-**12 · Вставте слово — гість розповів, що одружений**
+**11 · Вставте слово — гість розповів, що одружений**
 <!-- interaction_id: en:lesson-01:session-23:i08; family: context_gap_grammar -->
 He ___ married. → **is** · am · are
 - am — *Із `He` потрібно `is`; `am` ставимо з `I`.*
 - are — *Тут початок `He`, тому `is`.*
 
-**13 · Послухайте й виберіть почуте**
+**12 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-23:i09; family: listen_choose -->
 🔊 *We are married.* → **We are married.** · They are married. · We are different.
 - They are married. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
 - We are different. — *У записі останнє слово — `married`, а в цьому варіанті — `different`.*
 
-**14 · З’єднайте знайомі слова та значення**
+**13 · З’єднайте знайомі слова та значення**
 <!-- interaction_id: en:lesson-01:session-23:i10; family: speed_match -->
 rich — багатий · poor — бідний · famous — знаменитий · generous — щедрий
 
-**15 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-23:i11; family: listen_build_dictation -->
 🔊 *She is single.* Плитки: `single` `is` `She` `He` → **She is single.**
 *(плитка `He` зайва: тут потрібно `She` — `She is single.`)*
+
+**15 · Картка слова — engaged**
+<!-- interaction_id: en:lesson-01:session-23:word:engaged; family: word_card -->
+> **engaged** — заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість.
 
 **16 · Двоюрідна сестра оголосила про заручини. Складіть фразу про неї: «Вона заручена»**
 <!-- interaction_id: en:lesson-01:session-23:i12; family: phrase_builder -->
@@ -152,4 +152,3 @@ engaged — заручений · different — різний · married — пе
 **21 · У магазині ви порівнюєте два рюкзаки: один великий, інший маленький. Скажіть продавцеві про них: «Вони різні»**
 <!-- interaction_id: en:lesson-01:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **They are different.**
-

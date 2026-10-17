@@ -56,68 +56,68 @@
 <!-- interaction_id: en:lesson-01:session-17:word:welcome; family: word_card -->
 > **welcome** — желанный: человеку рады. You are welcome — «Тебе здесь рады» в ситуации прихода гостя.
 
-**2 · Карточка слова — together**
-<!-- interaction_id: en:lesson-01:session-17:word:together; family: word_card -->
-> **together** — вместе. We are together — «Мы вместе»: например, приехали одной компанией.
-
-**3 · Карточка слова — grateful**
-<!-- interaction_id: en:lesson-01:session-17:word:grateful; family: word_card -->
-> **grateful** — благодарный за помощь или доброе дело. They are grateful — «Они благодарны».
-
-**4 · Карточка слова — comfortable**
-<!-- interaction_id: en:lesson-01:session-17:word:comfortable; family: word_card -->
-> **comfortable** — чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.
-
-**5 · Соберите фразу — скажите другу у двери: «Тебе здесь рады»**
+**2 · Соберите фразу — скажите другу у двери: «Тебе здесь рады»**
 <!-- interaction_id: en:lesson-01:session-17:i01; family: phrase_builder -->
 Плитки: `welcome` `are` `You` `am` → **You are welcome.**
 *(плитка `am` лишняя: здесь нужно `are` — `You are welcome.`)*
 
-**6 · Послушайте и выберите фразу хозяина**
+**3 · Послушайте и выберите фразу хозяина**
 <!-- interaction_id: en:lesson-01:session-17:i02; family: listen_choose -->
 🔊 *You are safe.* → **You are safe.** · We are safe. · You are right.
 - We are safe. — *В записи первое слово — `You`, а в этом варианте — `We`.*
 - You are right. — *В записи последнее слово — `safe`, а в этом варианте — `right`.*
 
-**7 · Вставьте слово — двое гостей правильно назвали адрес: «Они правы»**
+**4 · Вставьте слово — двое гостей правильно назвали адрес: «Они правы»**
 <!-- interaction_id: en:lesson-01:session-17:i03; family: context_gap_grammar -->
 They ___ right. → **are** · is · am
 - is — *После `They` нужно `are`. `is` подходит к `He`, `She` или `It`.*
 - am — *`am` ставим с `I`. Здесь говорится о них: `They are`.*
 
-**8 · Соедините слова и значения**
+**5 · Соедините слова и значения**
 <!-- interaction_id: en:lesson-01:session-17:i04; family: speed_match -->
 welcome — желанный · safe — в безопасности · right — прав · ready — готов
 
-**9 · Послушайте и соберите сообщение одной компании**
+**6 · Карточка слова — together**
+<!-- interaction_id: en:lesson-01:session-17:word:together; family: word_card -->
+> **together** — вместе. We are together — «Мы вместе»: например, приехали одной компанией.
+
+**7 · Послушайте и соберите сообщение одной компании**
 <!-- interaction_id: en:lesson-01:session-17:i05; family: listen_build_dictation -->
 🔊 *We are together.* Плитки: `together` `are` `We` `They` → **We are together.**
 Плитка `They` лишняя: в записи We — «мы», а не They — «они».
 
-**10 · Соберите фразу — гости благодарны хозяйке за помощь. Скажите другу о гостях: «Они благодарны»**
+**8 · Карточка слова — grateful**
+<!-- interaction_id: en:lesson-01:session-17:word:grateful; family: word_card -->
+> **grateful** — благодарный за помощь или доброе дело. They are grateful — «Они благодарны».
+
+**9 · Соберите фразу — гости благодарны хозяйке за помощь. Скажите другу о гостях: «Они благодарны»**
 <!-- interaction_id: en:lesson-01:session-17:i06; family: phrase_builder -->
 Плитки: `grateful` `are` `They` `is` → **They are grateful.**
 Плитка `is` лишняя: с They нужно are.
 
-**11 · Скажите вслух — друг верно прочитал номер дома: «Ты прав»**
+**10 · Скажите вслух — друг верно прочитал номер дома: «Ты прав»**
 <!-- interaction_id: en:lesson-01:session-17:i07; family: scripted_repeat_compare -->
 🎙 **You are right.**
 
-**12 · Вставьте слово — высокий друг помог достать полотенце. Скажите: «Ты высокий»**
+**11 · Вставьте слово — высокий друг помог достать полотенце. Скажите: «Ты высокий»**
 <!-- interaction_id: en:lesson-01:session-17:i08; family: context_gap_grammar -->
 You ___ tall. → **are** · am · is
 - am — *С `You` используем `are`; `am` нужно, когда говорим `I am`.*
 - is — *`is` подходит к `He`, а вы говорите самому другу: `You are`.*
 
-**13 · Послушайте и выберите услышанное**
+**12 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-17:i09; family: listen_choose -->
 🔊 *They are welcome.* → **They are welcome.** · You are welcome. · They are ready.
 - You are welcome. — *В записи первое слово — `They`, а в этом варианте — `You`.*
 - They are ready. — *В записи последнее слово — `welcome`, а в этом варианте — `ready`.*
 
-**14 · Соедините слова с их значениями**
+**13 · Соедините слова с их значениями**
 <!-- interaction_id: en:lesson-01:session-17:i10; family: speed_match -->
 tall — высокий · short — невысокий · young — молодой · happy — счастливый
+
+**14 · Карточка слова — comfortable**
+<!-- interaction_id: en:lesson-01:session-17:word:comfortable; family: word_card -->
+> **comfortable** — чувствующий себя комфортно, без неудобства. We are comfortable — «Нам удобно»: например, в новых креслах.
 
 **15 · Послушайте и соберите фразу о том, что вам удобно**
 <!-- interaction_id: en:lesson-01:session-17:i11; family: listen_build_dictation -->
@@ -152,4 +152,3 @@ welcome — желанный · together — вместе · grateful — бла
 **21 · Скажите вслух — на встрече соседей новичок спрашивает, можно ли присоединиться. Скажите ему, что вы рады его приходу**
 <!-- interaction_id: en:lesson-01:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **You are welcome.**
-

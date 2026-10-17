@@ -4,94 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-02:word:sad",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Нове слово",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-02:word:sad:audio"
-      ],
-      "accessibilityLabel": "Нове слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-02:word:sad:audio",
-          "transcript": "sad"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-02:word:sad:r1",
-            "targetText": "sad",
-            "meaningByLocale": {
-              "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
-              "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sad",
-          "definitionByLocale": {
-            "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
-            "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-02:word:tired",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Нове слово",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-02:word:tired:audio"
-      ],
-      "accessibilityLabel": "Нове слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-02:word:tired:audio",
-          "transcript": "tired"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-02:word:tired:r1",
-            "targetText": "tired",
-            "meaningByLocale": {
-              "ru": "«уставший»: после нагрузки вам нужен отдых.",
-              "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "tired",
-          "definitionByLocale": {
-            "ru": "«уставший»: после нагрузки вам нужен отдых.",
-            "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-02:word:busy",
-      "ordinal": 6,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -133,51 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-02:word:late",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Нове слово",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-02:word:late:audio"
-      ],
-      "accessibilityLabel": "Нове слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-02:word:late:audio",
-          "transcript": "late"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-02:word:late:r1",
-            "targetText": "late",
-            "meaningByLocale": {
-              "ru": "«опоздавший»: вы пришли позже назначенного времени.",
-              "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "late",
-          "definitionByLocale": {
-            "ru": "«опоздавший»: вы пришли позже назначенного времени.",
-            "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-02:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-02:word:sad",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Нове слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-02:word:sad:audio"
+      ],
+      "accessibilityLabel": "Нове слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-02:word:sad:audio",
+          "transcript": "sad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-02:word:sad:r1",
+            "targetText": "sad",
+            "meaningByLocale": {
+              "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
+              "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sad",
+          "definitionByLocale": {
+            "ru": "«грустный»: так вы себя чувствуете, когда расстроены.",
+            "uk": "«сумний»: так ви почуваєтеся, коли засмучені."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-02:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-02:word:tired",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Нове слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-02:word:tired:audio"
+      ],
+      "accessibilityLabel": "Нове слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-02:word:tired:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-02:word:tired:r1",
+            "targetText": "tired",
+            "meaningByLocale": {
+              "ru": "«уставший»: после нагрузки вам нужен отдых.",
+              "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tired",
+          "definitionByLocale": {
+            "ru": "«уставший»: после нагрузки вам нужен отдых.",
+            "uk": "«стомлений»: після навантаження вам потрібен відпочинок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-02:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,7 +323,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i04",
-      "ordinal": 11,
+      "ordinal": 10,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -632,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,7 +665,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i10",
-      "ordinal": 17,
+      "ordinal": 16,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -781,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -828,7 +785,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i12",
-      "ordinal": 19,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -872,7 +829,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i13",
-      "ordinal": 20,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -905,7 +862,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i14",
-      "ordinal": 21,
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -974,7 +931,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i15",
-      "ordinal": 22,
+      "ordinal": 21,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -1050,7 +1007,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-02:i16",
-      "ordinal": 23,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -1122,6 +1079,49 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-02:word:late",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Нове слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-02:word:late:audio"
+      ],
+      "accessibilityLabel": "Нове слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-02:word:late:audio",
+          "transcript": "late"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-02:word:late:r1",
+            "targetText": "late",
+            "meaningByLocale": {
+              "ru": "«опоздавший»: вы пришли позже назначенного времени.",
+              "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "late",
+          "definitionByLocale": {
+            "ru": "«опоздавший»: вы пришли позже назначенного времени.",
+            "uk": "«той, хто запізнився»: ви прийшли пізніше призначеного часу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-02:i17",
       "ordinal": 24,
       "purpose": "independent_check",
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3594f4da6762cc379e6a121a7914ad3b9c7368db29c10af41c4b064e23d254ea"
+  "learnerFingerprint": "f25967be559907d617f124f89b52e641ce2e088c2d6c8f9b020f763082159773"
 }

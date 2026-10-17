@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-19:word:outside",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — outside",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-19:word:outside:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — outside",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-19:word:outside:audio",
-          "transcript": "outside"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-19:word:outside:r1",
-            "targetText": "outside",
-            "meaningByLocale": {
-              "ru": "снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.",
-              "uk": "зовні, надворі. I am outside — «Я надворі»: наприклад, чекаєте перед входом до кафе."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "outside",
-          "definitionByLocale": {
-            "ru": "снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.",
-            "uk": "зовні, надворі. I am outside — «Я надворі»: наприклад, чекаєте перед входом до кафе."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-19:word:upstairs",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — upstairs",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-19:word:upstairs:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — upstairs",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-19:word:upstairs:audio",
-          "transcript": "upstairs"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-19:word:upstairs:r1",
-            "targetText": "upstairs",
-            "meaningByLocale": {
-              "ru": "наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.",
-              "uk": "нагорі, на верхньому поверсі. She is upstairs — «Вона нагорі»: подруга в залі поверхом вище."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "upstairs",
-          "definitionByLocale": {
-            "ru": "наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.",
-            "uk": "нагорі, на верхньому поверсі. She is upstairs — «Вона нагорі»: подруга в залі поверхом вище."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-19:word:nearby",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — nearby",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-19:word:nearby:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — nearby",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-19:word:nearby:audio",
-          "transcript": "nearby"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-19:word:nearby:r1",
-            "targetText": "nearby",
-            "meaningByLocale": {
-              "ru": "поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.",
-              "uk": "поблизу, недалеко. They are nearby — «Вони поблизу»: друзі ще не дійшли, але вже недалеко."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "nearby",
-          "definitionByLocale": {
-            "ru": "поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.",
-            "uk": "поблизу, недалеко. They are nearby — «Вони поблизу»: друзі ще не дійшли, але вже недалеко."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-19:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-19:word:outside",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — outside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:word:outside:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — outside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:word:outside:audio",
+          "transcript": "outside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:word:outside:r1",
+            "targetText": "outside",
+            "meaningByLocale": {
+              "ru": "снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.",
+              "uk": "зовні, надворі. I am outside — «Я надворі»: наприклад, чекаєте перед входом до кафе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outside",
+          "definitionByLocale": {
+            "ru": "снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.",
+            "uk": "зовні, надворі. I am outside — «Я надворі»: наприклад, чекаєте перед входом до кафе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-19:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-19:word:upstairs",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — upstairs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:word:upstairs:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — upstairs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:word:upstairs:audio",
+          "transcript": "upstairs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:word:upstairs:r1",
+            "targetText": "upstairs",
+            "meaningByLocale": {
+              "ru": "наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.",
+              "uk": "нагорі, на верхньому поверсі. She is upstairs — «Вона нагорі»: подруга в залі поверхом вище."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upstairs",
+          "definitionByLocale": {
+            "ru": "наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.",
+            "uk": "нагорі, на верхньому поверсі. She is upstairs — «Вона нагорі»: подруга в залі поверхом вище."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-19:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-19:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -524,6 +481,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:word:nearby",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nearby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:word:nearby:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nearby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:word:nearby:audio",
+          "transcript": "nearby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:word:nearby:r1",
+            "targetText": "nearby",
+            "meaningByLocale": {
+              "ru": "поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.",
+              "uk": "поблизу, недалеко. They are nearby — «Вони поблизу»: друзі ще не дійшли, але вже недалеко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nearby",
+          "definitionByLocale": {
+            "ru": "поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.",
+            "uk": "поблизу, недалеко. They are nearby — «Вони поблизу»: друзі ще не дійшли, але вже недалеко."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9f70c38021124588f57e45e8977bdc2ca193152102c1c4f4eafa24ceea7b2ebb"
+  "learnerFingerprint": "41c1ae8e1d3a04a0c15928e7eabc954a52edcd5cf47c7abc111a7f8608307d33"
 }

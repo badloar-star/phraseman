@@ -56,52 +56,52 @@
 <!-- interaction_id: en:lesson-01:session-28:word:correct; family: word_card -->
 > **correct** — правильний: про час, відповідь, суму. It is correct — «Він правильний». Про людину, яка має рацію, теж можна сказати You are correct.
 
-**2 · Картка слова — certain**
-<!-- interaction_id: en:lesson-01:session-28:word:certain; family: word_card -->
-> **certain** — упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь.
-
-**3 · Картка слова — punctual**
-<!-- interaction_id: en:lesson-01:session-28:word:punctual; family: word_card -->
-> **punctual** — пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок.
-
-**4 · Картка слова — strict**
-<!-- interaction_id: en:lesson-01:session-28:word:strict; family: word_card -->
-> **strict** — суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий.
-
-**5 · Ви звірили час у квитку з розкладом. Складіть фразу: «Він правильний»**
+**2 · Ви звірили час у квитку з розкладом. Складіть фразу: «Він правильний»**
 <!-- interaction_id: en:lesson-01:session-28:i01; family: phrase_builder -->
 Плитки: `correct` `is` `It` `am` → **It is correct.**
 *(плитка `am` зайва: тут потрібно `is` — `It is correct.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — certain**
+<!-- interaction_id: en:lesson-01:session-28:word:certain; family: word_card -->
+> **certain** — упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-28:i02; family: listen_choose -->
 🔊 *I am certain.* → **I am certain.** · I am serious. · I am prepared.
 - I am serious. — *У записі останнє слово — `certain`, а в цьому варіанті — `serious`.*
 - I am prepared. — *У записі останнє слово — `certain`, а в цьому варіанті — `prepared`.*
 
-**7 · Сестра щоразу приходить на вокзал за десять хвилин до відправлення. Вставте слово**
+**5 · Картка слова — punctual**
+<!-- interaction_id: en:lesson-01:session-28:word:punctual; family: word_card -->
+> **punctual** — пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок.
+
+**6 · Сестра щоразу приходить на вокзал за десять хвилин до відправлення. Вставте слово**
 <!-- interaction_id: en:lesson-01:session-28:i03; family: context_gap_grammar -->
 She ___ punctual. → **is** · are · am
 - are — *Після `She` потрібно `is`.*
 - am — *`am` ставимо після `I`. Тут `She is`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-28:i04; family: speed_match -->
 correct — правильний · certain — упевнений · punctual — пунктуальний · strict — суворий
 
-**9 · Послухайте й складіть фразу**
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-28:i05; family: listen_build_dictation -->
 🔊 *She is certain.* Плитки: `certain` `is` `She` `He` → **She is certain.**
 *(плитка `He` зайва: тут потрібно `She` — `She is certain.`)*
 
-**10 · Друг сміється з виїзду о п’ятій ранку. Ви із сестрою відповідаєте, що це не жарт. Складіть: «Ми серйозно»**
+**9 · Друг сміється з виїзду о п’ятій ранку. Ви із сестрою відповідаєте, що це не жарт. Складіть: «Ми серйозно»**
 <!-- interaction_id: en:lesson-01:session-28:i06; family: phrase_builder -->
 Плитки: `serious` `are` `We` `is` → **We are serious.**
 *(плитка `is` зайва: тут потрібно `are` — `We are serious.`)*
 
-**11 · Друг питає, чи ви не запізнитеся. Ви завжди приходите вчасно. Скажіть про себе, використовуючи punctual**
+**10 · Друг питає, чи ви не запізнитеся. Ви завжди приходите вчасно. Скажіть про себе, використовуючи punctual**
 <!-- interaction_id: en:lesson-01:session-28:i07; family: scripted_repeat_compare -->
 🎙 **I am punctual.**
+
+**11 · Картка слова — strict**
+<!-- interaction_id: en:lesson-01:session-28:word:strict; family: word_card -->
+> **strict** — суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий.
 
 **12 · Контролери в цьому потязі перевіряють кожен квиток. Вставте слово**
 <!-- interaction_id: en:lesson-01:session-28:i08; family: context_gap_grammar -->

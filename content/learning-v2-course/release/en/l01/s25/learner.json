@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-25:word:ashamed",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — ashamed",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-25:word:ashamed:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — ashamed",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-25:word:ashamed:audio",
-          "transcript": "ashamed"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-25:word:ashamed:r1",
-            "targetText": "ashamed",
-            "meaningByLocale": {
-              "ru": "испытывает стыд. He is ashamed — «Ему стыдно»: например, за грубую насмешку.",
-              "uk": "відчуває сором. He is ashamed — «Йому соромно»: наприклад, за грубу насмішку."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "ashamed",
-          "definitionByLocale": {
-            "ru": "испытывает стыд. He is ashamed — «Ему стыдно»: например, за грубую насмешку.",
-            "uk": "відчуває сором. He is ashamed — «Йому соромно»: наприклад, за грубу насмішку."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-25:word:surprised",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — surprised",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-25:word:surprised:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — surprised",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-25:word:surprised:audio",
-          "transcript": "surprised"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-25:word:surprised:r1",
-            "targetText": "surprised",
-            "meaningByLocale": {
-              "ru": "удивлён: произошло то, чего не ожидал. We are surprised — «Мы удивлены». Удивление может быть и приятным, и неприятным.",
-              "uk": "здивований: сталося те, чого не очікував. We are surprised — «Ми здивовані». Здивування може бути і приємним, і неприємним."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "surprised",
-          "definitionByLocale": {
-            "ru": "удивлён: произошло то, чего не ожидал. We are surprised — «Мы удивлены». Удивление может быть и приятным, и неприятным.",
-            "uk": "здивований: сталося те, чого не очікував. We are surprised — «Ми здивовані». Здивування може бути і приємним, і неприємним."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-25:word:disappointed",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — disappointed",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-25:word:disappointed:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — disappointed",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-25:word:disappointed:audio",
-          "transcript": "disappointed"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-25:word:disappointed:r1",
-            "targetText": "disappointed",
-            "meaningByLocale": {
-              "ru": "разочарован: ожидал большего или другого. She is disappointed — «Она разочарована»: например, любимую песню так и не исполнили.",
-              "uk": "розчарований: очікував більшого або іншого. She is disappointed — «Вона розчарована»: наприклад, улюблену пісню так і не виконали."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "disappointed",
-          "definitionByLocale": {
-            "ru": "разочарован: ожидал большего или другого. She is disappointed — «Она разочарована»: например, любимую песню так и не исполнили.",
-            "uk": "розчарований: очікував більшого або іншого. She is disappointed — «Вона розчарована»: наприклад, улюблену пісню так і не виконали."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-25:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -230,8 +101,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-25:word:surprised",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — surprised",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:word:surprised:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — surprised",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:word:surprised:audio",
+          "transcript": "surprised"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-25:word:surprised:r1",
+            "targetText": "surprised",
+            "meaningByLocale": {
+              "ru": "удивлён: произошло то, чего не ожидал. We are surprised — «Мы удивлены». Удивление может быть и приятным, и неприятным.",
+              "uk": "здивований: сталося те, чого не очікував. We are surprised — «Ми здивовані». Здивування може бути і приємним, і неприємним."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "surprised",
+          "definitionByLocale": {
+            "ru": "удивлён: произошло то, чего не ожидал. We are surprised — «Мы удивлены». Удивление может быть и приятным, и неприятным.",
+            "uk": "здивований: сталося те, чого не очікував. We are surprised — «Ми здивовані». Здивування може бути і приємним, і неприємним."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-25:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -306,8 +220,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-25:word:ashamed",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ashamed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:word:ashamed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ashamed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:word:ashamed:audio",
+          "transcript": "ashamed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-25:word:ashamed:r1",
+            "targetText": "ashamed",
+            "meaningByLocale": {
+              "ru": "испытывает стыд. He is ashamed — «Ему стыдно»: например, за грубую насмешку.",
+              "uk": "відчуває сором. He is ashamed — «Йому соромно»: наприклад, за грубу насмішку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ashamed",
+          "definitionByLocale": {
+            "ru": "испытывает стыд. He is ashamed — «Ему стыдно»: например, за грубую насмешку.",
+            "uk": "відчуває сором. He is ashamed — «Йому соромно»: наприклад, за грубу насмішку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-25:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -376,8 +333,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова со значениями",
@@ -449,7 +406,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -496,7 +453,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -550,7 +507,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -583,7 +540,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -652,7 +609,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -728,8 +685,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова и значения",
@@ -801,7 +758,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-25:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -842,6 +799,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:word:disappointed",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — disappointed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-25:word:disappointed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — disappointed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-25:word:disappointed:audio",
+          "transcript": "disappointed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-25:word:disappointed:r1",
+            "targetText": "disappointed",
+            "meaningByLocale": {
+              "ru": "разочарован: ожидал большего или другого. She is disappointed — «Она разочарована»: например, любимую песню так и не исполнили.",
+              "uk": "розчарований: очікував більшого або іншого. She is disappointed — «Вона розчарована»: наприклад, улюблену пісню так і не виконали."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disappointed",
+          "definitionByLocale": {
+            "ru": "разочарован: ожидал большего или другого. She is disappointed — «Она разочарована»: например, любимую песню так и не исполнили.",
+            "uk": "розчарований: очікував більшого або іншого. She is disappointed — «Вона розчарована»: наприклад, улюблену пісню так і не виконали."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1199,5 +1199,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b3b12f32903e7fc4f8462c45d194386c08168de4fb4294001fc66cba1cab1d06"
+  "learnerFingerprint": "f00a0d3da28de8ce44a0df45e19bf567bc1cf8152909d407c147bc2081a13591"
 }

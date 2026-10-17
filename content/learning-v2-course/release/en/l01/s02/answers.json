@@ -1,22 +1,7 @@
 [
   {
-    "interactionId": "en:lesson-01:session-02:word:sad",
-    "correctText": "sad",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-02:word:tired",
-    "correctText": "tired",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-02:word:busy",
     "correctText": "busy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-02:word:late",
-    "correctText": "late",
     "correctResponseId": null
   },
   {
@@ -25,9 +10,19 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-02:word:sad",
+    "correctText": "sad",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-02:i02",
     "correctText": "I am sad.",
     "correctResponseId": "en:lesson-01:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:word:tired",
+    "correctText": "tired",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-02:i03",
@@ -97,6 +92,11 @@
   {
     "interactionId": "en:lesson-01:session-02:i16",
     "correctText": "en:lesson-01:session-02:i16:p1=I am here.\nen:lesson-01:session-02:i16:p2=I am ready.\nen:lesson-01:session-02:i16:p3=I am fine.\nen:lesson-01:session-02:i16:p4=I am happy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:word:late",
+    "correctText": "late",
     "correctResponseId": null
   },
   {

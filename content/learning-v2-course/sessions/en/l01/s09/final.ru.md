@@ -57,60 +57,60 @@
 <!-- interaction_id: en:lesson-01:session-09:word:tall; family: word_card -->
 > **tall** — «высокий / высокая»: о росте человека.
 
-**2 · Карточка слова — short**
-<!-- interaction_id: en:lesson-01:session-09:word:short; family: word_card -->
-> **short** — «невысокий / невысокая»: о росте человека.
-
-**3 · Карточка слова — young**
-<!-- interaction_id: en:lesson-01:session-09:word:young; family: word_card -->
-> **young** — «молодой / юный»: о возрасте, а не о росте.
-
-**4 · Карточка слова — angry**
-<!-- interaction_id: en:lesson-01:session-09:word:angry; family: word_card -->
-> **angry** — «сердитый»: человек злится. He is angry — «Он сердится».
-
-**5 · Соберите фразу — Лев высокий; подпишите его портрет**
+**2 · Соберите фразу — Лев высокий; подпишите его портрет**
 <!-- interaction_id: en:lesson-01:session-09:i01; family: phrase_builder -->
 Плитки: `He` `is` `tall` `are` → **He is tall.**
 Плитка `are` лишняя: после `He` в этой фразе нужно `is`.
 
-**6 · Послушайте и выберите значение — Лена подписывает портрет Кати**
+**3 · Карточка слова — short**
+<!-- interaction_id: en:lesson-01:session-09:word:short; family: word_card -->
+> **short** — «невысокий / невысокая»: о росте человека.
+
+**4 · Послушайте и выберите значение — Лена подписывает портрет Кати**
 <!-- interaction_id: en:lesson-01:session-09:i02; family: listen_choose -->
 🔊 *She is short.*
 Варианты: «она невысокая» · «он высокий» · «он молодой»
 - «он высокий» — *Это описание мужчины; в записи говорится о Кате.*
 - «он молодой» — *Это о возрасте, а запись описывает рост Кати.*
 
-**7 · Олегу восемь лет; он самый юный участник фотосъёмки**
+**5 · Карточка слова — young**
+<!-- interaction_id: en:lesson-01:session-09:word:young; family: word_card -->
+> **young** — «молодой / юный»: о возрасте, а не о росте.
+
+**6 · Олегу восемь лет; он самый юный участник фотосъёмки**
 <!-- interaction_id: en:lesson-01:session-09:i03; family: context_gap_grammar -->
 He is ___ . → **young** · tall · short
 - tall — *`tall` описывает рост; здесь важен возраст Олега.*
 - short — *`short` описывает рост; здесь важен возраст Олега.*
 
-**8 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-01:session-09:i04; family: speed_match -->
 Пары: `tall` — «высокий» · `short` — «низкий» · `young` — «молодой» · `angry` — «сердитый»
 
-**9 · Послушайте запись о Льве и соберите услышанную фразу**
+**8 · Послушайте запись о Льве и соберите услышанную фразу**
 <!-- interaction_id: en:lesson-01:session-09:i05; family: listen_build_dictation -->
 🔊 *He is tall.*
 Плитки: `He` `is` `tall` `young` → **He is tall.**
 Плитка `young` лишняя: в записи tall — «высокий», а не young — «молодой».
 
-**10 · Соберите фразу — Катя невысокая; опишите её рост**
+**9 · Соберите фразу — Катя невысокая; опишите её рост**
 <!-- interaction_id: en:lesson-01:session-09:i06; family: phrase_builder -->
 Плитки: `She` `is` `short` `are` → **She is short.**
 Плитка `are` лишняя: после `She` в этой фразе нужно `is`.
 
-**11 · Повторите за записью — на карточке восьмилетний Олег**
+**10 · Повторите за записью — на карточке восьмилетний Олег**
 <!-- interaction_id: en:lesson-01:session-09:i07; family: scripted_repeat_compare -->
 🎙 Скажите: **He is young.**
 
-**12 · Вставьте слово — Нина собрала камеру и заняла место для портрета**
+**11 · Вставьте слово — Нина собрала камеру и заняла место для портрета**
 <!-- interaction_id: en:lesson-01:session-09:i08; family: context_gap_grammar -->
 She is ___ . → **ready** · calm · happy
 - calm — *`calm` описывает спокойствие; Нина уже готова к съёмке.*
 - happy — *`happy` описывает настроение; здесь важно, что Нина может начинать.*
+
+**12 · Карточка слова — angry**
+<!-- interaction_id: en:lesson-01:session-09:word:angry; family: word_card -->
+> **angry** — «сердитый»: человек злится. He is angry — «Он сердится».
 
 **13 · Послушайте запись о Павле и выберите значение услышанной фразы**
 <!-- interaction_id: en:lesson-01:session-09:i09; family: listen_choose -->
@@ -160,4 +160,3 @@ She is ___ . → **happy** · ready · calm
 🎙 Скажите: **She is angry.**
 
 ---
-

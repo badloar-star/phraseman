@@ -91,15 +91,15 @@ I am right — «Я прав / права», а I am wrong — «Я ошибаю
 - ❌ right — *В записи звучит wrong, а не right.*
 - ❌ alone — *В записи звучит wrong, а не alone.*
 
-**7 · Карточка слова — free**
-<!-- interaction_id: en:lesson-01:session-04:i07; family: word_card -->
-> **free** — «свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.
-
-**8 · Послушайте две записи. Какое слово звучит во второй?**
+**7 · Послушайте две записи. Какое слово звучит во второй?**
 <!-- interaction_id: en:lesson-01:session-04:i08; family: sound_contrast -->
 🔊 Первая запись: `right` · вторая запись: `wrong`.
 *right · wrong* → **wrong**
 - right — *Right звучит в первой записи; во второй звучит wrong.*
+
+**8 · Карточка слова — free**
+<!-- interaction_id: en:lesson-01:session-04:i07; family: word_card -->
+> **free** — «свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.
 
 **9 · Послушайте и выберите услышанное слово**
 <!-- interaction_id: en:lesson-01:session-04:i09; family: listen_choose -->
@@ -183,4 +183,3 @@ I am ___ . → **not busy** · busy · not free
 - not free — *Not free значит, что сейчас вы недоступны; по условию вы можете взять задачу.*
 
 ---
-

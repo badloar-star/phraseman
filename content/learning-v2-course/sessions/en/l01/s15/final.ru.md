@@ -117,7 +117,6 @@ You ___ lucky. → **are** · am · is
 🔊 *You are not sad.* Плитки: `sad` `not` `You` `are` `am` → **You are not sad.**
 *(плитка `am` лишняя: с `you` употребляется `are`; `am` используют с `I`.)*
 
-
 **14 · Вставьте слово — Вика помогла вам разобраться с непонятной формой. Отметьте полезность её помощи**
 <!-- interaction_id: en:lesson-01:session-15:i14; family: context_gap_grammar -->
 You are ___ . → **helpful** · lucky · tired
@@ -139,12 +138,10 @@ You are ___ . → **helpful** · lucky · tired
 Плитки: `You` `are` `honest` `is` → **You are honest.**
 *(плитка `is` лишняя: `is` не подходит к обращению `you`; здесь нужно `are`.)*
 
-
 **18 · Вика думает, что вы расстроены; скажите ей, что вы не грустите**
 <!-- interaction_id: en:lesson-01:session-15:i17:s02; family: listen_build_dictation -->
 🔊 *I am not sad.* Плитки: `sad` `not` `I` `am` `is` → **I am not sad.**
 *(плитка `is` лишняя: когда говорите о себе, используйте `I am`, не `I is`.)*
-
 
 **19 · Соберите фразу — Вика помогла найти нужный пункт в инструкции. Скажите ей, что её помощь полезна**
 <!-- interaction_id: en:lesson-01:session-15:i18; family: phrase_builder -->
@@ -160,10 +157,8 @@ You are ___ . → **helpful** · lucky · tired
 🔊 *I am tired.* Плитки: `tired` `I` `am` `is` → **I am tired.**
 *(плитка `is` лишняя: когда говорите о себе, используйте `I am`, не `I is`.)*
 
-
 **22 · Скажите вслух — человек придержал дверь для Вики с коробками, и она поблагодарила его; скажите Вике: «ты вежливая»**
 <!-- interaction_id: en:lesson-01:session-15:i20; family: scripted_repeat_compare -->
 🎙 **You are polite.**
 
 ---
-

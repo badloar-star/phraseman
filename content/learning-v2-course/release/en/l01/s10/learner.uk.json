@@ -590,51 +590,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-10:word:patient",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — patient",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-10:word:patient:audio"
-      ],
-      "accessibilityLabel": "Картка слова — patient",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-10:word:patient:audio",
-          "transcript": "patient"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-10:word:patient:r1",
-            "targetText": "patient",
-            "meaningByLocale": {
-              "ru": "терпеливый. You are patient — «Ты терпеливый / терпеливая»: спокойно ждёшь, не раздражаясь.",
-              "uk": "терплячий. You are patient — «Ти терплячий / терпляча»: спокійно чекаєш, не дратуючись."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "patient",
-          "definitionByLocale": {
-            "ru": "терпеливый. You are patient — «Ты терпеливый / терпеливая»: спокойно ждёшь, не раздражаясь.",
-            "uk": "терплячий. You are patient — «Ти терплячий / терпляча»: спокійно чекаєш, не дратуючись."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-10:i11",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -707,7 +664,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-10:i12",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -740,8 +697,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-10:i13",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це",
@@ -778,6 +735,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:word:patient",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — patient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-10:word:patient:audio"
+      ],
+      "accessibilityLabel": "Картка слова — patient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:word:patient:audio",
+          "transcript": "patient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-10:word:patient:r1",
+            "targetText": "patient",
+            "meaningByLocale": {
+              "ru": "терпеливый. You are patient — «Ты терпеливый / терпеливая»: спокойно ждёшь, не раздражаясь.",
+              "uk": "терплячий. You are patient — «Ти терплячий / терпляча»: спокійно чекаєш, не дратуючись."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "patient",
+          "definitionByLocale": {
+            "ru": "терпеливый. You are patient — «Ты терпеливый / терпеливая»: спокойно ждёшь, не раздражаясь.",
+            "uk": "терплячий. You are patient — «Ти терплячий / терпляча»: спокійно чекаєш, не дратуючись."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1128,5 +1128,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "915d72297f698f5e50a1e41a1ccc69426d0685de4b0ede55936afe039ae55a54"
+  "learnerFingerprint": "0d2b5d28bfd0a901ab25d65c97a3b412aaa12d3462871219f3e0dd06b5a4440a"
 }

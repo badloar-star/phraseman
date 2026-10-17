@@ -128,7 +128,6 @@ You ___ not rude. → **are** · am · is
 🔊 *You are not alone.* Плитки: `alone` `are` `not` `You` `no` → **You are not alone.**
 *(плитка `no` лишняя: отрицание в этой фразе — `not`; `no` здесь не подходит.)*
 
-
 **16 · Соберите фразу — Мира принесла вам забытый блокнот, а вы благодарите её**
 <!-- interaction_id: en:lesson-01:session-11:i16; family: phrase_builder -->
 Скажите ей прямо. Плитки: `You` `are` `not` `kind` → **You are kind.**
@@ -139,10 +138,8 @@ You ___ not rude. → **are** · am · is
 🔊 *You are not busy.* Плитки: `You` `are` `not` `busy` `is` → **You are not busy.**
 *(плитка `is` лишняя: с `you` нужна форма `are`; `is` относится к `he`, `she` или `it`.)*
 
-
 **18 · Скажите вслух — Лина сверила цифры Миры с таблицей: они верны. Мира сомневается; скажите ей, что она не ошибается**
 <!-- interaction_id: en:lesson-01:session-11:i18; family: scripted_repeat_compare -->
 🎙 Скажите: **You are not wrong.**
 
 ---
-

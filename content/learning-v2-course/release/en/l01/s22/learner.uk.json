@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-22:word:poor",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — poor",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-22:word:poor:audio"
-      ],
-      "accessibilityLabel": "Картка слова — poor",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-22:word:poor:audio",
-          "transcript": "poor"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-22:word:poor:r1",
-            "targetText": "poor",
-            "meaningByLocale": {
-              "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
-              "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "poor",
-          "definitionByLocale": {
-            "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
-            "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-22:word:famous",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — famous",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-22:word:famous:audio"
-      ],
-      "accessibilityLabel": "Картка слова — famous",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-22:word:famous:audio",
-          "transcript": "famous"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-22:word:famous:r1",
-            "targetText": "famous",
-            "meaningByLocale": {
-              "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
-              "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "famous",
-          "definitionByLocale": {
-            "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
-            "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-22:word:generous",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — generous",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-22:word:generous:audio"
-      ],
-      "accessibilityLabel": "Картка слова — generous",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-22:word:generous:audio",
-          "transcript": "generous"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-22:word:generous:r1",
-            "targetText": "generous",
-            "meaningByLocale": {
-              "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
-              "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "generous",
-          "definitionByLocale": {
-            "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
-            "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-22:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-22:word:poor",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — poor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:poor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — poor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:poor:audio",
+          "transcript": "poor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:poor:r1",
+            "targetText": "poor",
+            "meaningByLocale": {
+              "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
+              "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poor",
+          "definitionByLocale": {
+            "ru": "бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.",
+            "uk": "бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-22:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-22:word:famous",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — famous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:famous:audio"
+      ],
+      "accessibilityLabel": "Картка слова — famous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:famous:audio",
+          "transcript": "famous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:famous:r1",
+            "targetText": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
+              "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "famous",
+          "definitionByLocale": {
+            "ru": "знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.",
+            "uk": "знаменитий: його знають багато людей. They are famous — «Вони знамениті». Відомість сама по собі не говорить про багатство."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-22:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова та значення",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -632,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,8 +665,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -781,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-22:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -822,6 +779,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:word:generous",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — generous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-22:word:generous:audio"
+      ],
+      "accessibilityLabel": "Картка слова — generous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-22:word:generous:audio",
+          "transcript": "generous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-22:word:generous:r1",
+            "targetText": "generous",
+            "meaningByLocale": {
+              "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
+              "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "generous",
+          "definitionByLocale": {
+            "ru": "щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.",
+            "uk": "щедрий: охоче ділиться грошима, речами або часом. He is generous — «Він щедрий». Щедрим можна бути й без великих статків."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f7d500559d35cbc48dafd14e9cc8e3dbf7a8069f863d146d95f43e514f8941a6"
+  "learnerFingerprint": "e5bfea467c641b9e2066462990c6cae670561d5bc06ddc5f5d56aa6287be1907"
 }

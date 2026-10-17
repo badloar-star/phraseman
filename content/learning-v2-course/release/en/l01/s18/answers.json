@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-18:word:sleepy",
-    "correctText": "sleepy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:word:relieved",
-    "correctText": "relieved",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:word:funny",
-    "correctText": "funny",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-18:i01",
     "correctText": "I am confused.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:sleepy",
+    "correctText": "sleepy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i02",
     "correctText": "We are sleepy.",
     "correctResponseId": "en:lesson-01:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:relieved",
+    "correctText": "relieved",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i03",
@@ -88,6 +83,11 @@
     "interactionId": "en:lesson-01:session-18:i14",
     "correctText": "safe",
     "correctResponseId": "en:lesson-01:session-18:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:word:funny",
+    "correctText": "funny",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i15",

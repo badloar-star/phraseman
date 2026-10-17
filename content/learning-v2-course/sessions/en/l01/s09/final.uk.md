@@ -57,60 +57,60 @@
 <!-- interaction_id: en:lesson-01:session-09:word:tall; family: word_card -->
 > **tall** — «високий / висока»: про зріст людини.
 
-**2 · Картка слова — short**
-<!-- interaction_id: en:lesson-01:session-09:word:short; family: word_card -->
-> **short** — «невисокий / невисока»: про зріст людини.
-
-**3 · Картка слова — young**
-<!-- interaction_id: en:lesson-01:session-09:word:young; family: word_card -->
-> **young** — «молодий / юний»: про вік, а не про зріст.
-
-**4 · Картка слова — angry**
-<!-- interaction_id: en:lesson-01:session-09:word:angry; family: word_card -->
-> **angry** — «сердитий»: людина злиться. He is angry — «Він сердиться».
-
-**5 · Складіть фразу — Лев високий; підпишіть його портрет**
+**2 · Складіть фразу — Лев високий; підпишіть його портрет**
 <!-- interaction_id: en:lesson-01:session-09:i01; family: phrase_builder -->
 Плитки: `He` `is` `tall` `are` → **He is tall.**
 Плитка `are` зайва: після `He` у цій фразі потрібно `is`.
 
-**6 · Послухайте й оберіть значення — Лена підписує портрет Каті**
+**3 · Картка слова — short**
+<!-- interaction_id: en:lesson-01:session-09:word:short; family: word_card -->
+> **short** — «невисокий / невисока»: про зріст людини.
+
+**4 · Послухайте й оберіть значення — Лена підписує портрет Каті**
 <!-- interaction_id: en:lesson-01:session-09:i02; family: listen_choose -->
 🔊 *She is short.*
 Варіанти: «вона невисока» · «він високий» · «він молодий»
 - «він високий» — *Це опис чоловіка; у записі йдеться про Катю.*
 - «він молодий» — *Це про вік, а запис описує зріст Каті.*
 
-**7 · Олегу вісім років; він наймолодший учасник фотозйомки**
+**5 · Картка слова — young**
+<!-- interaction_id: en:lesson-01:session-09:word:young; family: word_card -->
+> **young** — «молодий / юний»: про вік, а не про зріст.
+
+**6 · Олегу вісім років; він наймолодший учасник фотозйомки**
 <!-- interaction_id: en:lesson-01:session-09:i03; family: context_gap_grammar -->
 He is ___ . → **young** · tall · short
 - tall — *`tall` описує зріст; тут важливий вік Олега.*
 - short — *`short` описує зріст; тут важливий вік Олега.*
 
-**8 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-09:i04; family: speed_match -->
 Пари: `tall` — «високий» · `short` — «низький» · `young` — «молодий» · `angry` — «сердитий»
 
-**9 · Послухайте запис про Лева й складіть почуту фразу**
+**8 · Послухайте запис про Лева й складіть почуту фразу**
 <!-- interaction_id: en:lesson-01:session-09:i05; family: listen_build_dictation -->
 🔊 *He is tall.*
 Плитки: `He` `is` `tall` `young` → **He is tall.**
 Плитка `young` зайва: у записі tall — «високий», а не young — «молодий».
 
-**10 · Складіть фразу — Катя невисока; опишіть її зріст**
+**9 · Складіть фразу — Катя невисока; опишіть її зріст**
 <!-- interaction_id: en:lesson-01:session-09:i06; family: phrase_builder -->
 Плитки: `She` `is` `short` `are` → **She is short.**
 Плитка `are` зайва: після `She` у цій фразі потрібно `is`.
 
-**11 · Повторіть за записом — на картці восьмирічний Олег**
+**10 · Повторіть за записом — на картці восьмирічний Олег**
 <!-- interaction_id: en:lesson-01:session-09:i07; family: scripted_repeat_compare -->
 🎙 Скажіть: **He is young.**
 
-**12 · Вставте слово — Ніна зібрала камеру й стала на місце для портрета**
+**11 · Вставте слово — Ніна зібрала камеру й стала на місце для портрета**
 <!-- interaction_id: en:lesson-01:session-09:i08; family: context_gap_grammar -->
 She is ___ . → **ready** · calm · happy
 - calm — *`calm` описує спокій; Ніна вже готова до зйомки.*
 - happy — *`happy` описує настрій; тут важливо, що Ніна може починати.*
+
+**12 · Картка слова — angry**
+<!-- interaction_id: en:lesson-01:session-09:word:angry; family: word_card -->
+> **angry** — «сердитий»: людина злиться. He is angry — «Він сердиться».
 
 **13 · Послухайте запис про Павла й оберіть значення почутої фрази**
 <!-- interaction_id: en:lesson-01:session-09:i09; family: listen_choose -->
@@ -160,4 +160,3 @@ She is ___ . → **happy** · ready · calm
 🎙 Скажіть: **She is angry.**
 
 ---
-

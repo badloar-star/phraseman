@@ -47,137 +47,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-28:word:certain",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — certain",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-28:word:certain:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — certain",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-28:word:certain:audio",
-            "transcript": "certain"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-28:word:certain:r1",
-              "targetText": "certain",
-              "meaningByLocale": {
-                "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
-                "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "certain",
-            "definitionByLocale": {
-              "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
-              "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-28:word:punctual",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — punctual",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-28:word:punctual:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — punctual",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-28:word:punctual:audio",
-            "transcript": "punctual"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-28:word:punctual:r1",
-              "targetText": "punctual",
-              "meaningByLocale": {
-                "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
-                "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "punctual",
-            "definitionByLocale": {
-              "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
-              "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-28:word:strict",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — strict",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-28:word:strict:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — strict",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-28:word:strict:audio",
-            "transcript": "strict"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-28:word:strict:r1",
-              "targetText": "strict",
-              "meaningByLocale": {
-                "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
-                "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "strict",
-            "definitionByLocale": {
-              "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
-              "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-28:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-28:word:certain",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — certain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-28:word:certain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — certain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-28:word:certain:audio",
+            "transcript": "certain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-28:word:certain:r1",
+              "targetText": "certain",
+              "meaningByLocale": {
+                "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
+                "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "certain",
+            "definitionByLocale": {
+              "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
+              "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-28:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +210,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-28:word:punctual",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — punctual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-28:word:punctual:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — punctual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-28:word:punctual:audio",
+            "transcript": "punctual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-28:word:punctual:r1",
+              "targetText": "punctual",
+              "meaningByLocale": {
+                "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
+                "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "punctual",
+            "definitionByLocale": {
+              "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
+              "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-28:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +323,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -558,6 +515,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-28:word:strict",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — strict",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-28:word:strict:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — strict",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-28:word:strict:audio",
+            "transcript": "strict"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-28:word:strict:r1",
+              "targetText": "strict",
+              "meaningByLocale": {
+                "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
+                "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "strict",
+            "definitionByLocale": {
+              "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
+              "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1208,137 +1208,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-28:word:certain",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — certain",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-28:word:certain:audio"
-        ],
-        "accessibilityLabel": "Картка слова — certain",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-28:word:certain:audio",
-            "transcript": "certain"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-28:word:certain:r1",
-              "targetText": "certain",
-              "meaningByLocale": {
-                "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
-                "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "certain",
-            "definitionByLocale": {
-              "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
-              "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-28:word:punctual",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — punctual",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-28:word:punctual:audio"
-        ],
-        "accessibilityLabel": "Картка слова — punctual",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-28:word:punctual:audio",
-            "transcript": "punctual"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-28:word:punctual:r1",
-              "targetText": "punctual",
-              "meaningByLocale": {
-                "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
-                "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "punctual",
-            "definitionByLocale": {
-              "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
-              "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-28:word:strict",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — strict",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-28:word:strict:audio"
-        ],
-        "accessibilityLabel": "Картка слова — strict",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-28:word:strict:audio",
-            "transcript": "strict"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-28:word:strict:r1",
-              "targetText": "strict",
-              "meaningByLocale": {
-                "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
-                "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "strict",
-            "definitionByLocale": {
-              "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
-              "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-28:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1381,8 +1252,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-28:word:certain",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — certain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-28:word:certain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — certain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-28:word:certain:audio",
+            "transcript": "certain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-28:word:certain:r1",
+              "targetText": "certain",
+              "meaningByLocale": {
+                "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
+                "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "certain",
+            "definitionByLocale": {
+              "ru": "уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.",
+              "uk": "упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-28:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1457,8 +1371,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-28:word:punctual",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — punctual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-28:word:punctual:audio"
+        ],
+        "accessibilityLabel": "Картка слова — punctual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-28:word:punctual:audio",
+            "transcript": "punctual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-28:word:punctual:r1",
+              "targetText": "punctual",
+              "meaningByLocale": {
+                "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
+                "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "punctual",
+            "definitionByLocale": {
+              "ru": "пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.",
+              "uk": "пунктуальний, завжди приходить вчасно. She is punctual — «Вона пунктуальна». Це звичка, а не один випадок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-28:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1527,8 +1484,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1600,7 +1557,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1647,7 +1604,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1691,7 +1648,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-28:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1719,6 +1676,49 @@
             "UNCERTAIN",
             "INVALID_AUDIO_OR_SYSTEM"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-28:word:strict",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — strict",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-28:word:strict:audio"
+        ],
+        "accessibilityLabel": "Картка слова — strict",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-28:word:strict:audio",
+            "transcript": "strict"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-28:word:strict:r1",
+              "targetText": "strict",
+              "meaningByLocale": {
+                "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
+                "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "strict",
+            "definitionByLocale": {
+              "ru": "строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.",
+              "uk": "суворий, не робить винятків із правил. He is strict — «Він суворий». Суворий — не означає злий."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2332,29 +2332,24 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-28:word:certain",
-      "correctText": "certain",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-28:word:punctual",
-      "correctText": "punctual",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-28:word:strict",
-      "correctText": "strict",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-28:i01",
       "correctText": "It is correct.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:word:certain",
+      "correctText": "certain",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-28:i02",
       "correctText": "I am certain.",
       "correctResponseId": "en:lesson-01:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:word:punctual",
+      "correctText": "punctual",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-28:i03",
@@ -2379,6 +2374,11 @@
     {
       "interactionId": "en:lesson-01:session-28:i07",
       "correctText": "I am punctual.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:word:strict",
+      "correctText": "strict",
       "correctResponseId": null
     },
     {

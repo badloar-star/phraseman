@@ -87,15 +87,15 @@ You are ___ . → **brave** · calm · tired
 <!-- interaction_id: en:lesson-01:session-12:i07; family: word_card -->
 > **honest** — чесний. Людина каже правду й не обманює. You are honest — «Ти чесний / чесна».
 
-**8 · Картка слова — smart**
-<!-- interaction_id: en:lesson-01:session-12:i08; family: word_card -->
-> **smart** — розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна».
-
-**9 · Вставте слово — Ніна прямо сказала клієнту, що команда не вклалася у встановлений строк; зверніться до Ніни напряму: «ти чесна»**
+**8 · Вставте слово — Ніна прямо сказала клієнту, що команда не вклалася у встановлений строк; зверніться до Ніни напряму: «ти чесна»**
 <!-- interaction_id: en:lesson-01:session-12:i09; family: context_gap_grammar -->
 You ___ honest. → **are** · am · is
 - am — *З `you` потрібне `are`, не `am`: `am` уживають з `I`.*
 - is — *`is` кажуть про he, she або it. З Ніною напряму — `you are`.*
+
+**9 · Картка слова — smart**
+<!-- interaction_id: en:lesson-01:session-12:i08; family: word_card -->
+> **smart** — розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна».
 
 **10 · Послухайте і виберіть**
 <!-- interaction_id: en:lesson-01:session-12:i10; family: listen_choose -->
@@ -152,4 +152,3 @@ tired — втомлений/втомлена · sure — впевнений/в�
 🎙 Скажіть: **You are brave.**
 
 ---
-

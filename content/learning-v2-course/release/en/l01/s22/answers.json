@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-22:word:poor",
-    "correctText": "poor",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-22:word:famous",
-    "correctText": "famous",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-22:word:generous",
-    "correctText": "generous",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-22:i01",
     "correctText": "He is rich.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:word:poor",
+    "correctText": "poor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i02",
     "correctText": "She is poor.",
     "correctResponseId": "en:lesson-01:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:word:famous",
+    "correctText": "famous",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i03",
@@ -72,6 +67,11 @@
   {
     "interactionId": "en:lesson-01:session-22:i11",
     "correctText": "He is famous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:word:generous",
+    "correctText": "generous",
     "correctResponseId": null
   },
   {

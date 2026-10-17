@@ -91,15 +91,15 @@ I am right — «Я маю рацію», а I am wrong — «Я помиляюс
 - ❌ right — *У записі звучить wrong, а не right.*
 - ❌ alone — *У записі звучить wrong, а не alone.*
 
-**7 · Картка слова — free**
-<!-- interaction_id: en:lesson-01:session-04:i07; family: word_card -->
-> **free** — «вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу.
-
-**8 · Послухайте два записи. Яке слово звучить у другому?**
+**7 · Послухайте два записи. Яке слово звучить у другому?**
 <!-- interaction_id: en:lesson-01:session-04:i08; family: sound_contrast -->
 🔊 Перший запис: `right` · другий запис: `wrong`.
 *right · wrong* → **wrong**
 - right — *Right звучить у першому записі; у другому звучить wrong.*
+
+**8 · Картка слова — free**
+<!-- interaction_id: en:lesson-01:session-04:i07; family: word_card -->
+> **free** — «вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу.
 
 **9 · Послухайте й виберіть почуте слово**
 <!-- interaction_id: en:lesson-01:session-04:i09; family: listen_choose -->
@@ -183,4 +183,3 @@ I am ___ . → **not busy** · busy · not free
 - not free — *Not free означає, що зараз ви не можете взяти завдання; за умовою це можливо.*
 
 ---
-

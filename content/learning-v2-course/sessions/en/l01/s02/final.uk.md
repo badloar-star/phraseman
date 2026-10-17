@@ -49,35 +49,31 @@
 ## Практика (21 завдання)
 
 **1 · Нове слово**
-<!-- interaction_id: en:lesson-01:session-02:word:sad; family: word_card -->
-> **sad** — «сумний»: так ви почуваєтеся, коли засмучені.
-
-**2 · Нове слово**
-<!-- interaction_id: en:lesson-01:session-02:word:tired; family: word_card -->
-> **tired** — «стомлений»: після навантаження вам потрібен відпочинок.
-
-**3 · Нове слово**
 <!-- interaction_id: en:lesson-01:session-02:word:busy; family: word_card -->
 > **busy** — «зайнятий»: зараз ви щось робите й не можете відволіктися.
 
-**4 · Нове слово**
-<!-- interaction_id: en:lesson-01:session-02:word:late; family: word_card -->
-> **late** — «той, хто запізнився»: ви прийшли пізніше призначеного часу.
-
-**5 · Складіть фразу — Лена кличе грати, але Том зараз розставляє стільці й не може приєднатися**
+**2 · Складіть фразу — Лена кличе грати, але Том зараз розставляє стільці й не може приєднатися**
 <!-- interaction_id: en:lesson-01:session-02:i01; family: phrase_builder; purpose: supported_practice -->
 Ціль: `I am busy.`
 Плитки: `I` `am` `busy` `happy`
 Плитка `happy` зайва: Том повідомляє, що зайнятий, а не що радий.
 
-**6 · Послухайте запис Тома й виберіть почуту фразу**
+**3 · Нове слово**
+<!-- interaction_id: en:lesson-01:session-02:word:sad; family: word_card -->
+> **sad** — «сумний»: так ви почуваєтеся, коли засмучені.
+
+**4 · Послухайте запис Тома й виберіть почуту фразу**
 <!-- interaction_id: en:lesson-01:session-02:i02; family: listen_choose; purpose: supported_practice -->
 🔊 *I am sad.*
 - ✅ I am sad.
 - ❌ I am tired. — *У записі йдеться про сум, а не про втому.*
 - ❌ I am happy. — *У записі йдеться про сум, а не про радість.*
 
-**7 · Вставте слово — Том закінчив розставляти стільці й хоче сказати, що йому потрібен відпочинок**
+**5 · Нове слово**
+<!-- interaction_id: en:lesson-01:session-02:word:tired; family: word_card -->
+> **tired** — «стомлений»: після навантаження вам потрібен відпочинок.
+
+**6 · Вставте слово — Том закінчив розставляти стільці й хоче сказати, що йому потрібен відпочинок**
 <!-- interaction_id: en:lesson-01:session-02:i03; family: context_gap_grammar; purpose: supported_practice -->
 Умова: Том розставив стільці; тепер йому потрібен відпочинок.
 `I am ___ .` → **tired** · sad · happy
@@ -85,28 +81,28 @@
 - ❌ sad — *Sad означає «сумний»; Том стомився після роботи.*
 - ❌ happy — *Happy означає «радий»; тут Том повідомляє, що йому потрібен відпочинок.*
 
-**8 · З’єднайте англійські фрази з їхніми значеннями**
+**7 · З’єднайте англійські фрази з їхніми значеннями**
 <!-- interaction_id: en:lesson-01:session-02:i04; family: speed_match; purpose: guided_practice -->
 `I am here.` — «я тут» · `I am ready.` — «я готовий» · `I am fine.` — «у мене все добре» · `I am happy.` — «я радий»
 
-**9 · Послухайте запис Лени й складіть фразу в тому самому порядку**
+**8 · Послухайте запис Лени й складіть фразу в тому самому порядку**
 <!-- interaction_id: en:lesson-01:session-02:i05; family: listen_build_dictation; purpose: guided_practice -->
 Ціль: `I am happy.`
 🔊 *I am happy.*
 Плитки: `I` `am` `happy` `sad`
 Плитка `sad` зайва: У записі звучить happy, а не sad.
 
-**10 · Складіть фразу — Лена запитує Тома про його почуття після скасування вечора**
+**9 · Складіть фразу — Лена запитує Тома про його почуття після скасування вечора**
 <!-- interaction_id: en:lesson-01:session-02:i06; family: phrase_builder; purpose: guided_practice -->
 Ціль: `I am sad.`
 Плитки: `I` `am` `sad` `tired`
 Плитка `tired` зайва: Tired означає «стомлений»; Том засмучений через скасування вечора.
 
-**11 · Повторіть за Томом фразу після підготовки залу**
+**10 · Повторіть за Томом фразу після підготовки залу**
 <!-- interaction_id: en:lesson-01:session-02:i07; family: scripted_repeat_compare; purpose: guided_practice -->
 🎙 **I am tired.**
 
-**12 · Вставте слово — Лена кличе Тома на ім’я, і він підтверджує, що перебуває в залі**
+**11 · Вставте слово — Лена кличе Тома на ім’я, і він підтверджує, що перебуває в залі**
 <!-- interaction_id: en:lesson-01:session-02:i08; family: context_gap_grammar; purpose: retrieval_practice -->
 Умова: Лена перекличкою перевіряє, хто вже в залі; Том відповідає, що він тут.
 `I am ___ .` → **here** · ready · happy
@@ -114,35 +110,35 @@
 - ❌ ready — *Ready означає «готовий»; Том підтверджує, що він тут.*
 - ❌ happy — *Happy означає «радий»; перекличка запитує, хто тут.*
 
-**13 · Послухайте наступний запис Тома й виберіть вимовлену фразу**
+**12 · Послухайте наступний запис Тома й виберіть вимовлену фразу**
 <!-- interaction_id: en:lesson-01:session-02:i09; family: listen_choose; purpose: retrieval_practice -->
 🔊 *I am happy.*
 - ✅ I am happy.
 - ❌ I am sad. — *У записі йдеться про радість, а не про сум.*
 - ❌ I am tired. — *У записі йдеться про радість, а не про втому.*
 
-**14 · З’єднайте кожну англійську фразу з її значенням**
+**13 · З’єднайте кожну англійську фразу з її значенням**
 <!-- interaction_id: en:lesson-01:session-02:i10; family: speed_match; purpose: retrieval_practice -->
 `I am sad.` — «мені сумно» · `I am tired.` — «я втомився» · `I am happy.` — «я радий» · `I am fine.` — «у мене все добре»
 
-**15 · Прослухайте Тома й складіть його фразу**
+**14 · Прослухайте Тома й складіть його фразу**
 <!-- interaction_id: en:lesson-01:session-02:i11; family: listen_build_dictation; purpose: retrieval_practice -->
 Ціль: `I am tired.`
 🔊 *I am tired.*
 Плитки: `I` `am` `tired` `sad`
 Плитка `sad` зайва: У записі звучить tired, а не sad.
 
-**16 · Складіть фразу — Лена перевіряє, чи прийшов Том; він відповідає, що він тут**
+**15 · Складіть фразу — Лена перевіряє, чи прийшов Том; він відповідає, що він тут**
 <!-- interaction_id: en:lesson-01:session-02:i12; family: phrase_builder; purpose: retrieval_practice -->
 Ціль: `I am here.`
 Плитки: `I` `am` `here` `ready`
 Плитка `ready` зайва: Ready означає «готовий»; Том відповідає, що перебуває тут.
 
-**17 · Повторіть за Томом фразу для відповіді Лені**
+**16 · Повторіть за Томом фразу для відповіді Лені**
 <!-- interaction_id: en:lesson-01:session-02:i13; family: scripted_repeat_compare; purpose: guided_practice -->
 🎙 **I am happy.**
 
-**18 · Вставте слово — Лена повідомляє Тому, що зустріч скасували, і він засмучений**
+**17 · Вставте слово — Лена повідомляє Тому, що зустріч скасували, і він засмучений**
 <!-- interaction_id: en:lesson-01:session-02:i14; family: context_gap_grammar; purpose: retrieval_practice -->
 Умова: Лена каже, що зустріч скасували; Томові шкода, що він не побачить друзів.
 `I am ___ .` → **sad** · tired · fine
@@ -150,18 +146,21 @@
 - ❌ tired — *Tired означає «стомлений»; Том засмучений через скасування зустрічі.*
 - ❌ fine — *Fine означає «усе добре»; Том засмучений через скасування зустрічі.*
 
-**19 · У новому записі Тома виберіть саме ту фразу, яку він вимовляє**
+**18 · У новому записі Тома виберіть саме ту фразу, яку він вимовляє**
 <!-- interaction_id: en:lesson-01:session-02:i15; family: listen_choose; purpose: retrieval_practice -->
 🔊 *I am tired.*
 - ✅ I am tired.
 - ❌ I am fine. — *У записі йдеться про втому, а не про добре самопочуття.*
 - ❌ I am sad. — *У записі йдеться про втому, а не про сум.*
 
-**20 · Ріна й Том звіряють картки мовного клубу. З’єднайте фрази з відповідними значеннями**
+**19 · Ріна й Том звіряють картки мовного клубу. З’єднайте фрази з відповідними значеннями**
 <!-- interaction_id: en:lesson-01:session-02:i16; family: speed_match; purpose: independent_check -->
 `I am here.` — «я вже прийшов» · `I am ready.` — «можна починати» · `I am fine.` — «зі мною все гаразд» · `I am happy.` — «я цьому радий»
+
+**20 · Нове слово**
+<!-- interaction_id: en:lesson-01:session-02:word:late; family: word_card -->
+> **late** — «той, хто запізнився»: ви прийшли пізніше призначеного часу.
 
 **21 · Повторіть фразу — ви прийшли після початку зустрічі й повідомляєте про запізнення**
 <!-- interaction_id: en:lesson-01:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I am late.**
-

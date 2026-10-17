@@ -52,77 +52,77 @@
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — open**
-<!-- interaction_id: en:lesson-01:session-16:word:open; family: word_card -->
-> **open** — відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу.
-
-**2 · Картка слова — big**
-<!-- interaction_id: en:lesson-01:session-16:word:big; family: word_card -->
-> **big** — великий. It is big — «Він великий», наприклад, зал.
-
-**3 · Картка слова — clean**
-<!-- interaction_id: en:lesson-01:session-16:word:clean; family: word_card -->
-> **clean** — чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям.
-
-**4 · Картка слова — closed**
-<!-- interaction_id: en:lesson-01:session-16:word:closed; family: word_card -->
-> **closed** — закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід.
-
-**5 · Складіть фразу про себе: «Я добрий»**
+**1 · Складіть фразу про себе: «Я добрий»**
 <!-- interaction_id: en:lesson-01:session-16:i01; family: phrase_builder -->
 Плитки: `kind` `am` `I` `is` → **I am kind.**
 *(плитка `is` зайва: тут потрібно `am` — `I am kind.`)*
 
-**6 · Послухайте опис Лео й виберіть почуте**
+**2 · Послухайте опис Лео й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-16:i02; family: listen_choose -->
 🔊 *He is short.* → **He is short.** · She is short. · He is old.
 - She is short. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is old. — *У записі останнє слово — `short`, а в цьому варіанті — `old`.*
 
-**7 · Вставте слово — Мія привітна**
+**3 · Вставте слово — Мія привітна**
 <!-- interaction_id: en:lesson-01:session-16:i03; family: context_gap_grammar -->
 She ___ friendly. → **is** · am · are
 - am — *Після `She` потрібно `is`; `am` ставимо з `I`.*
 - are — *У сполученні `She is` потрібна форма `is`.*
 
-**8 · З’єднайте описи людей зі значеннями**
+**4 · З’єднайте описи людей зі значеннями**
 <!-- interaction_id: en:lesson-01:session-16:i04; family: speed_match -->
 tall — високий · short — невисокий · young — молодий · old — старий
 
-**9 · Послухайте фразу про вхід і складіть її**
+**5 · Картка слова — open**
+<!-- interaction_id: en:lesson-01:session-16:word:open; family: word_card -->
+> **open** — відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу.
+
+**6 · Послухайте фразу про вхід і складіть її**
 <!-- interaction_id: en:lesson-01:session-16:i05; family: listen_build_dictation -->
 🔊 *It is open.* Плитки: `open` `is` `It` `am` → **It is open.**
 *(плитка `am` зайва: тут потрібно `is` — `It is open.`)*
 
-**10 · Складіть фразу про протертий стіл: «Він чистий»**
+**7 · Картка слова — clean**
+<!-- interaction_id: en:lesson-01:session-16:word:clean; family: word_card -->
+> **clean** — чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям.
+
+**8 · Складіть фразу про протертий стіл: «Він чистий»**
 <!-- interaction_id: en:lesson-01:session-16:i06; family: phrase_builder -->
 Плитки: `clean` `is` `It` `He` → **It is clean.**
 *(плитка `He` зайва: тут потрібно `It` — `It is clean.`)*
 
-**11 · Скажіть уголос про себе: «Я сильний»**
+**9 · Скажіть уголос про себе: «Я сильний»**
 <!-- interaction_id: en:lesson-01:session-16:i07; family: scripted_repeat_compare -->
 🎙 **I am strong.**
 
-**12 · Вставте слово — Лео розумний**
+**10 · Вставте слово — Лео розумний**
 <!-- interaction_id: en:lesson-01:session-16:i08; family: context_gap_grammar -->
 He ___ smart. → **is** · am · are
 - am — *Про Лео кажемо `He is`, а `am` потрібне після `I`.*
 - are — *Тут початок `He`, тому потрібно `is`.*
 
-**13 · Послухайте й виберіть фразу про Мію**
+**11 · Послухайте й виберіть фразу про Мію**
 <!-- interaction_id: en:lesson-01:session-16:i09; family: listen_choose -->
 🔊 *She is quiet.* → **She is quiet.** · He is quiet. · She is calm.
 - He is quiet. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 - She is calm. — *У записі останнє слово — `quiet`, а в цьому варіанті — `calm`.*
 
-**14 · З’єднайте якості зі значеннями**
+**12 · З’єднайте якості зі значеннями**
 <!-- interaction_id: en:lesson-01:session-16:i10; family: speed_match -->
 kind — добрий · calm — спокійний · smart — розумний · strong — сильний
 
-**15 · Послухайте фразу про вхід до комори й складіть її**
+**13 · Картка слова — closed**
+<!-- interaction_id: en:lesson-01:session-16:word:closed; family: word_card -->
+> **closed** — закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід.
+
+**14 · Послухайте фразу про вхід до комори й складіть її**
 <!-- interaction_id: en:lesson-01:session-16:i11; family: listen_build_dictation -->
 🔊 *It is closed.* Плитки: `closed` `is` `It` `I` → **It is closed.**
 Плитка `I` зайва: ідеться про вхід — It, а не про себе — I.
+
+**15 · Картка слова — big**
+<!-- interaction_id: en:lesson-01:session-16:word:big; family: word_card -->
+> **big** — великий. It is big — «Він великий», наприклад, зал.
 
 **16 · Складіть фразу про просторий зал: «Він великий»**
 <!-- interaction_id: en:lesson-01:session-16:i12; family: phrase_builder -->
@@ -152,4 +152,3 @@ polite — ввічливий · quiet — тихий · friendly — приві
 **21 · Наступного дня ви вибираєте шафу для дому. Вибрана шафа велика. Скажіть про неї: «Вона велика»**
 <!-- interaction_id: en:lesson-01:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 Скажіть: **It is big.**
-

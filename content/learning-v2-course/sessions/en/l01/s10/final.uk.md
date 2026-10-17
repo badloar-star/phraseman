@@ -104,22 +104,22 @@ You ___ quiet. → **are** · am · is
 🔊 *You are fast.* Плитки: `are` `fast` `You` `early` → **You are fast.**
 *(плитка `early` зайва: вона описує ранній прихід, а тут ідеться про швидкість — `fast`)*
 
-**11 · Картка слова — patient**
-<!-- interaction_id: en:lesson-01:session-10:word:patient; family: word_card -->
-> **patient** — терплячий. You are patient — «Ти терплячий / терпляча»: спокійно чекаєш, не дратуючись.
-
-**12 · З’єднайте пари**
+**11 · З’єднайте пари**
 <!-- interaction_id: en:lesson-01:session-10:i11; family: speed_match -->
 kind — добрий · fast — швидкий · quiet — мовчазний · patient — терплячий
 
-**13 · Скажіть уголос — зустріч почалася десять хвилин тому, а Міра щойно прийшла; скажіть їй, що вона запізнилася**
+**12 · Скажіть уголос — зустріч почалася десять хвилин тому, а Міра щойно прийшла; скажіть їй, що вона запізнилася**
 <!-- interaction_id: en:lesson-01:session-10:i12; family: scripted_repeat_compare -->
 🎙 Скажіть: **You are late.**
 
-**14 · Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це**
+**13 · Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це**
 <!-- interaction_id: en:lesson-01:session-10:i13; family: phrase_builder -->
 Плитки: `quiet` `You` `is` `are` → **You are quiet.**
 *(плитка `is` зайва: з `You` використовують `are`, а не `is`)*
+
+**14 · Картка слова — patient**
+<!-- interaction_id: en:lesson-01:session-10:word:patient; family: word_card -->
+> **patient** — терплячий. You are patient — «Ти терплячий / терпляча»: спокійно чекаєш, не дратуючись.
 
 **15 · Вставте слово — ви довго шукаєте ключі, а Міра спокійно чекає й не дратується. Відзначте її терплячість**
 <!-- interaction_id: en:lesson-01:session-10:i14; family: context_gap_grammar -->
@@ -156,4 +156,3 @@ tired — втомлений/втомлена · sorry — вибачте · bus
 
 
 ---
-

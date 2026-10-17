@@ -72,85 +72,84 @@
 <!-- interaction_id: en:lesson-01:session-03:i03; family: word_card -->
 > **cold** — «холодно, замёрз». Мира включила кондиционер слишком сильно.
 
-**4 · Карточка слова — sure**
-<!-- interaction_id: en:lesson-01:session-03:i04; family: word_card -->
-> **sure** — «уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.
-
-**5 · Послушайте и выберите слово**
+**4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-01:session-03:i05; family: listen_choose -->
 🔊 *sure*
 - ✅ sure
 - ❌ cold — *В записи sure — «уверен», а cold означает «холодно».*
 - ❌ hungry — *В записи sure — «уверен», а hungry означает «голодный».*
 
-**6 · Карточка слова — alone**
-<!-- interaction_id: en:lesson-01:session-03:i06; family: word_card -->
-> **alone** — «один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.
-
-**7 · Соедините пары**
+**5 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-03:i07; family: speed_match -->
 hungry — голодный · cold — замёрз · sure — уверен · alone — один
 
-**8 · Соберите фразу — «я не голоден»**
+**6 · Соберите фразу — «я не голоден»**
 <!-- interaction_id: en:lesson-01:session-03:i08; family: phrase_builder -->
 Плитки: `not` `hungry` `I` `am` → **I am not hungry.**
 
-**9 · Вставьте слово — вам холодно? Нет.**
+**7 · Вставьте слово — вам холодно? Нет.**
 <!-- interaction_id: en:lesson-01:session-03:i09; family: context_gap_grammar -->
 I am ___ cold. → **not** · no · am
 - no — *No — ответ одним словом. Внутри фразы — not.*
 - am — *Am уже стоит. Второе не нужно, нужно not.*
 
-**10 · Соберите фразу — вы всё ещё в офисе и не один**
+**8 · Карточка слова — sure**
+<!-- interaction_id: en:lesson-01:session-03:i04; family: word_card -->
+> **sure** — «уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.
+
+**9 · Соберите фразу — вы всё ещё в офисе и не один**
 <!-- interaction_id: en:lesson-01:session-03:i10; family: phrase_builder -->
 Плитки: `I` `am` `not` `alone` `sure` → **I am not alone.**
 *(плитка `sure` лишняя: «уверен», но здесь вы сообщаете: «я не один»)*
 
-**11 · Послушайте и соберите — «я не уверен»**
+**10 · Послушайте и соберите — «я не уверен»**
 <!-- interaction_id: en:lesson-01:session-03:i11; family: listen_build_dictation -->
 🔊 *I am not sure.* Плитки: `sure` `am` `not` `I` `no` → **I am not sure.**
 *(плитка `no` лишняя: это отдельный ответ, а внутри фразы нужно not)*
 
-**12 · Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет**
+**11 · Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет**
 <!-- interaction_id: en:lesson-01:session-03:i12; family: context_gap_grammar -->
 I ___ not tired. → **am** · is · are
 - is — *С `I` нужно `am`, затем `not`: `I am not tired`.*
 - are — *С I нужна форма `am`: `I am not tired`.*
 
-**13 · Утверждение или отрицание? Вы опоздали — признайте это**
+**12 · Утверждение или отрицание? Вы опоздали — признайте это**
 <!-- interaction_id: en:lesson-01:session-03:i13; family: phrase_builder -->
 Соберите: `am` `late` `I` `not` → **I am late.**
 *(плитка `not` лишняя: она дала бы `I am not late` — «я не опоздал». Здесь нужно признать, что вы опоздали.)*
 
-**14 · Послушайте и выберите точную фразу — вы больше не заняты**
+**13 · Послушайте и выберите точную фразу — вы больше не заняты**
 <!-- interaction_id: en:lesson-01:session-03:i14; family: listen_choose -->
 🔊 *I am not busy.* → **I am not busy.** · I am busy. · I am not late.
 - I am busy. — *В аудио после am слышно not. Ответ означает «я не занят», а не «я занят».*
 - I am not late. — *В аудио последнее слово busy, не late: речь о занятости, не об опоздании.*
 
-**15 · Произнесите фразу — Мира предлагает включить обогреватель; скажите, что вам не холодно**
+**14 · Произнесите фразу — Мира предлагает включить обогреватель; скажите, что вам не холодно**
 <!-- interaction_id: en:lesson-01:session-03:i15:s01; family: scripted_repeat_compare -->
 🎙 **I am not cold.** — послушайте, повторите, сравните.
 
-**16 · Соберите фразу — «у меня всё хорошо»**
+**15 · Соберите фразу — «у меня всё хорошо»**
 <!-- interaction_id: en:lesson-01:session-03:i15:s02; family: phrase_builder -->
 Плитки: `I` `am` `fine` `not` → **I am fine.**
 *(плитка `not` лишняя: здесь «у меня всё хорошо», без отрицания)*
 
-**17 · Соедините пары — слова, которые уже ваши**
+**16 · Соедините пары — слова, которые уже ваши**
 <!-- interaction_id: en:lesson-01:session-03:i16; family: speed_match -->
 tired — устал · busy — занят · late — опаздываю · ready — готов
 
-**18 · Произнесите фразу — Мира спрашивает, устали ли вы после встречи; скажите, что нет**
+**17 · Произнесите фразу — Мира спрашивает, устали ли вы после встречи; скажите, что нет**
 <!-- interaction_id: en:lesson-01:session-03:i17:s01; family: scripted_repeat_compare -->
 🎙 **I am not tired.** — послушайте, повторите, сравните.
 
-**19 · Послушайте и выберите точную фразу — вы не голодны**
+**18 · Послушайте и выберите точную фразу — вы не голодны**
 <!-- interaction_id: en:lesson-01:session-03:i17:s02; family: listen_choose -->
 🔊 *I am not hungry.* → **I am not hungry.** · I am hungry. · I am not cold.
 - I am hungry. — *В аудио после am слышно not. Это «я не голоден», не «я голоден».*
 - I am not cold. — *Последнее слово hungry, не cold: речь о еде, а не о температуре.*
 
+**19 · Карточка слова — alone**
+<!-- interaction_id: en:lesson-01:session-03:i06; family: word_card -->
+> **alone** — «один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.
 
 **20 · Произнесите фразу — коллега уже рядом с вами; сообщите Мире, что вы не один**
 <!-- interaction_id: en:lesson-01:session-03:i17:s03; family: scripted_repeat_compare -->

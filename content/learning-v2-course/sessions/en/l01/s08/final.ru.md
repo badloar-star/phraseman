@@ -56,62 +56,62 @@
 <!-- interaction_id: en:lesson-01:session-08:word:calm; family: word_card -->
 > **calm** — «спокоен / спокойна»: вы не волнуетесь и не суетитесь.
 
-**2 · Карточка слова — nervous**
-<!-- interaction_id: en:lesson-01:session-08:word:nervous; family: word_card -->
-> **nervous** — «нервничающий»: вы волнуетесь перед выступлением.
-
-**3 · Карточка слова — excited**
-<!-- interaction_id: en:lesson-01:session-08:word:excited; family: word_card -->
-> **excited** — «в радостном волнении»: вы с нетерпением ждёте приятного события.
-
-**4 · Карточка слова — thirsty**
-<!-- interaction_id: en:lesson-01:session-08:word:thirsty; family: word_card -->
-> **thirsty** — «испытывающий жажду»: вы хотите пить.
-
-**5 · Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь**
+**2 · Вставьте слово — вы спокойно ждёте своей очереди и совсем не волнуетесь**
 <!-- interaction_id: en:lesson-01:session-08:i01; family: context_gap_grammar -->
 I am ___. → **calm** · nervous · thirsty
 - ✅ calm
 - ❌ nervous — *Nervous означает, что вы нервничаете, а по условию вы спокойны.*
 - ❌ thirsty — *Thirsty сообщает о жажде, а здесь нужно сообщить о спокойствии.*
 
-**6 · Послушайте и выберите слово**
+**3 · Карточка слова — nervous**
+<!-- interaction_id: en:lesson-01:session-08:word:nervous; family: word_card -->
+> **nervous** — «нервничающий»: вы волнуетесь перед выступлением.
+
+**4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-01:session-08:i02; family: listen_choose -->
 🔊 *nervous*
 - ✅ nervous
 - ❌ calm — *В записи nervous, а не calm.*
 - ❌ excited — *В записи nervous, а не excited.*
 
-**7 · Соберите фразу — вы радуетесь предстоящему концерту и с нетерпением его ждёте**
+**5 · Карточка слова — excited**
+<!-- interaction_id: en:lesson-01:session-08:word:excited; family: word_card -->
+> **excited** — «в радостном волнении»: вы с нетерпением ждёте приятного события.
+
+**6 · Соберите фразу — вы радуетесь предстоящему концерту и с нетерпением его ждёте**
 <!-- interaction_id: en:lesson-01:session-08:i03; family: phrase_builder -->
 Плитки: `excited` `I` `am` `not` → **I am excited.**
 Плитка `not` лишняя: она отрицает радостное волнение, а вы ждёте концерт с радостью.
 
-**8 · Вставьте слово — Мира уточняет, впервые ли вы в этом офисе**
+**7 · Вставьте слово — Мира уточняет, впервые ли вы в этом офисе**
 <!-- interaction_id: en:lesson-01:session-08:i04; family: context_gap_grammar -->
 I ___ new here. → **am** · is · are
 - am
 - is — *`Is` используют с `he`, `she` или `it`. О себе говорят `I am`.*
 - are — *В этой фразе о себе после `I` нужна форма `am`.*
 
-**9 · Послушайте и соберите — «голода нет»**
+**8 · Послушайте и соберите — «голода нет»**
 <!-- interaction_id: en:lesson-01:session-08:i05; family: listen_build_dictation -->
 🔊 *I am not hungry.* Плитки: `not` `I` `hungry` `am` → **I am not hungry.**
 
-**10 · Соедините пары**
+**9 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-08:i06; family: speed_match -->
 ready — можно идти · tired — чувствую усталость · lost — заблудившийся · hungry — голодный
 
-**11 · Вставьте слово — вы поели, поэтому отказываетесь от перекуса**
+**10 · Вставьте слово — вы поели, поэтому отказываетесь от перекуса**
 <!-- interaction_id: en:lesson-01:session-08:i07; family: context_gap_grammar -->
 I am not ___ . → **hungry** · sure · done
 - hungry
 - sure — *`I am not sure` значит «я не знаю точно», это не ответ про еду.*
 - done — *`I am not done` значит «с делами ещё не всё», а здесь речь о голоде.*
 
-**12 · Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время**
+**11 · Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время**
 <!-- interaction_id: en:lesson-01:session-08:i08; family: phrase_builder -->
 Плитки: `sure` `am` `not` `I` → **I am not sure.**
+
+**12 · Карточка слова — thirsty**
+<!-- interaction_id: en:lesson-01:session-08:word:thirsty; family: word_card -->
+> **thirsty** — «испытывающий жажду»: вы хотите пить.
 
 **13 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-01:session-08:i09; family: listen_choose -->
@@ -179,4 +179,3 @@ sure — знаю точно · free — есть время · done — с де
 🎙 Скажите: **I am done.**
 
 ---
-

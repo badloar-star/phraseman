@@ -56,48 +56,48 @@
 <!-- interaction_id: en:lesson-01:session-19:word:inside; family: word_card -->
 > **inside** — внутри. I am inside — «Я внутри»: вы уже в здании, о котором говорите.
 
-**2 · Карточка слова — outside**
-<!-- interaction_id: en:lesson-01:session-19:word:outside; family: word_card -->
-> **outside** — снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.
-
-**3 · Карточка слова — upstairs**
-<!-- interaction_id: en:lesson-01:session-19:word:upstairs; family: word_card -->
-> **upstairs** — наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.
-
-**4 · Карточка слова — nearby**
-<!-- interaction_id: en:lesson-01:session-19:word:nearby; family: word_card -->
-> **nearby** — поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.
-
-**5 · Соберите фразу — вы с сестрой уже вошли в кафе. Сообщите другу: «Мы внутри»**
+**2 · Соберите фразу — вы с сестрой уже вошли в кафе. Сообщите другу: «Мы внутри»**
 <!-- interaction_id: en:lesson-01:session-19:i01; family: phrase_builder -->
 Плитки: `inside` `are` `We` `is` → **We are inside.**
 Плитка `is` лишняя: после We нужно are.
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — outside**
+<!-- interaction_id: en:lesson-01:session-19:word:outside; family: word_card -->
+> **outside** — снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-19:i02; family: listen_choose -->
 🔊 *I am outside.* → **I am outside.** · I am inside. · I am alone.
 - I am inside. — *В записи outside — «снаружи», а не inside — «внутри».*
 - I am alone. — *В записи outside, а не alone.*
 
-**7 · Вставьте слово — подруга заняла столик на верхнем этаже**
+**5 · Карточка слова — upstairs**
+<!-- interaction_id: en:lesson-01:session-19:word:upstairs; family: word_card -->
+> **upstairs** — наверху, на верхнем этаже. She is upstairs — «Она наверху»: подруга в зале этажом выше.
+
+**6 · Вставьте слово — подруга заняла столик на верхнем этаже**
 <!-- interaction_id: en:lesson-01:session-19:i03; family: context_gap_grammar -->
 She ___ upstairs. → **is** · are · am
 - are — *С She нужно is.*
 - am — *am используется с I; здесь She is.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-19:i04; family: speed_match -->
 inside — внутри · outside — снаружи · upstairs — на верхнем этаже · nearby — поблизости
 
-**9 · Послушайте и соберите услышанное**
+**8 · Послушайте и соберите услышанное**
 <!-- interaction_id: en:lesson-01:session-19:i05; family: listen_build_dictation -->
 🔊 *They are outside.* Плитки: `outside` `are` `They` `We` → **They are outside.**
 Плитка `We` лишняя: в записи They.
 
-**10 · Друг вышел из кафе подышать воздухом. Скажите о нём: «Он снаружи»**
+**9 · Друг вышел из кафе подышать воздухом. Скажите о нём: «Он снаружи»**
 <!-- interaction_id: en:lesson-01:session-19:i06; family: phrase_builder -->
 Плитки: `outside` `is` `He` `are` → **He is outside.**
 Плитка `are` лишняя: после He нужно is.
+
+**10 · Карточка слова — nearby**
+<!-- interaction_id: en:lesson-01:session-19:word:nearby; family: word_card -->
+> **nearby** — поблизости, недалеко. They are nearby — «Они поблизости»: друзья ещё не дошли, но уже недалеко.
 
 **11 · Скажите подруге по телефону, что вы уже недалеко от кафе: «Я поблизости»**
 <!-- interaction_id: en:lesson-01:session-19:i07; family: scripted_repeat_compare -->
@@ -152,4 +152,3 @@ quiet — тихий · alone — без других людей · together —
 **21 · Вы с братом идёте к музею. До входа осталось совсем немного. Скажите маме по телефону за вас обоих: «Мы поблизости»**
 <!-- interaction_id: en:lesson-01:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We are nearby.**
-

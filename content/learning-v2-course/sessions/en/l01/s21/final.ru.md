@@ -56,48 +56,48 @@
 <!-- interaction_id: en:lesson-01:session-21:word:crowded; family: word_card -->
 > **crowded** — переполненный людьми, многолюдный. It is crowded — «Там много людей», «Там тесно»: например, в концертном зале.
 
-**2 · Карточка слова — empty**
-<!-- interaction_id: en:lesson-01:session-21:word:empty; family: word_card -->
-> **empty** — пустой. It is empty — «Он пустой»: например, столик без людей и вещей.
-
-**3 · Карточка слова — small**
-<!-- interaction_id: en:lesson-01:session-21:word:small; family: word_card -->
-> **small** — маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.
-
-**4 · Карточка слова — noisy**
-<!-- interaction_id: en:lesson-01:session-21:word:noisy; family: word_card -->
-> **noisy** — шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.
-
-**5 · В зале почти нет свободного места. Исправьте сообщение «It crowded»**
+**2 · В зале почти нет свободного места. Исправьте сообщение «It crowded»**
 <!-- interaction_id: en:lesson-01:session-21:i01; family: phrase_builder -->
 Плитки: `crowded` `is` `It` `am` → **It is crowded.**
 Плитка `am` лишняя: после It нужно is.
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — empty**
+<!-- interaction_id: en:lesson-01:session-21:word:empty; family: word_card -->
+> **empty** — пустой. It is empty — «Он пустой»: например, столик без людей и вещей.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-21:i02; family: listen_choose -->
 🔊 *It is noisy.* → **It is noisy.** · It is small. · It is empty.
 - It is small. — *В записи noisy, а не small.*
 - It is empty. — *В записи noisy, а не empty.*
 
-**7 · Вставьте слово — в комнате для отдыха никого нет: «Она пустая»**
+**5 · Вставьте слово — в комнате для отдыха никого нет: «Она пустая»**
 <!-- interaction_id: en:lesson-01:session-21:i03; family: context_gap_grammar -->
 It ___ empty. → **is** · am · are
 - am — *После It нужно is; am используется с I.*
 - are — *В этой фразе It is.*
 
-**8 · Соедините новые слова со значениями**
+**6 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-21:i04; family: speed_match -->
 crowded — переполненный людьми · empty — пустой · small — маленький · noisy — шумный
 
-**9 · Послушайте и соберите фразу**
+**7 · Карточка слова — small**
+<!-- interaction_id: en:lesson-01:session-21:word:small; family: word_card -->
+> **small** — маленький. It is small — «Она маленькая»: например, сумка, которая помещается в небольшую ячейку.
+
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-21:i05; family: listen_build_dictation -->
 🔊 *It is small.* Плитки: `small` `is` `It` `are` → **It is small.**
 Плитка `are` лишняя: после It нужно is.
 
-**10 · Ваша бутылка опустела: внутри ничего нет. Соберите фразу о ней: «Она пустая»**
+**9 · Ваша бутылка опустела: внутри ничего нет. Соберите фразу о ней: «Она пустая»**
 <!-- interaction_id: en:lesson-01:session-21:i06; family: phrase_builder -->
 Плитки: `empty` `is` `It` `am` → **It is empty.**
 Плитка `am` лишняя: после It нужно is.
+
+**10 · Карточка слова — noisy**
+<!-- interaction_id: en:lesson-01:session-21:word:noisy; family: word_card -->
+> **noisy** — шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.
 
 **11 · Двое зрителей рядом громко разговаривают и смеются. Скажите другу о них: «Они шумные»**
 <!-- interaction_id: en:lesson-01:session-21:i07; family: scripted_repeat_compare -->
@@ -152,4 +152,3 @@ clean — чистый · inside — внутри · outside — снаружи 
 **21 · Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите человеку рядом о комнате: «Она пустая»**
 <!-- interaction_id: en:lesson-01:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **It is empty.**
-

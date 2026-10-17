@@ -47,137 +47,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-18:word:sleepy",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — sleepy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-18:word:sleepy:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — sleepy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-18:word:sleepy:audio",
-            "transcript": "sleepy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-18:word:sleepy:r1",
-              "targetText": "sleepy",
-              "meaningByLocale": {
-                "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
-                "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "sleepy",
-            "definitionByLocale": {
-              "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
-              "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-18:word:relieved",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — relieved",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-18:word:relieved:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — relieved",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-18:word:relieved:audio",
-            "transcript": "relieved"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-18:word:relieved:r1",
-              "targetText": "relieved",
-              "meaningByLocale": {
-                "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
-                "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "relieved",
-            "definitionByLocale": {
-              "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
-              "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-18:word:funny",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — funny",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-18:word:funny:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — funny",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-18:word:funny:audio",
-            "transcript": "funny"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-18:word:funny:r1",
-              "targetText": "funny",
-              "meaningByLocale": {
-                "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
-                "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "funny",
-            "definitionByLocale": {
-              "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
-              "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-18:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-18:word:sleepy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sleepy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-18:word:sleepy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sleepy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-18:word:sleepy:audio",
+            "transcript": "sleepy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-18:word:sleepy:r1",
+              "targetText": "sleepy",
+              "meaningByLocale": {
+                "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
+                "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleepy",
+            "definitionByLocale": {
+              "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
+              "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-18:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +210,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-18:word:relieved",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — relieved",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-18:word:relieved:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — relieved",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-18:word:relieved:audio",
+            "transcript": "relieved"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-18:word:relieved:r1",
+              "targetText": "relieved",
+              "meaningByLocale": {
+                "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
+                "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relieved",
+            "definitionByLocale": {
+              "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
+              "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-18:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +323,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова со значениями",
@@ -439,7 +396,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i08",
-        "ordinal": 15,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -632,7 +589,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i09",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -708,8 +665,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините знакомые слова со значениями",
@@ -781,7 +738,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -828,7 +785,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i12",
-        "ordinal": 19,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -872,7 +829,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i13",
-        "ordinal": 20,
+        "ordinal": 19,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -905,8 +862,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
@@ -969,6 +926,49 @@
               }
             }
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-18:word:funny",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — funny",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-18:word:funny:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — funny",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-18:word:funny:audio",
+            "transcript": "funny"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-18:word:funny:r1",
+              "targetText": "funny",
+              "meaningByLocale": {
+                "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
+                "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "funny",
+            "definitionByLocale": {
+              "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
+              "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1208,137 +1208,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-18:word:sleepy",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — sleepy",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-18:word:sleepy:audio"
-        ],
-        "accessibilityLabel": "Картка слова — sleepy",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-18:word:sleepy:audio",
-            "transcript": "sleepy"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-18:word:sleepy:r1",
-              "targetText": "sleepy",
-              "meaningByLocale": {
-                "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
-                "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "sleepy",
-            "definitionByLocale": {
-              "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
-              "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-18:word:relieved",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — relieved",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-18:word:relieved:audio"
-        ],
-        "accessibilityLabel": "Картка слова — relieved",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-18:word:relieved:audio",
-            "transcript": "relieved"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-18:word:relieved:r1",
-              "targetText": "relieved",
-              "meaningByLocale": {
-                "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
-                "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "relieved",
-            "definitionByLocale": {
-              "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
-              "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-18:word:funny",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — funny",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-18:word:funny:audio"
-        ],
-        "accessibilityLabel": "Картка слова — funny",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-18:word:funny:audio",
-            "transcript": "funny"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-18:word:funny:r1",
-              "targetText": "funny",
-              "meaningByLocale": {
-                "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
-                "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "funny",
-            "definitionByLocale": {
-              "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
-              "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-18:i01",
-        "ordinal": 8,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1381,8 +1252,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-18:word:sleepy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sleepy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-18:word:sleepy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sleepy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-18:word:sleepy:audio",
+            "transcript": "sleepy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-18:word:sleepy:r1",
+              "targetText": "sleepy",
+              "meaningByLocale": {
+                "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
+                "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleepy",
+            "definitionByLocale": {
+              "ru": "сонный, желающий спать. We are sleepy — «Мы сонные».",
+              "uk": "сонний, той, хто хоче спати. We are sleepy — «Ми сонні»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-18:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1457,8 +1371,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-18:word:relieved",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — relieved",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-18:word:relieved:audio"
+        ],
+        "accessibilityLabel": "Картка слова — relieved",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-18:word:relieved:audio",
+            "transcript": "relieved"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-18:word:relieved:r1",
+              "targetText": "relieved",
+              "meaningByLocale": {
+                "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
+                "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relieved",
+            "definitionByLocale": {
+              "ru": "испытывающий облегчение: причина тревоги исчезла. They are relieved — «Они чувствуют облегчение».",
+              "uk": "той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-18:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1527,8 +1484,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова зі значеннями",
@@ -1600,7 +1557,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i05",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1647,7 +1604,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i06",
-        "ordinal": 13,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1691,7 +1648,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i07",
-        "ordinal": 14,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1724,7 +1681,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i08",
-        "ordinal": 15,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1793,7 +1750,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i09",
-        "ordinal": 16,
+        "ordinal": 15,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1869,8 +1826,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -1942,7 +1899,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1989,7 +1946,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i12",
-        "ordinal": 19,
+        "ordinal": 18,
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -2033,7 +1990,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i13",
-        "ordinal": 20,
+        "ordinal": 19,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -2066,8 +2023,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-18:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Ви вже пішли з небезпечної ділянки платформи. Скажіть за вас обох: «Ми в безпеці»",
@@ -2130,6 +2087,49 @@
               }
             }
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-18:word:funny",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — funny",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-18:word:funny:audio"
+        ],
+        "accessibilityLabel": "Картка слова — funny",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-18:word:funny:audio",
+            "transcript": "funny"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-18:word:funny:r1",
+              "targetText": "funny",
+              "meaningByLocale": {
+                "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
+                "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "funny",
+            "definitionByLocale": {
+              "ru": "смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.",
+              "uk": "смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2332,29 +2332,24 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-18:word:sleepy",
-      "correctText": "sleepy",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-18:word:relieved",
-      "correctText": "relieved",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-18:word:funny",
-      "correctText": "funny",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-18:i01",
       "correctText": "I am confused.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:word:sleepy",
+      "correctText": "sleepy",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-18:i02",
       "correctText": "We are sleepy.",
       "correctResponseId": "en:lesson-01:session-18:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:word:relieved",
+      "correctText": "relieved",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-18:i03",
@@ -2415,6 +2410,11 @@
       "interactionId": "en:lesson-01:session-18:i14",
       "correctText": "safe",
       "correctResponseId": "en:lesson-01:session-18:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:word:funny",
+      "correctText": "funny",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-18:i15",

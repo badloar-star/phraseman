@@ -56,75 +56,75 @@
 <!-- interaction_id: en:lesson-01:session-25:word:impressed; family: word_card -->
 > **impressed** — вражений: високо оцінив чиюсь майстерність або результат. I am impressed — «Я вражений / вражена».
 
-**2 · Картка слова — ashamed**
-<!-- interaction_id: en:lesson-01:session-25:word:ashamed; family: word_card -->
-> **ashamed** — відчуває сором. He is ashamed — «Йому соромно»: наприклад, за грубу насмішку.
-
-**3 · Картка слова — surprised**
-<!-- interaction_id: en:lesson-01:session-25:word:surprised; family: word_card -->
-> **surprised** — здивований: сталося те, чого не очікував. We are surprised — «Ми здивовані». Здивування може бути і приємним, і неприємним.
-
-**4 · Картка слова — disappointed**
-<!-- interaction_id: en:lesson-01:session-25:word:disappointed; family: word_card -->
-> **disappointed** — розчарований: очікував більшого або іншого. She is disappointed — «Вона розчарована»: наприклад, улюблену пісню так і не виконали.
-
-**5 · Складіть фразу — майстерність племінниці справила на вас сильне враження**
+**2 · Складіть фразу — майстерність племінниці справила на вас сильне враження**
 <!-- interaction_id: en:lesson-01:session-25:i01; family: phrase_builder -->
 Плитки: `impressed` `am` `I` `is` `are` → **I am impressed.**
 Плитка `is` зайва: після I потрібне am.
 Плитка `are` зайва: про себе говоримо I am.
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — surprised**
+<!-- interaction_id: en:lesson-01:session-25:word:surprised; family: word_card -->
+> **surprised** — здивований: сталося те, чого не очікував. We are surprised — «Ми здивовані». Здивування може бути і приємним, і неприємним.
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-25:i02; family: listen_choose -->
 🔊 *She is surprised.* → **She is surprised.** · He is surprised. · She is proud.
 - He is surprised. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
 - She is proud. — *У записі останнє слово — `surprised`, а в цьому варіанті — `proud`.*
 
-**7 · Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово**
+**5 · Картка слова — ashamed**
+<!-- interaction_id: en:lesson-01:session-25:word:ashamed; family: word_card -->
+> **ashamed** — відчуває сором. He is ashamed — «Йому соромно»: наприклад, за грубу насмішку.
+
+**6 · Двоє глядачів заважали виступу. Тепер їм соромно. Вставте слово**
 <!-- interaction_id: en:lesson-01:session-25:i03; family: context_gap_grammar -->
 They ___ ashamed. → **are** · is · am
 - is — *Після `They` вибираємо `are`, а не `is`.*
 - am — *`am` потрібне з `I`. Тут ідеться про них: `They are`.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-25:i04; family: speed_match -->
 impressed — вражений · ashamed — відчуває сором · surprised — здивований · disappointed — розчарований
 
-**9 · Послухайте й складіть фразу**
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-25:i05; family: listen_build_dictation -->
 🔊 *We are proud.* Плитки: `proud` `are` `We` `is` → **We are proud.**
 *(плитка `is` зайва: тут потрібно `are` — `We are proud.`)*
 
-**10 · Братові соромно за грубий жарт. Складіть фразу про його почуття**
+**9 · Братові соромно за грубий жарт. Складіть фразу про його почуття**
 <!-- interaction_id: en:lesson-01:session-25:i06; family: phrase_builder -->
 Плитки: `ashamed` `is` `He` `am` `are` → **He is ashamed.**
 *(плитка `am` зайва: тут потрібно `is` — `He is ashamed.`)*
 *(плитка `are` зайва: тут потрібно `is` — `He is ashamed.`)*
 
-**11 · Сестра каже, що не очікувала такого завершення. Скажіть їй: «Ти здивована»**
+**10 · Сестра каже, що не очікувала такого завершення. Скажіть їй: «Ти здивована»**
 <!-- interaction_id: en:lesson-01:session-25:i07; family: scripted_repeat_compare -->
 🎙 **You are surprised.**
 
-**12 · Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе**
+**11 · Ви заважали іншим глядачам і тепер соромитеся цього. Доповніть фразу про себе**
 <!-- interaction_id: en:lesson-01:session-25:i08; family: context_gap_grammar -->
 I ___ ashamed. → **am** · is · are
 - is — *Із `I` потрібна форма `am`.*
 - are — *Про себе починаємо з `I am`.*
 
-**13 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-01:session-25:i09; family: listen_choose -->
 🔊 *They are surprised.* → **They are surprised.** · We are surprised. · They are proud.
 - We are surprised. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
 - They are proud. — *У записі останнє слово — `surprised`, а в цьому варіанті — `proud`.*
 
-**14 · З’єднайте знайомі слова та значення**
+**13 · З’єднайте знайомі слова та значення**
 <!-- interaction_id: en:lesson-01:session-25:i10; family: speed_match -->
 married — перебуває у шлюбі · single — не перебуває у шлюбі (в анкеті) · welcome — бажаний · safe — у безпеці
 
-**15 · Послухайте й складіть почуте**
+**14 · Послухайте й складіть почуте**
 <!-- interaction_id: en:lesson-01:session-25:i11; family: listen_build_dictation -->
 🔊 *I am surprised.* Плитки: `surprised` `am` `I` `is` → **I am surprised.**
 *(плитка `is` зайва: тут потрібно `am` — `I am surprised.`)*
+
+**15 · Картка слова — disappointed**
+<!-- interaction_id: en:lesson-01:session-25:word:disappointed; family: word_card -->
+> **disappointed** — розчарований: очікував більшого або іншого. She is disappointed — «Вона розчарована»: наприклад, улюблену пісню так і не виконали.
 
 **16 · Мама чекала на улюблену пісню наприкінці, але її не виконали. Вона каже, що розчарована. Складіть фразу про маму**
 <!-- interaction_id: en:lesson-01:session-25:i12; family: phrase_builder -->
@@ -155,4 +155,3 @@ right — має рацію · proud — пишається · impressed — в�
 **21 · Ваша команда завершила складний проєкт. Ви всі пишаєтеся результатом. Скажіть це за всю команду однією фразою**
 <!-- interaction_id: en:lesson-01:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We are proud.**
-

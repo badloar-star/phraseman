@@ -61,13 +61,13 @@
 - polite — *У записі звучить proud, а не polite.*
 - tired — *У записі звучить proud, а не tired.*
 
-**3 · Картка слова — old**
-<!-- interaction_id: en:lesson-01:session-13:i03; family: word_card -->
-> **old** — старий; літній, якщо про людину. I am old — «Я старий». Пряме зауваження You are old співрозмовнику може прозвучати образливо.
-
-**4 · Складіть фразу — Міра каже, що почувається немолодою; скажіть їй: «ти молода»**
+**3 · Складіть фразу — Міра каже, що почувається немолодою; скажіть їй: «ти молода»**
 <!-- interaction_id: en:lesson-01:session-13:i04; family: phrase_builder -->
 Плитки: `young` `are` `You` → **You are young.**
+
+**4 · Картка слова — old**
+<!-- interaction_id: en:lesson-01:session-13:i03; family: word_card -->
+> **old** — старий; літній, якщо про людину. I am old — «Я старий». Пряме зауваження You are old співрозмовнику може прозвучати образливо.
 
 **5 · В анкеті про вік ви описуєте себе як людину поважного віку. Вставте слово в цю фразу про себе.**
 <!-- interaction_id: en:lesson-01:session-13:i05; family: context_gap_grammar -->
@@ -142,4 +142,3 @@ I am ___ . → **weak** · strong · young
 🎙 Скажіть: **You are kind.**
 
 ---
-

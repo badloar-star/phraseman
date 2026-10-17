@@ -361,52 +361,9 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i07",
+      "interactionId": "en:lesson-01:session-04:i08",
       "ordinal": 10,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — free",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-04:i07:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — free",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-04:i07:audio",
-          "transcript": "free"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-04:i07:r1",
-            "targetText": "free",
-            "meaningByLocale": {
-              "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
-              "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "free",
-          "definitionByLocale": {
-            "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
-            "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-04:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
       "family": "sound_contrast",
       "inputMode": "single_choice",
       "prompt": "Послушайте две записи. Какое слово звучит во второй?",
@@ -452,6 +409,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i07",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — free",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i07:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i07:r1",
+            "targetText": "free",
+            "meaningByLocale": {
+              "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
+              "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "free",
+          "definitionByLocale": {
+            "ru": "«свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.",
+            "uk": "«вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1244,5 +1244,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "95d586ebe2eb7a8922463f4eb1d9b3dca9d23e373f9b3666b559d097990bd579"
+  "learnerFingerprint": "a645773be696aedf891f5afa1dc9179f4cb5be7712c5c8fd91f8e39bbc6da9af"
 }

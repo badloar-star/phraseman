@@ -5,8 +5,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-25:word:ashamed",
-    "correctText": "ashamed",
+    "interactionId": "en:lesson-01:session-25:i01",
+    "correctText": "I am impressed.",
     "correctResponseId": null
   },
   {
@@ -15,19 +15,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-25:word:disappointed",
-    "correctText": "disappointed",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-25:i01",
-    "correctText": "I am impressed.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-25:i02",
     "correctText": "She is surprised.",
     "correctResponseId": "en:lesson-01:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:word:ashamed",
+    "correctText": "ashamed",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-25:i03",
@@ -72,6 +67,11 @@
   {
     "interactionId": "en:lesson-01:session-25:i11",
     "correctText": "I am surprised.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:word:disappointed",
+    "correctText": "disappointed",
     "correctResponseId": null
   },
   {

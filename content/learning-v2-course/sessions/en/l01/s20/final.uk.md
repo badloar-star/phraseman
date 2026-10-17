@@ -56,88 +56,88 @@
 <!-- interaction_id: en:lesson-01:session-20:word:prepared; family: word_card -->
 > **prepared** — підготовлений. We are prepared — «Ми підготувалися»: заздалегідь зібрали речі й вивчили маршрут.
 
-**2 · Картка слова — steep**
-<!-- interaction_id: en:lesson-01:session-20:word:steep; family: word_card -->
-> **steep** — крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом.
-
-**3 · Картка слова — muddy**
-<!-- interaction_id: en:lesson-01:session-20:word:muddy; family: word_card -->
-> **muddy** — у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу.
-
-**4 · Картка слова — loud**
-<!-- interaction_id: en:lesson-01:session-20:word:loud; family: word_card -->
-> **loud** — гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група.
-
-**5 · Вода, карта й взуття готові. Складіть фразу за вашу компанію: «Ми підготувалися»**
+**2 · Вода, карта й взуття готові. Складіть фразу за вашу компанію: «Ми підготувалися»**
 <!-- interaction_id: en:lesson-01:session-20:i01; family: phrase_builder -->
 Плитки: `prepared` `are` `We` `is` → **We are prepared.**
 *(плитка `is` зайва: тут потрібно `are` — `We are prepared.`)*
 
-**6 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-20:i02; family: listen_choose -->
 🔊 *He is lost.* → **He is lost.** · She is lost. · He is prepared.
 - She is lost. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is prepared. — *У записі останнє слово — `lost`, а в цьому варіанті — `prepared`.*
 
-**7 · Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»**
+**4 · Картка слова — muddy**
+<!-- interaction_id: en:lesson-01:session-20:word:muddy; family: word_card -->
+> **muddy** — у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу.
+
+**5 · Вставте слово — ви впали в багнюку. Скажіть про себе: «Я в багнюці»**
 <!-- interaction_id: en:lesson-01:session-20:i03; family: context_gap_grammar -->
 I ___ muddy. → **am** · is · are
 - is — *З I потрібне am.*
 - are — *Про себе говоримо I am.*
 
-**8 · З’єднайте нові слова та значення**
+**6 · З’єднайте нові слова та значення**
 <!-- interaction_id: en:lesson-01:session-20:i04; family: speed_match -->
 prepared — підготовлений · steep — крутий (про схил) · muddy — у багнюці · loud — гучний
 
-**9 · Послухайте й складіть фразу**
+**7 · Картка слова — steep**
+<!-- interaction_id: en:lesson-01:session-20:word:steep; family: word_card -->
+> **steep** — крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом.
+
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-01:session-20:i05; family: listen_build_dictation -->
 🔊 *It is steep.* Плитки: `steep` `is` `It` `are` → **It is steep.**
 Плитка `are` зайва: після It потрібне is.
 
-**10 · Ви з подругою загубили дорогу. Складіть фразу для туриста, якого зустріли: «Ми заблукали»**
+**9 · Ви з подругою загубили дорогу. Складіть фразу для туриста, якого зустріли: «Ми заблукали»**
 <!-- interaction_id: en:lesson-01:session-20:i06; family: phrase_builder -->
 Плитки: `lost` `are` `We` `He` → **We are lost.**
 *(плитка `He` зайва: тут потрібно `We` — `We are lost.`)*
 
-**11 · Подруга заздалегідь зібрала все для прогулянки. Скажіть уголос про неї: «Вона підготувалася»**
+**10 · Подруга заздалегідь зібрала все для прогулянки. Скажіть уголос про неї: «Вона підготувалася»**
 <!-- interaction_id: en:lesson-01:session-20:i07; family: scripted_repeat_compare -->
 🎙 **She is prepared.**
 
-**12 · Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»**
+**11 · Друг уважно перевіряє стежку. Опишіть його, звертаючись до нього: «Ти обережний»**
 <!-- interaction_id: en:lesson-01:session-20:i08; family: context_gap_grammar -->
 You ___ careful. → **are** · am · is
 - am — *Після `You` потрібно `are`; `am` ставимо з `I`.*
 - is — *Ви звертаєтеся до друга: `You are`.*
 
-**13 · Послухайте фразу туриста й виберіть почуте**
+**12 · Послухайте фразу туриста й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-20:i09; family: listen_choose -->
 🔊 *I am lost.* → **I am lost.** · I am alone. · I am prepared.
 - I am alone. — *У записі останнє слово — `lost`, а в цьому варіанті — `alone`.*
 - I am prepared. — *У записі останнє слово — `lost`, а в цьому варіанті — `prepared`.*
 
-**14 · З’єднайте знайомі слова зі значеннями**
+**13 · З’єднайте знайомі слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-20:i10; family: speed_match -->
 alone — без інших людей · nearby — поблизу · friendly — привітний · helpful — охочий допомогти
 
-**15 · Послухайте й складіть почуте**
+**14 · Послухайте й складіть почуте**
 <!-- interaction_id: en:lesson-01:session-20:i11; family: listen_build_dictation -->
 🔊 *You are prepared.* Плитки: `prepared` `are` `You` `They` → **You are prepared.**
 *(плитка `They` зайва: тут потрібно `You` — `You are prepared.`)*
 
-**16 · Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він охоче допомагає»**
+**15 · Турист охоче допомагає вам знайти маршрут. Складіть фразу про нього: «Він охоче допомагає»**
 <!-- interaction_id: en:lesson-01:session-20:i12; family: phrase_builder -->
 Плитки: `helpful` `is` `He` `are` → **He is helpful.**
 *(плитка `are` зайва: тут потрібно `is` — `He is helpful.`)*
 
-**17 · Друг забруднився, допомагаючи вам підвестися після падіння. Скажіть про нього: «Він у багнюці»**
+**16 · Друг забруднився, допомагаючи вам підвестися після падіння. Скажіть про нього: «Він у багнюці»**
 <!-- interaction_id: en:lesson-01:session-20:i13; family: scripted_repeat_compare -->
 🎙 **He is muddy.**
 
-**18 · Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»**
+**17 · Усі з вашої компанії знову зібралися в одному місці. Скажіть: «Ми разом»**
 <!-- interaction_id: en:lesson-01:session-20:i14; family: context_gap_grammar -->
 We are ___ . → **together** · lost · careful
 - lost — *`lost` — «заблукали». Тут треба сказати, що ви разом: `together`.*
 - careful — *`careful` — «обережні». Спільна присутність — `together`.*
+
+**18 · Картка слова — loud**
+<!-- interaction_id: en:lesson-01:session-20:word:loud; family: word_card -->
+> **loud** — гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група.
 
 **19 · Послухайте фразу про гучного туриста**
 <!-- interaction_id: en:lesson-01:session-20:i15; family: listen_choose -->
@@ -152,4 +152,3 @@ loud — гучний · muddy — у багнюці · steep — крутий (
 **21 · Завтра співбесіда. Ви заздалегідь вивчили запитання й зібрали документи. Скажіть про себе: «Я підготувався»**
 <!-- interaction_id: en:lesson-01:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I am prepared.**
-

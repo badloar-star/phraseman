@@ -4,180 +4,8 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-24:word:dim",
-      "ordinal": 4,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — dim",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-24:word:dim:audio"
-      ],
-      "accessibilityLabel": "Картка слова — dim",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-24:word:dim:audio",
-          "transcript": "dim"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-24:word:dim:r1",
-            "targetText": "dim",
-            "meaningByLocale": {
-              "ru": "тусклый, слабо освещённый. It is dim — «Здесь тускло»: света мало, мелкие буквы плохо видны.",
-              "uk": "тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "dim",
-          "definitionByLocale": {
-            "ru": "тусклый, слабо освещённый. It is dim — «Здесь тускло»: света мало, мелкие буквы плохо видны.",
-            "uk": "тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-24:word:bright",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — bright",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-24:word:bright:audio"
-      ],
-      "accessibilityLabel": "Картка слова — bright",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-24:word:bright:audio",
-          "transcript": "bright"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-24:word:bright:r1",
-            "targetText": "bright",
-            "meaningByLocale": {
-              "ru": "яркий, хорошо освещённый. It is bright — «Здесь светло»: например, в фойе горят яркие лампы.",
-              "uk": "яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "bright",
-          "definitionByLocale": {
-            "ru": "яркий, хорошо освещённый. It is bright — «Здесь светло»: например, в фойе горят яркие лампы.",
-            "uk": "яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-24:word:heavy",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — heavy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-24:word:heavy:audio"
-      ],
-      "accessibilityLabel": "Картка слова — heavy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-24:word:heavy:audio",
-          "transcript": "heavy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-24:word:heavy:r1",
-            "targetText": "heavy",
-            "meaningByLocale": {
-              "ru": "тяжёлый по весу. It is heavy — «Она тяжёлая»: коробку трудно поднять. Размер и вес — не одно и то же.",
-              "uk": "важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "heavy",
-          "definitionByLocale": {
-            "ru": "тяжёлый по весу. It is heavy — «Она тяжёлая»: коробку трудно поднять. Размер и вес — не одно и то же.",
-            "uk": "важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-24:word:fragile",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — fragile",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-24:word:fragile:audio"
-      ],
-      "accessibilityLabel": "Картка слова — fragile",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-24:word:fragile:audio",
-          "transcript": "fragile"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-24:word:fragile:r1",
-            "targetText": "fragile",
-            "meaningByLocale": {
-              "ru": "хрупкий, легко повреждающийся. It is fragile — «Она хрупкая»: стеклянную вазу легко разбить.",
-              "uk": "крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "fragile",
-          "definitionByLocale": {
-            "ru": "хрупкий, легко повреждающийся. It is fragile — «Она хрупкая»: стеклянную вазу легко разбить.",
-            "uk": "крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-24:i01",
-      "ordinal": 8,
+      "ordinal": 4,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -221,7 +49,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i02",
-      "ordinal": 9,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -297,7 +125,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-24:i03",
-      "ordinal": 10,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -365,9 +193,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-24:word:dim",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:dim:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:dim:audio",
+          "transcript": "dim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:dim:r1",
+            "targetText": "dim",
+            "meaningByLocale": {
+              "ru": "тусклый, слабо освещённый. It is dim — «Здесь тускло»: света мало, мелкие буквы плохо видны.",
+              "uk": "тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dim",
+          "definitionByLocale": {
+            "ru": "тусклый, слабо освещённый. It is dim — «Здесь тускло»: света мало, мелкие буквы плохо видны.",
+            "uk": "тьмяний, слабо освітлений. It is dim — «Тут тьмяно»: світла мало, дрібні літери погано видно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-24:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -438,9 +309,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-24:word:bright",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bright",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:bright:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bright",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:bright:audio",
+          "transcript": "bright"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:bright:r1",
+            "targetText": "bright",
+            "meaningByLocale": {
+              "ru": "яркий, хорошо освещённый. It is bright — «Здесь светло»: например, в фойе горят яркие лампы.",
+              "uk": "яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bright",
+          "definitionByLocale": {
+            "ru": "яркий, хорошо освещённый. It is bright — «Здесь светло»: например, в фойе горят яркие лампы.",
+            "uk": "яскравий, добре освітлений. It is bright — «Тут світло»: наприклад, у фоє горять яскраві лампи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-24:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу про освітлення",
@@ -485,8 +399,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-24:word:heavy",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — heavy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:heavy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — heavy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:heavy:audio",
+          "transcript": "heavy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:heavy:r1",
+            "targetText": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый по весу. It is heavy — «Она тяжёлая»: коробку трудно поднять. Размер и вес — не одно и то же.",
+              "uk": "важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heavy",
+          "definitionByLocale": {
+            "ru": "тяжёлый по весу. It is heavy — «Она тяжёлая»: коробку трудно поднять. Размер и вес — не одно и то же.",
+            "uk": "важкий за вагою. It is heavy — «Вона важка»: коробку важко підняти. Розмір і вага — не те саме."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-24:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -524,6 +481,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:word:fragile",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fragile",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-24:word:fragile:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fragile",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-24:word:fragile:audio",
+          "transcript": "fragile"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-24:word:fragile:r1",
+            "targetText": "fragile",
+            "meaningByLocale": {
+              "ru": "хрупкий, легко повреждающийся. It is fragile — «Она хрупкая»: стеклянную вазу легко разбить.",
+              "uk": "крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fragile",
+          "definitionByLocale": {
+            "ru": "хрупкий, легко повреждающийся. It is fragile — «Она хрупкая»: стеклянную вазу легко разбить.",
+            "uk": "крихкий, такий, що легко пошкоджується. It is fragile — «Вона крихка»: скляну вазу легко розбити."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "334c02d2c921661ce1bd06f89a58d5abc80e947ea0819b3912b9c73ba1c1b12f"
+  "learnerFingerprint": "a2a217d934a5f1ad1278c86939b7ec1e42d13f2da6c9063d2503c453c5d2d265"
 }

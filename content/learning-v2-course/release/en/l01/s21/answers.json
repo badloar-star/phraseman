@@ -5,23 +5,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-21:word:empty",
-    "correctText": "empty",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-21:word:small",
-    "correctText": "small",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-21:word:noisy",
-    "correctText": "noisy",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-21:i01",
     "correctText": "It is crowded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:empty",
+    "correctText": "empty",
     "correctResponseId": null
   },
   {
@@ -40,6 +30,11 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-21:word:small",
+    "correctText": "small",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-21:i05",
     "correctText": "It is small.",
     "correctResponseId": null
@@ -47,6 +42,11 @@
   {
     "interactionId": "en:lesson-01:session-21:i06",
     "correctText": "It is empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:word:noisy",
+    "correctText": "noisy",
     "correctResponseId": null
   },
   {

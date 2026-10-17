@@ -56,38 +56,38 @@
 <!-- interaction_id: en:lesson-01:session-26:word:impatient; family: word_card -->
 > **impatient** — нетерпеливый: трудно спокойно ждать. I am impatient — «Мне не терпится», «Я проявляю нетерпение». Знакомое patient означает «терпеливый».
 
-**2 · Карточка слова — exhausted**
-<!-- interaction_id: en:lesson-01:session-26:word:exhausted; family: word_card -->
-> **exhausted** — измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».
+**2 · Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении**
+<!-- interaction_id: en:lesson-01:session-26:i01; family: phrase_builder -->
+Плитки: `impatient` `am` `I` `is` → **I am impatient.**
+Плитка `is` лишняя: после I нужно am.
 
 **3 · Карточка слова — worried**
 <!-- interaction_id: en:lesson-01:session-26:word:worried; family: word_card -->
 > **worried** — обеспокоенный, встревоженный. She is worried — «Она волнуется»: например, боится потерять паспорт.
 
-**4 · Карточка слова — relaxed**
-<!-- interaction_id: en:lesson-01:session-26:word:relaxed; family: word_card -->
-> **relaxed** — расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.
-
-**5 · Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении**
-<!-- interaction_id: en:lesson-01:session-26:i01; family: phrase_builder -->
-Плитки: `impatient` `am` `I` `is` → **I am impatient.**
-Плитка `is` лишняя: после I нужно am.
-
-**6 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-26:i02; family: listen_choose -->
 🔊 *They are worried.* → **They are worried.** · We are worried. · They are confused.
 - We are worried. — *В записи первое слово — `They`, а в этом варианте — `We`.*
 - They are confused. — *В записи последнее слово — `worried`, а в этом варианте — `confused`.*
 
-**7 · После долгой дороги у друга почти нет сил. Дополните: «Он измотан»**
+**5 · Карточка слова — exhausted**
+<!-- interaction_id: en:lesson-01:session-26:word:exhausted; family: word_card -->
+> **exhausted** — измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».
+
+**6 · После долгой дороги у друга почти нет сил. Дополните: «Он измотан»**
 <!-- interaction_id: en:lesson-01:session-26:i03; family: context_gap_grammar -->
 He ___ exhausted. → **is** · am · are
 - am — *После He нужно is.*
 - are — *О друге говорим He is.*
 
-**8 · Соедините новые слова и значения**
+**7 · Соедините новые слова и значения**
 <!-- interaction_id: en:lesson-01:session-26:i04; family: speed_match -->
 impatient — нетерпеливый · exhausted — измотанный · worried — обеспокоенный · relaxed — расслабленный
+
+**8 · Карточка слова — relaxed**
+<!-- interaction_id: en:lesson-01:session-26:word:relaxed; family: word_card -->
+> **relaxed** — расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.
 
 **9 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-26:i05; family: listen_build_dictation -->
@@ -152,4 +152,3 @@ relaxed — расслабленный · bored — скучает · exhausted 
 **21 · Ваша кошка убежала из дома, и вы тревожитесь за неё. Скажите: «Я обеспокоен / обеспокоена»**
 <!-- interaction_id: en:lesson-01:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **I am worried.**
-

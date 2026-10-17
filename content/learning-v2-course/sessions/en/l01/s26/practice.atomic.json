@@ -47,44 +47,45 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-26:word:exhausted",
+        "interactionId": "en:lesson-01:session-26:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — exhausted",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-26:word:exhausted:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — exhausted",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-26:word:exhausted:audio",
-            "transcript": "exhausted"
+          "family": "phrase_builder",
+          "targetPhrase": "I am impatient.",
+          "localizedMeaning": {
+            "ru": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
+            "uk": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "orderedTokens": [
+            "I",
+            "am",
+            "impatient"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-26:word:exhausted:r1",
-              "targetText": "exhausted",
-              "meaningByLocale": {
-                "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
-                "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+              "responseId": "en:lesson-01:session-26:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
+              "feedbackByLocale": {
+                "ru": "после I нужно am.",
+                "uk": "після I потрібне am."
               }
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "exhausted",
-            "definitionByLocale": {
-              "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
-              "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
-            }
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
           }
         },
         "scriptedAlternate": null
@@ -133,95 +134,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-26:word:relaxed",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — relaxed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-26:word:relaxed:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — relaxed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-26:word:relaxed:audio",
-            "transcript": "relaxed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-26:word:relaxed:r1",
-              "targetText": "relaxed",
-              "meaningByLocale": {
-                "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
-                "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "relaxed",
-            "definitionByLocale": {
-              "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
-              "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-26:i01",
-        "ordinal": 8,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I am impatient.",
-          "localizedMeaning": {
-            "ru": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
-            "uk": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння"
-          },
-          "orderedTokens": [
-            "I",
-            "am",
-            "impatient"
-          ],
-          "authoredDistractorTokens": [
-            "is"
-          ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-01:session-26:i01:tile:d1",
-              "correct": false,
-              "testedDimension": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
-              "feedbackByLocale": {
-                "ru": "после I нужно am.",
-                "uk": "після I потрібне am."
-              }
-            }
-          ],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-26:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -296,8 +210,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-26:word:exhausted",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — exhausted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-26:word:exhausted:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — exhausted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-26:word:exhausted:audio",
+            "transcript": "exhausted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-26:word:exhausted:r1",
+              "targetText": "exhausted",
+              "meaningByLocale": {
+                "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
+                "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exhausted",
+            "definitionByLocale": {
+              "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
+              "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-26:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +323,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-26:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините новые слова и значения",
@@ -434,6 +391,49 @@
             "accuracy",
             "personal_best"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-26:word:relaxed",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — relaxed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-26:word:relaxed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — relaxed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-26:word:relaxed:audio",
+            "transcript": "relaxed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-26:word:relaxed:r1",
+              "targetText": "relaxed",
+              "meaningByLocale": {
+                "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
+                "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relaxed",
+            "definitionByLocale": {
+              "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
+              "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1208,44 +1208,45 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-26:word:exhausted",
+        "interactionId": "en:lesson-01:session-26:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — exhausted",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-26:word:exhausted:audio"
-        ],
-        "accessibilityLabel": "Картка слова — exhausted",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-26:word:exhausted:audio",
-            "transcript": "exhausted"
+          "family": "phrase_builder",
+          "targetPhrase": "I am impatient.",
+          "localizedMeaning": {
+            "ru": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
+            "uk": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "orderedTokens": [
+            "I",
+            "am",
+            "impatient"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-26:word:exhausted:r1",
-              "targetText": "exhausted",
-              "meaningByLocale": {
-                "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
-                "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+              "responseId": "en:lesson-01:session-26:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння",
+              "feedbackByLocale": {
+                "ru": "после I нужно am.",
+                "uk": "після I потрібне am."
               }
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "exhausted",
-            "definitionByLocale": {
-              "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
-              "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
-            }
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
           }
         },
         "scriptedAlternate": null
@@ -1294,95 +1295,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-26:word:relaxed",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — relaxed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-26:word:relaxed:audio"
-        ],
-        "accessibilityLabel": "Картка слова — relaxed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-26:word:relaxed:audio",
-            "transcript": "relaxed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-26:word:relaxed:r1",
-              "targetText": "relaxed",
-              "meaningByLocale": {
-                "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
-                "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "relaxed",
-            "definitionByLocale": {
-              "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
-              "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-26:i01",
-        "ordinal": 8,
-        "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I am impatient.",
-          "localizedMeaning": {
-            "ru": "Вам не терпится пройти на посадку. Соберите фразу о своём нетерпении",
-            "uk": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння"
-          },
-          "orderedTokens": [
-            "I",
-            "am",
-            "impatient"
-          ],
-          "authoredDistractorTokens": [
-            "is"
-          ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-01:session-26:i01:tile:d1",
-              "correct": false,
-              "testedDimension": "Вам не терпиться пройти на посадку. Складіть фразу про своє нетерпіння",
-              "feedbackByLocale": {
-                "ru": "после I нужно am.",
-                "uk": "після I потрібне am."
-              }
-            }
-          ],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-26:i02",
-        "ordinal": 9,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1457,8 +1371,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-26:word:exhausted",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — exhausted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-26:word:exhausted:audio"
+        ],
+        "accessibilityLabel": "Картка слова — exhausted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-26:word:exhausted:audio",
+            "transcript": "exhausted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-26:word:exhausted:r1",
+              "targetText": "exhausted",
+              "meaningByLocale": {
+                "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
+                "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exhausted",
+            "definitionByLocale": {
+              "ru": "измотанный, очень уставший: сил почти нет. We are exhausted — «Мы вымотались».",
+              "uk": "виснажений, дуже втомлений: сил майже немає. We are exhausted — «Ми виснажені»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-26:i03",
-        "ordinal": 10,
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1527,8 +1484,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-26:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте нові слова та значення",
@@ -1595,6 +1552,49 @@
             "accuracy",
             "personal_best"
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-26:word:relaxed",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — relaxed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-26:word:relaxed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — relaxed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-26:word:relaxed:audio",
+            "transcript": "relaxed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-26:word:relaxed:r1",
+              "targetText": "relaxed",
+              "meaningByLocale": {
+                "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
+                "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "relaxed",
+            "definitionByLocale": {
+              "ru": "расслабленный: не чувствует напряжения. I am relaxed — «Я расслаблен / расслаблена». Вы можете просто удобно сидеть и спокойно ждать.",
+              "uk": "розслаблений: не відчуває напруження. I am relaxed — «Я розслаблений / розслаблена». Ви можете просто зручно сидіти й спокійно чекати."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2332,8 +2332,8 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-26:word:exhausted",
-      "correctText": "exhausted",
+      "interactionId": "en:lesson-01:session-26:i01",
+      "correctText": "I am impatient.",
       "correctResponseId": null
     },
     {
@@ -2342,19 +2342,14 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-26:word:relaxed",
-      "correctText": "relaxed",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-26:i01",
-      "correctText": "I am impatient.",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-26:i02",
       "correctText": "They are worried.",
       "correctResponseId": "en:lesson-01:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:word:exhausted",
+      "correctText": "exhausted",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-26:i03",
@@ -2364,6 +2359,11 @@
     {
       "interactionId": "en:lesson-01:session-26:i04",
       "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:word:relaxed",
+      "correctText": "relaxed",
       "correctResponseId": null
     },
     {

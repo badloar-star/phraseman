@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-23:word:single",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — single",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-23:word:single:audio"
-      ],
-      "accessibilityLabel": "Картка слова — single",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-23:word:single:audio",
-          "transcript": "single"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-23:word:single:r1",
-            "targetText": "single",
-            "meaningByLocale": {
-              "ru": "без пары; в анкете о семейном положении — не состоит в браке. He is single — «Он без пары». Не означает, что вокруг него нет людей.",
-              "uk": "без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "single",
-          "definitionByLocale": {
-            "ru": "без пары; в анкете о семейном положении — не состоит в браке. He is single — «Он без пары». Не означает, что вокруг него нет людей.",
-            "uk": "без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-23:word:different",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — different",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-23:word:different:audio"
-      ],
-      "accessibilityLabel": "Картка слова — different",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-23:word:different:audio",
-          "transcript": "different"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-23:word:different:r1",
-            "targetText": "different",
-            "meaningByLocale": {
-              "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
-              "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "different",
-          "definitionByLocale": {
-            "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
-            "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-23:word:engaged",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — engaged",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-23:word:engaged:audio"
-      ],
-      "accessibilityLabel": "Картка слова — engaged",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-23:word:engaged:audio",
-          "transcript": "engaged"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-23:word:engaged:r1",
-            "targetText": "engaged",
-            "meaningByLocale": {
-              "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
-              "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "engaged",
-          "definitionByLocale": {
-            "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
-            "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-23:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -220,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-23:word:single",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — single",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:single:audio"
+      ],
+      "accessibilityLabel": "Картка слова — single",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:single:audio",
+          "transcript": "single"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:single:r1",
+            "targetText": "single",
+            "meaningByLocale": {
+              "ru": "без пары; в анкете о семейном положении — не состоит в браке. He is single — «Он без пары». Не означает, что вокруг него нет людей.",
+              "uk": "без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "single",
+          "definitionByLocale": {
+            "ru": "без пары; в анкете о семейном положении — не состоит в браке. He is single — «Он без пары». Не означает, что вокруг него нет людей.",
+            "uk": "без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-23:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +210,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-23:word:different",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — different",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:different:audio"
+      ],
+      "accessibilityLabel": "Картка слова — different",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:different:audio",
+          "transcript": "different"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:different:r1",
+            "targetText": "different",
+            "meaningByLocale": {
+              "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
+              "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "different",
+          "definitionByLocale": {
+            "ru": "разный, другой. We are different — «Мы разные»: например, у вас с сестрой разные предпочтения.",
+            "uk": "різний, інший. We are different — «Ми різні»: наприклад, у вас із сестрою різні вподобання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-23:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +323,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте нові слова зі значеннями",
@@ -439,7 +396,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -632,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,8 +665,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова та значення",
@@ -781,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-23:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -822,6 +779,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:word:engaged",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — engaged",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:word:engaged:audio"
+      ],
+      "accessibilityLabel": "Картка слова — engaged",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:word:engaged:audio",
+          "transcript": "engaged"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:word:engaged:r1",
+            "targetText": "engaged",
+            "meaningByLocale": {
+              "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
+              "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "engaged",
+          "definitionByLocale": {
+            "ru": "помолвлен: договорились пожениться, но свадьба ещё впереди. She is engaged — «Она помолвлена». Здесь речь о браке, а не о занятости.",
+            "uk": "заручений: домовилися одружитися, але весілля ще попереду. She is engaged — «Вона заручена». Тут ідеться про шлюб, а не про зайнятість."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1dda4afeb03562a0b943e57be279e84d6ad3fcd426594b408a0d789966a72e71"
+  "learnerFingerprint": "a4949030e67332c9437c37ceaa4da3c24491e6f6166071d8b21e6b16683f61dd"
 }

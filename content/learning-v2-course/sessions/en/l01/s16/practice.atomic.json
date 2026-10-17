@@ -4,180 +4,8 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-01:session-16:word:open",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — open",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:open:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — open",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:open:audio",
-            "transcript": "open"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:open:r1",
-              "targetText": "open",
-              "meaningByLocale": {
-                "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
-                "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "open",
-            "definitionByLocale": {
-              "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
-              "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-16:word:big",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — big",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:big:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — big",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:big:audio",
-            "transcript": "big"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:big:r1",
-              "targetText": "big",
-              "meaningByLocale": {
-                "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
-                "uk": "великий. It is big — «Він великий», наприклад, зал."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "big",
-            "definitionByLocale": {
-              "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
-              "uk": "великий. It is big — «Він великий», наприклад, зал."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-16:word:clean",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — clean",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:clean:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — clean",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:clean:audio",
-            "transcript": "clean"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:clean:r1",
-              "targetText": "clean",
-              "meaningByLocale": {
-                "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
-                "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "clean",
-            "definitionByLocale": {
-              "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
-              "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-16:word:closed",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — closed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:closed:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — closed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:closed:audio",
-            "transcript": "closed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:closed:r1",
-              "targetText": "closed",
-              "meaningByLocale": {
-                "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
-                "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "closed",
-            "definitionByLocale": {
-              "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
-              "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-16:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -221,7 +49,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i02",
-        "ordinal": 9,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -297,7 +125,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i03",
-        "ordinal": 10,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -366,8 +194,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 7,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините описания людей со значениями",
@@ -438,9 +266,52 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-16:word:open",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — open",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:open:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — open",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:open:audio",
+            "transcript": "open"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:open:r1",
+              "targetText": "open",
+              "meaningByLocale": {
+                "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+                "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open",
+            "definitionByLocale": {
+              "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+              "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-16:i05",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послушайте фразу о входе и соберите её",
@@ -485,8 +356,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-16:word:clean",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clean",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:clean:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clean",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:clean:audio",
+            "transcript": "clean"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:clean:r1",
+              "targetText": "clean",
+              "meaningByLocale": {
+                "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+                "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clean",
+            "definitionByLocale": {
+              "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+              "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-16:i06",
-        "ordinal": 13,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -530,7 +444,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i07",
-        "ordinal": 14,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -563,7 +477,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i08",
-        "ordinal": 15,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -632,7 +546,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i09",
-        "ordinal": 16,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -708,8 +622,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "Соедините качества со значениями",
@@ -780,8 +694,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-16:word:closed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — closed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:closed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — closed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:closed:audio",
+            "transcript": "closed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:closed:r1",
+              "targetText": "closed",
+              "meaningByLocale": {
+                "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+                "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "closed",
+            "definitionByLocale": {
+              "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+              "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-16:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -822,6 +779,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:big",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — big",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:big:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — big",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:big:audio",
+            "transcript": "big"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:big:r1",
+              "targetText": "big",
+              "meaningByLocale": {
+                "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+                "uk": "великий. It is big — «Він великий», наприклад, зал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "big",
+            "definitionByLocale": {
+              "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+              "uk": "великий. It is big — «Він великий», наприклад, зал."
+            }
           }
         },
         "scriptedAlternate": null
@@ -1165,180 +1165,8 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-01:session-16:word:open",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — open",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:open:audio"
-        ],
-        "accessibilityLabel": "Картка слова — open",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:open:audio",
-            "transcript": "open"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:open:r1",
-              "targetText": "open",
-              "meaningByLocale": {
-                "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
-                "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "open",
-            "definitionByLocale": {
-              "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
-              "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-16:word:big",
-        "ordinal": 5,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — big",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:big:audio"
-        ],
-        "accessibilityLabel": "Картка слова — big",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:big:audio",
-            "transcript": "big"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:big:r1",
-              "targetText": "big",
-              "meaningByLocale": {
-                "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
-                "uk": "великий. It is big — «Він великий», наприклад, зал."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "big",
-            "definitionByLocale": {
-              "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
-              "uk": "великий. It is big — «Він великий», наприклад, зал."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-16:word:clean",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — clean",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:clean:audio"
-        ],
-        "accessibilityLabel": "Картка слова — clean",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:clean:audio",
-            "transcript": "clean"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:clean:r1",
-              "targetText": "clean",
-              "meaningByLocale": {
-                "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
-                "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "clean",
-            "definitionByLocale": {
-              "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
-              "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-16:word:closed",
-        "ordinal": 7,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — closed",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-16:word:closed:audio"
-        ],
-        "accessibilityLabel": "Картка слова — closed",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-16:word:closed:audio",
-            "transcript": "closed"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-16:word:closed:r1",
-              "targetText": "closed",
-              "meaningByLocale": {
-                "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
-                "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "closed",
-            "definitionByLocale": {
-              "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
-              "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-16:i01",
-        "ordinal": 8,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1382,7 +1210,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i02",
-        "ordinal": 9,
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1458,7 +1286,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i03",
-        "ordinal": 10,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1527,8 +1355,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i04",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "ordinal": 7,
+        "purpose": "supported_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте описи людей зі значеннями",
@@ -1599,9 +1427,52 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-16:word:open",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — open",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:open:audio"
+        ],
+        "accessibilityLabel": "Картка слова — open",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:open:audio",
+            "transcript": "open"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:open:r1",
+              "targetText": "open",
+              "meaningByLocale": {
+                "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+                "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open",
+            "definitionByLocale": {
+              "ru": "открытый. It is open — «Он открыт», например, вход в зал.",
+              "uk": "відкритий, відчинений. It is open — «Він відчинений», наприклад, вхід до залу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-16:i05",
-        "ordinal": 12,
-        "purpose": "guided_practice",
+        "ordinal": 9,
+        "purpose": "supported_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
         "prompt": "Послухайте фразу про вхід і складіть її",
@@ -1646,8 +1517,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-16:word:clean",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clean",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:clean:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clean",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:clean:audio",
+            "transcript": "clean"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:clean:r1",
+              "targetText": "clean",
+              "meaningByLocale": {
+                "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+                "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clean",
+            "definitionByLocale": {
+              "ru": "чистый. It is clean — «Он чистый», например, вымытый стол без пятен.",
+              "uk": "чистий. It is clean — «Він чистий», наприклад, вимитий стіл без плям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-16:i06",
-        "ordinal": 13,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1691,7 +1605,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i07",
-        "ordinal": 14,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1724,7 +1638,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i08",
-        "ordinal": 15,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1793,7 +1707,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i09",
-        "ordinal": 16,
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1869,8 +1783,8 @@
       },
       {
         "interactionId": "en:lesson-01:session-16:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
         "prompt": "З’єднайте якості зі значеннями",
@@ -1941,8 +1855,51 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-01:session-16:word:closed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — closed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:closed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — closed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:closed:audio",
+            "transcript": "closed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:closed:r1",
+              "targetText": "closed",
+              "meaningByLocale": {
+                "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+                "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "closed",
+            "definitionByLocale": {
+              "ru": "закрытый. It is closed — «Он закрыт», например, запертый вход.",
+              "uk": "закритий, зачинений. It is closed — «Він зачинений», наприклад, замкнений вхід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-01:session-16:i11",
-        "ordinal": 18,
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1983,6 +1940,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-16:word:big",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — big",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-16:word:big:audio"
+        ],
+        "accessibilityLabel": "Картка слова — big",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-16:word:big:audio",
+            "transcript": "big"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-16:word:big:r1",
+              "targetText": "big",
+              "meaningByLocale": {
+                "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+                "uk": "великий. It is big — «Він великий», наприклад, зал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "big",
+            "definitionByLocale": {
+              "ru": "большой. It is big — «Он большой», например, зал или шкаф.",
+              "uk": "великий. It is big — «Він великий», наприклад, зал."
+            }
           }
         },
         "scriptedAlternate": null
@@ -2327,26 +2327,6 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-01:session-16:word:open",
-      "correctText": "open",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-16:word:big",
-      "correctText": "big",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-16:word:clean",
-      "correctText": "clean",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-16:word:closed",
-      "correctText": "closed",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-16:i01",
       "correctText": "I am kind.",
       "correctResponseId": null
@@ -2367,8 +2347,18 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-01:session-16:word:open",
+      "correctText": "open",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-16:i05",
       "correctText": "It is open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:word:clean",
+      "correctText": "clean",
       "correctResponseId": null
     },
     {
@@ -2397,8 +2387,18 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-01:session-16:word:closed",
+      "correctText": "closed",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-01:session-16:i11",
       "correctText": "It is closed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:word:big",
+      "correctText": "big",
       "correctResponseId": null
     },
     {

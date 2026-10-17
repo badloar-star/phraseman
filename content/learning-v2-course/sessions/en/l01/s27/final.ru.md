@@ -56,73 +56,73 @@
 <!-- interaction_id: en:lesson-01:session-27:word:awake; family: word_card -->
 > **awake** — не спит, бодрствует. She is awake — «Она не спит». Человек может уже не спать, но ещё чувствовать сонливость.
 
-**2 · Карточка слова — asleep**
-<!-- interaction_id: en:lesson-01:session-27:word:asleep; family: word_card -->
-> **asleep** — спит. They are asleep — «Они спят». Это состояние сна, а не просто желание спать.
-
-**3 · Карточка слова — available**
-<!-- interaction_id: en:lesson-01:session-27:word:available; family: word_card -->
-> **available** — свободен, может уделить время. I am available — «Я свободен / свободна»: сейчас можете поговорить или помочь. Знакомое free тоже может обозначать свободное время.
-
-**4 · Карточка слова — dressed**
-<!-- interaction_id: en:lesson-01:session-27:word:dressed; family: word_card -->
-> **dressed** — одет. She is dressed — «Она одета»: уже надела одежду. Это ещё не значит, что она закончила все сборы.
-
-**5 · Соберите ответ другу — вы уже проснулись: «Я не сплю»**
+**2 · Соберите ответ другу — вы уже проснулись: «Я не сплю»**
 <!-- interaction_id: en:lesson-01:session-27:i01; family: phrase_builder -->
 Плитки: `awake` `am` `I` `is` → **I am awake.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am awake.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — asleep**
+<!-- interaction_id: en:lesson-01:session-27:word:asleep; family: word_card -->
+> **asleep** — спит. They are asleep — «Они спят». Это состояние сна, а не просто желание спать.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-27:i02; family: listen_choose -->
 🔊 *She is asleep.* → **She is asleep.** · He is asleep. · She is awake.
 - He is asleep. — *В записи первое слово — `She`, а в этом варианте — `He`.*
 - She is awake. — *В записи последнее слово — `asleep`, а в этом варианте — `awake`.*
 
-**7 · Двое друзей закончили дела и могут сейчас помочь. Вставьте слово**
+**5 · Карточка слова — available**
+<!-- interaction_id: en:lesson-01:session-27:word:available; family: word_card -->
+> **available** — свободен, может уделить время. I am available — «Я свободен / свободна»: сейчас можете поговорить или помочь. Знакомое free тоже может обозначать свободное время.
+
+**6 · Двое друзей закончили дела и могут сейчас помочь. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-27:i03; family: context_gap_grammar -->
 They ___ available. → **are** · is · am
 - is — *После `They` нужно `are`.*
 - am — *`am` нужно после `I`. Здесь `They are`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-27:i04; family: speed_match -->
 awake — не спит · asleep — спит · available — свободен, может уделить время · dressed — одет
 
-**9 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-27:i05; family: listen_build_dictation -->
 🔊 *We are awake.* Плитки: `awake` `are` `We` `They` → **We are awake.**
 *(плитка `They` лишняя: здесь нужно `We` — `We are awake.`)*
 
-**10 · Друг ещё спит. Соберите сообщение о нём**
+**9 · Друг ещё спит. Соберите сообщение о нём**
 <!-- interaction_id: en:lesson-01:session-27:i06; family: phrase_builder -->
 Плитки: `asleep` `is` `He` `are` → **He is asleep.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is asleep.`)*
 
-**11 · Вы закончили свои дела и можете сейчас помочь сестре. Скажите ей, что вы свободны, используя available**
+**10 · Вы закончили свои дела и можете сейчас помочь сестре. Скажите ей, что вы свободны, используя available**
 <!-- interaction_id: en:lesson-01:session-27:i07; family: scripted_repeat_compare -->
 🎙 **I am available.**
 
-**12 · Подруга уже проснулась. Нужно сказать только, что она не спит. Выберите слово**
+**11 · Подруга уже проснулась. Нужно сказать только, что она не спит. Выберите слово**
 <!-- interaction_id: en:lesson-01:session-27:i08; family: context_gap_grammar -->
 She is ___ . → **awake** · asleep · worried
 - asleep — *`asleep` — «спит». Подруга уже не спит: `awake`.*
 - worried — *`worried` — «волнуется». О тревоге ничего не сказано; здесь `awake`.*
 
-**13 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-01:session-27:i09; family: listen_choose -->
 🔊 *You are available.* → **You are available.** · We are available. · You are confused.
 - We are available. — *В записи первое слово — `You`, а в этом варианте — `We`.*
 - You are confused. — *В записи последнее слово — `available`, а в этом варианте — `confused`.*
 
-**14 · Соедините знакомые слова со значениями**
+**13 · Соедините знакомые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-27:i10; family: speed_match -->
 bored — скучает · confused — запутался · worried — волнуется · together — вместе
 
-**15 · Послушайте и соберите услышанное**
+**14 · Послушайте и соберите услышанное**
 <!-- interaction_id: en:lesson-01:session-27:i11; family: listen_build_dictation -->
 🔊 *They are asleep.* Плитки: `asleep` `are` `They` `is` → **They are asleep.**
 *(плитка `is` лишняя: здесь нужно `are` — `They are asleep.`)*
+
+**15 · Карточка слова — dressed**
+<!-- interaction_id: en:lesson-01:session-27:word:dressed; family: word_card -->
+> **dressed** — одет. She is dressed — «Она одета»: уже надела одежду. Это ещё не значит, что она закончила все сборы.
 
 **16 · Подруга уже надела одежду для прогулки. Соберите фразу о ней: «Она одета»**
 <!-- interaction_id: en:lesson-01:session-27:i12; family: phrase_builder -->
@@ -152,4 +152,3 @@ dressed — одет · awake — не спит · asleep — спит · availa
 **21 · Коллега просит вас с напарником помочь с переносом стола. Вы оба свободны и можете уделить ему время. Скажите это за вас обоих, используя available**
 <!-- interaction_id: en:lesson-01:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We are available.**
-

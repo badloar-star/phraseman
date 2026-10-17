@@ -386,51 +386,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-12:i08",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — smart",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-12:i08:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — smart",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-12:i08:audio",
-            "transcript": "smart"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-12:i08:r1",
-              "targetText": "smart",
-              "meaningByLocale": {
-                "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
-                "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "smart",
-            "definitionByLocale": {
-              "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
-              "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-12:i09",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -494,6 +451,49 @@
               }
             }
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-12:i08",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — smart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-12:i08:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — smart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-12:i08:audio",
+            "transcript": "smart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i08:r1",
+              "targetText": "smart",
+              "meaningByLocale": {
+                "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
+                "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smart",
+            "definitionByLocale": {
+              "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
+              "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1442,51 +1442,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-12:i08",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — smart",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-12:i08:audio"
-        ],
-        "accessibilityLabel": "Картка слова — smart",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-12:i08:audio",
-            "transcript": "smart"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-12:i08:r1",
-              "targetText": "smart",
-              "meaningByLocale": {
-                "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
-                "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "smart",
-            "definitionByLocale": {
-              "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
-              "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-12:i09",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
@@ -1550,6 +1507,49 @@
               }
             }
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-12:i08",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — smart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-12:i08:audio"
+        ],
+        "accessibilityLabel": "Картка слова — smart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-12:i08:audio",
+            "transcript": "smart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-12:i08:r1",
+              "targetText": "smart",
+              "meaningByLocale": {
+                "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
+                "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smart",
+            "definitionByLocale": {
+              "ru": "умный, сообразительный. Например, человек придумывает удачное решение сложной задачи. You are smart — «Ты умный / умная».",
+              "uk": "розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -2152,14 +2152,14 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-12:i08",
-      "correctText": "smart",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-12:i09",
       "correctText": "are",
       "correctResponseId": "en:lesson-01:session-12:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i08",
+      "correctText": "smart",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-12:i10",

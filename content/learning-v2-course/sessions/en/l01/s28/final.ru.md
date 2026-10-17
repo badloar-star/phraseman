@@ -56,52 +56,52 @@
 <!-- interaction_id: en:lesson-01:session-28:word:correct; family: word_card -->
 > **correct** — верный, правильный: про время, ответ, сумму. It is correct — «Оно верное». Про человека, который прав, тоже можно сказать You are correct.
 
-**2 · Карточка слова — certain**
-<!-- interaction_id: en:lesson-01:session-28:word:certain; family: word_card -->
-> **certain** — уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.
-
-**3 · Карточка слова — punctual**
-<!-- interaction_id: en:lesson-01:session-28:word:punctual; family: word_card -->
-> **punctual** — пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.
-
-**4 · Карточка слова — strict**
-<!-- interaction_id: en:lesson-01:session-28:word:strict; family: word_card -->
-> **strict** — строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.
-
-**5 · Вы сверили время в билете с расписанием. Соберите фразу: «Оно верное»**
+**2 · Вы сверили время в билете с расписанием. Соберите фразу: «Оно верное»**
 <!-- interaction_id: en:lesson-01:session-28:i01; family: phrase_builder -->
 Плитки: `correct` `is` `It` `am` → **It is correct.**
 *(плитка `am` лишняя: здесь нужно `is` — `It is correct.`)*
 
-**6 · Послушайте и выберите услышанное**
+**3 · Карточка слова — certain**
+<!-- interaction_id: en:lesson-01:session-28:word:certain; family: word_card -->
+> **certain** — уверен, без сомнений. I am certain — «Я уверен / уверена». Это о чувстве человека, а не о том, верен ли ответ.
+
+**4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-28:i02; family: listen_choose -->
 🔊 *I am certain.* → **I am certain.** · I am serious. · I am prepared.
 - I am serious. — *В записи последнее слово — `certain`, а в этом варианте — `serious`.*
 - I am prepared. — *В записи последнее слово — `certain`, а в этом варианте — `prepared`.*
 
-**7 · Сестра каждый раз приходит на вокзал за десять минут до отправления. Вставьте слово**
+**5 · Карточка слова — punctual**
+<!-- interaction_id: en:lesson-01:session-28:word:punctual; family: word_card -->
+> **punctual** — пунктуальный, всегда приходит вовремя. She is punctual — «Она пунктуальная». Это привычка, а не один случай.
+
+**6 · Сестра каждый раз приходит на вокзал за десять минут до отправления. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-28:i03; family: context_gap_grammar -->
 She ___ punctual. → **is** · are · am
 - are — *После `She` нужно `is`.*
 - am — *`am` ставим после `I`. Здесь `She is`.*
 
-**8 · Соедините новые слова со значениями**
+**7 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-28:i04; family: speed_match -->
 correct — верный · certain — уверен · punctual — пунктуальный · strict — строгий
 
-**9 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-01:session-28:i05; family: listen_build_dictation -->
 🔊 *She is certain.* Плитки: `certain` `is` `She` `He` → **She is certain.**
 *(плитка `He` лишняя: здесь нужно `She` — `She is certain.`)*
 
-**10 · Друг смеётся над выездом в пять утра. Вы с сестрой отвечаете, что это не шутка. Соберите: «Мы серьёзно»**
+**9 · Друг смеётся над выездом в пять утра. Вы с сестрой отвечаете, что это не шутка. Соберите: «Мы серьёзно»**
 <!-- interaction_id: en:lesson-01:session-28:i06; family: phrase_builder -->
 Плитки: `serious` `are` `We` `is` → **We are serious.**
 *(плитка `is` лишняя: здесь нужно `are` — `We are serious.`)*
 
-**11 · Друг спрашивает, не опоздаете ли вы. Вы всегда приходите вовремя. Скажите о себе, используя punctual**
+**10 · Друг спрашивает, не опоздаете ли вы. Вы всегда приходите вовремя. Скажите о себе, используя punctual**
 <!-- interaction_id: en:lesson-01:session-28:i07; family: scripted_repeat_compare -->
 🎙 **I am punctual.**
+
+**11 · Карточка слова — strict**
+<!-- interaction_id: en:lesson-01:session-28:word:strict; family: word_card -->
+> **strict** — строгий, не делает исключений из правил. He is strict — «Он строгий». Строгий — не значит злой.
 
 **12 · Контролёры в этом поезде проверяют каждый билет. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-28:i08; family: context_gap_grammar -->

@@ -63,35 +63,35 @@
 - ❌ cold — *У записі hot, а не cold.*
 - ❌ tired — *У записі hot, а не tired.*
 
-**3 · Картка слова — sick**
-<!-- interaction_id: en:lesson-01:session-05:i03; family: word_card -->
-> **sick** — «хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу.
-
-**4 · Складіть фразу — у кімнаті душно, і ви знімаєте светр**
+**3 · Складіть фразу — у кімнаті душно, і ви знімаєте светр**
 <!-- interaction_id: en:lesson-01:session-05:i04; family: phrase_builder -->
 Плитки: `am` `hot` `I` → **I am hot.**
 
-**5 · Картка слова — lost**
+**4 · Картка слова — lost**
 <!-- interaction_id: en:lesson-01:session-05:i05; family: word_card -->
 > **lost** — «заблукав / заблукала»: ви не можете знайти дорогу.
 
-**6 · Послухайте й виберіть слово**
+**5 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-01:session-05:i06; family: listen_choose -->
 🔊 *lost*
 - ✅ lost
 - ❌ hot — *У записі lost, а не hot.*
 - ❌ early — *У записі lost, а не early.*
 
-**7 · Картка слова — new**
-<!-- interaction_id: en:lesson-01:session-05:i07; family: word_card -->
-> **new** — «новий»; про людину, яка нещодавно приєдналася до групи чи команди.
+**6 · Картка слова — sick**
+<!-- interaction_id: en:lesson-01:session-05:i03; family: word_card -->
+> **sick** — «хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу.
 
-**8 · Послухайте й виберіть слово**
+**7 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-01:session-05:i08; family: listen_choose -->
 🔊 *sick*
 - ✅ sick
 - ❌ fine — *У записі sick, а не fine.*
 - ❌ sad — *У записі sick, а не sad.*
+
+**8 · Картка слова — new**
+<!-- interaction_id: en:lesson-01:session-05:i07; family: word_card -->
+> **new** — «новий»; про людину, яка нещодавно приєдналася до групи чи команди.
 
 **9 · Складіть фразу — ви щойно почали працювати в команді**
 <!-- interaction_id: en:lesson-01:session-05:i09; family: phrase_builder -->
@@ -135,13 +135,13 @@ I ___ fine. → **am** · is · are
 Плитки: `I` `tired` `not` `am` → **I am tired.**
 *(плитка `not` зайва: з нею фраза заперечувала б втому)*
 
-**17 · Картка слова — sorry**
-<!-- interaction_id: en:lesson-01:session-05:word:sorry; family: word_card -->
-> **sorry** — «вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте.
-
-**18 · З'єднайте англійські слова з їхнім значенням**
+**17 · З'єднайте англійські слова з їхнім значенням**
 <!-- interaction_id: en:lesson-01:session-05:i17; family: speed_match -->
 fine — гаразд · sure — без сумнівів · ready — готовність почати · sorry — вибачте
+
+**18 · Картка слова — sorry**
+<!-- interaction_id: en:lesson-01:session-05:word:sorry; family: word_card -->
+> **sorry** — «вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте.
 
 **19 · Скажіть уголос — ви зачепили колегу в коридорі**
 <!-- interaction_id: en:lesson-01:session-05:i18:s01; family: scripted_repeat_compare -->
@@ -158,4 +158,3 @@ fine — гаразд · sure — без сумнівів · ready — гото�
 I am hot. — мені жарко · I am not sick. — я не хворію · I am ready. — з мого боку все готово · I am not hot. — мені не спекотно
 
 ---
-

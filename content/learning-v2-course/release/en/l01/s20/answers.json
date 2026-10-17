@@ -5,21 +5,6 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-20:word:steep",
-    "correctText": "steep",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-20:word:muddy",
-    "correctText": "muddy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-20:word:loud",
-    "correctText": "loud",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-20:i01",
     "correctText": "We are prepared.",
     "correctResponseId": null
@@ -30,6 +15,11 @@
     "correctResponseId": "en:lesson-01:session-20:i02:r1"
   },
   {
+    "interactionId": "en:lesson-01:session-20:word:muddy",
+    "correctText": "muddy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-20:i03",
     "correctText": "am",
     "correctResponseId": "en:lesson-01:session-20:i03:r1"
@@ -37,6 +27,11 @@
   {
     "interactionId": "en:lesson-01:session-20:i04",
     "correctText": "en:lesson-01:session-20:i04:p1=prepared\nen:lesson-01:session-20:i04:p2=steep\nen:lesson-01:session-20:i04:p3=muddy\nen:lesson-01:session-20:i04:p4=loud",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:word:steep",
+    "correctText": "steep",
     "correctResponseId": null
   },
   {
@@ -88,6 +83,11 @@
     "interactionId": "en:lesson-01:session-20:i14",
     "correctText": "together",
     "correctResponseId": "en:lesson-01:session-20:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:word:loud",
+    "correctText": "loud",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-20:i15",

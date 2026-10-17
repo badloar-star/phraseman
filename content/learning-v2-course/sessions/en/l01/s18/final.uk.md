@@ -56,88 +56,88 @@
 <!-- interaction_id: en:lesson-01:session-18:word:confused; family: word_card -->
 > **confused** — розгублений, спантеличений. I am confused — «Я заплутався / заплуталася», наприклад, не розібрався в оголошенні.
 
-**2 · Картка слова — sleepy**
-<!-- interaction_id: en:lesson-01:session-18:word:sleepy; family: word_card -->
-> **sleepy** — сонний, той, хто хоче спати. We are sleepy — «Ми сонні».
-
-**3 · Картка слова — relieved**
-<!-- interaction_id: en:lesson-01:session-18:word:relieved; family: word_card -->
-> **relieved** — той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення».
-
-**4 · Картка слова — funny**
-<!-- interaction_id: en:lesson-01:session-18:word:funny; family: word_card -->
-> **funny** — смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії.
-
-**5 · Складіть фразу — ви не зрозуміли оголошення й заплуталися. Скажіть про себе**
+**2 · Складіть фразу — ви не зрозуміли оголошення й заплуталися. Скажіть про себе**
 <!-- interaction_id: en:lesson-01:session-18:i01; family: phrase_builder -->
 Плитки: `confused` `am` `I` `are` → **I am confused.**
 Плитка `are` зайва: з I потрібне am.
 
-**6 · Послухайте й виберіть почуте**
+**3 · Картка слова — sleepy**
+<!-- interaction_id: en:lesson-01:session-18:word:sleepy; family: word_card -->
+> **sleepy** — сонний, той, хто хоче спати. We are sleepy — «Ми сонні».
+
+**4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-18:i02; family: listen_choose -->
 🔊 *We are sleepy.* → **We are sleepy.** · You are sleepy. · We are early.
 - You are sleepy. — *У записі We, а не You.*
 - We are early. — *У записі sleepy, а не early.*
 
-**7 · Вставте слово — пасажири знайшли загублені квитки й відчувають полегшення**
+**5 · Картка слова — relieved**
+<!-- interaction_id: en:lesson-01:session-18:word:relieved; family: word_card -->
+> **relieved** — той, хто відчуває полегшення: причина тривоги зникла. They are relieved — «Вони відчувають полегшення».
+
+**6 · Вставте слово — пасажири знайшли загублені квитки й відчувають полегшення**
 <!-- interaction_id: en:lesson-01:session-18:i03; family: context_gap_grammar -->
 They ___ relieved. → **are** · am · is
 - am — *З They потрібне are; am уживається з I.*
 - is — *Після They у цій фразі потрібне are.*
 
-**8 · З’єднайте нові слова зі значеннями**
+**7 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-18:i04; family: speed_match -->
 confused — розгублений · sleepy — сонний · relieved — той, хто відчуває полегшення · funny — смішний
 
-**9 · Послухайте й складіть почуту фразу**
+**8 · Послухайте й складіть почуту фразу**
 <!-- interaction_id: en:lesson-01:session-18:i05; family: listen_build_dictation -->
 🔊 *You are confused.* Плитки: `confused` `are` `You` `We` → **You are confused.**
 Плитка `We` зайва: у записі You.
 
-**10 · Ви з другом знайшли потрібний потяг і більше не тривожитеся. Скажіть за вас обох, що ви відчуваєте полегшення**
+**9 · Ви з другом знайшли потрібний потяг і більше не тривожитеся. Скажіть за вас обох, що ви відчуваєте полегшення**
 <!-- interaction_id: en:lesson-01:session-18:i06; family: phrase_builder -->
 Плитки: `relieved` `are` `We` `is` → **We are relieved.**
 Плитка `is` зайва: після We потрібне are.
 
-**11 · Ваша сестра каже, що хоче спати. Повідомте другові про неї: «Вона сонна»**
+**10 · Ваша сестра каже, що хоче спати. Повідомте другові про неї: «Вона сонна»**
 <!-- interaction_id: en:lesson-01:session-18:i07; family: scripted_repeat_compare -->
 🎙 Скажіть: **She is sleepy.**
 
-**12 · Вставте слово — друг правильно прочитав номер платформи. Скажіть йому: «Ти маєш рацію»**
+**11 · Вставте слово — друг правильно прочитав номер платформи. Скажіть йому: «Ти маєш рацію»**
 <!-- interaction_id: en:lesson-01:session-18:i08; family: context_gap_grammar -->
 You ___ right. → **are** · is · am
 - is — *Звертаючись до друга, кажемо `You are`.*
 - am — *`am` ставимо з `I`, а тут початок `You`.*
 
-**13 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-01:session-18:i09; family: listen_choose -->
 🔊 *He is lucky.* → **He is lucky.** · She is lucky. · He is wrong.
 - She is lucky. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is wrong. — *У записі останнє слово — `lucky`, а в цьому варіанті — `wrong`.*
 
-**14 · З’єднайте знайомі слова зі значеннями**
+**13 · З’єднайте знайомі слова зі значеннями**
 <!-- interaction_id: en:lesson-01:session-18:i10; family: speed_match -->
 welcome — бажаний · safe — у безпеці · old — старий · kind — добрий
 
-**15 · Послухайте й складіть почуте**
+**14 · Послухайте й складіть почуте**
 <!-- interaction_id: en:lesson-01:session-18:i11; family: listen_build_dictation -->
 🔊 *They are early.* Плитки: `early` `are` `They` `is` → **They are early.**
 *(плитка `is` зайва: тут потрібно `are` — `They are early.`)*
 
-**16 · Двоє пасажирів неправильно назвали номер потяга. Складіть: «Вони помиляються»**
+**15 · Двоє пасажирів неправильно назвали номер потяга. Складіть: «Вони помиляються»**
 <!-- interaction_id: en:lesson-01:session-18:i12; family: phrase_builder -->
 Плитки: `wrong` `are` `They` `He` → **They are wrong.**
 *(плитка `He` зайва: тут потрібно `They` — `They are wrong.`)*
 
-**17 · Другові випадково дісталося останнє місце біля вікна. Скажіть йому вголос: «Тобі пощастило»**
+**16 · Другові випадково дісталося останнє місце біля вікна. Скажіть йому вголос: «Тобі пощастило»**
 <!-- interaction_id: en:lesson-01:session-18:i13; family: scripted_repeat_compare -->
 🎙 **You are lucky.**
 
-**18 · Ви вже пішли з небезпечної ділянки платформи. Скажіть за вас обох: «Ми в безпеці»**
+**17 · Ви вже пішли з небезпечної ділянки платформи. Скажіть за вас обох: «Ми в безпеці»**
 <!-- interaction_id: en:lesson-01:session-18:i14; family: context_gap_grammar -->
 We are ___ . → **safe** · wrong · early
 - wrong — *`wrong` — «не має рації». Відсутність небезпеки — `safe`.*
 - early — *`early` — «рано». Зараз ідеться про безпеку: `safe`.*
+
+**18 · Картка слова — funny**
+<!-- interaction_id: en:lesson-01:session-18:word:funny; family: word_card -->
+> **funny** — смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії.
 
 **19 · Послухайте фразу про попутницю й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-18:i15; family: listen_choose -->
@@ -152,4 +152,3 @@ early — завчасно · lucky — везучий · funny — смішни
 **21 · Наступного дня ви із сестрою прийшли до кінотеатру за годину до домовленої зустрічі. Скажіть за вас обох, що ви прийшли завчасно**
 <!-- interaction_id: en:lesson-01:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **We are early.**
-

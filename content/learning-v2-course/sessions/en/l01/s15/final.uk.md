@@ -117,7 +117,6 @@ You ___ lucky. → **are** · am · is
 🔊 *You are not sad.* Плитки: `sad` `not` `You` `are` `am` → **You are not sad.**
 *(плитка `am` зайва: з `you` вживається `are`; `am` вживають з `I`.)*
 
-
 **14 · Вставте слово — Віка допомогла вам розібратися з незрозумілою формою. Відзначте користь її допомоги**
 <!-- interaction_id: en:lesson-01:session-15:i14; family: context_gap_grammar -->
 You are ___ . → **helpful** · lucky · tired
@@ -139,12 +138,10 @@ You are ___ . → **helpful** · lucky · tired
 Плитки: `You` `are` `honest` `is` → **You are honest.**
 *(плитка `is` зайва: `is` не підходить до звертання `you`; тут потрібно `are`.)*
 
-
 **18 · Віка думає, що ви засмучені; скажіть їй, що ви не сумуєте**
 <!-- interaction_id: en:lesson-01:session-15:i17:s02; family: listen_build_dictation -->
 🔊 *I am not sad.* Плитки: `sad` `not` `I` `am` `is` → **I am not sad.**
 *(плитка `is` зайва: коли говорите про себе, використовуйте `I am`, а не `I is`.)*
-
 
 **19 · Складіть фразу — Віка допомогла знайти потрібний пункт в інструкції. Скажіть їй, що її допомога корисна**
 <!-- interaction_id: en:lesson-01:session-15:i18; family: phrase_builder -->
@@ -160,10 +157,8 @@ You are ___ . → **helpful** · lucky · tired
 🔊 *I am tired.* Плитки: `tired` `I` `am` `is` → **I am tired.**
 *(плитка `is` зайва: коли говорите про себе, використовуйте `I am`, а не `I is`.)*
 
-
 **22 · Скажіть уголос — людина притримала двері для Віки з коробками, і вона подякувала; скажіть Віці: «ти ввічлива»**
 <!-- interaction_id: en:lesson-01:session-15:i20; family: scripted_repeat_compare -->
 🎙 **You are polite.**
 
 ---
-

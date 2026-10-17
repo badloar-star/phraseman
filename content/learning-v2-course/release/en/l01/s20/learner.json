@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-20:word:steep",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — steep",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:word:steep:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — steep",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:word:steep:audio",
-          "transcript": "steep"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:word:steep:r1",
-            "targetText": "steep",
-            "meaningByLocale": {
-              "ru": "крутой — о склоне или подъёме с сильным наклоном. It is steep — «Он крутой»: вы показываете на подъём.",
-              "uk": "крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "steep",
-          "definitionByLocale": {
-            "ru": "крутой — о склоне или подъёме с сильным наклоном. It is steep — «Он крутой»: вы показываете на подъём.",
-            "uk": "крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:word:muddy",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — muddy",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:word:muddy:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — muddy",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:word:muddy:audio",
-          "transcript": "muddy"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:word:muddy:r1",
-            "targetText": "muddy",
-            "meaningByLocale": {
-              "ru": "в грязи, покрытый грязью. It is muddy — «Она в грязи»: например, куртка после падения в лужу с грязью.",
-              "uk": "у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "muddy",
-          "definitionByLocale": {
-            "ru": "в грязи, покрытый грязью. It is muddy — «Она в грязи»: например, куртка после падения в лужу с грязью.",
-            "uk": "у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-20:word:loud",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — loud",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-20:word:loud:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — loud",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-20:word:loud:audio",
-          "transcript": "loud"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-20:word:loud:r1",
-            "targetText": "loud",
-            "meaningByLocale": {
-              "ru": "громкий. He is loud — «Он громкий»: турист разговаривает так громко, что его слышит вся группа.",
-              "uk": "гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "loud",
-          "definitionByLocale": {
-            "ru": "громкий. He is loud — «Он громкий»: турист разговаривает так громко, что его слышит вся группа.",
-            "uk": "гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-20:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -221,7 +92,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i02",
-      "ordinal": 9,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -296,8 +167,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-20:word:muddy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — muddy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:word:muddy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — muddy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:word:muddy:audio",
+          "transcript": "muddy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:word:muddy:r1",
+            "targetText": "muddy",
+            "meaningByLocale": {
+              "ru": "в грязи, покрытый грязью. It is muddy — «Она в грязи»: например, куртка после падения в лужу с грязью.",
+              "uk": "у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muddy",
+          "definitionByLocale": {
+            "ru": "в грязи, покрытый грязью. It is muddy — «Она в грязи»: например, куртка после падения в лужу с грязью.",
+            "uk": "у багнюці, вкритий багнюкою. It is muddy — «Вона в багнюці»: наприклад, куртка після падіння в брудну калюжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-20:i03",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -366,8 +280,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i04",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините новые слова и значения",
@@ -438,8 +352,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-20:word:steep",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — steep",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:word:steep:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — steep",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:word:steep:audio",
+          "transcript": "steep"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:word:steep:r1",
+            "targetText": "steep",
+            "meaningByLocale": {
+              "ru": "крутой — о склоне или подъёме с сильным наклоном. It is steep — «Он крутой»: вы показываете на подъём.",
+              "uk": "крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "steep",
+          "definitionByLocale": {
+            "ru": "крутой — о склоне или подъёме с сильным наклоном. It is steep — «Он крутой»: вы показываете на подъём.",
+            "uk": "крутий — про схил або підйом із сильним нахилом. It is steep — «Він крутий»: ви показуєте на підйом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-20:i05",
-      "ordinal": 12,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -486,7 +443,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -530,7 +487,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -563,7 +520,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -632,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i09",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -708,8 +665,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова со значениями",
@@ -781,7 +738,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i11",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -828,7 +785,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i12",
-      "ordinal": 19,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -872,7 +829,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i13",
-      "ordinal": 20,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -905,8 +862,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-20:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Все из вашей компании снова собрались в одном месте. Скажите: «Мы вместе»",
@@ -969,6 +926,49 @@
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:word:loud",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — loud",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:word:loud:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — loud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:word:loud:audio",
+          "transcript": "loud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:word:loud:r1",
+            "targetText": "loud",
+            "meaningByLocale": {
+              "ru": "громкий. He is loud — «Он громкий»: турист разговаривает так громко, что его слышит вся группа.",
+              "uk": "гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loud",
+          "definitionByLocale": {
+            "ru": "громкий. He is loud — «Он громкий»: турист разговаривает так громко, что его слышит вся группа.",
+            "uk": "гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "27b4fa3cc34717970f459f0a76bfefe9bf3c0f2aa506dcdc76d15c7156a16aaa"
+  "learnerFingerprint": "2f0523b60b725aaee207ecdfe91f8b360925f05a02cf61f22765cde96e8ef579"
 }

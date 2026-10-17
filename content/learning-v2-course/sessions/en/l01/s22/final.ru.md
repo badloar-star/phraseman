@@ -56,73 +56,73 @@
 <!-- interaction_id: en:lesson-01:session-22:word:rich; family: word_card -->
 > **rich** — богатый: у человека много денег и имущества. He is rich — «Он богатый».
 
-**2 · Карточка слова — poor**
-<!-- interaction_id: en:lesson-01:session-22:word:poor; family: word_card -->
-> **poor** — бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.
-
-**3 · Карточка слова — famous**
-<!-- interaction_id: en:lesson-01:session-22:word:famous; family: word_card -->
-> **famous** — знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.
-
-**4 · Карточка слова — generous**
-<!-- interaction_id: en:lesson-01:session-22:word:generous; family: word_card -->
-> **generous** — щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.
-
-**5 · Соберите фразу о состоятельном герое: «Он богатый»**
+**2 · Соберите фразу о состоятельном герое: «Он богатый»**
 <!-- interaction_id: en:lesson-01:session-22:i01; family: phrase_builder -->
 Плитки: `rich` `is` `He` `are` → **He is rich.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is rich.`)*
 
-**6 · Послушайте и выберите услышанную фразу**
+**3 · Карточка слова — poor**
+<!-- interaction_id: en:lesson-01:session-22:word:poor; family: word_card -->
+> **poor** — бедный: у человека мало денег на жизнь. She is poor — «Она бедная». Здесь слово описывает материальное положение.
+
+**4 · Послушайте и выберите услышанную фразу**
 <!-- interaction_id: en:lesson-01:session-22:i02; family: listen_choose -->
 🔊 *She is poor.* → **She is poor.** · He is poor. · She is rich.
 - He is poor. — *В записи первое слово — `She`, а в этом варианте — `He`.*
 - She is rich. — *В записи последнее слово — `poor`, а в этом варианте — `rich`.*
 
-**7 · Вставьте слово — двух певцов знают по всей стране**
+**5 · Карточка слова — famous**
+<!-- interaction_id: en:lesson-01:session-22:word:famous; family: word_card -->
+> **famous** — знаменитый: его знают многие. They are famous — «Они знаменитые». Известность сама по себе не говорит о богатстве.
+
+**6 · Вставьте слово — двух певцов знают по всей стране**
 <!-- interaction_id: en:lesson-01:session-22:i03; family: context_gap_grammar -->
 They ___ famous. → **are** · is · am
 - is — *После `They` нужно `are`.*
 - am — *`am` ставим с `I`, а здесь `They are`.*
 
-**8 · Соедините новые слова и значения**
+**7 · Соедините новые слова и значения**
 <!-- interaction_id: en:lesson-01:session-22:i04; family: speed_match -->
 rich — богатый · poor — бедный · famous — знаменитый · generous — щедрый
 
-**9 · Послушайте реплику героев и соберите услышанное**
+**8 · Послушайте реплику героев и соберите услышанное**
 <!-- interaction_id: en:lesson-01:session-22:i05; family: listen_build_dictation -->
 🔊 *We are poor.* Плитки: `poor` `are` `We` `They` → **We are poor.**
 *(плитка `They` лишняя: здесь нужно `We` — `We are poor.`)*
 
-**10 · Певицу узнают во всех городах. Соберите фразу о ней: «Она знаменитая»**
+**9 · Певицу узнают во всех городах. Соберите фразу о ней: «Она знаменитая»**
 <!-- interaction_id: en:lesson-01:session-22:i06; family: phrase_builder -->
 Плитки: `famous` `is` `She` `He` → **She is famous.**
 *(плитка `He` лишняя: здесь нужно `She` — `She is famous.`)*
 
-**11 · У двух братьев в фильме много денег. Скажите о них: «Они богатые»**
+**10 · У двух братьев в фильме много денег. Скажите о них: «Они богатые»**
 <!-- interaction_id: en:lesson-01:session-22:i07; family: scripted_repeat_compare -->
 🎙 **They are rich.**
 
-**12 · Вставьте слово в реплику певицы о себе: «Я знаменитая»**
+**11 · Вставьте слово в реплику певицы о себе: «Я знаменитая»**
 <!-- interaction_id: en:lesson-01:session-22:i08; family: context_gap_grammar -->
 I ___ famous. → **am** · is · are
 - is — *О себе певица говорит `I am`.*
 - are — *После `I` нужна форма `am`.*
 
-**13 · Послушайте и выберите точную реплику**
+**12 · Послушайте и выберите точную реплику**
 <!-- interaction_id: en:lesson-01:session-22:i09; family: listen_choose -->
 🔊 *You are rich.* → **You are rich.** · We are rich. · You are famous.
 - We are rich. — *В записи первое слово — `You`, а в этом варианте — `We`.*
 - You are famous. — *В записи последнее слово — `rich`, а в этом варианте — `famous`.*
 
-**14 · Соедините знакомые слова со значениями**
+**13 · Соедините знакомые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-22:i10; family: speed_match -->
 outside — снаружи · upstairs — на верхнем этаже · clean — чистый · open — открытый
 
-**15 · Послушайте и соберите услышанную фразу**
+**14 · Послушайте и соберите услышанную фразу**
 <!-- interaction_id: en:lesson-01:session-22:i11; family: listen_build_dictation -->
 🔊 *He is famous.* Плитки: `famous` `is` `He` `She` → **He is famous.**
 *(плитка `She` лишняя: здесь нужно `He` — `He is famous.`)*
+
+**15 · Карточка слова — generous**
+<!-- interaction_id: en:lesson-01:session-22:word:generous; family: word_card -->
+> **generous** — щедрый: охотно делится деньгами, вещами или временем. He is generous — «Он щедрый». Щедрым можно быть и без большого состояния.
 
 **16 · Герой охотно делится деньгами и вещами с соседями. Соберите фразу о нём: «Он щедрый»**
 <!-- interaction_id: en:lesson-01:session-22:i12; family: phrase_builder -->
@@ -152,4 +152,3 @@ generous — щедрый · famous — знаменитый · poor — бед�
 **21 · На книжной ярмарке вы встретили писателя, которого знают по всей стране. Скажите другу о писателе: «Он знаменитый»**
 <!-- interaction_id: en:lesson-01:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **He is famous.**
-

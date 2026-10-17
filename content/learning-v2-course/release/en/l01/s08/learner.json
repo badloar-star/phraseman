@@ -47,137 +47,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-08:word:nervous",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — nervous",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-08:word:nervous:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — nervous",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-08:word:nervous:audio",
-          "transcript": "nervous"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-08:word:nervous:r1",
-            "targetText": "nervous",
-            "meaningByLocale": {
-              "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
-              "uk": "«знервований»: ви хвилюєтеся перед виступом."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "nervous",
-          "definitionByLocale": {
-            "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
-            "uk": "«знервований»: ви хвилюєтеся перед виступом."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-08:word:excited",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — excited",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-08:word:excited:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — excited",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-08:word:excited:audio",
-          "transcript": "excited"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-08:word:excited:r1",
-            "targetText": "excited",
-            "meaningByLocale": {
-              "ru": "«в радостном волнении»: вы с нетерпением ждёте приятного события.",
-              "uk": "«радісно схвильований»: ви нетерпляче чекаєте приємної події."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "excited",
-          "definitionByLocale": {
-            "ru": "«в радостном волнении»: вы с нетерпением ждёте приятного события.",
-            "uk": "«радісно схвильований»: ви нетерпляче чекаєте приємної події."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-08:word:thirsty",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — thirsty",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-08:word:thirsty:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — thirsty",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-08:word:thirsty:audio",
-          "transcript": "thirsty"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-08:word:thirsty:r1",
-            "targetText": "thirsty",
-            "meaningByLocale": {
-              "ru": "«испытывающий жажду»: вы хотите пить.",
-              "uk": "«спраглий»: ви хочете пити."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "thirsty",
-          "definitionByLocale": {
-            "ru": "«испытывающий жажду»: вы хотите пить.",
-            "uk": "«спраглий»: ви хочете пити."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-08:i01",
-      "ordinal": 8,
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -245,8 +116,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-08:word:nervous",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nervous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:word:nervous:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nervous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:word:nervous:audio",
+          "transcript": "nervous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:word:nervous:r1",
+            "targetText": "nervous",
+            "meaningByLocale": {
+              "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
+              "uk": "«знервований»: ви хвилюєтеся перед виступом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nervous",
+          "definitionByLocale": {
+            "ru": "«нервничающий»: вы волнуетесь перед выступлением.",
+            "uk": "«знервований»: ви хвилюєтеся перед виступом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-08:i02",
-      "ordinal": 9,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -321,8 +235,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-08:word:excited",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — excited",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:word:excited:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — excited",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:word:excited:audio",
+          "transcript": "excited"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:word:excited:r1",
+            "targetText": "excited",
+            "meaningByLocale": {
+              "ru": "«в радостном волнении»: вы с нетерпением ждёте приятного события.",
+              "uk": "«радісно схвильований»: ви нетерпляче чекаєте приємної події."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "excited",
+          "definitionByLocale": {
+            "ru": "«в радостном волнении»: вы с нетерпением ждёте приятного события.",
+            "uk": "«радісно схвильований»: ви нетерпляче чекаєте приємної події."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-08:i03",
-      "ordinal": 10,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -366,7 +323,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i04",
-      "ordinal": 11,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -435,8 +392,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i05",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 11,
+      "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите — «голода нет»",
@@ -471,7 +428,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i06",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -544,7 +501,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i07",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -613,7 +570,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-08:i08",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -640,6 +597,49 @@
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:word:thirsty",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thirsty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:word:thirsty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thirsty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:word:thirsty:audio",
+          "transcript": "thirsty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:word:thirsty:r1",
+            "targetText": "thirsty",
+            "meaningByLocale": {
+              "ru": "«испытывающий жажду»: вы хотите пить.",
+              "uk": "«спраглий»: ви хочете пити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thirsty",
+          "definitionByLocale": {
+            "ru": "«испытывающий жажду»: вы хотите пить.",
+            "uk": "«спраглий»: ви хочете пити."
+          }
         }
       },
       "scriptedAlternate": null
@@ -1271,5 +1271,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c40bf452171232875021a733d8ec87ec566c08aec2e091cd0d7089f0ca6dcbb5"
+  "learnerFingerprint": "228b268533ec8e68e79efe4229655c58abb6d55e92841bfe8607f58253b9efd0"
 }

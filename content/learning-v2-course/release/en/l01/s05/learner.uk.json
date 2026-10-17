@@ -123,51 +123,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-05:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sick",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-05:i03:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sick",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-05:i03:audio",
-          "transcript": "sick"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-05:i03:r1",
-            "targetText": "sick",
-            "meaningByLocale": {
-              "ru": "«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.",
-              "uk": "«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sick",
-          "definitionByLocale": {
-            "ru": "«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.",
-            "uk": "«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-05:i04",
-      "ordinal": 7,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -199,7 +156,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-05:i05",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -242,7 +199,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-05:i06",
-      "ordinal": 9,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -317,32 +274,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-05:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-01:session-05:i03",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — new",
+      "prompt": "Картка слова — sick",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-05:i07:audio"
+        "en:lesson-01:session-05:i03:audio"
       ],
-      "accessibilityLabel": "Картка слова — new",
+      "accessibilityLabel": "Картка слова — sick",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-05:i07:audio",
-          "transcript": "new"
+          "audioTargetId": "en:lesson-01:session-05:i03:audio",
+          "transcript": "sick"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-01:session-05:i07:r1",
-            "targetText": "new",
+            "responseId": "en:lesson-01:session-05:i03:r1",
+            "targetText": "sick",
             "meaningByLocale": {
-              "ru": "«новый». О человеке, недавно присоединившемся к группе или команде.",
-              "uk": "«новий»; про людину, яка нещодавно приєдналася до групи чи команди."
+              "ru": "«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.",
+              "uk": "«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."
             }
           }
         ],
@@ -350,10 +307,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "new",
+          "word": "sick",
           "definitionByLocale": {
-            "ru": "«новый». О человеке, недавно присоединившемся к группе или команде.",
-            "uk": "«новий»; про людину, яка нещодавно приєдналася до групи чи команди."
+            "ru": "«болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.",
+            "uk": "«хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу."
           }
         }
       },
@@ -361,8 +318,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-05:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть слово",
@@ -432,6 +389,49 @@
         ],
         "isWordCard": false,
         "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:i07",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — new",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — new",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-05:i07:audio",
+          "transcript": "new"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-05:i07:r1",
+            "targetText": "new",
+            "meaningByLocale": {
+              "ru": "«новый». О человеке, недавно присоединившемся к группе или команде.",
+              "uk": "«новий»; про людину, яка нещодавно приєдналася до групи чи команди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "new",
+          "definitionByLocale": {
+            "ru": "«новый». О человеке, недавно присоединившемся к группе или команде.",
+            "uk": "«новий»; про людину, яка нещодавно приєдналася до групи чи команди."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -895,52 +895,9 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-05:word:sorry",
+      "interactionId": "en:lesson-01:session-05:i17",
       "ordinal": 20,
       "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sorry",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-05:word:sorry:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sorry",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-05:word:sorry:audio",
-          "transcript": "sorry"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-05:word:sorry:r1",
-            "targetText": "sorry",
-            "meaningByLocale": {
-              "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
-              "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sorry",
-          "definitionByLocale": {
-            "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
-            "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-05:i17",
-      "ordinal": 21,
-      "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З'єднайте англійські слова з їхнім значенням",
@@ -1007,6 +964,49 @@
           "accuracy",
           "personal_best"
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:word:sorry",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sorry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-05:word:sorry:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sorry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-05:word:sorry:audio",
+          "transcript": "sorry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-05:word:sorry:r1",
+            "targetText": "sorry",
+            "meaningByLocale": {
+              "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
+              "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sorry",
+          "definitionByLocale": {
+            "ru": "«извините» в I am sorry. Вы случайно задели Марину в коридоре и извиняетесь.",
+            "uk": "«вибачте» в I am sorry. Ви випадково зачепили Марину в коридорі й перепрошуєте."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1180,5 +1180,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "337ce0adea10c8e4156c1692dd34339cfb91c2ba63f934347fa4779c09d43b10"
+  "learnerFingerprint": "0b375185267247db79262c8aef0d5cc5ccad2d9f89cfe03804094e32ddc10bec"
 }

@@ -286,52 +286,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-06:i06",
+        "interactionId": "en:lesson-01:session-06:word:okay",
         "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — done",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-06:i06:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — done",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-06:i06:audio",
-            "transcript": "done"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-06:i06:r1",
-              "targetText": "done",
-              "meaningByLocale": {
-                "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
-                "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "done",
-            "definitionByLocale": {
-              "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
-              "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-06:word:okay",
-        "ordinal": 10,
-        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — okay",
@@ -373,7 +330,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-06:i07",
-        "ordinal": 11,
+        "ordinal": 10,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -421,6 +378,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — done",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-06:i06:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — done",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-06:i06:audio",
+            "transcript": "done"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-06:i06:r1",
+              "targetText": "done",
+              "meaningByLocale": {
+                "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
+                "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "done",
+            "definitionByLocale": {
+              "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
+              "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
+            }
           }
         },
         "scriptedAlternate": null
@@ -1405,52 +1405,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-06:i06",
+        "interactionId": "en:lesson-01:session-06:word:okay",
         "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — done",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-06:i06:audio"
-        ],
-        "accessibilityLabel": "Картка слова — done",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-06:i06:audio",
-            "transcript": "done"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-01:session-06:i06:r1",
-              "targetText": "done",
-              "meaningByLocale": {
-                "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
-                "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "done",
-            "definitionByLocale": {
-              "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
-              "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-06:word:okay",
-        "ordinal": 10,
-        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — okay",
@@ -1492,7 +1449,7 @@
       },
       {
         "interactionId": "en:lesson-01:session-06:i07",
-        "ordinal": 11,
+        "ordinal": 10,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1540,6 +1497,49 @@
           "completionFeedbackByLocale": {
             "ru": "",
             "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-06:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — done",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-06:i06:audio"
+        ],
+        "accessibilityLabel": "Картка слова — done",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-06:i06:audio",
+            "transcript": "done"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-06:i06:r1",
+              "targetText": "done",
+              "meaningByLocale": {
+                "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
+                "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "done",
+            "definitionByLocale": {
+              "ru": "«закончил / закончила» в I am done. Вы завершили дело, о котором идёт речь.",
+              "uk": "«закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться."
+            }
           }
         },
         "scriptedAlternate": null
@@ -2268,11 +2268,6 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-06:i06",
-      "correctText": "done",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-01:session-06:word:okay",
       "correctText": "okay",
       "correctResponseId": null
@@ -2280,6 +2275,11 @@
     {
       "interactionId": "en:lesson-01:session-06:i07",
       "correctText": "I am okay.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:i06",
+      "correctText": "done",
       "correctResponseId": null
     },
     {

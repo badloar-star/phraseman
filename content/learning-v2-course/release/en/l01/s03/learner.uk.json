@@ -166,51 +166,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-03:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sure",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-03:i04:audio"
-      ],
-      "accessibilityLabel": "Картка слова — sure",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-03:i04:audio",
-          "transcript": "sure"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-03:i04:r1",
-            "targetText": "sure",
-            "meaningByLocale": {
-              "ru": "«уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.",
-              "uk": "«впевнений / впевнена»: ви не сумніваєтеся. Якщо сумніваєтеся щодо часу зустрічі, скажіть I am not sure."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sure",
-          "definitionByLocale": {
-            "ru": "«уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.",
-            "uk": "«впевнений / впевнена»: ви не сумніваєтеся. Якщо сумніваєтеся щодо часу зустрічі, скажіть I am not sure."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-03:i05",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -285,51 +242,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-03:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — alone",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-03:i06:audio"
-      ],
-      "accessibilityLabel": "Картка слова — alone",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-03:i06:audio",
-          "transcript": "alone"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-03:i06:r1",
-            "targetText": "alone",
-            "meaningByLocale": {
-              "ru": "«один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.",
-              "uk": "«сам / сама»: ви залишилися в кабінеті без колег. Це опис ситуації; вам необов’язково сумно."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "alone",
-          "definitionByLocale": {
-            "ru": "«один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.",
-            "uk": "«сам / сама»: ви залишилися в кабінеті без колег. Це опис ситуації; вам необов’язково сумно."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-01:session-03:i07",
-      "ordinal": 10,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -402,8 +316,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Складіть фразу — «я не голодний»",
@@ -435,8 +349,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вставте слово — вам холодно? Ні.",
@@ -503,8 +417,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-03:i04",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i04:audio",
+          "transcript": "sure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i04:r1",
+            "targetText": "sure",
+            "meaningByLocale": {
+              "ru": "«уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.",
+              "uk": "«впевнений / впевнена»: ви не сумніваєтеся. Якщо сумніваєтеся щодо часу зустрічі, скажіть I am not sure."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sure",
+          "definitionByLocale": {
+            "ru": "«уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.",
+            "uk": "«впевнений / впевнена»: ви не сумніваєтеся. Якщо сумніваєтеся щодо часу зустрічі, скажіть I am not sure."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-03:i10",
-      "ordinal": 13,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -549,7 +506,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i11",
-      "ordinal": 14,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -597,7 +554,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i12",
-      "ordinal": 15,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -666,7 +623,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i13",
-      "ordinal": 16,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -710,8 +667,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте і виберіть точну фразу — ви більше не зайняті",
@@ -786,7 +743,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i15:s01",
-      "ordinal": 18,
+      "ordinal": 17,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -819,7 +776,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i15:s02",
-      "ordinal": 19,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -863,7 +820,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i16",
-      "ordinal": 20,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -936,7 +893,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i17:s01",
-      "ordinal": 21,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -969,7 +926,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i17:s02",
-      "ordinal": 22,
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -1040,6 +997,49 @@
         ],
         "isWordCard": false,
         "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i06",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — alone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — alone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i06:audio",
+          "transcript": "alone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-03:i06:r1",
+            "targetText": "alone",
+            "meaningByLocale": {
+              "ru": "«один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.",
+              "uk": "«сам / сама»: ви залишилися в кабінеті без колег. Це опис ситуації; вам необов’язково сумно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alone",
+          "definitionByLocale": {
+            "ru": "«один / одна»: вы остались в кабинете без коллег. Это описание ситуации; вам необязательно грустно.",
+            "uk": "«сам / сама»: ви залишилися в кабінеті без колег. Це опис ситуації; вам необов’язково сумно."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dd165da82de5b8f7f76e8be8281dbd6b0fa27580137599b233985df3d7c60e55"
+  "learnerFingerprint": "d885620c5bca0ca6d830f149ccac151f9ecb8ff6ca08d83f735c49559f245498"
 }

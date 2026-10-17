@@ -56,68 +56,68 @@
 <!-- interaction_id: en:lesson-01:session-17:word:welcome; family: word_card -->
 > **welcome** — бажаний: людині раді. You are welcome — «Тобі тут раді» в ситуації приходу гостя.
 
-**2 · Картка слова — together**
-<!-- interaction_id: en:lesson-01:session-17:word:together; family: word_card -->
-> **together** — разом. We are together — «Ми разом»: наприклад, приїхали однією компанією.
-
-**3 · Картка слова — grateful**
-<!-- interaction_id: en:lesson-01:session-17:word:grateful; family: word_card -->
-> **grateful** — вдячний за допомогу або добру справу. They are grateful — «Вони вдячні».
-
-**4 · Картка слова — comfortable**
-<!-- interaction_id: en:lesson-01:session-17:word:comfortable; family: word_card -->
-> **comfortable** — той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах.
-
-**5 · Складіть фразу — скажіть другові біля дверей: «Тобі тут раді»**
+**2 · Складіть фразу — скажіть другові біля дверей: «Тобі тут раді»**
 <!-- interaction_id: en:lesson-01:session-17:i01; family: phrase_builder -->
 Плитки: `welcome` `are` `You` `am` → **You are welcome.**
 *(плитка `am` зайва: тут потрібно `are` — `You are welcome.`)*
 
-**6 · Послухайте й виберіть фразу господаря**
+**3 · Послухайте й виберіть фразу господаря**
 <!-- interaction_id: en:lesson-01:session-17:i02; family: listen_choose -->
 🔊 *You are safe.* → **You are safe.** · We are safe. · You are right.
 - We are safe. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
 - You are right. — *У записі останнє слово — `safe`, а в цьому варіанті — `right`.*
 
-**7 · Вставте слово — двоє гостей правильно назвали адресу: «Вони мають рацію»**
+**4 · Вставте слово — двоє гостей правильно назвали адресу: «Вони мають рацію»**
 <!-- interaction_id: en:lesson-01:session-17:i03; family: context_gap_grammar -->
 They ___ right. → **are** · is · am
 - is — *Після `They` потрібно `are`. `is` поєднується з `He`, `She` або `It`.*
 - am — *`am` ставимо з `I`. Тут ідеться про них: `They are`.*
 
-**8 · З’єднайте слова та значення**
+**5 · З’єднайте слова та значення**
 <!-- interaction_id: en:lesson-01:session-17:i04; family: speed_match -->
 welcome — бажаний · safe — у безпеці · right — має рацію · ready — готовий
 
-**9 · Послухайте й складіть повідомлення однієї компанії**
+**6 · Картка слова — together**
+<!-- interaction_id: en:lesson-01:session-17:word:together; family: word_card -->
+> **together** — разом. We are together — «Ми разом»: наприклад, приїхали однією компанією.
+
+**7 · Послухайте й складіть повідомлення однієї компанії**
 <!-- interaction_id: en:lesson-01:session-17:i05; family: listen_build_dictation -->
 🔊 *We are together.* Плитки: `together` `are` `We` `They` → **We are together.**
 Плитка `They` зайва: у записі We — «ми», а не They — «вони».
 
-**10 · Складіть фразу — гості вдячні господині за допомогу. Скажіть другові про гостей: «Вони вдячні»**
+**8 · Картка слова — grateful**
+<!-- interaction_id: en:lesson-01:session-17:word:grateful; family: word_card -->
+> **grateful** — вдячний за допомогу або добру справу. They are grateful — «Вони вдячні».
+
+**9 · Складіть фразу — гості вдячні господині за допомогу. Скажіть другові про гостей: «Вони вдячні»**
 <!-- interaction_id: en:lesson-01:session-17:i06; family: phrase_builder -->
 Плитки: `grateful` `are` `They` `is` → **They are grateful.**
 Плитка `is` зайва: з They потрібне are.
 
-**11 · Скажіть уголос — друг правильно прочитав номер будинку: «Ти маєш рацію»**
+**10 · Скажіть уголос — друг правильно прочитав номер будинку: «Ти маєш рацію»**
 <!-- interaction_id: en:lesson-01:session-17:i07; family: scripted_repeat_compare -->
 🎙 **You are right.**
 
-**12 · Вставте слово — високий друг допоміг дістати рушник. Скажіть: «Ти високий»**
+**11 · Вставте слово — високий друг допоміг дістати рушник. Скажіть: «Ти високий»**
 <!-- interaction_id: en:lesson-01:session-17:i08; family: context_gap_grammar -->
 You ___ tall. → **are** · am · is
 - am — *Із `You` вживаємо `are`; `am` потрібне, коли кажемо `I am`.*
 - is — *`is` поєднується з `He`, а ви звертаєтеся до самого друга: `You are`.*
 
-**13 · Послухайте й виберіть почуте**
+**12 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-17:i09; family: listen_choose -->
 🔊 *They are welcome.* → **They are welcome.** · You are welcome. · They are ready.
 - You are welcome. — *У записі перше слово — `They`, а в цьому варіанті — `You`.*
 - They are ready. — *У записі останнє слово — `welcome`, а в цьому варіанті — `ready`.*
 
-**14 · З’єднайте слова з їхніми значеннями**
+**13 · З’єднайте слова з їхніми значеннями**
 <!-- interaction_id: en:lesson-01:session-17:i10; family: speed_match -->
 tall — високий · short — невисокий · young — молодий · happy — щасливий
+
+**14 · Картка слова — comfortable**
+<!-- interaction_id: en:lesson-01:session-17:word:comfortable; family: word_card -->
+> **comfortable** — той, кому зручно, хто не відчуває незручності. We are comfortable — «Нам зручно»: наприклад, у нових кріслах.
 
 **15 · Послухайте й складіть фразу про те, що вам зручно**
 <!-- interaction_id: en:lesson-01:session-17:i11; family: listen_build_dictation -->
@@ -152,4 +152,3 @@ welcome — бажаний · together — разом · grateful — вдячн
 **21 · Скажіть уголос — на зустрічі сусідів новачок запитує, чи можна долучитися. Скажіть йому, що раді його приходу**
 <!-- interaction_id: en:lesson-01:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **You are welcome.**
-

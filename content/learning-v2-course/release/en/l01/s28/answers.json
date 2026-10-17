@@ -5,29 +5,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-28:word:certain",
-    "correctText": "certain",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:word:punctual",
-    "correctText": "punctual",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-28:word:strict",
-    "correctText": "strict",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-01:session-28:i01",
     "correctText": "It is correct.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:word:certain",
+    "correctText": "certain",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i02",
     "correctText": "I am certain.",
     "correctResponseId": "en:lesson-01:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:word:punctual",
+    "correctText": "punctual",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-28:i03",
@@ -52,6 +47,11 @@
   {
     "interactionId": "en:lesson-01:session-28:i07",
     "correctText": "I am punctual.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:word:strict",
+    "correctText": "strict",
     "correctResponseId": null
   },
   {

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Опросы 2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* зачем (владелец 17.10 через координатора: «убери старые бредовые и дай мне макет с новыми, реально полезными опросами…
+   не по 1 в день, а по несколько»): макет опросов 2.0 в стиле «Тень» (SHADOW_STYLE_SPEC.md) — плашки без обводок, тень и тон,
+   цвет темы только у главного действия. Набор вопросов и механика — docs/work/tasks/surveys-v2-2026-10-17.md.
+   Экраны: карточка на Главной (чипы), эмодзи-шкала, шторка после урока (шкала 1–5), мультивыбор, NPS, «спасибо» с наградой,
+   «на сегодня всё», каталог всех вопросов для владельца. Тапы в макете живые: ответ подсвечивается сразу, дальше следующий вопрос. */
+:root {
+  --page: #0E0E12; --pagefg: #ECECF2; --pagesec: #9A9AA8;
+  --bg: #16161B; --tx: #F4F4F7; --sc: rgba(244,244,247,.62);
+  --s1: rgba(255,255,255,.085); --s2: rgba(255,255,255,.04); --so1: rgba(255,255,255,.15); --so2: rgba(255,255,255,.07);
+  --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sh2: 0 6px 12px -6px rgba(0,0,0,.6); --sho: 0 26px 40px -14px rgba(0,0,0,.9);
+  --ti: rgba(255,255,255,.07); --sheet1: rgba(40,40,46,.98); --sheet2: rgba(30,30,36,.98);
+  --acc: #7C8CFF; --on: #0B0B14; --acc2: #9AA6FF; --ok: #6FD08C;
+  color-scheme: dark;
+}
+.ph.lite {
+  --bg: #F2F2F7; --tx: #121218; --sc: rgba(18,18,24,.6);
+  --s1: #FFFFFF; --s2: #F3F3F8; --so1: #FFFFFF; --so2: #F8F8FC;
+  --sh: 0 14px 26px -14px rgba(40,40,80,.34), 0 1px 3px rgba(40,40,80,.06); --sh2: 0 5px 10px -5px rgba(40,40,80,.28);
+  --sho: 0 26px 40px -14px rgba(40,40,80,.46), 0 2px 4px rgba(40,40,80,.08); --ti: rgba(20,20,40,.06);
+  --sheet1: #FFFFFF; --sheet2: #F6F6FA; --acc2: var(--accDeep, #4B5BD6); --ok: #1E9E4A;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--pagefg); font: 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-block: 28px 64px; padding-inline: 16px; }
+h1 { font-size: 28px; line-height: 34px; letter-spacing: -.4px; margin: 0 0 6px; text-wrap: balance; }
+.lead { color: var(--pagesec); max-width: 70ch; margin: 0 0 18px; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 26px; }
+.bar button { font: inherit; font-weight: 600; font-size: 14px; height: 36px; padding: 0 14px; border-radius: 18px; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.08); color: var(--pagefg); }
+.bar button.on { background: var(--pagefg); color: var(--page); }
+.sw { width: 28px; height: 28px; border-radius: 50%; padding: 0 !important; }
+.grid { display: flex; flex-wrap: wrap; gap: 28px 24px; }
+.cell { width: 340px; max-width: 100%; }
+.cap { font-size: 13px; color: var(--pagesec); margin: 10px 4px 0; max-width: 340px; }
+.cap b { color: var(--pagefg); font-weight: 600; }
+
+/* телефон */
+.ph { position: relative; width: 340px; max-width: 100%; height: 700px; border-radius: 44px; overflow: hidden; background: var(--bg); color: var(--tx);
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,.9), 0 0 0 8px #050507; }
+.scr { position: absolute; inset: 0; padding: 50px 16px 0; overflow: hidden; }
+.sb { position: absolute; top: 14px; left: 28px; right: 28px; display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; }
+.hello { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.5px; margin: 10px 4px 14px; }
+.k { font-size: 13px; letter-spacing: 1.6px; font-weight: 700; color: var(--sc); margin: 18px 4px 10px; text-transform: uppercase; }
+.sf { background: linear-gradient(180deg, var(--s1), var(--s2)); box-shadow: var(--sh); border-radius: 22px; }
+.row { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 14px; border-radius: 20px; margin-top: 10px; }
+.row .ic { width: 42px; height: 42px; border-radius: 14px; background: var(--ti); display: flex; align-items: center; justify-content: center; flex: none; font-size: 20px; }
+.row .t { flex: 1; font-weight: 700; font-size: 16px; line-height: 20px; } .row .t span { display: block; font-size: 13px; font-weight: 500; color: var(--sc); margin-top: 2px; }
+.row .ck { width: 26px; height: 26px; border-radius: 50%; background: var(--ti); flex: none; }
+.row .ck.done { background: var(--ok); }
+.nav { position: absolute; left: 18px; right: 18px; bottom: 20px; height: 62px; border-radius: 31px; display: flex; justify-content: space-around; align-items: center; }
+.nav i { width: 50px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 19px; opacity: .55; }
+.nav i.on { background: var(--ti); opacity: 1; }
+
+/* карточка опроса */
+.sv { padding: 16px 16px 14px; border-radius: 24px; margin-top: 10px; }
+.sv.bare { padding: 0; margin: 0; }
+.sv .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.sv .tag { font-size: 13px; font-weight: 700; color: var(--acc2); }
+.sv .rw { font-size: 13px; font-weight: 700; color: var(--sc); display: inline-flex; gap: 4px; align-items: center; }
+.sv .q { font-size: 20px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; margin: 10px 0 14px; text-wrap: balance; }
+.dots { display: flex; gap: 5px; } .dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--ti); } .dots i.on { width: 16px; background: var(--acc2); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: inherit; font-size: 15px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 22px; border: 0; cursor: pointer;
+  background: var(--ti); color: var(--tx); box-shadow: var(--sh2); transition: transform .16s cubic-bezier(.23,1,.32,1), background .16s ease; }
+.chip:active { transform: scale(.97); }
+.chip.on { background: var(--acc); color: var(--on); box-shadow: 0 12px 20px -10px color-mix(in srgb, var(--acc) 65%, transparent); }
+.scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.scale .chip { padding: 0; min-height: 52px; font-size: 18px; font-weight: 700; }
+.scale.emo .chip { font-size: 26px; }
+.ends { display: flex; justify-content: space-between; font-size: 13px; color: var(--sc); margin: 8px 2px 0; font-weight: 500; }
+.nps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; } .nps .chip { padding: 0; min-height: 44px; font-size: 16px; font-weight: 700; }
+.foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+.later { font: inherit; font-size: 14px; font-weight: 600; color: var(--sc); background: none; border: 0; padding: 8px 4px; cursor: pointer; }
+.cta { font: inherit; font-size: 16px; font-weight: 700; height: 48px; padding: 0 22px; border-radius: 24px; border: 0; cursor: pointer;
+  background: var(--acc); color: var(--on); box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--acc) 60%, transparent); transition: transform .16s cubic-bezier(.23,1,.32,1), opacity .2s; }
+.cta:active { transform: scale(.97); } .cta[disabled] { opacity: .35; box-shadow: none; cursor: default; }
+.hint { font-size: 13px; color: var(--sc); font-weight: 500; }
+
+/* шторка после урока */
+.dim { position: absolute; inset: 0; background: rgba(0,0,0,.5); }
+.ph.lite .dim { background: rgba(20,20,40,.28); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 18px 28px; border-radius: 30px 30px 0 0;
+  background: linear-gradient(180deg, var(--sheet1), var(--sheet2)); box-shadow: 0 -18px 40px -14px rgba(0,0,0,.9); }
+.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--ti); margin: 0 auto 14px; }
+.res { text-align: center; padding-top: 40px; } .res .big { font-size: 64px; } .res .t { font-size: 26px; font-weight: 800; margin-top: 8px; } .res .s { color: var(--sc); margin-top: 4px; }
+.stat { display: flex; gap: 10px; margin-top: 20px; } .stat > div { flex: 1; border-radius: 20px; padding: 14px; text-align: left; font-size: 13px; color: var(--sc); }
+.stat b { display: block; font-size: 24px; color: var(--tx); font-weight: 800; }
+
+/* благодарность / пусто */
+.thx { text-align: center; padding: 26px 16px 18px; }
+.thx .badge { color: var(--acc2); width: 72px; height: 72px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 32px;
+  background: color-mix(in srgb, var(--acc) 18%, transparent); animation: pop .42s cubic-bezier(.23,1,.32,1) both; }
+.thx .t { font-size: 22px; font-weight: 800; margin-top: 14px; letter-spacing: -.2px; }
+.thx .s { color: var(--sc); margin-top: 6px; font-size: 15px; line-height: 21px; text-wrap: balance; }
+.thx .gain svg { color: var(--acc2); }
+.thx .gain { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; height: 36px; padding: 0 14px; border-radius: 18px; background: var(--ti); font-weight: 700; font-size: 15px; }
+.applied { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.applied div { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 600; padding: 10px 12px; border-radius: 14px; background: var(--ti); }
+.applied div::before { content: "✓"; color: var(--ok); font-weight: 800; }
+@keyframes pop { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes rise { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
+.swap { animation: rise .24s cubic-bezier(.23,1,.32,1) both; }
+@media (prefers-reduced-motion: reduce) { .swap, .thx .badge { animation: none; } .chip, .cta { transition: none; } }
+
+/* каталог владельца */
+.owner { margin-top: 44px; }
+.owner h2 { font-size: 22px; margin: 0 0 6px; } .owner .lead { margin-bottom: 14px; }
+.flt { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.flt button { font: inherit; font-size: 13px; font-weight: 600; height: 32px; padding: 0 12px; border-radius: 16px; border: 0; cursor: pointer; background: rgba(255,255,255,.08); color: var(--pagefg); }
+.flt button.on { background: var(--pagefg); color: var(--page); }
+.cat { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.qc { border-radius: 18px; padding: 14px 16px; background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); box-shadow: 0 14px 26px -16px rgba(0,0,0,.8); min-width: 0; }
+.qc .hd { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--pagesec); font-weight: 600; }
+.qc .hd .ty { color: #9AA6FF; }
+.qc .ru { font-size: 16px; font-weight: 700; margin-top: 6px; } .qc .en { font-size: 13px; color: var(--pagesec); margin-top: 2px; }
+.qc .op { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; } .qc .op span { font-size: 12px; padding: 4px 9px; border-radius: 10px; background: rgba(255,255,255,.07); }
+.qc .why { font-size: 12.5px; color: var(--pagesec); margin-top: 8px; } .qc .why b { color: #6FD08C; font-weight: 600; }
+.cnt { font-size: 13px; color: var(--pagesec); margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Опросы 2.0 — короткие и полезные</h1>
+  <p class="lead">До 3 опросов в день по 1–3 вопроса, только тап, 1–3 секунды на вопрос. Показ — в паузах: Главная и итог урока, никогда во время занятия. Ответ засчитывается сразу, сеть догоняет фоном. Набор и механика — <code>docs/work/tasks/surveys-v2-2026-10-17.md</code>.</p>
+  <div class="bar" id="themeBar">
+    <button class="on" data-mode="dark">Тёмная</button>
+    <button data-mode="lite">Светлая</button>
+    <span style="width:8px"></span>
+    <button class="sw on" data-acc="#7C8CFF" data-deep="#4B5BD6" style="background:#7C8CFF" aria-label="Графит"></button>
+    <button class="sw" data-acc="#5FD39A" data-deep="#1C8F55" style="background:#5FD39A" aria-label="Мята"></button>
+    <button class="sw" data-acc="#FF8A70" data-deep="#C24A2E" style="background:#FF8A70" aria-label="Коралл"></button>
+    <button class="sw" data-acc="#F2C14E" data-deep="#9A6B00" style="background:#F2C14E" aria-label="Янтарь"></button>
+  </div>
+
+  <div class="grid" id="phones">
+    <!-- 1. Главная: карточка «Познакомимся» (3 вопроса, чипы) -->
+    <div class="cell">
+      <div class="ph"><div class="scr">
+        <div class="sb"><span>9:41</span><span>●●● 82%</span></div>
+        <div class="hello">Добрый вечер, Макс</div>
+        <div class="k">Сегодня</div>
+        <div class="row sf"><div class="ic">📘</div><div class="t">Урок 4 · В кафе<span>5 минут</span></div><div class="ck done"></div></div>
+        <div class="sv sf" id="flow1"></div>
+        <div class="nav sf"><i class="on">⌂</i><i>▤</i><i>⛰</i><i>☺</i></div>
+      </div></div>
+      <p class="cap"><b>Главная · карточка опроса в «Сегодня».</b> Профиль из 3 вопросов (цель, уровень, минуты). Ответ прямо в карточке, без шторки; точки — где ты в опросе. «Не сейчас» прячет до завтра.</p>
+    </div>
+
+    <!-- 2. После урока: шторка, эмодзи + шкала -->
+    <div class="cell">
+      <div class="ph"><div class="scr">
+        <div class="sb"><span>9:41</span><span>●●● 82%</span></div>
+        <div class="res"><div class="big">🎉</div><div class="t">Урок пройден</div><div class="s">В кафе · 12 фраз</div>
+          <div class="stat"><div class="sf">Верно<b>11 / 12</b></div><div class="sf">Время<b>4:52</b></div></div></div>
+      </div>
+      <div class="dim"></div>
+      <div class="sheet"><div class="grab"></div><div class="sv bare" id="flow2"></div></div></div>
+      <p class="cap"><b>Итог урока · шторка.</b> 2 вопроса про ЭТОТ урок (эмодзи-оценка и сложность). Только если урок закончен, а не прерван. Свайп вниз = «Не сейчас».</p>
+    </div>
+
+    <!-- 3. Мультивыбор + шкала 1–5 -->
+    <div class="cell">
+      <div class="ph"><div class="scr">
+        <div class="sb"><span>9:41</span><span>●●● 82%</span></div>
+        <div class="hello">Добрый день</div>
+        <div class="k">Сегодня</div>
+        <div class="sv sf" id="flow3"></div>
+        <div class="nav sf"><i class="on">⌂</i><i>▤</i><i>⛰</i><i>☺</i></div>
+      </div></div>
+      <p class="cap"><b>Мультивыбор и шкала 1–5.</b> До 3 вариантов, «Дальше» становится активной после первого выбора. Шкала — подписи только у краёв.</p>
+    </div>
+
+    <!-- 4. NPS -->
+    <div class="cell">
+      <div class="ph"><div class="scr">
+        <div class="sb"><span>9:41</span><span>●●● 82%</span></div>
+        <div class="hello">Привет!</div>
+        <div class="k">Сегодня</div>
+        <div class="sv sf" id="flow4"></div>
+        <div class="nav sf"><i class="on">⌂</i><i>▤</i><i>⛰</i><i>☺</i></div>
+      </div></div>
+      <p class="cap"><b>NPS · раз в 90 дней.</b> 0–10 в две строки, крупные цели под палец (≥ 44). Один вопрос — один тап.</p>
+    </div>
+
+    <!-- 5. Спасибо с наградой и «Учтём» -->
+    <div class="cell">
+      <div class="ph"><div class="scr">
+        <div class="sb"><span>9:41</span><span>●●● 82%</span></div>
+        <div class="hello">Добрый вечер, Макс</div>
+        <div class="k">Сегодня</div>
+        <div class="sv sf"><div class="thx">
+          <div class="badge"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg></div>
+          <div class="t">Спасибо!</div>
+          <div class="s">Учли твои ответы — занятия подстроятся.</div>
+          <div class="applied"><div>Цель: работа и поездки</div><div>Занятия по 5 минут</div></div>
+          <div class="gain"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg>+1 энергия</div>
+        </div></div>
+        <div class="nav sf"><i class="on">⌂</i><i>▤</i><i>⛰</i><i>☺</i></div>
+      </div></div>
+      <p class="cap"><b>Благодарность.</b> Награда начислена сразу (локально), сервер подтверждает фоном. «Учтём» — только у вопросов, которые реально что-то меняют. Награда — решение владельца (здесь вариант «энергия»).</p>
+    </div>
+
+    <!-- 6. На сегодня всё -->
+    <div class="cell">
+      <div class="ph"><div class="scr">
+        <div class="sb"><span>9:41</span><span>●●● 82%</span></div>
+        <div class="hello">Добрый вечер, Макс</div>
+        <div class="k">Сегодня</div>
+        <div class="row sf"><div class="ic">📘</div><div class="t">Урок 5 · На вокзале<span>5 минут</span></div><div class="ck"></div></div>
+        <div class="row sf"><div class="ic">💬</div><div class="t">Опросы на сегодня<span>3 из 3 — спасибо!</span></div><div class="ck done"></div></div>
+        <div class="nav sf"><i class="on">⌂</i><i>▤</i><i>⛰</i><i>☺</i></div>
+      </div></div>
+      <p class="cap"><b>«На сегодня всё».</b> Карточка опроса не исчезает внезапно — сворачивается в строку с галочкой до завтра. Не пустое место и не реклама.</p>
+    </div>
+  </div>
+
+  <section class="owner">
+    <h2>Все вопросы набора — для владельца</h2>
+    <p class="lead">36 вопросов, 7 тем. Тип: чипы, мультивыбор, шкала 1–5, эмодзи-шкала, NPS. Зелёным — что меняется у человека после ответа. Вычеркни лишнее — уйдёт из набора.</p>
+    <div class="flt" id="flt"></div>
+    <div class="cat" id="cat"></div>
+  </section>
+</div>
+
+<script>
+// зачем: данные набора в одном месте — те же, что в docs/work/tasks/surveys-v2-2026-10-17.md
+const T = { A: 'Ты и цель', B: 'Занятия', C: 'Новый курс', D: 'Пик', E: 'Карточки и диалоги', F: 'Привычка', G: 'Приложение и Plus' };
+const TY = { ch: 'Чипы', mu: 'Мультивыбор', sc: 'Шкала 1–5', em: 'Эмодзи', nps: 'NPS 0–10' };
+const Q = [
+  ['A1','A','mu','Зачем тебе язык?','Why are you learning?',['Работа','Поездки','Переезд','Учёба/экзамен','Фильмы и музыка','Общение'],'Темы диалогов и фраз дня под цель',true],
+  ['A2','A','ch','Какой у тебя уровень?',"What's your level?",['С нуля','Начальный','Средний','Уверенный'],'Стартовая сложность',true],
+  ['A3','A','ch','Сколько минут в день готов?','How many minutes a day?',['3','5','10','15+'],'Длина занятия и цель дня',true],
+  ['A4','A','ch','Когда удобнее заниматься?','When do you usually study?',['Утром','Днём','Вечером','Перед сном','Когда как'],'Время напоминания',true],
+  ['A5','A','mu','Что сложнее всего?',"What's hardest for you?",['Говорить','На слух','Слова','Грамматика','Писать'],'Больше заданий этого типа',true],
+  ['A6','A','ch','Есть срок?','Do you have a deadline?',['До месяца','1–3 месяца','Полгода+','Нет, для себя'],'Темп курса',true],
+  ['B1','B','em','Как этот урок?','How was this lesson?',['😫','😕','😐','🙂','🤩'],'Качество урока по id',false],
+  ['B2','B','ch','Сложность урока?','Lesson difficulty?',['Легко','В самый раз','Тяжело'],'Сложность следующих уроков',true],
+  ['B3','B','ch','Длина урока?','Lesson length?',['Коротко','Нормально','Длинно'],'Длина занятия',true],
+  ['B4','B','mu','Чего не хватило?','What was missing?',['Примеров','Объяснений','Озвучки','Практики речи','Ничего'],'Что дописывать в курс',false],
+  ['B5','B','ch','Озвучка понятна?','Is the audio clear?',['Да','Быстро','Медленно','Плохо слышно'],'Скорость озвучки',true],
+  ['B6','B','sc','Говорить вслух — комфортно?','Comfortable speaking aloud?',['1','2','3','4','5'],'Доля голосовых заданий',true],
+  ['C1','C','ch','Новый курс лучше прежнего?','Is the new course better?',['Лучше','Так же','Хуже','Не помню'],'Оценка 2.0',false],
+  ['C2','C','sc','Понятно, что делать дальше?','Is it clear what to do next?',['1','2','3','4','5'],'Навигация по курсу',false],
+  ['C3','C','sc','Чувствуешь прогресс?','Do you feel progress?',['1','2','3','4','5'],'Главная метрика ценности',false],
+  ['C4','C','mu','Какие задания любимые?','Favourite exercise types?',['Выбор','Сборка фразы','Речь','На слух','Пары'],'Частота типов заданий',true],
+  ['D1','D','ch','Сложность Пика?','Peak difficulty?',['Легко','В самый раз','Тяжело','Нечестно'],'Баланс ступеней',false],
+  ['D2','D','ch','Хватает времени на ступень?','Enough time per step?',['С запасом','Впритык','Не хватает'],'Шкала времени',false],
+  ['D3','D','mu','Что держит в Пике?','What keeps you in Peak?',['Подъём','Монеты','Соперники','Привычка','Ничего'],'Что усиливать',false],
+  ['D4','D','ch','Энергии хватает?','Is energy enough?',['Да','Иногда нет','Часто нет'],'Баланс энергии и Plus',false],
+  ['E1','E','ch','Как часто повторяешь карточки?','How often do you review cards?',['Каждый день','Пару раз в неделю','Редко','Не пользуюсь'],'Напоминание о повторе',true],
+  ['E2','E','sc','Карточки помогают запомнить?','Do cards help you remember?',['1','2','3','4','5'],'Ценность раздела',false],
+  ['E3','E','mu','Темы диалогов — какие интереснее?','Which dialogue topics?',['Работа','Поездки','Быт','Знакомства','Здоровье','Покупки'],'Порядок тем в «Диалогах»',true],
+  ['E4','E','ch','Диалоги — уровень по силам?','Dialogues: right level?',['Легко','В самый раз','Тяжело'],'Сложность диалогов',true],
+  ['F1','F','ch','Напоминаний сколько надо?','How many reminders?',['Больше','Так хорошо','Меньше','Не нужны'],'Частота уведомлений сразу',true],
+  ['F2','F','sc','Серия дней мотивирует?','Does the streak motivate you?',['1','2','3','4','5'],'Подача серии',false],
+  ['F3','F','mu','Что мешает заниматься?','What stops you from studying?',['Нет времени','Забываю','Скучно','Сложно','Нет результата'],'Причины оттока',false],
+  ['G1','G','nps','Посоветуешь Phraseman другу?','Would you recommend Phraseman?',['0','…','10'],'NPS',false],
+  ['G2','G','em','Насколько доволен сегодня?','How happy are you today?',['😫','😕','😐','🙂','🤩'],'CSAT',false],
+  ['G3','G','ch','Что улучшить первым?','What should we improve first?',['Курс','Речь','Карточки','Пик','Скорость','Дизайн'],'Приоритеты',false],
+  ['G4','G','sc','Приложение работает быстро?','Does the app feel fast?',['1','2','3','4','5'],'Скорость глазами людей',false],
+  ['G5','G','mu','За что готов платить?','What would you pay for?',['Весь курс','Безлимит речи','Без энергии','Пик без ограничений','Ни за что'],'Состав Plus',false],
+  ['G6','G','ch','Удобная цена Plus в месяц?','Comfortable Plus price/month?',['До 2 €','2–4 €','4–7 €','Больше','Не куплю'],'Ценовой коридор',false],
+  ['G7','G','ch','Что мешает оформить Plus?','What stops you from getting Plus?',['Цена','Не вижу пользы','Мало занимаюсь','Не доверяю подпискам'],'Барьер покупки (только free)',false],
+  ['G8','G','sc','Plus оправдывает цену?','Is Plus worth it?',['1','2','3','4','5'],'Удержание (только Plus)',false],
+  ['G9','G','ch','Что добавить в приложение?','What should we add?',['Разговор с ИИ','Больше языков','Офлайн','Игры с друзьями','Экзамены'],'Дорожная карта',false],
+];
+const byId = Object.fromEntries(Q.map((q) => [q[0], q]));
+
+// живой опрос: тап — подсветка сразу, через 250 мс следующий вопрос (оптимистично, без ожидания сети)
+function flow(el, ids, opts = {}) {
+  let i = 0; const picked = new Set(); let locked = false;
+  const render = () => {
+    if (i >= ids.length) {
+      el.innerHTML = '<div class="thx swap"><div class="badge"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg></div><div class="t">Спасибо!</div><div class="s">' + (opts.thanks || 'Ответы учтены.') + '</div><div class="gain"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg>+1 энергия</div></div>' +
+        '<div class="foot"><span></span><button class="later" type="button" data-again>Показать снова (макет)</button></div>';
+      el.querySelector('[data-again]').onclick = () => { i = 0; picked.clear(); render(); };
+      return;
+    }
+    const q = byId[ids[i]]; const [, theme, type, ru, , options] = q;
+    const dots = ids.length > 1 ? '<div class="dots">' + ids.map((_, k) => '<i class="' + (k === i ? 'on' : '') + '"></i>').join('') + '</div>' : '';
+    let body = '';
+    if (type === 'sc' || type === 'em') {
+      body = '<div class="scale' + (type === 'em' ? ' emo' : '') + '">' + options.map((o, k) => '<button type="button" class="chip" data-k="' + k + '">' + o + '</button>').join('') + '</div>' +
+        (type === 'sc' ? '<div class="ends"><span>Совсем нет</span><span>Очень</span></div>' : '');
+    } else if (type === 'nps') {
+      body = '<div class="nps">' + Array.from({ length: 11 }, (_, k) => '<button type="button" class="chip" data-k="' + k + '">' + k + '</button>').join('') + '</div><div class="ends"><span>Точно нет</span><span>Точно да</span></div>';
+    } else {
+      body = '<div class="chips">' + options.map((o, k) => '<button type="button" class="chip" data-k="' + k + '">' + o + '</button>').join('') + '</div>';
+    }
+    const multi = type === 'mu';
+    el.innerHTML = '<div class="swap"><div class="top"><span class="tag">' + (opts.tag || T[theme]) + '</span>' + dots + '</div>' +
+      '<div class="q">' + ru + '</div>' + body +
+      '<div class="foot"><button type="button" class="later">Не сейчас</button>' + (multi ? '<button type="button" class="cta" data-next disabled>Дальше</button>' : '<span class="hint">' + (multi ? '' : 'Один тап') + '</span>') + '</div></div>';
+    el.querySelectorAll('.chip').forEach((b) => b.onclick = () => {
+      if (locked) return; // защита от двойного тапа во время перехода
+      if (multi) {
+        const k = b.dataset.k;
+        if (picked.has(k)) { picked.delete(k); b.classList.remove('on'); }
+        else if (picked.size < 3) { picked.add(k); b.classList.add('on'); }
+        el.querySelector('[data-next]').disabled = picked.size === 0;
+        return;
+      }
+      b.classList.add('on'); locked = true;
+      setTimeout(() => { locked = false; i += 1; render(); }, 250);
+    });
+    const next = el.querySelector('[data-next]');
+    if (next) next.onclick = () => { picked.clear(); i += 1; render(); };
+    el.querySelector('.later').onclick = () => { el.innerHTML = '<div class="thx swap" style="padding:18px 8px"><div class="s">Хорошо, спросим завтра.</div></div>'; };
+  };
+  render();
+}
+flow(document.getElementById('flow1'), ['A1', 'A2', 'A3'], { tag: 'Познакомимся · 3 вопроса', thanks: 'Учли: занятия подстроятся под цель и время.' });
+flow(document.getElementById('flow2'), ['B1', 'B2'], { tag: 'Про этот урок', thanks: 'Следующие уроки подстроим.' });
+flow(document.getElementById('flow3'), ['E3', 'B6'], { tag: 'Диалоги и речь · 2 вопроса' });
+flow(document.getElementById('flow4'), ['G1'], { tag: 'Один вопрос' });
+
+
+// каталог владельца
+const flt = document.getElementById('flt'); const cat = document.getElementById('cat');
+let current = null;
+function drawCat() {
+  const list = Q.filter((q) => !current || q[1] === current);
+  cat.innerHTML = list.map(([id, th, ty, ru, en, op, why, applies]) =>
+    '<div class="qc"><div class="hd"><span>' + id + ' · ' + T[th] + '</span><span class="ty">' + TY[ty] + '</span></div>' +
+    '<div class="ru">' + ru + '</div><div class="en">' + en + '</div>' +
+    '<div class="op">' + op.map((o) => '<span>' + o + '</span>').join('') + '</div>' +
+    '<div class="why">' + (applies ? '<b>Учтём у человека:</b> ' : 'Нам: ') + why + '</div></div>').join('');
+}
+flt.innerHTML = '<button class="on" data-t="">Все · ' + Q.length + '</button>' + Object.entries(T).map(([k, v]) => '<button data-t="' + k + '">' + v + ' · ' + Q.filter((q) => q[1] === k).length + '</button>').join('');
+flt.querySelectorAll('button').forEach((b) => b.onclick = () => { flt.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); current = b.dataset.t || null; drawCat(); });
+drawCat();
+
+// тема и цвет темы
+document.querySelectorAll('#themeBar [data-mode]').forEach((b) => b.onclick = () => {
+  document.querySelectorAll('#themeBar [data-mode]').forEach((x) => x.classList.toggle('on', x === b));
+  document.querySelectorAll('.ph').forEach((p) => p.classList.toggle('lite', b.dataset.mode === 'lite'));
+});
+document.querySelectorAll('#themeBar [data-acc]').forEach((b) => b.onclick = () => {
+  document.querySelectorAll('#themeBar [data-acc]').forEach((x) => x.classList.toggle('on', x === b));
+  document.documentElement.style.setProperty('--acc', b.dataset.acc);
+  document.documentElement.style.setProperty('--acc2', b.dataset.acc);
+  document.documentElement.style.setProperty('--accDeep', b.dataset.deep);
+});
+</script>
+</body>
+</html>

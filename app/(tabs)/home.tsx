@@ -1231,6 +1231,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => runAfterHomeFirstFrame('home_lazy_modals_prewarm', prewarmHomeDeferredModules), []);
     // зачем (PM-214, координатор 13.10): первый заход в Пик за запуск рисует экран из памяти, а не скелет — конфиг прогревается из дискового кэша после первого кадра Главной и после онбординга (сети нет)
     useEffect(() => runAfterHomeFirstFrame('spire_config_warm', () => import('../spire_config_client').then((m) => m.warmSpireConfigFromDisk()), { holdDuringOnboarding: true }), []);
+    // зачем (замер 17.10 [SPIRE-LOAD]: комната с диска 1,3 с на входе в Пик): та же копия читается в память, пока человек на Главной — Пик открывается с людьми и «Играть» сразу
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: прогрев один раз за запуск, язык на момент первого кадра
+    useEffect(() => runAfterHomeFirstFrame('spire_room_warm', () => import('../spire/spire_load_trace').then((m) => m.warmSpireRoomFromDisk(studyTarget)), { holdDuringOnboarding: true }), []);
     // зачем (координатор 15.10, 🔴 №7: 358 из 440 ключей — страницы аварийных копий): одна копия на владельца, страницы без
     // корня долой — после первого кадра, под замком смены аккаунта, не чаще раза в 6 ч ([ACC-SWITCH-BACKUP]).
     useEffect(() => runAfterHomeFirstFrame('account_switch_backup_gc', () => import('../account_switch_backup_gc').then((m) => m.runAccountSwitchBackupGc('cold_start'))), []);

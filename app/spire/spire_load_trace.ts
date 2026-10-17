@@ -15,6 +15,8 @@ import { peekSpireConfig, warmSpireConfigFromDisk } from '../spire_config_client
 import { peekSpireRoom, spireReadRoomCache, type SpireRoomLoad } from './spire_room_client';
 import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
 import type { SpireLang } from '../../modules/spire/report_queue';
+import { getCanonicalUserId } from '../user_id_policy';
+import { asSpireLang } from '../../components/spire/spire_home_week';
 
 let enteredAtMs = Date.now();
 
@@ -83,6 +85,35 @@ export function useSpireLoadReadiness(game: ReadinessInput, preview: boolean): v
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал на смену ключа, сами поля входят в ключ
   }, [key, preview]);
+}
+
+/**
+ * Прогрев комнаты недели с диска в память процесса после первого кадра Главной (рядом с прогревом конфига PM-214).
+ * зачем (замер эмулятора 17.10, [SPIRE-LOAD]: чтение копии с диска 1255 мс при входе на Пик — JS-поток занят монтированием вкладки):
+ * читаем заранее, пока человек на Главной, — на входе в Пик люди и «Играть» берутся из памяти (room:first_frame source=memory).
+ * Только чтение с устройства, без сети; язык без Пика — пропуск.
+ */
+export async function warmSpireRoomFromDisk(studyTarget: unknown): Promise<'warmed' | 'none' | 'skip'> {
+  const lang = asSpireLang(studyTarget);
+  if (!lang) {
+    console.log('[SPIRE]', '[SPIRE-LOAD]', 'room:warm', JSON.stringify({ result: 'skip', why: `язык ${String(studyTarget)} без Пика` })); // guard-ok: ранний выход
+    return 'skip';
+  }
+  const startedAt = Date.now();
+  try {
+    const uid = await getCanonicalUserId();
+    if (!uid) {
+      console.log('[SPIRE]', '[SPIRE-LOAD]', 'room:warm', JSON.stringify({ result: 'skip', why: 'нет uid' })); // guard-ok: ранний выход
+      return 'skip';
+    }
+    const room = await spireReadRoomCache(uid, lang);
+    const fresh = room !== null && room.weekId === spireCurrentWeekKey(Date.now());
+    console.log('[SPIRE]', '[SPIRE-LOAD]', 'room:warm', JSON.stringify({ result: fresh ? 'warmed' : 'none', lang, weekId: room?.weekId ?? null, members: room?.members.length ?? null, ms: Date.now() - startedAt })); // guard-ok: итог прогрева
+    return fresh ? 'warmed' : 'none';
+  } catch (error: unknown) {
+    console.warn('[SPIRE]', '[SPIRE-LOAD]', 'room:warm_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+    return 'none';
+  }
 }
 
 /* expo-router route shim: модуль в app/ — не экран */

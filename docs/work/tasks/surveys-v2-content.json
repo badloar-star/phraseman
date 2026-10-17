@@ -15,46 +15,46 @@
     "subtitle_n": {
       "ru": "{n} коротких вопроса",
       "en": "{n} quick questions",
-      "uk": "",
-      "es": "",
-      "pt-BR": "",
-      "vi": "",
-      "id": "",
-      "tr": "",
-      "pl": ""
+      "uk": "{n} короткі питання",
+      "es": "{n} preguntas rápidas",
+      "pt-BR": "{n} perguntas rápidas",
+      "vi": "{n} câu hỏi nhanh",
+      "id": "{n} pertanyaan singkat",
+      "tr": "{n} kısa soru",
+      "pl": "{n} krótkie pytania"
     },
     "subtitle_1": {
       "ru": "Один короткий вопрос",
       "en": "One quick question",
-      "uk": "",
-      "es": "",
-      "pt-BR": "",
-      "vi": "",
-      "id": "",
-      "tr": "",
-      "pl": ""
+      "uk": "Одне коротке питання",
+      "es": "Una pregunta rápida",
+      "pt-BR": "Uma pergunta rápida",
+      "vi": "Một câu hỏi nhanh",
+      "id": "Satu pertanyaan singkat",
+      "tr": "Tek kısa soru",
+      "pl": "Jedno krótkie pytanie"
     },
     "final_title": {
       "ru": "Спасибо!",
       "en": "Thank you!",
-      "uk": "",
-      "es": "",
-      "pt-BR": "",
-      "vi": "",
-      "id": "",
-      "tr": "",
-      "pl": ""
+      "uk": "Дякуємо!",
+      "es": "¡Gracias!",
+      "pt-BR": "Obrigado!",
+      "vi": "Cảm ơn bạn!",
+      "id": "Terima kasih!",
+      "tr": "Teşekkürler!",
+      "pl": "Dzięki!"
     },
     "final_subtitle": {
       "ru": "Твои ответы помогут сделать Phraseman лучше.",
       "en": "Your answers help us make Phraseman better.",
-      "uk": "",
-      "es": "",
-      "pt-BR": "",
-      "vi": "",
-      "id": "",
-      "tr": "",
-      "pl": ""
+      "uk": "Твої відповіді допоможуть зробити Phraseman кращим.",
+      "es": "Tus respuestas nos ayudan a mejorar Phraseman.",
+      "pt-BR": "Suas respostas ajudam a deixar o Phraseman melhor.",
+      "vi": "Câu trả lời của bạn giúp Phraseman tốt hơn.",
+      "id": "Jawabanmu membantu Phraseman jadi lebih baik.",
+      "tr": "Cevapların Phraseman'i daha iyi yapmamıza yardım ediyor.",
+      "pl": "Twoje odpowiedzi pomogą ulepszyć Phraseman."
     }
   },
   "surveys": [
@@ -64,13 +64,13 @@
       "title": {
         "ru": "Познакомимся",
         "en": "Let's get to know you",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Познайомимося",
+        "es": "Conozcámonos",
+        "pt-BR": "Vamos nos conhecer",
+        "vi": "Làm quen nhé",
+        "id": "Kenalan dulu",
+        "tr": "Tanışalım",
+        "pl": "Poznajmy się"
       },
       "questions": [
         {
@@ -78,13 +78,13 @@
           "text": {
             "ru": "Зачем тебе язык?",
             "en": "Why are you learning?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Навіщо тобі мова?",
+            "es": "¿Para qué aprendes?",
+            "pt-BR": "Por que você está aprendendo?",
+            "vi": "Bạn học để làm gì?",
+            "id": "Kenapa kamu belajar?",
+            "tr": "Neden öğreniyorsun?",
+            "pl": "Po co ci język?"
           },
           "options": [
             {
@@ -92,13 +92,13 @@
               "label": {
                 "ru": "Работа",
                 "en": "Work",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Робота",
+                "es": "Trabajo",
+                "pt-BR": "Trabalho",
+                "vi": "Công việc",
+                "id": "Kerja",
+                "tr": "İş",
+                "pl": "Praca"
               }
             },
             {
@@ -106,13 +106,13 @@
               "label": {
                 "ru": "Поездки",
                 "en": "Travel",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Подорожі",
+                "es": "Viajes",
+                "pt-BR": "Viagens",
+                "vi": "Du lịch",
+                "id": "Jalan-jalan",
+                "tr": "Seyahat",
+                "pl": "Podróże"
               }
             },
             {
@@ -120,13 +120,13 @@
               "label": {
                 "ru": "Переезд",
                 "en": "Moving abroad",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Переїзд",
+                "es": "Mudarme",
+                "pt-BR": "Mudar de país",
+                "vi": "Ra nước ngoài",
+                "id": "Pindah negara",
+                "tr": "Yurt dışına taşınma",
+                "pl": "Przeprowadzka"
               }
             },
             {
@@ -134,13 +134,13 @@
               "label": {
                 "ru": "Учёба или экзамен",
                 "en": "Study or an exam",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Навчання чи іспит",
+                "es": "Estudios o examen",
+                "pt-BR": "Estudo ou prova",
+                "vi": "Học hoặc thi",
+                "id": "Sekolah atau ujian",
+                "tr": "Okul ya da sınav",
+                "pl": "Nauka lub egzamin"
               }
             },
             {
@@ -148,13 +148,13 @@
               "label": {
                 "ru": "Фильмы и музыка",
                 "en": "Films and music",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Фільми й музика",
+                "es": "Cine y música",
+                "pt-BR": "Filmes e música",
+                "vi": "Phim và nhạc",
+                "id": "Film dan musik",
+                "tr": "Dizi ve müzik",
+                "pl": "Filmy i muzyka"
               }
             },
             {
@@ -162,13 +162,13 @@
               "label": {
                 "ru": "Общение",
                 "en": "Talking to people",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Спілкування",
+                "es": "Hablar con gente",
+                "pt-BR": "Conversar",
+                "vi": "Giao tiếp",
+                "id": "Ngobrol",
+                "tr": "Sohbet",
+                "pl": "Rozmowy"
               }
             }
           ]
@@ -178,13 +178,13 @@
           "text": {
             "ru": "Какой у тебя уровень?",
             "en": "What's your level?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Який у тебе рівень?",
+            "es": "¿Cuál es tu nivel?",
+            "pt-BR": "Qual é o seu nível?",
+            "vi": "Trình độ của bạn?",
+            "id": "Level kamu?",
+            "tr": "Seviyen ne?",
+            "pl": "Jaki masz poziom?"
           },
           "options": [
             {
@@ -192,13 +192,13 @@
               "label": {
                 "ru": "С нуля",
                 "en": "Beginner from zero",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "З нуля",
+                "es": "Desde cero",
+                "pt-BR": "Do zero",
+                "vi": "Mới bắt đầu",
+                "id": "Dari nol",
+                "tr": "Sıfırdan",
+                "pl": "Od zera"
               }
             },
             {
@@ -206,13 +206,13 @@
               "label": {
                 "ru": "Начальный",
                 "en": "Elementary",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Початковий",
+                "es": "Básico",
+                "pt-BR": "Básico",
+                "vi": "Sơ cấp",
+                "id": "Dasar",
+                "tr": "Temel",
+                "pl": "Podstawowy"
               }
             },
             {
@@ -220,13 +220,13 @@
               "label": {
                 "ru": "Средний",
                 "en": "Intermediate",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Середній",
+                "es": "Intermedio",
+                "pt-BR": "Intermediário",
+                "vi": "Trung cấp",
+                "id": "Menengah",
+                "tr": "Orta",
+                "pl": "Średni"
               }
             },
             {
@@ -234,13 +234,13 @@
               "label": {
                 "ru": "Уверенный",
                 "en": "Confident",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Впевнений",
+                "es": "Avanzado",
+                "pt-BR": "Avançado",
+                "vi": "Khá tốt",
+                "id": "Mahir",
+                "tr": "İleri",
+                "pl": "Zaawansowany"
               }
             }
           ]
@@ -250,13 +250,13 @@
           "text": {
             "ru": "Сколько минут в день готов?",
             "en": "How many minutes a day?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Скільки хвилин на день готовий?",
+            "es": "¿Cuántos minutos al día?",
+            "pt-BR": "Quantos minutos por dia?",
+            "vi": "Mỗi ngày bao nhiêu phút?",
+            "id": "Berapa menit sehari?",
+            "tr": "Günde kaç dakika?",
+            "pl": "Ile minut dziennie?"
           },
           "options": [
             {
@@ -264,13 +264,13 @@
               "label": {
                 "ru": "3 минуты",
                 "en": "3 minutes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "3 хвилини",
+                "es": "3 minutos",
+                "pt-BR": "3 minutos",
+                "vi": "3 phút",
+                "id": "3 menit",
+                "tr": "3 dakika",
+                "pl": "3 minuty"
               }
             },
             {
@@ -278,13 +278,13 @@
               "label": {
                 "ru": "5 минут",
                 "en": "5 minutes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "5 хвилин",
+                "es": "5 minutos",
+                "pt-BR": "5 minutos",
+                "vi": "5 phút",
+                "id": "5 menit",
+                "tr": "5 dakika",
+                "pl": "5 minut"
               }
             },
             {
@@ -292,13 +292,13 @@
               "label": {
                 "ru": "10 минут",
                 "en": "10 minutes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "10 хвилин",
+                "es": "10 minutos",
+                "pt-BR": "10 minutos",
+                "vi": "10 phút",
+                "id": "10 menit",
+                "tr": "10 dakika",
+                "pl": "10 minut"
               }
             },
             {
@@ -306,13 +306,13 @@
               "label": {
                 "ru": "15 и больше",
                 "en": "15 or more",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "15 і більше",
+                "es": "15 o más",
+                "pt-BR": "15 ou mais",
+                "vi": "15 trở lên",
+                "id": "15 atau lebih",
+                "tr": "15 ve üzeri",
+                "pl": "15 i więcej"
               }
             }
           ]
@@ -325,13 +325,13 @@
       "title": {
         "ru": "Твой режим",
         "en": "Your routine",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Твій режим",
+        "es": "Tu rutina",
+        "pt-BR": "Sua rotina",
+        "vi": "Thói quen của bạn",
+        "id": "Rutinitasmu",
+        "tr": "Rutinin",
+        "pl": "Twój rytm"
       },
       "questions": [
         {
@@ -339,13 +339,13 @@
           "text": {
             "ru": "Когда удобнее заниматься?",
             "en": "When do you usually study?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Коли зручніше займатися?",
+            "es": "¿Cuándo sueles estudiar?",
+            "pt-BR": "Quando você costuma estudar?",
+            "vi": "Bạn thường học lúc nào?",
+            "id": "Biasanya belajar kapan?",
+            "tr": "Genelde ne zaman çalışırsın?",
+            "pl": "Kiedy zwykle się uczysz?"
           },
           "options": [
             {
@@ -353,13 +353,13 @@
               "label": {
                 "ru": "Утром",
                 "en": "In the morning",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Вранці",
+                "es": "Por la mañana",
+                "pt-BR": "De manhã",
+                "vi": "Buổi sáng",
+                "id": "Pagi",
+                "tr": "Sabah",
+                "pl": "Rano"
               }
             },
             {
@@ -367,13 +367,13 @@
               "label": {
                 "ru": "Днём",
                 "en": "During the day",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Удень",
+                "es": "Por la tarde",
+                "pt-BR": "À tarde",
+                "vi": "Buổi trưa",
+                "id": "Siang",
+                "tr": "Öğlen",
+                "pl": "W ciągu dnia"
               }
             },
             {
@@ -381,13 +381,13 @@
               "label": {
                 "ru": "Вечером",
                 "en": "In the evening",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Увечері",
+                "es": "Por la noche",
+                "pt-BR": "À noite",
+                "vi": "Buổi tối",
+                "id": "Malam",
+                "tr": "Akşam",
+                "pl": "Wieczorem"
               }
             },
             {
@@ -395,13 +395,13 @@
               "label": {
                 "ru": "Перед сном",
                 "en": "Before bed",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Перед сном",
+                "es": "Antes de dormir",
+                "pt-BR": "Antes de dormir",
+                "vi": "Trước khi ngủ",
+                "id": "Sebelum tidur",
+                "tr": "Yatmadan önce",
+                "pl": "Przed snem"
               }
             },
             {
@@ -409,13 +409,13 @@
               "label": {
                 "ru": "Когда как",
                 "en": "It varies",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "По-різному",
+                "es": "Depende",
+                "pt-BR": "Depende",
+                "vi": "Tùy hôm",
+                "id": "Tidak tentu",
+                "tr": "Değişir",
+                "pl": "Różnie"
               }
             }
           ]
@@ -425,13 +425,13 @@
           "text": {
             "ru": "Что сложнее всего?",
             "en": "What's hardest for you?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Що найскладніше?",
+            "es": "¿Qué te cuesta más?",
+            "pt-BR": "O que é mais difícil?",
+            "vi": "Điều gì khó nhất?",
+            "id": "Apa yang paling sulit?",
+            "tr": "En zor ne?",
+            "pl": "Co jest najtrudniejsze?"
           },
           "options": [
             {
@@ -439,13 +439,13 @@
               "label": {
                 "ru": "Говорить",
                 "en": "Speaking",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Говорити",
+                "es": "Hablar",
+                "pt-BR": "Falar",
+                "vi": "Nói",
+                "id": "Bicara",
+                "tr": "Konuşmak",
+                "pl": "Mówienie"
               }
             },
             {
@@ -453,13 +453,13 @@
               "label": {
                 "ru": "Понимать на слух",
                 "en": "Listening",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Розуміти на слух",
+                "es": "Entender al oír",
+                "pt-BR": "Entender ouvindo",
+                "vi": "Nghe hiểu",
+                "id": "Mendengar",
+                "tr": "Dinleyip anlamak",
+                "pl": "Słuchanie"
               }
             },
             {
@@ -467,13 +467,13 @@
               "label": {
                 "ru": "Запоминать слова",
                 "en": "Remembering words",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Запам’ятовувати слова",
+                "es": "Recordar palabras",
+                "pt-BR": "Lembrar palavras",
+                "vi": "Nhớ từ vựng",
+                "id": "Mengingat kata",
+                "tr": "Kelimeleri hatırlamak",
+                "pl": "Zapamiętywanie słów"
               }
             },
             {
@@ -481,13 +481,13 @@
               "label": {
                 "ru": "Грамматика",
                 "en": "Grammar",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Граматика",
+                "es": "Gramática",
+                "pt-BR": "Gramática",
+                "vi": "Ngữ pháp",
+                "id": "Tata bahasa",
+                "tr": "Dilbilgisi",
+                "pl": "Gramatyka"
               }
             },
             {
@@ -495,13 +495,13 @@
               "label": {
                 "ru": "Писать",
                 "en": "Writing",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Писати",
+                "es": "Escribir",
+                "pt-BR": "Escrever",
+                "vi": "Viết",
+                "id": "Menulis",
+                "tr": "Yazmak",
+                "pl": "Pisanie"
               }
             }
           ]
@@ -511,13 +511,13 @@
           "text": {
             "ru": "Есть срок?",
             "en": "Do you have a deadline?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Є термін?",
+            "es": "¿Tienes una fecha límite?",
+            "pt-BR": "Você tem um prazo?",
+            "vi": "Bạn có hạn chót không?",
+            "id": "Ada tenggat waktu?",
+            "tr": "Bir son tarihin var mı?",
+            "pl": "Masz termin?"
           },
           "options": [
             {
@@ -525,13 +525,13 @@
               "label": {
                 "ru": "Да, до месяца",
                 "en": "Yes, within a month",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Так, до місяця",
+                "es": "Sí, en un mes",
+                "pt-BR": "Sim, em até 1 mês",
+                "vi": "Có, trong 1 tháng",
+                "id": "Ya, dalam sebulan",
+                "tr": "Evet, bir ay içinde",
+                "pl": "Tak, do miesiąca"
               }
             },
             {
@@ -539,13 +539,13 @@
               "label": {
                 "ru": "1–3 месяца",
                 "en": "1–3 months",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "1–3 місяці",
+                "es": "1–3 meses",
+                "pt-BR": "1–3 meses",
+                "vi": "1–3 tháng",
+                "id": "1–3 bulan",
+                "tr": "1–3 ay",
+                "pl": "1–3 miesiące"
               }
             },
             {
@@ -553,13 +553,13 @@
               "label": {
                 "ru": "Через полгода и больше",
                 "en": "Six months or more",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Пів року і більше",
+                "es": "6 meses o más",
+                "pt-BR": "6 meses ou mais",
+                "vi": "Từ 6 tháng trở lên",
+                "id": "6 bulan atau lebih",
+                "tr": "6 ay veya daha fazla",
+                "pl": "Pół roku lub dłużej"
               }
             },
             {
@@ -567,13 +567,13 @@
               "label": {
                 "ru": "Нет, для себя",
                 "en": "No, just for me",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Ні, для себе",
+                "es": "No, es para mí",
+                "pt-BR": "Não, é para mim",
+                "vi": "Không, học cho mình",
+                "id": "Tidak, buat sendiri",
+                "tr": "Hayır, kendim için",
+                "pl": "Nie, dla siebie"
               }
             }
           ]
@@ -586,13 +586,13 @@
       "title": {
         "ru": "Как идут занятия",
         "en": "How lessons are going",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Як ідуть заняття",
+        "es": "Cómo van tus clases",
+        "pt-BR": "Como vão as aulas",
+        "vi": "Việc học thế nào",
+        "id": "Gimana belajarmu",
+        "tr": "Dersler nasıl gidiyor",
+        "pl": "Jak idzie nauka"
       },
       "questions": [
         {
@@ -600,13 +600,13 @@
           "text": {
             "ru": "Сложность уроков?",
             "en": "Lesson difficulty?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Складність уроку?",
+            "es": "¿Dificultad de la lección?",
+            "pt-BR": "Dificuldade da lição?",
+            "vi": "Độ khó của bài?",
+            "id": "Tingkat kesulitan?",
+            "tr": "Dersin zorluğu?",
+            "pl": "Trudność lekcji?"
           },
           "options": [
             {
@@ -614,13 +614,13 @@
               "label": {
                 "ru": "Легко",
                 "en": "Easy",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Легко",
+                "es": "Fácil",
+                "pt-BR": "Fácil",
+                "vi": "Dễ",
+                "id": "Mudah",
+                "tr": "Kolay",
+                "pl": "Łatwo"
               }
             },
             {
@@ -628,13 +628,13 @@
               "label": {
                 "ru": "В самый раз",
                 "en": "Just right",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Саме те",
+                "es": "Justo",
+                "pt-BR": "Na medida",
+                "vi": "Vừa sức",
+                "id": "Pas",
+                "tr": "Tam kararında",
+                "pl": "W sam raz"
               }
             },
             {
@@ -642,13 +642,13 @@
               "label": {
                 "ru": "Тяжело",
                 "en": "Hard",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Важко",
+                "es": "Difícil",
+                "pt-BR": "Difícil",
+                "vi": "Khó",
+                "id": "Sulit",
+                "tr": "Zor",
+                "pl": "Trudno"
               }
             }
           ]
@@ -658,13 +658,13 @@
           "text": {
             "ru": "Длина уроков?",
             "en": "Lesson length?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Довжина уроку?",
+            "es": "¿Duración de la lección?",
+            "pt-BR": "Duração da lição?",
+            "vi": "Độ dài bài học?",
+            "id": "Panjang pelajaran?",
+            "tr": "Dersin uzunluğu?",
+            "pl": "Długość lekcji?"
           },
           "options": [
             {
@@ -672,13 +672,13 @@
               "label": {
                 "ru": "Коротко",
                 "en": "Too short",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Коротко",
+                "es": "Corta",
+                "pt-BR": "Curta",
+                "vi": "Ngắn",
+                "id": "Pendek",
+                "tr": "Kısa",
+                "pl": "Krótka"
               }
             },
             {
@@ -686,13 +686,13 @@
               "label": {
                 "ru": "Нормально",
                 "en": "Just right",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Нормально",
+                "es": "Bien",
+                "pt-BR": "Boa",
+                "vi": "Vừa phải",
+                "id": "Pas",
+                "tr": "İyi",
+                "pl": "W sam raz"
               }
             },
             {
@@ -700,13 +700,13 @@
               "label": {
                 "ru": "Длинно",
                 "en": "Too long",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Довго",
+                "es": "Larga",
+                "pt-BR": "Longa",
+                "vi": "Dài",
+                "id": "Panjang",
+                "tr": "Uzun",
+                "pl": "Długa"
               }
             }
           ]
@@ -716,13 +716,13 @@
           "text": {
             "ru": "Озвучка понятна?",
             "en": "Is the audio clear?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Озвучення зрозуміле?",
+            "es": "¿Se entiende el audio?",
+            "pt-BR": "O áudio está claro?",
+            "vi": "Âm thanh có rõ không?",
+            "id": "Audionya jelas?",
+            "tr": "Ses anlaşılır mı?",
+            "pl": "Nagranie jest zrozumiałe?"
           },
           "options": [
             {
@@ -730,13 +730,13 @@
               "label": {
                 "ru": "Да",
                 "en": "Yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Так",
+                "es": "Sí",
+                "pt-BR": "Sim",
+                "vi": "Đủ",
+                "id": "Cukup",
+                "tr": "Evet",
+                "pl": "Tak"
               }
             },
             {
@@ -744,13 +744,13 @@
               "label": {
                 "ru": "Быстро",
                 "en": "Too fast",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Швидко",
+                "es": "Muy rápido",
+                "pt-BR": "Rápido demais",
+                "vi": "Nhanh quá",
+                "id": "Terlalu cepat",
+                "tr": "Çok hızlı",
+                "pl": "Za szybko"
               }
             },
             {
@@ -758,13 +758,13 @@
               "label": {
                 "ru": "Медленно",
                 "en": "Too slow",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Повільно",
+                "es": "Muy lento",
+                "pt-BR": "Lento demais",
+                "vi": "Chậm quá",
+                "id": "Terlalu lambat",
+                "tr": "Çok yavaş",
+                "pl": "Za wolno"
               }
             },
             {
@@ -772,13 +772,13 @@
               "label": {
                 "ru": "Плохо слышно",
                 "en": "Hard to hear",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Погано чутно",
+                "es": "Se oye mal",
+                "pt-BR": "Difícil de ouvir",
+                "vi": "Khó nghe",
+                "id": "Kurang terdengar",
+                "tr": "Zor duyuluyor",
+                "pl": "Słabo słychać"
               }
             }
           ]
@@ -791,13 +791,13 @@
       "title": {
         "ru": "Про уроки",
         "en": "About lessons",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Про уроки",
+        "es": "Sobre las lecciones",
+        "pt-BR": "Sobre as lições",
+        "vi": "Về bài học",
+        "id": "Soal pelajaran",
+        "tr": "Dersler hakkında",
+        "pl": "O lekcjach"
       },
       "questions": [
         {
@@ -805,13 +805,13 @@
           "text": {
             "ru": "Как тебе последний урок?",
             "en": "How was your last lesson?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Як тобі останній урок?",
+            "es": "¿Qué tal tu última lección?",
+            "pt-BR": "Como foi sua última lição?",
+            "vi": "Bài học gần nhất thế nào?",
+            "id": "Gimana pelajaran terakhirmu?",
+            "tr": "Son ders nasıldı?",
+            "pl": "Jak ci poszła ostatnia lekcja?"
           },
           "options": [
             {
@@ -819,13 +819,13 @@
               "label": {
                 "ru": "🤩 Отлично",
                 "en": "🤩 Great",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "🤩 Чудово",
+                "es": "🤩 Genial",
+                "pt-BR": "🤩 Ótimo",
+                "vi": "🤩 Tuyệt",
+                "id": "🤩 Keren",
+                "tr": "🤩 Harika",
+                "pl": "🤩 Świetnie"
               }
             },
             {
@@ -833,13 +833,13 @@
               "label": {
                 "ru": "🙂 Хорошо",
                 "en": "🙂 Good",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "🙂 Добре",
+                "es": "🙂 Bien",
+                "pt-BR": "🙂 Bom",
+                "vi": "🙂 Tốt",
+                "id": "🙂 Bagus",
+                "tr": "🙂 İyi",
+                "pl": "🙂 Dobrze"
               }
             },
             {
@@ -847,13 +847,13 @@
               "label": {
                 "ru": "😐 Нормально",
                 "en": "😐 Okay",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "😐 Нормально",
+                "es": "😐 Normal",
+                "pt-BR": "😐 Normal",
+                "vi": "😐 Bình thường",
+                "id": "😐 Biasa",
+                "tr": "😐 Fena değil",
+                "pl": "😐 W porządku"
               }
             },
             {
@@ -861,13 +861,13 @@
               "label": {
                 "ru": "😕 Так себе",
                 "en": "😕 Meh",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "😕 Так собі",
+                "es": "😕 Regular",
+                "pt-BR": "😕 Mais ou menos",
+                "vi": "😕 Tạm được",
+                "id": "😕 Lumayan",
+                "tr": "😕 Eh işte",
+                "pl": "😕 Tak sobie"
               }
             },
             {
@@ -875,13 +875,13 @@
               "label": {
                 "ru": "😫 Плохо",
                 "en": "😫 Bad",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "😫 Погано",
+                "es": "😫 Mal",
+                "pt-BR": "😫 Ruim",
+                "vi": "😫 Tệ",
+                "id": "😫 Jelek",
+                "tr": "😫 Kötü",
+                "pl": "😫 Źle"
               }
             }
           ]
@@ -891,13 +891,13 @@
           "text": {
             "ru": "Чего не хватает в уроках?",
             "en": "What do lessons lack most?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Чого бракує в уроках?",
+            "es": "¿Qué les falta a las lecciones?",
+            "pt-BR": "O que falta nas lições?",
+            "vi": "Bài học còn thiếu gì?",
+            "id": "Apa yang kurang dari pelajaran?",
+            "tr": "Derslerde ne eksik?",
+            "pl": "Czego brakuje w lekcjach?"
           },
           "options": [
             {
@@ -905,13 +905,13 @@
               "label": {
                 "ru": "Примеров",
                 "en": "Examples",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Прикладів",
+                "es": "Ejemplos",
+                "pt-BR": "Exemplos",
+                "vi": "Ví dụ",
+                "id": "Contoh",
+                "tr": "Örnek",
+                "pl": "Przykładów"
               }
             },
             {
@@ -919,13 +919,13 @@
               "label": {
                 "ru": "Объяснений",
                 "en": "Explanations",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Пояснень",
+                "es": "Explicaciones",
+                "pt-BR": "Explicações",
+                "vi": "Giải thích",
+                "id": "Penjelasan",
+                "tr": "Açıklama",
+                "pl": "Wyjaśnień"
               }
             },
             {
@@ -933,13 +933,13 @@
               "label": {
                 "ru": "Озвучки",
                 "en": "Audio",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Озвучення",
+                "es": "Audio",
+                "pt-BR": "Áudio",
+                "vi": "Âm thanh",
+                "id": "Audio",
+                "tr": "Ses",
+                "pl": "Nagrań"
               }
             },
             {
@@ -947,13 +947,13 @@
               "label": {
                 "ru": "Практики речи",
                 "en": "Speaking practice",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Практики мовлення",
+                "es": "Práctica oral",
+                "pt-BR": "Prática de fala",
+                "vi": "Luyện nói",
+                "id": "Latihan bicara",
+                "tr": "Konuşma pratiği",
+                "pl": "Mówienia"
               }
             },
             {
@@ -961,13 +961,13 @@
               "label": {
                 "ru": "Всего хватает",
                 "en": "Nothing",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Ні за що",
+                "es": "Por nada",
+                "pt-BR": "Nada",
+                "vi": "Không gì cả",
+                "id": "Tidak ada",
+                "tr": "Hiçbir şey",
+                "pl": "Za nic"
               }
             }
           ]
@@ -977,13 +977,13 @@
           "text": {
             "ru": "Говорить вслух — комфортно?",
             "en": "Comfortable speaking aloud?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Говорити вголос — комфортно?",
+            "es": "¿Te resulta cómodo hablar en voz alta?",
+            "pt-BR": "Você fica à vontade falando em voz alta?",
+            "vi": "Nói thành tiếng có thoải mái không?",
+            "id": "Nyaman bicara keras-keras?",
+            "tr": "Sesli konuşmak rahat mı?",
+            "pl": "Mówienie na głos jest dla ciebie wygodne?"
           },
           "options": [
             {
@@ -991,13 +991,13 @@
               "label": {
                 "ru": "Очень",
                 "en": "Very much",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дуже",
+                "es": "Mucho",
+                "pt-BR": "Muito",
+                "vi": "Rất nhiều",
+                "id": "Sangat",
+                "tr": "Çok",
+                "pl": "Bardzo"
               }
             },
             {
@@ -1005,13 +1005,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Mostly yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -1019,13 +1019,13 @@
               "label": {
                 "ru": "Средне",
                 "en": "So-so",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Посередньо",
+                "es": "Más o menos",
+                "pt-BR": "Mais ou menos",
+                "vi": "Bình thường",
+                "id": "Biasa saja",
+                "tr": "Orta",
+                "pl": "Średnio"
               }
             },
             {
@@ -1033,13 +1033,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Mostly not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -1047,13 +1047,13 @@
               "label": {
                 "ru": "Совсем нет",
                 "en": "Not at all",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Зовсім ні",
+                "es": "Nada",
+                "pt-BR": "Nada",
+                "vi": "Hoàn toàn không",
+                "id": "Sama sekali tidak",
+                "tr": "Hiç",
+                "pl": "Wcale"
               }
             }
           ]
@@ -1066,13 +1066,13 @@
       "title": {
         "ru": "Новый курс",
         "en": "The new course",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Новий курс",
+        "es": "El curso nuevo",
+        "pt-BR": "O curso novo",
+        "vi": "Khóa học mới",
+        "id": "Kursus baru",
+        "tr": "Yeni kurs",
+        "pl": "Nowy kurs"
       },
       "questions": [
         {
@@ -1080,13 +1080,13 @@
           "text": {
             "ru": "Новый курс лучше прежнего?",
             "en": "Is the new course better?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Новий курс кращий за попередній?",
+            "es": "¿El curso nuevo es mejor?",
+            "pt-BR": "O curso novo é melhor?",
+            "vi": "Khóa học mới tốt hơn không?",
+            "id": "Kursus baru lebih baik?",
+            "tr": "Yeni kurs daha mı iyi?",
+            "pl": "Nowy kurs jest lepszy?"
           },
           "options": [
             {
@@ -1094,13 +1094,13 @@
               "label": {
                 "ru": "Лучше",
                 "en": "Better",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Кращий",
+                "es": "Mejor",
+                "pt-BR": "Melhor",
+                "vi": "Tốt hơn",
+                "id": "Lebih baik",
+                "tr": "Daha iyi",
+                "pl": "Lepszy"
               }
             },
             {
@@ -1108,13 +1108,13 @@
               "label": {
                 "ru": "Так же",
                 "en": "The same",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Так само",
+                "es": "Igual",
+                "pt-BR": "Igual",
+                "vi": "Như cũ",
+                "id": "Sama",
+                "tr": "Aynı",
+                "pl": "Taki sam"
               }
             },
             {
@@ -1122,27 +1122,27 @@
               "label": {
                 "ru": "Хуже",
                 "en": "Worse",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Гірший",
+                "es": "Peor",
+                "pt-BR": "Pior",
+                "vi": "Tệ hơn",
+                "id": "Lebih buruk",
+                "tr": "Daha kötü",
+                "pl": "Gorszy"
               }
             },
             {
               "id": "dunno",
               "label": {
                 "ru": "Не помню прежний",
-                "en": "Don't remember the old one",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "en": "Don't recall the old one",
+                "uk": "Не пам’ятаю попередній",
+                "es": "No recuerdo el anterior",
+                "pt-BR": "Não lembro do antigo",
+                "vi": "Không nhớ bản cũ",
+                "id": "Lupa yang lama",
+                "tr": "Eskisini hatırlamıyorum",
+                "pl": "Nie pamiętam starego"
               }
             }
           ]
@@ -1152,13 +1152,13 @@
           "text": {
             "ru": "Понятно, что делать дальше?",
             "en": "Is it clear what to do next?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Зрозуміло, що робити далі?",
+            "es": "¿Está claro qué hacer después?",
+            "pt-BR": "Fica claro o que fazer depois?",
+            "vi": "Có rõ bước tiếp theo không?",
+            "id": "Jelas langkah berikutnya?",
+            "tr": "Sırada ne var, belli mi?",
+            "pl": "Wiadomo, co robić dalej?"
           },
           "options": [
             {
@@ -1166,13 +1166,13 @@
               "label": {
                 "ru": "Очень",
                 "en": "Very much",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дуже",
+                "es": "Mucho",
+                "pt-BR": "Muito",
+                "vi": "Rất nhiều",
+                "id": "Sangat",
+                "tr": "Çok",
+                "pl": "Bardzo"
               }
             },
             {
@@ -1180,13 +1180,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Mostly yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -1194,13 +1194,13 @@
               "label": {
                 "ru": "Средне",
                 "en": "So-so",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Посередньо",
+                "es": "Más o menos",
+                "pt-BR": "Mais ou menos",
+                "vi": "Bình thường",
+                "id": "Biasa saja",
+                "tr": "Orta",
+                "pl": "Średnio"
               }
             },
             {
@@ -1208,13 +1208,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Mostly not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -1222,13 +1222,13 @@
               "label": {
                 "ru": "Совсем нет",
                 "en": "Not at all",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Зовсім ні",
+                "es": "Nada",
+                "pt-BR": "Nada",
+                "vi": "Hoàn toàn không",
+                "id": "Sama sekali tidak",
+                "tr": "Hiç",
+                "pl": "Wcale"
               }
             }
           ]
@@ -1238,13 +1238,13 @@
           "text": {
             "ru": "Чувствуешь прогресс?",
             "en": "Do you feel progress?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Відчуваєш прогрес?",
+            "es": "¿Notas tu progreso?",
+            "pt-BR": "Você sente que está evoluindo?",
+            "vi": "Bạn thấy mình tiến bộ không?",
+            "id": "Merasa ada kemajuan?",
+            "tr": "İlerlediğini hissediyor musun?",
+            "pl": "Czujesz postęp?"
           },
           "options": [
             {
@@ -1252,13 +1252,13 @@
               "label": {
                 "ru": "Очень",
                 "en": "Very much",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дуже",
+                "es": "Mucho",
+                "pt-BR": "Muito",
+                "vi": "Rất nhiều",
+                "id": "Sangat",
+                "tr": "Çok",
+                "pl": "Bardzo"
               }
             },
             {
@@ -1266,13 +1266,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Mostly yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -1280,13 +1280,13 @@
               "label": {
                 "ru": "Средне",
                 "en": "So-so",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Посередньо",
+                "es": "Más o menos",
+                "pt-BR": "Mais ou menos",
+                "vi": "Bình thường",
+                "id": "Biasa saja",
+                "tr": "Orta",
+                "pl": "Średnio"
               }
             },
             {
@@ -1294,13 +1294,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Mostly not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -1308,13 +1308,13 @@
               "label": {
                 "ru": "Совсем нет",
                 "en": "Not at all",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Зовсім ні",
+                "es": "Nada",
+                "pt-BR": "Nada",
+                "vi": "Hoàn toàn không",
+                "id": "Sama sekali tidak",
+                "tr": "Hiç",
+                "pl": "Wcale"
               }
             }
           ]
@@ -1327,27 +1327,27 @@
       "title": {
         "ru": "Задания и Пик",
         "en": "Exercises and Peak",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Завдання і Пік",
+        "es": "Ejercicios y Pico",
+        "pt-BR": "Exercícios e Pico",
+        "vi": "Bài tập và Đỉnh",
+        "id": "Latihan dan Puncak",
+        "tr": "Alıştırmalar ve Zirve",
+        "pl": "Zadania i Szczyt"
       },
       "questions": [
         {
           "id": "c4",
           "text": {
             "ru": "Какое задание любимое?",
-            "en": "Favourite exercise type?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "en": "Favorite exercise type?",
+            "uk": "Яке завдання улюблене?",
+            "es": "¿Tu ejercicio favorito?",
+            "pt-BR": "Seu exercício favorito?",
+            "vi": "Dạng bài bạn thích nhất?",
+            "id": "Latihan favoritmu?",
+            "tr": "En sevdiğin alıştırma?",
+            "pl": "Ulubione zadanie?"
           },
           "options": [
             {
@@ -1355,13 +1355,13 @@
               "label": {
                 "ru": "Выбор ответа",
                 "en": "Choosing an answer",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Вибір відповіді",
+                "es": "Elegir respuesta",
+                "pt-BR": "Escolher a resposta",
+                "vi": "Chọn đáp án",
+                "id": "Pilih jawaban",
+                "tr": "Cevap seçme",
+                "pl": "Wybór odpowiedzi"
               }
             },
             {
@@ -1369,13 +1369,13 @@
               "label": {
                 "ru": "Сборка фразы",
                 "en": "Building a phrase",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Збирання фрази",
+                "es": "Armar la frase",
+                "pt-BR": "Montar a frase",
+                "vi": "Ghép câu",
+                "id": "Susun frasa",
+                "tr": "Cümle kurma",
+                "pl": "Układanie zdań"
               }
             },
             {
@@ -1383,13 +1383,13 @@
               "label": {
                 "ru": "Речь",
                 "en": "Speaking",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Мовлення",
+                "es": "Hablar",
+                "pt-BR": "Fala",
+                "vi": "Luyện nói",
+                "id": "Bicara",
+                "tr": "Konuşma",
+                "pl": "Mówienie"
               }
             },
             {
@@ -1397,13 +1397,13 @@
               "label": {
                 "ru": "На слух",
                 "en": "Listening",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "На слух",
+                "es": "Escuchar",
+                "pt-BR": "Ouvir",
+                "vi": "Nghe",
+                "id": "Mendengar",
+                "tr": "Dinleme",
+                "pl": "Słuchanie"
               }
             },
             {
@@ -1411,13 +1411,13 @@
               "label": {
                 "ru": "Пары",
                 "en": "Matching pairs",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Пари",
+                "es": "Parejas",
+                "pt-BR": "Pares",
+                "vi": "Nối cặp",
+                "id": "Pasangan",
+                "tr": "Eşleştirme",
+                "pl": "Pary"
               }
             }
           ]
@@ -1427,13 +1427,13 @@
           "text": {
             "ru": "Сложность Пика?",
             "en": "Peak difficulty?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Складність Піка?",
+            "es": "¿Dificultad del Pico?",
+            "pt-BR": "Dificuldade do Pico?",
+            "vi": "Độ khó của Đỉnh?",
+            "id": "Kesulitan Puncak?",
+            "tr": "Zirve'nin zorluğu?",
+            "pl": "Trudność Szczytu?"
           },
           "options": [
             {
@@ -1441,13 +1441,13 @@
               "label": {
                 "ru": "Легко",
                 "en": "Easy",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Легко",
+                "es": "Fácil",
+                "pt-BR": "Fácil",
+                "vi": "Dễ",
+                "id": "Mudah",
+                "tr": "Kolay",
+                "pl": "Łatwo"
               }
             },
             {
@@ -1455,13 +1455,13 @@
               "label": {
                 "ru": "В самый раз",
                 "en": "Just right",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Саме те",
+                "es": "Justo",
+                "pt-BR": "Na medida",
+                "vi": "Vừa sức",
+                "id": "Pas",
+                "tr": "Tam kararında",
+                "pl": "W sam raz"
               }
             },
             {
@@ -1469,13 +1469,13 @@
               "label": {
                 "ru": "Тяжело",
                 "en": "Hard",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Важко",
+                "es": "Difícil",
+                "pt-BR": "Difícil",
+                "vi": "Khó",
+                "id": "Sulit",
+                "tr": "Zor",
+                "pl": "Trudno"
               }
             },
             {
@@ -1483,13 +1483,13 @@
               "label": {
                 "ru": "Нечестно",
                 "en": "Unfair",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Нечесно",
+                "es": "Injusto",
+                "pt-BR": "Injusto",
+                "vi": "Không công bằng",
+                "id": "Tidak adil",
+                "tr": "Haksız",
+                "pl": "Nieuczciwie"
               }
             },
             {
@@ -1497,13 +1497,13 @@
               "label": {
                 "ru": "Не играю в Пик",
                 "en": "I don't play Peak",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не граю в Пік",
+                "es": "No juego al Pico",
+                "pt-BR": "Não jogo o Pico",
+                "vi": "Mình không chơi Đỉnh",
+                "id": "Tidak main Puncak",
+                "tr": "Zirve oynamıyorum",
+                "pl": "Nie gram w Szczyt"
               }
             }
           ]
@@ -1513,13 +1513,13 @@
           "text": {
             "ru": "Хватает времени на ступень?",
             "en": "Enough time per step?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Вистачає часу на сходинку?",
+            "es": "¿Te alcanza el tiempo por escalón?",
+            "pt-BR": "Dá tempo em cada degrau?",
+            "vi": "Đủ thời gian mỗi bậc không?",
+            "id": "Waktu per anak tangga cukup?",
+            "tr": "Basamak için süre yetiyor mu?",
+            "pl": "Wystarcza czasu na stopień?"
           },
           "options": [
             {
@@ -1527,13 +1527,13 @@
               "label": {
                 "ru": "С запасом",
                 "en": "Plenty",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "З запасом",
+                "es": "De sobra",
+                "pt-BR": "Sobra",
+                "vi": "Dư dả",
+                "id": "Lebih dari cukup",
+                "tr": "Bol bol",
+                "pl": "Z zapasem"
               }
             },
             {
@@ -1541,13 +1541,13 @@
               "label": {
                 "ru": "Впритык",
                 "en": "Just enough",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Впритул",
+                "es": "Justo",
+                "pt-BR": "No limite",
+                "vi": "Vừa khít",
+                "id": "Pas-pasan",
+                "tr": "Ancak yetiyor",
+                "pl": "Na styk"
               }
             },
             {
@@ -1555,13 +1555,13 @@
               "label": {
                 "ru": "Не хватает",
                 "en": "Not enough",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не вистачає",
+                "es": "No alcanza",
+                "pt-BR": "Não dá",
+                "vi": "Không đủ",
+                "id": "Kurang",
+                "tr": "Yetmiyor",
+                "pl": "Za mało"
               }
             },
             {
@@ -1569,13 +1569,13 @@
               "label": {
                 "ru": "Не играю в Пик",
                 "en": "I don't play Peak",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не граю в Пік",
+                "es": "No juego al Pico",
+                "pt-BR": "Não jogo o Pico",
+                "vi": "Mình không chơi Đỉnh",
+                "id": "Tidak main Puncak",
+                "tr": "Zirve oynamıyorum",
+                "pl": "Nie gram w Szczyt"
               }
             }
           ]
@@ -1588,13 +1588,13 @@
       "title": {
         "ru": "Пик и карточки",
         "en": "Peak and cards",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Пік і картки",
+        "es": "Pico y tarjetas",
+        "pt-BR": "Pico e cartões",
+        "vi": "Đỉnh và thẻ học",
+        "id": "Puncak dan kartu",
+        "tr": "Zirve ve kartlar",
+        "pl": "Szczyt i karty"
       },
       "questions": [
         {
@@ -1602,13 +1602,13 @@
           "text": {
             "ru": "Что держит в Пике?",
             "en": "What keeps you in Peak?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Що тримає в Піку?",
+            "es": "¿Qué te engancha del Pico?",
+            "pt-BR": "O que te prende no Pico?",
+            "vi": "Điều gì giữ bạn ở Đỉnh?",
+            "id": "Apa yang bikin betah di Puncak?",
+            "tr": "Seni Zirve'de ne tutuyor?",
+            "pl": "Co trzyma cię w Szczycie?"
           },
           "options": [
             {
@@ -1616,13 +1616,13 @@
               "label": {
                 "ru": "Подъём",
                 "en": "The climb",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Підйом",
+                "es": "Subir",
+                "pt-BR": "A subida",
+                "vi": "Leo lên",
+                "id": "Naik",
+                "tr": "Tırmanış",
+                "pl": "Wspinaczka"
               }
             },
             {
@@ -1630,13 +1630,13 @@
               "label": {
                 "ru": "Монеты",
                 "en": "Coins",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Монети",
+                "es": "Monedas",
+                "pt-BR": "Moedas",
+                "vi": "Xu",
+                "id": "Koin",
+                "tr": "Jeton",
+                "pl": "Monety"
               }
             },
             {
@@ -1644,13 +1644,13 @@
               "label": {
                 "ru": "Соперники",
                 "en": "Rivals",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Суперники",
+                "es": "Rivales",
+                "pt-BR": "Rivais",
+                "vi": "Đối thủ",
+                "id": "Lawan",
+                "tr": "Rakipler",
+                "pl": "Rywale"
               }
             },
             {
@@ -1658,13 +1658,13 @@
               "label": {
                 "ru": "Привычка",
                 "en": "Habit",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Звичка",
+                "es": "Costumbre",
+                "pt-BR": "Hábito",
+                "vi": "Thói quen",
+                "id": "Kebiasaan",
+                "tr": "Alışkanlık",
+                "pl": "Nawyk"
               }
             },
             {
@@ -1672,13 +1672,13 @@
               "label": {
                 "ru": "Не играю в Пик",
                 "en": "I don't play Peak",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не граю в Пік",
+                "es": "No juego al Pico",
+                "pt-BR": "Não jogo o Pico",
+                "vi": "Mình không chơi Đỉnh",
+                "id": "Tidak main Puncak",
+                "tr": "Zirve oynamıyorum",
+                "pl": "Nie gram w Szczyt"
               }
             }
           ]
@@ -1688,13 +1688,13 @@
           "text": {
             "ru": "Энергии хватает?",
             "en": "Is energy enough?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Енергії вистачає?",
+            "es": "¿Te alcanza la energía?",
+            "pt-BR": "A energia é suficiente?",
+            "vi": "Năng lượng có đủ không?",
+            "id": "Energinya cukup?",
+            "tr": "Enerji yetiyor mu?",
+            "pl": "Wystarcza ci energii?"
           },
           "options": [
             {
@@ -1702,13 +1702,13 @@
               "label": {
                 "ru": "Да",
                 "en": "Yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Так",
+                "es": "Sí",
+                "pt-BR": "Sim",
+                "vi": "Đủ",
+                "id": "Cukup",
+                "tr": "Evet",
+                "pl": "Tak"
               }
             },
             {
@@ -1716,13 +1716,13 @@
               "label": {
                 "ru": "Иногда нет",
                 "en": "Sometimes not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Іноді ні",
+                "es": "A veces no",
+                "pt-BR": "Às vezes não",
+                "vi": "Đôi khi không",
+                "id": "Kadang tidak",
+                "tr": "Bazen yetmiyor",
+                "pl": "Czasem nie"
               }
             },
             {
@@ -1730,13 +1730,13 @@
               "label": {
                 "ru": "Часто нет",
                 "en": "Often not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Часто ні",
+                "es": "A menudo no",
+                "pt-BR": "Muitas vezes não",
+                "vi": "Thường không",
+                "id": "Sering tidak",
+                "tr": "Çoğu zaman yetmiyor",
+                "pl": "Często nie"
               }
             }
           ]
@@ -1746,13 +1746,13 @@
           "text": {
             "ru": "Как часто повторяешь карточки?",
             "en": "How often do you review cards?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Як часто повторюєш картки?",
+            "es": "¿Cada cuánto repasas tarjetas?",
+            "pt-BR": "Com que frequência você revisa cartões?",
+            "vi": "Bạn ôn thẻ thường xuyên không?",
+            "id": "Seberapa sering mengulang kartu?",
+            "tr": "Kartları ne sıklıkla tekrar edersin?",
+            "pl": "Jak często powtarzasz karty?"
           },
           "options": [
             {
@@ -1760,13 +1760,13 @@
               "label": {
                 "ru": "Каждый день",
                 "en": "Every day",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Щодня",
+                "es": "A diario",
+                "pt-BR": "Todo dia",
+                "vi": "Mỗi ngày",
+                "id": "Tiap hari",
+                "tr": "Her gün",
+                "pl": "Codziennie"
               }
             },
             {
@@ -1774,13 +1774,13 @@
               "label": {
                 "ru": "Пару раз в неделю",
                 "en": "A few times a week",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Кілька разів на тиждень",
+                "es": "Varias veces por semana",
+                "pt-BR": "Algumas vezes por semana",
+                "vi": "Vài lần một tuần",
+                "id": "Beberapa kali seminggu",
+                "tr": "Haftada birkaç kez",
+                "pl": "Kilka razy w tygodniu"
               }
             },
             {
@@ -1788,13 +1788,13 @@
               "label": {
                 "ru": "Редко",
                 "en": "Rarely",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Рідко",
+                "es": "Pocas veces",
+                "pt-BR": "Raramente",
+                "vi": "Hiếm khi",
+                "id": "Jarang",
+                "tr": "Nadiren",
+                "pl": "Rzadko"
               }
             },
             {
@@ -1802,13 +1802,13 @@
               "label": {
                 "ru": "Не пользуюсь",
                 "en": "I don't use it",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не користуюся",
+                "es": "No las uso",
+                "pt-BR": "Não uso",
+                "vi": "Không dùng",
+                "id": "Tidak pakai",
+                "tr": "Kullanmıyorum",
+                "pl": "Nie używam"
               }
             }
           ]
@@ -1821,13 +1821,13 @@
       "title": {
         "ru": "Карточки и диалоги",
         "en": "Cards and dialogues",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Картки і діалоги",
+        "es": "Tarjetas y diálogos",
+        "pt-BR": "Cartões e diálogos",
+        "vi": "Thẻ học và hội thoại",
+        "id": "Kartu dan dialog",
+        "tr": "Kartlar ve diyaloglar",
+        "pl": "Karty i dialogi"
       },
       "questions": [
         {
@@ -1835,13 +1835,13 @@
           "text": {
             "ru": "Карточки помогают запомнить?",
             "en": "Do cards help you remember?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Картки допомагають запам’ятати?",
+            "es": "¿Las tarjetas te ayudan a recordar?",
+            "pt-BR": "Os cartões ajudam a lembrar?",
+            "vi": "Thẻ có giúp bạn nhớ không?",
+            "id": "Kartu membantu mengingat?",
+            "tr": "Kartlar hatırlamana yardım ediyor mu?",
+            "pl": "Karty pomagają zapamiętać?"
           },
           "options": [
             {
@@ -1849,13 +1849,13 @@
               "label": {
                 "ru": "Очень",
                 "en": "Very much",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дуже",
+                "es": "Mucho",
+                "pt-BR": "Muito",
+                "vi": "Rất nhiều",
+                "id": "Sangat",
+                "tr": "Çok",
+                "pl": "Bardzo"
               }
             },
             {
@@ -1863,13 +1863,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Mostly yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -1877,13 +1877,13 @@
               "label": {
                 "ru": "Средне",
                 "en": "So-so",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Посередньо",
+                "es": "Más o menos",
+                "pt-BR": "Mais ou menos",
+                "vi": "Bình thường",
+                "id": "Biasa saja",
+                "tr": "Orta",
+                "pl": "Średnio"
               }
             },
             {
@@ -1891,13 +1891,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Mostly not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -1905,13 +1905,13 @@
               "label": {
                 "ru": "Совсем нет",
                 "en": "Not at all",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Зовсім ні",
+                "es": "Nada",
+                "pt-BR": "Nada",
+                "vi": "Hoàn toàn không",
+                "id": "Sama sekali tidak",
+                "tr": "Hiç",
+                "pl": "Wcale"
               }
             },
             {
@@ -1919,13 +1919,13 @@
               "label": {
                 "ru": "Не пользуюсь",
                 "en": "I don't use it",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не користуюся",
+                "es": "No las uso",
+                "pt-BR": "Não uso",
+                "vi": "Không dùng",
+                "id": "Tidak pakai",
+                "tr": "Kullanmıyorum",
+                "pl": "Nie używam"
               }
             }
           ]
@@ -1935,13 +1935,13 @@
           "text": {
             "ru": "Какая тема диалогов интереснее?",
             "en": "Which dialogue topic interests you most?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Яка тема діалогів цікавіша?",
+            "es": "¿Qué tema de diálogo te gusta más?",
+            "pt-BR": "Qual tema de diálogo te interessa mais?",
+            "vi": "Chủ đề hội thoại nào hay nhất?",
+            "id": "Topik dialog mana yang paling menarik?",
+            "tr": "Hangi diyalog konusu daha ilginç?",
+            "pl": "Który temat dialogów jest najciekawszy?"
           },
           "options": [
             {
@@ -1949,13 +1949,13 @@
               "label": {
                 "ru": "Работа",
                 "en": "Work",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Робота",
+                "es": "Trabajo",
+                "pt-BR": "Trabalho",
+                "vi": "Công việc",
+                "id": "Kerja",
+                "tr": "İş",
+                "pl": "Praca"
               }
             },
             {
@@ -1963,13 +1963,13 @@
               "label": {
                 "ru": "Поездки",
                 "en": "Travel",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Подорожі",
+                "es": "Viajes",
+                "pt-BR": "Viagens",
+                "vi": "Du lịch",
+                "id": "Jalan-jalan",
+                "tr": "Seyahat",
+                "pl": "Podróże"
               }
             },
             {
@@ -1977,13 +1977,13 @@
               "label": {
                 "ru": "Быт",
                 "en": "Everyday life",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Побут",
+                "es": "Día a día",
+                "pt-BR": "Dia a dia",
+                "vi": "Đời thường",
+                "id": "Sehari-hari",
+                "tr": "Günlük hayat",
+                "pl": "Codzienność"
               }
             },
             {
@@ -1991,13 +1991,13 @@
               "label": {
                 "ru": "Знакомства",
                 "en": "Meeting people",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Знайомства",
+                "es": "Conocer gente",
+                "pt-BR": "Conhecer pessoas",
+                "vi": "Làm quen",
+                "id": "Kenalan",
+                "tr": "Tanışma",
+                "pl": "Poznawanie ludzi"
               }
             },
             {
@@ -2005,13 +2005,13 @@
               "label": {
                 "ru": "Здоровье",
                 "en": "Health",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Здоров’я",
+                "es": "Salud",
+                "pt-BR": "Saúde",
+                "vi": "Sức khỏe",
+                "id": "Kesehatan",
+                "tr": "Sağlık",
+                "pl": "Zdrowie"
               }
             },
             {
@@ -2019,13 +2019,13 @@
               "label": {
                 "ru": "Покупки",
                 "en": "Shopping",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Покупки",
+                "es": "Compras",
+                "pt-BR": "Compras",
+                "vi": "Mua sắm",
+                "id": "Belanja",
+                "tr": "Alışveriş",
+                "pl": "Zakupy"
               }
             }
           ]
@@ -2035,13 +2035,13 @@
           "text": {
             "ru": "Диалоги — уровень по силам?",
             "en": "Dialogues: right level?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Діалоги — рівень під силу?",
+            "es": "Diálogos: ¿nivel adecuado?",
+            "pt-BR": "Diálogos: nível certo?",
+            "vi": "Hội thoại: vừa sức không?",
+            "id": "Dialog: levelnya pas?",
+            "tr": "Diyaloglar: seviye uygun mu?",
+            "pl": "Dialogi: poziom w sam raz?"
           },
           "options": [
             {
@@ -2049,13 +2049,13 @@
               "label": {
                 "ru": "Легко",
                 "en": "Easy",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Легко",
+                "es": "Fácil",
+                "pt-BR": "Fácil",
+                "vi": "Dễ",
+                "id": "Mudah",
+                "tr": "Kolay",
+                "pl": "Łatwo"
               }
             },
             {
@@ -2063,13 +2063,13 @@
               "label": {
                 "ru": "В самый раз",
                 "en": "Just right",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Саме те",
+                "es": "Justo",
+                "pt-BR": "Na medida",
+                "vi": "Vừa sức",
+                "id": "Pas",
+                "tr": "Tam kararında",
+                "pl": "W sam raz"
               }
             },
             {
@@ -2077,13 +2077,13 @@
               "label": {
                 "ru": "Тяжело",
                 "en": "Hard",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Важко",
+                "es": "Difícil",
+                "pt-BR": "Difícil",
+                "vi": "Khó",
+                "id": "Sulit",
+                "tr": "Zor",
+                "pl": "Trudno"
               }
             },
             {
@@ -2091,13 +2091,13 @@
               "label": {
                 "ru": "Не пользуюсь",
                 "en": "I don't use it",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не користуюся",
+                "es": "No las uso",
+                "pt-BR": "Não uso",
+                "vi": "Không dùng",
+                "id": "Tidak pakai",
+                "tr": "Kullanmıyorum",
+                "pl": "Nie używam"
               }
             }
           ]
@@ -2110,13 +2110,13 @@
       "title": {
         "ru": "Привычка",
         "en": "Your habit",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Звичка",
+        "es": "Costumbre",
+        "pt-BR": "Hábito",
+        "vi": "Thói quen",
+        "id": "Kebiasaan",
+        "tr": "Alışkanlık",
+        "pl": "Nawyk"
       },
       "questions": [
         {
@@ -2124,13 +2124,13 @@
           "text": {
             "ru": "Напоминаний сколько надо?",
             "en": "How many reminders?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Скільки потрібно нагадувань?",
+            "es": "¿Cuántos recordatorios quieres?",
+            "pt-BR": "Quantos lembretes?",
+            "vi": "Bạn muốn bao nhiêu lời nhắc?",
+            "id": "Berapa banyak pengingat?",
+            "tr": "Kaç hatırlatma istersin?",
+            "pl": "Ile przypomnień?"
           },
           "options": [
             {
@@ -2138,13 +2138,13 @@
               "label": {
                 "ru": "Больше",
                 "en": "More",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Більше",
+                "es": "Más",
+                "pt-BR": "Mais",
+                "vi": "Cao hơn",
+                "id": "Lebih",
+                "tr": "Daha fazla",
+                "pl": "Więcej"
               }
             },
             {
@@ -2152,13 +2152,13 @@
               "label": {
                 "ru": "Так хорошо",
                 "en": "This is fine",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Так добре",
+                "es": "Así está bien",
+                "pt-BR": "Assim está bom",
+                "vi": "Như này ổn",
+                "id": "Segini pas",
+                "tr": "Böyle iyi",
+                "pl": "Tak jest dobrze"
               }
             },
             {
@@ -2166,13 +2166,13 @@
               "label": {
                 "ru": "Меньше",
                 "en": "Fewer",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Менше",
+                "es": "Menos",
+                "pt-BR": "Menos",
+                "vi": "Ít hơn",
+                "id": "Lebih sedikit",
+                "tr": "Daha az",
+                "pl": "Mniej"
               }
             },
             {
@@ -2180,13 +2180,13 @@
               "label": {
                 "ru": "Не нужны",
                 "en": "None",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не потрібні",
+                "es": "Ninguno",
+                "pt-BR": "Nenhum",
+                "vi": "Không cần",
+                "id": "Tidak perlu",
+                "tr": "İstemiyorum",
+                "pl": "Wcale"
               }
             }
           ]
@@ -2196,13 +2196,13 @@
           "text": {
             "ru": "Серия дней мотивирует?",
             "en": "Does the streak motivate you?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Серія днів мотивує?",
+            "es": "¿La racha te motiva?",
+            "pt-BR": "A sequência te motiva?",
+            "vi": "Chuỗi ngày có tạo động lực không?",
+            "id": "Runtunan bikin semangat?",
+            "tr": "Seri seni motive ediyor mu?",
+            "pl": "Seria dni cię motywuje?"
           },
           "options": [
             {
@@ -2210,13 +2210,13 @@
               "label": {
                 "ru": "Очень",
                 "en": "Very much",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дуже",
+                "es": "Mucho",
+                "pt-BR": "Muito",
+                "vi": "Rất nhiều",
+                "id": "Sangat",
+                "tr": "Çok",
+                "pl": "Bardzo"
               }
             },
             {
@@ -2224,13 +2224,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Mostly yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -2238,13 +2238,13 @@
               "label": {
                 "ru": "Средне",
                 "en": "So-so",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Посередньо",
+                "es": "Más o menos",
+                "pt-BR": "Mais ou menos",
+                "vi": "Bình thường",
+                "id": "Biasa saja",
+                "tr": "Orta",
+                "pl": "Średnio"
               }
             },
             {
@@ -2252,13 +2252,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Mostly not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -2266,13 +2266,13 @@
               "label": {
                 "ru": "Совсем нет",
                 "en": "Not at all",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Зовсім ні",
+                "es": "Nada",
+                "pt-BR": "Nada",
+                "vi": "Hoàn toàn không",
+                "id": "Sama sekali tidak",
+                "tr": "Hiç",
+                "pl": "Wcale"
               }
             }
           ]
@@ -2282,13 +2282,13 @@
           "text": {
             "ru": "Что мешает заниматься?",
             "en": "What stops you from studying?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Що заважає займатися?",
+            "es": "¿Qué te impide estudiar?",
+            "pt-BR": "O que te impede de estudar?",
+            "vi": "Điều gì cản bạn học?",
+            "id": "Apa yang menghalangi belajar?",
+            "tr": "Çalışmana ne engel oluyor?",
+            "pl": "Co przeszkadza ci w nauce?"
           },
           "options": [
             {
@@ -2296,13 +2296,13 @@
               "label": {
                 "ru": "Нет времени",
                 "en": "No time",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Немає часу",
+                "es": "No tengo tiempo",
+                "pt-BR": "Falta de tempo",
+                "vi": "Không có thời gian",
+                "id": "Tidak ada waktu",
+                "tr": "Vaktim yok",
+                "pl": "Brak czasu"
               }
             },
             {
@@ -2310,13 +2310,13 @@
               "label": {
                 "ru": "Забываю",
                 "en": "I forget",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Забуваю",
+                "es": "Se me olvida",
+                "pt-BR": "Eu esqueço",
+                "vi": "Hay quên",
+                "id": "Lupa",
+                "tr": "Unutuyorum",
+                "pl": "Zapominam"
               }
             },
             {
@@ -2324,13 +2324,13 @@
               "label": {
                 "ru": "Скучно",
                 "en": "Boring",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Нудно",
+                "es": "Me aburre",
+                "pt-BR": "É chato",
+                "vi": "Chán",
+                "id": "Bosan",
+                "tr": "Sıkıcı",
+                "pl": "Nudno"
               }
             },
             {
@@ -2338,13 +2338,13 @@
               "label": {
                 "ru": "Сложно",
                 "en": "Too hard",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Складно",
+                "es": "Es difícil",
+                "pt-BR": "É difícil",
+                "vi": "Khó quá",
+                "id": "Terlalu sulit",
+                "tr": "Zor",
+                "pl": "Za trudno"
               }
             },
             {
@@ -2352,13 +2352,13 @@
               "label": {
                 "ru": "Не вижу результата",
                 "en": "I don't see results",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не бачу результату",
+                "es": "No veo resultados",
+                "pt-BR": "Não vejo resultado",
+                "vi": "Không thấy kết quả",
+                "id": "Tidak ada hasil",
+                "tr": "Sonuç göremiyorum",
+                "pl": "Nie widzę efektów"
               }
             }
           ]
@@ -2371,13 +2371,13 @@
       "title": {
         "ru": "Как тебе Phraseman",
         "en": "How you like Phraseman",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Як тобі Phraseman",
+        "es": "Qué te parece Phraseman",
+        "pt-BR": "O que você acha do Phraseman",
+        "vi": "Bạn thấy Phraseman thế nào",
+        "id": "Gimana Phraseman menurutmu",
+        "tr": "Phraseman nasıl",
+        "pl": "Jak ci się podoba Phraseman"
       },
       "questions": [
         {
@@ -2385,13 +2385,13 @@
           "text": {
             "ru": "Посоветуешь Phraseman другу?",
             "en": "Would you recommend Phraseman?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Порадиш Phraseman другові?",
+            "es": "¿Recomendarías Phraseman?",
+            "pt-BR": "Você indicaria o Phraseman?",
+            "vi": "Bạn có giới thiệu Phraseman không?",
+            "id": "Mau rekomendasikan Phraseman?",
+            "tr": "Phraseman'i önerir misin?",
+            "pl": "Polecisz Phraseman znajomym?"
           },
           "options": [
             {
@@ -2399,13 +2399,13 @@
               "label": {
                 "ru": "Точно посоветую",
                 "en": "Definitely",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Точно пораджу",
+                "es": "Seguro que sí",
+                "pt-BR": "Com certeza",
+                "vi": "Chắc chắn rồi",
+                "id": "Pasti",
+                "tr": "Kesinlikle",
+                "pl": "Na pewno"
               }
             },
             {
@@ -2413,13 +2413,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Probably",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -2427,13 +2427,13 @@
               "label": {
                 "ru": "Пока не знаю",
                 "en": "Not sure yet",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Поки не знаю",
+                "es": "Aún no lo sé",
+                "pt-BR": "Ainda não sei",
+                "vi": "Chưa biết",
+                "id": "Belum tahu",
+                "tr": "Henüz bilmiyorum",
+                "pl": "Jeszcze nie wiem"
               }
             },
             {
@@ -2441,13 +2441,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Probably not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -2455,13 +2455,13 @@
               "label": {
                 "ru": "Точно нет",
                 "en": "Definitely not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Точно ні",
+                "es": "Para nada",
+                "pt-BR": "De jeito nenhum",
+                "vi": "Chắc chắn không",
+                "id": "Pasti tidak",
+                "tr": "Kesinlikle hayır",
+                "pl": "Na pewno nie"
               }
             }
           ]
@@ -2471,13 +2471,13 @@
           "text": {
             "ru": "Насколько доволен Phraseman?",
             "en": "How happy are you with Phraseman?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Наскільки ти задоволений Phraseman?",
+            "es": "¿Qué tan contento estás con Phraseman?",
+            "pt-BR": "Você está satisfeito com o Phraseman?",
+            "vi": "Bạn hài lòng với Phraseman không?",
+            "id": "Seberapa puas kamu dengan Phraseman?",
+            "tr": "Phraseman'den ne kadar memnunsun?",
+            "pl": "Jak bardzo podoba ci się Phraseman?"
           },
           "options": [
             {
@@ -2485,13 +2485,13 @@
               "label": {
                 "ru": "🤩 Очень",
                 "en": "🤩 Very",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "🤩 Дуже",
+                "es": "🤩 Mucho",
+                "pt-BR": "🤩 Muito",
+                "vi": "🤩 Rất hài lòng",
+                "id": "🤩 Sangat puas",
+                "tr": "🤩 Çok",
+                "pl": "🤩 Bardzo"
               }
             },
             {
@@ -2499,13 +2499,13 @@
               "label": {
                 "ru": "🙂 Доволен",
                 "en": "🙂 Happy",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "🙂 Задоволений",
+                "es": "🙂 Contento",
+                "pt-BR": "🙂 Satisfeito",
+                "vi": "🙂 Hài lòng",
+                "id": "🙂 Puas",
+                "tr": "🙂 Memnunum",
+                "pl": "🙂 Podoba mi się"
               }
             },
             {
@@ -2513,13 +2513,13 @@
               "label": {
                 "ru": "😐 Нормально",
                 "en": "😐 Okay",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "😐 Нормально",
+                "es": "😐 Normal",
+                "pt-BR": "😐 Normal",
+                "vi": "😐 Bình thường",
+                "id": "😐 Biasa",
+                "tr": "😐 Fena değil",
+                "pl": "😐 W porządku"
               }
             },
             {
@@ -2527,13 +2527,13 @@
               "label": {
                 "ru": "😕 Не очень",
                 "en": "😕 Not really",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "😕 Не дуже",
+                "es": "😕 No mucho",
+                "pt-BR": "😕 Não muito",
+                "vi": "😕 Không lắm",
+                "id": "😕 Kurang",
+                "tr": "😕 Pek değil",
+                "pl": "😕 Nie bardzo"
               }
             },
             {
@@ -2541,13 +2541,13 @@
               "label": {
                 "ru": "😫 Недоволен",
                 "en": "😫 Unhappy",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "😫 Незадоволений",
+                "es": "😫 Nada contento",
+                "pt-BR": "😫 Insatisfeito",
+                "vi": "😫 Không hài lòng",
+                "id": "😫 Tidak puas",
+                "tr": "😫 Memnun değilim",
+                "pl": "😫 Nie podoba mi się"
               }
             }
           ]
@@ -2557,13 +2557,13 @@
           "text": {
             "ru": "Что улучшить первым?",
             "en": "What should we improve first?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Що покращити першим?",
+            "es": "¿Qué mejoramos primero?",
+            "pt-BR": "O que melhorar primeiro?",
+            "vi": "Nên cải thiện gì trước?",
+            "id": "Apa yang diperbaiki dulu?",
+            "tr": "Önce neyi iyileştirelim?",
+            "pl": "Co poprawić najpierw?"
           },
           "options": [
             {
@@ -2571,13 +2571,13 @@
               "label": {
                 "ru": "Курс",
                 "en": "The course",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Курс",
+                "es": "Curso",
+                "pt-BR": "Curso",
+                "vi": "Khóa học",
+                "id": "Kursus",
+                "tr": "Kurs",
+                "pl": "Kurs"
               }
             },
             {
@@ -2585,13 +2585,13 @@
               "label": {
                 "ru": "Речь",
                 "en": "Speaking",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Мовлення",
+                "es": "Hablar",
+                "pt-BR": "Fala",
+                "vi": "Luyện nói",
+                "id": "Bicara",
+                "tr": "Konuşma",
+                "pl": "Mówienie"
               }
             },
             {
@@ -2599,13 +2599,13 @@
               "label": {
                 "ru": "Карточки",
                 "en": "Cards",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Картки",
+                "es": "Tarjetas",
+                "pt-BR": "Cartões",
+                "vi": "Thẻ học",
+                "id": "Kartu",
+                "tr": "Kartlar",
+                "pl": "Karty"
               }
             },
             {
@@ -2613,13 +2613,13 @@
               "label": {
                 "ru": "Пик",
                 "en": "Peak",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Пік",
+                "es": "Pico",
+                "pt-BR": "Pico",
+                "vi": "Đỉnh",
+                "id": "Puncak",
+                "tr": "Zirve",
+                "pl": "Szczyt"
               }
             },
             {
@@ -2627,13 +2627,13 @@
               "label": {
                 "ru": "Скорость",
                 "en": "Speed",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Швидкість",
+                "es": "Velocidad",
+                "pt-BR": "Velocidade",
+                "vi": "Tốc độ",
+                "id": "Kecepatan",
+                "tr": "Hız",
+                "pl": "Szybkość"
               }
             },
             {
@@ -2641,13 +2641,13 @@
               "label": {
                 "ru": "Дизайн",
                 "en": "Design",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дизайн",
+                "es": "Diseño",
+                "pt-BR": "Design",
+                "vi": "Giao diện",
+                "id": "Desain",
+                "tr": "Tasarım",
+                "pl": "Wygląd"
               }
             }
           ]
@@ -2660,13 +2660,13 @@
       "title": {
         "ru": "Что дальше",
         "en": "What's next",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Що далі",
+        "es": "Qué sigue",
+        "pt-BR": "O que vem agora",
+        "vi": "Tiếp theo là gì",
+        "id": "Selanjutnya",
+        "tr": "Sırada ne var",
+        "pl": "Co dalej"
       },
       "questions": [
         {
@@ -2674,13 +2674,13 @@
           "text": {
             "ru": "Приложение работает быстро?",
             "en": "Does the app feel fast?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Застосунок працює швидко?",
+            "es": "¿La app va rápido?",
+            "pt-BR": "O app é rápido?",
+            "vi": "Ứng dụng có nhanh không?",
+            "id": "Aplikasinya cepat?",
+            "tr": "Uygulama hızlı mı?",
+            "pl": "Aplikacja działa szybko?"
           },
           "options": [
             {
@@ -2688,13 +2688,13 @@
               "label": {
                 "ru": "Очень",
                 "en": "Very much",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дуже",
+                "es": "Mucho",
+                "pt-BR": "Muito",
+                "vi": "Rất nhiều",
+                "id": "Sangat",
+                "tr": "Çok",
+                "pl": "Bardzo"
               }
             },
             {
@@ -2702,13 +2702,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Mostly yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -2716,13 +2716,13 @@
               "label": {
                 "ru": "Средне",
                 "en": "So-so",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Посередньо",
+                "es": "Más o menos",
+                "pt-BR": "Mais ou menos",
+                "vi": "Bình thường",
+                "id": "Biasa saja",
+                "tr": "Orta",
+                "pl": "Średnio"
               }
             },
             {
@@ -2730,13 +2730,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Mostly not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -2744,13 +2744,13 @@
               "label": {
                 "ru": "Совсем нет",
                 "en": "Not at all",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Зовсім ні",
+                "es": "Nada",
+                "pt-BR": "Nada",
+                "vi": "Hoàn toàn không",
+                "id": "Sama sekali tidak",
+                "tr": "Hiç",
+                "pl": "Wcale"
               }
             }
           ]
@@ -2760,13 +2760,13 @@
           "text": {
             "ru": "За что готов платить?",
             "en": "What would you pay for?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "За що готовий платити?",
+            "es": "¿Por qué pagarías?",
+            "pt-BR": "Pelo que você pagaria?",
+            "vi": "Bạn sẵn sàng trả tiền cho gì?",
+            "id": "Mau bayar untuk apa?",
+            "tr": "Neye para verirdin?",
+            "pl": "Za co zapłacisz?"
           },
           "options": [
             {
@@ -2774,13 +2774,13 @@
               "label": {
                 "ru": "Весь курс",
                 "en": "The full course",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Весь курс",
+                "es": "Curso completo",
+                "pt-BR": "Curso completo",
+                "vi": "Toàn bộ khóa học",
+                "id": "Kursus lengkap",
+                "tr": "Kursun tamamı",
+                "pl": "Cały kurs"
               }
             },
             {
@@ -2788,13 +2788,13 @@
               "label": {
                 "ru": "Безлимит речи",
                 "en": "Unlimited speaking",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Безліміт мовлення",
+                "es": "Hablar sin límite",
+                "pt-BR": "Fala ilimitada",
+                "vi": "Nói không giới hạn",
+                "id": "Bicara tanpa batas",
+                "tr": "Sınırsız konuşma",
+                "pl": "Mówienie bez limitu"
               }
             },
             {
@@ -2802,13 +2802,13 @@
               "label": {
                 "ru": "Без энергии",
                 "en": "No energy limits",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Без енергії",
+                "es": "Sin energía",
+                "pt-BR": "Sem energia",
+                "vi": "Không cần năng lượng",
+                "id": "Tanpa energi",
+                "tr": "Enerjisiz",
+                "pl": "Bez energii"
               }
             },
             {
@@ -2816,13 +2816,13 @@
               "label": {
                 "ru": "Пик без ограничений",
                 "en": "Unlimited Peak",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Пік без обмежень",
+                "es": "Pico sin límites",
+                "pt-BR": "Pico sem limites",
+                "vi": "Đỉnh không giới hạn",
+                "id": "Puncak tanpa batas",
+                "tr": "Sınırsız Zirve",
+                "pl": "Szczyt bez limitu"
               }
             },
             {
@@ -2830,13 +2830,13 @@
               "label": {
                 "ru": "Ни за что",
                 "en": "Nothing",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Ні за що",
+                "es": "Por nada",
+                "pt-BR": "Nada",
+                "vi": "Không gì cả",
+                "id": "Tidak ada",
+                "tr": "Hiçbir şey",
+                "pl": "Za nic"
               }
             }
           ]
@@ -2846,13 +2846,13 @@
           "text": {
             "ru": "Что добавить в приложение?",
             "en": "What should we add?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Що додати в застосунок?",
+            "es": "¿Qué añadimos?",
+            "pt-BR": "O que devemos adicionar?",
+            "vi": "Nên thêm gì vào ứng dụng?",
+            "id": "Apa yang perlu ditambah?",
+            "tr": "Uygulamaya ne ekleyelim?",
+            "pl": "Co dodać do aplikacji?"
           },
           "options": [
             {
@@ -2860,13 +2860,13 @@
               "label": {
                 "ru": "Разговор с ИИ",
                 "en": "AI conversation",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Розмова з ШІ",
+                "es": "Hablar con IA",
+                "pt-BR": "Conversa com IA",
+                "vi": "Trò chuyện với AI",
+                "id": "Ngobrol dengan AI",
+                "tr": "Yapay zekâyla sohbet",
+                "pl": "Rozmowa z AI"
               }
             },
             {
@@ -2874,13 +2874,13 @@
               "label": {
                 "ru": "Больше языков",
                 "en": "More languages",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Більше мов",
+                "es": "Más idiomas",
+                "pt-BR": "Mais idiomas",
+                "vi": "Thêm ngôn ngữ",
+                "id": "Lebih banyak bahasa",
+                "tr": "Daha fazla dil",
+                "pl": "Więcej języków"
               }
             },
             {
@@ -2888,13 +2888,13 @@
               "label": {
                 "ru": "Офлайн",
                 "en": "Offline mode",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Офлайн",
+                "es": "Sin conexión",
+                "pt-BR": "Modo offline",
+                "vi": "Ngoại tuyến",
+                "id": "Mode offline",
+                "tr": "Çevrimdışı",
+                "pl": "Tryb offline"
               }
             },
             {
@@ -2902,13 +2902,13 @@
               "label": {
                 "ru": "Игры с друзьями",
                 "en": "Games with friends",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Ігри з друзями",
+                "es": "Juegos con amigos",
+                "pt-BR": "Jogos com amigos",
+                "vi": "Chơi với bạn bè",
+                "id": "Main dengan teman",
+                "tr": "Arkadaşlarla oyun",
+                "pl": "Gry ze znajomymi"
               }
             },
             {
@@ -2916,13 +2916,13 @@
               "label": {
                 "ru": "Экзамены",
                 "en": "Exam prep",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Іспити",
+                "es": "Exámenes",
+                "pt-BR": "Provas",
+                "vi": "Bài thi",
+                "id": "Ujian",
+                "tr": "Sınavlar",
+                "pl": "Egzaminy"
               }
             }
           ]
@@ -2935,13 +2935,13 @@
       "title": {
         "ru": "Про Plus",
         "en": "About Plus",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Про Plus",
+        "es": "Sobre Plus",
+        "pt-BR": "Sobre o Plus",
+        "vi": "Về Plus",
+        "id": "Soal Plus",
+        "tr": "Plus hakkında",
+        "pl": "O Plus"
       },
       "questions": [
         {
@@ -2949,13 +2949,13 @@
           "text": {
             "ru": "Удобная цена Plus в месяц?",
             "en": "Comfortable Plus price per month?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Зручна ціна Plus на місяць?",
+            "es": "¿Precio cómodo de Plus al mes?",
+            "pt-BR": "Preço ideal do Plus por mês?",
+            "vi": "Giá Plus mỗi tháng hợp lý?",
+            "id": "Harga Plus per bulan yang pas?",
+            "tr": "Aylık Plus için uygun fiyat?",
+            "pl": "Dobra cena Plus za miesiąc?"
           },
           "options": [
             {
@@ -2963,13 +2963,13 @@
               "label": {
                 "ru": "До 2 €",
                 "en": "Up to €2",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "До 2 €",
+                "es": "Hasta 2 €",
+                "pt-BR": "Até 2 €",
+                "vi": "Dưới 2 €",
+                "id": "Di bawah 2 €",
+                "tr": "2 €'ya kadar",
+                "pl": "Do 2 €"
               }
             },
             {
@@ -2977,13 +2977,13 @@
               "label": {
                 "ru": "2–4 €",
                 "en": "€2–4",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "2–4 €",
+                "es": "2–4 €",
+                "pt-BR": "2–4 €",
+                "vi": "2–4 €",
+                "id": "2–4 €",
+                "tr": "2–4 €",
+                "pl": "2–4 €"
               }
             },
             {
@@ -2991,13 +2991,13 @@
               "label": {
                 "ru": "4–7 €",
                 "en": "€4–7",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "4–7 €",
+                "es": "4–7 €",
+                "pt-BR": "4–7 €",
+                "vi": "4–7 €",
+                "id": "4–7 €",
+                "tr": "4–7 €",
+                "pl": "4–7 €"
               }
             },
             {
@@ -3005,13 +3005,13 @@
               "label": {
                 "ru": "Больше",
                 "en": "More",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Більше",
+                "es": "Más",
+                "pt-BR": "Mais",
+                "vi": "Cao hơn",
+                "id": "Lebih",
+                "tr": "Daha fazla",
+                "pl": "Więcej"
               }
             },
             {
@@ -3019,13 +3019,13 @@
               "label": {
                 "ru": "Не куплю",
                 "en": "I won't buy",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не куплю",
+                "es": "No lo compraré",
+                "pt-BR": "Não vou comprar",
+                "vi": "Sẽ không mua",
+                "id": "Tidak akan beli",
+                "tr": "Almam",
+                "pl": "Nie kupię"
               }
             }
           ]
@@ -3035,13 +3035,13 @@
           "text": {
             "ru": "Что мешает оформить Plus?",
             "en": "What stops you from getting Plus?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Що заважає оформити Plus?",
+            "es": "¿Qué te frena para tener Plus?",
+            "pt-BR": "O que te impede de assinar o Plus?",
+            "vi": "Điều gì khiến bạn chưa dùng Plus?",
+            "id": "Apa yang menghalangi ambil Plus?",
+            "tr": "Plus almana ne engel oluyor?",
+            "pl": "Co powstrzymuje cię przed Plus?"
           },
           "options": [
             {
@@ -3049,13 +3049,13 @@
               "label": {
                 "ru": "Цена",
                 "en": "Price",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Ціна",
+                "es": "El precio",
+                "pt-BR": "O preço",
+                "vi": "Giá",
+                "id": "Harga",
+                "tr": "Fiyat",
+                "pl": "Cena"
               }
             },
             {
@@ -3063,13 +3063,13 @@
               "label": {
                 "ru": "Не вижу пользы",
                 "en": "I don't see the value",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Не бачу користі",
+                "es": "No veo el valor",
+                "pt-BR": "Não vejo vantagem",
+                "vi": "Chưa thấy lợi ích",
+                "id": "Belum lihat manfaatnya",
+                "tr": "Faydasını görmüyorum",
+                "pl": "Nie widzę korzyści"
               }
             },
             {
@@ -3077,27 +3077,27 @@
               "label": {
                 "ru": "Мало занимаюсь",
                 "en": "I don't study enough",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Мало займаюся",
+                "es": "Estudio poco",
+                "pt-BR": "Estudo pouco",
+                "vi": "Ít khi học",
+                "id": "Jarang belajar",
+                "tr": "Az çalışıyorum",
+                "pl": "Mało się uczę"
               }
             },
             {
               "id": "trust",
               "label": {
                 "ru": "Не доверяю подпискам",
-                "en": "I don't trust subscriptions",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "en": "Wary of subscriptions",
+                "uk": "Не довіряю підпискам",
+                "es": "Prefiero no suscribirme",
+                "pt-BR": "Desconfio de assinaturas",
+                "vi": "Ngại gói đăng ký",
+                "id": "Tidak percaya langganan",
+                "tr": "Aboneliğe güvenmiyorum",
+                "pl": "Nie ufam subskrypcjom"
               }
             }
           ]
@@ -3110,13 +3110,13 @@
       "title": {
         "ru": "Твой Plus",
         "en": "Your Plus",
-        "uk": "",
-        "es": "",
-        "pt-BR": "",
-        "vi": "",
-        "id": "",
-        "tr": "",
-        "pl": ""
+        "uk": "Твій Plus",
+        "es": "Tu Plus",
+        "pt-BR": "Seu Plus",
+        "vi": "Plus của bạn",
+        "id": "Plus-mu",
+        "tr": "Plus'ın",
+        "pl": "Twój Plus"
       },
       "questions": [
         {
@@ -3124,13 +3124,13 @@
           "text": {
             "ru": "Plus оправдывает цену?",
             "en": "Is Plus worth it?",
-            "uk": "",
-            "es": "",
-            "pt-BR": "",
-            "vi": "",
-            "id": "",
-            "tr": "",
-            "pl": ""
+            "uk": "Plus вартий своєї ціни?",
+            "es": "¿Plus vale lo que cuesta?",
+            "pt-BR": "O Plus vale o preço?",
+            "vi": "Plus có đáng tiền không?",
+            "id": "Plus sepadan harganya?",
+            "tr": "Plus parasına değiyor mu?",
+            "pl": "Plus jest wart swojej ceny?"
           },
           "options": [
             {
@@ -3138,13 +3138,13 @@
               "label": {
                 "ru": "Очень",
                 "en": "Very much",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Дуже",
+                "es": "Mucho",
+                "pt-BR": "Muito",
+                "vi": "Rất nhiều",
+                "id": "Sangat",
+                "tr": "Çok",
+                "pl": "Bardzo"
               }
             },
             {
@@ -3152,13 +3152,13 @@
               "label": {
                 "ru": "Скорее да",
                 "en": "Mostly yes",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше так",
+                "es": "Más bien sí",
+                "pt-BR": "Acho que sim",
+                "vi": "Có lẽ có",
+                "id": "Kayaknya iya",
+                "tr": "Galiba evet",
+                "pl": "Raczej tak"
               }
             },
             {
@@ -3166,13 +3166,13 @@
               "label": {
                 "ru": "Средне",
                 "en": "So-so",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Посередньо",
+                "es": "Más o menos",
+                "pt-BR": "Mais ou menos",
+                "vi": "Bình thường",
+                "id": "Biasa saja",
+                "tr": "Orta",
+                "pl": "Średnio"
               }
             },
             {
@@ -3180,13 +3180,13 @@
               "label": {
                 "ru": "Скорее нет",
                 "en": "Mostly not",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Скоріше ні",
+                "es": "Más bien no",
+                "pt-BR": "Acho que não",
+                "vi": "Có lẽ không",
+                "id": "Kayaknya tidak",
+                "tr": "Galiba hayır",
+                "pl": "Raczej nie"
               }
             },
             {
@@ -3194,13 +3194,13 @@
               "label": {
                 "ru": "Совсем нет",
                 "en": "Not at all",
-                "uk": "",
-                "es": "",
-                "pt-BR": "",
-                "vi": "",
-                "id": "",
-                "tr": "",
-                "pl": ""
+                "uk": "Зовсім ні",
+                "es": "Nada",
+                "pt-BR": "Nada",
+                "vi": "Hoàn toàn không",
+                "id": "Sama sekali tidak",
+                "tr": "Hiç",
+                "pl": "Wcale"
               }
             }
           ]

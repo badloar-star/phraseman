@@ -43,7 +43,8 @@ import { spireOpenLiveGate, type SpireLiveGate } from './spire_live_gate';
 import { spireEstimateStepBudgetMs, spireRememberStepBudget } from './spire_step_budget';
 import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
-import { peekSpireRoom, spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
+import { spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
+import { spireFirstFrameRoom, spireLoadMark } from './spire_load_trace';
 import { publishSpirePositionFeed } from './spire_position_feed';
 import { useSpireOwnerEpoch } from './spire_owner_epoch';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
@@ -128,16 +129,15 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     if (!gate) return undefined;
     let alive = true;
     void (async () => {
-      const uid = await getCanonicalUserId();
+      const identityStartedAt = Date.now(); const uid = await getCanonicalUserId();
       const stableId = await getStableId();
       if (!alive) return;
       if (!uid || !stableId) {
         DebugLogger.info(LOG, `game: нет идентичности (uid=${uid ? 'есть' : 'нет'}) — сеть Шпиля не трогаем`);
         return;
       }
-      setIds({ uid, stableId });
-      const peek = peekSpireRoom(uid, lang as SpireLang);
-      if (peek) setRoomLoad({ status: 'cache', room: peek, reason: 'memory_peek' });
+      setIds({ uid, stableId }); // зачем (жалоба владельца 17.10, [SPIRE-LOAD]): комната — память, иначе диск этой недели любого возраста; люди и «Играть» сразу, spireSyncRoom ниже освежает
+      void spireFirstFrameRoom(uid, lang as SpireLang, Date.now() - identityStartedAt).then((first) => { if (alive && first) setRoomLoad((cur) => cur ?? first); });
     })();
     return () => { alive = false; };
   }, [gate, lang, ownerEpoch]);
@@ -146,8 +146,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   useEffect(() => {
     if (!gate || !ids || !lang) return undefined;
     let alive = true;
-    void spireSyncRoom(gate, { uid: ids.uid, stableId: ids.stableId, lang }).then((load) => {
-      if (!alive) return;
+    const syncStartedAt = Date.now(); void spireSyncRoom(gate, { uid: ids.uid, stableId: ids.stableId, lang }).then((load) => {
+      spireLoadMark('room:sync', { status: load.status, reason: load.reason, members: load.room?.members.length ?? null, ms: Date.now() - syncStartedAt, alive }); if (!alive) return;
       DebugLogger.info(LOG, `game: комната status=${load.status} reason=${load.reason} group=${load.room?.groupId ?? '—'}`);
       // зачем (аудит Optimistic UI Шпиля, 13.10; Performance Bible «Layout Stability»): плашка «нет сети» вставляется в поток НАД башней — без перехода башня прыгала бы вниз.
       if (load.status === 'offline') animateNextLayoutTransition();

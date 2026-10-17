@@ -22,6 +22,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getDevSpireWeekResultOverride } from '../../app/dev_spire_tier';
 import { loadSpireConfig, peekSpireConfig } from '../../app/spire_config_client';
+import { spireLoadEnter, spireLoadMark, useSpireLoadReadiness } from '../../app/spire/spire_load_trace';
 import { refreshSpireConfigIfLocked } from '../../app/spire_gate_refresh';
 import { useSpireGame } from '../../app/spire/use_spire_game';
 import { peekSpireTourSeen, spireMarkTourSeen, spireReadTourSeen } from '../../app/spire/spire_local_store';
@@ -108,10 +109,10 @@ export default function SpireHomeScreen() {
     let alive = true;
     const enteredAtMs = Date.now();
     console.log('[PM-214] spire first_frame', JSON.stringify({ source: config === null ? 'skeleton (память пуста)' : 'memory', enabled: config === null ? null : config.enabled === true })); // guard-ok: замер до/после — чем рисуется первый кадр Пика
-    DebugLogger.info(LOG, `home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: ${config === null ? 'нет (первый заход)' : `да (enabled=${String(config.enabled)})`}`);
+    DebugLogger.info(LOG, `home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: ${config === null ? 'нет (первый заход)' : `да (enabled=${String(config.enabled)})`}`); void spireLoadEnter(config !== null).then((disk) => { if (alive && disk) setConfig((cur) => cur ?? disk); }); // зачем (жалоба владельца 17.10 «Пик долго грузился»): память пуста → конфиг с диска любого возраста сразу, сеть ниже освежает
     loadSpireConfig()
       .then((next) => {
-        if (!alive) return;
+        spireLoadMark('config:load', { enabled: next.enabled === true, alive }); if (!alive) return;
         DebugLogger.info(LOG, `home: config.enabled=${String(next.enabled)}`);
         DebugLogger.info('[SPIRE-FIRSTFRAME]', `первый кадр: ${config === null ? 'скелет SpireHomeSkeleton' : 'экран из памяти'}, конфиг пришёл через ${Date.now() - enteredAtMs} мс`);
         setConfig(next);
@@ -126,7 +127,7 @@ export default function SpireHomeScreen() {
         }
       })
       .catch((error: unknown) => {
-        DebugLogger.warn(LOG, `home: конфиг не прочитался, остаёмся под замком (${String(error)})`);
+        spireLoadMark('config:failed', { error: String(error) }); DebugLogger.warn(LOG, `home: конфиг не прочитался, остаёмся под замком (${String(error)})`);
         void spireConfigFallback(error).then((fallback) => { if (alive) setConfig(fallback); }); // зачем (решение координатора 15.10): сеть → «Нет интернета», иначе прежний замок
       });
     return () => { alive = false; };
@@ -187,7 +188,7 @@ export default function SpireHomeScreen() {
   }, [unlocked, spireLang, studyTarget]);
 
   // Игровая часть: вся сеть — только за воротами (оба замка), см. use_spire_game.ts.
-  const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek });
+  const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek }); useSpireLoadReadiness(realGame, preview !== null); // [SPIRE-LOAD] когда пришли люди и что держит «Играть»
   const game = preview ? preview.game : realGame;
   const devWeekResult = getDevSpireWeekResultOverride(); // dev_state?spireWeek=…: готовый исход «Итога недели» для кадров Сверки (в стор-сборке null)
   // зачем (смета Firebase 13.10, п. 5): потянуть экран = обновить друзей мимо кэша 30 мин. Спиннер держится, пока идёт вызов; повторное потягивание хук игнорирует.

@@ -29232,8 +29232,8 @@
           "text": "scratched",
           "file": "fc8162a4122bd29325544b58f1f684468207660b850b76890e6c5882009ca3f1.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc8162a4122bd29325544b58f1f684468207660b850b76890e6c5882009ca3f1.mp3",
-          "contentHash": "a49c8657e454caf6fe1c24114302ea155e3dfd692c667419e9af2ed5db6ace06",
-          "byteSize": 11520
+          "contentHash": "2629010581da5916003a3f21125dd322ebf97e430c2b1e108e87b22c21570ef3",
+          "byteSize": 29184
         },
         {
           "text": "worn",
@@ -29346,8 +29346,8 @@
           "text": "scratched",
           "file": "fc8162a4122bd29325544b58f1f684468207660b850b76890e6c5882009ca3f1.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/fc8162a4122bd29325544b58f1f684468207660b850b76890e6c5882009ca3f1.mp3",
-          "contentHash": "a49c8657e454caf6fe1c24114302ea155e3dfd692c667419e9af2ed5db6ace06",
-          "byteSize": 11520
+          "contentHash": "2629010581da5916003a3f21125dd322ebf97e430c2b1e108e87b22c21570ef3",
+          "byteSize": 29184
         }
       ]
     },
@@ -52886,9 +52886,9 @@
         {
           "text": "seal",
           "file": "facbbef3f45fb9bf98bac7488d8fc905974941a77fe68d4b1664c67e14227840.mp3",
-          "assetPath": "assets/audio/learning-v2/factory-production-v1/f0f668bf610e5cf9f11d2aa5-onyx.mp3",
-          "contentHash": "5c6a9e4758f91ab68ad0f2c3a74fd9de8a60fee1ab1c4615ec90b5a59eec4c64",
-          "byteSize": 9984
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/facbbef3f45fb9bf98bac7488d8fc905974941a77fe68d4b1664c67e14227840.mp3",
+          "contentHash": "304a1edf74d58ed8c3d42055b7aa8bd87a69c26c1f4b29f3a1936df21570d53b",
+          "byteSize": 31488
         }
       ]
     },
@@ -67095,8 +67095,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         }
       ]
     },
@@ -67167,8 +67167,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         },
         {
           "text": "generous",
@@ -67224,8 +67224,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         },
         {
           "text": "generous",
@@ -68393,8 +68393,8 @@
           "text": "parks",
           "file": "932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
-          "contentHash": "e98122a86e00db1c8233ff7fc0a80ab8809683f475bc3eb1499cddcf7c3b4a33",
-          "byteSize": 11520
+          "contentHash": "9619b23d44fa06c1ce053c940123b19377bafd5cfa5b3a6aa97de440162a4063",
+          "byteSize": 25344
         },
         {
           "text": "cheese",
@@ -68450,8 +68450,8 @@
           "text": "parks",
           "file": "932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
-          "contentHash": "e98122a86e00db1c8233ff7fc0a80ab8809683f475bc3eb1499cddcf7c3b4a33",
-          "byteSize": 11520
+          "contentHash": "9619b23d44fa06c1ce053c940123b19377bafd5cfa5b3a6aa97de440162a4063",
+          "byteSize": 25344
         },
         {
           "text": "cheese",
@@ -68689,8 +68689,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         },
         {
           "text": "alley",
@@ -69612,8 +69612,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         }
       ]
     },
@@ -69669,8 +69669,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         }
       ]
     },
@@ -69762,8 +69762,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         }
       ]
     },
@@ -101174,8 +101174,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         },
         {
           "text": "passport",
@@ -103584,8 +103584,8 @@
           "text": "sleep",
           "file": "813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
-          "contentHash": "06aae1eb8c3454421acf8de42897c8ce01f1ed3ee1d113315a8717a638623fe9",
-          "byteSize": 14976
+          "contentHash": "a07330ae28c7d8dd8ec11d8088f39091255ff15033961301aae895a6f05003f7",
+          "byteSize": 29952
         },
         {
           "text": "formal",
@@ -103677,8 +103677,8 @@
           "text": "sleep",
           "file": "813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
-          "contentHash": "06aae1eb8c3454421acf8de42897c8ce01f1ed3ee1d113315a8717a638623fe9",
-          "byteSize": 14976
+          "contentHash": "a07330ae28c7d8dd8ec11d8088f39091255ff15033961301aae895a6f05003f7",
+          "byteSize": 29952
         },
         {
           "text": "exercise",
@@ -105972,8 +105972,8 @@
           "text": "sleep",
           "file": "813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
-          "contentHash": "06aae1eb8c3454421acf8de42897c8ce01f1ed3ee1d113315a8717a638623fe9",
-          "byteSize": 14976
+          "contentHash": "a07330ae28c7d8dd8ec11d8088f39091255ff15033961301aae895a6f05003f7",
+          "byteSize": 29952
         }
       ]
     },
@@ -106029,8 +106029,8 @@
           "text": "sleep",
           "file": "813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
-          "contentHash": "06aae1eb8c3454421acf8de42897c8ce01f1ed3ee1d113315a8717a638623fe9",
-          "byteSize": 14976
+          "contentHash": "a07330ae28c7d8dd8ec11d8088f39091255ff15033961301aae895a6f05003f7",
+          "byteSize": 29952
         }
       ]
     },
@@ -106108,8 +106108,8 @@
           "text": "sleep",
           "file": "813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/813964ae446c08ec58a7debbe4448987328e346e16bacbb3a3e8011e9f00daf8.mp3",
-          "contentHash": "06aae1eb8c3454421acf8de42897c8ce01f1ed3ee1d113315a8717a638623fe9",
-          "byteSize": 14976
+          "contentHash": "a07330ae28c7d8dd8ec11d8088f39091255ff15033961301aae895a6f05003f7",
+          "byteSize": 29952
         },
         {
           "text": "recycling bin",
@@ -119361,8 +119361,8 @@
           "text": "parks",
           "file": "932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/932853e33267cc468f7f699e0aae5d843cba4dc8632f69764a52e6ad14ff7fb2.mp3",
-          "contentHash": "e98122a86e00db1c8233ff7fc0a80ab8809683f475bc3eb1499cddcf7c3b4a33",
-          "byteSize": 11520
+          "contentHash": "9619b23d44fa06c1ce053c940123b19377bafd5cfa5b3a6aa97de440162a4063",
+          "byteSize": 25344
         }
       ]
     },
@@ -135103,8 +135103,8 @@
           "text": "awning",
           "file": "f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/f06e39c65513924cafc262adad467cb687a7152745775e664036287817d374b4.mp3",
-          "contentHash": "a5dbf8f014f815a5a8fa530074b1b86a781f328023853bc1643b8b79df1f9d84",
-          "byteSize": 15744
+          "contentHash": "4faad03e56eec317e1aac3f9fa24768a2e2a13c6963d37be99e84405b04e9093",
+          "byteSize": 31488
         },
         {
           "text": "stay",

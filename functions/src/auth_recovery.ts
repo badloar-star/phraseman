@@ -100,13 +100,14 @@ const CLEAN_RECOVERY_CALLABLE_OPTIONS = {
 const REQUEST_RECOVERY_CALLABLE_OPTIONS = {
   ...HOT_CALLABLE_OPTIONS,
   enforceAppCheck: false,
-  secrets: [RESEND_API_KEY],
+  // Существующий секрет восстановления — ключи лимитов (recoveryRateKey); новый секрет не заводим.
+  secrets: [RESEND_API_KEY, AUTH_RECOVERY_CHALLENGE_HMAC_KEY_CURRENT],
 };
 
 const CONFIRM_RECOVERY_CALLABLE_OPTIONS = {
   ...HOT_CALLABLE_OPTIONS,
   enforceAppCheck: false,
-  secrets: [ADMIN_ALERT_BOT_TOKEN],
+  secrets: [ADMIN_ALERT_BOT_TOKEN, AUTH_RECOVERY_CHALLENGE_HMAC_KEY_CURRENT],
 };
 
 const HANDOFF_CALLABLE_OPTIONS = {
@@ -133,6 +134,29 @@ type RecoverySession = {
 // Замена — как authRecoveryHint (auth_identity.ts): обязательная сессия Google/Apple (как и было) + окно 1 ч на uid
 // вызывающего и на IP поверх прежних лимитов (3 письма/ч на stableId, 5 попыток кода). Документы — по хэшу, в уже
 // закрытой правилами коллекции auth_recovery_rate_limits (префикс caller_ не пересекается со stableId).
+// зачем (координатор/Сайт 17.10, политика приватности): ключи документов лимитов были sha256 без секрета — хэш IP
+// перебирается за минуты (~4 млрд IPv4). Теперь HMAC-SHA256 с УЖЕ существующим секретом восстановления (новый секрет не
+// заводим — правило владельца). Ротация секрета сбрасывает счётчики — допустимо при окнах 1 ч / 24 ч.
+export function recoveryRateKey(kind: string, value: string): string {
+  const secret = AUTH_RECOVERY_CHALLENGE_HMAC_KEY_CURRENT.value().trim();
+  if (secret.length < 32) {
+    console.log(JSON.stringify({ event: 'recovery_limit', tag: '[RECOVERY-LIMIT]', step: 'rate_key_unavailable', kind }));
+    throw new HttpsError('unavailable', 'recovery_unavailable');
+  }
+  return crypto.createHmac('sha256', secret).update(`${kind}|${value}`).digest('hex').slice(0, 32);
+}
+
+/** Окно истекло по полю expireAt (или его нет у старого документа) — счётчик считается нулём. */
+function rateDocExpired(data: FirebaseFirestore.DocumentData, nowMs: number): boolean {
+  const raw = data.expireAt as { toMillis?: () => number } | Date | number | string | undefined;
+  if (raw === undefined || raw === null) return false;
+  const expireMs = typeof raw === 'number'
+    ? raw
+    : typeof raw === 'string'
+      ? Date.parse(raw)
+      : raw instanceof Date ? raw.getTime() : typeof raw.toMillis === 'function' ? raw.toMillis() : Number.NaN;
+  return Number.isFinite(expireMs) && expireMs <= nowMs;
+}
 export const RECOVERY_CALLER_RATE_WINDOW_MS = 60 * 60 * 1000;
 export const RECOVERY_CALLER_RATE_MAX_PER_UID = 10;
 export const RECOVERY_CALLER_RATE_MAX_PER_IP = 30;
@@ -157,10 +181,9 @@ export async function consumeRecoveryCallerRate(
   scope: string,
   nowMs = Date.now(),
 ): Promise<void> {
-  const hash = (value: string) => crypto.createHash('sha256').update(value).digest('hex').slice(0, 32);
   const refs = [
-    { kind: 'uid' as const, max: RECOVERY_CALLER_RATE_MAX_PER_UID, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`caller_uid_${hash(authUid)}`) },
-    ...(ip ? [{ kind: 'ip' as const, max: RECOVERY_CALLER_RATE_MAX_PER_IP, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`caller_ip_${hash(ip)}`) }] : []),
+    { kind: 'uid' as const, max: RECOVERY_CALLER_RATE_MAX_PER_UID, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`caller_uid_${recoveryRateKey('caller_uid', authUid)}`) },
+    ...(ip ? [{ kind: 'ip' as const, max: RECOVERY_CALLER_RATE_MAX_PER_IP, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`caller_ip_${recoveryRateKey('caller_ip', ip)}`) }] : []),
   ];
   // Без транзакции: лимит против рассылки, а не счёт денег — гонка двух параллельных вызовов даст максимум +1, зато
   // основная транзакция восстановления остаётся единственной (её фазы и откаты не сдвигаются).
@@ -168,17 +191,23 @@ export async function consumeRecoveryCallerRate(
   const states = snaps.map((snap) => {
     const data = snap.exists ? snap.data() ?? {} : {};
     const windowStartMs = Number(data.windowStartMs ?? 0);
-    const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_CALLER_RATE_WINDOW_MS;
+    const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_CALLER_RATE_WINDOW_MS
+      && !rateDocExpired(data, nowMs);
     return { sameWindow, windowStartMs, count: sameWindow ? Number(data.count ?? 0) : 0 };
   });
   const limitedAt = states.findIndex((state, i) => state.count >= refs[i].max);
   const outcome = limitedAt >= 0 ? (refs[limitedAt].kind === 'uid' ? 'limited_uid' : 'limited_ip') : 'ok';
   if (outcome === 'ok') {
-    await Promise.all(refs.map(({ ref }, i) => ref.set({
-      count: states[i].count + 1,
-      windowStartMs: states[i].sameWindow ? states[i].windowStartMs : nowMs,
-      updatedAtMs: nowMs,
-    }, { merge: true })));
+    await Promise.all(refs.map(({ ref }, i) => {
+      const windowStartMs = states[i].sameWindow ? states[i].windowStartMs : nowMs;
+      return ref.set({
+        count: states[i].count + 1,
+        windowStartMs,
+        updatedAtMs: nowMs,
+        // Конец окна: по нему TTL-политика (R103) удалит документ; код считает просроченное нулём и без неё.
+        expireAt: new Date(windowStartMs + RECOVERY_CALLER_RATE_WINDOW_MS),
+      }, { merge: true });
+    }));
   }
   if (outcome !== 'ok') {
     recoveryLog(outcome, { scope, hasIp: Boolean(ip) });
@@ -222,16 +251,16 @@ export async function assertWrongCodeBudget(
   nowMs = Date.now(),
   rawRequest?: unknown,
 ): Promise<WrongCodeBudget> {
-  const hash = (value: string) => crypto.createHash('sha256').update(value).digest('hex').slice(0, 32);
   const refs = [
-    { kind: 'target' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_target_${hash(targetKey)}`) },
-    { kind: 'caller' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_caller_${hash(callerUid)}`) },
+    { kind: 'target' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_target_${recoveryRateKey('wrong_target', targetKey)}`) },
+    { kind: 'caller' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_caller_${recoveryRateKey('wrong_caller', callerUid)}`) },
   ];
   const snaps = await Promise.all(refs.map(({ ref }) => ref.get()));
   const states = snaps.map((snap) => {
     const data = snap.exists ? snap.data() ?? {} : {};
     const windowStartMs = Number(data.windowStartMs ?? 0);
-    const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_WRONG_CODE_WINDOW_MS;
+    const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_WRONG_CODE_WINDOW_MS
+      && !rateDocExpired(data, nowMs);
     return { sameWindow, windowStartMs, count: sameWindow ? Number(data.count ?? 0) || 0 : 0 };
   });
   const targetCount = states[0].count;
@@ -253,11 +282,15 @@ export async function assertWrongCodeBudget(
 
 export async function recordWrongCode(budget: WrongCodeBudget): Promise<void> {
   try {
-    await Promise.all(budget.refs.map(({ ref }, i) => ref.set({
-      count: budget.states[i].count + 1,
-      windowStartMs: budget.states[i].sameWindow ? budget.states[i].windowStartMs : budget.nowMs,
-      updatedAtMs: budget.nowMs,
-    }, { merge: true })));
+    await Promise.all(budget.refs.map(({ ref }, i) => {
+      const windowStartMs = budget.states[i].sameWindow ? budget.states[i].windowStartMs : budget.nowMs;
+      return ref.set({
+        count: budget.states[i].count + 1,
+        windowStartMs,
+        updatedAtMs: budget.nowMs,
+        expireAt: new Date(windowStartMs + RECOVERY_WRONG_CODE_WINDOW_MS),
+      }, { merge: true });
+    }));
     recoveryLimitLog({
       scope: budget.scope,
       step: 'wrong_code_recorded',

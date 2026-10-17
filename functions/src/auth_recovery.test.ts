@@ -604,14 +604,15 @@ describe('recovery callable security boundary', () => {
     const confirmRegistrations = registeredCallables.filter(({ handler }) => handler === authConfirmRecoveryCode);
 
     expect(requestRegistrations).toEqual([{
-      options: { ...baseOptions, enforceAppCheck: false, secrets: [RESEND_API_KEY] },
+      // Существующий секрет восстановления подключён для HMAC-ключей лимитов (17.10, политика приватности).
+      options: { ...baseOptions, enforceAppCheck: false, secrets: [RESEND_API_KEY, require('./auth_recovery').AUTH_RECOVERY_CHALLENGE_HMAC_KEY_CURRENT] },
       handler: authRequestRecoveryCode,
     }]);
     expect(confirmRegistrations).toEqual([{
       options: {
         ...baseOptions,
         enforceAppCheck: false,
-        secrets: [ADMIN_ALERT_BOT_TOKEN],
+        secrets: [ADMIN_ALERT_BOT_TOKEN, require('./auth_recovery').AUTH_RECOVERY_CHALLENGE_HMAC_KEY_CURRENT],
       },
       handler: authConfirmRecoveryCode,
     }]);
@@ -2660,5 +2661,41 @@ describe('[RECOVERY-LIMIT] дневные потолки неверных код
     expect(src).toContain("const wrongCodeBudget = await assertWrongCodeBudget(db, `stable:${stableId}`, newUid, 'confirm'");
     expect(src).toContain("await assertWrongCodeBudget(db, cleanTargetKey, newUid, 'clean_confirm'");
     expect((src.match(/await recordWrongCode\(wrongCodeBudget\);/g) ?? []).length).toBe(2);
+  });
+});
+
+// зачем (координатор/Сайт 17.10, политика приватности): ключи лимитов — HMAC с существующим секретом, не голый sha256;
+// документы несут expireAt, просроченный счётчик не блокирует (без зависимости от TTL-политики).
+describe('[RECOVERY-LIMIT] ключи HMAC и expireAt', () => {
+  it('ключ IP — не сам IP и не голый sha256 от него', async () => {
+    const recovery = require('./auth_recovery');
+    const crypto = require('crypto');
+    const db = require('firebase-admin').firestore();
+    await recovery.consumeRecoveryCallerRate(db, 'hmac-caller', '192.0.2.44', 'test', 9_000_000_000);
+    const ipKeys = [...docs.keys()].filter((key) => key.startsWith('auth_recovery_rate_limits/caller_ip_'));
+    const plainSha = crypto.createHash('sha256').update('192.0.2.44').digest('hex').slice(0, 32);
+    expect(ipKeys.some((key) => key.includes(recovery.recoveryRateKey('caller_ip', '192.0.2.44')))).toBe(true);
+    expect(ipKeys.join(' ')).not.toContain(plainSha);
+    expect(ipKeys.join(' ')).not.toContain('192.0.2.44');
+  });
+
+  it('документ несёт expireAt = конец окна', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 9_100_000_000;
+    const budget = await recovery.assertWrongCodeBudget(db, 'stable:expire-target', 'expire-caller', 'test', now);
+    await recovery.recordWrongCode(budget);
+    const key = `auth_recovery_rate_limits/wrong_target_${recovery.recoveryRateKey('wrong_target', 'stable:expire-target')}`;
+    const expireAt = docs.get(key)?.expireAt as Date;
+    expect(expireAt instanceof Date ? expireAt.getTime() : Number.NaN).toBe(now + recovery.RECOVERY_WRONG_CODE_WINDOW_MS);
+  });
+
+  it('просроченный по expireAt счётчик не блокирует, даже если окно по windowStartMs ещё идёт', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 9_200_000_000;
+    const key = `auth_recovery_rate_limits/wrong_target_${recovery.recoveryRateKey('wrong_target', 'stable:stale-target')}`;
+    docs.set(key, { count: 99, windowStartMs: now - 1000, updatedAtMs: now - 1000, expireAt: new Date(now - 1) });
+    await expect(recovery.assertWrongCodeBudget(db, 'stable:stale-target', 'stale-caller', 'test', now)).resolves.toBeTruthy();
   });
 });

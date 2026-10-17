@@ -75,7 +75,12 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   // зачем (гейт паритета, круг 1 — ПРИЧИНА «нет текстов и кнопок»): `rumble` создаётся заново на каждый рендер, и эффект тактов, зависевший от fire → rumble, перезапускал ВСЕ таймеры после каждого такта;
   // сцена бесконечно крутила морф и до такта «text» не доходила. Теперь fire живёт в ref, эффект зависит только от сцены — таймеры ставятся один раз.
   const fireRef = useRef<(id: string) => void>(() => undefined);
+  const mountedAtRef = useRef(Date.now());
+  const viewportHRef = useRef(0);
+  const layoutLoggedRef = useRef('');
   fireRef.current = (id: string) => {
+    // зачем (Сверка r8, d30: «календаря нет даже через 14 с, под заголовком пусто») — сперва логи: какой такт сработал и когда
+    console.log(`[STREAK-MILESTONE] beat ${JSON.stringify({ milestone, kind, id, sinceMountMs: Date.now() - mountedAtRef.current })}`); // guard-ok: строка на такт сцены
     setDone((prev) => (prev.has(id) ? prev : new Set(prev).add(id)));
     if (id === 'burst') setBurstKey((k) => k + 1);
     if (id === 'morph') { setMorphKey((k) => k + 1); rumble.play(); }
@@ -241,7 +246,22 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
         {glow ? <StreakGlowSpot color={glow} strength={1} top={insets.top + 80} /> : null}
         {confetti ? <StreakConfetti fire /> : null}
         {/* зачем (контракт «до кнопки можно добраться»): на низком экране сцена прокручивается, а «Дальше» остаётся внизу */}
-        <ScrollView key={bodyKey} decelerationRate="fast" style={s.fillBody} contentContainerStyle={s.body} showsVerticalScrollIndicator={false} bounces={false}>{body}</ScrollView>
+        <ScrollView
+          key={bodyKey}
+          decelerationRate="fast"
+          style={s.fillBody}
+          contentContainerStyle={s.body}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+          onLayout={(e) => { viewportHRef.current = Math.round(e.nativeEvent.layout.height); }}
+          onContentSizeChange={(_w, h) => {
+            // зачем (Сверка r8, d30 «огонь у верхнего края»): содержимое выше окна прокрутки → сцена прижата к верху; строка на каждую смену высоты
+            const line = `${kind}:${Math.round(h)}/${viewportHRef.current}:${[...done].join(',')}`;
+            if (layoutLoggedRef.current === line) return;
+            layoutLoggedRef.current = line;
+            console.log(`[STREAK-MILESTONE] layout ${JSON.stringify({ milestone, kind, contentH: Math.round(h), viewportH: viewportHRef.current, overflow: Math.round(h) > viewportHRef.current, done: [...done], calendar: milestone === 30 && done.has('extra') && done.has('text') })}`); // guard-ok: строка на смену геометрии
+          }}
+        >{body}</ScrollView>
         {withFoot ? <Beat i={2}>{foot}</Beat> : <View style={s.footSpacer} />}
         {skippable ? (
           <Pressable accessibilityRole="button" accessibilityLabel={streakMomentText(lang, 'skip')} onPress={skip} hitSlop={12} style={[s.skip, { top: insets.top + 12, backgroundColor: glass.buttonFill }]} testID={`${testID}-skip`}>

@@ -1,0 +1,17 @@
+10-18 00:19:41.871 I/ReactNativeJS(21782): [BACK-BTN] tap {"seq":1,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:19:41.897 I/ReactNativeJS(21782): [BACK-BTN] interactions-free {"seq":1,"screen":"today_tasks","ms":26}
+10-18 00:19:42.243 I/ReactNativeJS(21782): [BACK-BTN] frame {"seq":1,"screen":"today_tasks","ms":373}
+10-18 00:19:42.693 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":1,"screen":"today_tasks","driftMs":194,"sinceTapMs":823}
+10-18 00:19:43.168 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":1,"screen":"today_tasks","driftMs":225,"sinceTapMs":1298}
+10-18 00:19:45.333 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":1,"screen":"today_tasks","driftMs":297,"sinceTapMs":3463}
+10-18 00:19:49.107 I/ReactNativeJS(21782): [BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:19:49.117 I/ReactNativeJS(21782): [BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":10}
+10-18 00:19:49.568 I/ReactNativeJS(21782): [BACK-BTN] frame {"seq":2,"screen":"today_tasks","ms":461}
+10-18 00:19:49.570 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":212,"sinceTapMs":462}
+10-18 00:19:50.081 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":260,"sinceTapMs":972}
+10-18 00:19:52.685 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":2,"screen":"today_tasks","driftMs":214,"sinceTapMs":3577}
+10-18 00:19:56.510 I/ReactNativeJS(21782): [BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+10-18 00:19:56.539 I/ReactNativeJS(21782): [BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":28}
+10-18 00:19:57.046 I/ReactNativeJS(21782): [BACK-BTN] frame {"seq":3,"screen":"today_tasks","ms":535}
+10-18 00:19:57.047 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":286,"sinceTapMs":536}
+10-18 00:19:57.953 I/ReactNativeJS(21782): [BACK-BTN] js-blocked {"seq":3,"screen":"today_tasks","driftMs":656,"sinceTapMs":1442}

@@ -1,0 +1,23 @@
+10-18 00:22:34 refocus#2 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:22:38 refocus#2 ИТОГ count=1 ms=4225 byCause={"homeRuntimeActive":1,"activeIdx":1,"runtimeOwnerId":1}
+10-18 00:22:38 refocus#3 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:22:39 refocus#3 n=2 changed=["parent_or_unlisted"]
+10-18 00:22:39 refocus#3 n=3 changed=["mistakeReadySnapshot"]
+10-18 00:22:43 refocus#3 ИТОГ count=3 ms=4257 byCause={"homeRuntimeActive":1,"activeIdx":1,"runtimeOwnerId":1,"parent_or_unlisted":1,"mistakeReadySnapshot":1}
+10-18 00:22:43 refocus#4 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:22:47 refocus#4 ИТОГ count=1 ms=4198 byCause={"homeRuntimeActive":1,"activeIdx":1,"runtimeOwnerId":1}
+10-18 00:22:47 refocus#5 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:22:48 refocus#5 n=2 changed=["mistakeReadySnapshot"]
+10-18 00:22:48 refocus#5 n=3 changed=["parent_or_unlisted"]
+10-18 00:22:51 refocus#5 ИТОГ count=3 ms=4074 byCause={"homeRuntimeActive":1,"activeIdx":1,"runtimeOwnerId":1,"mistakeReadySnapshot":1,"parent_or_unlisted":1}
+10-18 00:22:51 refocus#6 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:22:55 refocus#6 ИТОГ count=1 ms=4413 byCause={"homeRuntimeActive":1,"activeIdx":1,"runtimeOwnerId":1}
+10-18 00:22:55 refocus#7 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:22:56 refocus#7 n=2 changed=["parent_or_unlisted"]
+10-18 00:22:57 refocus#7 n=3 changed=["mistakeReadySnapshot"]
+10-18 00:23:00 refocus#7 ИТОГ count=3 ms=4259 byCause={"homeRuntimeActive":1,"activeIdx":1,"runtimeOwnerId":1,"parent_or_unlisted":1,"mistakeReadySnapshot":1}
+10-18 00:23:00 refocus#8 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:23:04 refocus#8 ИТОГ count=1 ms=4365 byCause={"homeRuntimeActive":1,"activeIdx":1,"runtimeOwnerId":1}
+10-18 00:23:04 refocus#9 n=1 changed=["homeRuntimeActive","activeIdx","runtimeOwnerId"]
+10-18 00:23:05 refocus#9 n=2 changed=["mistakeReadySnapshot"]
+10-18 00:23:05 refocus#9 n=3 changed=["parent_or_unlisted"]

@@ -346,7 +346,7 @@ const STEP = 150, OFF = 64;
 function snake(rows) {
   let y = 0; const parts = []; const pts = [];
   rows.forEach((r) => {
-    if (r.plate === 'lesson') { parts.push(`<div class="srow" style="top:${y}px;left:0;width:100%"><div class="plate"><div class="grow"><div class="kr"><span class="ov">Урок ${r.lesson}</span><span class="clc t" data-tid="learning-v2-open-classic-course">${li('library')}Классический курс</span></div><div class="tt">${r.title}</div><div class="arcrow">${r.arc ? `<div class="arc">${r.arc}</div>` : '<span></span>'}<span class="cnt">${r.done} / 56</span></div></div></div></div>`); y += 128; pts.push(null); return; }
+    if (r.plate === 'lesson') { parts.push(`<div class="srow" style="top:${y}px;left:0;width:100%"><div class="plate"><div class="grow"><div class="kr"><span class="ov">Урок ${r.lesson}</span><span class="clc t" data-tid="learning-v2-open-classic-course">${li('library')}Классический курс</span></div><div class="tt">${r.title}</div>${r.arc ? `<div class="arc">${r.arc}</div>` : ''}</div></div></div>`); y += 128; pts.push(null); return; }
     if (r.plate === 'chapter') { parts.push(`<div class="srow" style="top:${y}px;left:0;width:100%"><div class="chap">Глава ${r.chapter}<span class="n">${r.sub || ''}</span></div></div>`); y += 78; pts.push(null); return; }
     const x = 195 + (r.side ?? (pts.filter((p) => p).length % 2 === 0 ? -OFF : OFF));
     pts.push({ x, y: y + 36, st: r.st });

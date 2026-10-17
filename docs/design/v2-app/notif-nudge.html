@@ -34,7 +34,7 @@
 <body>
 <div class="wrap">
   <h1>Подсказка про напоминания — «Без практики: N дней»</h1>
-  <p class="page-lead">Эталон нарисован по коду (NotificationPermissionModalHybrid, тексты notif_nudge_copy) — утвердить владельцу. Показывается на Главной после пропущенных дней; «Позже» закрывает, «Включить напоминания» просит разрешение.</p>
+  <p class="page-lead">Эталоны нарисованы по коду (NotificationPermissionModalHybrid, тексты notif_nudge_copy и NotificationPermissionModal) — утвердить владельцу. Показывается на Главной после пропущенных дней; «Позже» закрывает, «Включить напоминания» просит разрешение.</p>
   <div id="root"></div>
 </div>
 <script src="kit.js"></script>
@@ -44,10 +44,15 @@ const BELL = '<svg viewBox="0 0 24 24"><path d="M6 10a6 6 0 0112 0c0 5 2 6.5 2 6
 const CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg>';
 const POINTS = ['Напоминания в нужное время', 'Поддержка цепочки и прогресса', 'Отключается в любой момент'];
 const home = '<div class="nn-home"><div style="display:flex;gap:8px"><div class="r" style="flex:1"></div><div class="r" style="flex:1"></div><div class="r" style="width:44px"></div></div><div class="c"></div><div class="t"><i></i><i></i><i></i><i></i></div><div class="c" style="height:180px"></div></div>';
-const card = `<div class="nn-scrim"><div class="nn-card"><div class="nn-ic">${BELL}</div><div class="nn-h">Без практики: 3 дня</div><div class="nn-p">Чтобы не срывать серию, включи напоминания. Мы напомним вовремя и без спама.</div><div class="nn-pts">${POINTS.map((p) => `<div>${CHECK}<span>${p}</span></div>`).join('')}</div><div class="nn-cta">Включить напоминания</div><div class="nn-later">Позже</div></div></div>`;
-const themed = (th) => phone(home, { time: '9:41', overlay: card }).replace('class="ph"', `class="ph ${th}"`);
+// зачем: один компонент — два набора текстов (подсказка после пропусков / запрос разрешения); абзац показывается, только если он есть
+const cardOf = (c) => `<div class="nn-scrim"><div class="nn-card"><div class="nn-ic">${BELL}</div><div class="nn-h">${c.title}</div>${c.body ? `<div class="nn-p">${c.body}</div>` : ''}<div class="nn-pts">${c.points.map((p) => `<div>${CHECK}<span>${p}</span></div>`).join('')}</div><div class="nn-cta">${c.ok}</div><div class="nn-later">${c.later}</div></div></div>`;
+const NUDGE = { title: 'Без практики: 3 дня', body: 'Чтобы не срывать серию, включи напоминания. Мы напомним вовремя и без спама.', points: POINTS, ok: 'Включить напоминания', later: 'Позже' };
+const REQUEST = { title: 'Включить напоминания?', body: '', points: ['Без пропусков и срывов серии', 'Короткие полезные напоминания', 'Можно отключить в любой момент'], ok: 'Включить', later: 'Не сейчас' };
+const themed = (th, c = NUDGE) => phone(home, { time: '9:41', overlay: cardOf(c) }).replace('class="ph"', `class="ph ${th}"`);
 document.getElementById('root').innerHTML = block('nudge', 'Подсказка «Без практики: 3 дня»', 'По коду гибридного окна: карточка r26 по центру поверх затемнённой Главной, значок-колокольчик на плашке 55×55, три пункта с галочкой, кнопка-пилюля и «Позже» без фона.', [
-  col('Подсказка · «Сумерки»', themed('th-ink')), col('Подсказка · «Океан»', themed('th-marine'))]);
+  col('Подсказка · «Сумерки»', themed('th-ink')), col('Подсказка · «Океан»', themed('th-marine'))]) +
+  block('request', 'Запрос уведомлений «Включить напоминания?» (2.0)', 'Тот же компонент в гибридном виде 2.0 со своими текстами: без абзаца, «Включить» / «Не сейчас». Заменяет прежний вид system.html №19. Утвердить владельцу.', [
+  col('Запрос · «Сумерки»', themed('th-ink', REQUEST)), col('Запрос · «Океан»', themed('th-marine', REQUEST))]);
 </script>
 </body>
 </html>

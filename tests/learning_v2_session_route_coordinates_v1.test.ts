@@ -27,6 +27,17 @@ assert.equal(resolveLearningV2SessionRouteCoordinatesV1({
   id: "lesson-03:session:05", lessonOrdinal: "3x", sessionOrdinal: "5",
 }), null);
 
+// зачем (Сверка 18.10): id фабрики «en:lesson-NN:session-NN» (диплинк) разбирается так же, как id приложения
+assert.deepEqual(resolveLearningV2SessionRouteCoordinatesV1({
+  id: "en:lesson-01:session-07", lessonOrdinal: "", sessionOrdinal: "",
+}), { lessonOrdinal: 1, sessionOrdinal: 7 });
+assert.equal(resolveLearningV2SessionRouteCoordinatesV1({
+  id: "en:lesson-01:session-07", lessonOrdinal: "1", sessionOrdinal: "8",
+}), null);
+assert.equal(resolveLearningV2SessionRouteCoordinatesV1({
+  id: "en:lesson-01:session:07", lessonOrdinal: "", sessionOrdinal: "",
+}), null);
+
 console.log("Learning V2 route coordinates v1: PASS");
 }
 

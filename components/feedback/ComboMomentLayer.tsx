@@ -15,14 +15,15 @@ import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import MomentCoin, { type MomentCoinEmote, type MomentCoinMood } from '../moments/MomentCoin';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
 import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, deriveComboBeat, type ComboBeat } from './combo_moment_gate';
+import { MOMENT_ART } from '../../constants/momentArtPalette';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 // эталон `zap`: путь в кадре 390 × 844, растягивается на экран
 const ZAP_D = 'M60 0 L170 240 L120 250 L250 520 L200 530 L330 844';
 const ZAP_LEN = 1200;
 // theme-exempt: молния — свет, а не цвет темы (эталон svg.zap: штрих #FFF3C4, свечение #FFD166)
-const ZAP_STROKE = '#FFF3C4';
-const ZAP_GLOW = '#FFD166';
+const ZAP_STROKE = MOMENT_ART.zapStroke;
+const ZAP_GLOW = MOMENT_ART.zapGlow;
 const FLASH = '#FFFFFF'; // theme-exempt: вспышка эталона `.flash` — белая
 const COIN_SIZE = 52;
 

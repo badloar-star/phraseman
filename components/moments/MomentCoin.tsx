@@ -31,6 +31,7 @@ import SpireRankCoin from '../spire/SpireRankCoin';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { useSpireShadow } from '../spire/useSpireShadow';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import { MOMENT_ART } from '../../constants/momentArtPalette';
 
 export type MomentCoinMood =
   | 'idle' | 'sleep' | 'peek' | 'cheer' | 'nod' | 'jump' | 'wow' | 'shiver' | 'spin'
@@ -245,8 +246,8 @@ function Crown({ reduceMotion }: Readonly<{ reduceMotion: boolean }>) {
     <View style={s.crownAnchor} pointerEvents="none">
       <Animated.View style={st}>
         <Svg width={44} height={30} viewBox="0 0 44 30">
-          <Path d="M4 26L2 8l10 8L22 2l10 14 10-8-2 18z" fill="#F5C451" stroke="#B9842A" strokeWidth={1.5} strokeLinejoin="round" />
-          <Circle cx={22} cy={12} r={2.5} fill="#fff" />
+          <Path d="M4 26L2 8l10 8L22 2l10 14 10-8-2 18z" fill={MOMENT_ART.crownFill} stroke={MOMENT_ART.crownStroke} strokeWidth={1.5} strokeLinejoin="round" />
+          <Circle cx={22} cy={12} r={2.5} fill={MOMENT_ART.crownGem} />
         </Svg>
       </Animated.View>
     </View>
@@ -366,8 +367,8 @@ const GOLD_INK = '#3A2400'; // theme-exempt: текст золотого обл�
 const s = StyleSheet.create({
   cc: { position: 'relative', alignItems: 'center' },
   // drop-shadow(0 14px 24px rgba(0,0,0,.5)) монеты; во сне ещё saturate(.6) brightness(.8). iOS понимает только brightness.
-  faceFilter: { filter: [{ dropShadow: { offsetX: 0, offsetY: 14, standardDeviation: 12, color: 'rgba(0,0,0,0.5)' } }] },
-  sleepFilter: { filter: [{ dropShadow: { offsetX: 0, offsetY: 14, standardDeviation: 12, color: 'rgba(0,0,0,0.5)' } }, { saturate: 0.6 }, { brightness: 0.8 }] },
+  faceFilter: { filter: [{ dropShadow: { offsetX: 0, offsetY: 14, standardDeviation: 12, color: MOMENT_ART.coinDropShadow } }] },
+  sleepFilter: { filter: [{ dropShadow: { offsetX: 0, offsetY: 14, standardDeviation: 12, color: MOMENT_ART.coinDropShadow } }, { saturate: 0.6 }, { brightness: 0.8 }] },
   glow: { position: 'absolute', left: 0, top: 0, boxShadow: '0 0 28px 6px rgba(255,224,138,0.85)' }, // theme-exempt: сияние металла при повышении ранга
   sayAnchorCenter: { position: 'absolute', bottom: '100%', left: -400, right: -400, marginBottom: 10, alignItems: 'center' },
   sayAnchorLeft: { position: 'absolute', bottom: '100%', marginBottom: 10, alignItems: 'flex-end' },

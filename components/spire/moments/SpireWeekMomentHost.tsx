@@ -114,7 +114,7 @@ function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemi
 
 const s = StyleSheet.create({
   toast: { position: 'absolute', left: 24, right: 24, bottom: 56, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center' },
-  toastText: { fontSize: 15, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
+  toastText: { fontSize: 16, lineHeight: 21, fontWeight: '600', textAlign: 'center' }, // D145: только 16/13
 });
 
 export default memo(SpireWeekMomentHost);

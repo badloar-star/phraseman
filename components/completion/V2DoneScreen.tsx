@@ -337,7 +337,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
             accessibilityLabel={c.close}
             hitSlop={8}
             onPress={() => { hapticTap(); props.onClose(); }}
-            style={[s.round, { backgroundColor: g.opaqueCard }]}
+            style={[s.round, { backgroundColor: g.buttonFill }]}
           >
             <Ionicons name="close" size={20} color={g.text} />
           </Pressable>

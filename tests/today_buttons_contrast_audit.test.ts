@@ -3,6 +3,7 @@
 // кнопки на нижней подложке итога урока. Пары считаются по реальным токенам liquidGlassTokens (все темы × тёмная/светлая × 5 ползунков).
 // Пороги — те же, что в buttons_never_merge_audit: основная кнопка к фону ≥ 3:1, тоновая плашка к поверхности ≥ 1,5:1, подпись ≥ 4,5:1.
 // Решение координатора 17.10: метка Plus — заливка ctaFill / подпись ctaFillInk (тон акцента, ≥1,5:1 к любой подложке, ≥3:1 к странице); «Повторить ошибки» — buttonFill вместо dividerTone (был 1,1–1,25:1). Без контуров.
+// Единое правило без исключений по порогам: тоновые пары ≥1,5, основная ≥3, подпись ≥4,5. Плитки режимов на шторке — не кнопка-заливка, а плашка-контейнер, отделённая тенью (plateBoxShadow), её тон к шторке 1,00 во всех темах по макету: проверяется сторожем тени ниже, а не тоном.
 // AUDIT_PRINT=1 печатает худшие значения по каждому элементу.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
@@ -35,7 +36,6 @@ const solid = (c: string): number[] => parse(c).rgb;
 type Pair = Readonly<{ element: string; what: string; min: number; get: (t: Tok) => number }>;
 const PAIRS: readonly Pair[] = [
   // Шторка режимов на ролике: плитка режима на шторке
-  { element: 'шторка режимов', what: 'плитка к шторке (тон)', min: 1.0, get: (t) => ratioRgb(solid(t.sheetPlateFillFrom!), solid(t.opaqueSheet!)) },
   { element: 'шторка режимов', what: 'подпись плитки к плитке', min: 4.5, get: (t) => ratioRgb(solid(t.text!), solid(t.sheetPlateFillFrom!)) },
   { element: 'шторка режимов', what: 'описание плитки (secondary) к плитке', min: 4.5, get: (t) => ratioRgb(solid(t.secondary!), solid(t.sheetPlateFillFrom!)) },
   { element: 'шторка режимов', what: 'заголовок к шторке', min: 4.5, get: (t) => ratioRgb(solid(t.text!), solid(t.opaqueSheet!)) },
@@ -54,8 +54,8 @@ const PAIRS: readonly Pair[] = [
   // Итог урока: основная кнопка на нижней подложке (фейд к bg)
   { element: 'итог урока: основная', what: 'кнопка к подложке', min: 3, get: (t) => ratioRgb(solid(t.ctaFill!), solid(t.bg!)) },
   { element: 'итог урока: основная', what: 'подпись к кнопке', min: 4.5, get: (t) => ratioRgb(solid(t.ctaFillInk!), solid(t.ctaFill!)) },
-  { element: 'итог урока: крестик', what: 'круг к фону (тон)', min: 1.0, get: (t) => ratioRgb(solid(t.opaqueCard!), solid(t.bg!)) },
-  { element: 'итог урока: крестик', what: 'значок к кругу', min: 3, get: (t) => ratioRgb(solid(t.text!), solid(t.opaqueCard!)) },
+  { element: 'итог урока: крестик', what: 'круг к фону (тон)', min: 1.5, get: (t) => ratioRgb(solid(t.buttonFill!), solid(t.bg!)) },
+  { element: 'итог урока: крестик', what: 'значок к кругу', min: 3, get: (t) => ratioRgb(solid(t.text!), solid(t.buttonFill!)) },
   // Приглашение войти после урока 1: текстовая ссылка с шевроном под звёздами на bg
   { element: 'приглашение войти', what: 'ссылка к фону', min: 4.5, get: (t) => ratioRgb(solid(t.text!), solid(t.bg!)) },
 ];
@@ -74,6 +74,13 @@ describe('итог урока: основная кнопка берёт пару
 
 // зачем (координатор 17.10, пункт 3): заливки основных кнопок — только пара ctaFill/ctaFillInk. Яркие accent/cta на светлых градиентных темах (ползунок ≥0,75)
 // давали 1,0–2,5:1 к фону (кнопка «слипалась»). Список — места, где такие кнопки были; новые кнопки в этих файлах тоже не должны брать accent/cta как заливку.
+describe('плитки режимов на шторке отделены тенью, а не тоном', () => {
+  it('FlashcardsTrainingModeSheet кладёт plateBoxShadow на плитку', () => {
+    const src = fs.readFileSync(path.join(process.cwd(), 'app/flashcards/FlashcardsTrainingModeSheet.tsx'), 'utf8');
+    expect(src).toMatch(/styles\.tile, \{ boxShadow: plateBoxShadow\(g\)/);
+  });
+});
+
 describe('основные кнопки не красятся яркими accent/cta', () => {
   const FILES = [
     'components/mistakes-panel/PanelKit.tsx', 'components/cards-grid/CardsKit.tsx', 'app/flashcards/CardsHubV2.tsx',

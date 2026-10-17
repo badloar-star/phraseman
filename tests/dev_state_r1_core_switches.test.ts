@@ -50,6 +50,21 @@ describe('dev_state R1 (Ядро): разбор', () => {
     const { rejected } = parseDevStateParams({ support: 'maybe', manage: 'slow', started: 'en,xx', upsell: 'ten', ai_explain: 'on' });
     expect(Object.keys(rejected).sort()).toEqual(['ai_explain', 'manage', 'started', 'support', 'upsell']);
   });
+  // зачем (координатор 18.10, Сверка d1cdb9ac5): uiLang=pt-BR отклонялся — значение опускается в нижний регистр, а код смешанный.
+  test('uiLang без учёта регистра → каноничный код; чужой язык отклоняется', () => {
+    const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    for (const raw of ['pt-BR', 'pt-br', 'PT-BR']) {
+      const { request, rejected } = parseDevStateParams({ uiLang: raw });
+      expect(rejected).toEqual({});
+      expect(request.uiLang).toBe('pt-BR');
+    }
+    expect(parseDevStateParams({ uiLang: 'EN' }).request.uiLang).toBe('en');
+    const bad = parseDevStateParams({ uiLang: 'fr' });
+    expect(bad.request.uiLang).toBeUndefined();
+    expect(Object.keys(bad.rejected)).toEqual(['uiLang']);
+    expect(log.mock.calls.some(([tag, payload]) => tag === '[DEV-UILANG] pick' && String(payload).includes('"decision":"rejected"'))).toBe(true);
+    log.mockRestore();
+  });
 });
 
 describe('dev_state R1 (Ядро): применение — только память', () => {

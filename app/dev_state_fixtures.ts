@@ -351,10 +351,18 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
       else rejected.restore_in = `ожидалось 1..600 секунд, пришло ${String(one(params.restore_in))}`;
     } else rejected.energy = `ожидалось 0..5 или restoring, пришло ${energy}`;
   }
+  // зачем (координатор 18.10, Сверка d1cdb9ac5): one() опускает регистр, а допустимые коды бывают со смешанным регистром
+  // (uiLang 'pt-BR') — «pt-br» не совпадало и ссылка отклонялась. Сравниваем без учёта регистра и возвращаем КАНОНИЧНЫЙ код.
+  // Только dev-ссылка (parseDevStateParams); прод этот разбор не использует.
   const pick = <T extends string>(key: string, allowed: readonly T[]): T | undefined => {
     const value = one(params[key]);
     if (value === undefined) return undefined;
-    if ((allowed as readonly string[]).includes(value)) return value as T;
+    const canonical = allowed.find((a) => a.toLowerCase() === value);
+    if (key === 'uiLang') {
+      const raw = Array.isArray(params[key]) ? (params[key] as unknown[])[0] : params[key];
+      console.log('[DEV-UILANG] pick', JSON.stringify({ raw, normalized: value, allowed, decision: canonical ?? 'rejected' })); // guard-ok: dev-ссылка, раз на разбор
+    }
+    if (canonical !== undefined) return canonical;
     rejected[key] = `ожидалось ${allowed.join('|')}, пришло ${value}`;
     return undefined;
   };

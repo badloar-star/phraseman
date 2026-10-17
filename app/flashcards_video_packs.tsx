@@ -229,9 +229,11 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   const openingRef = useRef<string | null>(null);
 
   const copy = useMemo(() => ({
+    // зачем (Сверка d1cdb9ac5, координатор 18.10): заголовок экрана — слово в слово как плитка хаба «Из видео»
+    // (FlashcardsHubScreen.tsx tiles.video): в es/pt-BR было «De los vídeos»/«Dos vídeos» при плитке «De vídeos».
     title: triLang(lang, {
-      ru: 'Из видео', uk: 'З відео', en: 'From videos', es: 'De los vídeos',
-      'pt-BR': 'Dos vídeos', vi: 'Từ video', id: 'Dari video', tr: 'Videolardan', pl: 'Z filmów',
+      ru: 'Из видео', uk: 'З відео', en: 'From videos', es: 'De vídeos',
+      'pt-BR': 'De vídeos', vi: 'Từ video', id: 'Dari video', tr: 'Videolardan', pl: 'Z filmów',
     }),
     back: triLang(lang, {
       ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',

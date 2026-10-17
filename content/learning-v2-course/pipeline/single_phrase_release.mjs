@@ -2009,6 +2009,7 @@ export function familyChoreographyIssues(interactions, {
         ? (item.modePayload?.pairGrid ?? []).map((pair) => normalizedExactPrimaryTarget(pair?.target)).filter(Boolean)
         : [assessed.target],
       eligibleWordFirstFamily: !inactive.has(item.family) && !projectedBuilderCollapses(item),
+      isWordCard: item?.modePayload?.isWordCard === true,
     };
   });
   const seen = new Map();
@@ -2086,7 +2087,12 @@ export function familyChoreographyIssues(interactions, {
       }
       continue;
     }
-    stages.push(initialContacts.slice(0, 3).map((entry) => entry.index));
+    // зачем: владелец 17.10 — каждое слово прямо перед заданием, где оно используется; не 4 подряд.
+    // Карточка остаётся настоящим знакомством со словом (три разных контакта выше), но в ступенчатый порядок
+    // «все первые контакты раньше вторых» не входит: иначе четыре карточки обязаны стоять до первого задания
+    // с любым словом, то есть подряд. Место карточки стережёт wordCardPlacementIssues (уроки 1–4).
+    const stagedContacts = initialContacts.filter((entry) => !entry.isWordCard);
+    if (stagedContacts.length >= 2) stages.push(stagedContacts.slice(0, 3).map((entry) => entry.index));
     const thirdContact = initialContacts[2].index;
     if (firstPhrase && firstPhrase.index < thirdContact) {
       issues.push({
@@ -2117,6 +2123,54 @@ export function familyChoreographyRequiredForSession(sessionIdentity) {
   const lesson = Number(match[1]);
   const session = Number(match[2]);
   return lesson === 4 || (lesson === 3 && session >= 25);
+}
+
+// зачем: владелец 17.10 («ВСЕ 4 СЛОВА НЕ ДОЛЖНЫ ИДТИ СРАЗУ ПОДРЯД… каждое слово появляется прямо перед тем,
+// как оно будет в задании использовано»; КОНСТИТУЦИЯ.md). Положительная проверка места карточки слова:
+//  - word_card_adjacent — две карточки слов подряд;
+//  - word_card_not_before_use — сразу за карточкой нет задания с её словом;
+//  - word_card_after_first_use — слово уже встречалось в задании раньше карточки.
+// Общая таблица значений (speed_match) первым использованием не считается. Если два слова впервые встречаются
+// в одном задании, вторая карточка встаёт перед следующим заданием со своим словом: раннее задание, перед которым
+// стоит карточка другого слова, нарушением не считается — иначе правило требовало бы двух карточек подряд.
+export function wordCardPlacementApplies(sessionIdentity) {
+  const match = /^en\/l(\d{2})\/s\d{2}$/u.exec(String(sessionIdentity ?? ""))
+    ?? /^en:lesson-(\d{2}):session-\d{2}$/u.exec(String(sessionIdentity ?? ""));
+  return Boolean(match) && Number(match[1]) >= 1 && Number(match[1]) <= 4;
+}
+
+const wordCardWord = (item) => String(item?.modePayload?.wordCard?.word ?? "").normalize("NFKC").trim().toLowerCase();
+
+function interactionUsesWord(item, word) {
+  if (!word) return false;
+  const { interactionId: _id, ...rest } = item ?? {};
+  const escaped = word.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&").replace(/\s+/gu, "\\s+");
+  return new RegExp(`(^|[^A-Za-z'])${escaped}([^A-Za-z]|$)`, "iu").test(JSON.stringify(rest));
+}
+
+export function wordCardPlacementIssues(interactions, { source = "" } = {}) {
+  const items = interactions ?? [];
+  const isCard = (item) => item?.modePayload?.isWordCard === true;
+  const countsAsUse = (item) => !isCard(item) && item?.family !== "speed_match";
+  const issues = [];
+  items.forEach((item, index) => {
+    if (!isCard(item)) return;
+    const word = wordCardWord(item);
+    const next = items[index + 1];
+    if (next && isCard(next)) {
+      issues.push({ source, interactionId: item.interactionId, nextInteractionId: next.interactionId, word, reason: "word_card_adjacent" });
+    }
+    if (!next || isCard(next) || !interactionUsesWord(next, word)) {
+      issues.push({ source, interactionId: item.interactionId, nextInteractionId: next?.interactionId ?? null, word, reason: "word_card_not_before_use" });
+    }
+    const earlier = items.slice(0, index).findIndex((candidate, at) => countsAsUse(candidate)
+      && interactionUsesWord(candidate, word)
+      && !(at > 0 && isCard(items[at - 1])));
+    if (earlier >= 0) {
+      issues.push({ source, interactionId: item.interactionId, earlierInteractionId: items[earlier].interactionId, word, reason: "word_card_after_first_use" });
+    }
+  });
+  return issues;
 }
 
 export function scopedFamilyChoreographyIssues(sessionIdentity, interactions, options = {}) {

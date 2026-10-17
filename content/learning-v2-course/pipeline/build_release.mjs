@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import learnerVisibleTextV1 from "../../../modules/learning-v2/content/learner_visible_text_v1.js";
 import { newWordDeclarationIssues, parseSessionHeader } from "./session_header.mjs";
-import { assertSinglePhraseIntro, assertSinglePhraseSource, feedbackLocaleParityIssues, introPracticeTargetRepeatIssues, practiceTargetRepeatIssues, projectSinglePhraseRelease, scopedFamilyChoreographyIssues } from "./single_phrase_release.mjs";
+import { assertSinglePhraseIntro, assertSinglePhraseSource, feedbackLocaleParityIssues, introPracticeTargetRepeatIssues, practiceTargetRepeatIssues, projectSinglePhraseRelease, scopedFamilyChoreographyIssues, wordCardPlacementApplies, wordCardPlacementIssues } from "./single_phrase_release.mjs";
 import { writeMockupFile } from "./write_mockup_file.mjs";
 import { applyPracticeExplanationsV1, projectIntroResponseAnalysesV1, projectIntroResponseDiagnosticsV1, validatePracticeExplanationsV1 } from "./practice_explanations_v1.mjs";
 
@@ -1912,6 +1912,15 @@ async function main() {
     });
     if (projectedChoreography.length) {
       WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: projected_family_choreography_hold:${JSON.stringify(projectedChoreography[0])}`);
+      process.exit(1);
+    }
+  }
+  // зачем: владелец 17.10 — каждое слово прямо перед заданием, где оно используется; не 4 подряд (КОНСТИТУЦИЯ.md).
+  // Проверяем итоговую раскладку RU (её получает приложение; порядок UK тот же по interaction_id). Уроки 1–4.
+  if (wordCardPlacementApplies(SESSION)) {
+    const placement = wordCardPlacementIssues(interactions, { source: `${SESSION}:ru:projected` });
+    if (placement.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: word_card_placement_hold:${JSON.stringify(placement[0])} (всего ${placement.length}; расставить: node place_cards.mjs ${SESSION.replace(/^en\//u, "").replace("/", " ")})`);
       process.exit(1);
     }
   }

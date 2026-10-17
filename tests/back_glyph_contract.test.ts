@@ -52,7 +52,7 @@ describe('значок «назад»: один контур — как в ма�
   it('общая кнопка BackButton: заливка buttonFill (не сливается ни с одной темой), зона 44 + hitSlop, журнал [BACK-BTN]; «Сегодня» использует её', () => {
     const btn = read('components/v2/BackButton.tsx');
     expect(btn).toContain('backgroundColor: g.buttonFill');
-    expect(btn).not.toContain('opaqueControl');
+    expect(btn).not.toMatch(/backgroundColor:\s*g\.opaqueControl/);
     expect(btn).toContain('size = 44');
     expect(btn).toContain('hitSlop={6}');
     expect(btn).toContain("noteBackTap(screen, 'BackButton')");

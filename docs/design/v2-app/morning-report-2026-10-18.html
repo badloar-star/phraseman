@@ -62,6 +62,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
 .fnl > div { background: var(--raised); border-radius: 12px; padding: 10px 12px; font-size: 15px; color: var(--sec); }
 .fnl > div b { color: var(--tx); }
 .fnl code { display: block; margin-top: 4px; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--mu); overflow-wrap: anywhere; }
+.fnl .warn { margin-top: 6px; color: var(--wip); font-size: 14px; }
 .foot { margin-top: 48px; color: var(--mu); font-size: 13px; }
 @media (max-width: 560px) { .it { grid-template-columns: 44px 1fr; } .it .st { grid-column: 2; justify-self: start; margin-top: 6px; } h1 { font-size: 28px; line-height: 34px; } .thumbs { grid-template-columns: 1fr; } }
 </style>
@@ -123,7 +124,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="it"><span class="id">R110</span><div><div class="t">Админка: автоназвание набора из видео</div><div class="d">После опросов; серверная часть — только с вашего «да».</div></div><span class="st wip">в работе</span></div>
       <div class="it"><span class="id">R111</span><div><div class="t">Восстановление аккаунта по коду не работает</div><div class="d">Сервер требует проверку подлинности приложения, которой у приложения нет с 01.10 — и в рабочей версии, и в новой. Нужна правка кода с проверкой безопасности и выкладка. Решение — раздел 5.</div></div><span class="st red">мешает сборке</span></div>
       <div class="it"><span class="id">R112</span><div><div class="t">Пик: неделя 43 с 19.10 (рейтинг по монетам)</div><div class="d">Старое расписание на сервере не пишет новую таблицу — выложить его или вернуть прежние правила до 19.10. Решение — раздел 5.</div></div><span class="st own">ваше решение</span></div>
-      <div class="it"><span class="id">R113</span><div><div class="t">ИИ-диалоги: «компаньон» падает, «Как сказать…» не работает, es/de отвечают по-английски</div><div class="d">Сервер старее приложения. Решение — раздел 5.</div></div><span class="st own">ваше решение</span></div>
+      <div class="it"><span class="id">R113</span><div><div class="t">ИИ-диалоги: компаньон «Тео» молчит (квота списывается), «Как сказать…» — ошибка, es/de отвечают по-английски</div><div class="d">Сервер старее приложения. Решение — раздел 5 (R103-AI).</div></div><span class="st own">ваше решение</span></div>
       <div class="it"><span class="id">R114</span><div><div class="t">Голоса нового курса: 444 записи не совпадают с текстом</div><div class="d">Урок 1 (s02–s56) и урок 2 (s01–s12); цель — 0 к 07:45.</div></div><span class="st red">мешает сборке</span></div>
       <div class="it"><span class="id">R115</span><div><div class="t">69 красных проверок кода</div><div class="d">Список собран, чинят владельцы участков (макеты и паритет — «Макеты»).</div></div><span class="st red">мешает сборке</span></div>
       <div class="it"><span class="id">R116</span><div><div class="t">Опросы 2.0: макет и 36 вопросов готовы</div><div class="d">Ждут четырёх ваших решений — раздел 5. <code>1b3e47a38</code></div></div><span class="st own">ваше решение</span></div>
@@ -205,19 +206,28 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
     <h2><span class="n">5</span>Решения на утро</h2>
     <p class="sub">Девять вопросов. По каждому есть рекомендация, она отмечена цветом.</p>
     <div class="dec">
-      <div class="card"><h3>1. Семь функций на сервер до релиза (R103)</h3>
-        <p>Новая версия приложения зовёт функции, которых на сервере нет или которые там старее. Выкладываются только эти семь, по одной, с проверкой журнала после каждой; остальное не трогается.</p>
-        <div class="fnl"><div><div><b>Монеты за репорты и «Дневной путь» не зачисляются</b> — сервер отвергает запрос новой версии.</div><code>levelSpinStarGrant</code></div><div><div><b>Итог занятия нового курса отвергается</b>, если в нём больше 22 заданий (23 занятия урока 1) — очередь отчётов встаёт и дальше не уходит.</div><code>submitLearningV2CourseSessionCompletedV1</code></div><div><div><b>Отзыв с итога занятия нового курса не отправляется.</b></div><code>submitFeedbackEntry</code></div><div><div>Напоминание «вернись / серия ждёт» не уходит людям в Америке и в поясах UTC+12 — на сервере старая версия с одним запуском в 10:00 UTC.</div><code>reEngagePushCron</code></div><div><div>Старые бонусы не обмениваются на монеты; окно «Встречайте 2.0» просто не появляется.</div><code>legacyBonusConvertMine</code></div><div><div>Не пишется статистика уровня при знакомстве (раз на человека); человек ничего не замечает.</div><code>onboardingLevelRecord</code></div><div><div>Автор удаляет карточку из своего набора — она скрывается, но после 6 неудачных попыток возвращается.</div><code>communityAuthorRemoveCard</code></div></div>
-        <div class="opts"><span class="rec">Выложить все 7 до релиза</span><span>Только первые три</span><span>Отложить до полного перевыклада</span></div></div>
+      <div class="card"><h3>1. Семь функций на сервер (R103) — по порядку</h3>
+        <p>Новая версия приложения зовёт функции, которых на сервере нет или которые там старее. Выкладываются по одной, в этом порядке, с проверкой журнала после каждой; остальное не трогается. Ниже — что сломано у людей без каждой.</p>
+        <div class="fnl">
+          <div><div><b>1.</b> <b>Итоги занятий нового курса не доходят до сервера.</b> 23 занятия урока 1 (больше 22 заданий) отвергаются навсегда — очередь встаёт, и итоги всех следующих занятий тоже не уходят.</div><code>submitLearningV2CourseSessionCompletedV1</code></div>
+          <div><div><b>2.</b> <b>Монеты за репорты и «Дневной путь» не зачисляются.</b><div class="warn">Выкладывать только ПОСЛЕ выхода 2.0 в сторы: иначе старые версии приложения получат отказ на спины, квесты и компенсацию подарков (D148).</div></div><code>levelSpinStarGrant</code></div>
+          <div><div><b>3.</b> <b>Отзыв с итога занятия нового курса не отправляется.</b></div><code>submitFeedbackEntry</code></div>
+          <div><div><b>4.</b> Напоминание «вернись / серия ждёт» не уходит людям в Америке и в поясах UTC+12 — на сервере старая версия с одним запуском в 10:00 UTC.</div><code>reEngagePushCron</code></div>
+          <div><div><b>5.</b> Старые бонусы не обмениваются на монеты; окна «Встречайте 2.0» нет.<div class="warn">После выкладки функция ничего не начисляет, пока не включён выключатель legacy_bonus_enabled — это отдельное ваше «да», потому что это деньги.</div></div><code>legacyBonusConvertMine</code></div>
+          <div><div><b>6.</b> Не пишется статистика уровня при знакомстве; человек ничего не замечает.</div><code>onboardingLevelRecord</code></div>
+          <div><div><b>7.</b> Автор удаляет карточку из своего набора — она скрывается, но после 6 неудачных попыток возвращается с сообщением «нет связи».</div><code>communityAuthorRemoveCard</code></div>
+        </div>
+        <div class="opts"><span class="rec">1, 3–7 сейчас, 2 — после выхода 2.0</span><span>Все 7 сейчас</span><span>Отложить до полного перевыклада</span></div>
+        <div class="opts"><span>Включить обмен старых бонусов (legacy_bonus_enabled)</span><span>Пока не включать</span></div></div>
       <div class="card"><h3>1а. Восстановление аккаунта по коду (R111)</h3>
         <p>Не работает ни на сервере, ни в новой версии: сервер требует проверку подлинности приложения, которой у приложения нет с 01.10. Нужна правка кода с проверкой безопасности и выкладка шести функций восстановления.</p>
         <div class="opts"><span class="rec">Править и выложить утром</span><span>Оставить как есть до следующей версии</span></div></div>
       <div class="card"><h3>1б. Пик: неделя 43 с 19.10 (R112)</h3>
         <p>С 19.10 рейтинг Пика по монетам, а старое расписание на сервере не пишет новую таблицу — рейтинг будет пустым.</p>
         <div class="opts"><span class="rec">Выложить новое расписание до 19.10</span><span>Вернуть прежние правила недели</span></div></div>
-      <div class="card"><h3>1в. ИИ-диалоги (R113)</h3>
-        <p>Сервер старее приложения: режим «компаньон» падает всегда, «Как сказать…» не работает, на испанском и немецком ИИ отвечает по-английски. Лечится выкладкой трёх функций диалогов — сначала проверить, что старые версии приложения это переживут.</p>
-        <div class="opts"><span class="rec">Проверить и выложить</span><span>Отложить</span></div></div>
+      <div class="card"><h3>1в. ИИ-диалоги в 2.0 сломаны против сервера (R103-AI, R113)</h3>
+        <p><b style="color:var(--tx)">Компаньон «Тео» (Plus) молчит, а квота при этом списывается.</b> «Как сказать…» выдаёт ошибку. На испанском и немецком ИИ отвечает по-английски. Лечение — три функции диалогов вместе, после проверки, что старые версии приложения это переживут (Моменты проверяют ночью).</p>
+        <div class="opts"><span class="rec">Выложить три функции после ночной проверки</span><span>Отложить</span></div></div>
       <div class="card"><h3>2. Выкладка сайта и политики (R105)</h3>
         <p>Собрано из чистой копии, политика — из тех же текстов, что в приложении; пробный прогон прошёл.</p>
         <div class="opts"><span class="rec">Выкладывать</span><span>Сначала показать сайт</span></div></div>

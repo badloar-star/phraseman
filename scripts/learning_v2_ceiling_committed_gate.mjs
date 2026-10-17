@@ -24,6 +24,14 @@ const FILES = [
   "app/learning_v2_factory_single_voice_v1.generated.ts",
 ];
 
+// зачем (сторож store_release_gate_levers): в стор-сборке, где Learning V2 вырезан router.ctx.js, потолок V2 сборку не
+// касается — тот же пропуск, что у остальных ворот V2 (решение только при доказанном вырезании всех маршрутов).
+const surface = await import("./store_release_surface.mjs").catch((error) => {
+  console.warn(`${LOG} помощник поверхности стор-сборки не загрузился (${error instanceof Error ? error.message : String(error)}) — ворота строгие`);
+  return null;
+});
+if (surface && surface.announceLearningV2StoreSkip(LOG, ROOT)) process.exit(0);
+
 const inGit = spawnSync("git", ["rev-parse", "--is-inside-work-tree"], { cwd: ROOT, encoding: "utf8" });
 if (inGit.status !== 0 || inGit.stdout.trim() !== "true") {
   console.warn(`${LOG} WARNING: не git-рабочая папка (${(inGit.stderr || "").trim().slice(0, 120) || "нет .git"}) — сверка потолка с коммитом пропущена (код 0)`);

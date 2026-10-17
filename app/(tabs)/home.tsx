@@ -123,7 +123,7 @@ import {
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
-import { homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, useHomeContinueMarks } from '../home_continue_mark';
+import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
 import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { isLearningV2Hidden } from '../learning_v2_visibility_switch';
@@ -804,9 +804,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (Ревизор P23, координатор 15.10): «Продолжить» показывает то, что СВЕЖЕЕ — старый урок или занятие курса V2 (метки в home_continue_mark,
     // только локально). Раньше карточка знала только старые уроки: у тех, кто занимался V2, её не было или она вела в старый урок.
     const continueMarks = useHomeContinueMarks(studyTarget);
-    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED ? continueMarks.v2 : null };
+    // зачем (слово владельца 17.10, координатор): «последнее место» — не только урок, но и диалог или набор карточек; метки проверены на устаревание (раздел закрыт для языка,
+    // сценарий удалён) до выбора — устаревшая тихо отпадает, причина в [HOME-CONTINUE] stale. Считается один раз на смену меток/языка, не на каждый рендер.
+    const continuePlaces = useMemo(
+        () => resolveHomeContinuePlaces({ marks: continueMarks, dialoguesVisible: homeDialoguesVisible, flashcardsVisible: homeFlashcardsVisible, lang }),
+        [continueMarks.dialog, continueMarks.cards, homeDialoguesVisible, homeFlashcardsVisible, lang], // eslint-disable-line react-hooks/exhaustive-deps -- зачем: нужны только эти две метки
+    );
+    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED ? continueMarks.v2 : null, dialog: continuePlaces.dialog, cards: continuePlaces.cards };
     const continueChoice = pickHomeContinue(continueInput);
     const continueV2 = continueChoice.kind === 'v2' ? continueInput.v2 : null;
+    const continuePlace = continueChoice.kind === 'dialog' ? continuePlaces.dialog : continueChoice.kind === 'cards' ? continuePlaces.cards : null;
+    // зачем: ни урока, ни занятия V2, ни диалога, ни карточек (первый запуск) — вместо пустого места «Начать урок 1»; пока урок читается, стоит прежняя заготовка той же формы
+    const continueStart = continueChoice.kind === 'none' && continueResolved && homeLearnVisible;
     // зачем (координатор 15.10, поправка 1): «пройдено / выпущено» считается при показе из локального прогресса курса и
     // перечитывается на каждый возврат на Главную (focusTick) — после пройденного занятия число свежее, а не из метки
     const continueV2Progress = useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive);
@@ -814,7 +823,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));
         // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал пишется на смену решения или меток, а не на каждый рендер
-    }, [continueChoice.kind, continueChoice.reason, continueMarks.v2?.atMs, continueMarks.v2?.sessionId, continueMarks.legacyAtMs, lastLesson?.id, studyTarget]);
+    }, [continueChoice.kind, continueChoice.reason, continueMarks.v2?.atMs, continueMarks.v2?.sessionId, continueMarks.legacyAtMs, continuePlaces.dialog?.atMs, continuePlaces.cards?.atMs, lastLesson?.id, studyTarget]);
     useEffect(() => {
         continueResolvedRef.current = continueResolved;
         if (continueResolved) return undefined;
@@ -2264,6 +2273,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const tileArt = (name: Parameters<typeof resolveThemedArt>[0], fallback: number) => { const r = resolveThemedArt(name, homeArtTone); return { art: (r.base ?? fallback) as number, artAccent: r.accent }; };
         const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);
         const priorityCardImage = priorityCardArt.base ?? lastLessonImage;
+        // зачем (слово владельца 17.10): у диалога и набора карточек на карточке «последнее место» арт их плитки (тот же resolveThemedArt, что у плиток ниже)
+        const continuePlaceArt = continuePlace === null ? null : continueChoice.kind === 'dialog'
+            ? tileArt('dialogs', require('../../assets/images/v2/chat_bubbles.png'))
+            : tileArt('cards', require('../../assets/images/v2/notecard_stack.png'));
+        const continuePlaceTitle = continuePlace ? continuePlace.title : homeContinueStartTitle(lang);
         /**
          * Единственный вход в «Мои ошибки» с Главной.
          *
@@ -2502,6 +2516,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 ]}
               />
             </View>
+            {/* зачем (слово владельца 17.10): диалог / набор карточек / «Начать урок 1» рисует блок ниже; прежняя карточка урока и V2 со своей заготовкой — без изменений */}
+            {continuePlace === null && !continueStart ? (
+            <>
             {priorityCardVisible || continueCardPending ? (
               <HomeV2ContinueCard
                 pending={!priorityCardVisible && continueCardPending}
@@ -2534,6 +2551,36 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   perfNavStart('lesson_menu');
                   // зачем (аудит Optimistic UI): тот же гвард двойного тапа, что у плиток (раньше «Продолжить» открывал меню урока дважды при быстром втором тапе).
                   nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never);
+                }}
+              />
+            ) : null}
+            </>
+            ) : null}
+            {continuePlace !== null || continueStart ? (
+              <HomeV2ContinueCard
+                title={continuePlaceTitle}
+                done={0}
+                total={1}
+                hideProgress
+                art={continuePlaceArt ? continuePlaceArt.art : priorityCardImage}
+                artAccent={continuePlaceArt ? continuePlaceArt.artAccent : priorityCardArt.accent}
+                artWide={false}
+                badge={continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards') : undefined}
+                accessibilityLabel={`${s.home.continueBtn}: ${continuePlaceTitle}`}
+                onPress={() => {
+                  if (continuePlace) {
+                    // зачем: тап — сразу в то место; маршрут ведёт на экран-вход раздела со своими проверками доступа (диалог — брифинг, карточки — настройка тренировки с проверкой квоты)
+                    console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: continueChoice.kind, id: continuePlace.id, pathname: continuePlace.route.pathname }));
+                    nav.push({ pathname: continuePlace.route.pathname, params: continuePlace.route.params } as never);
+                    return;
+                  }
+                  // зачем: меток нет вовсе — «Начать урок 1» ведёт в новые уроки (карта V2); при рубильнике «V2 скрыт» — в меню урока 1 старого курса
+                  console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'start_lesson_1', v2Hidden: isLearningV2Hidden() }));
+                  if (isLearningV2Hidden()) {
+                    nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);
+                    return;
+                  }
+                  go('/learning-v2/course');
                 }}
               />
             ) : null}

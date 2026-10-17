@@ -39,6 +39,11 @@ type Props = {
    * Геометрия не меняется (это не скелет), повторные тапы гасит сам запуск.
    */
   busy?: boolean;
+  /**
+   * зачем (слово владельца 17.10, карточка «последнее место»): у диалога, набора карточек и «Начать урок 1» нет «x из N» — полосу и счётчик не рисуем,
+   * строка остаётся той же высоты, стрелка справа на своём месте (геометрия карточки не меняется).
+   */
+  hideProgress?: boolean;
 };
 
 /**
@@ -48,8 +53,8 @@ type Props = {
  * “Продолжить обучение”»): надписи-оверлайна нет, счётчик переехал в строку полосы —
  * две строки вместо четырёх, высота 80 вместо ≈ 158.
  */
-export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false, busy = false }: Props) {
-  useRenderCause('home:continue', () => ({ title, done, total, art, artAccent, artWide, badge, accessibilityLabel, onPress, onLongPress, pending, busy }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false, busy = false, hideProgress = false }: Props) {
+  useRenderCause('home:continue', () => ({ title, done, total, art, artAccent, artWide, badge, accessibilityLabel, onPress, onLongPress, pending, busy, hideProgress }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): значок-плашка и стрелка — вложенные, с малой тенью вместо кромки
@@ -96,14 +101,20 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
           <Text testID="home-continue-lesson-title" numberOfLines={2} ellipsizeMode="tail" style={[s.title, { color: p.text }]}>{title}</Text> /* зачем (бета-тест А4, 15.10): карточка фиксированной высоты 96 с overflow hidden — длинное название обрезалось без многоточия; теперь два ряда и «…» */
         )}
         <View style={s.progressRow}>
-          <View style={[s.track, { backgroundColor: p.track }]}>
-            {/* Ширина задаётся сразу — первый кадр = финальная геометрия. */}
-            {pending ? null : <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />}
-          </View>
-          {pending ? (
-            <View style={[s.counterBar, { backgroundColor: p.control }]} />
+          {hideProgress && !pending ? (
+            <View style={s.track} />
           ) : (
-            <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
+            <>
+              <View style={[s.track, { backgroundColor: p.track }]}>
+                {/* Ширина задаётся сразу — первый кадр = финальная геометрия. */}
+                {pending ? null : <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />}
+              </View>
+              {pending ? (
+                <View style={[s.counterBar, { backgroundColor: p.control }]} />
+              ) : (
+                <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
+              )}
+            </>
           )}
           <View style={[s.arrow, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}>
             <Ionicons name="chevron-forward" size={16} color={p.text} />

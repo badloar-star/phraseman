@@ -24,6 +24,7 @@ import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { recordHomeContinuePlace } from './home_continue_mark';
 import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -1959,6 +1960,19 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     if (!dialogueRuntimeOpen) return;
     void trackEvent('ai_dialog_started', { scenarioId: scenario.id, cefr: scenario.cefr });
   }, [dialogueRuntimeOpen, scenario.cefr, scenario.id]);
+
+  // зачем (слово владельца 17.10, карточка «последнее место» на Главной): начатый диалог — место, куда человек вернётся одним тапом. Только локальная метка
+  // (AsyncStorage + память, без сети); тап на Главной ведёт в брифинг этого сценария — там свои проверки доступа и вводный экран.
+  useEffect(() => {
+    if (!dialogueRuntimeOpen) return;
+    recordHomeContinuePlace('dialog', studyTarget, {
+      id: scenario.id,
+      title: presentation?.title || scenario.id,
+      subtitle: null,
+      route: { pathname: '/ai_dialog_briefing', params: { scenarioId: scenario.id } },
+      atMs: Date.now(),
+    });
+  }, [dialogueRuntimeOpen, presentation?.title, scenario.id, studyTarget]);
 
   // Параметры маршрута могут «доехать» после первого кадра (expo-router) — тогда
   // ленивый сид взял дефолтный сценарий. Пока пользователь НИЧЕГО не написал (в чате

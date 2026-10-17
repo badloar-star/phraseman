@@ -70,6 +70,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { hapticTap } from '../hooks/use-haptics';
 import { useFlashcardTrainingQuotaPreview } from '../hooks/useFlashcardTrainingQuotaPreview';
 import { safeRouterBack } from './navigation_back';
+import { recordHomeContinuePlace } from './home_continue_mark';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import { describeDevCardsState, isDevCardsFail, isDevCardsHeld } from './dev_cards_state';
@@ -618,13 +619,26 @@ export default function FlashcardsTrainingSetupScreen() {
       // зачем (п.83): пресет хранится по режиму без языка — набор чужого языка нельзя подсунуть под язык приложения при следующем входе
       console.log(formatLangFilterLog('preset_skipped', { viewLang, appTarget: studyTarget, reason: 'foreign_language_decks' }));
     }
+    // зачем (слово владельца 17.10, карточка «последнее место» на Главной): последняя начатая тренировка карточек — место, куда вернутся одним тапом. Тап ведёт на этот же экран
+    // настройки (он предвыберет последний набор и проверит дневную квоту — прямой запуск сессии её бы обошёл). Только язык приложения, как и пресет выше; чужой язык не запоминаем.
+    if (viewLang === studyTarget) {
+      const pickedDecks = viewDeckList.filter((deck) => selectedDeckIds.includes(deck.deckId));
+      const firstTitle = pickedDecks[0]?.title ?? '';
+      recordHomeContinuePlace('cards', studyTarget, {
+        id: selectedDeckIds.join(','),
+        title: pickedDecks.length > 1 ? `${firstTitle} +${pickedDecks.length - 1}` : firstTitle,
+        subtitle: null,
+        route: { pathname: '/flashcards_training_setup', params: { mode } },
+        atMs: Date.now(),
+      });
+    }
     try {
       router.push({ pathname: route.pathname, params: route.params } as never);
     } catch (pushError) {
       console.warn('[FC-TRAIN-ENTRY] setup:push-failed', pushError instanceof Error ? pushError.message : String(pushError));
       resetStartLock();
     }
-  }, [blitzHasEnoughCards, canStart, loadState, mode, quotaPreview.status, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId, starting, studyTarget, summary.cardCount, viewLang]);
+  }, [blitzHasEnoughCards, canStart, loadState, mode, quotaPreview.status, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId, starting, studyTarget, summary.cardCount, viewDeckList, viewLang]);
 
   useEffect(() => {
     if (!pendingStartRef.current) return;

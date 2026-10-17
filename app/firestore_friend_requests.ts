@@ -7,6 +7,7 @@ import {
   FRIEND_REQUESTS_SENT_MARKER_ID,
 } from '../shared/friend_requests_index_contract';
 import { DebugLogger } from './debug-logger';
+import { friendTag, logFriendAdd } from './friend_add_trace';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -376,7 +377,9 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
     (error: unknown) => { if (timedOut) console.warn(`[FRIEND-REQUEST] send ${toUid}: после потолка упало — ${error instanceof Error ? error.message : String(error)}`); },
   );
   try {
-    return await Promise.race([work, ceiling]);
+    const result = await Promise.race([work, ceiling]);
+    logFriendAdd('send', { to: friendTag(toUid), result, timedOut, ms: Date.now() - startedAt });
+    return result;
   } finally {
     if (timer) clearTimeout(timer);
   }
@@ -501,6 +504,7 @@ export function isFriendRequestNetworkError(error: unknown): boolean {
  * Security rules validate the reverse write against the existing pending request.
  */
 export async function acceptFriendRequest(fromUid: string): Promise<void> {
+  const acceptStartedAt = Date.now();
   const myUid = await ensureAnonUser();
   if (!myUid) {
     const err = new Error('acceptFriendRequest: canonical UID unavailable');
@@ -553,7 +557,9 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   try {
     await batch.commit();
     invalidateFriendReadCaches(myUid);
+    logFriendAdd('accept', { from: friendTag(fromUid), me: friendTag(myUid), ok: true, requestExisted: requestSnap.exists === true, ms: Date.now() - acceptStartedAt });
   } catch (e) {
+    logFriendAdd('accept', { from: friendTag(fromUid), me: friendTag(myUid), ok: false, code: String((e as { code?: unknown })?.code ?? 'unknown'), ms: Date.now() - acceptStartedAt });
     logFriendsHealth('friends:accept_request_failed', e, { action: 'accept_friend_request', myUid, fromUid });
     throw e;
   }
@@ -741,9 +747,11 @@ export function subscribeToFriends(
       }
       const cachedScopeKey = friendRequestViewerAuthScopeKey(myUid);
       if (friendReadCache?.scopeKey === cachedScopeKey && friendReadCache.expiresAt > Date.now()) {
+        logFriendAdd('friends_read', { me: friendTag(myUid), source: 'memory_cache', count: friendReadCache.rows.length, expiresInMs: friendReadCache.expiresAt - Date.now() });
         callback([...friendReadCache.rows], { fromCache: false });
         return;
       }
+      const friendsReadStartedAt = Date.now();
       const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
       if (cancelled || !authLinkReady) return;
       const db = getFirestore();
@@ -772,6 +780,7 @@ export function subscribeToFriends(
         rows: friends,
         expiresAt: Date.now() + FRIENDS_REALTIME_REPLACEMENT_TTL_MS,
       };
+      logFriendAdd('friends_read', { me: friendTag(myUid), source: snap.metadata?.fromCache === true ? 'sdk_cache' : 'server', count: friends.length, ms: Date.now() - friendsReadStartedAt });
       callback(friends, { fromCache: snap.metadata?.fromCache === true });
     })
     .catch((err: unknown) => {
@@ -806,9 +815,11 @@ export function subscribeToIncomingRequests(
       }
       const cachedScopeKey = friendRequestViewerAuthScopeKey(myUid);
       if (incomingRequestsReadCache?.scopeKey === cachedScopeKey && incomingRequestsReadCache.expiresAt > Date.now()) {
+        logFriendAdd('requests_read', { me: friendTag(myUid), source: 'memory_cache', count: incomingRequestsReadCache.rows.length, expiresInMs: incomingRequestsReadCache.expiresAt - Date.now() });
         callback([...incomingRequestsReadCache.rows]);
         return;
       }
+      const requestsReadStartedAt = Date.now();
       const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
       if (cancelled || !authLinkReady) return;
       const db = getFirestore();
@@ -845,6 +856,7 @@ export function subscribeToIncomingRequests(
         rows: requests,
         expiresAt: Date.now() + FRIENDS_REALTIME_REPLACEMENT_TTL_MS,
       };
+      logFriendAdd('requests_read', { me: friendTag(myUid), source: 'server', count: requests.length, ms: Date.now() - requestsReadStartedAt });
       callback(requests);
     })
     .catch((err: unknown) => {

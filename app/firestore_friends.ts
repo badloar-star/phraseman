@@ -5,6 +5,7 @@ import { generateRandomCode, isValidFriendCode, isValidInviteCodeLookup, normali
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
 import { DebugLogger } from './debug-logger';
+import { friendTag, logFriendAdd } from './friend_add_trace';
 
 /** Устаревший глобальный ключ — без привязки к stableId; мигрируем в v2 при чтении. */
 const FRIEND_CODE_LEGACY_KEY = 'friend_code_local_v1';
@@ -254,8 +255,9 @@ export async function ensureMyFriendCode(): Promise<string | null> {
         // Auth not ready — trust cache for now.
         return cached;
       }
-    } catch {
-      // Network error — trust cache.
+    } catch (e) {
+      // Network error — trust cache. Причину пишем (запрет немого catch).
+      logFriendAdd('code_ensure', { source: 'cache_after_error', code: String((e as { code?: unknown })?.code ?? (e instanceof Error ? e.message : 'unknown')).slice(0, 60) });
       return cached;
     }
   }
@@ -278,10 +280,14 @@ async function resolveCloudFriendCodeViaCallable(
   const uid = await withTimeout(ensureAnonUser(), FRIEND_CODE_ENSURE_UID_MS);
   if (!uid) return null;
   try {
+    const startedAt = Date.now();
     const code = await callFriendEnsureMyCode(uid);
     await saveOwnerScopedStoredCode(cacheOwner, code);
+    // зачем (владелец 17.10): видно, КОГДА код человека попал в индекс поиска (без самого кода).
+    logFriendAdd('code_ensure', { source: 'server_registered', me: friendTag(uid), ms: Date.now() - startedAt });
     return code;
-  } catch {
+  } catch (e) {
+    logFriendAdd('code_ensure', { source: 'server_failed', me: friendTag(uid), code: String((e as { code?: unknown })?.code ?? (e instanceof Error ? e.message : 'unknown')).slice(0, 60) });
     return null;
   }
 }
@@ -426,6 +432,7 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
     if (uid) {
       if (!(await isUidBannedBestEffort(db, uid))) {
         if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:hit source=friend_code_index', { ms: Date.now() - t0 });
+        logFriendAdd('lookup_code', { found: true, source: 'friend_code_index', target: friendTag(uid), ms: Date.now() - t0 });
         return { uid, source: 'friend_code_index' };
       }
       if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:skip reason=banned source=friend_code_index');
@@ -444,6 +451,7 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
     if (uid) {
       if (!(await isUidBannedBestEffort(db, uid))) {
         if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:hit source=legacy_friend_code', { ms: Date.now() - t0 });
+        logFriendAdd('lookup_code', { found: true, source: 'legacy_friend_code', target: friendTag(uid), ms: Date.now() - t0 });
         return { uid, source: 'legacy_friend_code' };
       }
       if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:skip reason=banned source=legacy_friend_code');
@@ -475,6 +483,7 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
       if (uid) {
         if (!(await isUidBannedBestEffort(db, uid))) {
           if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:hit source=referral_code', { ms: Date.now() - t0 });
+          logFriendAdd('lookup_code', { found: true, source: 'referral_code', target: friendTag(uid), ms: Date.now() - t0 });
           return { uid, source: 'referral_code' };
         }
         if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:skip reason=banned source=referral_code');
@@ -491,6 +500,7 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
     }
 
   if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:miss all_sources_exhausted', { ms: Date.now() - t0 });
+  logFriendAdd('lookup_code', { found: false, outcome: 'all_sources_exhausted', codeLen: normalized.length, ms: Date.now() - t0 });
   return null;
 }
 
@@ -521,19 +531,26 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
         } | null;
       }
     >('friendLookupUser', { timeout: FRIEND_NAME_LOOKUP_CALLABLE_MS });
+    const lookupStartedAt = Date.now();
     for (let attempt = 0; attempt < FRIEND_NAME_LOOKUP_ATTEMPTS; attempt += 1) {
       // A scale-to-zero cold start can fail the transport once even though the
       // authenticated read is valid. Retry inside the same user action so the
       // user does not have to press Search a second time.
+      const attemptStartedAt = Date.now();
       // eslint-disable-next-line no-await-in-loop
       const res = await withTimeout(fn({ stableId, query: normalized }), FRIEND_NAME_LOOKUP_CALLABLE_MS);
-      if (!res) continue;
+      if (!res) {
+        logFriendAdd('lookup_nick_attempt', { attempt, outcome: 'timeout', ms: Date.now() - attemptStartedAt });
+        continue;
+      }
       const data = res.data;
       const u = data?.user;
       const uid = u?.uid;
       const name = typeof u?.name === 'string'
         ? u.name.normalize('NFKC').trim().replace(/\s+/g, ' ').slice(0, 40).trim()
         : '';
+      // зачем (владелец 17.10, логи до починки): «друзья находятся через полчаса» — видно, сколько ждали и что вернул сервер.
+      logFriendAdd('lookup_nick', { queryLen: normalized.length, attempt, found: typeof uid === 'string' && Boolean(uid.trim()), target: friendTag(uid), source: u?.source ?? null, ms: Date.now() - lookupStartedAt });
       if (typeof uid !== 'string' || !uid.trim()) return null;
       // Сервер вернул полный профиль из users.progress — прокидываем в UI, чтобы карточка
       // показала имя/уровень/аватар без догрузки из leaderboard (у многих его нет).
@@ -550,9 +567,11 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
       };
       return { uid: uid.trim(), source: 'name_index', ...(name ? { name } : {}), profile };
     }
+    logFriendAdd('lookup_nick', { queryLen: normalized.length, found: false, outcome: 'all_attempts_timed_out', ms: Date.now() - lookupStartedAt });
     throw friendLookupUnavailable();
   } catch (cause) {
     if (cause instanceof Error && cause.message === 'friend_lookup_unavailable') throw cause;
+    logFriendAdd('lookup_nick', { queryLen: normalized.length, found: false, outcome: 'error', code: String((cause as { code?: unknown })?.code ?? (cause instanceof Error ? cause.message : 'unknown')).slice(0, 60) });
     throw friendLookupUnavailable(cause);
   }
 }

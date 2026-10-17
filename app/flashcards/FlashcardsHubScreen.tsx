@@ -789,32 +789,14 @@ export default function FlashcardsHubScreen() {
   // зачем (аудит скорости R1, 12.10): `new Intl.NumberFormat(lang)` стоял в КАЖДОМ вызове fmt (четыре плитки + «из видео» на каждый рендер); форматтер один на язык
   const numberFormat = useMemo(() => new Intl.NumberFormat(lang), [lang]);
   const fmt = (n: number | null) => (n === null ? '' : numberFormat.format(n));
-  const packsWord = (n: number): string => {
-    // зачем: Intl.PluralRules в Hermes на Android не даёт русских форм («4 наборов»); считаем вручную по правилам ru/uk/pl, остальные языки — «один / другие».
-    const n10 = n % 10;
-    const n100 = n % 100;
-    const slavic = lang === 'ru' || lang === 'uk';
-    const cat = slavic
-      ? (n10 === 1 && n100 !== 11 ? 'one' : n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14) ? 'few' : 'many')
-      : lang === 'pl'
-        ? (n === 1 ? 'one' : n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14) ? 'few' : 'many')
-        : (n === 1 ? 'one' : 'other');
-    const forms: Record<string, [string, string, string]> = {
-      ru: ['набор', 'набора', 'наборов'], uk: ['набір', 'набори', 'наборів'], pl: ['zestaw', 'zestawy', 'zestawów'],
-      en: ['pack', 'packs', 'packs'], es: ['pack', 'packs', 'packs'], 'pt-BR': ['pacote', 'pacotes', 'pacotes'],
-      vi: ['bộ thẻ', 'bộ thẻ', 'bộ thẻ'], id: ['paket', 'paket', 'paket'], tr: ['paket', 'paket', 'paket'],
-    };
-    const f = forms[lang] ?? forms.en!;
-    return cat === 'one' ? f[0] : cat === 'few' ? f[1] : f[2];
-  };
-  const fmtPacks = (n: number | null) => (n === null ? '' : `${fmt(n)} ${packsWord(n)}`);
+  // зачем (R109, 17.10): слово «наборов» у плитки «Из видео» убрано — число стоит справа от иконки; склонение packsWord удалено как неиспользуемое
   // зачем (аудит скорости R1, C2, координатор 12.10): `tiles` собирался заново на каждый рендер корня (новые объекты и inline-onPress), и memo у CardsHubV2 не срабатывал.
   // Плитки зависят только от подписей, счётчиков, форматтера чисел и языка; `router` стабилен. fmt/packsWord читают лишь numberFormat и lang — они в deps.
   /* eslint-disable react-hooks/exhaustive-deps */
   const tiles = useMemo(() => [
     { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
     { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount ?? heldMineCount), onPress: () => router.push('/flashcards_my_packs' as never) },
-    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
+    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmt(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
     { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
   ], [copy, savedCount, myPackCount, heldMineCount, videoPackCount, communityPackCount, numberFormat, lang, router]);
   /* eslint-enable react-hooks/exhaustive-deps */

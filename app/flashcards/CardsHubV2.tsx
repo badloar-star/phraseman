@@ -210,14 +210,15 @@ function CardsHubV2Inner({
             ]}>
             {/* зачем (Тень 12.10): плитка — плашка (градиент 180° + тень), без фасок и кольца */}
             <PlateFill g={g} radius={26} />
-            <View style={[styles.tileIcon, { boxShadow: nestedBoxShadow(g) }]}>
-              <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-              <Ionicons name={t.icon} size={24} color={faceInk} />
+            {/* зачем (R109, прямое слово владельца 17.10: «цифры будут СПРАВА от иконки, а не внизу»; эталон cards-section.shadow.html#hub): верхняя строка — иконка слева и число справа (22/28, 700, tabular-nums, по центру иконки), под ней только название. При загрузке на месте числа «…». */}
+            <View style={styles.tileTop}>
+              <View style={[styles.tileIcon, { boxShadow: nestedBoxShadow(g) }]}>
+                <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+                <Ionicons name={t.icon} size={24} color={faceInk} />
+              </View>
+              <Text testID={`fc-cards-hub-tile-count-${t.id}`} style={[styles.tileCount, { color: g.text, lineHeight: lh(28) }]} numberOfLines={1}>{t.count === '' ? '…' : t.count}</Text>
             </View>
-            <View>
-              <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
-              <Text style={[styles.tileCount, { color: g.secondary, lineHeight: lh(19) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.count === '' ? ' ' : t.count}</Text>
-            </View>
+            <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
           </Pressable>
         ))}
       </View>
@@ -266,5 +267,6 @@ const styles = StyleSheet.create({
   freshSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   tileIcon: { width: 52, height: 52, borderRadius: 15, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
-  tileCount: { fontSize: 16, lineHeight: 21 },
+  tileTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
+  tileCount: { flexShrink: 1, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'right', fontVariant: ['tabular-nums'] },
 });

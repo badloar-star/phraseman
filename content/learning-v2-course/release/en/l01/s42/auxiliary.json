@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-42:intro1:r2": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "afraid — «боится». Хозяйка встречает гостей тепло: welcoming.",
+          "uk": "afraid — «боїться». Господиня зустрічає гостей тепло: welcoming."
         },
         "en:lesson-01:session-42:intro1:r3": {
-          "ru": "`afraid` — «боится». Здесь нужно назвать вежливость: `polite`.",
-          "uk": "`afraid` — «боїться». Тут треба назвати ввічливість: `polite`."
+          "ru": "В короткой форме нужно 's: She's welcoming.",
+          "uk": "У короткій формі потрібно 's: She's welcoming."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-42:intro2:r2": {
-          "ru": "Это рассказ о нём. Здесь вы обращаетесь прямо к брату: `You are polite`.",
-          "uk": "Це розповідь про нього. Тут ви звертаєтеся просто до брата: `You are polite`."
+          "ru": "shy — «стеснительный». Сосед говорит без остановки: chatty.",
+          "uk": "shy — «сором’язливий». Сусід говорить без упину: chatty."
         },
         "en:lesson-01:session-42:intro2:r3": {
-          "ru": "После `You` нужна форма `are`.",
-          "uk": "Після `You` потрібна форма `are`."
+          "ru": "She's — про женщину. Про соседа — He's.",
+          "uk": "She's — про жінку. Про сусіда — He's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-42:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-42:intro3:r2": {
-          "ru": "Это про вежливость. Здесь нужно назвать страх: `afraid`.",
-          "uk": "Це про ввічливість. Тут треба назвати страх: `afraid`."
+          "ru": "polite — «вежливая». Расспрашивать о чужих деньгах — nosy.",
+          "uk": "polite — «ввічлива». Розпитувати про чужі гроші — nosy."
         },
         "en:lesson-01:session-42:intro3:r3": {
-          "ru": "Это про неё. Про брата нужно `He's`.",
-          "uk": "Це про неї. Про брата потрібно `He's`."
+          "ru": "В короткой форме нужно 's: She's nosy.",
+          "uk": "У короткій формі потрібно 's: She's nosy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "eeebdad7d4d8e70699e125e64420833fe5f64e4d5286749216f3286fa7379d66"
+  "auxiliaryFingerprint": "3851d4cf0c18e6e376a6e49cc806c93794e5ffa16f9bd83f89407ceafe66c1c6"
 }

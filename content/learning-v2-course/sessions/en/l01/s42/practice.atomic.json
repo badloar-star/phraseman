@@ -1,0 +1,2431 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-42:word:welcoming",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — welcoming",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:welcoming:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — welcoming",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:welcoming:audio",
+            "transcript": "welcoming"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:welcoming:r1",
+              "targetText": "welcoming",
+              "meaningByLocale": {
+                "ru": "радушный, гостеприимный. She's welcoming — «Она радушная»: тепло встречает гостей.",
+                "uk": "привітний, гостинний. She's welcoming — «Вона привітна»: тепло зустрічає гостей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "welcoming",
+            "definitionByLocale": {
+              "ru": "радушный, гостеприимный. She's welcoming — «Она радушная»: тепло встречает гостей.",
+              "uk": "привітний, гостинний. She's welcoming — «Вона привітна»: тепло зустрічає гостей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:word:chatty",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chatty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:chatty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chatty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:chatty:audio",
+            "transcript": "chatty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:chatty:r1",
+              "targetText": "chatty",
+              "meaningByLocale": {
+                "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
+                "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chatty",
+            "definitionByLocale": {
+              "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
+              "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:word:nosy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nosy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:nosy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nosy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:nosy:audio",
+            "transcript": "nosy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:nosy:r1",
+              "targetText": "nosy",
+              "meaningByLocale": {
+                "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
+                "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nosy",
+            "definitionByLocale": {
+              "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
+              "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:word:elderly",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — elderly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:elderly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — elderly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:elderly:audio",
+            "transcript": "elderly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:elderly:r1",
+              "targetText": "elderly",
+              "meaningByLocale": {
+                "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
+                "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elderly",
+            "definitionByLocale": {
+              "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
+              "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Хозяйка тепло встречает каждого гостя. Соберите фразу о ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хозяйка тепло встречает каждого гостя. Соберите фразу о ней",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is welcoming.",
+          "localizedMeaning": {
+            "ru": "Хозяйка тепло встречает каждого гостя. Соберите фразу о ней",
+            "uk": "Господиня тепло зустрічає кожного гостя. Складіть фразу про неї"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "welcoming"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Хозяйка тепло встречает каждого гостя. Соберите фразу о ней",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is welcoming.`",
+                "uk": "тут потрібно `is` — `She is welcoming.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i02:r1",
+            "text": "He is chatty."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r2",
+            "text": "She is chatty."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r3",
+            "text": "He is polite."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i02:audio",
+            "transcript": "He is chatty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:i02:r1",
+              "targetText": "He is chatty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i02:r2",
+              "targetText": "She is chatty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i02:r3",
+              "targetText": "He is polite.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `chatty`, а в этом варианте — `polite`.",
+                "uk": "У записі останнє слово — `chatty`, а в цьому варіанті — `polite`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово",
+            "uk": "Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово"
+          },
+          "gappedTargetPhrase": "You ___ polite.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-42:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "После `You` нужно `are`.",
+                "uk": "Після `You` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "К одному собеседнику тоже обращаемся `You are`.",
+                "uk": "До одного співрозмовника теж звертаємося `You are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-42:i04:p1",
+              "target": "welcoming",
+              "meaningByLocale": {
+                "ru": "радушный",
+                "uk": "привітний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i04:p2",
+              "target": "chatty",
+              "meaningByLocale": {
+                "ru": "болтливый",
+                "uk": "балакучий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i04:p3",
+              "target": "nosy",
+              "meaningByLocale": {
+                "ru": "лезет в чужие дела",
+                "uk": "пхає носа в чужі справи"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i04:p4",
+              "target": "elderly",
+              "meaningByLocale": {
+                "ru": "пожилой",
+                "uk": "літній"
+              }
+            }
+          ],
+          "leftColumn": [
+            "welcoming",
+            "chatty",
+            "nosy",
+            "elderly"
+          ],
+          "rightColumn": [
+            "радушный",
+            "болтливый",
+            "лезет в чужие дела",
+            "пожилой"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i05:audio",
+            "transcript": "They're welcoming."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're welcoming.",
+          "orderedTokens": [
+            "They're",
+            "welcoming"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're welcoming.`",
+                "uk": "тут потрібно `They're` — `They're welcoming.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is elderly.",
+          "localizedMeaning": {
+            "ru": "Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»",
+            "uk": "Сусідові з першого поверху вісімдесят років, він ходить із палицею. Брат питає про нього. Складіть фразу: «Він літній»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "elderly"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is elderly.`",
+                "uk": "тут потрібно `is` — `He is elderly.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ольга угощает вас пирогом. Коротко скажите ей, что она очень радушная",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Ольга угощает вас пирогом. Коротко скажите ей, что она очень радушная",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i07:audio",
+            "transcript": "You're welcoming."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You're welcoming.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i08:r1",
+            "text": "shy"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r2",
+            "text": "chatty"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r3",
+            "text": "nosy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность",
+            "uk": "Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-42:i08:r1",
+              "text": "shy"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i08:r2",
+              "text": "chatty"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i08:r3",
+              "text": "nosy"
+            }
+          ],
+          "testedDimension": "Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность",
+              "feedbackByLocale": {
+                "ru": "`chatty` — «болтливый». Брат молчит: `shy`.",
+                "uk": "`chatty` — «балакучий». Брат мовчить: `shy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность",
+              "feedbackByLocale": {
+                "ru": "`nosy` — «лезет в чужие дела». Здесь стеснительность: `shy`.",
+                "uk": "`nosy` — «пхає носа в чужі справи». Тут сором’язливість: `shy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i09:r1",
+            "text": "She's nosy."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i09:r2",
+            "text": "She's polite."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i09:r3",
+            "text": "He's nosy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i09:audio",
+            "transcript": "She's nosy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:i09:r1",
+              "targetText": "She's nosy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i09:r2",
+              "targetText": "She's polite.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i09:r3",
+              "targetText": "He's nosy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nosy`, а в этом варианте — `polite`.",
+                "uk": "У записі останнє слово — `nosy`, а в цьому варіанті — `polite`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-42:i10:p1",
+              "target": "polite",
+              "meaningByLocale": {
+                "ru": "вежливый",
+                "uk": "ввічливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i10:p2",
+              "target": "shy",
+              "meaningByLocale": {
+                "ru": "стеснительный",
+                "uk": "сором’язливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i10:p3",
+              "target": "friendly",
+              "meaningByLocale": {
+                "ru": "дружелюбный",
+                "uk": "доброзичливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i10:p4",
+              "target": "honest",
+              "meaningByLocale": {
+                "ru": "честный",
+                "uk": "чесний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "polite",
+            "shy",
+            "friendly",
+            "honest"
+          ],
+          "rightColumn": [
+            "вежливый",
+            "стеснительный",
+            "дружелюбный",
+            "честный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i11:audio",
+            "transcript": "He's chatty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He's chatty.",
+          "orderedTokens": [
+            "He's",
+            "chatty"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `He's` — `He's chatty.`",
+                "uk": "тут потрібно `He's` — `He's chatty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с братом внимательно слушаете и благодарите хозяйку. Назовите вас обоих вежливыми",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с братом внимательно слушаете и благодарите хозяйку. Назовите вас обоих вежливыми",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are polite.",
+          "localizedMeaning": {
+            "ru": "Вы с братом внимательно слушаете и благодарите хозяйку. Назовите вас обоих вежливыми",
+            "uk": "Ви з братом уважно слухаєте й дякуєте господині. Назвіть вас обох ввічливими"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "polite"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с братом внимательно слушаете и благодарите хозяйку. Назовите вас обоих вежливыми",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are polite.`",
+                "uk": "тут потрібно `We` — `We are polite.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вечером вы рассказываете маме про соседку, которая выспрашивала о ваших деньгах. Скажите, что она лезет в чужие дела",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Вечером вы рассказываете маме про соседку, которая выспрашивала о ваших деньгах. Скажите, что она лезет в чужие дела",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i13:audio",
+            "transcript": "She is nosy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is nosy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово",
+            "uk": "Двоє сусідів розповідають про себе без упину. Назвіть їх балакучими. Вставте слово"
+          },
+          "gappedTargetPhrase": "They ___ chatty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-42:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "Соседей двое: `They are`.",
+                "uk": "Сусідів двоє: `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i15:r1",
+            "text": "She's elderly."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r2",
+            "text": "He's elderly."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r3",
+            "text": "She's friendly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i15:audio",
+            "transcript": "She's elderly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:i15:r1",
+              "targetText": "She's elderly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i15:r2",
+              "targetText": "He's elderly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i15:r3",
+              "targetText": "She's friendly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `elderly`, а в этом варианте — `friendly`.",
+                "uk": "У записі останнє слово — `elderly`, а в цьому варіанті — `friendly`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы и слова с соответствиями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы и слова с соответствиями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-42:i16:p1",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i16:p2",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i16:p3",
+              "target": "welcoming",
+              "meaningByLocale": {
+                "ru": "радушный",
+                "uk": "привітний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i16:p4",
+              "target": "nosy",
+              "meaningByLocale": {
+                "ru": "лезет в чужие дела",
+                "uk": "пхає носа в чужі справи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "They're",
+            "You're",
+            "welcoming",
+            "nosy"
+          ],
+          "rightColumn": [
+            "They are",
+            "You are",
+            "радушный",
+            "лезет в чужие дела"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сотрудница магазина спокойно выслушала вашу просьбу и вежливо помогла. Расскажите другу именно о её вежливости",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Сотрудница магазина спокойно выслушала вашу просьбу и вежливо помогла. Расскажите другу именно о её вежливости",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i17:audio",
+            "transcript": "She is polite."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is polite.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-42:word:welcoming",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — welcoming",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:welcoming:audio"
+        ],
+        "accessibilityLabel": "Картка слова — welcoming",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:welcoming:audio",
+            "transcript": "welcoming"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:welcoming:r1",
+              "targetText": "welcoming",
+              "meaningByLocale": {
+                "ru": "радушный, гостеприимный. She's welcoming — «Она радушная»: тепло встречает гостей.",
+                "uk": "привітний, гостинний. She's welcoming — «Вона привітна»: тепло зустрічає гостей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "welcoming",
+            "definitionByLocale": {
+              "ru": "радушный, гостеприимный. She's welcoming — «Она радушная»: тепло встречает гостей.",
+              "uk": "привітний, гостинний. She's welcoming — «Вона привітна»: тепло зустрічає гостей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:word:chatty",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chatty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:chatty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chatty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:chatty:audio",
+            "transcript": "chatty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:chatty:r1",
+              "targetText": "chatty",
+              "meaningByLocale": {
+                "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
+                "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chatty",
+            "definitionByLocale": {
+              "ru": "болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.",
+              "uk": "балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:word:nosy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nosy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:nosy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nosy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:nosy:audio",
+            "transcript": "nosy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:nosy:r1",
+              "targetText": "nosy",
+              "meaningByLocale": {
+                "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
+                "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nosy",
+            "definitionByLocale": {
+              "ru": "любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.",
+              "uk": "пхає носа в чужі справи. She's nosy — «Вона пхає носа в чужі справи». Це несхвалення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:word:elderly",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — elderly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:word:elderly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — elderly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:word:elderly:audio",
+            "transcript": "elderly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:word:elderly:r1",
+              "targetText": "elderly",
+              "meaningByLocale": {
+                "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
+                "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elderly",
+            "definitionByLocale": {
+              "ru": "пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.",
+              "uk": "літній. He's elderly — «Він літній». Звучить увічливіше, ніж old."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Господиня тепло зустрічає кожного гостя. Складіть фразу про неї",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Господиня тепло зустрічає кожного гостя. Складіть фразу про неї",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is welcoming.",
+          "localizedMeaning": {
+            "ru": "Хозяйка тепло встречает каждого гостя. Соберите фразу о ней",
+            "uk": "Господиня тепло зустрічає кожного гостя. Складіть фразу про неї"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "welcoming"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Господиня тепло зустрічає кожного гостя. Складіть фразу про неї",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is welcoming.`",
+                "uk": "тут потрібно `is` — `She is welcoming.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i02:r1",
+            "text": "He is chatty."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r2",
+            "text": "She is chatty."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r3",
+            "text": "He is polite."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i02:audio",
+            "transcript": "He is chatty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:i02:r1",
+              "targetText": "He is chatty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i02:r2",
+              "targetText": "She is chatty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i02:r3",
+              "targetText": "He is polite.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `chatty`, а в этом варианте — `polite`.",
+                "uk": "У записі останнє слово — `chatty`, а в цьому варіанті — `polite`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово",
+            "uk": "Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово"
+          },
+          "gappedTargetPhrase": "You ___ polite.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-42:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "После `You` нужно `are`.",
+                "uk": "Після `You` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат дочекався, поки господиня закінчить говорити, і подякував їй. Похваліть його, звертаючись до нього. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "К одному собеседнику тоже обращаемся `You are`.",
+                "uk": "До одного співрозмовника теж звертаємося `You are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-42:i04:p1",
+              "target": "welcoming",
+              "meaningByLocale": {
+                "ru": "радушный",
+                "uk": "привітний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i04:p2",
+              "target": "chatty",
+              "meaningByLocale": {
+                "ru": "болтливый",
+                "uk": "балакучий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i04:p3",
+              "target": "nosy",
+              "meaningByLocale": {
+                "ru": "лезет в чужие дела",
+                "uk": "пхає носа в чужі справи"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i04:p4",
+              "target": "elderly",
+              "meaningByLocale": {
+                "ru": "пожилой",
+                "uk": "літній"
+              }
+            }
+          ],
+          "leftColumn": [
+            "welcoming",
+            "chatty",
+            "nosy",
+            "elderly"
+          ],
+          "rightColumn": [
+            "привітний",
+            "балакучий",
+            "пхає носа в чужі справи",
+            "літній"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i05:audio",
+            "transcript": "They're welcoming."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They're welcoming.",
+          "orderedTokens": [
+            "They're",
+            "welcoming"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're welcoming.`",
+                "uk": "тут потрібно `They're` — `They're welcoming.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідові з першого поверху вісімдесят років, він ходить із палицею. Брат питає про нього. Складіть фразу: «Він літній»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідові з першого поверху вісімдесят років, він ходить із палицею. Брат питає про нього. Складіть фразу: «Він літній»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is elderly.",
+          "localizedMeaning": {
+            "ru": "Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»",
+            "uk": "Сусідові з першого поверху вісімдесят років, він ходить із палицею. Брат питає про нього. Складіть фразу: «Він літній»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "elderly"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідові з першого поверху вісімдесят років, він ходить із палицею. Брат питає про нього. Складіть фразу: «Він літній»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is elderly.`",
+                "uk": "тут потрібно `is` — `He is elderly.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i07:audio",
+            "transcript": "You're welcoming."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You're welcoming.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i08:r1",
+            "text": "shy"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r2",
+            "text": "chatty"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i08:r3",
+            "text": "nosy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность",
+            "uk": "Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-42:i08:r1",
+              "text": "shy"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i08:r2",
+              "text": "chatty"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i08:r3",
+              "text": "nosy"
+            }
+          ],
+          "testedDimension": "Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість",
+              "feedbackByLocale": {
+                "ru": "`chatty` — «болтливый». Брат молчит: `shy`.",
+                "uk": "`chatty` — «балакучий». Брат мовчить: `shy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат мовчить і ховається за вашою спиною. Назвіть саме його сором’язливість",
+              "feedbackByLocale": {
+                "ru": "`nosy` — «лезет в чужие дела». Здесь стеснительность: `shy`.",
+                "uk": "`nosy` — «пхає носа в чужі справи». Тут сором’язливість: `shy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i09:r1",
+            "text": "She's nosy."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i09:r2",
+            "text": "She's polite."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i09:r3",
+            "text": "He's nosy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i09:audio",
+            "transcript": "She's nosy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:i09:r1",
+              "targetText": "She's nosy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i09:r2",
+              "targetText": "She's polite.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i09:r3",
+              "targetText": "He's nosy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nosy`, а в этом варианте — `polite`.",
+                "uk": "У записі останнє слово — `nosy`, а в цьому варіанті — `polite`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-42:i10:p1",
+              "target": "polite",
+              "meaningByLocale": {
+                "ru": "вежливый",
+                "uk": "ввічливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i10:p2",
+              "target": "shy",
+              "meaningByLocale": {
+                "ru": "стеснительный",
+                "uk": "сором’язливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i10:p3",
+              "target": "friendly",
+              "meaningByLocale": {
+                "ru": "дружелюбный",
+                "uk": "доброзичливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i10:p4",
+              "target": "honest",
+              "meaningByLocale": {
+                "ru": "честный",
+                "uk": "чесний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "polite",
+            "shy",
+            "friendly",
+            "honest"
+          ],
+          "rightColumn": [
+            "ввічливий",
+            "сором’язливий",
+            "доброзичливий",
+            "чесний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i11:audio",
+            "transcript": "He's chatty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He's chatty.",
+          "orderedTokens": [
+            "He's",
+            "chatty"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `He's` — `He's chatty.`",
+                "uk": "тут потрібно `He's` — `He's chatty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з братом уважно слухаєте й дякуєте господині. Назвіть вас обох ввічливими",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з братом уважно слухаєте й дякуєте господині. Назвіть вас обох ввічливими",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are polite.",
+          "localizedMeaning": {
+            "ru": "Вы с братом внимательно слушаете и благодарите хозяйку. Назовите вас обоих вежливыми",
+            "uk": "Ви з братом уважно слухаєте й дякуєте господині. Назвіть вас обох ввічливими"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "polite"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з братом уважно слухаєте й дякуєте господині. Назвіть вас обох ввічливими",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are polite.`",
+                "uk": "тут потрібно `We` — `We are polite.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Увечері ви розповідаєте мамі про сусідку, яка випитувала про ваші гроші. Скажіть, що вона пхає носа в чужі справи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Увечері ви розповідаєте мамі про сусідку, яка випитувала про ваші гроші. Скажіть, що вона пхає носа в чужі справи",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i13:audio",
+            "transcript": "She is nosy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is nosy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоє сусідів розповідають про себе без упину. Назвіть їх балакучими. Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє сусідів розповідають про себе без упину. Назвіть їх балакучими. Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово",
+            "uk": "Двоє сусідів розповідають про себе без упину. Назвіть їх балакучими. Вставте слово"
+          },
+          "gappedTargetPhrase": "They ___ chatty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-42:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Двоє сусідів розповідають про себе без упину. Назвіть їх балакучими. Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Двоє сусідів розповідають про себе без упину. Назвіть їх балакучими. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Двоє сусідів розповідають про себе без упину. Назвіть їх балакучими. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "Соседей двое: `They are`.",
+                "uk": "Сусідів двоє: `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-42:i15:r1",
+            "text": "She's elderly."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r2",
+            "text": "He's elderly."
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i15:r3",
+            "text": "She's friendly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i15:audio",
+            "transcript": "She's elderly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-42:i15:r1",
+              "targetText": "She's elderly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i15:r2",
+              "targetText": "He's elderly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i15:r3",
+              "targetText": "She's friendly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `elderly`, а в этом варианте — `friendly`.",
+                "uk": "У записі останнє слово — `elderly`, а в цьому варіанті — `friendly`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте форми та слова з відповідниками",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте форми та слова з відповідниками",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-42:i16:p1",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i16:p2",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i16:p3",
+              "target": "welcoming",
+              "meaningByLocale": {
+                "ru": "радушный",
+                "uk": "привітний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-42:i16:p4",
+              "target": "nosy",
+              "meaningByLocale": {
+                "ru": "лезет в чужие дела",
+                "uk": "пхає носа в чужі справи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "They're",
+            "You're",
+            "welcoming",
+            "nosy"
+          ],
+          "rightColumn": [
+            "They are",
+            "You are",
+            "привітний",
+            "пхає носа в чужі справи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Працівниця магазину спокійно вислухала ваше прохання й увічливо допомогла. Розкажіть другові саме про її ввічливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Працівниця магазину спокійно вислухала ваше прохання й увічливо допомогла. Розкажіть другові саме про її ввічливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-42:i17:audio",
+            "transcript": "She is polite."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is polite.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-42:word:welcoming",
+      "correctText": "welcoming",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:word:chatty",
+      "correctText": "chatty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:word:nosy",
+      "correctText": "nosy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:word:elderly",
+      "correctText": "elderly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i01",
+      "correctText": "She is welcoming.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i02",
+      "correctText": "He is chatty.",
+      "correctResponseId": "en:lesson-01:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i05",
+      "correctText": "They're welcoming.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i06",
+      "correctText": "He is elderly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i07",
+      "correctText": "You're welcoming.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i08",
+      "correctText": "shy",
+      "correctResponseId": "en:lesson-01:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i09",
+      "correctText": "She's nosy.",
+      "correctResponseId": "en:lesson-01:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i11",
+      "correctText": "He's chatty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i12",
+      "correctText": "We are polite.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i13",
+      "correctText": "She is nosy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-42:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i15",
+      "correctText": "She's elderly.",
+      "correctResponseId": "en:lesson-01:session-42:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-42:i17",
+      "correctText": "She is polite.",
+      "correctResponseId": null
+    }
+  ]
+}

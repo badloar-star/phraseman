@@ -4,22 +4,194 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-43:i01",
+      "interactionId": "en:lesson-01:session-43:word:stuck",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stuck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:word:stuck:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stuck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:word:stuck:audio",
+          "transcript": "stuck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:word:stuck:r1",
+            "targetText": "stuck",
+            "meaningByLocale": {
+              "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
+              "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stuck",
+          "definitionByLocale": {
+            "ru": "застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.",
+            "uk": "застряг, не може рухатися далі. He's stuck — «Він застряг»: у заторі, у ліфті, у дверях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:word:annoyed",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — annoyed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:word:annoyed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — annoyed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:word:annoyed:audio",
+          "transcript": "annoyed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:word:annoyed:r1",
+            "targetText": "annoyed",
+            "meaningByLocale": {
+              "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
+              "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "annoyed",
+          "definitionByLocale": {
+            "ru": "раздражён, недоволен. She's annoyed — «Она раздражена». Слабее, чем angry.",
+            "uk": "роздратований, невдоволений. She's annoyed — «Вона роздратована». Слабше, ніж angry."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:word:soaked",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soaked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:word:soaked:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soaked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:word:soaked:audio",
+          "transcript": "soaked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:word:soaked:r1",
+            "targetText": "soaked",
+            "meaningByLocale": {
+              "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
+              "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soaked",
+          "definitionByLocale": {
+            "ru": "промок насквозь. We're soaked — «Мы промокли насквозь». Сильнее, чем wet.",
+            "uk": "промок наскрізь. We're soaked — «Ми промокли наскрізь». Сильніше, ніж wet."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:word:chilly",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chilly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:word:chilly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chilly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:word:chilly:audio",
+          "transcript": "chilly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-43:word:chilly:r1",
+            "targetText": "chilly",
+            "meaningByLocale": {
+              "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
+              "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chilly",
+          "definitionByLocale": {
+            "ru": "прохладно, зябко. It's chilly — «Прохладно». Слабее, чем cold.",
+            "uk": "прохолодно, зимно. It's chilly — «Прохолодно». Слабше, ніж cold."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Маша спокійно чекає на друга. Назвіть її терплячою",
+      "prompt": "Маша спокійно чекає на друга й не квапить його. Назвіть її терплячою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Маша спокійно чекає на друга. Назвіть її терплячою",
+      "accessibilityLabel": "Маша спокійно чекає на друга й не квапить його. Назвіть її терплячою",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is patient.",
         "localizedMeaning": {
-          "ru": "Маша спокойно ждёт друга. Назовите её терпеливой",
-          "uk": "Маша спокійно чекає на друга. Назвіть її терплячою"
+          "ru": "Маша спокойно ждёт друга и не торопит его. Назовите её терпеливой",
+          "uk": "Маша спокійно чекає на друга й не квапить його. Назвіть її терплячою"
         },
         "orderedTokens": [
           "She",
@@ -33,7 +205,7 @@
           {
             "responseId": "en:lesson-01:session-43:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Маша спокійно чекає на друга. Назвіть її терплячою",
+            "testedDimension": "Маша спокійно чекає на друга й не квапить його. Назвіть її терплячою",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is patient.`",
               "uk": "тут потрібно `is` — `She is patient.`"
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -57,15 +229,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-43:i02:r1",
-          "text": "He is patient."
+          "text": "He is stuck."
         },
         {
           "responseId": "en:lesson-01:session-43:i02:r2",
-          "text": "She is patient."
+          "text": "She is stuck."
         },
         {
           "responseId": "en:lesson-01:session-43:i02:r3",
-          "text": "He is ill."
+          "text": "He is late."
         }
       ],
       "mediaIds": [],
@@ -77,23 +249,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-43:i02:audio",
-          "transcript": "He is patient."
+          "transcript": "He is stuck."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-43:i02:r1",
-            "targetText": "He is patient.",
+            "targetText": "He is stuck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-43:i02:r2",
-            "targetText": "She is patient.",
+            "targetText": "She is stuck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-43:i02:r3",
-            "targetText": "He is ill.",
+            "targetText": "He is late.",
             "meaningByLocale": null
           }
         ],
@@ -113,8 +285,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `patient`, а в этом варианте — `ill`.",
-              "uk": "У записі останнє слово — `patient`, а в цьому варіанті — `ill`."
+              "ru": "В записи последнее слово — `stuck`, а в этом варианте — `late`.",
+              "uk": "У записі останнє слово — `stuck`, а в цьому варіанті — `late`."
             }
           }
         ],
@@ -125,11 +297,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вмієте чекати без роздратування. Скажіть про себе",
+      "prompt": "Ви вже починаєте дратуватися через чекання. Скажіть про себе",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-43:i03:r1",
@@ -146,14 +318,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вмієте чекати без роздратування. Скажіть про себе",
+      "accessibilityLabel": "Ви вже починаєте дратуватися через чекання. Скажіть про себе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы умеете ждать без раздражения. Скажите о себе",
-          "uk": "Ви вмієте чекати без роздратування. Скажіть про себе"
+          "ru": "Вы уже начинаете раздражаться из-за ожидания. Скажите о себе",
+          "uk": "Ви вже починаєте дратуватися через чекання. Скажіть про себе"
         },
-        "gappedTargetPhrase": "I ___ patient.",
+        "gappedTargetPhrase": "I ___ annoyed.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-43:i03:r1",
@@ -168,12 +340,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Ви вмієте чекати без роздратування. Скажіть про себе",
+        "testedDimension": "Ви вже починаєте дратуватися через чекання. Скажіть про себе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-43:i03:r2",
             "correct": false,
-            "testedDimension": "Ви вмієте чекати без роздратування. Скажіть про себе",
+            "testedDimension": "Ви вже починаєте дратуватися через чекання. Скажіть про себе",
             "feedbackByLocale": {
               "ru": "После `I` нужно `am`.",
               "uk": "Після `I` потрібно `am`."
@@ -182,10 +354,10 @@
           {
             "responseId": "en:lesson-01:session-43:i03:r3",
             "correct": false,
-            "testedDimension": "Ви вмієте чекати без роздратування. Скажіть про себе",
+            "testedDimension": "Ви вже починаєте дратуватися через чекання. Скажіть про себе",
             "feedbackByLocale": {
-              "ru": "Здесь `I am patient`.",
-              "uk": "Тут `I am patient`."
+              "ru": "Здесь `I am annoyed`.",
+              "uk": "Тут `I am annoyed`."
             }
           }
         ]
@@ -194,62 +366,62 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "З’єднайте нові слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-43:i04:p1",
-            "target": "patient",
+            "target": "stuck",
             "meaningByLocale": {
-              "ru": "терпеливый",
-              "uk": "терплячий"
+              "ru": "застрял",
+              "uk": "застряг"
             }
           },
           {
             "pairId": "en:lesson-01:session-43:i04:p2",
-            "target": "ill",
+            "target": "annoyed",
             "meaningByLocale": {
-              "ru": "болеет",
-              "uk": "хворіє"
+              "ru": "раздражён",
+              "uk": "роздратований"
             }
           },
           {
             "pairId": "en:lesson-01:session-43:i04:p3",
-            "target": "polite",
+            "target": "soaked",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "промок насквозь",
+              "uk": "промок наскрізь"
             }
           },
           {
             "pairId": "en:lesson-01:session-43:i04:p4",
-            "target": "honest",
+            "target": "chilly",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "прохладно",
+              "uk": "прохолодно"
             }
           }
         ],
         "leftColumn": [
-          "patient",
-          "ill",
-          "polite",
-          "honest"
+          "stuck",
+          "annoyed",
+          "soaked",
+          "chilly"
         ],
         "rightColumn": [
-          "терплячий",
-          "хворіє",
-          "ввічливий",
-          "чесний"
+          "застряг",
+          "роздратований",
+          "промок наскрізь",
+          "прохолодно"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -282,13 +454,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-43:i05:audio",
-          "transcript": "We're patient."
+          "transcript": "We're soaked."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We're patient.",
+        "hiddenTargetPhrase": "We're soaked.",
         "orderedTokens": [
           "We're",
-          "patient"
+          "soaked"
         ],
         "authoredDistractorTokens": [
           "They're"
@@ -299,8 +471,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть коротку фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `We're` — `We're patient.`",
-              "uk": "тут потрібно `We're` — `We're patient.`"
+              "ru": "здесь нужно `We're` — `We're soaked.`",
+              "uk": "тут потрібно `We're` — `We're soaked.`"
             }
           }
         ],
@@ -313,38 +485,38 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Двоє друзів спокійно чекають у черзі. Ви розповідаєте про них. Назвіть їх терплячими",
+      "prompt": "Олег пише, що ліфт у торговому центрі зупинився між поверхами. Ви розповідаєте про це Маші. Складіть фразу: «Він застряг»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двоє друзів спокійно чекають у черзі. Ви розповідаєте про них. Назвіть їх терплячими",
+      "accessibilityLabel": "Олег пише, що ліфт у торговому центрі зупинився між поверхами. Ви розповідаєте про це Маші. Складіть фразу: «Він застряг»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are patient.",
+        "targetPhrase": "He is stuck.",
         "localizedMeaning": {
-          "ru": "Двое друзей спокойно ждут в очереди. Вы рассказываете о них. Назовите их терпеливыми",
-          "uk": "Двоє друзів спокійно чекають у черзі. Ви розповідаєте про них. Назвіть їх терплячими"
+          "ru": "Олег пишет, что лифт в торговом центре остановился между этажами. Вы рассказываете об этом Маше. Соберите фразу: «Он застрял»",
+          "uk": "Олег пише, що ліфт у торговому центрі зупинився між поверхами. Ви розповідаєте про це Маші. Складіть фразу: «Він застряг»"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "patient"
+          "He",
+          "is",
+          "stuck"
         ],
         "authoredDistractorTokens": [
-          "We"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-43:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Двоє друзів спокійно чекають у черзі. Ви розповідаєте про них. Назвіть їх терплячими",
+            "testedDimension": "Олег пише, що ліфт у торговому центрі зупинився між поверхами. Ви розповідаєте про це Маші. Складіть фразу: «Він застряг»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `They` — `They are patient.`",
-              "uk": "тут потрібно `They` — `They are patient.`"
+              "ru": "здесь нужно `is` — `He is stuck.`",
+              "uk": "тут потрібно `is` — `He is stuck.`"
             }
           }
         ],
@@ -357,25 +529,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Маша спокійно чекає на вас, поки ви шукаєте квитки. Коротко похваліть її терплячість, звертаючись до неї",
+      "prompt": "Подув вітер, і вам зимно в легкій куртці. Скажіть Маші коротко, що прохолодно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-43:i07:audio"
       ],
-      "accessibilityLabel": "Маша спокійно чекає на вас, поки ви шукаєте квитки. Коротко похваліть її терплячість, звертаючись до неї",
+      "accessibilityLabel": "Подув вітер, і вам зимно в легкій куртці. Скажіть Маші коротко, що прохолодно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-43:i07:audio",
-          "transcript": "You're patient."
+          "transcript": "It's chilly."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You're patient.",
+        "targetPhrase": "It's chilly.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -390,11 +562,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Брат захворів і залишається вдома. Назвіть саме хворобу",
+      "prompt": "Подруга захворіла й не прийде в кіно. Назвіть саме хворобу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-43:i08:r1",
@@ -406,19 +578,19 @@
         },
         {
           "responseId": "en:lesson-01:session-43:i08:r3",
-          "text": "honest"
+          "text": "annoyed"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Брат захворів і залишається вдома. Назвіть саме хворобу",
+      "accessibilityLabel": "Подруга захворіла й не прийде в кіно. Назвіть саме хворобу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Брат заболел и остаётся дома. Назовите именно болезнь",
-          "uk": "Брат захворів і залишається вдома. Назвіть саме хворобу"
+          "ru": "Подруга заболела и не придёт в кино. Назовите именно болезнь",
+          "uk": "Подруга захворіла й не прийде в кіно. Назвіть саме хворобу"
         },
-        "gappedTargetPhrase": "He is ___ .",
+        "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-43:i08:r1",
@@ -430,27 +602,27 @@
           },
           {
             "responseId": "en:lesson-01:session-43:i08:r3",
-            "text": "honest"
+            "text": "annoyed"
           }
         ],
-        "testedDimension": "Брат захворів і залишається вдома. Назвіть саме хворобу",
+        "testedDimension": "Подруга захворіла й не прийде в кіно. Назвіть саме хворобу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-43:i08:r2",
             "correct": false,
-            "testedDimension": "Брат захворів і залишається вдома. Назвіть саме хворобу",
+            "testedDimension": "Подруга захворіла й не прийде в кіно. Назвіть саме хворобу",
             "feedbackByLocale": {
-              "ru": "`patient` здесь — «терпеливый». О болезни — `ill`.",
-              "uk": "`patient` тут — «терплячий». Про хворобу — `ill`."
+              "ru": "`patient` — «терпеливая». О болезни — `ill`.",
+              "uk": "`patient` — «терпляча». Про хворобу — `ill`."
             }
           },
           {
             "responseId": "en:lesson-01:session-43:i08:r3",
             "correct": false,
-            "testedDimension": "Брат захворів і залишається вдома. Назвіть саме хворобу",
+            "testedDimension": "Подруга захворіла й не прийде в кіно. Назвіть саме хворобу",
             "feedbackByLocale": {
-              "ru": "`honest` — «честный». Здесь нужно `ill`: болеет.",
-              "uk": "`honest` — «чесний». Тут потрібно `ill`: хворіє."
+              "ru": "`annoyed` — «раздражена». Здесь нужно `ill`: болеет.",
+              "uk": "`annoyed` — «роздратована». Тут потрібно `ill`: хворіє."
             }
           }
         ]
@@ -459,7 +631,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -467,15 +639,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-43:i09:r1",
-          "text": "She is ill."
+          "text": "She's annoyed."
         },
         {
           "responseId": "en:lesson-01:session-43:i09:r2",
-          "text": "He is ill."
+          "text": "He's annoyed."
         },
         {
           "responseId": "en:lesson-01:session-43:i09:r3",
-          "text": "She is patient."
+          "text": "She's patient."
         }
       ],
       "mediaIds": [],
@@ -487,23 +659,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-43:i09:audio",
-          "transcript": "She is ill."
+          "transcript": "She's annoyed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-43:i09:r1",
-            "targetText": "She is ill.",
+            "targetText": "She's annoyed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-43:i09:r2",
-            "targetText": "He is ill.",
+            "targetText": "He's annoyed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-43:i09:r3",
-            "targetText": "She is patient.",
+            "targetText": "She's patient.",
             "meaningByLocale": null
           }
         ],
@@ -514,8 +686,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
-              "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+              "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
             }
           },
           {
@@ -523,8 +695,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ill`, а в этом варианте — `patient`.",
-              "uk": "У записі останнє слово — `ill`, а в цьому варіанті — `patient`."
+              "ru": "В записи последнее слово — `annoyed`, а в этом варианте — `patient`.",
+              "uk": "У записі останнє слово — `annoyed`, а в цьому варіанті — `patient`."
             }
           }
         ],
@@ -535,8 +707,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте короткі початки з повними",
@@ -608,8 +780,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть коротку фразу",
@@ -623,16 +795,16 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-43:i11:audio",
-          "transcript": "He's patient."
+          "transcript": "It's chilly."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "He's patient.",
+        "hiddenTargetPhrase": "It's chilly.",
         "orderedTokens": [
-          "He's",
-          "patient"
+          "It's",
+          "chilly"
         ],
         "authoredDistractorTokens": [
-          "She's"
+          "He's"
         ],
         "slotFeedback": [
           {
@@ -640,8 +812,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть коротку фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `He's` — `He's patient.`",
-              "uk": "тут потрібно `He's` — `He's patient.`"
+              "ru": "здесь нужно `It's` — `It's chilly.`",
+              "uk": "тут потрібно `It's` — `It's chilly.`"
             }
           }
         ],
@@ -654,7 +826,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -698,25 +870,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Іншого дня ви самі захворіли й скасовуєте зустріч. Назвіть причину",
+      "prompt": "Олег вбігає до кінотеатру мокрий з голови до ніг. Скажіть Маші коротко, що він промок наскрізь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-43:i13:audio"
       ],
-      "accessibilityLabel": "Іншого дня ви самі захворіли й скасовуєте зустріч. Назвіть причину",
+      "accessibilityLabel": "Олег вбігає до кінотеатру мокрий з голови до ніг. Скажіть Маші коротко, що він промок наскрізь",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-43:i13:audio",
-          "transcript": "I am ill."
+          "transcript": "He's soaked."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am ill.",
+        "targetPhrase": "He's soaked.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -731,11 +903,11 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть співрозмовника терплячим, звертаючись до нього",
+      "prompt": "Маша спокійно чекає, поки ви шукаєте квитки в телефоні. Похваліть її терпіння, звертаючись до неї. Вставте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-43:i14:r1",
@@ -752,12 +924,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть співрозмовника терплячим, звертаючись до нього",
+      "accessibilityLabel": "Маша спокійно чекає, поки ви шукаєте квитки в телефоні. Похваліть її терпіння, звертаючись до неї. Вставте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите собеседника терпеливым, обращаясь к нему",
-          "uk": "Назвіть співрозмовника терплячим, звертаючись до нього"
+          "ru": "Маша спокойно ждёт, пока вы ищете билеты в телефоне. Похвалите её терпение, обращаясь к ней. Вставьте слово",
+          "uk": "Маша спокійно чекає, поки ви шукаєте квитки в телефоні. Похваліть її терпіння, звертаючись до неї. Вставте слово"
         },
         "gappedTargetPhrase": "You ___ patient.",
         "gapOptions": [
@@ -774,12 +946,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Назвіть співрозмовника терплячим, звертаючись до нього",
+        "testedDimension": "Маша спокійно чекає, поки ви шукаєте квитки в телефоні. Похваліть її терпіння, звертаючись до неї. Вставте слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-43:i14:r2",
             "correct": false,
-            "testedDimension": "Назвіть співрозмовника терплячим, звертаючись до нього",
+            "testedDimension": "Маша спокійно чекає, поки ви шукаєте квитки в телефоні. Похваліть її терпіння, звертаючись до неї. Вставте слово",
             "feedbackByLocale": {
               "ru": "После `You` нужно `are`.",
               "uk": "Після `You` потрібно `are`."
@@ -788,7 +960,7 @@
           {
             "responseId": "en:lesson-01:session-43:i14:r3",
             "correct": false,
-            "testedDimension": "Назвіть співрозмовника терплячим, звертаючись до нього",
+            "testedDimension": "Маша спокійно чекає, поки ви шукаєте квитки в телефоні. Похваліть її терпіння, звертаючись до неї. Вставте слово",
             "feedbackByLocale": {
               "ru": "К одному человеку тоже обращаемся `You are`.",
               "uk": "До однієї людини теж звертаємося `You are`."
@@ -800,7 +972,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -808,15 +980,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-43:i15:r1",
-          "text": "They're patient."
+          "text": "They're stuck."
         },
         {
           "responseId": "en:lesson-01:session-43:i15:r2",
-          "text": "We're patient."
+          "text": "We're stuck."
         },
         {
           "responseId": "en:lesson-01:session-43:i15:r3",
-          "text": "They're ill."
+          "text": "They're late."
         }
       ],
       "mediaIds": [],
@@ -828,23 +1000,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-43:i15:audio",
-          "transcript": "They're patient."
+          "transcript": "They're stuck."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-43:i15:r1",
-            "targetText": "They're patient.",
+            "targetText": "They're stuck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-43:i15:r2",
-            "targetText": "We're patient.",
+            "targetText": "We're stuck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-43:i15:r3",
-            "targetText": "They're ill.",
+            "targetText": "They're late.",
             "meaningByLocale": null
           }
         ],
@@ -864,8 +1036,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть коротку фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `patient`, а в этом варианте — `ill`.",
-              "uk": "У записі останнє слово — `patient`, а в цьому варіанті — `ill`."
+              "ru": "В записи последнее слово — `stuck`, а в этом варианте — `late`.",
+              "uk": "У записі останнє слово — `stuck`, а в цьому варіанті — `late`."
             }
           }
         ],
@@ -876,36 +1048,20 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте форми та слова з відповідниками",
+      "prompt": "З’єднайте слова з відповідниками",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте форми та слова з відповідниками",
+      "accessibilityLabel": "З’єднайте слова з відповідниками",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-43:i16:p1",
-            "target": "He's",
-            "meaningByLocale": {
-              "ru": "He is",
-              "uk": "He is"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-43:i16:p2",
-            "target": "She's",
-            "meaningByLocale": {
-              "ru": "She is",
-              "uk": "She is"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-43:i16:p3",
             "target": "patient",
             "meaningByLocale": {
               "ru": "терпеливый",
@@ -913,25 +1069,41 @@
             }
           },
           {
-            "pairId": "en:lesson-01:session-43:i16:p4",
-            "target": "ill",
+            "pairId": "en:lesson-01:session-43:i16:p2",
+            "target": "chilly",
             "meaningByLocale": {
-              "ru": "болеет",
-              "uk": "хворіє"
+              "ru": "прохладно",
+              "uk": "прохолодно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-43:i16:p3",
+            "target": "soaked",
+            "meaningByLocale": {
+              "ru": "промок насквозь",
+              "uk": "промок наскрізь"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-43:i16:p4",
+            "target": "annoyed",
+            "meaningByLocale": {
+              "ru": "раздражён",
+              "uk": "роздратований"
             }
           }
         ],
         "leftColumn": [
-          "He's",
-          "She's",
           "patient",
-          "ill"
+          "chilly",
+          "soaked",
+          "annoyed"
         ],
         "rightColumn": [
-          "He is",
-          "She is",
           "терплячий",
-          "хворіє"
+          "прохолодно",
+          "промок наскрізь",
+          "роздратований"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,17 +1121,17 @@
     },
     {
       "interactionId": "en:lesson-01:session-43:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Викладач спокійно пояснює правило ще раз і не дратується. Розкажіть подрузі про його терплячість",
+      "prompt": "Викладач спокійно пояснює правило ще раз і не дратується. Розкажіть подрузі про його терпіння",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-43:i17:audio"
       ],
-      "accessibilityLabel": "Викладач спокійно пояснює правило ще раз і не дратується. Розкажіть подрузі про його терплячість",
+      "accessibilityLabel": "Викладач спокійно пояснює правило ще раз і не дратується. Розкажіть подрузі про його терпіння",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -989,11 +1161,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "14b41e1d75af1ee0a2c227f1e7409137e55b215522df3cc206e20463c7be93b4"
+  "learnerFingerprint": "766d9432a182730d211d3ec5390c6ef3c57f058cd8a6ca7d744175ad691427a3"
 }

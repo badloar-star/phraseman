@@ -1,0 +1,2431 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-44",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-44:word:curious",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — curious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:curious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — curious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:curious:audio",
+            "transcript": "curious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:curious:r1",
+              "targetText": "curious",
+              "meaningByLocale": {
+                "ru": "любопытный, хочется узнать. I'm curious — «Мне любопытно».",
+                "uk": "допитливий, хочеться дізнатися. I'm curious — «Мені цікаво»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curious",
+            "definitionByLocale": {
+              "ru": "любопытный, хочется узнать. I'm curious — «Мне любопытно».",
+              "uk": "допитливий, хочеться дізнатися. I'm curious — «Мені цікаво»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:weird",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — weird",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:weird:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — weird",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:weird:audio",
+            "transcript": "weird"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:weird:r1",
+              "targetText": "weird",
+              "meaningByLocale": {
+                "ru": "странный, необычный. It's weird — «Это странно».",
+                "uk": "дивний, незвичний. It's weird — «Це дивно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weird",
+            "definitionByLocale": {
+              "ru": "странный, необычный. It's weird — «Это странно».",
+              "uk": "дивний, незвичний. It's weird — «Це дивно»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:ancient",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ancient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:ancient:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ancient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:ancient:audio",
+            "transcript": "ancient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:ancient:r1",
+              "targetText": "ancient",
+              "meaningByLocale": {
+                "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+                "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ancient",
+            "definitionByLocale": {
+              "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+              "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:complicated",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — complicated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:complicated:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — complicated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:complicated:audio",
+            "transcript": "complicated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:complicated:r1",
+              "targetText": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+                "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "complicated",
+            "definitionByLocale": {
+              "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+              "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am curious.",
+          "localizedMeaning": {
+            "ru": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
+            "uk": "Вам цікаво розібратися в будові машини. Складіть фразу про себе"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am curious.`",
+                "uk": "тут потрібно `am` — `I am curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i02:r1",
+            "text": "It is ancient."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i02:r2",
+            "text": "It is weird."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i02:r3",
+            "text": "He is ancient."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i02:audio",
+            "transcript": "It is ancient."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:i02:r1",
+              "targetText": "It is ancient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i02:r2",
+              "targetText": "It is weird.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i02:r3",
+              "targetText": "He is ancient.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ancient`, а в этом варианте — `weird`.",
+                "uk": "У записі останнє слово — `ancient`, а в цьому варіанті — `weird`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Схема часового механизма занимает всю стену, в ней сотни деталей. Дополните фразу о схеме",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Схема часового механизма занимает всю стену, в ней сотни деталей. Дополните фразу о схеме",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Схема часового механизма занимает всю стену, в ней сотни деталей. Дополните фразу о схеме",
+            "uk": "Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему"
+          },
+          "gappedTargetPhrase": "It ___ complicated.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-44:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Схема часового механизма занимает всю стену, в ней сотни деталей. Дополните фразу о схеме",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Схема часового механизма занимает всю стену, в ней сотни деталей. Дополните фразу о схеме",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Схема часового механизма занимает всю стену, в ней сотни деталей. Дополните фразу о схеме",
+              "feedbackByLocale": {
+                "ru": "Схема одна, поэтому `It is`.",
+                "uk": "Схема одна, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-44:i04:p1",
+              "target": "curious",
+              "meaningByLocale": {
+                "ru": "любопытный",
+                "uk": "допитливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i04:p2",
+              "target": "weird",
+              "meaningByLocale": {
+                "ru": "странный",
+                "uk": "дивний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i04:p3",
+              "target": "ancient",
+              "meaningByLocale": {
+                "ru": "древний",
+                "uk": "давній"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i04:p4",
+              "target": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный",
+                "uk": "складний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "curious",
+            "weird",
+            "ancient",
+            "complicated"
+          ],
+          "rightColumn": [
+            "любопытный",
+            "странный",
+            "древний",
+            "сложный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i05:audio",
+            "transcript": "We're curious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We're curious.",
+          "orderedTokens": [
+            "We're",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We're` — `We're curious.`",
+                "uk": "тут потрібно `We're` — `We're curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В соседней витрине два кувшина, которым две тысячи лет. Соберите фразу о них: «Они древние»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В соседней витрине два кувшина, которым две тысячи лет. Соберите фразу о них: «Они древние»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are ancient.",
+          "localizedMeaning": {
+            "ru": "В соседней витрине два кувшина, которым две тысячи лет. Соберите фразу о них: «Они древние»",
+            "uk": "У сусідній вітрині два глеки, яким дві тисячі років. Складіть фразу про них: «Вони давні»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "ancient"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "В соседней витрине два кувшина, которым две тысячи лет. Соберите фразу о них: «Они древние»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are ancient.`",
+                "uk": "тут потрібно `are` — `They are ancient.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Экскурсовод полчаса объясняет, как работает один механизм. Скажите Маше коротко, что это сложно",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Экскурсовод полчаса объясняет, как работает один механизм. Скажите Маше коротко, что это сложно",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i07:audio",
+            "transcript": "It's complicated."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's complicated.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i08:r1",
+            "text": "sleepy"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i08:r2",
+            "text": "curious"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i08:r3",
+            "text": "weird"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+            "uk": "Олег каже, що його хилить на сон. Назвіть саме бажання спати"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-44:i08:r1",
+              "text": "sleepy"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i08:r2",
+              "text": "curious"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i08:r3",
+              "text": "weird"
+            }
+          ],
+          "testedDimension": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+              "feedbackByLocale": {
+                "ru": "`curious` — «любопытный». Здесь нужно `sleepy`: хочется спать.",
+                "uk": "`curious` — «допитливий». Тут потрібно `sleepy`: хочеться спати."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+              "feedbackByLocale": {
+                "ru": "`weird` — «странный». Желание спать — `sleepy`.",
+                "uk": "`weird` — «дивний». Бажання спати — `sleepy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i09:r1",
+            "text": "It's weird."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i09:r2",
+            "text": "It's complicated."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i09:r3",
+            "text": "I'm weird."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i09:audio",
+            "transcript": "It's weird."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:i09:r1",
+              "targetText": "It's weird.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i09:r2",
+              "targetText": "It's complicated.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i09:r3",
+              "targetText": "I'm weird.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `weird`, а в этом варианте — `complicated`.",
+                "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `complicated`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `I'm`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `I'm`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-44:i10:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i10:p2",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i10:p3",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i10:p4",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "He's",
+            "She's",
+            "You're"
+          ],
+          "rightColumn": [
+            "I am",
+            "He is",
+            "She is",
+            "You are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите короткую фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i11:audio",
+            "transcript": "She's curious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She's curious.",
+          "orderedTokens": [
+            "She's",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `She's` — `She's curious.`",
+                "uk": "тут потрібно `She's` — `She's curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are curious.",
+          "localizedMeaning": {
+            "ru": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+            "uk": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `We are curious.`",
+                "uk": "тут потрібно `are` — `We are curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Маша расспрашивает экскурсовода о каждом механизме. Обратитесь к ней и назовите её любопытной",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Маша расспрашивает экскурсовода о каждом механизме. Обратитесь к ней и назовите её любопытной",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i13:audio",
+            "transcript": "You are curious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You are curious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Два прибора у входа никто не может объяснить. Скажите, что они странные",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Два прибора у входа никто не может объяснить. Скажите, что они странные",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Два прибора у входа никто не может объяснить. Скажите, что они странные",
+            "uk": "Два прилади біля входу ніхто не може пояснити. Скажіть, що вони дивні"
+          },
+          "gappedTargetPhrase": "They ___ weird.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-44:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Два прибора у входа никто не может объяснить. Скажите, что они странные",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Два прибора у входа никто не может объяснить. Скажите, что они странные",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Два прибора у входа никто не может объяснить. Скажите, что они странные",
+              "feedbackByLocale": {
+                "ru": "Приборов два: `They are`.",
+                "uk": "Приладів два: `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите короткую фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i15:r1",
+            "text": "They're sleepy."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i15:r2",
+            "text": "We're sleepy."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i15:r3",
+            "text": "They're curious."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i15:audio",
+            "transcript": "They're sleepy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:i15:r1",
+              "targetText": "They're sleepy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i15:r2",
+              "targetText": "We're sleepy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i15:r3",
+              "targetText": "They're curious.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `curious`.",
+                "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `curious`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы и слова с соответствиями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы и слова с соответствиями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-44:i16:p1",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i16:p2",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i16:p3",
+              "target": "curious",
+              "meaningByLocale": {
+                "ru": "любопытный",
+                "uk": "допитливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i16:p4",
+              "target": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный",
+                "uk": "складний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "They're",
+            "It's",
+            "curious",
+            "complicated"
+          ],
+          "rightColumn": [
+            "They are",
+            "It is",
+            "любопытный",
+            "сложный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат получил загадочную посылку и хочет узнать, что внутри. Расскажите сестре о его любопытстве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Брат получил загадочную посылку и хочет узнать, что внутри. Расскажите сестре о его любопытстве",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i17:audio",
+            "transcript": "He is curious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is curious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-44:word:curious",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — curious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:curious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — curious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:curious:audio",
+            "transcript": "curious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:curious:r1",
+              "targetText": "curious",
+              "meaningByLocale": {
+                "ru": "любопытный, хочется узнать. I'm curious — «Мне любопытно».",
+                "uk": "допитливий, хочеться дізнатися. I'm curious — «Мені цікаво»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curious",
+            "definitionByLocale": {
+              "ru": "любопытный, хочется узнать. I'm curious — «Мне любопытно».",
+              "uk": "допитливий, хочеться дізнатися. I'm curious — «Мені цікаво»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:weird",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — weird",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:weird:audio"
+        ],
+        "accessibilityLabel": "Картка слова — weird",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:weird:audio",
+            "transcript": "weird"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:weird:r1",
+              "targetText": "weird",
+              "meaningByLocale": {
+                "ru": "странный, необычный. It's weird — «Это странно».",
+                "uk": "дивний, незвичний. It's weird — «Це дивно»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weird",
+            "definitionByLocale": {
+              "ru": "странный, необычный. It's weird — «Это странно».",
+              "uk": "дивний, незвичний. It's weird — «Це дивно»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:ancient",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ancient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:ancient:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ancient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:ancient:audio",
+            "transcript": "ancient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:ancient:r1",
+              "targetText": "ancient",
+              "meaningByLocale": {
+                "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+                "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ancient",
+            "definitionByLocale": {
+              "ru": "древний, очень старый. It's ancient — «Он древний». Сильнее, чем old.",
+              "uk": "давній, дуже старий. It's ancient — «Він давній». Сильніше, ніж old."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:word:complicated",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — complicated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:word:complicated:audio"
+        ],
+        "accessibilityLabel": "Картка слова — complicated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:word:complicated:audio",
+            "transcript": "complicated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:word:complicated:r1",
+              "targetText": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+                "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "complicated",
+            "definitionByLocale": {
+              "ru": "сложный, запутанный. It's complicated — «Это сложно»: много деталей, трудно понять.",
+              "uk": "складний, заплутаний. It's complicated — «Це складно»: багато деталей, важко зрозуміти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам цікаво розібратися в будові машини. Складіть фразу про себе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам цікаво розібратися в будові машини. Складіть фразу про себе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am curious.",
+          "localizedMeaning": {
+            "ru": "Вам интересно разобраться в устройстве машины. Соберите фразу о себе",
+            "uk": "Вам цікаво розібратися в будові машини. Складіть фразу про себе"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вам цікаво розібратися в будові машини. Складіть фразу про себе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am curious.`",
+                "uk": "тут потрібно `am` — `I am curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i02:r1",
+            "text": "It is ancient."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i02:r2",
+            "text": "It is weird."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i02:r3",
+            "text": "He is ancient."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i02:audio",
+            "transcript": "It is ancient."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:i02:r1",
+              "targetText": "It is ancient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i02:r2",
+              "targetText": "It is weird.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i02:r3",
+              "targetText": "He is ancient.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ancient`, а в этом варианте — `weird`.",
+                "uk": "У записі останнє слово — `ancient`, а в цьому варіанті — `weird`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Схема часового механизма занимает всю стену, в ней сотни деталей. Дополните фразу о схеме",
+            "uk": "Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему"
+          },
+          "gappedTargetPhrase": "It ___ complicated.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-44:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Схема годинникового механізму займає всю стіну, у ній сотні деталей. Доповніть фразу про схему",
+              "feedbackByLocale": {
+                "ru": "Схема одна, поэтому `It is`.",
+                "uk": "Схема одна, тому `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-44:i04:p1",
+              "target": "curious",
+              "meaningByLocale": {
+                "ru": "любопытный",
+                "uk": "допитливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i04:p2",
+              "target": "weird",
+              "meaningByLocale": {
+                "ru": "странный",
+                "uk": "дивний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i04:p3",
+              "target": "ancient",
+              "meaningByLocale": {
+                "ru": "древний",
+                "uk": "давній"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i04:p4",
+              "target": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный",
+                "uk": "складний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "curious",
+            "weird",
+            "ancient",
+            "complicated"
+          ],
+          "rightColumn": [
+            "допитливий",
+            "дивний",
+            "давній",
+            "складний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i05:audio",
+            "transcript": "We're curious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We're curious.",
+          "orderedTokens": [
+            "We're",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We're` — `We're curious.`",
+                "uk": "тут потрібно `We're` — `We're curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У сусідній вітрині два глеки, яким дві тисячі років. Складіть фразу про них: «Вони давні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У сусідній вітрині два глеки, яким дві тисячі років. Складіть фразу про них: «Вони давні»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are ancient.",
+          "localizedMeaning": {
+            "ru": "В соседней витрине два кувшина, которым две тысячи лет. Соберите фразу о них: «Они древние»",
+            "uk": "У сусідній вітрині два глеки, яким дві тисячі років. Складіть фразу про них: «Вони давні»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "ancient"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "У сусідній вітрині два глеки, яким дві тисячі років. Складіть фразу про них: «Вони давні»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are ancient.`",
+                "uk": "тут потрібно `are` — `They are ancient.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Екскурсовод пів години пояснює, як працює один механізм. Скажіть Маші коротко, що це складно",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Екскурсовод пів години пояснює, як працює один механізм. Скажіть Маші коротко, що це складно",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i07:audio",
+            "transcript": "It's complicated."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's complicated.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i08:r1",
+            "text": "sleepy"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i08:r2",
+            "text": "curious"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i08:r3",
+            "text": "weird"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
+            "uk": "Олег каже, що його хилить на сон. Назвіть саме бажання спати"
+          },
+          "gappedTargetPhrase": "He is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-44:i08:r1",
+              "text": "sleepy"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i08:r2",
+              "text": "curious"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i08:r3",
+              "text": "weird"
+            }
+          ],
+          "testedDimension": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+              "feedbackByLocale": {
+                "ru": "`curious` — «любопытный». Здесь нужно `sleepy`: хочется спать.",
+                "uk": "`curious` — «допитливий». Тут потрібно `sleepy`: хочеться спати."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+              "feedbackByLocale": {
+                "ru": "`weird` — «странный». Желание спать — `sleepy`.",
+                "uk": "`weird` — «дивний». Бажання спати — `sleepy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i09:r1",
+            "text": "It's weird."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i09:r2",
+            "text": "It's complicated."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i09:r3",
+            "text": "I'm weird."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i09:audio",
+            "transcript": "It's weird."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:i09:r1",
+              "targetText": "It's weird.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i09:r2",
+              "targetText": "It's complicated.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i09:r3",
+              "targetText": "I'm weird.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `weird`, а в этом варианте — `complicated`.",
+                "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `complicated`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `I'm`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `I'm`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-44:i10:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i10:p2",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i10:p3",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i10:p4",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "He's",
+            "She's",
+            "You're"
+          ],
+          "rightColumn": [
+            "I am",
+            "He is",
+            "She is",
+            "You are"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть коротку фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i11:audio",
+            "transcript": "She's curious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She's curious.",
+          "orderedTokens": [
+            "She's",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `She's` — `She's curious.`",
+                "uk": "тут потрібно `She's` — `She's curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are curious.",
+          "localizedMeaning": {
+            "ru": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+            "uk": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "curious"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `We are curious.`",
+                "uk": "тут потрібно `are` — `We are curious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Маша розпитує екскурсовода про кожен механізм. Зверніться до неї й назвіть її допитливою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Маша розпитує екскурсовода про кожен механізм. Зверніться до неї й назвіть її допитливою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i13:audio",
+            "transcript": "You are curious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You are curious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Два прилади біля входу ніхто не може пояснити. Скажіть, що вони дивні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Два прилади біля входу ніхто не може пояснити. Скажіть, що вони дивні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Два прибора у входа никто не может объяснить. Скажите, что они странные",
+            "uk": "Два прилади біля входу ніхто не може пояснити. Скажіть, що вони дивні"
+          },
+          "gappedTargetPhrase": "They ___ weird.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-44:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Два прилади біля входу ніхто не може пояснити. Скажіть, що вони дивні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Два прилади біля входу ніхто не може пояснити. Скажіть, що вони дивні",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Два прилади біля входу ніхто не може пояснити. Скажіть, що вони дивні",
+              "feedbackByLocale": {
+                "ru": "Приборов два: `They are`.",
+                "uk": "Приладів два: `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть коротку фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i15:r1",
+            "text": "They're sleepy."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i15:r2",
+            "text": "We're sleepy."
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i15:r3",
+            "text": "They're curious."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i15:audio",
+            "transcript": "They're sleepy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-44:i15:r1",
+              "targetText": "They're sleepy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i15:r2",
+              "targetText": "We're sleepy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i15:r3",
+              "targetText": "They're curious.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `curious`.",
+                "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `curious`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте форми та слова з відповідниками",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте форми та слова з відповідниками",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-44:i16:p1",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i16:p2",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i16:p3",
+              "target": "curious",
+              "meaningByLocale": {
+                "ru": "любопытный",
+                "uk": "допитливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-44:i16:p4",
+              "target": "complicated",
+              "meaningByLocale": {
+                "ru": "сложный",
+                "uk": "складний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "They're",
+            "It's",
+            "curious",
+            "complicated"
+          ],
+          "rightColumn": [
+            "They are",
+            "It is",
+            "допитливий",
+            "складний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат отримав загадкову посилку й хоче дізнатися, що всередині. Розкажіть сестрі про його допитливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Брат отримав загадкову посилку й хоче дізнатися, що всередині. Розкажіть сестрі про його допитливість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-44:i17:audio",
+            "transcript": "He is curious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is curious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-44:word:curious",
+      "correctText": "curious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:word:weird",
+      "correctText": "weird",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:word:ancient",
+      "correctText": "ancient",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:word:complicated",
+      "correctText": "complicated",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i01",
+      "correctText": "I am curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i02",
+      "correctText": "It is ancient.",
+      "correctResponseId": "en:lesson-01:session-44:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-44:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i05",
+      "correctText": "We're curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i06",
+      "correctText": "They are ancient.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i07",
+      "correctText": "It's complicated.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i08",
+      "correctText": "sleepy",
+      "correctResponseId": "en:lesson-01:session-44:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i09",
+      "correctText": "It's weird.",
+      "correctResponseId": "en:lesson-01:session-44:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i11",
+      "correctText": "She's curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i12",
+      "correctText": "We are curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i13",
+      "correctText": "You are curious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-44:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i15",
+      "correctText": "They're sleepy.",
+      "correctResponseId": "en:lesson-01:session-44:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:i17",
+      "correctText": "He is curious.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-43:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro1:r2": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібно `is`."
+          "ru": "late — «опаздывает», но не объясняет причину. Он стоит в пробке: stuck.",
+          "uk": "late — «запізнюється», але не пояснює причини. Він стоїть у заторі: stuck."
         },
         "en:lesson-01:session-43:intro1:r3": {
-          "ru": "`ill` — «болеет». Здесь нужно назвать терпение: `patient`.",
-          "uk": "`ill` — «хворіє». Тут треба назвати терплячість: `patient`."
+          "ru": "She's — про женщину. Про Олега — He's.",
+          "uk": "She's — про жінку. Про Олега — He's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro2:r2": {
-          "ru": "Это про них. Вы включаете себя: `We are patient`.",
-          "uk": "Це про них. Ви включаєте себе: `We are patient`."
+          "ru": "patient — «терпеливая». Маша вздыхает и стучит ногой: annoyed.",
+          "uk": "patient — «терпляча». Маша зітхає й стукає ногою: annoyed."
         },
         "en:lesson-01:session-43:intro2:r3": {
-          "ru": "После `We` нужна форма `are`.",
-          "uk": "Після `We` потрібна форма `are`."
+          "ru": "В короткой форме нужно 's: She's annoyed.",
+          "uk": "У короткій формі потрібно 's: She's annoyed."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro3:r2": {
-          "ru": "Это о терпении. Причина отсутствия здесь — болезнь: `ill`.",
-          "uk": "Це про терплячість. Причина відсутності тут — хвороба: `ill`."
+          "ru": "wet — просто «мокрые». Насквозь — soaked.",
+          "uk": "wet — просто «мокрі». Наскрізь — soaked."
         },
         "en:lesson-01:session-43:intro3:r3": {
-          "ru": "Это про него. Про подругу нужно `She`.",
-          "uk": "Це про нього. Про подругу потрібно `She`."
+          "ru": "They're — про других. О себе и Маше — We're.",
+          "uk": "They're — про інших. Про себе й Машу — We're."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0516034811d9ac4b0ddce38fc6370318d287e96748ea8db1dfc470730f3819e1"
+  "auxiliaryFingerprint": "e791d8fac88863e0c21e3737a501bd6126b7c98ce42668ff79d846dc4c3d98fa"
 }

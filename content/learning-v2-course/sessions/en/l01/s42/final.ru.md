@@ -1,138 +1,154 @@
 # Английский · Урок 1 · Занятие 42 — Знакомимся с соседями
 
-**Ситуация.** Вы с братом впервые пришли на встречу соседей. Брат боится заговорить, хозяйка радушно вас принимает, а вы обсуждаете впечатления после знакомства.
+**Ситуация.** Вы с братом впервые пришли на встречу жильцов вашего дома. Хозяйка встречи принимает всех с пирогом, а соседи оказываются очень разными.
 
-**Что вы освоите:** назвать вежливость человека и отличить её от знакомого чувства страха
-**Новые слова:** polite
+**Что вы освоите:** коротко описать характер новых знакомых: she's, he's, they're, you're
+**Новые слова:** welcoming, chatty, nosy, elderly
+**Возвращаются:** polite, shy, afraid, friendly, honest, brave
 
 ---
 
 ## Интро 1
 
-### Вежливый
+### Пирог у двери
 
-`polite` — «вежливый»: обращается уважительно, благодарит, не перебивает. `She is polite` — «Она вежливая». Это про манеру общения, а не про согласие со всем подряд. Вежливо отказаться от третьего куска пирога тоже можно — даже если хозяйка уже достала тарелку.
+Дверь открывает Ольга, хозяйка встречи. Она сразу предлагает вам кусок пирога, берёт пальто и знакомит со всеми в комнате. welcoming — «радушный, гостеприимный». She is welcoming, коротко She's welcoming — «Она радушная». С ней сразу чувствуешь себя своим.
 
-**Хозяйка внимательно вас слушает и благодарит за помощь. Назовите её вежливой.**
+**Брат шепчет, что боялся идти к незнакомым людям. Скажите ему коротко, что хозяйка радушная.**
 
-- ✅ **She is polite.**
-- ❌ She are polite. — *После `She` нужно `is`.*
-- ❌ She is afraid. — *`afraid` — «боится». Здесь нужно назвать вежливость: `polite`.*
+- ✅ **She's welcoming.**
+- ❌ She's afraid. — *afraid — «боится». Хозяйка встречает гостей тепло: welcoming.*
+- ❌ She welcoming. — *В короткой форме нужно 's: She's welcoming.*
 
 ---
 
 ## Интро 2
 
-### Обращаемся к человеку
+### Сосед с третьего этажа
 
-`You are polite` — «Ты вежливый» или «Вы вежливые». Можно похвалить одного собеседника или нескольких. Про себя: `I am polite`; про вас с братом: `We are polite`. К слову `polite` не добавляем `s`.
+Сосед с третьего этажа двадцать минут рассказывает вам про свою дачу, кота и ремонт и ни разу не делает паузы. chatty — «болтливый, любит поговорить». He is chatty, коротко He's chatty — «Он болтливый». Обычно так говорят без злости, с улыбкой.
 
-**Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Обратитесь к нему и похвалите его вежливость.**
+**Брат спрашивает, почему вы так долго стояли у окна. Объясните коротко, что сосед болтливый.**
 
-- ✅ **You are polite.**
-- ❌ He is polite. — *Это рассказ о нём. Здесь вы обращаетесь прямо к брату: `You are polite`.*
-- ❌ You is polite. — *После `You` нужна форма `are`.*
+- ✅ **He's chatty.**
+- ❌ He's shy. — *shy — «стеснительный». Сосед говорит без остановки: chatty.*
+- ❌ She's chatty. — *She's — про женщину. Про соседа — He's.*
 
 ---
 
 ## Интро 3
 
-### Боится, но не грубит
+### Слишком личные вопросы
 
-`afraid` описывает страх, `polite` — вежливость. Эти слова могут подходить одному человеку: брат боится заговорить, но отвечает уважительно. Коротко: `He's afraid` и `He's polite`. В каждом ответе называем именно то, о чём просят.
+Соседка из угловой квартиры спрашивает, сколько вы платите за квартиру, где работает брат и почему у вас на балконе нет цветов. nosy — «любопытный, лезет в чужие дела». She is nosy, коротко She's nosy — «Она любит совать нос в чужие дела». Это уже не вежливый интерес.
 
-**Брат признался, что ему страшно заговорить с незнакомыми людьми. Назовите именно его страх короткой фразой.**
+**Брат удивлён её вопросами и тихо спрашивает, что с ней не так. Объясните коротко, что она лезет в чужие дела.**
 
-- ✅ **He's afraid.**
-- ❌ He's polite. — *Это про вежливость. Здесь нужно назвать страх: `afraid`.*
-- ❌ She's afraid. — *Это про неё. Про брата нужно `He's`.*
+- ✅ **She's nosy.**
+- ❌ She's polite. — *polite — «вежливая». Расспрашивать о чужих деньгах — nosy.*
+- ❌ She nosy. — *В короткой форме нужно 's: She's nosy.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Хозяйка обращается с вами уважительно. Соберите фразу о её вежливости**
+**1 · Карточка слова — welcoming**
+<!-- interaction_id: en:lesson-01:session-42:word:welcoming; family: word_card -->
+> **welcoming** — радушный, гостеприимный. She's welcoming — «Она радушная»: тепло встречает гостей.
+
+**2 · Карточка слова — chatty**
+<!-- interaction_id: en:lesson-01:session-42:word:chatty; family: word_card -->
+> **chatty** — болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.
+
+**3 · Карточка слова — nosy**
+<!-- interaction_id: en:lesson-01:session-42:word:nosy; family: word_card -->
+> **nosy** — любопытный, лезет в чужие дела. She's nosy — «Она суёт нос в чужие дела». Это неодобрение.
+
+**4 · Карточка слова — elderly**
+<!-- interaction_id: en:lesson-01:session-42:word:elderly; family: word_card -->
+> **elderly** — пожилой. He's elderly — «Он пожилой». Звучит вежливее, чем old.
+
+**5 · Хозяйка тепло встречает каждого гостя. Соберите фразу о ней**
 <!-- interaction_id: en:lesson-01:session-42:i01; family: phrase_builder -->
-Плитки: `polite` `is` `She` `are` → **She is polite.**
-*(плитка `are` лишняя: здесь нужно `is` — `She is polite.`)*
+Плитки: `welcoming` `is` `She` `are` → **She is welcoming.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is welcoming.`)*
 
-**2 · Послушайте и выберите услышанное**
+**6 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
-🔊 *He is polite.* → **He is polite.** · She is polite. · He is afraid.
-- She is polite. — *В записи первое слово — `He`, а в этом варианте — `She`.*
-- He is afraid. — *В записи последнее слово — `polite`, а в этом варианте — `afraid`.*
+🔊 *He is chatty.* → **He is chatty.** · She is chatty. · He is polite.
+- She is chatty. — *В записи первое слово — `He`, а в этом варианте — `She`.*
+- He is polite. — *В записи последнее слово — `chatty`, а в этом варианте — `polite`.*
 
-**3 · Похвалите собеседника за вежливость, обращаясь к нему. Вставьте слово**
+**7 · Брат дождался, пока хозяйка закончит говорить, и поблагодарил её. Похвалите его, обращаясь к нему. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-42:i03; family: context_gap_grammar -->
 You ___ polite. → **are** · am · is
 - am — *После `You` нужно `are`.*
 - is — *К одному собеседнику тоже обращаемся `You are`.*
 
-**4 · Соедините короткие начала с полными**
+**8 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-01:session-42:i04; family: speed_match -->
-He's — He is · She's — She is · You're — You are · I'm — I am
+welcoming — радушный · chatty — болтливый · nosy — лезет в чужие дела · elderly — пожилой
 
-**5 · Послушайте и соберите короткую фразу**
+**9 · Послушайте и соберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-42:i05; family: listen_build_dictation -->
-🔊 *They're polite.* Плитки: `polite` `They're` `We're` → **They're polite.**
-*(плитка `We're` лишняя: здесь нужно `They're` — `They're polite.`)*
+🔊 *They're welcoming.* Плитки: `welcoming` `They're` `We're` → **They're welcoming.**
+*(плитка `We're` лишняя: здесь нужно `They're` — `They're welcoming.`)*
 
-**6 · Вы и брат внимательно слушаете и благодарите хозяев. Назовите вас обоих вежливыми**
+**10 · Соседу с первого этажа восемьдесят лет, он ходит с тростью. Брат спрашивает о нём. Соберите фразу: «Он пожилой»**
 <!-- interaction_id: en:lesson-01:session-42:i06; family: phrase_builder -->
+Плитки: `elderly` `is` `He` `are` → **He is elderly.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is elderly.`)*
+
+**11 · Ольга угощает вас пирогом. Коротко скажите ей, что она очень радушная**
+<!-- interaction_id: en:lesson-01:session-42:i07; family: scripted_repeat_compare -->
+🎙 **You're welcoming.**
+
+**12 · Брат молчит и прячется за вашей спиной. Назовите именно его стеснительность**
+<!-- interaction_id: en:lesson-01:session-42:i08; family: context_gap_grammar -->
+He is ___ . → **shy** · chatty · nosy
+- chatty — *`chatty` — «болтливый». Брат молчит: `shy`.*
+- nosy — *`nosy` — «лезет в чужие дела». Здесь стеснительность: `shy`.*
+
+**13 · Послушайте и выберите услышанное**
+<!-- interaction_id: en:lesson-01:session-42:i09; family: listen_choose -->
+🔊 *She's nosy.* → **She's nosy.** · She's polite. · He's nosy.
+- She's polite. — *В записи последнее слово — `nosy`, а в этом варианте — `polite`.*
+- He's nosy. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
+
+**14 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-01:session-42:i10; family: speed_match -->
+polite — вежливый · shy — стеснительный · friendly — дружелюбный · honest — честный
+
+**15 · Послушайте и соберите короткую фразу**
+<!-- interaction_id: en:lesson-01:session-42:i11; family: listen_build_dictation -->
+🔊 *He's chatty.* Плитки: `chatty` `He's` `She's` → **He's chatty.**
+*(плитка `She's` лишняя: здесь нужно `He's` — `He's chatty.`)*
+
+**16 · Вы с братом внимательно слушаете и благодарите хозяйку. Назовите вас обоих вежливыми**
+<!-- interaction_id: en:lesson-01:session-42:i12; family: phrase_builder -->
 Плитки: `polite` `are` `We` `They` → **We are polite.**
 *(плитка `They` лишняя: здесь нужно `We` — `We are polite.`)*
 
-**7 · Коротко похвалите хозяйку за вежливость, обращаясь к ней**
-<!-- interaction_id: en:lesson-01:session-42:i07; family: scripted_repeat_compare -->
-🎙 **You're polite.**
-
-**8 · Вам страшно начать разговор с незнакомым человеком. Назовите именно страх**
-<!-- interaction_id: en:lesson-01:session-42:i08; family: context_gap_grammar -->
-I am ___ . → **afraid** · polite · honest
-- polite — *`polite` — «вежливый». Страх передаёт `afraid`.*
-- honest — *`honest` — «честный». Здесь нужно назвать страх: `afraid`.*
-
-**9 · Послушайте и выберите услышанное**
-<!-- interaction_id: en:lesson-01:session-42:i09; family: listen_choose -->
-🔊 *They are afraid.* → **They are afraid.** · We are afraid. · They are polite.
-- We are afraid. — *В записи первое слово — `They`, а в этом варианте — `We`.*
-- They are polite. — *В записи последнее слово — `afraid`, а в этом варианте — `polite`.*
-
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-01:session-42:i10; family: speed_match -->
-polite — вежливый · afraid — боится · honest — честный · brave — смелый
-
-**11 · Послушайте и соберите короткую фразу**
-<!-- interaction_id: en:lesson-01:session-42:i11; family: listen_build_dictation -->
-🔊 *She's polite.* Плитки: `polite` `She's` `He's` → **She's polite.**
-*(плитка `He's` лишняя: здесь нужно `She's` — `She's polite.`)*
-
-**12 · Вы говорите о своей привычке уважительно обращаться с людьми. Назовите себя вежливым человеком**
-<!-- interaction_id: en:lesson-01:session-42:i12; family: phrase_builder -->
-Плитки: `polite` `am` `I` `are` → **I am polite.**
-*(плитка `are` лишняя: здесь нужно `am` — `I am polite.`)*
-
-**13 · Брат рассказал вам о страхе перед знакомством. Передайте сестре именно это его чувство**
+**17 · Вечером вы рассказываете маме про соседку, которая выспрашивала о ваших деньгах. Скажите, что она лезет в чужие дела**
 <!-- interaction_id: en:lesson-01:session-42:i13; family: scripted_repeat_compare -->
-🎙 **He is afraid.**
+🎙 **She is nosy.**
 
-**14 · Двое соседей говорят уважительно и не перебивают. Назовите их вежливыми**
+**18 · Двое соседей рассказывают о себе без остановки. Назовите их болтливыми. Вставьте слово**
 <!-- interaction_id: en:lesson-01:session-42:i14; family: context_gap_grammar -->
-They ___ polite. → **are** · am · is
+They ___ chatty. → **are** · am · is
 - am — *После `They` нужно `are`.*
-- is — *Здесь `They are polite`.*
+- is — *Соседей двое: `They are`.*
 
-**15 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите короткую фразу**
 <!-- interaction_id: en:lesson-01:session-42:i15; family: listen_choose -->
-🔊 *We're polite.* → **We're polite.** · They're polite. · We're afraid.
-- They're polite. — *В записи первое слово — `We're`, а в этом варианте — `They're`.*
-- We're afraid. — *В записи последнее слово — `polite`, а в этом варианте — `afraid`.*
+🔊 *She's elderly.* → **She's elderly.** · He's elderly. · She's friendly.
+- He's elderly. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
+- She's friendly. — *В записи последнее слово — `elderly`, а в этом варианте — `friendly`.*
 
-**16 · Соедините формы и слова с соответствиями**
+**20 · Соедините формы и слова с соответствиями**
 <!-- interaction_id: en:lesson-01:session-42:i16; family: speed_match -->
-We're — We are · They're — They are · polite — вежливый · afraid — боится
+They're — They are · You're — You are · welcoming — радушный · nosy — лезет в чужие дела
 
-**17 · Сотрудница магазина спокойно выслушала вашу просьбу и вежливо помогла. Расскажите другу именно о её вежливости**
+**21 · Сотрудница магазина спокойно выслушала вашу просьбу и вежливо помогла. Расскажите другу именно о её вежливости**
 <!-- interaction_id: en:lesson-01:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **She is polite.**
-

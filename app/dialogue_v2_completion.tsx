@@ -57,6 +57,9 @@ const FirstDialogHost = lazy(() => import('../components/dialog_moments/FirstDia
 
 /** «Повторить» итог держит вид «занято» не меньше этого: мгновенный отказ иначе не виден глазом ([DIALOG-REPEAT]). */
 const RETRY_MIN_BUSY_MS = 700;
+/** Ревизор 2.89: после стольких отказов «Повторить» подряд — пауза, чтобы не слать запросы к ИИ без конца. */
+const RETRY_FAIL_STREAK_LIMIT = 3;
+const RETRY_PAUSE_MS = 60_000;
 const SESSION_RE = /^d2s_[A-Za-z0-9_-]{32,96}$/;
 const SCENARIO_RE = /^(?=.{1,64}$)[a-z0-9]+(?:_[a-z0-9]+)*$/;
 const TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -97,6 +100,7 @@ function completionLabels(lang: Lang) {
     unavailable: triLang(lang, { ru: 'Итог пока недоступен', uk: 'Підсумок поки недоступний', en: 'The summary is unavailable', es: 'El resumen no está disponible', 'pt-BR': 'O resumo está indisponível', vi: 'Chưa có tổng kết', id: 'Ringkasan belum tersedia', tr: 'Özet şu an yok', pl: 'Podsumowanie jest niedostępne', fr: 'Le bilan est indisponible', de: 'Die Auswertung ist nicht verfügbar' }),
     noTurns: triLang(lang, { ru: 'Разговор не начался', uk: 'Розмова не почалася', en: "The conversation didn't start", es: 'La conversación no empezó', 'pt-BR': 'A conversa não começou', vi: 'Cuộc trò chuyện chưa bắt đầu', id: 'Percakapan belum dimulai', tr: 'Konuşma başlamadı', pl: 'Rozmowa się nie zaczęła', fr: "La conversation n'a pas commencé", de: 'Das Gespräch hat nicht begonnen' }),
     retryFailed: triLang(lang, { ru: 'Не получилось, попробуй ещё раз', uk: 'Не вийшло, спробуй ще раз', en: "That didn't work, try again", es: 'No ha funcionado, inténtalo de nuevo', 'pt-BR': 'Não deu certo, tente de novo', vi: 'Chưa được, hãy thử lại', id: 'Belum berhasil, coba lagi', tr: 'Olmadı, tekrar dene', pl: 'Nie udało się, spróbuj ponownie', fr: "Ça n'a pas marché, réessaie", de: 'Hat nicht geklappt, versuch es noch einmal' }),
+    retryPaused: triLang(lang, { ru: 'Пока не выходит — попробуй через минуту', uk: 'Поки не виходить — спробуй за хвилину', en: 'Still not working — try again in a minute', es: 'Todavía no funciona: inténtalo en un minuto', 'pt-BR': 'Ainda não deu — tente daqui a um minuto', vi: 'Vẫn chưa được — thử lại sau một phút', id: 'Masih belum bisa — coba lagi semenit lagi', tr: 'Hâlâ olmuyor — bir dakika sonra dene', pl: 'Nadal nie działa — spróbuj za minutę', fr: 'Toujours pas — réessaie dans une minute', de: 'Klappt noch nicht — versuch es in einer Minute' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
     // тексты — как у «К диалогам» праздничного экрана (components/DialogVictoryCelebrationHybrid.tsx), fr/de — по образцу соседних строк
     toDialogs: triLang(lang, { ru: 'К диалогам', uk: 'До діалогів', en: 'To dialogues', es: 'A los diálogos', 'pt-BR': 'Aos diálogos', vi: 'Về hội thoại', id: 'Ke dialog', tr: 'Diyaloglara', pl: 'Do dialogów', fr: 'Aux dialogues', de: 'Zu den Dialogen' }),
@@ -252,6 +256,12 @@ export default function DialogueV2CompletionRoute() {
   // не менял на экране ничего. Теперь «занято» держится не меньше RETRY_MIN_BUSY_MS, повторный отказ — с хаптиком.
   const retryStartedAtRef = useRef(0);
   const retryAttemptRef = useRef(0);
+  // зачем (Ревизор 2.89, 💸): каждый «Повторить» — новый запрос итога к ИИ-провайдеру; при сбое провайдера человек мог жать без конца.
+  // После RETRY_FAIL_STREAK_LIMIT отказов подряд кнопка отдыхает RETRY_PAUSE_MS с понятной строкой; удачный ответ сбрасывает счёт.
+  const retryFailStreakRef = useRef(0);
+  const [retryPaused, setRetryPaused] = useState(false);
+  const retryPauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (retryPauseTimerRef.current) clearTimeout(retryPauseTimerRef.current); }, []);
   const retryCompletion = useCallback(() => {
     console.log('[DIALOG-REPEAT] retry tap', JSON.stringify({ // guard-ok: одна строка на тап
       session: sessionId ? sessionId.slice(0, 12) : null, retrying, stateKind: state.kind, retryFailed, attempt: retryAttemptRef.current + 1,
@@ -260,12 +270,17 @@ export default function DialogueV2CompletionRoute() {
       console.log('[DIALOG-REPEAT] retry skip reason=already_retrying — кнопка «занята», повтор уже идёт'); // guard-ok: ранний выход
       return;
     }
+    if (retryPaused) {
+      console.log('[DIALOG-REPEAT] retry skip reason=paused — пауза после отказов подряд', JSON.stringify({ streak: retryFailStreakRef.current })); // guard-ok: ранний выход
+      void hapticWarning();
+      return;
+    }
     retryAttemptRef.current += 1;
     retryStartedAtRef.current = Date.now();
     void hapticTap();
     setRetrying(true);
     runCompletion();
-  }, [retryFailed, retrying, runCompletion, sessionId, state.kind]);
+  }, [retryFailed, retryPaused, retrying, runCompletion, sessionId, state.kind]);
   useEffect(() => {
     if (!retrying || state.kind === 'loading') return;
     const elapsedMs = Date.now() - retryStartedAtRef.current;
@@ -275,6 +290,18 @@ export default function DialogueV2CompletionRoute() {
       setRetrying(false);
       setRetryFailed(failed);
       if (failed) void hapticWarning(); // отказ ощущается, даже если текст уже «Не получилось»
+      retryFailStreakRef.current = failed ? retryFailStreakRef.current + 1 : 0;
+      if (failed && retryFailStreakRef.current >= RETRY_FAIL_STREAK_LIMIT) {
+        console.warn('[DIALOG-REPEAT] pause — отказов подряд', JSON.stringify({ streak: retryFailStreakRef.current, pauseMs: RETRY_PAUSE_MS })); // guard-ok: ветка решения
+        setRetryPaused(true);
+        if (retryPauseTimerRef.current) clearTimeout(retryPauseTimerRef.current);
+        retryPauseTimerRef.current = setTimeout(() => {
+          retryPauseTimerRef.current = null;
+          retryFailStreakRef.current = 0;
+          setRetryPaused(false);
+          console.log('[DIALOG-REPEAT] pause over — «Повторить» снова доступен'); // guard-ok: конец паузы
+        }, RETRY_PAUSE_MS);
+      }
       console.log('[DIALOG-REPEAT] retry result', JSON.stringify({ shown: state.kind, attempt: retryAttemptRef.current, answeredMs: elapsedMs, heldMs: holdMs })); // guard-ok: одна строка на исход повтора
     }, holdMs);
     return () => clearTimeout(timer);
@@ -523,7 +550,7 @@ export default function DialogueV2CompletionRoute() {
           ) : null}
           {state.kind === 'unavailable' || (retrying && state.kind === 'loading') ? (
             <View style={[dialogueGlassCardStyle(glass, 16), styles.stateCard]}>
-              <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{knownZeroTurns ? labels.noTurns : retryFailed ? labels.retryFailed : labels.unavailable}</Text>
+              <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{knownZeroTurns ? labels.noTurns : retryPaused ? labels.retryPaused : retryFailed ? labels.retryFailed : labels.unavailable}</Text>
               {invalidRoute ? (
                 // нет данных разговора в маршруте (битая ссылка) — повтор не поможет: одна кнопка в список диалогов
                 <DialogueGlassCta glass={glass} size="small" icon="chatbubbles-outline" label={labels.toDialogs} onPress={() => { console.log('[DIALOG-SUMMARY] invalid_route_data → to_list'); /* guard-ok: одна строка на тап */ void hapticTap(); close(); }} testID="dialogue-v2-completion-to-list" />
@@ -531,7 +558,7 @@ export default function DialogueV2CompletionRoute() {
                 // ноль реплик: «Повторить» итог бессмысленно — сразу «Ещё раз» (брифинг этого же разговора)
                 <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.again} onPress={() => { console.log('[DIALOG-RETRY] zero_turns → restart dialogue', JSON.stringify({ scenarioId })); again(); }} testID="dialogue-v2-completion-restart" />
               ) : (
-                <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.retry} onPress={retryCompletion} busy={retrying} testID="dialogue-v2-completion-retry" />
+                <DialogueGlassCta glass={glass} size="small" icon="refresh" label={labels.retry} onPress={retryCompletion} busy={retrying || retryPaused} testID="dialogue-v2-completion-retry" />
               )}
             </View>
           ) : null}

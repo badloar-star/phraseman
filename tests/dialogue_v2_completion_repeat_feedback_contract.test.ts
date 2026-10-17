@@ -16,6 +16,16 @@ describe('dialogue result: «Повторить» and «Ещё раз» always a
     expect(effect).toContain('[DIALOG-REPEAT] retry result');
   });
 
+  // Ревизор 2.89 (💸): при сбое ИИ-провайдера «Повторить» не шлёт запросы без конца — после 3 отказов подряд минута паузы
+  it('three failed retries in a row pause the button for a minute; a success resets the streak', () => {
+    expect(src).toContain('const RETRY_FAIL_STREAK_LIMIT = 3;');
+    expect(src).toContain('const RETRY_PAUSE_MS = 60_000;');
+    expect(src).toContain('retryFailStreakRef.current = failed ? retryFailStreakRef.current + 1 : 0;');
+    expect(src).toMatch(/if \(failed && retryFailStreakRef\.current >= RETRY_FAIL_STREAK_LIMIT\) \{[\s\S]{0,300}?setRetryPaused\(true\);/);
+    expect(src).toContain('busy={retrying || retryPaused}');
+    expect(src).toContain('retryPaused ? labels.retryPaused');
+  });
+
   it('retry tap is logged and the already-retrying exit says why', () => {
     const retry = src.slice(src.indexOf('const retryCompletion = useCallback('), src.indexOf('}, [retryFailed, retrying, runCompletion, sessionId, state.kind]);'));
     expect(retry).toContain('[DIALOG-REPEAT] retry tap');

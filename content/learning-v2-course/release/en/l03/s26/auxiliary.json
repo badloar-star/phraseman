@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-26:intro1:r2": {
-          "ru": "`cat` — одна кошка; несколько — `cats`.",
-          "uk": "`cat` — один кіт; кілька — `cats`."
+          "ru": "Экран висит далеко, на дальней стене, а this говорим о том, что рядом: That is a screen.",
+          "uk": "Екран висить далеко, на дальній стіні, а this кажемо про те, що поруч: That is a screen."
         },
         "en:lesson-03:session-26:intro1:r3": {
-          "ru": "Перед названием нескольких кошек не ставим `a`.",
-          "uk": "Перед назвою кількох котів не ставимо `a`."
+          "ru": "Между That и a нужно is: That is a screen.",
+          "uk": "Між That і a потрібно is: That is a screen."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-26:intro2:r2": {
-          "ru": "`The cats` — определённые кошки. Здесь говорим о кошках вообще: `Cats`.",
-          "uk": "`The cats` — певні коти. Тут говоримо про котів загалом: `Cats`."
+          "ru": "Проектор стоит на столе рядом, а that говорим о далёком: This is a projector.",
+          "uk": "Проєктор стоїть на столі поруч, а that кажемо про далеке: This is a projector."
         },
         "en:lesson-03:session-26:intro2:r3": {
-          "ru": "Перед `cats` не ставим `a`.",
-          "uk": "Перед `cats` не ставимо `a`."
+          "ru": "Перед projector нужно a: слово начинается с согласного звука.",
+          "uk": "Перед projector потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-26:intro3:r2": {
-          "ru": "Кошек несколько: нужно `are`.",
-          "uk": "Котів кілька: потрібно `are`."
+          "ru": "Перед speaker нужно a: That is a speaker.",
+          "uk": "Перед speaker потрібно a: That is a speaker."
         },
         "en:lesson-03:session-26:intro3:r3": {
-          "ru": "О месте спрашиваем `Where` — «Где».",
-          "uk": "Про місце запитуємо `Where` — «Де»."
+          "ru": "С that нужно is, а не are: That is a speaker.",
+          "uk": "З that потрібно is, а не are: That is a speaker."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c49fb7860c81e505fa60e9c1bd39e058fe7cd53d029ea6e20f7431138ec826f5"
+  "auxiliaryFingerprint": "4020bb8410872265fc5cb8e4e8cfa1b2b2b6082ae84b9e80a722bd36efe5f24a"
 }

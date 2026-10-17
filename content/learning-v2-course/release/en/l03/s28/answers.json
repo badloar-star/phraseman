@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-28:i01",
-    "correctText": "The maps are correct.",
+    "correctText": "This is a basket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i02",
-    "correctText": "chairs",
+    "correctText": "That is a trolley.",
     "correctResponseId": "en:lesson-03:session-28:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i03",
-    "correctText": "chairs",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-28:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i04",
-    "correctText": "en:lesson-03:session-28:i04:p1=chairs\nen:lesson-03:session-28:i04:p2=maps\nen:lesson-03:session-28:i04:p3=correct\nen:lesson-03:session-28:i04:p4=certain",
+    "correctText": "en:lesson-03:session-28:i04:p1=suitcase\nen:lesson-03:session-28:i04:p2=backpack\nen:lesson-03:session-28:i04:p3=handbag\nen:lesson-03:session-28:i04:p4=stroller",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i05",
-    "correctText": "The chairs are upstairs.",
+    "correctText": "Is that a tag?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i06",
-    "correctText": "Chairs are different.",
+    "correctText": "That is an umbrella.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:word:suitcase",
+    "correctText": "suitcase",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i07",
-    "correctText": "He's certain.",
+    "correctText": "suitcase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:word:backpack",
+    "correctText": "backpack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i08",
-    "correctText": "Chairs",
+    "correctText": "backpack",
     "correctResponseId": "en:lesson-03:session-28:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i09",
-    "correctText": "He is serious.",
+    "correctText": "This is not a suitcase.",
     "correctResponseId": "en:lesson-03:session-28:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i10",
-    "correctText": "en:lesson-03:session-28:i10:p1=serious\nen:lesson-03:session-28:i10:p2=flexible\nen:lesson-03:session-28:i10:p3=chairs\nen:lesson-03:session-28:i10:p4=maps",
+    "correctText": "en:lesson-03:session-28:i10:p1=suitcase\nen:lesson-03:session-28:i10:p2=umbrella\nen:lesson-03:session-28:i10:p3=basket\nen:lesson-03:session-28:i10:p4=trolley",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i11",
-    "correctText": "The maps are here.",
+    "correctText": "That is not a backpack.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i12",
-    "correctText": "Where are the chairs?",
+    "correctText": "This is a suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:word:handbag",
+    "correctText": "handbag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i13",
-    "correctText": "She's flexible.",
+    "correctText": "handbag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:word:stroller",
+    "correctText": "stroller",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i14",
-    "correctText": "are",
+    "correctText": "stroller",
     "correctResponseId": "en:lesson-03:session-28:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i15",
-    "correctText": "He is certain.",
+    "correctText": "Is this a handbag?",
     "correctResponseId": "en:lesson-03:session-28:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i16",
-    "correctText": "en:lesson-03:session-28:i16:p1=correct\nen:lesson-03:session-28:i16:p2=certain\nen:lesson-03:session-28:i16:p3=serious\nen:lesson-03:session-28:i16:p4=flexible",
+    "correctText": "en:lesson-03:session-28:i16:p1=stroller\nen:lesson-03:session-28:i16:p2=handbag\nen:lesson-03:session-28:i16:p3=backpack\nen:lesson-03:session-28:i16:p4=suitcase",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i17",
-    "correctText": "Where are the chairs?",
+    "correctText": "This is a stroller.",
     "correctResponseId": null
   }
 ]

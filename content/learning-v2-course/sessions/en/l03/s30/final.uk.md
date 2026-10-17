@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 30 — Вікна в новій кімнаті
+# Англійська · Урок 3 · Заняття 30 — У відділі одягу
 
-**Ситуація.** Ви з Анною оглядаєте нову кімнату клубу. Олег перевіряє вікна, а ви шукаєте чашки для гостей. Біля вікна стоїть рослина із засохлим листям: Анна перевіряє, чи жива вона.
+**Ситуація.** Ви з подругою обираєте теплі речі у відділі одягу. Продавець показує вам речі, а ви називаєте їх і уточнюєте. Те, що у вас у руках або поруч, називаєте this, а те, що лежить на дальній полиці чи висить на дальньому вішаку, — that.
 
-**Що ви опануєте:** назвати кілька вікон і розрізняти розмову про вікна загалом та конкретні вікна
-**Нові слова:** windows
+**Що ви опануєте:** обирати річ у магазині одягу: this для близької, that для далекої
+**Нові слова:** sweater, scarf, glove, vest
+**Повертаються:** hanger, mirror, shelf, bag, basket
 
 ---
 
 ## Інтро 1
 
-### Одне вікно й кілька
+### Тепла річ із вішака
 
-`window` — «вікно», `windows` — «вікна». `They are windows` — «Це вікна». Для кількох вікон додаємо `s`, перед `windows` не ставимо `a`. Олег протер одне вікно й оголосив прибирання завершеним. Решта вікон поки показують погоду з фільтром. Нагадаємо йому: тут `windows` — кілька вікон.
+Подруга знімає з вішака теплу річ із довгими рукавами й простягає вам, щоб ви приміряли. sweater — «светр». Він у вас у руках, поруч, тому this. Перед sweater ставимо a, бо слово починається з приголосного звуку: This is a sweater — «Це светр».
 
-**На фотографії кілька вікон. Назвіть їх одним англійським словом.**
+**Продавець питає, що ви тримаєте в руках. Скажіть, що це светр.**
 
-- ✅ **windows**
-- ❌ window — *`window` — одне вікно; кілька — `windows`.*
-- ❌ a windows — *Перед назвою кількох вікон не ставимо `a`.*
+- ✅ **This is a sweater.**
+- ❌ That is a sweater. — *Светр у вас у руках, а that кажемо про далеке: This is a sweater.*
+- ❌ This is an sweater. — *Перед sweater потрібно a: слово починається з приголосного звуку.*
 
 ---
 
 ## Інтро 2
 
-### Вікна загалом
+### Полиця біля вікна
 
-`Windows are important` — «Вікна важливі». Обговорюючи світло й провітрювання в приміщенні, можна сказати так про вікна загалом: перед `windows` немає `the`. `The windows are open` — «Вікна відчинені»: тут ідеться про вікна певної кімнати. `Where are the windows?` — «Де вікна?» Так можна запитати, розглядаючи план цієї кімнати.
+Продавець пропонує вибрати щось на зиму. На дальній полиці біля вікна лежить довга смуга теплої тканини, яку носять на шиї. scarf — «шарф». Полиця в іншому кінці відділу, далеко від вас, тому that. Ви показуєте на неї продавцю й кажете: That is a scarf — «Це шарф».
 
-**Ви обговорюєте світло в приміщеннях загалом. Скажіть «Вікна важливі», не вказуючи на конкретні вікна.**
+**Продавець чекає біля каси. Покажіть на дальню полицю біля вікна й скажіть, що це шарф.**
 
-- ✅ **Windows are important.**
-- ❌ The windows are important. — *`The windows` — певні вікна. Тут говоримо про вікна загалом: `Windows`.*
-- ❌ A windows are important. — *Перед `windows` не ставимо `a`.*
+- ✅ **That is a scarf.**
+- ❌ This is a scarf. — *Полиця далеко, а this кажемо про те, що поруч: That is a scarf.*
+- ❌ That is scarf. — *Перед scarf потрібно a: That is a scarf.*
 
 ---
 
 ## Інтро 3
 
-### Не все зникло
+### Річ із п’ятьма пальцями
 
-`alive` — «живий», `dead` — «мертвий, загиблий». Ці слова можна використовувати й щодо рослини. Сухе листя ще не доводить, що вона загинула. Анна знаходить зелений пагін: `It is alive` — «Вона жива». `missing` — «зниклий, відсутній», `elsewhere` — «в іншому місці». Якщо чашки не знаходяться, можна сказати `The cups are missing` — «Чашки зникли». Згодом з’ясовується: `They are elsewhere` — «Вони в іншому місці».
+Ви підходите до столу, і продавець кладе перед вами в’язану річ із п’ятьма пальцями. glove — «рукавичка», одна, на одну руку. Річ лежить на столі просто перед вами, тому this. Щоб запитати, ставимо Is наперед: Is this a glove? — «Це рукавичка?»
 
-**Анна знайшла живий зелений пагін на рослині. Повідомте «Вона жива».**
+**Продавець кладе перед вами річ із п’ятьма пальцями. Запитайте його, чи це рукавичка.**
 
-- ✅ **It is alive.**
-- ❌ It is dead. — *`dead` — «загибла», а рослина жива: `alive`.*
-- ❌ It is missing. — *`missing` означає, що предмет відсутній або його не можуть знайти. Рослина перед вами й жива: `alive`.*
+- ✅ **Is this a glove?**
+- ❌ This is a glove. — *Так звучить твердження. Щоб запитати, ставимо Is наперед: Is this a glove?*
+- ❌ Is this glove? — *Перед glove потрібно a: Is this a glove?*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»**
+**1 · Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало.**
 <!-- interaction_id: en:lesson-03:session-30:i01; family: phrase_builder -->
-Плитки: `missing` `are` `cups` `The` `is` → **The cups are missing.**
-*(плитка `is` зайва: тут потрібно `are` — `The cups are missing.`)*
+Плитки: `mirror` `This` `is` `a` `That` → **This is a mirror.**
+*(плитка `That` зайва: тут потрібно `This` — `This is a mirror.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте, що каже продавець**
 <!-- interaction_id: en:lesson-03:session-30:i02; family: listen_choose -->
-🔊 *windows* → **windows** · tables · tickets
-- tables — *У записі перше слово — `windows`, а в цьому варіанті — `tables`.*
-- tickets — *У записі перше слово — `windows`, а в цьому варіанті — `tickets`.*
+🔊 *That is a hanger.* → **That is a hanger.** · This is a hanger. · That is a shelf.
+- This is a hanger. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
+- That is a shelf. — *У записі останнє слово — `hanger`, а в цьому варіанті — `shelf`.*
 
-**3 · Назвіть кілька вікон одним англійським словом**
+**3 · Кошик стоїть поруч із вами. Доповніть питання**
 <!-- interaction_id: en:lesson-03:session-30:i03; family: context_gap_grammar -->
-___ → **windows** · window · a windows
-- window — *Кілька вікон — `windows`.*
-- a windows — *Перед `windows` не ставимо `a`.*
+Is this ___ basket? → **a** · an · is
+- an — *Слово basket починається з приголосного звуку, тому тут a.*
+- is — *Слово Is уже стоїть на початку питання. Перед basket потрібно a.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-30:i04; family: speed_match -->
-windows — вікна · cups — чашки · alive — живий · dead — мертвий, загиблий
+sweater — светр · scarf — шарф · glove — рукавичка · vest — жилет
 
-**5 · Послухайте й складіть повідомлення**
+**5 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-30:i05; family: listen_build_dictation -->
-🔊 *The windows are open.* Плитки: `open` `are` `windows` `The` `is` → **The windows are open.**
-*(плитка `is` зайва: тут потрібно `are` — `The windows are open.`)*
+🔊 *This is not a hanger.* Плитки: `hanger` `not` `is` `This` `a` `an` → **This is not a hanger.**
+*(плитка `an` зайва: тут потрібно `a` — `This is not a hanger.`)*
 
-**6 · Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом**
+**6 · Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка.**
 <!-- interaction_id: en:lesson-03:session-30:i06; family: phrase_builder -->
-Плитки: `important` `are` `Windows` `is` → **Windows are important.**
-*(плитка `is` зайва: тут потрібно `are` — `Windows are important.`)*
+Плитки: `bag` `that` `Is` `a` `this` → **Is that a bag?**
+*(плитка `this` зайва: тут потрібно `that` — `Is that a bag?`)*
 
-**7 · Анна перевірила рослину: вона жива. Повідомте це зі скороченням**
+**7 · Картка слова — sweater**
+<!-- interaction_id: en:lesson-03:session-30:word:sweater; family: word_card -->
+> **sweater** — светр, тепла в’язана одежа з рукавами. This is a sweater — «Це светр». Про светр на зиму чи на прохолодний вечір.
+
+**8 · Продавець називає річ, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-30:i07; family: scripted_repeat_compare -->
-🎙 **It's alive.**
+🎙 **sweater**
 
-**8 · Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна**
+**9 · Картка слова — scarf**
+<!-- interaction_id: en:lesson-03:session-30:word:scarf; family: word_card -->
+> **scarf** — шарф, довга смуга тканини, яку носять на шиї. That is a scarf — «Це шарф». Про шарф на зиму чи для краси.
+
+**10 · Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-03:session-30:i08; family: context_gap_grammar -->
-___ are important. → **Windows** · The windows · A windows
-- The windows — *`The windows` — певні вікна. Тут потрібне загальне `Windows`.*
-- A windows — *Перед `windows` не ставимо `a`.*
+___ → **scarf** · sweater · mirror
+- sweater — *sweater — це светр, одяг з рукавами, а смуга тканини на шию називається scarf.*
+- mirror — *mirror — це дзеркало, а смуга тканини на шию називається scarf.*
 
-**9 · Послухайте повідомлення про іншу рослину**
+**11 · Послухайте подругу**
 <!-- interaction_id: en:lesson-03:session-30:i09; family: listen_choose -->
-🔊 *It is dead.* → **It is dead.** · It is alive. · It is missing.
-- It is alive. — *У записі останнє слово — `dead`, а в цьому варіанті — `alive`.*
-- It is missing. — *У записі останнє слово — `dead`, а в цьому варіанті — `missing`.*
+🔊 *This is not a sweater.* → **This is not a sweater.** · That is not a sweater. · This is not a mirror.
+- That is not a sweater. — *У записі перше слово — `This`, а в цьому варіанті — `That`.*
+- This is not a mirror. — *У записі останнє слово — `sweater`, а в цьому варіанті — `mirror`.*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-30:i10; family: speed_match -->
-missing — зниклий, відсутній · elsewhere — в іншому місці · windows — вікна · cups — чашки
+sweater — светр · mirror — дзеркало · shelf — полиця · hanger — плічка для одягу
 
-**11 · Послухайте й складіть повідомлення**
+**13 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-30:i11; family: listen_build_dictation -->
-🔊 *The cups are elsewhere.* Плитки: `elsewhere` `are` `cups` `The` `is` → **The cups are elsewhere.**
-*(плитка `is` зайва: тут потрібно `are` — `The cups are elsewhere.`)*
+🔊 *That is not a scarf.* Плитки: `scarf` `not` `is` `That` `a` `an` → **That is not a scarf.**
+*(плитка `an` зайва: тут потрібно `a` — `That is not a scarf.`)*
 
-**12 · Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна**
+**14 · Продавець питає, що у вас у руках. Скажіть, що це светр.**
 <!-- interaction_id: en:lesson-03:session-30:i12; family: phrase_builder -->
-Плитки: `windows` `the` `are` `Where` `What` → **Where are the windows?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where are the windows?`)*
+Плитки: `sweater` `This` `is` `a` `That` → **This is a sweater.**
+*(плитка `That` зайва: тут потрібно `This` — `This is a sweater.`)*
 
-**13 · Олег запитує про чашки. Їх прибрали в інше місце. Скажіть «Вони в іншому місці» зі скороченням**
+**15 · Картка слова — glove**
+<!-- interaction_id: en:lesson-03:session-30:word:glove; family: word_card -->
+> **glove** — рукавичка, одяг для однієї руки. Is this a glove? — «Це рукавичка?» Про одну рукавичку: пара — це дві рукавички.
+
+**16 · Продавець називає річ, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-30:i13; family: scripted_repeat_compare -->
-🎙 **They're elsewhere.**
+🎙 **glove**
 
-**14 · Ви повідомляєте, що кілька вікон у кімнаті відчинені**
+**17 · Картка слова — vest**
+<!-- interaction_id: en:lesson-03:session-30:word:vest; family: word_card -->
+> **vest** — жилет, одяг без рукавів, який вдягають поверх сорочки. That is a vest — «Це жилет». Про жилет для тепла чи для вигляду.
+
+**18 · Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-03:session-30:i14; family: context_gap_grammar -->
-The windows ___ open. → **are** · is · am
-- is — *Вікон кілька: потрібно `are`.*
-- am — *З `the windows` тут потрібно `are`.*
+___ → **vest** · sweater · scarf
+- sweater — *sweater — це светр з рукавами, а річ без рукавів називається vest.*
+- scarf — *scarf — це шарф на шию, а річ без рукавів називається vest.*
 
-**15 · Послухайте повідомлення про рослину біля вікна**
+**19 · Послухайте питання подруги**
 <!-- interaction_id: en:lesson-03:session-30:i15; family: listen_choose -->
-🔊 *It is alive.* → **It is alive.** · It is dead. · It is missing.
-- It is dead. — *У записі останнє слово — `alive`, а в цьому варіанті — `dead`.*
-- It is missing. — *У записі останнє слово — `alive`, а в цьому варіанті — `missing`.*
+🔊 *Is that a glove?* → **Is that a glove?** · Is this a glove? · Is that a vest?
+- Is this a glove? — *У записі друге слово — `that`, а в цьому варіанті — `this`.*
+- Is that a vest? — *У записі останнє слово — `glove`, а в цьому варіанті — `vest`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-30:i16; family: speed_match -->
-alive — живий · dead — мертвий, загиблий · missing — зниклий, відсутній · elsewhere — в іншому місці
+vest — жилет · glove — рукавичка · scarf — шарф · sweater — светр
 
-**17 · Ви обговорюєте з другом, чому приміщенням потрібне денне світло. Скажіть «Вікна важливі» про вікна загалом**
+**21 · Продавець показує на жилет на дальньому вішаку. Скажіть, що це.**
 <!-- interaction_id: en:lesson-03:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Windows are important.**
-
+🎙 **That is a vest.**

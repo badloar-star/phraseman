@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-27:intro1:r2": {
-          "ru": "`car` — одна машина; несколько — `cars`.",
-          "uk": "`car` — одна машина; кілька — `cars`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is this a remote?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is this a remote?"
         },
         "en:lesson-03:session-27:intro1:r3": {
-          "ru": "Перед названием нескольких машин не ставим `a`.",
-          "uk": "Перед назвою кількох машин не ставимо `a`."
+          "ru": "Перед remote нужно a: слово начинается с согласного звука.",
+          "uk": "Перед remote потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-27:intro2:r2": {
-          "ru": "`The cars` — определённые машины. Здесь речь о машинах вообще: `Cars`.",
-          "uk": "`The cars` — певні машини. Тут ідеться про машини загалом: `Cars`."
+          "ru": "Телевизор далеко, а this говорим о том, что рядом: Is that a button?",
+          "uk": "Телевізор далеко, а this кажемо про те, що поруч: Is that a button?"
         },
         "en:lesson-03:session-27:intro2:r3": {
-          "ru": "Перед `cars` не ставим `a`.",
-          "uk": "Перед `cars` не ставимо `a`."
+          "ru": "Перед button нужно a: Is that a button?",
+          "uk": "Перед button потрібно a: Is that a button?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-27:intro3:r2": {
-          "ru": "Машин несколько: нужно `are`.",
-          "uk": "Машин кілька: потрібно `are`."
+          "ru": "Перед switch нужно a: Is this a switch?",
+          "uk": "Перед switch потрібно a: Is this a switch?"
         },
         "en:lesson-03:session-27:intro3:r3": {
-          "ru": "О месте спрашиваем `Where` — «Где».",
-          "uk": "Про місце запитуємо `Where` — «Де»."
+          "ru": "С this нужно Is, а не Are: Is this a switch?",
+          "uk": "З this потрібно Is, а не Are: Is this a switch?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a2d74488e70bf49615927a4bd99e2e96c91835687cc29c58b42b88f4f096acd4"
+  "auxiliaryFingerprint": "f72183188d3f4c8b2fb893c785a979caab5b816c50d6371aae52a1462a46a194"
 }

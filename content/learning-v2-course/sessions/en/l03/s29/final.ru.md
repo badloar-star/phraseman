@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 29 — Столы для мастерской
+# Английский · Урок 3 · Занятие 29 — Почта у двери подъезда
 
-**Ситуация.** В клубе готовят встречу по письму от руки. Вы с Олегом ищете столы и ручки. Анна пока в отъезде и помогает через интернет. На встречу записались и местные участники, и гости из других стран.
+**Ситуация.** Вы с соседкой разбираете почту у двери подъезда: почтальон принёс коробку, а на полу лежит письмо. Вещь называют словом this или that. Когда вещь уже названа, о ней говорят it: «она», «он», «оно».
 
-**Что вы освоите:** назвать несколько столов, спросить, где они, и говорить о столах вообще
-**Новые слова:** tables
+**Что вы освоите:** называть вещь через this и that, а дальше говорить о ней it
+**Новые слова:** parcel, letter, stamp, mailbox
+**Возвращаются:** heavy, small, big, old, new
 
 ---
 
 ## Интро 1
 
-### Одного стола мало
+### Коробка от почтальона
 
-`table` — «стол», `tables` — «столы». `They are tables` — «Это столы». Для нескольких столов добавляем `s`, а `a` перед `tables` не ставим. Олег принёс один маленький стол на всю группу. Ручки поместились, бумага поместилась. Локти участников — уже по записи. Нужны `tables` — столы.
+У двери подъезда почтальон протягивает вам большую коробку, а соседка просит принять её, пока ищет ключи. parcel — «посылка», коробка с вещами, которую отправили по почте. Она у вас в руках, рядом, поэтому this: This is a parcel — «Это посылка».
 
-**На фотографии несколько столов. Назовите их одним английским словом.**
+**Почтальон протягивает вам коробку. Скажите, что это посылка.**
 
-- ✅ **tables**
-- ❌ table — *`table` — один стол; несколько — `tables`.*
-- ❌ a tables — *Перед названием нескольких столов не ставим `a`.*
+- ✅ **This is a parcel.**
+- ❌ That is a parcel. — *Посылка у вас в руках, а that говорим о далёком: This is a parcel.*
+- ❌ This is parcel. — *Перед parcel нужно a: This is a parcel.*
 
 ---
 
 ## Интро 2
 
-### Столы важны
+### Конверт у дальней двери
 
-`Tables are important` — «Столы важны». Обсуждая, что нужно для занятий письмом, можно сказать так о столах вообще: перед `tables` нет `the`. `The tables are upstairs` — «Столы наверху»: речь об определённых столах для нашей встречи. Чтобы найти их, спросите `Where are the tables?` — «Где столы?»
+На полу у дальней двери лежит белый конверт, и соседка не может разглядеть, что на нём написано. letter — «письмо», бумага с текстом в конверте, например от друга. Конверт далеко от вас, поэтому that. Перед letter ставим a: That is a letter — «Это письмо».
 
-**Вы обсуждаете занятия письмом вообще. Скажите, что столы важны, без указания на определённые столы.**
+**Соседка показывает на пол у дальней двери. Скажите, что это письмо.**
 
-- ✅ **Tables are important.**
-- ❌ The tables are important. — *`The tables` — определённые столы. Здесь речь о столах вообще: `Tables`.*
-- ❌ A tables are important. — *Перед `tables` не ставим `a`.*
+- ✅ **That is a letter.**
+- ❌ This is a letter. — *Конверт лежит далеко, а this говорим о том, что рядом: That is a letter.*
+- ❌ That is an letter. — *Перед letter нужно a: слово начинается с согласного звука.*
 
 ---
 
 ## Интро 3
 
-### Помощь издалека
+### Угол конверта
 
-`away` здесь — «в отъезде», `online` — «в сети». Анна в другом городе: `She is away`. Но сейчас она на связи через интернет: `She is online`. Это не противоречие: можно быть далеко и помогать онлайн. `local` — «местный», `foreign` — «иностранный». Эти слова помогают различать местное и относящееся к другой стране.
+Вы подняли конверт, а соседка показывает на его угол. stamp — «почтовая марка», маленькая картинка, которую клеят в угол. Вы только что сказали: This is a stamp — «Это марка». Теперь о ней же говорим it, без указания пальцем: It is new — «Она новая».
 
-**Анна сейчас подключена к интернету и отвечает вам. Сообщите «Она в сети».**
+**Вы уже назвали марку на конверте в вашей руке. Скажите, что она новая.**
 
-- ✅ **She is online.**
-- ❌ She is local. — *`local` — «местная», а сейчас важно, что она в сети: `online`.*
-- ❌ She is foreign. — *`foreign` — «иностранная», а для «в сети» нужно `online`.*
+- ✅ **It is new.**
+- ❌ It new. — *Между It и new нужно is: It is new.*
+- ❌ It are new. — *С it нужно is, а не are: It is new.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Олег ищет ручки для встречи. Сообщите «Ручки здесь»**
+**1 · Вы уже назвали соседке коробку. Скажите ей, что коробка тяжёлая.**
 <!-- interaction_id: en:lesson-03:session-29:i01; family: phrase_builder -->
-Плитки: `here` `are` `pens` `The` `is` → **The pens are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The pens are here.`)*
+Плитки: `heavy` `It` `is` `are` → **It is heavy.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is heavy.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте, что говорит соседка**
 <!-- interaction_id: en:lesson-03:session-29:i02; family: listen_choose -->
-🔊 *tables* → **tables** · tickets · chairs
-- tickets — *В записи первое слово — `tables`, а в этом варианте — `tickets`.*
-- chairs — *В записи первое слово — `tables`, а в этом варианте — `chairs`.*
+🔊 *That is a door.* → **That is a door.** · This is a door. · That is a box.
+- This is a door. — *В записи первое слово — `That`, а в этом варианте — `This`.*
+- That is a box. — *В записи последнее слово — `door`, а в этом варианте — `box`.*
 
-**3 · Назовите несколько столов одним английским словом**
+**3 · Вы уже назвали большую коробку у двери. Дополните фразу о ней**
 <!-- interaction_id: en:lesson-03:session-29:i03; family: context_gap_grammar -->
-___ → **tables** · table · a tables
-- table — *Несколько столов — `tables`.*
-- a tables — *Перед `tables` не ставим `a`.*
+It ___ big. → **is** · are · am
+- are — *С it нужно is: It is big.*
+- am — *С it нужно is: It is big.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-29:i04; family: speed_match -->
-tables — столы · pens — ручки · local — местный · foreign — иностранный
+parcel — посылка · letter — письмо · stamp — почтовая марка · mailbox — почтовый ящик
 
-**5 · Послушайте и соберите сообщение**
+**5 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-29:i05; family: listen_build_dictation -->
-🔊 *The tables are upstairs.* Плитки: `upstairs` `are` `tables` `The` `is` → **The tables are upstairs.**
-*(плитка `is` лишняя: здесь нужно `are` — `The tables are upstairs.`)*
+🔊 *That is not a box.* Плитки: `box` `not` `is` `That` `a` `an` → **That is not a box.**
+*(плитка `an` лишняя: здесь нужно `a` — `That is not a box.`)*
 
-**6 · Обсуждая занятия письмом вообще, скажите «Столы важны», не указывая на определённые столы**
+**6 · Дверь рядом с вами. Скажите соседке, что это дверь.**
 <!-- interaction_id: en:lesson-03:session-29:i06; family: phrase_builder -->
-Плитки: `important` `are` `Tables` `is` → **Tables are important.**
-*(плитка `is` лишняя: здесь нужно `are` — `Tables are important.`)*
+Плитки: `door` `This` `is` `a` `That` → **This is a door.**
+*(плитка `That` лишняя: здесь нужно `This` — `This is a door.`)*
 
-**7 · Анна сейчас на связи через интернет. Скажите «Она в сети» с сокращением**
+**7 · Карточка слова — parcel**
+<!-- interaction_id: en:lesson-03:session-29:word:parcel; family: word_card -->
+> **parcel** — посылка, коробка с вещами, которую отправили по почте. This is a parcel — «Это посылка». О посылке из магазина или от родных.
+
+**8 · Соседка называет вещь, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-29:i07; family: scripted_repeat_compare -->
-🎙 **She's online.**
+🎙 **parcel**
 
-**8 · Вы говорите, что для занятий письмом важны столы вообще, без указания на конкретные столы**
+**9 · Карточка слова — letter**
+<!-- interaction_id: en:lesson-03:session-29:word:letter; family: word_card -->
+> **letter** — письмо, текст на бумаге, который отправляют в конверте. That is a letter — «Это письмо». О письме от друга или от банка.
+
+**10 · Почтальон приносит в конверте листок с текстом от друга. Как это называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-29:i08; family: context_gap_grammar -->
-___ are important. → **Tables** · The tables · A tables
-- The tables — *`The tables` — определённые столы. Здесь нужно общее `Tables`.*
-- A tables — *Перед `tables` не ставим `a`.*
+___ → **letter** · parcel · box
+- parcel — *parcel — это посылка, коробка с вещами, а листок в конверте называется letter.*
+- box — *box — это коробка, а листок в конверте называется letter.*
 
-**9 · Послушайте сообщение об Анне**
+**11 · Послушайте соседку**
 <!-- interaction_id: en:lesson-03:session-29:i09; family: listen_choose -->
-🔊 *She is away.* → **She is away.** · She is online. · She is local.
-- She is online. — *В записи последнее слово — `away`, а в этом варианте — `online`.*
-- She is local. — *В записи последнее слово — `away`, а в этом варианте — `local`.*
+🔊 *This is not a parcel.* → **This is not a parcel.** · That is not a parcel. · This is not a box.
+- That is not a parcel. — *В записи первое слово — `This`, а в этом варианте — `That`.*
+- This is not a box. — *В записи последнее слово — `parcel`, а в этом варианте — `box`.*
 
-**10 · Соедините слова со значениями в этой сцене**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-29:i10; family: speed_match -->
-online — в сети · away — в отъезде · tables — столы · pens — ручки
+parcel — посылка · door — дверь · box — коробка · key — ключ
 
-**11 · Послушайте и соберите сообщение**
+**13 · Послушайте почтальона и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-29:i11; family: listen_build_dictation -->
-🔊 *The pens are inside.* Плитки: `inside` `are` `pens` `The` `is` → **The pens are inside.**
-*(плитка `is` лишняя: здесь нужно `are` — `The pens are inside.`)*
+🔊 *That is not a letter.* Плитки: `letter` `not` `is` `That` `a` `an` → **That is not a letter.**
+*(плитка `an` лишняя: здесь нужно `a` — `That is not a letter.`)*
 
-**12 · Олег знает, какие столы нужны группе. Спросите, где столы**
+**14 · Почтальон протягивает вам коробку. Скажите, что это посылка.**
 <!-- interaction_id: en:lesson-03:session-29:i12; family: phrase_builder -->
-Плитки: `tables` `the` `are` `Where` `What` → **Where are the tables?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the tables?`)*
+Плитки: `parcel` `This` `is` `a` `That` → **This is a parcel.**
+*(плитка `That` лишняя: здесь нужно `This` — `This is a parcel.`)*
 
-**13 · Анна уехала в другой город. Скажите «Она в отъезде» с сокращением**
+**15 · Карточка слова — stamp**
+<!-- interaction_id: en:lesson-03:session-29:word:stamp; family: word_card -->
+> **stamp** — почтовая марка, маленькая картинка в углу конверта. This is a stamp — «Это марка». О марке на письме или открытке.
+
+**16 · Соседка называет вещь, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-29:i13; family: scripted_repeat_compare -->
-🎙 **She's away.**
+🎙 **stamp**
 
-**14 · Вы сообщаете, где несколько нужных столов**
+**17 · Карточка слова — mailbox**
+<!-- interaction_id: en:lesson-03:session-29:word:mailbox; family: word_card -->
+> **mailbox** — почтовый ящик, куда кладут письма. That is a mailbox — «Это почтовый ящик». О ящике у дома или на улице.
+
+**18 · У входа в дом висит железный ящик, куда почтальон кладёт письма. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-29:i14; family: context_gap_grammar -->
-The tables ___ upstairs. → **are** · is · am
-- is — *Столов несколько: нужно `are`.*
-- am — *С `the tables` здесь нужно `are`.*
+___ → **mailbox** · box · parcel
+- box — *box — это обычная коробка, а ящик для писем называется mailbox.*
+- parcel — *parcel — это посылка, а ящик для писем называется mailbox.*
 
-**15 · Послушайте сообщение об участнике встречи**
+**19 · Послушайте соседку про марку**
 <!-- interaction_id: en:lesson-03:session-29:i15; family: listen_choose -->
-🔊 *He is local.* → **He is local.** · He is foreign. · He is online.
-- He is foreign. — *В записи последнее слово — `local`, а в этом варианте — `foreign`.*
-- He is online. — *В записи последнее слово — `local`, а в этом варианте — `online`.*
+🔊 *It is small.* → **It is small.** · It is big. · It is heavy.
+- It is big. — *В записи последнее слово — `small`, а в этом варианте — `big`.*
+- It is heavy. — *В записи последнее слово — `small`, а в этом варианте — `heavy`.*
 
-**16 · Соедините слова со значениями в этой сцене**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-29:i16; family: speed_match -->
-local — местный · foreign — иностранный · online — в сети · away — в отъезде
+mailbox — почтовый ящик · stamp — почтовая марка · letter — письмо · parcel — посылка
 
-**17 · На следующей встрече вы готовите другую комнату. Анна знает, какие столы выделены вам. Спросите, где столы**
+**21 · Соседка показывает на ящик у дальней стены двора. Скажите, что это.**
 <!-- interaction_id: en:lesson-03:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the tables?**
-
+🎙 **That is a mailbox.**

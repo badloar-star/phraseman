@@ -117,29 +117,29 @@ You're — You are · We're — We are · They're — They are · I'm — I am
 Плитки: `ashamed` `I'm` `She's` → **I'm ashamed.**
 *(плитка `She's` зайва: тут потрібно `I'm` — `I'm ashamed.`)*
 
-**14 · Друг здивований оплесками. Скажіть про його здивування короткою фразою**
-<!-- interaction_id: en:lesson-01:session-33:i13; family: scripted_repeat_compare -->
-🎙 **He's surprised.**
+**14 · Картка слова — shy**
+<!-- interaction_id: en:lesson-01:session-33:word:shy; family: word_card -->
+> **shy** — сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги.
 
-**15 · Після метушливої сцени подруга та сестра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»**
+**15 · Друга кличуть на уклін, а він ховається за кулісами й червоніє. Скажіть про нього короткою фразою**
+<!-- interaction_id: en:lesson-01:session-33:i13; family: scripted_repeat_compare -->
+🎙 **He's shy.**
+
+**16 · Після метушливої сцени подруга та сестра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»**
 <!-- interaction_id: en:lesson-01:session-33:i14; family: context_gap_grammar -->
 ___ okay. → **You're** · We're · She's
 - We're — *Це включає мовця: «ми». До співрозмовниць — `You're`.*
 - She's — *Це розповідь про одну жінку. Звертання до них обох — `You're`.*
 
-**16 · Картка слова — amazing**
+**17 · Картка слова — amazing**
 <!-- interaction_id: en:lesson-01:session-33:word:amazing; family: word_card -->
 > **amazing** — неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great.
 
-**17 · Зала аплодує стоячи. Послухайте, що каже подруга, і виберіть почуте**
+**18 · Зала аплодує стоячи. Послухайте, що каже подруга, і виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-33:i15; family: listen_choose -->
 🔊 *It's amazing.* → **It's amazing.** · It's awful. · He's amazing.
 - It's awful. — *У записі останнє слово — `amazing`, а в цьому варіанті — `awful`.*
 - He's amazing. — *У записі перше слово — `It's`, а в цьому варіанті — `He's`.*
-
-**18 · Картка слова — shy**
-<!-- interaction_id: en:lesson-01:session-33:word:shy; family: word_card -->
-> **shy** — сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги.
 
 **19 · Картка слова — great**
 <!-- interaction_id: en:lesson-01:session-33:word:great; family: word_card -->

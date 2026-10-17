@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 35 — Фотографии для стенда
+# Английский · Урок 3 · Занятие 35 — Украшаем стену
 
-**Ситуация.** Вы с Анной выбираете фотографии для стенда клуба. На столе рядом лежат снимки с официальной встречи, на дальней полке — фотографии поездки. Олег сегодня болен и прислал свои снимки через интернет.
+**Ситуация.** Вы с братом и соседкой выбираете, чем украсить стену в комнате. Один предмет рядом вы называете словом this, а несколько предметов рядом — словом these. Выбор слова зависит от того, сколько предметов перед вами.
 
-**Что вы освоите:** назвать несколько фотографий рядом или дальше и указать на нужную группу
-**Новые слова:** photos
+**Что вы освоите:** выбирать между this для одного предмета и these для нескольких
+**Новые слова:** photo, frame, album, map
+**Возвращаются:** wall, picture, mirror, shelf, clock
 
 ---
 
 ## Интро 1
 
-### Не один снимок
+### Фото из конверта
 
-`photo` — «фотография», `photos` — «фотографии». Для нескольких добавляем `s`: `photos`, не `photoes`. `These are photos` — «Это фотографии», показываем на снимки рядом. Перед `photos` не ставим `a`. Анна просила одну фотографию, а Олег прислал двадцать почти одинаковых: на каждой кто-нибудь моргает. Это уже точно `photos`.
+Вы с братом и соседкой украшаете стену в комнате. Брат достаёт из конверта одну фотографию и держит её перед вами. Соседка спрашивает, что это за снимок и куда его повесить. photo — «фото». Фото одно, и оно рядом, поэтому this: This is a photo — «Это фото».
 
-**На столе лежит несколько фотографий. Назовите их одним английским словом.**
+**Брат держит одну фотографию перед вами. Скажите соседке, что это фото.**
 
-- ✅ **photos**
-- ❌ photo — *`photo` — одна фотография; несколько — `photos`.*
-- ❌ photoes — *У этого слова для нескольких добавляем только `s`: `photos`.*
+- ✅ **This is a photo.**
+- ❌ These are photos. — *Фото одно, поэтому не these, а this: This is a photo.*
+- ❌ This is photo. — *Перед photo нужно a: This is a photo.*
 
 ---
 
 ## Интро 2
 
-### Эти и те
+### Толстый альбом
 
-`These are photos` — снимки рядом; `Those are photos` — снимки дальше. `these` и `those` относятся к нескольким предметам, поэтому здесь нужно `are`. Можно сказать `These photos are formal` — «Эти фотографии в официальном стиле»: люди специально позировали в официальной обстановке. Между `These` и `photos` не ставим `a`.
+Соседка принесла толстый альбом со старыми снимками и кладёт его на стол прямо перед вами. Она хочет знать, подойдёт ли он для подарка брату. album — «альбом». Альбом один и лежит рядом, поэтому this: This album is big — «Этот альбом большой».
 
-**Несколько фотографий лежат на дальней полке. Назовите их со словом для нескольких предметов дальше.**
+**Соседка положила альбом перед вами. Скажите ей, что этот альбом большой.**
 
-- ✅ **Those are photos.**
-- ❌ These are photos. — *Снимки дальше: для этого упражнения нужно `Those`.*
-- ❌ That is photos. — *Фотографий несколько: `Those are photos`.*
+- ✅ **This album is big.**
+- ❌ These album is big. — *Альбом один, поэтому не these, а this: This album is big.*
+- ❌ This album are big. — *Альбом один, поэтому нужно is: This album is big.*
 
 ---
 
 ## Интро 3
 
-### Олег остался дома
+### Рамки в магазине
 
-`ill` — «болен», `formal` — «официальный». `He is ill` — «Он болен»: поэтому Олег не пришёл. `These photos are formal` — о снимках с официальной встречи. На фотографиях поездки видны машины клуба. Показывая на настоящие машины во дворе, можно сказать `Those cars are outside` — «Те машины снаружи». `Those cars` выбирает несколько машин дальше от нас.
+В маленьком магазине продавец достаёт из ящика несколько рамок и кладёт их перед вами на прилавок. Брат хочет знать, не дорого ли это. frame — «рамка». Рамок несколько, и они рядом, поэтому these: These frames are cheap — «Эти рамки дешёвые».
 
-**Олег заболел и остался дома. Сообщите «Он болен».**
+**Продавец положил рамки перед вами. Скажите брату, что эти рамки дешёвые.**
 
-- ✅ **He is ill.**
-- ❌ He is formal. — *`formal` — «официальный, сдержанный в общении», а «болен» — `ill`.*
-- ❌ He are ill. — *С `He` здесь нужно `is`.*
+- ✅ **These frames are cheap.**
+- ❌ This frames are cheap. — *Рамок несколько, поэтому не this, а these: These frames are cheap.*
+- ❌ These frames is cheap. — *С these нужно are: These frames are cheap.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Олег заболел. Сообщите «Он болен»**
+**1 · Брат показывает на картины рядом с вами. Скажите соседке полной фразой: эти картины новые.**
 <!-- interaction_id: en:lesson-03:session-35:i01; family: phrase_builder -->
-Плитки: `ill` `is` `He` `are` → **He is ill.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is ill.`)*
+Плитки: `new` `pictures` `are` `These` `picture` → **These pictures are new.**
+*(плитка `picture` лишняя: здесь нужно `pictures` — `These pictures are new.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте вопрос соседки о зеркале**
 <!-- interaction_id: en:lesson-03:session-35:i02; family: listen_choose -->
-🔊 *photos* → **photos** · phones · parks
-- phones — *В записи первое слово — `photos`, а в этом варианте — `phones`.*
-- parks — *В записи первое слово — `photos`, а в этом варианте — `parks`.*
+🔊 *Is this mirror big?* → **Is this mirror big?** · Are these mirrors big? · Is this mirror old?
+- Are these mirrors big? — *В записи `Is this mirror` — зеркало одно, а в этом варианте `Are these mirrors` — несколько.*
+- Is this mirror old? — *В записи последнее слово — `big`, а в этом варианте — `old`.*
 
-**3 · Назовите несколько фотографий одним английским словом**
+**3 · Брат показывает на часы на стене перед вами. Дополните его фразу**
 <!-- interaction_id: en:lesson-03:session-35:i03; family: context_gap_grammar -->
-___ → **photos** · photo · photoes
-- photo — *Несколько фотографий — `photos`.*
-- photoes — *Для нескольких пишем `photos`, без `e`.*
+This ___ is old. → **clock** · clocks · a clock
+- clocks — *После This нужен один предмет: clock без s.*
+- a clock — *После This артикль a не ставим: This clock is old.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-35:i04; family: speed_match -->
-photos — фотографии · ill — болен · formal — официальный · cars — машины
+photo — фото · frame — рамка · album — альбом · map — карта
 
-**5 · Послушайте и соберите фразу**
+**5 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-35:i05; family: listen_build_dictation -->
-🔊 *These are photos.* Плитки: `photos` `are` `These` `is` → **These are photos.**
-*(плитка `is` лишняя: здесь нужно `are` — `These are photos.`)*
+🔊 *These lamps are big.* Плитки: `big` `lamps` `are` `These` `lamp` → **These lamps are big.**
+*(плитка `lamp` лишняя: здесь нужно `lamps` — `These lamps are big.`)*
 
-**6 · Фотографии лежат на дальней полке. Назовите их со словом для нескольких дальше**
+**6 · Соседка показывает на одну полку рядом с вами. Скажите ей, что это полка.**
 <!-- interaction_id: en:lesson-03:session-35:i06; family: phrase_builder -->
-Плитки: `photos` `are` `Those` `is` → **Those are photos.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those are photos.`)*
+Плитки: `shelf` `a` `is` `This` `These` → **This is a shelf.**
+*(плитка `These` лишняя: здесь нужно `This` — `This is a shelf.`)*
 
-**7 · На снимках прямо перед вами люди специально позировали для фотографий в официальном стиле. Скажите «Эти фотографии в официальном стиле»**
+**7 · Карточка слова — photo**
+<!-- interaction_id: en:lesson-03:session-35:word:photo; family: word_card -->
+> **photo** — фото, фотография. This is a photo — «Это фото». О снимке на бумаге или в телефоне.
+
+**8 · Брат достаёт снимок из конверта и называет его, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-35:i07; family: scripted_repeat_compare -->
-🎙 **These photos are formal.**
+🎙 **photo**
 
-**8 · Вы показываете на несколько фотографий рядом**
+**9 · Карточка слова — frame**
+<!-- interaction_id: en:lesson-03:session-35:word:frame; family: word_card -->
+> **frame** — рамка. These frames are cheap — «Эти рамки дешёвые». О рамке для фото или картины.
+
+**10 · Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-35:i08; family: context_gap_grammar -->
-___ are photos. → **These** · This · That
-- This — *`This` — один предмет; для нескольких рядом нужно `These`.*
-- That — *`That` — один дальше; здесь несколько рядом: `These`.*
+___ → **frame** · mirror · shelf
+- mirror — *mirror — это зеркало, а обрамление для снимка называется frame.*
+- shelf — *shelf — это полка, а обрамление для снимка называется frame.*
 
-**9 · Послушайте и выберите точную фразу**
+**11 · Послушайте, что говорит соседка о снимках**
 <!-- interaction_id: en:lesson-03:session-35:i09; family: listen_choose -->
-🔊 *Those cars are outside.* → **Those cars are outside.** · These cars are outside. · The cars are outside.
-- These cars are outside. — *В записи первое слово — `Those`, а в этом варианте — `These`.*
-- The cars are outside. — *В записи первое слово — `Those`, а в этом варианте — `The`.*
+🔊 *This photo is old.* → **This photo is old.** · These photos are old. · This photo is new.
+- These photos are old. — *В записи `This photo` — снимок один, а в этом варианте `These photos` — несколько.*
+- This photo is new. — *В записи последнее слово — `old`, а в этом варианте — `new`.*
 
-**10 · Соедините слова со значениями в наших примерах**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-35:i10; family: speed_match -->
-these — эти, несколько рядом · those — те, несколько дальше · photos — фотографии · cars — машины
+photo — фото · wall — стена · mirror — зеркало · clock — часы (настенные)
 
-**11 · Послушайте и соберите фразу**
+**13 · Послушайте соседку и соберите вопрос**
 <!-- interaction_id: en:lesson-03:session-35:i11; family: listen_build_dictation -->
-🔊 *Those photos are formal.* Плитки: `formal` `are` `photos` `Those` `is` → **Those photos are formal.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those photos are formal.`)*
+🔊 *Are these frames old?* Плитки: `old` `frames` `these` `Are` `Is` → **Are these frames old?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are these frames old?`)*
 
-**12 · Вы стоите рядом с несколькими машинами клуба. Сообщите «Эти машины здесь»**
+**14 · Соседка держит одну рамку. Скажите ей, что это рамка.**
 <!-- interaction_id: en:lesson-03:session-35:i12; family: phrase_builder -->
-Плитки: `here` `are` `cars` `These` `is` → **These cars are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `These cars are here.`)*
+Плитки: `frame` `a` `is` `This` `These` → **This is a frame.**
+*(плитка `These` лишняя: здесь нужно `This` — `This is a frame.`)*
 
-**13 · Анна спрашивает, почему Олег не пришёл. Сообщите «Он болен» с сокращением**
+**15 · Карточка слова — album**
+<!-- interaction_id: en:lesson-03:session-35:word:album; family: word_card -->
+> **album** — альбом. This album is big — «Этот альбом большой». О книге, куда вкладывают фото.
+
+**16 · Соседка берёт со стола толстую книгу для снимков и называет её, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-35:i13; family: scripted_repeat_compare -->
-🎙 **He's ill.**
+🎙 **album**
 
-**14 · Вы описываете несколько фотографий в официальном стиле на дальней полке**
+**17 · Карточка слова — map**
+<!-- interaction_id: en:lesson-03:session-35:word:map; family: word_card -->
+> **map** — карта. Is this map new? — «Эта карта новая?» О карте города или страны.
+
+**18 · Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-35:i14; family: context_gap_grammar -->
-Those photos ___ formal. → **are** · is · am
-- is — *Фотографий несколько: нужно `are`.*
-- am — *С `Those photos` здесь нужно `are`.*
+___ → **map** · clock · mirror
+- clock — *clock — это часы, а рисунок города с улицами называется map.*
+- mirror — *mirror — это зеркало, а рисунок города с улицами называется map.*
 
-**15 · Послушайте и выберите точную фразу**
+**19 · Послушайте вопрос брата об альбоме**
 <!-- interaction_id: en:lesson-03:session-35:i15; family: listen_choose -->
-🔊 *These photos are formal.* → **These photos are formal.** · Those photos are formal. · The photos are formal.
-- Those photos are formal. — *В записи первое слово — `These`, а в этом варианте — `Those`.*
-- The photos are formal. — *В записи первое слово — `These`, а в этом варианте — `The`.*
+🔊 *Is this album new?* → **Is this album new?** · Are these albums new? · Is this album old?
+- Are these albums new? — *В записи `Is this album` — альбом один, а в этом варианте `Are these albums` — несколько.*
+- Is this album old? — *В записи последнее слово — `new`, а в этом варианте — `old`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-35:i16; family: speed_match -->
-photos — фотографии · ill — болен · formal — официальный · cars — машины
+map — карта · album — альбом · frame — рамка · photo — фото
 
-**17 · На другой встрече гость спрашивает про несколько снимков на дальней полке. Назовите их полной фразой со словом для нескольких дальше**
+**21 · Брат показывает на карту рядом с вами. Скажите ему коротко: эта карта старая.**
 <!-- interaction_id: en:lesson-03:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Those are photos.**
-
+🎙 **This map is old.**

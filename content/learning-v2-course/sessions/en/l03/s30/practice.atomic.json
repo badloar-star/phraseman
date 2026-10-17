@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-30",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-30:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на зеркало рядом с вами. Скажите, что это зеркало.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на зеркало рядом с вами. Скажите, что это зеркало.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a mirror.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на зеркало рядом с вами. Скажите, что это зеркало.",
+            "uk": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "mirror"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на зеркало рядом с вами. Скажите, что это зеркало.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a mirror.`",
+                "uk": "тут потрібно `This` — `This is a mirror.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит продавец",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i02:r1",
+            "text": "That is a hanger."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i02:r2",
+            "text": "This is a hanger."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i02:r3",
+            "text": "That is a shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит продавец",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i02:audio",
+            "transcript": "That is a hanger."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:i02:r1",
+              "targetText": "That is a hanger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i02:r2",
+              "targetText": "This is a hanger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i02:r3",
+              "targetText": "That is a shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hanger`, а в этом варианте — `shelf`.",
+                "uk": "У записі останнє слово — `hanger`, а в цьому варіанті — `shelf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Корзина стоит рядом с вами. Дополните вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Корзина стоит рядом с вами. Дополните вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Корзина стоит рядом с вами. Дополните вопрос",
+            "uk": "Кошик стоїть поруч із вами. Доповніть питання"
+          },
+          "gappedTargetPhrase": "Is this ___ basket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-30:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Корзина стоит рядом с вами. Дополните вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Корзина стоит рядом с вами. Дополните вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово basket начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово basket починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Корзина стоит рядом с вами. Дополните вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово Is уже стоит в начале вопроса. Перед basket нужно a.",
+                "uk": "Слово Is уже стоїть на початку питання. Перед basket потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-30:i04:p1",
+              "target": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер",
+                "uk": "светр"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i04:p2",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i04:p3",
+              "target": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка",
+                "uk": "рукавичка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i04:p4",
+              "target": "vest",
+              "meaningByLocale": {
+                "ru": "жилет",
+                "uk": "жилет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweater",
+            "scarf",
+            "glove",
+            "vest"
+          ],
+          "rightColumn": [
+            "свитер",
+            "шарф",
+            "перчатка",
+            "жилет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i05:audio",
+            "transcript": "This is not a hanger."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a hanger.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "hanger"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a hanger.`",
+                "uk": "тут потрібно `a` — `This is not a hanger.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сумка лежит на дальнем стуле. Спросите подругу, сумка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сумка лежит на дальнем стуле. Спросите подругу, сумка ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is that a bag?",
+          "localizedMeaning": {
+            "ru": "Сумка лежит на дальнем стуле. Спросите подругу, сумка ли это.",
+            "uk": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка."
+          },
+          "orderedTokens": [
+            "Is",
+            "that",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "this"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сумка лежит на дальнем стуле. Спросите подругу, сумка ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `that` — `Is that a bag?`",
+                "uk": "тут потрібно `that` — `Is that a bag?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:sweater",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sweater",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:sweater:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sweater",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:sweater:audio",
+            "transcript": "sweater"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:sweater:r1",
+              "targetText": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер, тёплая вязаная одежда с рукавами. This is a sweater — «Это свитер». О свитере на зиму или на прохладный вечер.",
+                "uk": "светр, тепла в’язана одежа з рукавами. This is a sweater — «Це светр». Про светр на зиму чи на прохолодний вечір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweater",
+            "definitionByLocale": {
+              "ru": "свитер, тёплая вязаная одежда с рукавами. This is a sweater — «Это свитер». О свитере на зиму или на прохладный вечер.",
+              "uk": "светр, тепла в’язана одежа з рукавами. This is a sweater — «Це светр». Про светр на зиму чи на прохолодний вечір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Продавец называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i07:audio",
+            "transcript": "sweater"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "sweater",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:scarf",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scarf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:scarf:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scarf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:scarf:audio",
+            "transcript": "scarf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:scarf:r1",
+              "targetText": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф, длинная полоса ткани, которую носят на шее. That is a scarf — «Это шарф». О шарфе на зиму или для красоты.",
+                "uk": "шарф, довга смуга тканини, яку носять на шиї. That is a scarf — «Це шарф». Про шарф на зиму чи для краси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scarf",
+            "definitionByLocale": {
+              "ru": "шарф, длинная полоса ткани, которую носят на шее. That is a scarf — «Это шарф». О шарфе на зиму или для красоты.",
+              "uk": "шарф, довга смуга тканини, яку носять на шиї. That is a scarf — «Це шарф». Про шарф на зиму чи для краси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i08:r1",
+            "text": "scarf"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i08:r2",
+            "text": "sweater"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i08:r3",
+            "text": "mirror"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+            "uk": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-30:i08:r1",
+              "text": "scarf"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i08:r2",
+              "text": "sweater"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i08:r3",
+              "text": "mirror"
+            }
+          ],
+          "testedDimension": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "sweater — это свитер, одежда с рукавами, а полоса ткани на шею называется scarf.",
+                "uk": "sweater — це светр, одяг з рукавами, а смуга тканини на шию називається scarf."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "mirror — это зеркало, а полоса ткани на шею называется scarf.",
+                "uk": "mirror — це дзеркало, а смуга тканини на шию називається scarf."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i09:r1",
+            "text": "This is not a sweater."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i09:r2",
+            "text": "That is not a sweater."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i09:r3",
+            "text": "This is not a mirror."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i09:audio",
+            "transcript": "This is not a sweater."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:i09:r1",
+              "targetText": "This is not a sweater.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i09:r2",
+              "targetText": "That is not a sweater.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i09:r3",
+              "targetText": "This is not a mirror.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sweater`, а в этом варианте — `mirror`.",
+                "uk": "У записі останнє слово — `sweater`, а в цьому варіанті — `mirror`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-30:i10:p1",
+              "target": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер",
+                "uk": "светр"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i10:p2",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i10:p3",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i10:p4",
+              "target": "hanger",
+              "meaningByLocale": {
+                "ru": "вешалка-плечики",
+                "uk": "плічка для одягу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweater",
+            "mirror",
+            "shelf",
+            "hanger"
+          ],
+          "rightColumn": [
+            "свитер",
+            "зеркало",
+            "полка",
+            "вешалка-плечики"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i11:audio",
+            "transcript": "That is not a scarf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a scarf.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "scarf"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a scarf.`",
+                "uk": "тут потрібно `a` — `That is not a scarf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец спрашивает, что у вас в руках. Скажите, что это свитер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец спрашивает, что у вас в руках. Скажите, что это свитер.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a sweater.",
+          "localizedMeaning": {
+            "ru": "Продавец спрашивает, что у вас в руках. Скажите, что это свитер.",
+            "uk": "Продавець питає, що у вас у руках. Скажіть, що це светр."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "sweater"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец спрашивает, что у вас в руках. Скажите, что это свитер.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a sweater.`",
+                "uk": "тут потрібно `This` — `This is a sweater.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:glove",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — glove",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:glove:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — glove",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:glove:audio",
+            "transcript": "glove"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:glove:r1",
+              "targetText": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка, одежда для одной руки. Is this a glove? — «Это перчатка?» Об одной перчатке: пара — это две перчатки.",
+                "uk": "рукавичка, одяг для однієї руки. Is this a glove? — «Це рукавичка?» Про одну рукавичку: пара — це дві рукавички."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glove",
+            "definitionByLocale": {
+              "ru": "перчатка, одежда для одной руки. Is this a glove? — «Это перчатка?» Об одной перчатке: пара — это две перчатки.",
+              "uk": "рукавичка, одяг для однієї руки. Is this a glove? — «Це рукавичка?» Про одну рукавичку: пара — це дві рукавички."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Продавец называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i13:audio",
+            "transcript": "glove"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "glove",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:vest",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:vest:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:vest:audio",
+            "transcript": "vest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:vest:r1",
+              "targetText": "vest",
+              "meaningByLocale": {
+                "ru": "жилет, одежда без рукавов, которую надевают поверх рубашки. That is a vest — «Это жилет». О жилете для тепла или для вида.",
+                "uk": "жилет, одяг без рукавів, який вдягають поверх сорочки. That is a vest — «Це жилет». Про жилет для тепла чи для вигляду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vest",
+            "definitionByLocale": {
+              "ru": "жилет, одежда без рукавов, которую надевают поверх рубашки. That is a vest — «Это жилет». О жилете для тепла или для вида.",
+              "uk": "жилет, одяг без рукавів, який вдягають поверх сорочки. That is a vest — «Це жилет». Про жилет для тепла чи для вигляду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i14:r1",
+            "text": "vest"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i14:r2",
+            "text": "sweater"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i14:r3",
+            "text": "scarf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+            "uk": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-30:i14:r1",
+              "text": "vest"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i14:r2",
+              "text": "sweater"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i14:r3",
+              "text": "scarf"
+            }
+          ],
+          "testedDimension": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "sweater — это свитер с рукавами, а вещь без рукавов называется vest.",
+                "uk": "sweater — це светр з рукавами, а річ без рукавів називається vest."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "scarf — это шарф на шею, а вещь без рукавов называется vest.",
+                "uk": "scarf — це шарф на шию, а річ без рукавів називається vest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i15:r1",
+            "text": "Is that a glove?"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i15:r2",
+            "text": "Is this a glove?"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i15:r3",
+            "text": "Is that a vest?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i15:audio",
+            "transcript": "Is that a glove?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:i15:r1",
+              "targetText": "Is that a glove?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i15:r2",
+              "targetText": "Is this a glove?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i15:r3",
+              "targetText": "Is that a vest?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `that`, а в этом варианте — `this`.",
+                "uk": "У записі друге слово — `that`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `glove`, а в этом варианте — `vest`.",
+                "uk": "У записі останнє слово — `glove`, а в цьому варіанті — `vest`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-30:i16:p1",
+              "target": "vest",
+              "meaningByLocale": {
+                "ru": "жилет",
+                "uk": "жилет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i16:p2",
+              "target": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка",
+                "uk": "рукавичка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i16:p3",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i16:p4",
+              "target": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер",
+                "uk": "светр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "vest",
+            "glove",
+            "scarf",
+            "sweater"
+          ],
+          "rightColumn": [
+            "жилет",
+            "перчатка",
+            "шарф",
+            "свитер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на жилет на дальней вешалке. Скажите, что это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на жилет на дальней вешалке. Скажите, что это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i17:audio",
+            "transcript": "That is a vest."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is a vest.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-30:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a mirror.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на зеркало рядом с вами. Скажите, что это зеркало.",
+            "uk": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "mirror"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a mirror.`",
+                "uk": "тут потрібно `This` — `This is a mirror.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже продавець",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i02:r1",
+            "text": "That is a hanger."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i02:r2",
+            "text": "This is a hanger."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i02:r3",
+            "text": "That is a shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже продавець",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i02:audio",
+            "transcript": "That is a hanger."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:i02:r1",
+              "targetText": "That is a hanger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i02:r2",
+              "targetText": "This is a hanger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i02:r3",
+              "targetText": "That is a shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hanger`, а в этом варианте — `shelf`.",
+                "uk": "У записі останнє слово — `hanger`, а в цьому варіанті — `shelf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Кошик стоїть поруч із вами. Доповніть питання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кошик стоїть поруч із вами. Доповніть питання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Корзина стоит рядом с вами. Дополните вопрос",
+            "uk": "Кошик стоїть поруч із вами. Доповніть питання"
+          },
+          "gappedTargetPhrase": "Is this ___ basket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-30:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Кошик стоїть поруч із вами. Доповніть питання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Кошик стоїть поруч із вами. Доповніть питання",
+              "feedbackByLocale": {
+                "ru": "Слово basket начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово basket починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Кошик стоїть поруч із вами. Доповніть питання",
+              "feedbackByLocale": {
+                "ru": "Слово Is уже стоит в начале вопроса. Перед basket нужно a.",
+                "uk": "Слово Is уже стоїть на початку питання. Перед basket потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-30:i04:p1",
+              "target": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер",
+                "uk": "светр"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i04:p2",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i04:p3",
+              "target": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка",
+                "uk": "рукавичка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i04:p4",
+              "target": "vest",
+              "meaningByLocale": {
+                "ru": "жилет",
+                "uk": "жилет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweater",
+            "scarf",
+            "glove",
+            "vest"
+          ],
+          "rightColumn": [
+            "светр",
+            "шарф",
+            "рукавичка",
+            "жилет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i05:audio",
+            "transcript": "This is not a hanger."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a hanger.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "hanger"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a hanger.`",
+                "uk": "тут потрібно `a` — `This is not a hanger.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is that a bag?",
+          "localizedMeaning": {
+            "ru": "Сумка лежит на дальнем стуле. Спросите подругу, сумка ли это.",
+            "uk": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка."
+          },
+          "orderedTokens": [
+            "Is",
+            "that",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "this"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `that` — `Is that a bag?`",
+                "uk": "тут потрібно `that` — `Is that a bag?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:sweater",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sweater",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:sweater:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sweater",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:sweater:audio",
+            "transcript": "sweater"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:sweater:r1",
+              "targetText": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер, тёплая вязаная одежда с рукавами. This is a sweater — «Это свитер». О свитере на зиму или на прохладный вечер.",
+                "uk": "светр, тепла в’язана одежа з рукавами. This is a sweater — «Це светр». Про светр на зиму чи на прохолодний вечір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweater",
+            "definitionByLocale": {
+              "ru": "свитер, тёплая вязаная одежда с рукавами. This is a sweater — «Это свитер». О свитере на зиму или на прохладный вечер.",
+              "uk": "светр, тепла в’язана одежа з рукавами. This is a sweater — «Це светр». Про светр на зиму чи на прохолодний вечір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Продавець називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i07:audio",
+            "transcript": "sweater"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "sweater",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:scarf",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scarf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:scarf:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scarf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:scarf:audio",
+            "transcript": "scarf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:scarf:r1",
+              "targetText": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф, длинная полоса ткани, которую носят на шее. That is a scarf — «Это шарф». О шарфе на зиму или для красоты.",
+                "uk": "шарф, довга смуга тканини, яку носять на шиї. That is a scarf — «Це шарф». Про шарф на зиму чи для краси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scarf",
+            "definitionByLocale": {
+              "ru": "шарф, длинная полоса ткани, которую носят на шее. That is a scarf — «Это шарф». О шарфе на зиму или для красоты.",
+              "uk": "шарф, довга смуга тканини, яку носять на шиї. That is a scarf — «Це шарф». Про шарф на зиму чи для краси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i08:r1",
+            "text": "scarf"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i08:r2",
+            "text": "sweater"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i08:r3",
+            "text": "mirror"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+            "uk": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-30:i08:r1",
+              "text": "scarf"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i08:r2",
+              "text": "sweater"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i08:r3",
+              "text": "mirror"
+            }
+          ],
+          "testedDimension": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "sweater — это свитер, одежда с рукавами, а полоса ткани на шею называется scarf.",
+                "uk": "sweater — це светр, одяг з рукавами, а смуга тканини на шию називається scarf."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "mirror — это зеркало, а полоса ткани на шею называется scarf.",
+                "uk": "mirror — це дзеркало, а смуга тканини на шию називається scarf."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i09:r1",
+            "text": "This is not a sweater."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i09:r2",
+            "text": "That is not a sweater."
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i09:r3",
+            "text": "This is not a mirror."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i09:audio",
+            "transcript": "This is not a sweater."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:i09:r1",
+              "targetText": "This is not a sweater.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i09:r2",
+              "targetText": "That is not a sweater.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i09:r3",
+              "targetText": "This is not a mirror.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sweater`, а в этом варианте — `mirror`.",
+                "uk": "У записі останнє слово — `sweater`, а в цьому варіанті — `mirror`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-30:i10:p1",
+              "target": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер",
+                "uk": "светр"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i10:p2",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i10:p3",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i10:p4",
+              "target": "hanger",
+              "meaningByLocale": {
+                "ru": "вешалка-плечики",
+                "uk": "плічка для одягу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweater",
+            "mirror",
+            "shelf",
+            "hanger"
+          ],
+          "rightColumn": [
+            "светр",
+            "дзеркало",
+            "полиця",
+            "плічка для одягу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i11:audio",
+            "transcript": "That is not a scarf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a scarf.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "scarf"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a scarf.`",
+                "uk": "тут потрібно `a` — `That is not a scarf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець питає, що у вас у руках. Скажіть, що це светр.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець питає, що у вас у руках. Скажіть, що це светр.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a sweater.",
+          "localizedMeaning": {
+            "ru": "Продавец спрашивает, что у вас в руках. Скажите, что это свитер.",
+            "uk": "Продавець питає, що у вас у руках. Скажіть, що це светр."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "sweater"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець питає, що у вас у руках. Скажіть, що це светр.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a sweater.`",
+                "uk": "тут потрібно `This` — `This is a sweater.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:glove",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — glove",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:glove:audio"
+        ],
+        "accessibilityLabel": "Картка слова — glove",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:glove:audio",
+            "transcript": "glove"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:glove:r1",
+              "targetText": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка, одежда для одной руки. Is this a glove? — «Это перчатка?» Об одной перчатке: пара — это две перчатки.",
+                "uk": "рукавичка, одяг для однієї руки. Is this a glove? — «Це рукавичка?» Про одну рукавичку: пара — це дві рукавички."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glove",
+            "definitionByLocale": {
+              "ru": "перчатка, одежда для одной руки. Is this a glove? — «Это перчатка?» Об одной перчатке: пара — это две перчатки.",
+              "uk": "рукавичка, одяг для однієї руки. Is this a glove? — «Це рукавичка?» Про одну рукавичку: пара — це дві рукавички."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Продавець називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i13:audio",
+            "transcript": "glove"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "glove",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:word:vest",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vest",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:word:vest:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vest",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:word:vest:audio",
+            "transcript": "vest"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:word:vest:r1",
+              "targetText": "vest",
+              "meaningByLocale": {
+                "ru": "жилет, одежда без рукавов, которую надевают поверх рубашки. That is a vest — «Это жилет». О жилете для тепла или для вида.",
+                "uk": "жилет, одяг без рукавів, який вдягають поверх сорочки. That is a vest — «Це жилет». Про жилет для тепла чи для вигляду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vest",
+            "definitionByLocale": {
+              "ru": "жилет, одежда без рукавов, которую надевают поверх рубашки. That is a vest — «Это жилет». О жилете для тепла или для вида.",
+              "uk": "жилет, одяг без рукавів, який вдягають поверх сорочки. That is a vest — «Це жилет». Про жилет для тепла чи для вигляду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i14:r1",
+            "text": "vest"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i14:r2",
+            "text": "sweater"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i14:r3",
+            "text": "scarf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+            "uk": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-30:i14:r1",
+              "text": "vest"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i14:r2",
+              "text": "sweater"
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i14:r3",
+              "text": "scarf"
+            }
+          ],
+          "testedDimension": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "sweater — это свитер с рукавами, а вещь без рукавов называется vest.",
+                "uk": "sweater — це светр з рукавами, а річ без рукавів називається vest."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "scarf — это шарф на шею, а вещь без рукавов называется vest.",
+                "uk": "scarf — це шарф на шию, а річ без рукавів називається vest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-30:i15:r1",
+            "text": "Is that a glove?"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i15:r2",
+            "text": "Is this a glove?"
+          },
+          {
+            "responseId": "en:lesson-03:session-30:i15:r3",
+            "text": "Is that a vest?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i15:audio",
+            "transcript": "Is that a glove?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-30:i15:r1",
+              "targetText": "Is that a glove?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i15:r2",
+              "targetText": "Is this a glove?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i15:r3",
+              "targetText": "Is that a vest?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `that`, а в этом варианте — `this`.",
+                "uk": "У записі друге слово — `that`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `glove`, а в этом варианте — `vest`.",
+                "uk": "У записі останнє слово — `glove`, а в цьому варіанті — `vest`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-30:i16:p1",
+              "target": "vest",
+              "meaningByLocale": {
+                "ru": "жилет",
+                "uk": "жилет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i16:p2",
+              "target": "glove",
+              "meaningByLocale": {
+                "ru": "перчатка",
+                "uk": "рукавичка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i16:p3",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-30:i16:p4",
+              "target": "sweater",
+              "meaningByLocale": {
+                "ru": "свитер",
+                "uk": "светр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "vest",
+            "glove",
+            "scarf",
+            "sweater"
+          ],
+          "rightColumn": [
+            "жилет",
+            "рукавичка",
+            "шарф",
+            "светр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на жилет на дальньому вішаку. Скажіть, що це.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на жилет на дальньому вішаку. Скажіть, що це.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-30:i17:audio",
+            "transcript": "That is a vest."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is a vest.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-30:i01",
+      "correctText": "This is a mirror.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i02",
+      "correctText": "That is a hanger.",
+      "correctResponseId": "en:lesson-03:session-30:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-30:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i05",
+      "correctText": "This is not a hanger.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i06",
+      "correctText": "Is that a bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:sweater",
+      "correctText": "sweater",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i07",
+      "correctText": "sweater",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:scarf",
+      "correctText": "scarf",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i08",
+      "correctText": "scarf",
+      "correctResponseId": "en:lesson-03:session-30:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i09",
+      "correctText": "This is not a sweater.",
+      "correctResponseId": "en:lesson-03:session-30:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i11",
+      "correctText": "That is not a scarf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i12",
+      "correctText": "This is a sweater.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:glove",
+      "correctText": "glove",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i13",
+      "correctText": "glove",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:word:vest",
+      "correctText": "vest",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i14",
+      "correctText": "vest",
+      "correctResponseId": "en:lesson-03:session-30:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i15",
+      "correctText": "Is that a glove?",
+      "correctResponseId": "en:lesson-03:session-30:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i17",
+      "correctText": "That is a vest.",
+      "correctResponseId": null
+    }
+  ]
+}

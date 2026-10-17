@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 37 — Машина біля клубу
+# Англійська · Урок 3 · Заняття 37 — Оглядаємо навчальний центр
 
-**Ситуація.** Ви з Анною готуєте зустріч у клубі. Столи вже всередині. Біля дверей стоїть машина, ще одну видно далі. Олег прийшов заздалегідь і почувається самотнім, поки решта не зібралися.
+**Ситуація.** Ви з братом і вчителькою оглядаєте сусідні будівлі навчального центру. Одне поруч — this, одне далеко — that. Кілька поруч — these, кілька далеко — those. Після this і that кажемо is, після these і those — are.
 
-**Що ви опануєте:** назвати машину поруч або далі та повторити описи людей і зустрічі
-**Нові слова:** car
+**Що ви опануєте:** обирати this, that, these або those за кількістю й відстанню
+**Нові слова:** building, entrance, exit, yard
+**Повертаються:** door, window, wall, floor, ceiling
 
 ---
 
 ## Інтро 1
 
-### Одна машина
+### Нова будівля
 
-`car` — «машина, автомобіль». Ви вже знаєте `cars` — «машини». Для однієї машини беремо `car`: `This is a car` — «Це машина», показуємо на одну поруч. Тут потрібне `a car`, не `an car`: слово починається з приголосного звука. Чотири колеса не перетворюють одну машину на кілька.
+Ви з братом прийшли до навчального центру. Вчителька зустрічає вас біля стіни нової будівлі й пояснює, де будуть заняття. Брат стоїть поруч і питає, що це за дім. building — «будівля». Будівля одна, і ви стоїте поруч із нею, тому this: This building is new — «Ця будівля нова».
 
-**Назвіть одну машину одним англійським словом.**
+**Вчителька стоїть біля будівлі поруч із вами. Скажіть брату, що ця будівля нова.**
 
-- ✅ **car**
-- ❌ cars — *`cars` — кілька машин. Одна — `car`.*
-- ❌ cart — *`cart` — візок. Машина — `car`.*
+- ✅ **This building is new.**
+- ❌ That building is new. — *Будівля поруч із вами, а that кажемо про далеке: This building is new.*
+- ❌ These building is new. — *Будівля одна, тому не these, а this: This building is new.*
 
 ---
 
 ## Інтро 2
 
-### Поруч і далі
+### Два входи поруч
 
-`This car is here` — «Ця машина тут». `That car is outside` — «Та машина надворі»: показуємо на машину далі від нас. Перед `car` уже стоїть `this` або `that`, тому додавати `a` не потрібно. Одна машина потребує `is`.
+Вчителька веде вас уздовж будівлі. Перед вами два входи, вони поруч один з одним, і брат питає, чи можна зайти. Вчителька киває й усміхається. entrance — «вхід». Входів кілька, і вони поруч, тому these: These entrances are open — «Ці входи відкриті».
 
-**Ви дивитеся з клубу на одну машину вдалині. Скажіть «Та машина надворі».**
+**Брат дивиться на два входи перед вами. Скажіть йому, що ці входи відкриті.**
 
-- ✅ **That car is outside.**
-- ❌ Those car is outside. — *`Those` — кілька. Тут одна машина далі: `That car`.*
-- ❌ That car are outside. — *Машина одна: `That car is outside`.*
+- ✅ **These entrances are open.**
+- ❌ This entrances are open. — *Входів кілька, тому не this, а these: These entrances are open.*
+- ❌ These entrances is open. — *З these потрібно are: These entrances are open.*
 
 ---
 
 ## Інтро 3
 
-### До початку зустрічі
+### Виходи в дальньому корпусі
 
-`lonely` — «самотній», коли людині бракує спілкування. `He is lonely` — «Йому самотньо». Це почуття, а не просто відсутність людей поруч. `official` — «офіційний». Про зустріч можна сказати `It is official` — «Вона офіційна». А готовність кімнати описати так: `The tables are here` — «Столи тут».
+Ви з братом виходите надвір. В іншому кінці двору, далеко від вас, видно два виходи із сусіднього корпусу. Вчителька просить вас перевірити, чи можна там пройти. exit — «вихід». Виходів кілька, і вони далеко, тому those: Those exits are closed — «Ті виходи зачинені».
 
-**Олегові бракує компанії. Скажіть «Йому самотньо».**
+**Вчителька показує на дальній корпус. Скажіть, що ті виходи зачинені.**
 
-- ✅ **He is lonely.**
-- ❌ He is sleepy. — *`sleepy` — сонний. Олегові бракує спілкування: `lonely`.*
-- ❌ He are lonely. — *З `He` потрібне `is`.*
+- ✅ **Those exits are closed.**
+- ❌ These exits are closed. — *Виходи далеко, а these кажемо про те, що поруч: Those exits are closed.*
+- ❌ Those exit are closed. — *Виходів кілька, тому потрібно exits з s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна шукає столи для зустрічі. Скажіть «Столи тут»**
+**1 · Вчителька показує на двері поруч із вами. Скажіть брату повною фразою: ці двері великі.**
 <!-- interaction_id: en:lesson-03:session-37:i01; family: phrase_builder -->
-Плитки: `here` `are` `tables` `The` `is` → **The tables are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The tables are here.`)*
+Плитки: `big` `doors` `are` `These` `door` → **These doors are big.**
+*(плитка `door` зайва: тут потрібно `doors` — `These doors are big.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте, що каже вчителька про стіну**
 <!-- interaction_id: en:lesson-03:session-37:i02; family: listen_choose -->
-🔊 *car* → **car** · coat · cat
-- coat — *У записі перше слово — `car`, а в цьому варіанті — `coat`.*
-- cat — *У записі перше слово — `car`, а в цьому варіанті — `cat`.*
+🔊 *That wall is old.* → **That wall is old.** · Those walls are old. · This wall is old.
+- Those walls are old. — *У записі `That wall` — стіна одна, а в цьому варіанті `Those walls` — кілька.*
+- This wall is old. — *У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч).*
 
-**3 · Назвіть одну машину одним англійським словом**
+**3 · Брат показує на вікна вдалині. Доповніть його фразу**
 <!-- interaction_id: en:lesson-03:session-37:i03; family: context_gap_grammar -->
-___ → **car** · cars · cat
-- cars — *`cars` — машини. Одна машина — `car`.*
-- cat — *`cat` — кіт. Машина — `car`.*
+Those ___ are new. → **windows** · window · a window
+- window — *Вікон кілька, тому потрібно windows з s.*
+- a window — *Після Those потрібно кілька вікон: windows з s.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-37:i04; family: speed_match -->
-car — машина · lonely — самотній · official — офіційний · tables — столи
+building — будівля · entrance — вхід · exit — вихід · yard — двір
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте вчительку й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-37:i05; family: listen_build_dictation -->
-🔊 *This is a car.* Плитки: `car` `a` `is` `This` `are` → **This is a car.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a car.`)*
+🔊 *This floor is clean.* Плитки: `clean` `floor` `is` `This` `are` → **This floor is clean.**
+*(плитка `are` зайва: тут потрібно `is` — `This floor is clean.`)*
 
-**6 · Ви показуєте з клубу на машину вдалині. Скажіть «Та машина надворі»**
+**6 · Вчителька показує вгору на стелю в дальньому кінці зали. Скажіть брату, що це стеля.**
 <!-- interaction_id: en:lesson-03:session-37:i06; family: phrase_builder -->
-Плитки: `outside` `is` `car` `That` `are` → **That car is outside.**
-*(плитка `are` зайва: тут потрібно `is` — `That car is outside.`)*
+Плитки: `ceiling` `a` `is` `That` `This` → **That is a ceiling.**
+*(плитка `This` зайва: тут потрібно `That` — `That is a ceiling.`)*
 
-**7 · Олегові бракує спілкування. Скажіть «Йому самотньо» зі скороченням**
+**7 · Картка слова — building**
+<!-- interaction_id: en:lesson-03:session-37:word:building; family: word_card -->
+> **building** — будівля. This building is new — «Ця будівля нова». Про великий дім для школи, роботи чи магазинів.
+
+**8 · Вчителька показує на великий дім і називає його, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-37:i07; family: scripted_repeat_compare -->
-🎙 **He's lonely.**
+🎙 **building**
 
-**8 · Ви вперше називаєте один предмет поруч: це машина**
+**9 · Картка слова — entrance**
+<!-- interaction_id: en:lesson-03:session-37:word:entrance; family: word_card -->
+> **entrance** — вхід. These entrances are open — «Ці входи відкриті». Про місце, де заходять у будівлю.
+
+**10 · Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?**
 <!-- interaction_id: en:lesson-03:session-37:i08; family: context_gap_grammar -->
-This is ___ car. → **a** · an · are
-- an — *`car` починається з приголосного звука: `a car`.*
-- are — *Тут потрібне `a` перед назвою однієї машини: `a car`.*
+___ → **entrance** · door · window
+- door — *door — це двері, а місце, де заходять у будівлю, називається entrance.*
+- window — *window — це вікно, а місце, де заходять у будівлю, називається entrance.*
 
-**9 · Послухайте опис зустрічі**
+**11 · Послухайте, що каже брат про будівлю**
 <!-- interaction_id: en:lesson-03:session-37:i09; family: listen_choose -->
-🔊 *It is official.* → **It is official.** · It is informal. · It is unusual.
-- It is informal. — *У записі останнє слово — `official`, а в цьому варіанті — `informal`.*
-- It is unusual. — *У записі останнє слово — `official`, а в цьому варіанті — `unusual`.*
+🔊 *This building is big.* → **This building is big.** · These buildings are big. · That building is big.
+- These buildings are big. — *У записі `This building` — будівля одна, а в цьому варіанті `These buildings` — кілька.*
+- That building is big. — *У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко).*
 
-**10 · З’єднайте слова зі значеннями для наших прикладів**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-37:i10; family: speed_match -->
-car — машина · cars — машини · this — цей, один поруч · that — той, один далі
+building — будівля · door — двері · window — вікно · wall — стіна
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте брата й складіть запитання**
 <!-- interaction_id: en:lesson-03:session-37:i11; family: listen_build_dictation -->
-🔊 *Those tables are outside.* Плитки: `outside` `are` `tables` `Those` `is` → **Those tables are outside.**
-*(плитка `is` зайва: тут потрібно `are` — `Those tables are outside.`)*
+🔊 *Are these entrances open?* Плитки: `open` `entrances` `these` `Are` `Is` → **Are these entrances open?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are these entrances open?`)*
 
-**12 · Ви стоїте біля машини й показуєте на неї. Скажіть «Ця машина тут»**
+**14 · Брат питає, що стоїть перед вами. Скажіть, що це будівля.**
 <!-- interaction_id: en:lesson-03:session-37:i12; family: phrase_builder -->
-Плитки: `here` `is` `car` `This` `are` → **This car is here.**
-*(плитка `are` зайва: тут потрібно `is` — `This car is here.`)*
+Плитки: `building` `a` `is` `This` `These` → **This is a building.**
+*(плитка `These` зайва: тут потрібно `This` — `This is a building.`)*
 
-**13 · Анна запитує про статус зустрічі. Скажіть «Вона офіційна» зі скороченням**
+**15 · Картка слова — exit**
+<!-- interaction_id: en:lesson-03:session-37:word:exit; family: word_card -->
+> **exit** — вихід. Those exits are closed — «Ті виходи зачинені». Про місце, звідки виходять із будівлі.
+
+**16 · Вчителька показує на двері, через які виходять, і називає їх, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-37:i13; family: scripted_repeat_compare -->
-🎙 **It's official.**
+🎙 **exit**
 
-**14 · Ви говорите про одну машину далі від вас**
+**17 · Картка слова — yard**
+<!-- interaction_id: en:lesson-03:session-37:word:yard; family: word_card -->
+> **yard** — двір. That is a yard — «Це двір». Про місце між будівлями, де можна стояти й гуляти.
+
+**18 · Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?**
 <!-- interaction_id: en:lesson-03:session-37:i14; family: context_gap_grammar -->
-That car ___ outside. → **is** · are · am
-- are — *Одна машина: `That car is outside`.*
-- am — *З `That car` потрібне `is`.*
+___ → **yard** · wall · floor
+- wall — *wall — це стіна, а відкрите місце між будівлями називається yard.*
+- floor — *floor — це підлога, а відкрите місце між будівлями називається yard.*
 
-**15 · Послухайте, як почувається Олег**
+**19 · Послухайте запитання брата про вихід**
 <!-- interaction_id: en:lesson-03:session-37:i15; family: listen_choose -->
-🔊 *He is lonely.* → **He is lonely.** · He is sleepy. · He is afraid.
-- He is sleepy. — *У записі останнє слово — `lonely`, а в цьому варіанті — `sleepy`.*
-- He is afraid. — *У записі останнє слово — `lonely`, а в цьому варіанті — `afraid`.*
+🔊 *Is that exit open?* → **Is that exit open?** · Are those exits open? · Is that exit closed?
+- Are those exits open? — *У записі `Is that exit` — вихід один, а в цьому варіанті `Are those exits` — кілька.*
+- Is that exit closed? — *У записі останнє слово — `open`, а в цьому варіанті — `closed`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-37:i16; family: speed_match -->
-car — машина · lonely — самотній · official — офіційний · tables — столи
+yard — двір · exit — вихід · entrance — вхід · building — будівля
 
-**17 · На прогулянці дитина запитує про предмет удалині. Це одна машина. Назвіть її повною фразою, почавши з вказівного слова для одного предмета далі**
+**21 · Вчителька показує на двір удалині. Скажіть їй коротко: той двір чистий.**
 <!-- interaction_id: en:lesson-03:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **That is a car.**
-
+🎙 **That yard is clean.**

@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-35:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показывает на картины рядом с вами. Скажите соседке полной фразой: эти картины новые.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показывает на картины рядом с вами. Скажите соседке полной фразой: эти картины новые.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These pictures are new.",
+          "localizedMeaning": {
+            "ru": "Брат показывает на картины рядом с вами. Скажите соседке полной фразой: эти картины новые.",
+            "uk": "Брат показує на картини поруч із вами. Скажіть сусідці повною фразою: ці картини нові."
+          },
+          "orderedTokens": [
+            "These",
+            "pictures",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "picture"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат показывает на картины рядом с вами. Скажите соседке полной фразой: эти картины новые.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `pictures` — `These pictures are new.`",
+                "uk": "тут потрібно `pictures` — `These pictures are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос соседки о зеркале",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i02:r1",
+            "text": "Is this mirror big?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i02:r2",
+            "text": "Are these mirrors big?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i02:r3",
+            "text": "Is this mirror old?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос соседки о зеркале",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i02:audio",
+            "transcript": "Is this mirror big?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i02:r1",
+              "targetText": "Is this mirror big?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i02:r2",
+              "targetText": "Are these mirrors big?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i02:r3",
+              "targetText": "Is this mirror old?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос соседки о зеркале",
+              "feedbackByLocale": {
+                "ru": "В записи `Is this mirror` — зеркало одно, а в этом варианте `Are these mirrors` — несколько.",
+                "uk": "У записі `Is this mirror` — дзеркало одне, а в цьому варіанті `Are these mirrors` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос соседки о зеркале",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат показывает на часы на стене перед вами. Дополните его фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i03:r1",
+            "text": "clock"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i03:r2",
+            "text": "clocks"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i03:r3",
+            "text": "a clock"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показывает на часы на стене перед вами. Дополните его фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат показывает на часы на стене перед вами. Дополните его фразу",
+            "uk": "Брат показує на годинник на стіні перед вами. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "This ___ is old.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-35:i03:r1",
+              "text": "clock"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i03:r2",
+              "text": "clocks"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i03:r3",
+              "text": "a clock"
+            }
+          ],
+          "testedDimension": "Брат показывает на часы на стене перед вами. Дополните его фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат показывает на часы на стене перед вами. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "После This нужен один предмет: clock без s.",
+                "uk": "Після This потрібен один предмет: clock без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат показывает на часы на стене перед вами. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "После This артикль a не ставим: This clock is old.",
+                "uk": "Після This артикль a не ставимо: This clock is old."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i04:p1",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фото",
+                "uk": "фото"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i04:p2",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i04:p3",
+              "target": "album",
+              "meaningByLocale": {
+                "ru": "альбом",
+                "uk": "альбом"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i04:p4",
+              "target": "map",
+              "meaningByLocale": {
+                "ru": "карта",
+                "uk": "мапа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "photo",
+            "frame",
+            "album",
+            "map"
+          ],
+          "rightColumn": [
+            "фото",
+            "рамка",
+            "альбом",
+            "карта"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i05:audio",
+            "transcript": "These lamps are big."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These lamps are big.",
+          "orderedTokens": [
+            "These",
+            "lamps",
+            "are",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "lamp"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `lamps` — `These lamps are big.`",
+                "uk": "тут потрібно `lamps` — `These lamps are big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка показывает на одну полку рядом с вами. Скажите ей, что это полка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка показывает на одну полку рядом с вами. Скажите ей, что это полка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a shelf.",
+          "localizedMeaning": {
+            "ru": "Соседка показывает на одну полку рядом с вами. Скажите ей, что это полка.",
+            "uk": "Сусідка показує на одну полицю поруч із вами. Скажіть їй, що це полиця."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка показывает на одну полку рядом с вами. Скажите ей, что это полка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a shelf.`",
+                "uk": "тут потрібно `This` — `This is a shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:photo",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — photo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:photo:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — photo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:photo:audio",
+            "transcript": "photo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:photo:r1",
+              "targetText": "photo",
+              "meaningByLocale": {
+                "ru": "фото, фотография. This is a photo — «Это фото». О снимке на бумаге или в телефоне.",
+                "uk": "фото, фотографія. This is a photo — «Це фото». Про знімок на папері чи в телефоні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "photo",
+            "definitionByLocale": {
+              "ru": "фото, фотография. This is a photo — «Это фото». О снимке на бумаге или в телефоне.",
+              "uk": "фото, фотографія. This is a photo — «Це фото». Про знімок на папері чи в телефоні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат достаёт снимок из конверта и называет его, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Брат достаёт снимок из конверта и называет его, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i07:audio",
+            "transcript": "photo"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "photo",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:frame",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — frame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:frame:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — frame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:frame:audio",
+            "transcript": "frame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:frame:r1",
+              "targetText": "frame",
+              "meaningByLocale": {
+                "ru": "рамка. These frames are cheap — «Эти рамки дешёвые». О рамке для фото или картины.",
+                "uk": "рамка. These frames are cheap — «Ці рамки дешеві». Про рамку для фото чи картини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frame",
+            "definitionByLocale": {
+              "ru": "рамка. These frames are cheap — «Эти рамки дешёвые». О рамке для фото или картины.",
+              "uk": "рамка. These frames are cheap — «Ці рамки дешеві». Про рамку для фото чи картини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i08:r1",
+            "text": "frame"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i08:r2",
+            "text": "mirror"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i08:r3",
+            "text": "shelf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?",
+            "uk": "Брат хоче вставити знімок в обрамлення, щоб повісити його на стіну. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-35:i08:r1",
+              "text": "frame"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i08:r2",
+              "text": "mirror"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i08:r3",
+              "text": "shelf"
+            }
+          ],
+          "testedDimension": "Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "mirror — это зеркало, а обрамление для снимка называется frame.",
+                "uk": "mirror — це дзеркало, а обрамлення для знімка називається frame."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "shelf — это полка, а обрамление для снимка называется frame.",
+                "uk": "shelf — це полиця, а обрамлення для знімка називається frame."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит соседка о снимках",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i09:r1",
+            "text": "This photo is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i09:r2",
+            "text": "These photos are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i09:r3",
+            "text": "This photo is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит соседка о снимках",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i09:audio",
+            "transcript": "This photo is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i09:r1",
+              "targetText": "This photo is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i09:r2",
+              "targetText": "These photos are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i09:r3",
+              "targetText": "This photo is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит соседка о снимках",
+              "feedbackByLocale": {
+                "ru": "В записи `This photo` — снимок один, а в этом варианте `These photos` — несколько.",
+                "uk": "У записі `This photo` — знімок один, а в цьому варіанті `These photos` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит соседка о снимках",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i10:p1",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фото",
+                "uk": "фото"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i10:p2",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i10:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i10:p4",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "photo",
+            "wall",
+            "mirror",
+            "clock"
+          ],
+          "rightColumn": [
+            "фото",
+            "стена",
+            "зеркало",
+            "часы (настенные)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i11:audio",
+            "transcript": "Are these frames old?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are these frames old?",
+          "orderedTokens": [
+            "Are",
+            "these",
+            "frames",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are these frames old?`",
+                "uk": "тут потрібно `Are` — `Are these frames old?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка держит одну рамку. Скажите ей, что это рамка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка держит одну рамку. Скажите ей, что это рамка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a frame.",
+          "localizedMeaning": {
+            "ru": "Соседка держит одну рамку. Скажите ей, что это рамка.",
+            "uk": "Сусідка тримає одну рамку. Скажіть їй, що це рамка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "frame"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка держит одну рамку. Скажите ей, что это рамка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a frame.`",
+                "uk": "тут потрібно `This` — `This is a frame.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:album",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — album",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:album:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — album",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:album:audio",
+            "transcript": "album"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:album:r1",
+              "targetText": "album",
+              "meaningByLocale": {
+                "ru": "альбом. This album is big — «Этот альбом большой». О книге, куда вкладывают фото.",
+                "uk": "альбом. This album is big — «Цей альбом великий». Про книгу, куди вкладають фото."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "album",
+            "definitionByLocale": {
+              "ru": "альбом. This album is big — «Этот альбом большой». О книге, куда вкладывают фото.",
+              "uk": "альбом. This album is big — «Цей альбом великий». Про книгу, куди вкладають фото."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка берёт со стола толстую книгу для снимков и называет её, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Соседка берёт со стола толстую книгу для снимков и называет её, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i13:audio",
+            "transcript": "album"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "album",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:map",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — map",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:map:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — map",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:map:audio",
+            "transcript": "map"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:map:r1",
+              "targetText": "map",
+              "meaningByLocale": {
+                "ru": "карта. Is this map new? — «Эта карта новая?» О карте города или страны.",
+                "uk": "мапа. Is this map new? — «Ця мапа нова?» Про мапу міста чи країни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "map",
+            "definitionByLocale": {
+              "ru": "карта. Is this map new? — «Эта карта новая?» О карте города или страны.",
+              "uk": "мапа. Is this map new? — «Ця мапа нова?» Про мапу міста чи країни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i14:r1",
+            "text": "map"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i14:r2",
+            "text": "clock"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i14:r3",
+            "text": "mirror"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?",
+            "uk": "Брат хоче повісити на стіну малюнок міста з вулицями. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-35:i14:r1",
+              "text": "map"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i14:r2",
+              "text": "clock"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i14:r3",
+              "text": "mirror"
+            }
+          ],
+          "testedDimension": "Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "clock — это часы, а рисунок города с улицами называется map.",
+                "uk": "clock — це годинник, а малюнок міста з вулицями називається map."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "mirror — это зеркало, а рисунок города с улицами называется map.",
+                "uk": "mirror — це дзеркало, а малюнок міста з вулицями називається map."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата об альбоме",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i15:r1",
+            "text": "Is this album new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i15:r2",
+            "text": "Are these albums new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i15:r3",
+            "text": "Is this album old?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата об альбоме",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i15:audio",
+            "transcript": "Is this album new?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i15:r1",
+              "targetText": "Is this album new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i15:r2",
+              "targetText": "Are these albums new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i15:r3",
+              "targetText": "Is this album old?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата об альбоме",
+              "feedbackByLocale": {
+                "ru": "В записи `Is this album` — альбом один, а в этом варианте `Are these albums` — несколько.",
+                "uk": "У записі `Is this album` — альбом один, а в цьому варіанті `Are these albums` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата об альбоме",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i16:p1",
+              "target": "map",
+              "meaningByLocale": {
+                "ru": "карта",
+                "uk": "мапа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i16:p2",
+              "target": "album",
+              "meaningByLocale": {
+                "ru": "альбом",
+                "uk": "альбом"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i16:p3",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i16:p4",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фото",
+                "uk": "фото"
+              }
+            }
+          ],
+          "leftColumn": [
+            "map",
+            "album",
+            "frame",
+            "photo"
+          ],
+          "rightColumn": [
+            "карта",
+            "альбом",
+            "рамка",
+            "фото"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показывает на карту рядом с вами. Скажите ему коротко: эта карта старая.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Брат показывает на карту рядом с вами. Скажите ему коротко: эта карта старая.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i17:audio",
+            "transcript": "This map is old."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This map is old.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-35:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показує на картини поруч із вами. Скажіть сусідці повною фразою: ці картини нові.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показує на картини поруч із вами. Скажіть сусідці повною фразою: ці картини нові.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These pictures are new.",
+          "localizedMeaning": {
+            "ru": "Брат показывает на картины рядом с вами. Скажите соседке полной фразой: эти картины новые.",
+            "uk": "Брат показує на картини поруч із вами. Скажіть сусідці повною фразою: ці картини нові."
+          },
+          "orderedTokens": [
+            "These",
+            "pictures",
+            "are",
+            "new"
+          ],
+          "authoredDistractorTokens": [
+            "picture"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат показує на картини поруч із вами. Скажіть сусідці повною фразою: ці картини нові.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `pictures` — `These pictures are new.`",
+                "uk": "тут потрібно `pictures` — `These pictures are new.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання сусідки про дзеркало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i02:r1",
+            "text": "Is this mirror big?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i02:r2",
+            "text": "Are these mirrors big?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i02:r3",
+            "text": "Is this mirror old?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання сусідки про дзеркало",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i02:audio",
+            "transcript": "Is this mirror big?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i02:r1",
+              "targetText": "Is this mirror big?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i02:r2",
+              "targetText": "Are these mirrors big?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i02:r3",
+              "targetText": "Is this mirror old?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сусідки про дзеркало",
+              "feedbackByLocale": {
+                "ru": "В записи `Is this mirror` — зеркало одно, а в этом варианте `Are these mirrors` — несколько.",
+                "uk": "У записі `Is this mirror` — дзеркало одне, а в цьому варіанті `Are these mirrors` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сусідки про дзеркало",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `big`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `big`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат показує на годинник на стіні перед вами. Доповніть його фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i03:r1",
+            "text": "clock"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i03:r2",
+            "text": "clocks"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i03:r3",
+            "text": "a clock"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показує на годинник на стіні перед вами. Доповніть його фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат показывает на часы на стене перед вами. Дополните его фразу",
+            "uk": "Брат показує на годинник на стіні перед вами. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "This ___ is old.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-35:i03:r1",
+              "text": "clock"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i03:r2",
+              "text": "clocks"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i03:r3",
+              "text": "a clock"
+            }
+          ],
+          "testedDimension": "Брат показує на годинник на стіні перед вами. Доповніть його фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат показує на годинник на стіні перед вами. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "После This нужен один предмет: clock без s.",
+                "uk": "Після This потрібен один предмет: clock без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат показує на годинник на стіні перед вами. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "После This артикль a не ставим: This clock is old.",
+                "uk": "Після This артикль a не ставимо: This clock is old."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i04:p1",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фото",
+                "uk": "фото"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i04:p2",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i04:p3",
+              "target": "album",
+              "meaningByLocale": {
+                "ru": "альбом",
+                "uk": "альбом"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i04:p4",
+              "target": "map",
+              "meaningByLocale": {
+                "ru": "карта",
+                "uk": "мапа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "photo",
+            "frame",
+            "album",
+            "map"
+          ],
+          "rightColumn": [
+            "фото",
+            "рамка",
+            "альбом",
+            "мапа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i05:audio",
+            "transcript": "These lamps are big."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These lamps are big.",
+          "orderedTokens": [
+            "These",
+            "lamps",
+            "are",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "lamp"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `lamps` — `These lamps are big.`",
+                "uk": "тут потрібно `lamps` — `These lamps are big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка показує на одну полицю поруч із вами. Скажіть їй, що це полиця.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка показує на одну полицю поруч із вами. Скажіть їй, що це полиця.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a shelf.",
+          "localizedMeaning": {
+            "ru": "Соседка показывает на одну полку рядом с вами. Скажите ей, что это полка.",
+            "uk": "Сусідка показує на одну полицю поруч із вами. Скажіть їй, що це полиця."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка показує на одну полицю поруч із вами. Скажіть їй, що це полиця.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a shelf.`",
+                "uk": "тут потрібно `This` — `This is a shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:photo",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — photo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:photo:audio"
+        ],
+        "accessibilityLabel": "Картка слова — photo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:photo:audio",
+            "transcript": "photo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:photo:r1",
+              "targetText": "photo",
+              "meaningByLocale": {
+                "ru": "фото, фотография. This is a photo — «Это фото». О снимке на бумаге или в телефоне.",
+                "uk": "фото, фотографія. This is a photo — «Це фото». Про знімок на папері чи в телефоні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "photo",
+            "definitionByLocale": {
+              "ru": "фото, фотография. This is a photo — «Это фото». О снимке на бумаге или в телефоне.",
+              "uk": "фото, фотографія. This is a photo — «Це фото». Про знімок на папері чи в телефоні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат дістає знімок з конверта й називає його, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Брат дістає знімок з конверта й називає його, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i07:audio",
+            "transcript": "photo"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "photo",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:frame",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — frame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:frame:audio"
+        ],
+        "accessibilityLabel": "Картка слова — frame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:frame:audio",
+            "transcript": "frame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:frame:r1",
+              "targetText": "frame",
+              "meaningByLocale": {
+                "ru": "рамка. These frames are cheap — «Эти рамки дешёвые». О рамке для фото или картины.",
+                "uk": "рамка. These frames are cheap — «Ці рамки дешеві». Про рамку для фото чи картини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frame",
+            "definitionByLocale": {
+              "ru": "рамка. These frames are cheap — «Эти рамки дешёвые». О рамке для фото или картины.",
+              "uk": "рамка. These frames are cheap — «Ці рамки дешеві». Про рамку для фото чи картини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хоче вставити знімок в обрамлення, щоб повісити його на стіну. Як воно називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i08:r1",
+            "text": "frame"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i08:r2",
+            "text": "mirror"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i08:r3",
+            "text": "shelf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хоче вставити знімок в обрамлення, щоб повісити його на стіну. Як воно називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет вставить снимок в обрамление, чтобы повесить его на стену. Как оно называется по-английски?",
+            "uk": "Брат хоче вставити знімок в обрамлення, щоб повісити його на стіну. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-35:i08:r1",
+              "text": "frame"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i08:r2",
+              "text": "mirror"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i08:r3",
+              "text": "shelf"
+            }
+          ],
+          "testedDimension": "Брат хоче вставити знімок в обрамлення, щоб повісити його на стіну. Як воно називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат хоче вставити знімок в обрамлення, щоб повісити його на стіну. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "mirror — это зеркало, а обрамление для снимка называется frame.",
+                "uk": "mirror — це дзеркало, а обрамлення для знімка називається frame."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат хоче вставити знімок в обрамлення, щоб повісити його на стіну. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "shelf — это полка, а обрамление для снимка называется frame.",
+                "uk": "shelf — це полиця, а обрамлення для знімка називається frame."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже сусідка про знімки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i09:r1",
+            "text": "This photo is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i09:r2",
+            "text": "These photos are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i09:r3",
+            "text": "This photo is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже сусідка про знімки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i09:audio",
+            "transcript": "This photo is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i09:r1",
+              "targetText": "This photo is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i09:r2",
+              "targetText": "These photos are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i09:r3",
+              "targetText": "This photo is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сусідка про знімки",
+              "feedbackByLocale": {
+                "ru": "В записи `This photo` — снимок один, а в этом варианте `These photos` — несколько.",
+                "uk": "У записі `This photo` — знімок один, а в цьому варіанті `These photos` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сусідка про знімки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i10:p1",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фото",
+                "uk": "фото"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i10:p2",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i10:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i10:p4",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "photo",
+            "wall",
+            "mirror",
+            "clock"
+          ],
+          "rightColumn": [
+            "фото",
+            "стіна",
+            "дзеркало",
+            "годинник (настінний)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i11:audio",
+            "transcript": "Are these frames old?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are these frames old?",
+          "orderedTokens": [
+            "Are",
+            "these",
+            "frames",
+            "old"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are these frames old?`",
+                "uk": "тут потрібно `Are` — `Are these frames old?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка тримає одну рамку. Скажіть їй, що це рамка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка тримає одну рамку. Скажіть їй, що це рамка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a frame.",
+          "localizedMeaning": {
+            "ru": "Соседка держит одну рамку. Скажите ей, что это рамка.",
+            "uk": "Сусідка тримає одну рамку. Скажіть їй, що це рамка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "frame"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка тримає одну рамку. Скажіть їй, що це рамка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a frame.`",
+                "uk": "тут потрібно `This` — `This is a frame.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:album",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — album",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:album:audio"
+        ],
+        "accessibilityLabel": "Картка слова — album",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:album:audio",
+            "transcript": "album"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:album:r1",
+              "targetText": "album",
+              "meaningByLocale": {
+                "ru": "альбом. This album is big — «Этот альбом большой». О книге, куда вкладывают фото.",
+                "uk": "альбом. This album is big — «Цей альбом великий». Про книгу, куди вкладають фото."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "album",
+            "definitionByLocale": {
+              "ru": "альбом. This album is big — «Этот альбом большой». О книге, куда вкладывают фото.",
+              "uk": "альбом. This album is big — «Цей альбом великий». Про книгу, куди вкладають фото."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка бере зі столу товсту книгу для знімків і називає її, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Сусідка бере зі столу товсту книгу для знімків і називає її, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i13:audio",
+            "transcript": "album"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "album",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:word:map",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — map",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:word:map:audio"
+        ],
+        "accessibilityLabel": "Картка слова — map",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:word:map:audio",
+            "transcript": "map"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:word:map:r1",
+              "targetText": "map",
+              "meaningByLocale": {
+                "ru": "карта. Is this map new? — «Эта карта новая?» О карте города или страны.",
+                "uk": "мапа. Is this map new? — «Ця мапа нова?» Про мапу міста чи країни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "map",
+            "definitionByLocale": {
+              "ru": "карта. Is this map new? — «Эта карта новая?» О карте города или страны.",
+              "uk": "мапа. Is this map new? — «Ця мапа нова?» Про мапу міста чи країни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хоче повісити на стіну малюнок міста з вулицями. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i14:r1",
+            "text": "map"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i14:r2",
+            "text": "clock"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i14:r3",
+            "text": "mirror"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хоче повісити на стіну малюнок міста з вулицями. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет повесить на стену рисунок города с улицами. Как он называется по-английски?",
+            "uk": "Брат хоче повісити на стіну малюнок міста з вулицями. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-35:i14:r1",
+              "text": "map"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i14:r2",
+              "text": "clock"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i14:r3",
+              "text": "mirror"
+            }
+          ],
+          "testedDimension": "Брат хоче повісити на стіну малюнок міста з вулицями. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат хоче повісити на стіну малюнок міста з вулицями. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "clock — это часы, а рисунок города с улицами называется map.",
+                "uk": "clock — це годинник, а малюнок міста з вулицями називається map."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат хоче повісити на стіну малюнок міста з вулицями. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "mirror — это зеркало, а рисунок города с улицами называется map.",
+                "uk": "mirror — це дзеркало, а малюнок міста з вулицями називається map."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата про альбом",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i15:r1",
+            "text": "Is this album new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i15:r2",
+            "text": "Are these albums new?"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i15:r3",
+            "text": "Is this album old?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата про альбом",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i15:audio",
+            "transcript": "Is this album new?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i15:r1",
+              "targetText": "Is this album new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i15:r2",
+              "targetText": "Are these albums new?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i15:r3",
+              "targetText": "Is this album old?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата про альбом",
+              "feedbackByLocale": {
+                "ru": "В записи `Is this album` — альбом один, а в этом варианте `Are these albums` — несколько.",
+                "uk": "У записі `Is this album` — альбом один, а в цьому варіанті `Are these albums` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата про альбом",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i16:p1",
+              "target": "map",
+              "meaningByLocale": {
+                "ru": "карта",
+                "uk": "мапа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i16:p2",
+              "target": "album",
+              "meaningByLocale": {
+                "ru": "альбом",
+                "uk": "альбом"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i16:p3",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i16:p4",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фото",
+                "uk": "фото"
+              }
+            }
+          ],
+          "leftColumn": [
+            "map",
+            "album",
+            "frame",
+            "photo"
+          ],
+          "rightColumn": [
+            "мапа",
+            "альбом",
+            "рамка",
+            "фото"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показує на мапу поруч із вами. Скажіть йому коротко: ця мапа стара.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Брат показує на мапу поруч із вами. Скажіть йому коротко: ця мапа стара.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i17:audio",
+            "transcript": "This map is old."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This map is old.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-35:i01",
+      "correctText": "These pictures are new.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i02",
+      "correctText": "Is this mirror big?",
+      "correctResponseId": "en:lesson-03:session-35:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i03",
+      "correctText": "clock",
+      "correctResponseId": "en:lesson-03:session-35:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i05",
+      "correctText": "These lamps are big.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i06",
+      "correctText": "This is a shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:word:photo",
+      "correctText": "photo",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i07",
+      "correctText": "photo",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:word:frame",
+      "correctText": "frame",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i08",
+      "correctText": "frame",
+      "correctResponseId": "en:lesson-03:session-35:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i09",
+      "correctText": "This photo is old.",
+      "correctResponseId": "en:lesson-03:session-35:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i11",
+      "correctText": "Are these frames old?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i12",
+      "correctText": "This is a frame.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:word:album",
+      "correctText": "album",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i13",
+      "correctText": "album",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:word:map",
+      "correctText": "map",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i14",
+      "correctText": "map",
+      "correctResponseId": "en:lesson-03:session-35:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i15",
+      "correctText": "Is this album new?",
+      "correctResponseId": "en:lesson-03:session-35:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-35:i17",
+      "correctText": "This map is old.",
+      "correctResponseId": null
+    }
+  ]
+}

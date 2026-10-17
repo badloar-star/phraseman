@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 28 — Стільці для зустрічі
+# Англійська · Урок 3 · Заняття 28 — Речі біля виходу з магазину
 
-**Ситуація.** Ви з Анною готуєте зустріч про подорожі. На столі лежать карти, а Олег розставляє стільці. Місць виявилося менше, ніж гостей, тому ви змінюєте розташування й уточнюєте, де запасні стільці.
+**Ситуація.** Ви з подругою купили дорожні речі й збираєтеся вийти з магазину. Продавець та охоронниця перевіряють покупки, а ви відповідаєте, що де лежить. This кажемо про те, що поруч із вами, that — про те, що далеко, і розрізняємо їх на слух.
 
-**Що ви опануєте:** назвати кілька стільців, знайти потрібні стільці й сказати про предмети загалом
-**Нові слова:** chairs
+**Що ви опануєте:** розрізняти this і that у відповіді та на слух
+**Нові слова:** suitcase, backpack, handbag, stroller
+**Повертаються:** umbrella, basket, trolley, tag, bag
 
 ---
 
 ## Інтро 1
 
-### Місце для кожного
+### Покупка на колесах
 
-`chair` — «стілець», `chairs` — «стільці». `They are chairs` — «Це стільці». Для кількох стільців додаємо `s`, перед `chairs` не ставимо `a`. Олег приніс один стілець на трьох гостей. Якщо це не гра з музикою, краще принести ще. Потрібні `chairs` — стільці.
+Ви з подругою розрахувалися й збираєтеся йти. Біля каси стоїть ваша нова покупка на колесах. Продавець перевіряє чек і питає, що це за річ. suitcase — «валіза». Ви тримаєте її за ручку, вона поруч із вами, тому this: This is a suitcase — «Це валіза».
 
-**На фотографії кілька стільців. Назвіть їх одним англійським словом.**
+**Продавець питає, що за покупка поруч із вами. Скажіть, що це валіза.**
 
-- ✅ **chairs**
-- ❌ chair — *`chair` — один стілець; кілька — `chairs`.*
-- ❌ a chairs — *Перед назвою кількох стільців не ставимо `a`.*
+- ✅ **This is a suitcase.**
+- ❌ That is a suitcase. — *Валіза стоїть поруч із вами, а that кажемо про далеке: This is a suitcase.*
+- ❌ This is suitcase. — *Перед suitcase потрібно a: This is a suitcase.*
 
 ---
 
 ## Інтро 2
 
-### Стільці загалом і наші стільці
+### Лава в іншому кінці зали
 
-`Chairs are different` — «Стільці різні». Можна говорити про стільці загалом: вони бувають різної висоти й форми. Перед `chairs` тут немає `the`. `The chairs are upstairs` — «Стільці нагорі»: ідеться про конкретні стільці для зустрічі. `Where are the chairs?` — «Де стільці?»
+Подруга вже чекає біля виходу, а на лаві в іншому кінці зали лежить її річ із двома лямками. backpack — «рюкзак», його носять на спині. Лава далеко від вас, тому that: That is a backpack — «Це рюкзак». Продавець просить перевірити, чи не забули ви її.
 
-**Ви говорите про стільці загалом та їхню різну форму, без указівки на певні стільці. Виберіть фразу «Стільці різні».**
+**Продавець показує на лаву в іншому кінці зали. Скажіть, що це рюкзак.**
 
-- ✅ **Chairs are different.**
-- ❌ The chairs are different. — *`The chairs` — певні стільці. Тут ідеться про стільці загалом: `Chairs`.*
-- ❌ A chairs are different. — *Перед `chairs` не ставимо `a`.*
+- ✅ **That is a backpack.**
+- ❌ This is a backpack. — *Рюкзак лежить далеко, а this кажемо про те, що поруч: That is a backpack.*
+- ❌ That is an backpack. — *Перед backpack потрібно a: слово починається з приголосного звуку.*
 
 ---
 
 ## Інтро 3
 
-### Можна переставити
+### Сумка на стільці біля виходу
 
-`correct` — «правильний», `certain` — «упевнений», `serious` — «серйозний», `flexible` — «гнучкий, готовий пристосуватися». Анна готова змінити розташування: `She is flexible` — «Вона готова пристосуватися». Тут ідеться про підхід до планів, а не про розтяжку. Олег упевнений у своїй відповіді: `He is certain` — «Він упевнений». Ви перевірили карти: `The maps are correct` — «Карти правильні».
+Ви стоїте біля каси, а на стільці біля самого виходу лежить чиясь сумка, і охоронниця дивиться в її бік. handbag — «жіноча сумка», невелика, з двома ручками. Вона далеко від вас, тому that. Ви хочете запитати охоронницю: Is that a handbag? — «Це жіноча сумка?»
 
-**Анна знає, які стільці потрібні для зустрічі. Запитайте, де стільці.**
+**Охоронниця стоїть біля виходу. Запитайте її, чи це жіноча сумка на стільці.**
 
-- ✅ **Where are the chairs?**
-- ❌ Where is the chairs? — *Стільців кілька: потрібно `are`.*
-- ❌ What are the chairs? — *Про місце запитуємо `Where` — «Де».*
+- ✅ **Is that a handbag?**
+- ❌ Is this a handbag? — *Сумка далеко, а this кажемо про те, що поруч: Is that a handbag?*
+- ❌ Is that handbag? — *Перед handbag потрібно a: Is that a handbag?*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви звірили карти з місцевістю й переконалися, що помилок немає. Повідомте «Карти правильні»**
+**1 · Продавець показує на кошик поруч із вами. Скажіть, що це кошик.**
 <!-- interaction_id: en:lesson-03:session-28:i01; family: phrase_builder -->
-Плитки: `correct` `are` `maps` `The` `is` → **The maps are correct.**
-*(плитка `is` зайва: тут потрібно `are` — `The maps are correct.`)*
+Плитки: `basket` `This` `is` `a` `That` → **This is a basket.**
+*(плитка `That` зайва: тут потрібно `This` — `This is a basket.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте, що каже продавець**
 <!-- interaction_id: en:lesson-03:session-28:i02; family: listen_choose -->
-🔊 *chairs* → **chairs** · cars · cats
-- cars — *У записі перше слово — `chairs`, а в цьому варіанті — `cars`.*
-- cats — *У записі перше слово — `chairs`, а в цьому варіанті — `cats`.*
+🔊 *That is a trolley.* → **That is a trolley.** · This is a trolley. · That is a basket.
+- This is a trolley. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
+- That is a basket. — *У записі останнє слово — `trolley`, а в цьому варіанті — `basket`.*
 
-**3 · Назвіть кілька стільців одним англійським словом**
+**3 · Парасолька лежить поруч із вами. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-28:i03; family: context_gap_grammar -->
-___ → **chairs** · chair · a chairs
-- chair — *Кілька стільців — `chairs`.*
-- a chairs — *Перед `chairs` не ставимо `a`.*
+This ___ an umbrella. → **is** · are · am
+- are — *З this потрібно is: This is an umbrella.*
+- am — *З this потрібно is: This is an umbrella.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-28:i04; family: speed_match -->
-chairs — стільці · maps — карти місцевості · correct — правильний · certain — упевнений
+suitcase — валіза · backpack — рюкзак · handbag — жіноча сумка · stroller — дитячий візок
 
-**5 · Послухайте й складіть повідомлення**
+**5 · Послухайте охоронницю й складіть питання**
 <!-- interaction_id: en:lesson-03:session-28:i05; family: listen_build_dictation -->
-🔊 *The chairs are upstairs.* Плитки: `upstairs` `are` `chairs` `The` `is` → **The chairs are upstairs.**
-*(плитка `is` зайва: тут потрібно `are` — `The chairs are upstairs.`)*
+🔊 *Is that a tag?* Плитки: `tag` `that` `Is` `a` `an` → **Is that a tag?**
+*(плитка `an` зайва: тут потрібно `a` — `Is that a tag?`)*
 
-**6 · Скажіть «Стільці різні» про стільці загалом, наприклад про їхню форму**
+**6 · Парасолька стоїть біля входу, далеко від вас. Скажіть продавцю, що це парасолька.**
 <!-- interaction_id: en:lesson-03:session-28:i06; family: phrase_builder -->
-Плитки: `different` `are` `Chairs` `is` → **Chairs are different.**
-*(плитка `is` зайва: тут потрібно `are` — `Chairs are different.`)*
+Плитки: `umbrella` `That` `is` `an` `This` → **That is an umbrella.**
+*(плитка `This` зайва: тут потрібно `That` — `That is an umbrella.`)*
 
-**7 · Олег упевнений у своїй відповіді. Скажіть «Він упевнений» зі скороченням**
+**7 · Картка слова — suitcase**
+<!-- interaction_id: en:lesson-03:session-28:word:suitcase; family: word_card -->
+> **suitcase** — валіза, велика сумка на колесах для поїздки. This is a suitcase — «Це валіза». Про валізу для відпустки чи відрядження.
+
+**8 · Продавець називає річ, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-28:i07; family: scripted_repeat_compare -->
-🎙 **He's certain.**
+🎙 **suitcase**
 
-**8 · Ви говорите про різну форму стільців загалом, без указівки на конкретні стільці**
+**9 · Картка слова — backpack**
+<!-- interaction_id: en:lesson-03:session-28:word:backpack; family: word_card -->
+> **backpack** — рюкзак, сумка з двома лямками, яку носять на спині. That is a backpack — «Це рюкзак». Про рюкзак для школи, роботи, походу.
+
+**10 · Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-03:session-28:i08; family: context_gap_grammar -->
-___ are different. → **Chairs** · The chairs · A chairs
-- The chairs — *`The chairs` — певні стільці. Тут потрібне загальне `Chairs`.*
-- A chairs — *Перед `chairs` не ставимо `a`.*
+___ → **backpack** · suitcase · basket
+- suitcase — *suitcase — це валіза на колесах, а річ для спини називається backpack.*
+- basket — *basket — це кошик, а річ для спини називається backpack.*
 
-**9 · Послухайте опис Олега**
+**11 · Послухайте подругу**
 <!-- interaction_id: en:lesson-03:session-28:i09; family: listen_choose -->
-🔊 *He is serious.* → **He is serious.** · He is certain. · He is flexible.
-- He is certain. — *У записі останнє слово — `serious`, а в цьому варіанті — `certain`.*
-- He is flexible. — *У записі останнє слово — `serious`, а в цьому варіанті — `flexible`.*
+🔊 *This is not a suitcase.* → **This is not a suitcase.** · That is not a suitcase. · This is not a basket.
+- That is not a suitcase. — *У записі перше слово — `This`, а в цьому варіанті — `That`.*
+- This is not a basket. — *У записі останнє слово — `suitcase`, а в цьому варіанті — `basket`.*
 
-**10 · З’єднайте слова зі значеннями в цій сцені**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-28:i10; family: speed_match -->
-serious — серйозний · flexible — готовий пристосуватися · chairs — стільці · maps — карти місцевості
+suitcase — валіза · umbrella — парасолька · basket — кошик · trolley — візок для покупок
 
-**11 · Послухайте й складіть повідомлення**
+**13 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-28:i11; family: listen_build_dictation -->
-🔊 *The maps are here.* Плитки: `here` `are` `maps` `The` `is` → **The maps are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The maps are here.`)*
+🔊 *That is not a backpack.* Плитки: `backpack` `not` `is` `That` `a` `an` → **That is not a backpack.**
+*(плитка `an` зайва: тут потрібно `a` — `That is not a backpack.`)*
 
-**12 · Анна знає, які стільці потрібні. Запитайте, де стільці**
+**14 · Продавець питає, що у вас у руці. Скажіть, що це валіза.**
 <!-- interaction_id: en:lesson-03:session-28:i12; family: phrase_builder -->
-Плитки: `chairs` `the` `are` `Where` `What` → **Where are the chairs?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where are the chairs?`)*
+Плитки: `suitcase` `This` `is` `a` `That` → **This is a suitcase.**
+*(плитка `That` зайва: тут потрібно `This` — `This is a suitcase.`)*
 
-**13 · Анна готова пристосуватися до змін у плані. Скажіть про це зі скороченням, почніть із «Вона»**
+**15 · Картка слова — handbag**
+<!-- interaction_id: en:lesson-03:session-28:word:handbag; family: word_card -->
+> **handbag** — жіноча сумка, невелика сумка з ручками. Is that a handbag? — «Це жіноча сумка?» Про сумку, з якою ходять на роботу чи в гості.
+
+**16 · Продавець називає річ, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-28:i13; family: scripted_repeat_compare -->
-🎙 **She's flexible.**
+🎙 **handbag**
 
-**14 · Ви повідомляєте, де кілька підготовлених стільців**
+**17 · Картка слова — stroller**
+<!-- interaction_id: en:lesson-03:session-28:word:stroller; family: word_card -->
+> **stroller** — дитячий візок, у якому возять малюка. This is a stroller — «Це візок». Про візок для прогулянок з дитиною.
+
+**18 · Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?**
 <!-- interaction_id: en:lesson-03:session-28:i14; family: context_gap_grammar -->
-The chairs ___ upstairs. → **are** · is · am
-- is — *Стільців кілька: потрібно `are`.*
-- am — *З `the chairs` тут потрібно `are`.*
+___ → **stroller** · trolley · suitcase
+- trolley — *trolley — це візок для покупок, а дитячий називається stroller.*
+- suitcase — *suitcase — це валіза, а дитячий візок називається stroller.*
 
-**15 · Послухайте повідомлення про Олега**
+**19 · Послухайте питання охоронниці**
 <!-- interaction_id: en:lesson-03:session-28:i15; family: listen_choose -->
-🔊 *He is certain.* → **He is certain.** · He is serious. · He is flexible.
-- He is serious. — *У записі останнє слово — `certain`, а в цьому варіанті — `serious`.*
-- He is flexible. — *У записі останнє слово — `certain`, а в цьому варіанті — `flexible`.*
+🔊 *Is this a handbag?* → **Is this a handbag?** · Is that a handbag? · Is this a backpack?
+- Is that a handbag? — *У записі друге слово — `this`, а в цьому варіанті — `that`.*
+- Is this a backpack? — *У записі останнє слово — `handbag`, а в цьому варіанті — `backpack`.*
 
-**16 · З’єднайте слова зі значеннями в цій сцені**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-28:i16; family: speed_match -->
-correct — правильний · certain — упевнений · serious — серйозний · flexible — готовий пристосуватися
+stroller — дитячий візок · handbag — жіноча сумка · backpack — рюкзак · suitcase — валіза
 
-**17 · В іншій кімнаті клубу ви готуєте нову зустріч. Олег знає, які стільці виділені вам. Запитайте, де стільці**
+**21 · Охоронниця показує на дитячий візок поруч із вами. Скажіть, що це.**
 <!-- interaction_id: en:lesson-03:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the chairs?**
-
+🎙 **This is a stroller.**

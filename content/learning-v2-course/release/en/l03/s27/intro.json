@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-27",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько машин, спросить об их месте и отличить машины вообще от конкретных машин",
-    "uk": "назвати кілька машин, запитати про їхнє місце й відрізнити машини загалом від конкретних машин"
+    "ru": "спрашивать, что это за вещь: Is this a …? и Is that a …?",
+    "uk": "питати, що це за річ: Is this a …? і Is that a …?"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Не одна машина",
-        "uk": "Не одна машина"
+        "ru": "Вещь с кнопками",
+        "uk": "Річ із кнопками"
       },
       "bodyByLocale": {
-        "ru": "`car` — «машина, автомобиль», `cars` — «машины». `They are cars` — «Это машины». Для нескольких машин добавляем `s`, а `a` перед `cars` не ставим. Олег предложил одну машину на всю группу. Сумки он уже уложил. Осталось решить, где поедут люди. Нужны `cars` — несколько машин.",
-        "uk": "`car` — «машина, автомобіль», `cars` — «машини». `They are cars` — «Це машини». Для кількох машин додаємо `s`, а `a` перед `cars` не ставимо. Олег запропонував одну машину на всю групу. Сумки він уже склав. Залишилося вирішити, де поїдуть люди. Потрібні `cars` — кілька машин."
+        "ru": "Соседка протягивает вам плоскую коробочку с кнопками и просит включить телевизор. remote — «пульт». Вы не уверены, что это он, и хотите спросить. Для вопроса ставим Is вперёд, а вещь лежит у вас в руке, то есть рядом, — this: Is this a remote? — «Это пульт?»",
+        "uk": "Сусідка простягає вам пласку коробочку з кнопками й просить увімкнути телевізор. remote — «пульт». Ви не впевнені, що це він, і хочете запитати. Для питання ставимо Is наперед, а річ лежить у вас у руці, тобто поруч, — this: Is this a remote? — «Це пульт?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-27:intro1:q",
         "promptByLocale": {
-          "ru": "На фотографии несколько автомобилей. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька автомобілів. Назвіть їх одним англійським словом."
+          "ru": "Соседка протягивает вам вещь с кнопками. Спросите, пульт ли это.",
+          "uk": "Сусідка простягає вам річ із кнопками. Запитайте, чи це пульт."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-27:intro1:r1",
-              "text": "cars"
+              "text": "Is this a remote?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro1:r2",
-              "text": "car"
+              "text": "This is a remote."
             },
             {
               "responseId": "en:lesson-03:session-27:intro1:r3",
-              "text": "a cars"
+              "text": "Is this an remote?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-27:intro1:r1",
-              "text": "cars"
+              "text": "Is this a remote?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro1:r2",
-              "text": "car"
+              "text": "This is a remote."
             },
             {
               "responseId": "en:lesson-03:session-27:intro1:r3",
-              "text": "a cars"
+              "text": "Is this an remote?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На фотографии несколько автомобилей. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька автомобілів. Назвіть їх одним англійським словом."
+          "ru": "Соседка протягивает вам вещь с кнопками. Спросите, пульт ли это.",
+          "uk": "Сусідка простягає вам річ із кнопками. Запитайте, чи це пульт."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Какие машины доступны",
-        "uk": "Які машини доступні"
+        "ru": "Деталь на телевизоре",
+        "uk": "Деталь на телевізорі"
       },
       "bodyByLocale": {
-        "ru": "`available` — «доступный, имеющийся в распоряжении». `The cars are available` — «Машины доступны»: этими машинами сейчас можно воспользоваться. `the cars` — конкретные машины, о которых вы говорите. А `Cars are different` — «Машины разные»: можно говорить о машинах вообще, например об их размерах. Перед `cars` в таком общем высказывании нет `the`.",
-        "uk": "`available` — «доступний, наявний у розпорядженні». `The cars are available` — «Машини доступні»: цими машинами зараз можна скористатися. `the cars` — конкретні машини, про які ви говорите. А `Cars are different` — «Машини різні»: можна говорити про машини загалом, наприклад про їхні розміри. Перед `cars` у такому загальному висловлюванні немає `the`."
+        "ru": "Соседка показывает на телевизор в другом конце комнаты: у края торчит маленькая круглая деталь. Вам нужно понять, что это. button — «кнопка», то, что нажимают пальцем. Телевизор далеко, поэтому в вопросе that: Is that a button? — «Это кнопка?»",
+        "uk": "Сусідка показує на телевізор в іншому кінці кімнати: біля краю стирчить маленька кругла деталь. Вам треба зрозуміти, що це. button — «кнопка», те, що натискають пальцем. Телевізор далеко, тому в питанні that: Is that a button? — «Це кнопка?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "Вы говорите о машинах вообще: у них бывают разные размеры. Выберите фразу «Машины разные».",
-          "uk": "Ви говорите про машини загалом: вони бувають різних розмірів. Виберіть фразу «Машини різні»."
+          "ru": "Соседка показывает на телевизор в другом конце комнаты. Спросите, кнопка ли это.",
+          "uk": "Сусідка показує на телевізор в іншому кінці кімнати. Запитайте, чи це кнопка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-27:intro2:r1",
-              "text": "Cars are different."
+              "text": "Is that a button?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro2:r2",
-              "text": "The cars are different."
+              "text": "Is this a button?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro2:r3",
-              "text": "A cars are different."
+              "text": "Is that button?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-27:intro2:r1",
-              "text": "Cars are different."
+              "text": "Is that a button?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro2:r2",
-              "text": "The cars are different."
+              "text": "Is this a button?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro2:r3",
-              "text": "A cars are different."
+              "text": "Is that button?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы говорите о машинах вообще: у них бывают разные размеры. Выберите фразу «Машины разные».",
-          "uk": "Ви говорите про машини загалом: вони бувають різних розмірів. Виберіть фразу «Машини різні»."
+          "ru": "Соседка показывает на телевизор в другом конце комнаты. Спросите, кнопка ли это.",
+          "uk": "Сусідка показує на телевізор в іншому кінці кімнати. Запитайте, чи це кнопка."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто уже проснулся",
-        "uk": "Хто вже прокинувся"
+        "ru": "Пластинка у двери",
+        "uk": "Пластинка біля дверей"
       },
       "bodyByLocale": {
-        "ru": "`awake` — «не спит», `asleep` — «спит». Анна уже проснулась: `She is awake` — «Она не спит». Её брат ещё спит: `He is asleep`. Олег охотно делится машинами и помогает группе: `He is generous` — «Он щедрый». Пока брат спит, можно найти машины: `Where are the cars?` — «Где машины?»",
-        "uk": "`awake` — «не спить», `asleep` — «спить». Анна вже прокинулася: `She is awake` — «Вона не спить». Її брат іще спить: `He is asleep`. Олег охоче ділиться машинами й допомагає групі: `He is generous` — «Він щедрий». Поки брат спить, можна знайти машини: `Where are the cars?` — «Де машини?»"
+        "ru": "Вы стоите у двери, а рядом на стене квадратная пластинка с клавишей. Соседка просит вас включить свет. switch — «выключатель», им включают и выключают свет. Он совсем рядом, поэтому this. Вы спрашиваете соседку: Is this a switch? — «Это выключатель?»",
+        "uk": "Ви стоїте біля дверей, а поруч на стіні квадратна пластинка з клавішею. Сусідка просить вас увімкнути світло. switch — «вимикач», ним вмикають і вимикають світло. Він зовсім поруч, тому this. Ви питаєте сусідку: Is this a switch? — «Це вимикач?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-27:intro3:q",
         "promptByLocale": {
-          "ru": "Анна знает, какие машины выделены для поездки. Спросите, где машины.",
-          "uk": "Анна знає, які машини виділені для поїздки. Запитайте, де машини."
+          "ru": "Вы стоите у стены рядом с пластинкой. Спросите соседку, выключатель ли это.",
+          "uk": "Ви стоїте біля стіни поруч із пластинкою. Запитайте сусідку, чи це вимикач."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-27:intro3:r1",
-              "text": "Where are the cars?"
+              "text": "Is this a switch?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro3:r2",
-              "text": "Where is the cars?"
+              "text": "Is this switch?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro3:r3",
-              "text": "What are the cars?"
+              "text": "Are this a switch?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-27:intro3:r1",
-              "text": "Where are the cars?"
+              "text": "Is this a switch?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro3:r2",
-              "text": "Where is the cars?"
+              "text": "Is this switch?"
             },
             {
               "responseId": "en:lesson-03:session-27:intro3:r3",
-              "text": "What are the cars?"
+              "text": "Are this a switch?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна знает, какие машины выделены для поездки. Спросите, где машины.",
-          "uk": "Анна знає, які машини виділені для поїздки. Запитайте, де машини."
+          "ru": "Вы стоите у стены рядом с пластинкой. Спросите соседку, выключатель ли это.",
+          "uk": "Ви стоїте біля стіни поруч із пластинкою. Запитайте сусідку, чи це вимикач."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6f5416f3561601c8de763ba4ffe2f0eba104289cd775690e9ff9a7ce5cdcd81f"
+  "introFingerprint": "6c8c99634781bbc6b533a731132b688ec78ce1799e48446331328c050f909d62"
 }

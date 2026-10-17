@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-28:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец показывает на корзину рядом с вами. Скажите, что это корзина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает на корзину рядом с вами. Скажите, что это корзина.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a basket.",
+          "localizedMeaning": {
+            "ru": "Продавец показывает на корзину рядом с вами. Скажите, что это корзина.",
+            "uk": "Продавець показує на кошик поруч із вами. Скажіть, що це кошик."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец показывает на корзину рядом с вами. Скажите, что это корзина.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a basket.`",
+                "uk": "тут потрібно `This` — `This is a basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит продавец",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i02:r1",
+            "text": "That is a trolley."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i02:r2",
+            "text": "This is a trolley."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i02:r3",
+            "text": "That is a basket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит продавец",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i02:audio",
+            "transcript": "That is a trolley."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:i02:r1",
+              "targetText": "That is a trolley.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i02:r2",
+              "targetText": "This is a trolley.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i02:r3",
+              "targetText": "That is a basket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавец",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trolley`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `basket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зонт лежит рядом с вами. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зонт лежит рядом с вами. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Зонт лежит рядом с вами. Дополните фразу",
+            "uk": "Парасолька лежить поруч із вами. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This ___ an umbrella.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-28:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Зонт лежит рядом с вами. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Зонт лежит рядом с вами. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is an umbrella.",
+                "uk": "З this потрібно is: This is an umbrella."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Зонт лежит рядом с вами. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is an umbrella.",
+                "uk": "З this потрібно is: This is an umbrella."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-28:i04:p1",
+              "target": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан",
+                "uk": "валіза"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i04:p2",
+              "target": "backpack",
+              "meaningByLocale": {
+                "ru": "рюкзак",
+                "uk": "рюкзак"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i04:p3",
+              "target": "handbag",
+              "meaningByLocale": {
+                "ru": "дамская сумка",
+                "uk": "жіноча сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i04:p4",
+              "target": "stroller",
+              "meaningByLocale": {
+                "ru": "детская коляска",
+                "uk": "дитячий візок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "suitcase",
+            "backpack",
+            "handbag",
+            "stroller"
+          ],
+          "rightColumn": [
+            "чемодан",
+            "рюкзак",
+            "дамская сумка",
+            "детская коляска"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте охранницу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте охранницу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i05:audio",
+            "transcript": "Is that a tag?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is that a tag?",
+          "orderedTokens": [
+            "Is",
+            "that",
+            "a",
+            "tag"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте охранницу и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `Is that a tag?`",
+                "uk": "тут потрібно `a` — `Is that a tag?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Зонт стоит у входа, далеко от вас. Скажите продавцу, что это зонт.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зонт стоит у входа, далеко от вас. Скажите продавцу, что это зонт.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is an umbrella.",
+          "localizedMeaning": {
+            "ru": "Зонт стоит у входа, далеко от вас. Скажите продавцу, что это зонт.",
+            "uk": "Парасолька стоїть біля входу, далеко від вас. Скажіть продавцю, що це парасолька."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "an",
+            "umbrella"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Зонт стоит у входа, далеко от вас. Скажите продавцу, что это зонт.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is an umbrella.`",
+                "uk": "тут потрібно `That` — `That is an umbrella.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:suitcase",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — suitcase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:suitcase:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — suitcase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:suitcase:audio",
+            "transcript": "suitcase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:suitcase:r1",
+              "targetText": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан, большая сумка на колёсиках для поездки. This is a suitcase — «Это чемодан». О чемодане для отпуска или командировки.",
+                "uk": "валіза, велика сумка на колесах для поїздки. This is a suitcase — «Це валіза». Про валізу для відпустки чи відрядження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suitcase",
+            "definitionByLocale": {
+              "ru": "чемодан, большая сумка на колёсиках для поездки. This is a suitcase — «Это чемодан». О чемодане для отпуска или командировки.",
+              "uk": "валіза, велика сумка на колесах для поїздки. This is a suitcase — «Це валіза». Про валізу для відпустки чи відрядження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i07:audio"
+        ],
+        "accessibilityLabel": "Продавец называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i07:audio",
+            "transcript": "suitcase"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "suitcase",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:backpack",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — backpack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:backpack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — backpack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:backpack:audio",
+            "transcript": "backpack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:backpack:r1",
+              "targetText": "backpack",
+              "meaningByLocale": {
+                "ru": "рюкзак, сумка с двумя лямками, которую носят на спине. That is a backpack — «Это рюкзак». О рюкзаке для школы, работы, похода.",
+                "uk": "рюкзак, сумка з двома лямками, яку носять на спині. That is a backpack — «Це рюкзак». Про рюкзак для школи, роботи, походу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "backpack",
+            "definitionByLocale": {
+              "ru": "рюкзак, сумка с двумя лямками, которую носят на спине. That is a backpack — «Это рюкзак». О рюкзаке для школы, работы, похода.",
+              "uk": "рюкзак, сумка з двома лямками, яку носять на спині. That is a backpack — «Це рюкзак». Про рюкзак для школи, роботи, походу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец показывает вещь с двумя лямками, которую носят на спине. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i08:r1",
+            "text": "backpack"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i08:r2",
+            "text": "suitcase"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i08:r3",
+            "text": "basket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает вещь с двумя лямками, которую носят на спине. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает вещь с двумя лямками, которую носят на спине. Как она называется по-английски?",
+            "uk": "Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-28:i08:r1",
+              "text": "backpack"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i08:r2",
+              "text": "suitcase"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i08:r3",
+              "text": "basket"
+            }
+          ],
+          "testedDimension": "Продавец показывает вещь с двумя лямками, которую носят на спине. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавец показывает вещь с двумя лямками, которую носят на спине. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "suitcase — это чемодан на колёсиках, а вещь для спины называется backpack.",
+                "uk": "suitcase — це валіза на колесах, а річ для спини називається backpack."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавец показывает вещь с двумя лямками, которую носят на спине. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "basket — это корзина, а вещь для спины называется backpack.",
+                "uk": "basket — це кошик, а річ для спини називається backpack."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i09:r1",
+            "text": "This is not a suitcase."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i09:r2",
+            "text": "That is not a suitcase."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i09:r3",
+            "text": "This is not a basket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i09:audio",
+            "transcript": "This is not a suitcase."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:i09:r1",
+              "targetText": "This is not a suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i09:r2",
+              "targetText": "That is not a suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i09:r3",
+              "targetText": "This is not a basket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `suitcase`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `suitcase`, а в цьому варіанті — `basket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-28:i10:p1",
+              "target": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан",
+                "uk": "валіза"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i10:p2",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i10:p3",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i10:p4",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка для покупок",
+                "uk": "візок для покупок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "suitcase",
+            "umbrella",
+            "basket",
+            "trolley"
+          ],
+          "rightColumn": [
+            "чемодан",
+            "зонт",
+            "корзина",
+            "тележка для покупок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i11:audio",
+            "transcript": "That is not a backpack."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a backpack.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "backpack"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a backpack.`",
+                "uk": "тут потрібно `a` — `That is not a backpack.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец спрашивает, что у вас в руке. Скажите, что это чемодан.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец спрашивает, что у вас в руке. Скажите, что это чемодан.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a suitcase.",
+          "localizedMeaning": {
+            "ru": "Продавец спрашивает, что у вас в руке. Скажите, что это чемодан.",
+            "uk": "Продавець питає, що у вас у руці. Скажіть, що це валіза."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "suitcase"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец спрашивает, что у вас в руке. Скажите, что это чемодан.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a suitcase.`",
+                "uk": "тут потрібно `This` — `This is a suitcase.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:handbag",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — handbag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:handbag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — handbag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:handbag:audio",
+            "transcript": "handbag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:handbag:r1",
+              "targetText": "handbag",
+              "meaningByLocale": {
+                "ru": "дамская сумка, небольшая сумка с ручками. Is that a handbag? — «Это дамская сумка?» О сумке, с которой ходят на работу или в гости.",
+                "uk": "жіноча сумка, невелика сумка з ручками. Is that a handbag? — «Це жіноча сумка?» Про сумку, з якою ходять на роботу чи в гості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handbag",
+            "definitionByLocale": {
+              "ru": "дамская сумка, небольшая сумка с ручками. Is that a handbag? — «Это дамская сумка?» О сумке, с которой ходят на работу или в гости.",
+              "uk": "жіноча сумка, невелика сумка з ручками. Is that a handbag? — «Це жіноча сумка?» Про сумку, з якою ходять на роботу чи в гості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i13:audio"
+        ],
+        "accessibilityLabel": "Продавец называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i13:audio",
+            "transcript": "handbag"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "handbag",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:stroller",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stroller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:stroller:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stroller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:stroller:audio",
+            "transcript": "stroller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:stroller:r1",
+              "targetText": "stroller",
+              "meaningByLocale": {
+                "ru": "детская коляска, в которой возят малыша. This is a stroller — «Это коляска». О коляске для прогулок с ребёнком.",
+                "uk": "дитячий візок, у якому возять малюка. This is a stroller — «Це візок». Про візок для прогулянок з дитиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stroller",
+            "definitionByLocale": {
+              "ru": "детская коляска, в которой возят малыша. This is a stroller — «Это коляска». О коляске для прогулок с ребёнком.",
+              "uk": "дитячий візок, у якому возять малюка. This is a stroller — «Це візок». Про візок для прогулянок з дитиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У выхода стоит тележка на колёсиках, в которой возят маленьких детей. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i14:r1",
+            "text": "stroller"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i14:r2",
+            "text": "trolley"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i14:r3",
+            "text": "suitcase"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У выхода стоит тележка на колёсиках, в которой возят маленьких детей. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У выхода стоит тележка на колёсиках, в которой возят маленьких детей. Как она называется по-английски?",
+            "uk": "Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-28:i14:r1",
+              "text": "stroller"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i14:r2",
+              "text": "trolley"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i14:r3",
+              "text": "suitcase"
+            }
+          ],
+          "testedDimension": "У выхода стоит тележка на колёсиках, в которой возят маленьких детей. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i14:r2",
+              "correct": false,
+              "testedDimension": "У выхода стоит тележка на колёсиках, в которой возят маленьких детей. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "trolley — это тележка для покупок, а детская называется stroller.",
+                "uk": "trolley — це візок для покупок, а дитячий називається stroller."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i14:r3",
+              "correct": false,
+              "testedDimension": "У выхода стоит тележка на колёсиках, в которой возят маленьких детей. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "suitcase — это чемодан, а детская коляска называется stroller.",
+                "uk": "suitcase — це валіза, а дитячий візок називається stroller."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос охранницы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i15:r1",
+            "text": "Is this a handbag?"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i15:r2",
+            "text": "Is that a handbag?"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i15:r3",
+            "text": "Is this a backpack?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос охранницы",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i15:audio",
+            "transcript": "Is this a handbag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:i15:r1",
+              "targetText": "Is this a handbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i15:r2",
+              "targetText": "Is that a handbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i15:r3",
+              "targetText": "Is this a backpack?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос охранницы",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі друге слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос охранницы",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `handbag`, а в этом варианте — `backpack`.",
+                "uk": "У записі останнє слово — `handbag`, а в цьому варіанті — `backpack`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-28:i16:p1",
+              "target": "stroller",
+              "meaningByLocale": {
+                "ru": "детская коляска",
+                "uk": "дитячий візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i16:p2",
+              "target": "handbag",
+              "meaningByLocale": {
+                "ru": "дамская сумка",
+                "uk": "жіноча сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i16:p3",
+              "target": "backpack",
+              "meaningByLocale": {
+                "ru": "рюкзак",
+                "uk": "рюкзак"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i16:p4",
+              "target": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан",
+                "uk": "валіза"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stroller",
+            "handbag",
+            "backpack",
+            "suitcase"
+          ],
+          "rightColumn": [
+            "детская коляска",
+            "дамская сумка",
+            "рюкзак",
+            "чемодан"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Охранница показывает на детскую коляску рядом с вами. Скажите, что это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Охранница показывает на детскую коляску рядом с вами. Скажите, что это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i17:audio",
+            "transcript": "This is a stroller."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a stroller.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-28:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець показує на кошик поруч із вами. Скажіть, що це кошик.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує на кошик поруч із вами. Скажіть, що це кошик.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a basket.",
+          "localizedMeaning": {
+            "ru": "Продавец показывает на корзину рядом с вами. Скажите, что это корзина.",
+            "uk": "Продавець показує на кошик поруч із вами. Скажіть, що це кошик."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець показує на кошик поруч із вами. Скажіть, що це кошик.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a basket.`",
+                "uk": "тут потрібно `This` — `This is a basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже продавець",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i02:r1",
+            "text": "That is a trolley."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i02:r2",
+            "text": "This is a trolley."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i02:r3",
+            "text": "That is a basket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже продавець",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i02:audio",
+            "transcript": "That is a trolley."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:i02:r1",
+              "targetText": "That is a trolley.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i02:r2",
+              "targetText": "This is a trolley.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i02:r3",
+              "targetText": "That is a basket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавець",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trolley`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `basket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Парасолька лежить поруч із вами. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Парасолька лежить поруч із вами. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Зонт лежит рядом с вами. Дополните фразу",
+            "uk": "Парасолька лежить поруч із вами. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This ___ an umbrella.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-28:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Парасолька лежить поруч із вами. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Парасолька лежить поруч із вами. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is an umbrella.",
+                "uk": "З this потрібно is: This is an umbrella."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Парасолька лежить поруч із вами. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is an umbrella.",
+                "uk": "З this потрібно is: This is an umbrella."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-28:i04:p1",
+              "target": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан",
+                "uk": "валіза"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i04:p2",
+              "target": "backpack",
+              "meaningByLocale": {
+                "ru": "рюкзак",
+                "uk": "рюкзак"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i04:p3",
+              "target": "handbag",
+              "meaningByLocale": {
+                "ru": "дамская сумка",
+                "uk": "жіноча сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i04:p4",
+              "target": "stroller",
+              "meaningByLocale": {
+                "ru": "детская коляска",
+                "uk": "дитячий візок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "suitcase",
+            "backpack",
+            "handbag",
+            "stroller"
+          ],
+          "rightColumn": [
+            "валіза",
+            "рюкзак",
+            "жіноча сумка",
+            "дитячий візок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте охоронницю й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте охоронницю й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i05:audio",
+            "transcript": "Is that a tag?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is that a tag?",
+          "orderedTokens": [
+            "Is",
+            "that",
+            "a",
+            "tag"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте охоронницю й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `Is that a tag?`",
+                "uk": "тут потрібно `a` — `Is that a tag?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Парасолька стоїть біля входу, далеко від вас. Скажіть продавцю, що це парасолька.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Парасолька стоїть біля входу, далеко від вас. Скажіть продавцю, що це парасолька.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is an umbrella.",
+          "localizedMeaning": {
+            "ru": "Зонт стоит у входа, далеко от вас. Скажите продавцу, что это зонт.",
+            "uk": "Парасолька стоїть біля входу, далеко від вас. Скажіть продавцю, що це парасолька."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "an",
+            "umbrella"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Парасолька стоїть біля входу, далеко від вас. Скажіть продавцю, що це парасолька.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is an umbrella.`",
+                "uk": "тут потрібно `That` — `That is an umbrella.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:suitcase",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — suitcase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:suitcase:audio"
+        ],
+        "accessibilityLabel": "Картка слова — suitcase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:suitcase:audio",
+            "transcript": "suitcase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:suitcase:r1",
+              "targetText": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан, большая сумка на колёсиках для поездки. This is a suitcase — «Это чемодан». О чемодане для отпуска или командировки.",
+                "uk": "валіза, велика сумка на колесах для поїздки. This is a suitcase — «Це валіза». Про валізу для відпустки чи відрядження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suitcase",
+            "definitionByLocale": {
+              "ru": "чемодан, большая сумка на колёсиках для поездки. This is a suitcase — «Это чемодан». О чемодане для отпуска или командировки.",
+              "uk": "валіза, велика сумка на колесах для поїздки. This is a suitcase — «Це валіза». Про валізу для відпустки чи відрядження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i07:audio"
+        ],
+        "accessibilityLabel": "Продавець називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i07:audio",
+            "transcript": "suitcase"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "suitcase",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:backpack",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — backpack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:backpack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — backpack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:backpack:audio",
+            "transcript": "backpack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:backpack:r1",
+              "targetText": "backpack",
+              "meaningByLocale": {
+                "ru": "рюкзак, сумка с двумя лямками, которую носят на спине. That is a backpack — «Это рюкзак». О рюкзаке для школы, работы, похода.",
+                "uk": "рюкзак, сумка з двома лямками, яку носять на спині. That is a backpack — «Це рюкзак». Про рюкзак для школи, роботи, походу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "backpack",
+            "definitionByLocale": {
+              "ru": "рюкзак, сумка с двумя лямками, которую носят на спине. That is a backpack — «Это рюкзак». О рюкзаке для школы, работы, похода.",
+              "uk": "рюкзак, сумка з двома лямками, яку носять на спині. That is a backpack — «Це рюкзак». Про рюкзак для школи, роботи, походу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i08:r1",
+            "text": "backpack"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i08:r2",
+            "text": "suitcase"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i08:r3",
+            "text": "basket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает вещь с двумя лямками, которую носят на спине. Как она называется по-английски?",
+            "uk": "Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-28:i08:r1",
+              "text": "backpack"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i08:r2",
+              "text": "suitcase"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i08:r3",
+              "text": "basket"
+            }
+          ],
+          "testedDimension": "Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "suitcase — это чемодан на колёсиках, а вещь для спины называется backpack.",
+                "uk": "suitcase — це валіза на колесах, а річ для спини називається backpack."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавець показує річ із двома лямками, яку носять на спині. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "basket — это корзина, а вещь для спины называется backpack.",
+                "uk": "basket — це кошик, а річ для спини називається backpack."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i09:r1",
+            "text": "This is not a suitcase."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i09:r2",
+            "text": "That is not a suitcase."
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i09:r3",
+            "text": "This is not a basket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i09:audio",
+            "transcript": "This is not a suitcase."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:i09:r1",
+              "targetText": "This is not a suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i09:r2",
+              "targetText": "That is not a suitcase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i09:r3",
+              "targetText": "This is not a basket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `suitcase`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `suitcase`, а в цьому варіанті — `basket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-28:i10:p1",
+              "target": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан",
+                "uk": "валіза"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i10:p2",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i10:p3",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i10:p4",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка для покупок",
+                "uk": "візок для покупок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "suitcase",
+            "umbrella",
+            "basket",
+            "trolley"
+          ],
+          "rightColumn": [
+            "валіза",
+            "парасолька",
+            "кошик",
+            "візок для покупок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i11:audio",
+            "transcript": "That is not a backpack."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a backpack.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "backpack"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a backpack.`",
+                "uk": "тут потрібно `a` — `That is not a backpack.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець питає, що у вас у руці. Скажіть, що це валіза.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець питає, що у вас у руці. Скажіть, що це валіза.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a suitcase.",
+          "localizedMeaning": {
+            "ru": "Продавец спрашивает, что у вас в руке. Скажите, что это чемодан.",
+            "uk": "Продавець питає, що у вас у руці. Скажіть, що це валіза."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "suitcase"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець питає, що у вас у руці. Скажіть, що це валіза.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a suitcase.`",
+                "uk": "тут потрібно `This` — `This is a suitcase.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:handbag",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — handbag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:handbag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — handbag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:handbag:audio",
+            "transcript": "handbag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:handbag:r1",
+              "targetText": "handbag",
+              "meaningByLocale": {
+                "ru": "дамская сумка, небольшая сумка с ручками. Is that a handbag? — «Это дамская сумка?» О сумке, с которой ходят на работу или в гости.",
+                "uk": "жіноча сумка, невелика сумка з ручками. Is that a handbag? — «Це жіноча сумка?» Про сумку, з якою ходять на роботу чи в гості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handbag",
+            "definitionByLocale": {
+              "ru": "дамская сумка, небольшая сумка с ручками. Is that a handbag? — «Это дамская сумка?» О сумке, с которой ходят на работу или в гости.",
+              "uk": "жіноча сумка, невелика сумка з ручками. Is that a handbag? — «Це жіноча сумка?» Про сумку, з якою ходять на роботу чи в гості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i13:audio"
+        ],
+        "accessibilityLabel": "Продавець називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i13:audio",
+            "transcript": "handbag"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "handbag",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:word:stroller",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stroller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:word:stroller:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stroller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:word:stroller:audio",
+            "transcript": "stroller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:word:stroller:r1",
+              "targetText": "stroller",
+              "meaningByLocale": {
+                "ru": "детская коляска, в которой возят малыша. This is a stroller — «Это коляска». О коляске для прогулок с ребёнком.",
+                "uk": "дитячий візок, у якому возять малюка. This is a stroller — «Це візок». Про візок для прогулянок з дитиною."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stroller",
+            "definitionByLocale": {
+              "ru": "детская коляска, в которой возят малыша. This is a stroller — «Это коляска». О коляске для прогулок с ребёнком.",
+              "uk": "дитячий візок, у якому возять малюка. This is a stroller — «Це візок». Про візок для прогулянок з дитиною."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i14:r1",
+            "text": "stroller"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i14:r2",
+            "text": "trolley"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i14:r3",
+            "text": "suitcase"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У выхода стоит тележка на колёсиках, в которой возят маленьких детей. Как она называется по-английски?",
+            "uk": "Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-28:i14:r1",
+              "text": "stroller"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i14:r2",
+              "text": "trolley"
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i14:r3",
+              "text": "suitcase"
+            }
+          ],
+          "testedDimension": "Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i14:r2",
+              "correct": false,
+              "testedDimension": "Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "trolley — это тележка для покупок, а детская называется stroller.",
+                "uk": "trolley — це візок для покупок, а дитячий називається stroller."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i14:r3",
+              "correct": false,
+              "testedDimension": "Біля виходу стоїть візок на колесах, у якому возять маленьких дітей. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "suitcase — это чемодан, а детская коляска называется stroller.",
+                "uk": "suitcase — це валіза, а дитячий візок називається stroller."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання охоронниці",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-28:i15:r1",
+            "text": "Is this a handbag?"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i15:r2",
+            "text": "Is that a handbag?"
+          },
+          {
+            "responseId": "en:lesson-03:session-28:i15:r3",
+            "text": "Is this a backpack?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання охоронниці",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i15:audio",
+            "transcript": "Is this a handbag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-28:i15:r1",
+              "targetText": "Is this a handbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i15:r2",
+              "targetText": "Is that a handbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i15:r3",
+              "targetText": "Is this a backpack?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-28:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання охоронниці",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі друге слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-28:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання охоронниці",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `handbag`, а в этом варианте — `backpack`.",
+                "uk": "У записі останнє слово — `handbag`, а в цьому варіанті — `backpack`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-28:i16:p1",
+              "target": "stroller",
+              "meaningByLocale": {
+                "ru": "детская коляска",
+                "uk": "дитячий візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i16:p2",
+              "target": "handbag",
+              "meaningByLocale": {
+                "ru": "дамская сумка",
+                "uk": "жіноча сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i16:p3",
+              "target": "backpack",
+              "meaningByLocale": {
+                "ru": "рюкзак",
+                "uk": "рюкзак"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-28:i16:p4",
+              "target": "suitcase",
+              "meaningByLocale": {
+                "ru": "чемодан",
+                "uk": "валіза"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stroller",
+            "handbag",
+            "backpack",
+            "suitcase"
+          ],
+          "rightColumn": [
+            "дитячий візок",
+            "жіноча сумка",
+            "рюкзак",
+            "валіза"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-28:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Охоронниця показує на дитячий візок поруч із вами. Скажіть, що це.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Охоронниця показує на дитячий візок поруч із вами. Скажіть, що це.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-28:i17:audio",
+            "transcript": "This is a stroller."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a stroller.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-28:i01",
+      "correctText": "This is a basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i02",
+      "correctText": "That is a trolley.",
+      "correctResponseId": "en:lesson-03:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i05",
+      "correctText": "Is that a tag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i06",
+      "correctText": "That is an umbrella.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:suitcase",
+      "correctText": "suitcase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i07",
+      "correctText": "suitcase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:backpack",
+      "correctText": "backpack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i08",
+      "correctText": "backpack",
+      "correctResponseId": "en:lesson-03:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i09",
+      "correctText": "This is not a suitcase.",
+      "correctResponseId": "en:lesson-03:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i11",
+      "correctText": "That is not a backpack.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i12",
+      "correctText": "This is a suitcase.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:handbag",
+      "correctText": "handbag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i13",
+      "correctText": "handbag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:word:stroller",
+      "correctText": "stroller",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i14",
+      "correctText": "stroller",
+      "correctResponseId": "en:lesson-03:session-28:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i15",
+      "correctText": "Is this a handbag?",
+      "correctResponseId": "en:lesson-03:session-28:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-28:i17",
+      "correctText": "This is a stroller.",
+      "correctResponseId": null
+    }
+  ]
+}

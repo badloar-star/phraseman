@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-38",
   "learningOutcomeByLocale": {
-    "ru": "назвать один билет и отличить его от нескольких, показать близкий или дальний предмет",
-    "uk": "назвати один квиток і відрізнити його від кількох, показати близький або далекий предмет"
+    "ru": "называть фрукты рядом и вдали: these, those, this, that",
+    "uk": "називати фрукти поруч і вдалині: these, those, this, that"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один билет в руке",
-        "uk": "Один квиток у руці"
+        "ru": "Ящик с яблоками",
+        "uk": "Ящик із яблуками"
       },
       "bodyByLocale": {
-        "ru": "`ticket` — «билет». Вы уже знаете `tickets` — «билеты». Один — `ticket`, несколько — `tickets`. `This is a ticket` — «Это билет»: показываем на один рядом. Перед `ticket` здесь нужно `a`, потому что первый звук согласный. Один билет не станет двумя, даже если сложить его пополам.",
-        "uk": "`ticket` — «квиток». Ви вже знаєте `tickets` — «квитки». Один — `ticket`, кілька — `tickets`. `This is a ticket` — «Це квиток»: показуємо на один поруч. Перед `ticket` тут потрібне `a`, бо перший звук приголосний. Один квиток не стане двома, навіть якщо скласти його навпіл."
+        "ru": "Вы с подругой пришли на рынок за фруктами. Продавец ставит перед вами на прилавок ящик и ждёт, что вы скажете. Подруга внимательно смотрит, какие плоды лежат сверху. apple — «яблоко». Яблок несколько, и они рядом, поэтому these: These apples are big — «Эти яблоки большие».",
+        "uk": "Ви з подругою прийшли на ринок по фрукти. Продавець ставить перед вами на прилавок ящик і чекає, що ви скажете. Подруга уважно дивиться, які плоди лежать зверху. apple — «яблуко». Яблук кілька, і вони поруч, тому these: These apples are big — «Ці яблука великі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-38:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один билет одним английским словом.",
-          "uk": "Назвіть один квиток одним англійським словом."
+          "ru": "Продавец поставил ящик перед вами. Скажите подруге, что эти яблоки большие.",
+          "uk": "Продавець поставив ящик перед вами. Скажіть подрузі, що ці яблука великі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-38:intro1:r1",
-              "text": "ticket"
+              "text": "These apples are big."
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r2",
-              "text": "tickets"
+              "text": "This apples are big."
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r3",
-              "text": "table"
+              "text": "These apple are big."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-38:intro1:r1",
-              "text": "ticket"
+              "text": "These apples are big."
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r2",
-              "text": "tickets"
+              "text": "This apples are big."
             },
             {
               "responseId": "en:lesson-03:session-38:intro1:r3",
-              "text": "table"
+              "text": "These apple are big."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один билет одним английским словом.",
-          "uk": "Назвіть один квиток одним англійським словом."
+          "ru": "Продавец поставил ящик перед вами. Скажите подруге, что эти яблоки большие.",
+          "uk": "Продавець поставив ящик перед вами. Скажіть подрузі, що ці яблука великі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Этот или тот",
-        "uk": "Цей чи той"
+        "ru": "Бананы на дальнем прилавке",
+        "uk": "Банани на дальньому прилавку"
       },
       "bodyByLocale": {
-        "ru": "`This ticket is here` — «Этот билет здесь». `That ticket is there` — «Тот билет там». `This` выбираем для одного рядом, `that` — для одного дальше. Перед словом `ticket` уже стоит указатель, поэтому ещё одно `a` не добавляем. Для нескольких можно сказать `Those are tickets` — «Это билеты», показывая дальше.",
-        "uk": "`This ticket is here` — «Цей квиток тут». `That ticket is there` — «Той квиток там». `This` вибираємо для одного поруч, `that` — для одного далі. Перед словом `ticket` уже стоїть вказівне слово, тому ще одне `a` не додаємо. Для кількох можна сказати `Those are tickets` — «Це квитки», показуючи далі."
+        "ru": "На другом прилавке, в конце ряда, лежат бананы. Подруге нужны недорогие, но идти туда далеко, а продавец стоит рядом с вами. banana — «банан». Бананов несколько, и они далеко, поэтому those. Вопрос начинаем с Are: Are those bananas cheap? — «Те бананы дешёвые?»",
+        "uk": "На іншому прилавку, в кінці ряду, лежать банани. Подрузі потрібні недорогі, але йти туди далеко, а продавець стоїть поруч із вами. banana — «банан». Бананів кілька, і вони далеко, тому those. Запитання починаємо з Are: Are those bananas cheap? — «Ті банани дешеві?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-38:intro2:q",
         "promptByLocale": {
-          "ru": "Билет лежит далеко от вас. Скажите «Тот билет там».",
-          "uk": "Квиток лежить далеко від вас. Скажіть «Той квиток там»."
+          "ru": "Продавец стоит рядом. Спросите его, дешёвые ли те бананы.",
+          "uk": "Продавець стоїть поруч. Запитайте його, чи дешеві ті банани."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-38:intro2:r1",
-              "text": "That ticket is there."
+              "text": "Are those bananas cheap?"
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r2",
-              "text": "Those ticket is there."
+              "text": "Is those bananas cheap?"
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r3",
-              "text": "That ticket are there."
+              "text": "Are those banana cheap?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-38:intro2:r1",
-              "text": "That ticket is there."
+              "text": "Are those bananas cheap?"
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r2",
-              "text": "Those ticket is there."
+              "text": "Is those bananas cheap?"
             },
             {
               "responseId": "en:lesson-03:session-38:intro2:r3",
-              "text": "That ticket are there."
+              "text": "Are those banana cheap?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Билет лежит далеко от вас. Скажите «Тот билет там».",
-          "uk": "Квиток лежить далеко від вас. Скажіть «Той квиток там»."
+          "ru": "Продавец стоит рядом. Спросите его, дешёвые ли те бананы.",
+          "uk": "Продавець стоїть поруч. Запитайте його, чи дешеві ті банани."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Как чувствует себя Анна",
-        "uk": "Як почувається Анна"
+        "ru": "Один апельсин",
+        "uk": "Один апельсин"
       },
       "bodyByLocale": {
-        "ru": "`weak` — «слабый». `She is weak` — «Она слаба»: в нашей ситуации Анна чувствует, что у неё мало сил. `unofficial` — «неофициальный»: у встречи нет официального статуса. `It is unofficial` — «Она неофициальная». Это не то же самое, что непринуждённая атмосфера: её описывает `informal`. Рядом с Анной окна: `These are windows` — «Это окна».",
-        "uk": "`weak` — «слабкий». `She is weak` — «Вона слабка»: у нашій ситуації Анна відчуває, що в неї мало сил. `unofficial` — «неофіційний»: зустріч не має офіційного статусу. `It is unofficial` — «Вона неофіційна». Це не те саме, що невимушена атмосфера: її описує `informal`. Поруч з Анною вікна: `These are windows` — «Це вікна»."
+        "ru": "Подруга показывает на один апельсин, который лежит отдельно на дальнем прилавке. Продавец спрашивает, какой фрукт вам нужен. orange — «апельсин». Апельсин один и далеко, поэтому that. Перед orange ставим an, потому что слово начинается с гласного звука: That is an orange — «Это апельсин».",
+        "uk": "Подруга показує на один апельсин, який лежить окремо на дальньому прилавку. Продавець питає, який фрукт вам потрібен. orange — «апельсин». Апельсин один і далеко, тому that. Перед orange ставимо an, бо слово починається з голосного звуку: That is an orange — «Це апельсин»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-38:intro3:q",
         "promptByLocale": {
-          "ru": "Анна чувствует слабость после дороги. Скажите «Она слаба».",
-          "uk": "Анна відчуває слабкість після дороги. Скажіть «Вона слабка»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что там, вдали, лежит апельсин.",
+          "uk": "Продавець чекає відповіді. Скажіть йому, що там, удалині, лежить апельсин."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-38:intro3:r1",
-              "text": "She is weak."
+              "text": "That is an orange."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r2",
-              "text": "She is lonely."
+              "text": "That is a orange."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r3",
-              "text": "She are weak."
+              "text": "This is an orange."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-38:intro3:r1",
-              "text": "She is weak."
+              "text": "That is an orange."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r2",
-              "text": "She is lonely."
+              "text": "That is a orange."
             },
             {
               "responseId": "en:lesson-03:session-38:intro3:r3",
-              "text": "She are weak."
+              "text": "This is an orange."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна чувствует слабость после дороги. Скажите «Она слаба».",
-          "uk": "Анна відчуває слабкість після дороги. Скажіть «Вона слабка»."
+          "ru": "Продавец ждёт ответа. Скажите ему, что там, вдали, лежит апельсин.",
+          "uk": "Продавець чекає відповіді. Скажіть йому, що там, удалині, лежить апельсин."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "49c1c1c51dcfcec1277a085c57d5adeb68daecf13b64b18aace2353d580d0ffa"
+  "introFingerprint": "0e0f259eefd3db47c91c7a34a353b066f038410fb62f15a852c5105a38de655d"
 }

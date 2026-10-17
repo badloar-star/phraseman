@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-37:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учительница показывает на двери рядом с вами. Скажите брату полной фразой: эти двери большие.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница показывает на двери рядом с вами. Скажите брату полной фразой: эти двери большие.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These doors are big.",
+          "localizedMeaning": {
+            "ru": "Учительница показывает на двери рядом с вами. Скажите брату полной фразой: эти двери большие.",
+            "uk": "Вчителька показує на двері поруч із вами. Скажіть брату повною фразою: ці двері великі."
+          },
+          "orderedTokens": [
+            "These",
+            "doors",
+            "are",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "door"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Учительница показывает на двери рядом с вами. Скажите брату полной фразой: эти двери большие.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `doors` — `These doors are big.`",
+                "uk": "тут потрібно `doors` — `These doors are big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит учительница о стене",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i02:r1",
+            "text": "That wall is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i02:r2",
+            "text": "Those walls are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i02:r3",
+            "text": "This wall is old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит учительница о стене",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i02:audio",
+            "transcript": "That wall is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i02:r1",
+              "targetText": "That wall is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i02:r2",
+              "targetText": "Those walls are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i02:r3",
+              "targetText": "This wall is old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит учительница о стене",
+              "feedbackByLocale": {
+                "ru": "В записи `That wall` — стена одна, а в этом варианте `Those walls` — несколько.",
+                "uk": "У записі `That wall` — стіна одна, а в цьому варіанті `Those walls` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит учительница о стене",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
+                "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат показывает на окна вдали. Дополните его фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i03:r1",
+            "text": "windows"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i03:r2",
+            "text": "window"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i03:r3",
+            "text": "a window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показывает на окна вдали. Дополните его фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат показывает на окна вдали. Дополните его фразу",
+            "uk": "Брат показує на вікна вдалині. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "Those ___ are new.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i03:r1",
+              "text": "windows"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i03:r2",
+              "text": "window"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i03:r3",
+              "text": "a window"
+            }
+          ],
+          "testedDimension": "Брат показывает на окна вдали. Дополните его фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат показывает на окна вдали. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "Окон несколько, поэтому нужно windows с s.",
+                "uk": "Вікон кілька, тому потрібно windows з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат показывает на окна вдали. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "После Those нужно несколько окон: windows с s.",
+                "uk": "Після Those потрібно кілька вікон: windows з s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-37:i04:p1",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i04:p2",
+              "target": "entrance",
+              "meaningByLocale": {
+                "ru": "вход",
+                "uk": "вхід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i04:p3",
+              "target": "exit",
+              "meaningByLocale": {
+                "ru": "выход",
+                "uk": "вихід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i04:p4",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "building",
+            "entrance",
+            "exit",
+            "yard"
+          ],
+          "rightColumn": [
+            "здание",
+            "вход",
+            "выход",
+            "двор"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте учительницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i05:audio",
+            "transcript": "This floor is clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This floor is clean.",
+          "orderedTokens": [
+            "This",
+            "floor",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This floor is clean.`",
+                "uk": "тут потрібно `is` — `This floor is clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учительница показывает вверх на потолок в дальнем конце зала. Скажите брату, что это потолок.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница показывает вверх на потолок в дальнем конце зала. Скажите брату, что это потолок.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a ceiling.",
+          "localizedMeaning": {
+            "ru": "Учительница показывает вверх на потолок в дальнем конце зала. Скажите брату, что это потолок.",
+            "uk": "Вчителька показує вгору на стелю в дальньому кінці зали. Скажіть брату, що це стеля."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "ceiling"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Учительница показывает вверх на потолок в дальнем конце зала. Скажите брату, что это потолок.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a ceiling.`",
+                "uk": "тут потрібно `That` — `That is a ceiling.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:building",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — building",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:building:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — building",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:building:audio",
+            "transcript": "building"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:building:r1",
+              "targetText": "building",
+              "meaningByLocale": {
+                "ru": "здание. This building is new — «Это здание новое». О большом доме для школы, работы или магазинов.",
+                "uk": "будівля. This building is new — «Ця будівля нова». Про великий дім для школи, роботи чи магазинів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "building",
+            "definitionByLocale": {
+              "ru": "здание. This building is new — «Это здание новое». О большом доме для школы, работы или магазинов.",
+              "uk": "будівля. This building is new — «Ця будівля нова». Про великий дім для школи, роботи чи магазинів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница показывает на большой дом и называет его, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Учительница показывает на большой дом и называет его, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i07:audio",
+            "transcript": "building"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "building",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:entrance",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — entrance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:entrance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — entrance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:entrance:audio",
+            "transcript": "entrance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:entrance:r1",
+              "targetText": "entrance",
+              "meaningByLocale": {
+                "ru": "вход. These entrances are open — «Эти входы открыты». О месте, где заходят в здание.",
+                "uk": "вхід. These entrances are open — «Ці входи відкриті». Про місце, де заходять у будівлю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entrance",
+            "definitionByLocale": {
+              "ru": "вход. These entrances are open — «Эти входы открыты». О месте, где заходят в здание.",
+              "uk": "вхід. These entrances are open — «Ці входи відкриті». Про місце, де заходять у будівлю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат ищет место, через которое заходят в здание. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i08:r1",
+            "text": "entrance"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i08:r2",
+            "text": "door"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i08:r3",
+            "text": "window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат ищет место, через которое заходят в здание. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат ищет место, через которое заходят в здание. Как оно называется по-английски?",
+            "uk": "Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i08:r1",
+              "text": "entrance"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i08:r2",
+              "text": "door"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i08:r3",
+              "text": "window"
+            }
+          ],
+          "testedDimension": "Брат ищет место, через которое заходят в здание. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат ищет место, через которое заходят в здание. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "door — это дверь, а место, где заходят в здание, называется entrance.",
+                "uk": "door — це двері, а місце, де заходять у будівлю, називається entrance."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат ищет место, через которое заходят в здание. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "window — это окно, а место, где заходят в здание, называется entrance.",
+                "uk": "window — це вікно, а місце, де заходять у будівлю, називається entrance."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит брат о здании",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i09:r1",
+            "text": "This building is big."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i09:r2",
+            "text": "These buildings are big."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i09:r3",
+            "text": "That building is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит брат о здании",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i09:audio",
+            "transcript": "This building is big."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i09:r1",
+              "targetText": "This building is big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i09:r2",
+              "targetText": "These buildings are big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i09:r3",
+              "targetText": "That building is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат о здании",
+              "feedbackByLocale": {
+                "ru": "В записи `This building` — здание одно, а в этом варианте `These buildings` — несколько.",
+                "uk": "У записі `This building` — будівля одна, а в цьому варіанті `These buildings` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат о здании",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).",
+                "uk": "У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-37:i10:p1",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "building",
+            "door",
+            "window",
+            "wall"
+          ],
+          "rightColumn": [
+            "здание",
+            "дверь",
+            "окно",
+            "стена"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i11:audio",
+            "transcript": "Are these entrances open?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are these entrances open?",
+          "orderedTokens": [
+            "Are",
+            "these",
+            "entrances",
+            "open"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are these entrances open?`",
+                "uk": "тут потрібно `Are` — `Are these entrances open?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат спрашивает, что стоит перед вами. Скажите, что это здание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спрашивает, что стоит перед вами. Скажите, что это здание.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a building.",
+          "localizedMeaning": {
+            "ru": "Брат спрашивает, что стоит перед вами. Скажите, что это здание.",
+            "uk": "Брат питає, що стоїть перед вами. Скажіть, що це будівля."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат спрашивает, что стоит перед вами. Скажите, что это здание.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a building.`",
+                "uk": "тут потрібно `This` — `This is a building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:exit",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — exit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:exit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — exit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:exit:audio",
+            "transcript": "exit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:exit:r1",
+              "targetText": "exit",
+              "meaningByLocale": {
+                "ru": "выход. Those exits are closed — «Те выходы закрыты». О месте, откуда выходят из здания.",
+                "uk": "вихід. Those exits are closed — «Ті виходи зачинені». Про місце, звідки виходять із будівлі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exit",
+            "definitionByLocale": {
+              "ru": "выход. Those exits are closed — «Те выходы закрыты». О месте, откуда выходят из здания.",
+              "uk": "вихід. Those exits are closed — «Ті виходи зачинені». Про місце, звідки виходять із будівлі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница показывает на дверь, через которую выходят, и называет её, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Учительница показывает на дверь, через которую выходят, и называет её, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i13:audio",
+            "transcript": "exit"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "exit",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:yard",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — yard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:yard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — yard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:yard:audio",
+            "transcript": "yard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:yard:r1",
+              "targetText": "yard",
+              "meaningByLocale": {
+                "ru": "двор. That is a yard — «Это двор». О месте между зданиями, где можно стоять и гулять.",
+                "uk": "двір. That is a yard — «Це двір». Про місце між будівлями, де можна стояти й гуляти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yard",
+            "definitionByLocale": {
+              "ru": "двор. That is a yard — «Это двор». О месте между зданиями, где можно стоять и гулять.",
+              "uk": "двір. That is a yard — «Це двір». Про місце між будівлями, де можна стояти й гуляти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учительница ведёт вас на открытое место между зданиями, где можно гулять. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i14:r1",
+            "text": "yard"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i14:r2",
+            "text": "wall"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i14:r3",
+            "text": "floor"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница ведёт вас на открытое место между зданиями, где можно гулять. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница ведёт вас на открытое место между зданиями, где можно гулять. Как оно называется по-английски?",
+            "uk": "Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i14:r1",
+              "text": "yard"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i14:r2",
+              "text": "wall"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i14:r3",
+              "text": "floor"
+            }
+          ],
+          "testedDimension": "Учительница ведёт вас на открытое место между зданиями, где можно гулять. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Учительница ведёт вас на открытое место между зданиями, где можно гулять. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а открытое место между зданиями называется yard.",
+                "uk": "wall — це стіна, а відкрите місце між будівлями називається yard."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Учительница ведёт вас на открытое место между зданиями, где можно гулять. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а открытое место между зданиями называется yard.",
+                "uk": "floor — це підлога, а відкрите місце між будівлями називається yard."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата о выходе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i15:r1",
+            "text": "Is that exit open?"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i15:r2",
+            "text": "Are those exits open?"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i15:r3",
+            "text": "Is that exit closed?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата о выходе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i15:audio",
+            "transcript": "Is that exit open?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i15:r1",
+              "targetText": "Is that exit open?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i15:r2",
+              "targetText": "Are those exits open?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i15:r3",
+              "targetText": "Is that exit closed?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата о выходе",
+              "feedbackByLocale": {
+                "ru": "В записи `Is that exit` — выход один, а в этом варианте `Are those exits` — несколько.",
+                "uk": "У записі `Is that exit` — вихід один, а в цьому варіанті `Are those exits` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата о выходе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+                "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-37:i16:p1",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i16:p2",
+              "target": "exit",
+              "meaningByLocale": {
+                "ru": "выход",
+                "uk": "вихід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i16:p3",
+              "target": "entrance",
+              "meaningByLocale": {
+                "ru": "вход",
+                "uk": "вхід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i16:p4",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "yard",
+            "exit",
+            "entrance",
+            "building"
+          ],
+          "rightColumn": [
+            "двор",
+            "выход",
+            "вход",
+            "здание"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница показывает на двор вдали. Скажите ей коротко: тот двор чистый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Учительница показывает на двор вдали. Скажите ей коротко: тот двор чистый.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i17:audio",
+            "transcript": "That yard is clean."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That yard is clean.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-37:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вчителька показує на двері поруч із вами. Скажіть брату повною фразою: ці двері великі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька показує на двері поруч із вами. Скажіть брату повною фразою: ці двері великі.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "These doors are big.",
+          "localizedMeaning": {
+            "ru": "Учительница показывает на двери рядом с вами. Скажите брату полной фразой: эти двери большие.",
+            "uk": "Вчителька показує на двері поруч із вами. Скажіть брату повною фразою: ці двері великі."
+          },
+          "orderedTokens": [
+            "These",
+            "doors",
+            "are",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "door"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вчителька показує на двері поруч із вами. Скажіть брату повною фразою: ці двері великі.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `doors` — `These doors are big.`",
+                "uk": "тут потрібно `doors` — `These doors are big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже вчителька про стіну",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i02:r1",
+            "text": "That wall is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i02:r2",
+            "text": "Those walls are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i02:r3",
+            "text": "This wall is old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже вчителька про стіну",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i02:audio",
+            "transcript": "That wall is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i02:r1",
+              "targetText": "That wall is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i02:r2",
+              "targetText": "Those walls are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i02:r3",
+              "targetText": "This wall is old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже вчителька про стіну",
+              "feedbackByLocale": {
+                "ru": "В записи `That wall` — стена одна, а в этом варианте `Those walls` — несколько.",
+                "uk": "У записі `That wall` — стіна одна, а в цьому варіанті `Those walls` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже вчителька про стіну",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
+                "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат показує на вікна вдалині. Доповніть його фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i03:r1",
+            "text": "windows"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i03:r2",
+            "text": "window"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i03:r3",
+            "text": "a window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показує на вікна вдалині. Доповніть його фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат показывает на окна вдали. Дополните его фразу",
+            "uk": "Брат показує на вікна вдалині. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "Those ___ are new.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i03:r1",
+              "text": "windows"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i03:r2",
+              "text": "window"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i03:r3",
+              "text": "a window"
+            }
+          ],
+          "testedDimension": "Брат показує на вікна вдалині. Доповніть його фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат показує на вікна вдалині. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "Окон несколько, поэтому нужно windows с s.",
+                "uk": "Вікон кілька, тому потрібно windows з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат показує на вікна вдалині. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "После Those нужно несколько окон: windows с s.",
+                "uk": "Після Those потрібно кілька вікон: windows з s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-37:i04:p1",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i04:p2",
+              "target": "entrance",
+              "meaningByLocale": {
+                "ru": "вход",
+                "uk": "вхід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i04:p3",
+              "target": "exit",
+              "meaningByLocale": {
+                "ru": "выход",
+                "uk": "вихід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i04:p4",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "building",
+            "entrance",
+            "exit",
+            "yard"
+          ],
+          "rightColumn": [
+            "будівля",
+            "вхід",
+            "вихід",
+            "двір"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте вчительку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i05:audio",
+            "transcript": "This floor is clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This floor is clean.",
+          "orderedTokens": [
+            "This",
+            "floor",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This floor is clean.`",
+                "uk": "тут потрібно `is` — `This floor is clean.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вчителька показує вгору на стелю в дальньому кінці зали. Скажіть брату, що це стеля.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька показує вгору на стелю в дальньому кінці зали. Скажіть брату, що це стеля.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a ceiling.",
+          "localizedMeaning": {
+            "ru": "Учительница показывает вверх на потолок в дальнем конце зала. Скажите брату, что это потолок.",
+            "uk": "Вчителька показує вгору на стелю в дальньому кінці зали. Скажіть брату, що це стеля."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "ceiling"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вчителька показує вгору на стелю в дальньому кінці зали. Скажіть брату, що це стеля.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a ceiling.`",
+                "uk": "тут потрібно `That` — `That is a ceiling.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:building",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — building",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:building:audio"
+        ],
+        "accessibilityLabel": "Картка слова — building",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:building:audio",
+            "transcript": "building"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:building:r1",
+              "targetText": "building",
+              "meaningByLocale": {
+                "ru": "здание. This building is new — «Это здание новое». О большом доме для школы, работы или магазинов.",
+                "uk": "будівля. This building is new — «Ця будівля нова». Про великий дім для школи, роботи чи магазинів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "building",
+            "definitionByLocale": {
+              "ru": "здание. This building is new — «Это здание новое». О большом доме для школы, работы или магазинов.",
+              "uk": "будівля. This building is new — «Ця будівля нова». Про великий дім для школи, роботи чи магазинів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька показує на великий дім і називає його, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Вчителька показує на великий дім і називає його, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i07:audio",
+            "transcript": "building"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "building",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:entrance",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — entrance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:entrance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — entrance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:entrance:audio",
+            "transcript": "entrance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:entrance:r1",
+              "targetText": "entrance",
+              "meaningByLocale": {
+                "ru": "вход. These entrances are open — «Эти входы открыты». О месте, где заходят в здание.",
+                "uk": "вхід. These entrances are open — «Ці входи відкриті». Про місце, де заходять у будівлю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entrance",
+            "definitionByLocale": {
+              "ru": "вход. These entrances are open — «Эти входы открыты». О месте, где заходят в здание.",
+              "uk": "вхід. These entrances are open — «Ці входи відкриті». Про місце, де заходять у будівлю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i08:r1",
+            "text": "entrance"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i08:r2",
+            "text": "door"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i08:r3",
+            "text": "window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат ищет место, через которое заходят в здание. Как оно называется по-английски?",
+            "uk": "Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i08:r1",
+              "text": "entrance"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i08:r2",
+              "text": "door"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i08:r3",
+              "text": "window"
+            }
+          ],
+          "testedDimension": "Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "door — это дверь, а место, где заходят в здание, называется entrance.",
+                "uk": "door — це двері, а місце, де заходять у будівлю, називається entrance."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат шукає місце, через яке заходять у будівлю. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "window — это окно, а место, где заходят в здание, называется entrance.",
+                "uk": "window — це вікно, а місце, де заходять у будівлю, називається entrance."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже брат про будівлю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i09:r1",
+            "text": "This building is big."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i09:r2",
+            "text": "These buildings are big."
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i09:r3",
+            "text": "That building is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже брат про будівлю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i09:audio",
+            "transcript": "This building is big."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i09:r1",
+              "targetText": "This building is big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i09:r2",
+              "targetText": "These buildings are big.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i09:r3",
+              "targetText": "That building is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат про будівлю",
+              "feedbackByLocale": {
+                "ru": "В записи `This building` — здание одно, а в этом варианте `These buildings` — несколько.",
+                "uk": "У записі `This building` — будівля одна, а в цьому варіанті `These buildings` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат про будівлю",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).",
+                "uk": "У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-37:i10:p1",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i10:p4",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            }
+          ],
+          "leftColumn": [
+            "building",
+            "door",
+            "window",
+            "wall"
+          ],
+          "rightColumn": [
+            "будівля",
+            "двері",
+            "вікно",
+            "стіна"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i11:audio",
+            "transcript": "Are these entrances open?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are these entrances open?",
+          "orderedTokens": [
+            "Are",
+            "these",
+            "entrances",
+            "open"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are these entrances open?`",
+                "uk": "тут потрібно `Are` — `Are these entrances open?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат питає, що стоїть перед вами. Скажіть, що це будівля.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат питає, що стоїть перед вами. Скажіть, що це будівля.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a building.",
+          "localizedMeaning": {
+            "ru": "Брат спрашивает, что стоит перед вами. Скажите, что это здание.",
+            "uk": "Брат питає, що стоїть перед вами. Скажіть, що це будівля."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат питає, що стоїть перед вами. Скажіть, що це будівля.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a building.`",
+                "uk": "тут потрібно `This` — `This is a building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:exit",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — exit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:exit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — exit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:exit:audio",
+            "transcript": "exit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:exit:r1",
+              "targetText": "exit",
+              "meaningByLocale": {
+                "ru": "выход. Those exits are closed — «Те выходы закрыты». О месте, откуда выходят из здания.",
+                "uk": "вихід. Those exits are closed — «Ті виходи зачинені». Про місце, звідки виходять із будівлі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exit",
+            "definitionByLocale": {
+              "ru": "выход. Those exits are closed — «Те выходы закрыты». О месте, откуда выходят из здания.",
+              "uk": "вихід. Those exits are closed — «Ті виходи зачинені». Про місце, звідки виходять із будівлі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька показує на двері, через які виходять, і називає їх, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Вчителька показує на двері, через які виходять, і називає їх, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i13:audio",
+            "transcript": "exit"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "exit",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:word:yard",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — yard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:word:yard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — yard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:word:yard:audio",
+            "transcript": "yard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:word:yard:r1",
+              "targetText": "yard",
+              "meaningByLocale": {
+                "ru": "двор. That is a yard — «Это двор». О месте между зданиями, где можно стоять и гулять.",
+                "uk": "двір. That is a yard — «Це двір». Про місце між будівлями, де можна стояти й гуляти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yard",
+            "definitionByLocale": {
+              "ru": "двор. That is a yard — «Это двор». О месте между зданиями, где можно стоять и гулять.",
+              "uk": "двір. That is a yard — «Це двір». Про місце між будівлями, де можна стояти й гуляти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i14:r1",
+            "text": "yard"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i14:r2",
+            "text": "wall"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i14:r3",
+            "text": "floor"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница ведёт вас на открытое место между зданиями, где можно гулять. Как оно называется по-английски?",
+            "uk": "Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i14:r1",
+              "text": "yard"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i14:r2",
+              "text": "wall"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i14:r3",
+              "text": "floor"
+            }
+          ],
+          "testedDimension": "Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "wall — это стена, а открытое место между зданиями называется yard.",
+                "uk": "wall — це стіна, а відкрите місце між будівлями називається yard."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Вчителька веде вас на відкрите місце між будівлями, де можна гуляти. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "floor — это пол, а открытое место между зданиями называется yard.",
+                "uk": "floor — це підлога, а відкрите місце між будівлями називається yard."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата про вихід",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-37:i15:r1",
+            "text": "Is that exit open?"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i15:r2",
+            "text": "Are those exits open?"
+          },
+          {
+            "responseId": "en:lesson-03:session-37:i15:r3",
+            "text": "Is that exit closed?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата про вихід",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i15:audio",
+            "transcript": "Is that exit open?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i15:r1",
+              "targetText": "Is that exit open?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i15:r2",
+              "targetText": "Are those exits open?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i15:r3",
+              "targetText": "Is that exit closed?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата про вихід",
+              "feedbackByLocale": {
+                "ru": "В записи `Is that exit` — выход один, а в этом варианте `Are those exits` — несколько.",
+                "uk": "У записі `Is that exit` — вихід один, а в цьому варіанті `Are those exits` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата про вихід",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
+                "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-37:i16:p1",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i16:p2",
+              "target": "exit",
+              "meaningByLocale": {
+                "ru": "выход",
+                "uk": "вихід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i16:p3",
+              "target": "entrance",
+              "meaningByLocale": {
+                "ru": "вход",
+                "uk": "вхід"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-37:i16:p4",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "yard",
+            "exit",
+            "entrance",
+            "building"
+          ],
+          "rightColumn": [
+            "двір",
+            "вихід",
+            "вхід",
+            "будівля"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька показує на двір удалині. Скажіть їй коротко: той двір чистий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Вчителька показує на двір удалині. Скажіть їй коротко: той двір чистий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i17:audio",
+            "transcript": "That yard is clean."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That yard is clean.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-37:i01",
+      "correctText": "These doors are big.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i02",
+      "correctText": "That wall is old.",
+      "correctResponseId": "en:lesson-03:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i03",
+      "correctText": "windows",
+      "correctResponseId": "en:lesson-03:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i05",
+      "correctText": "This floor is clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i06",
+      "correctText": "That is a ceiling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:word:building",
+      "correctText": "building",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i07",
+      "correctText": "building",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:word:entrance",
+      "correctText": "entrance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i08",
+      "correctText": "entrance",
+      "correctResponseId": "en:lesson-03:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i09",
+      "correctText": "This building is big.",
+      "correctResponseId": "en:lesson-03:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i11",
+      "correctText": "Are these entrances open?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i12",
+      "correctText": "This is a building.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:word:exit",
+      "correctText": "exit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i13",
+      "correctText": "exit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:word:yard",
+      "correctText": "yard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i14",
+      "correctText": "yard",
+      "correctResponseId": "en:lesson-03:session-37:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i15",
+      "correctText": "Is that exit open?",
+      "correctResponseId": "en:lesson-03:session-37:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i17",
+      "correctText": "That yard is clean.",
+      "correctResponseId": null
+    }
+  ]
+}

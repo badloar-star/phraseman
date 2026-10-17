@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-25:intro1:r2": {
-          "ru": "С `the dogs` речь о конкретных собаках. Здесь говорим о собаках в целом: `Dogs`.",
-          "uk": "З `the dogs` ідеться про конкретних собак. Тут говоримо про собак загалом: `Dogs`."
+          "ru": "Перед charger нужно a: слово начинается с согласного звука.",
+          "uk": "Перед charger потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-25:intro1:r3": {
-          "ru": "`a` не ставим перед названием нескольких собак.",
-          "uk": "`a` не ставимо перед назвою кількох собак."
+          "ru": "Между This и a нужно is: This is a charger.",
+          "uk": "Між This і a потрібно is: This is a charger."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-25:intro2:r2": {
-          "ru": "Здесь речь о конкретных ожидаемых собаках: `The dogs`.",
-          "uk": "Тут ідеться про конкретних очікуваних собак: `The dogs`."
+          "ru": "Перед adapter нужно an: слово начинается с гласного звука.",
+          "uk": "Перед adapter потрібно an: слово починається з голосного звуку."
         },
         "en:lesson-03:session-25:intro2:r3": {
-          "ru": "Собак несколько, поэтому нужно `are`.",
-          "uk": "Собак кілька, тому потрібно `are`."
+          "ru": "Между This и an нужно is: This is an adapter.",
+          "uk": "Між This і an потрібно is: This is an adapter."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-25:intro3:r2": {
-          "ru": "`The books` указывает на конкретные книги. Здесь речь о книгах в целом.",
-          "uk": "`The books` указує на конкретні книжки. Тут ідеться про книжки загалом."
+          "ru": "Перед cable нужно a: This is a cable.",
+          "uk": "Перед cable потрібно a: This is a cable."
         },
         "en:lesson-03:session-25:intro3:r3": {
-          "ru": "Перед названием нескольких книг не ставим `a`.",
-          "uk": "Перед назвою кількох книжок не ставимо `a`."
+          "ru": "С this нужно is, а не are: This is a cable.",
+          "uk": "З this потрібно is, а не are: This is a cable."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "948f55e7c7f23458cf0bd97fb65ae61e97ecaf5d6d8fb758758904bfc2e9a6a7"
+  "auxiliaryFingerprint": "13cab5992e0b79abcc98012bae1e929ee62985c7af7927a7dc7fe2f7801a0513"
 }

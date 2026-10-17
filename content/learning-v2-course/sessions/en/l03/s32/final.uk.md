@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 32 — План вихідного дня
+# Англійська · Урок 3 · Заняття 32 — Подарунок у музейному кіоску
 
-**Ситуація.** Ви з Анною готуєте день відкритих дверей клубу. Вранці буде зустріч про домашніх тварин, потім прогулянка парками. Олег перевіряє машини для поїздки й меблі в кімнаті. Ви допомагаєте йому назвати предмети та знайти потрібні речі.
+**Ситуація.** Ви з подругою обираєте подарунок у кіоску біля музею. Продавчиня показує вітрину, а ви називаєте речі, питаєте й відповідаєте. Що поруч, кажете this, що далеко, — that, а якщо річ не та, ставите not. На цьому занятті треба зібрати все, що ви вивчили в розділі.
 
-**Що ви опануєте:** повторити назви кількох предметів і тварин, загальні висловлювання та запитання про конкретні речі
-**Нові слова:** —
+**Що ви опануєте:** разом використовувати this, that, питання Is …? і not під час вибору подарунка
+**Нові слова:** postcard, magnet, keyring, souvenir
+**Повертаються:** speaker, button, suitcase, parcel, scarf
 
 ---
 
 ## Інтро 1
 
-### Один і кілька
+### Картонний прямокутник
 
-Повторимо `dogs` — «собаки», `cats` — «коти», `cars` — «машини». Кілька собак — `They are dogs`, «Це собаки». Одна — `It is a dog`, «Це собака». Перед `dogs` не ставимо `a`. Олег підписав фотографію трьох собак словом `dog`. Двох собак поки не враховано. Виправимо підпис: `dogs`.
+Продавчиня кладе на прилавок перед вами картонний прямокутник із краєвидом музею. postcard — «листівка», її пишуть і надсилають друзям. Листівка лежить просто поруч із вами, тому this. Перед postcard ставимо a: This is a postcard — «Це листівка».
 
-**На фотографії кілька собак. Назвіть їх повною фразою «Це собаки».**
+**Продавчиня кладе перед вами картонний прямокутник із краєвидом музею. Скажіть, що це листівка.**
 
-- ✅ **They are dogs.**
-- ❌ They are a dog. — *Собак кілька: потрібно `dogs`, без `a`.*
-- ❌ They is dogs. — *З `They` потрібно `are`.*
+- ✅ **This is a postcard.**
+- ❌ That is a postcard. — *Листівка лежить поруч, а that кажемо про далеке: This is a postcard.*
+- ❌ This is postcard. — *Перед postcard потрібно a: This is a postcard.*
 
 ---
 
 ## Інтро 2
 
-### Важливі загалом
+### Вітрина в глибині кіоску
 
-`parks` — «парки», `windows` — «вікна». `Parks are important` — «Парки важливі»: говоримо про парки загалом, без `the`. `The parks are nearby` — «Парки поруч»: говоримо про ті парки, які вибрали для прогулянки. Так само розрізняємо вікна загалом і вікна конкретної кімнати.
+Подруга показує рукою на вітрину в глибині кіоску, де блищать маленькі круглі речі, які тримаються на холодильнику. magnet — «магніт». Вітрина стоїть далеко від вас, тому that. Щоб запитати, ставимо Is наперед: Is that a magnet? — «Це магніт?»
 
-**Ви говорите про користь парків для міста загалом. Виберіть «Парки важливі» без указівки на певні парки.**
+**Подруга показує на дальню вітрину. Запитайте продавчиню, чи це магніт.**
 
-- ✅ **Parks are important.**
-- ❌ The parks are important. — *`The parks` — конкретні парки. Тут говоримо про парки загалом: `Parks`.*
-- ❌ A parks are important. — *Перед `parks` не ставимо `a`.*
+- ✅ **Is that a magnet?**
+- ❌ That is a magnet. — *Так звучить твердження. Щоб запитати, ставимо Is наперед: Is that a magnet?*
+- ❌ Is this a magnet? — *Вітрина далеко, а this кажемо про те, що поруч: Is that a magnet?*
 
 ---
 
 ## Інтро 3
 
-### Де потрібні речі
+### Гачок біля дальньої стіни
 
-`chairs` — «стільці», `tables` — «столи». `Where are the chairs?` — «Де стільці?» Запитуємо про конкретні стільці для зустрічі: `the chairs`. Стільців кілька, тому потрібно `are`. Так само можна запитати про машини для поїздки: `Where are the cars?` — «Де машини?»
+Подруга кличе вас до дальнього гачка й каже, що там брелок. keyring — «брелок», кільце з ланцюжком для ключів. Ви дивитеся здалеку й бачите просту мотузку. Далеко, тому that, а для «не» ставимо not після is: That is not a keyring — «Це не брелок».
 
-**Анна знає, які стільці виділені для зустрічі. Запитайте, де стільці.**
+**Подруга показує на гачок біля дальньої стіни. Скажіть їй, що це не брелок.**
 
-- ✅ **Where are the chairs?**
-- ❌ Where is the chairs? — *Стільців кілька: потрібно `are`.*
-- ❌ What are the chairs? — *Про місце запитуємо `Where` — «Де».*
+- ✅ **That is not a keyring.**
+- ❌ That is a keyring. — *На гачку немає брелка, тому потрібно not: That is not a keyring.*
+- ❌ That not is a keyring. — *Not стоїть після is: That is not a keyring.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Олег запитує, які тварини на фотографії. Назвіть кількох собак повною фразою**
+**1 · Продавчиня показує на шарф поруч із вами. Скажіть, що це шарф.**
 <!-- interaction_id: en:lesson-03:session-32:i01; family: phrase_builder -->
-Плитки: `dogs` `are` `They` `is` → **They are dogs.**
-*(плитка `is` зайва: тут потрібно `are` — `They are dogs.`)*
+Плитки: `scarf` `This` `is` `a` `That` → **This is a scarf.**
+*(плитка `That` зайва: тут потрібно `This` — `This is a scarf.`)*
 
-**2 · Послухайте повідомлення про машини**
+**2 · Послухайте, що каже продавчиня**
 <!-- interaction_id: en:lesson-03:session-32:i02; family: listen_choose -->
-🔊 *The cars are available.* → **The cars are available.** · The cars are different. · The cars are nearby.
-- The cars are different. — *У записі останнє слово — `available`, а в цьому варіанті — `different`.*
-- The cars are nearby. — *У записі останнє слово — `available`, а в цьому варіанті — `nearby`.*
+🔊 *That is a button.* → **That is a button.** · This is a button. · That is a parcel.
+- This is a button. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
+- That is a parcel. — *У записі останнє слово — `button`, а в цьому варіанті — `parcel`.*
 
-**3 · На іншій фотографії кілька котів. Назвіть їх**
+**3 · Валіза стоїть біля дальньої стіни кіоску. Доповніть питання**
 <!-- interaction_id: en:lesson-03:session-32:i03; family: context_gap_grammar -->
-They are ___. → **cats** · cat · a cats
-- cat — *Котів кілька: `cats`.*
-- a cats — *Перед `cats` не ставимо `a`.*
+Is that ___ suitcase? → **a** · an · is
+- an — *Слово suitcase починається з приголосного звуку, тому тут a.*
+- is — *Слово Is уже стоїть на початку питання. Перед suitcase потрібно a.*
 
-**4 · З’єднайте назви зі значеннями**
+**4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-32:i04; family: speed_match -->
-dogs — собаки · cats — коти · cars — машини · chairs — стільці
+postcard — листівка · magnet — магніт · keyring — брелок · souvenir — сувенір
 
-**5 · Послухайте й складіть повідомлення**
+**5 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-32:i05; family: listen_build_dictation -->
-🔊 *The windows are open.* Плитки: `open` `are` `windows` `The` `is` → **The windows are open.**
-*(плитка `is` зайва: тут потрібно `are` — `The windows are open.`)*
+🔊 *That is not a speaker.* Плитки: `speaker` `not` `is` `That` `a` `an` → **That is not a speaker.**
+*(плитка `an` зайва: тут потрібно `a` — `That is not a speaker.`)*
 
-**6 · Анна знає, які столи потрібні для зустрічі. Запитайте, де столи**
+**6 · Посилка лежить поруч із вами. Запитайте продавчиню, чи це посилка.**
 <!-- interaction_id: en:lesson-03:session-32:i06; family: phrase_builder -->
-Плитки: `tables` `the` `are` `Where` `What` → **Where are the tables?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where are the tables?`)*
+Плитки: `parcel` `this` `Is` `a` `that` → **Is this a parcel?**
+*(плитка `that` зайва: тут потрібно `this` — `Is this a parcel?`)*
 
-**7 · Ви обговорюєте місця для прогулянок у місті. Скажіть «Парки важливі» про парки загалом**
+**7 · Картка слова — postcard**
+<!-- interaction_id: en:lesson-03:session-32:word:postcard; family: word_card -->
+> **postcard** — листівка, картонний прямокутник із картинкою, який надсилають другові. This is a postcard — «Це листівка». Про листівку з музею чи з поїздки.
+
+**8 · Продавчиня називає річ, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-32:i07; family: scripted_repeat_compare -->
-🎙 **Parks are important.**
+🎙 **postcard**
 
-**8 · Ви говорите про денне світло в приміщеннях. Скажіть, що вікна загалом важливі, без указівки на конкретні вікна**
+**9 · Картка слова — magnet**
+<!-- interaction_id: en:lesson-03:session-32:word:magnet; family: word_card -->
+> **magnet** — магніт, маленька річ, що тримається на холодильнику. Is that a magnet? — «Це магніт?» Про магніт на пам’ять про місто.
+
+**10 · Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?**
 <!-- interaction_id: en:lesson-03:session-32:i08; family: context_gap_grammar -->
-___ are important. → **Windows** · The windows · A windows
-- The windows — *`The windows` — певні вікна. Тут потрібне загальне `Windows`.*
-- A windows — *Перед `windows` не ставимо `a`.*
+___ → **magnet** · button · parcel
+- button — *button — це кнопка, яку натискають, а предмет для холодильника називається magnet.*
+- parcel — *parcel — це посилка, а предмет для холодильника називається magnet.*
 
-**9 · Послухайте повідомлення про стільці**
+**11 · Послухайте подругу**
 <!-- interaction_id: en:lesson-03:session-32:i09; family: listen_choose -->
-🔊 *The chairs are upstairs.* → **The chairs are upstairs.** · The chairs are outside. · The chairs are here.
-- The chairs are outside. — *У записі останнє слово — `upstairs`, а в цьому варіанті — `outside`.*
-- The chairs are here. — *У записі останнє слово — `upstairs`, а в цьому варіанті — `here`.*
+🔊 *This is not a postcard.* → **This is not a postcard.** · That is not a postcard. · This is not a scarf.
+- That is not a postcard. — *У записі перше слово — `This`, а в цьому варіанті — `That`.*
+- This is not a scarf. — *У записі останнє слово — `postcard`, а в цьому варіанті — `scarf`.*
 
-**10 · З’єднайте назви зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-32:i10; family: speed_match -->
-tables — столи · windows — вікна · parks — парки · cats — коти
+postcard — листівка · scarf — шарф · speaker — колонка · button — кнопка
 
-**11 · Послухайте й складіть повідомлення**
+**13 · Послухайте продавчиню й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-32:i11; family: listen_build_dictation -->
-🔊 *The parks are nearby.* Плитки: `nearby` `are` `parks` `The` `is` → **The parks are nearby.**
-*(плитка `is` зайва: тут потрібно `are` — `The parks are nearby.`)*
+🔊 *This is not a magnet.* Плитки: `magnet` `not` `is` `This` `a` `an` → **This is not a magnet.**
+*(плитка `an` зайва: тут потрібно `a` — `This is not a magnet.`)*
 
-**12 · Олег знає, які машини виділені для поїздки. Запитайте, де машини**
+**14 · Продавчиня питає, що лежить перед вами. Скажіть, що це листівка.**
 <!-- interaction_id: en:lesson-03:session-32:i12; family: phrase_builder -->
-Плитки: `cars` `the` `are` `Where` `What` → **Where are the cars?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where are the cars?`)*
+Плитки: `postcard` `This` `is` `a` `That` → **This is a postcard.**
+*(плитка `That` зайва: тут потрібно `This` — `This is a postcard.`)*
 
-**13 · Ви розповідаєте про допомогу собак людям загалом. Скажіть «Собаки допомагають», не вказуючи на конкретну групу**
+**15 · Картка слова — keyring**
+<!-- interaction_id: en:lesson-03:session-32:word:keyring; family: word_card -->
+> **keyring** — брелок, кільце з ланцюжком для ключів. That is not a keyring — «Це не брелок». Про брелок із фігуркою чи написом.
+
+**16 · Продавчиня називає річ, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-32:i13; family: scripted_repeat_compare -->
-🎙 **Dogs are helpful.**
+🎙 **keyring**
 
-**14 · Олег запитує про один стілець. Ви називаєте його повною фразою**
+**17 · Картка слова — souvenir**
+<!-- interaction_id: en:lesson-03:session-32:word:souvenir; family: word_card -->
+> **souvenir** — сувенір, річ на пам’ять про поїздку. This is a souvenir — «Це сувенір». Про річ, яку привозять у подарунок.
+
+**18 · Як англійською називається річ, яку привозять на пам’ять про поїздку?**
 <!-- interaction_id: en:lesson-03:session-32:i14; family: context_gap_grammar -->
-It is ___ chair. → **a** · an · are
-- an — *Перед `chair` у цій фразі потрібно `a`: `a chair`.*
-- are — *Для назви одного стільця тут потрібно `a chair`.*
+___ → **souvenir** · postcard · suitcase
+- postcard — *postcard — це листівка, яку надсилають другові, а річ на пам’ять називається souvenir.*
+- suitcase — *suitcase — це валіза, а річ на пам’ять називається souvenir.*
 
-**15 · Послухайте повідомлення про столи**
+**19 · Послухайте питання подруги**
 <!-- interaction_id: en:lesson-03:session-32:i15; family: listen_choose -->
-🔊 *The tables are here.* → **The tables are here.** · The tables are outside. · The tables are upstairs.
-- The tables are outside. — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
-- The tables are upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Is this a keyring?* → **Is this a keyring?** · Is that a keyring? · Is this a souvenir?
+- Is that a keyring? — *У записі друге слово — `this`, а в цьому варіанті — `that`.*
+- Is this a souvenir? — *У записі останнє слово — `keyring`, а в цьому варіанті — `souvenir`.*
 
-**16 · З’єднайте назви зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-32:i16; family: speed_match -->
-cars — машини · chairs — стільці · tables — столи · windows — вікна
+souvenir — сувенір · keyring — брелок · magnet — магніт · postcard — листівка
 
-**17 · Перед іншою зустріччю ви готуєте кімнату. Анна знає, які стільці потрібно принести. Запитайте, де стільці**
+**21 · Продавчиня показує на річ, яку ви купили на пам’ять про поїздку. Скажіть, що це.**
 <!-- interaction_id: en:lesson-03:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the chairs?**
-
+🎙 **This is a souvenir.**

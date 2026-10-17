@@ -63,15 +63,15 @@
 - She is worried. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
 - He is surprised. — *У записі останнє слово — `worried`, а в цьому варіанті — `surprised`.*
 
-**3 · Ви звірили час відкриття в запрошенні: він правильний. Вставте слово**
-<!-- interaction_id: en:lesson-01:session-32:i03; family: context_gap_grammar -->
-It ___ correct. → **is** · am · are
-- am — *Після `It` потрібно `is`.*
-- are — *Із `It` тут ставимо `is`.*
-
-**4 · Картка слова — crooked**
+**3 · Картка слова — crooked**
 <!-- interaction_id: en:lesson-01:session-32:word:crooked; family: word_card -->
 > **crooked** — кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні.
+
+**4 · Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово**
+<!-- interaction_id: en:lesson-01:session-32:i03; family: context_gap_grammar -->
+It ___ crooked. → **is** · am · are
+- am — *Після `It` потрібно `is`.*
+- are — *Із `It` тут ставимо `is`.*
 
 **5 · Картка слова — huge**
 <!-- interaction_id: en:lesson-01:session-32:word:huge; family: word_card -->
@@ -101,9 +101,9 @@ They ___ equal. → **are** · am · is
 - am — *Після `They` потрібна форма `are`.*
 - is — *Про дві суми кажемо `They are`.*
 
-**11 · Картка слова — blurry**
-<!-- interaction_id: en:lesson-01:session-32:word:blurry; family: word_card -->
-> **blurry** — розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі.
+**11 · Картка слова — tiny**
+<!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
+> **tiny** — крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small.
 
 **12 · Підпис під знімком надруковано таким дрібним шрифтом, що його майже не видно. Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-32:i09; family: listen_choose -->
@@ -141,9 +141,9 @@ She is ___ . → **worried** · bored · proud
 - They are equal. — *У записі останнє слово — `similar`, а в цьому варіанті — `equal`.*
 - They are separate. — *У записі останнє слово — `similar`, а в цьому варіанті — `separate`.*
 
-**19 · Картка слова — tiny**
-<!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
-> **tiny** — крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small.
+**19 · Картка слова — blurry**
+<!-- interaction_id: en:lesson-01:session-32:word:blurry; family: word_card -->
+> **blurry** — розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі.
 
 **20 · З’єднайте слова та значення**
 <!-- interaction_id: en:lesson-01:session-32:i16; family: speed_match -->

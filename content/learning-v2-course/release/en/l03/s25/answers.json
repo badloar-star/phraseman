@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-25:i01",
-    "correctText": "They are books.",
+    "correctText": "This is a lamp.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i02",
-    "correctText": "dogs",
+    "correctText": "This is a box.",
     "correctResponseId": "en:lesson-03:session-25:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i03",
-    "correctText": "dogs",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-25:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i04",
-    "correctText": "en:lesson-03:session-25:i04:p1=dogs\nen:lesson-03:session-25:i04:p2=proud\nen:lesson-03:session-25:i04:p3=ashamed\nen:lesson-03:session-25:i04:p4=books",
+    "correctText": "en:lesson-03:session-25:i04:p1=charger\nen:lesson-03:session-25:i04:p2=cable\nen:lesson-03:session-25:i04:p3=adapter\nen:lesson-03:session-25:i04:p4=socket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i05",
-    "correctText": "The dogs are absent.",
+    "correctText": "This is not a bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i06",
-    "correctText": "Books are important.",
+    "correctText": "This is a clock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:word:charger",
+    "correctText": "charger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i07",
-    "correctText": "I'm surprised.",
+    "correctText": "charger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:word:cable",
+    "correctText": "cable",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i08",
-    "correctText": "The dogs",
+    "correctText": "cable",
     "correctResponseId": "en:lesson-03:session-25:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i09",
-    "correctText": "He is ashamed.",
+    "correctText": "This is not a charger.",
     "correctResponseId": "en:lesson-03:session-25:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i10",
-    "correctText": "en:lesson-03:session-25:i10:p1=surprised\nen:lesson-03:session-25:i10:p2=absent\nen:lesson-03:session-25:i10:p3=dogs\nen:lesson-03:session-25:i10:p4=books",
+    "correctText": "en:lesson-03:session-25:i10:p1=charger\nen:lesson-03:session-25:i10:p2=lamp\nen:lesson-03:session-25:i10:p3=key\nen:lesson-03:session-25:i10:p4=box",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i11",
-    "correctText": "Books are important.",
+    "correctText": "This is not a cable.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i12",
-    "correctText": "Where are the dogs?",
+    "correctText": "This is a charger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:word:adapter",
+    "correctText": "adapter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i13",
-    "correctText": "She's proud.",
+    "correctText": "adapter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:word:socket",
+    "correctText": "socket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i14",
-    "correctText": "Books",
+    "correctText": "socket",
     "correctResponseId": "en:lesson-03:session-25:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i15",
-    "correctText": "I am surprised.",
+    "correctText": "This is not an adapter.",
     "correctResponseId": "en:lesson-03:session-25:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-25:i16",
-    "correctText": "en:lesson-03:session-25:i16:p1=proud\nen:lesson-03:session-25:i16:p2=ashamed\nen:lesson-03:session-25:i16:p3=surprised\nen:lesson-03:session-25:i16:p4=absent",
+    "correctText": "en:lesson-03:session-25:i16:p1=socket\nen:lesson-03:session-25:i16:p2=cable\nen:lesson-03:session-25:i16:p3=adapter\nen:lesson-03:session-25:i16:p4=charger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-25:i17",
-    "correctText": "Dogs are helpful.",
+    "correctText": "This is a socket.",
     "correctResponseId": null
   }
 ]

@@ -9,35 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»",
+      "prompt": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»",
+      "accessibilityLabel": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The cups are missing.",
+        "targetPhrase": "This is a mirror.",
         "localizedMeaning": {
-          "ru": "Вы с Анной не можете найти нужные чашки. Сообщите «Чашки пропали»",
-          "uk": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»"
+          "ru": "Подруга показывает на зеркало рядом с вами. Скажите, что это зеркало.",
+          "uk": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало."
         },
         "orderedTokens": [
-          "The",
-          "cups",
-          "are",
-          "missing"
+          "This",
+          "is",
+          "a",
+          "mirror"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "That"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ви з Анною не можете знайти потрібні чашки. Повідомте «Чашки зникли»",
+            "testedDimension": "Подруга показує на дзеркало поруч із вами. Скажіть, що це дзеркало.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cups are missing.`",
-              "uk": "тут потрібно `are` — `The cups are missing.`"
+              "ru": "здесь нужно `This` — `This is a mirror.`",
+              "uk": "тут потрібно `This` — `This is a mirror.`"
             }
           }
         ],
@@ -54,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте, що каже продавець",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-30:i02:r1",
-          "text": "windows"
+          "text": "That is a hanger."
         },
         {
           "responseId": "en:lesson-03:session-30:i02:r2",
-          "text": "tables"
+          "text": "This is a hanger."
         },
         {
           "responseId": "en:lesson-03:session-30:i02:r3",
-          "text": "tickets"
+          "text": "That is a shelf."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте, що каже продавець",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i02:audio",
-          "transcript": "windows"
+          "transcript": "That is a hanger."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-30:i02:r1",
-            "targetText": "windows",
+            "targetText": "That is a hanger.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i02:r2",
-            "targetText": "tables",
+            "targetText": "This is a hanger.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i02:r3",
-            "targetText": "tickets",
+            "targetText": "That is a shelf.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-30:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте, що каже продавець",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `windows`, а в этом варианте — `tables`.",
-              "uk": "У записі перше слово — `windows`, а в цьому варіанті — `tables`."
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
             }
           },
           {
             "responseId": "en:lesson-03:session-30:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте, що каже продавець",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `windows`, а в этом варианте — `tickets`.",
-              "uk": "У записі перше слово — `windows`, а в цьому варіанті — `tickets`."
+              "ru": "В записи последнее слово — `hanger`, а в этом варианте — `shelf`.",
+              "uk": "У записі останнє слово — `hanger`, а в цьому варіанті — `shelf`."
             }
           }
         ],
@@ -130,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть кілька вікон одним англійським словом",
+      "prompt": "Кошик стоїть поруч із вами. Доповніть питання",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-30:i03:r1",
-          "text": "windows"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-30:i03:r2",
-          "text": "window"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-30:i03:r3",
-          "text": "a windows"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть кілька вікон одним англійським словом",
+      "accessibilityLabel": "Кошик стоїть поруч із вами. Доповніть питання",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите несколько окон одним английским словом",
-          "uk": "Назвіть кілька вікон одним англійським словом"
+          "ru": "Корзина стоит рядом с вами. Дополните вопрос",
+          "uk": "Кошик стоїть поруч із вами. Доповніть питання"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "Is this ___ basket?",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-30:i03:r1",
-            "text": "windows"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-30:i03:r2",
-            "text": "window"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-30:i03:r3",
-            "text": "a windows"
+            "text": "is"
           }
         ],
-        "testedDimension": "Назвіть кілька вікон одним англійським словом",
+        "testedDimension": "Кошик стоїть поруч із вами. Доповніть питання",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть кілька вікон одним англійським словом",
+            "testedDimension": "Кошик стоїть поруч із вами. Доповніть питання",
             "feedbackByLocale": {
-              "ru": "Несколько окон — `windows`.",
-              "uk": "Кілька вікон — `windows`."
+              "ru": "Слово basket начинается с согласного звука, поэтому здесь a.",
+              "uk": "Слово basket починається з приголосного звуку, тому тут a."
             }
           },
           {
             "responseId": "en:lesson-03:session-30:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть кілька вікон одним англійським словом",
+            "testedDimension": "Кошик стоїть поруч із вами. Доповніть питання",
             "feedbackByLocale": {
-              "ru": "Перед `windows` не ставим `a`.",
-              "uk": "Перед `windows` не ставимо `a`."
+              "ru": "Слово Is уже стоит в начале вопроса. Перед basket нужно a.",
+              "uk": "Слово Is уже стоїть на початку питання. Перед basket потрібно a."
             }
           }
         ]
@@ -209,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-30:i04:p1",
-            "target": "windows",
+            "target": "sweater",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "свитер",
+              "uk": "светр"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i04:p2",
-            "target": "cups",
+            "target": "scarf",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "шарф",
+              "uk": "шарф"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i04:p3",
-            "target": "alive",
+            "target": "glove",
             "meaningByLocale": {
-              "ru": "живой",
-              "uk": "живий"
+              "ru": "перчатка",
+              "uk": "рукавичка"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i04:p4",
-            "target": "dead",
+            "target": "vest",
             "meaningByLocale": {
-              "ru": "мёртвый, погибший",
-              "uk": "мертвий, загиблий"
+              "ru": "жилет",
+              "uk": "жилет"
             }
           }
         ],
         "leftColumn": [
-          "windows",
-          "cups",
-          "alive",
-          "dead"
+          "sweater",
+          "scarf",
+          "glove",
+          "vest"
         ],
         "rightColumn": [
-          "вікна",
-          "чашки",
-          "живий",
-          "мертвий, загиблий"
+          "светр",
+          "шарф",
+          "рукавичка",
+          "жилет"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -272,38 +272,39 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i05:audio",
-          "transcript": "The windows are open."
+          "transcript": "This is not a hanger."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The windows are open.",
+        "hiddenTargetPhrase": "This is not a hanger.",
         "orderedTokens": [
-          "The",
-          "windows",
-          "are",
-          "open"
+          "This",
+          "is",
+          "not",
+          "a",
+          "hanger"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The windows are open.`",
-              "uk": "тут потрібно `are` — `The windows are open.`"
+              "ru": "здесь нужно `a` — `This is not a hanger.`",
+              "uk": "тут потрібно `a` — `This is not a hanger.`"
             }
           }
         ],
@@ -320,34 +321,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом",
+      "prompt": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом",
+      "accessibilityLabel": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Windows are important.",
+        "targetPhrase": "Is that a bag?",
         "localizedMeaning": {
-          "ru": "Обсуждая свет в помещениях, скажите «Окна важны» об окнах вообще",
-          "uk": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом"
+          "ru": "Сумка лежит на дальнем стуле. Спросите подругу, сумка ли это.",
+          "uk": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка."
         },
         "orderedTokens": [
-          "Windows",
-          "are",
-          "important"
+          "Is",
+          "that",
+          "a",
+          "bag"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "this"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Обговорюючи світло в приміщеннях, скажіть «Вікна важливі» про вікна загалом",
+            "testedDimension": "Сумка лежить на дальньому стільці. Запитайте подругу, чи це сумка.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Windows are important.`",
-              "uk": "тут потрібно `are` — `Windows are important.`"
+              "ru": "здесь нужно `that` — `Is that a bag?`",
+              "uk": "тут потрібно `that` — `Is that a bag?`"
             }
           }
         ],
@@ -359,26 +361,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i07",
+      "interactionId": "en:lesson-03:session-30:word:sweater",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sweater",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:word:sweater:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sweater",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:word:sweater:audio",
+          "transcript": "sweater"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-30:word:sweater:r1",
+            "targetText": "sweater",
+            "meaningByLocale": {
+              "ru": "свитер, тёплая вязаная одежда с рукавами. This is a sweater — «Это свитер». О свитере на зиму или на прохладный вечер.",
+              "uk": "светр, тепла в’язана одежа з рукавами. This is a sweater — «Це светр». Про светр на зиму чи на прохолодний вечір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweater",
+          "definitionByLocale": {
+            "ru": "свитер, тёплая вязаная одежда с рукавами. This is a sweater — «Это свитер». О свитере на зиму или на прохладный вечер.",
+            "uk": "светр, тепла в’язана одежа з рукавами. This is a sweater — «Це светр». Про светр на зиму чи на прохолодний вечір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна перевірила рослину: вона жива. Повідомте це зі скороченням",
+      "prompt": "Продавець називає річ, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i07:audio"
       ],
-      "accessibilityLabel": "Анна перевірила рослину: вона жива. Повідомте це зі скороченням",
+      "accessibilityLabel": "Продавець називає річ, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i07:audio",
-          "transcript": "It's alive."
+          "transcript": "sweater"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's alive.",
+        "targetPhrase": "sweater",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,68 +437,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-30:word:scarf",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scarf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:word:scarf:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scarf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:word:scarf:audio",
+          "transcript": "scarf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-30:word:scarf:r1",
+            "targetText": "scarf",
+            "meaningByLocale": {
+              "ru": "шарф, длинная полоса ткани, которую носят на шее. That is a scarf — «Это шарф». О шарфе на зиму или для красоты.",
+              "uk": "шарф, довга смуга тканини, яку носять на шиї. That is a scarf — «Це шарф». Про шарф на зиму чи для краси."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scarf",
+          "definitionByLocale": {
+            "ru": "шарф, длинная полоса ткани, которую носят на шее. That is a scarf — «Это шарф». О шарфе на зиму или для красоты.",
+            "uk": "шарф, довга смуга тканини, яку носять на шиї. That is a scarf — «Це шарф». Про шарф на зиму чи для краси."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-30:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+      "prompt": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-30:i08:r1",
-          "text": "Windows"
+          "text": "scarf"
         },
         {
           "responseId": "en:lesson-03:session-30:i08:r2",
-          "text": "The windows"
+          "text": "sweater"
         },
         {
           "responseId": "en:lesson-03:session-30:i08:r3",
-          "text": "A windows"
+          "text": "mirror"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+      "accessibilityLabel": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорите об окнах вообще и их роли в освещении помещений, не о конкретных окнах",
-          "uk": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна"
+          "ru": "Продавец показывает длинную полосу ткани, которую зимой носят на шее. Как она называется по-английски?",
+          "uk": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "___ are important.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-30:i08:r1",
-            "text": "Windows"
+            "text": "scarf"
           },
           {
             "responseId": "en:lesson-03:session-30:i08:r2",
-            "text": "The windows"
+            "text": "sweater"
           },
           {
             "responseId": "en:lesson-03:session-30:i08:r3",
-            "text": "A windows"
+            "text": "mirror"
           }
         ],
-        "testedDimension": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+        "testedDimension": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+            "testedDimension": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`The windows` — определённые окна. Здесь нужно общее `Windows`.",
-              "uk": "`The windows` — певні вікна. Тут потрібне загальне `Windows`."
+              "ru": "sweater — это свитер, одежда с рукавами, а полоса ткани на шею называется scarf.",
+              "uk": "sweater — це светр, одяг з рукавами, а смуга тканини на шию називається scarf."
             }
           },
           {
             "responseId": "en:lesson-03:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Ви говорите про вікна загалом та їхню роль в освітленні приміщень, не про конкретні вікна",
+            "testedDimension": "Продавець показує довгу смугу тканини, яку взимку носять на шиї. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Перед `windows` не ставим `a`.",
-              "uk": "Перед `windows` не ставимо `a`."
+              "ru": "mirror — это зеркало, а полоса ткани на шею называется scarf.",
+              "uk": "mirror — це дзеркало, а смуга тканини на шию називається scarf."
             }
           }
         ]
@@ -462,51 +550,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-30:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про іншу рослину",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-30:i09:r1",
-          "text": "It is dead."
+          "text": "This is not a sweater."
         },
         {
           "responseId": "en:lesson-03:session-30:i09:r2",
-          "text": "It is alive."
+          "text": "That is not a sweater."
         },
         {
           "responseId": "en:lesson-03:session-30:i09:r3",
-          "text": "It is missing."
+          "text": "This is not a mirror."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте повідомлення про іншу рослину",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i09:audio",
-          "transcript": "It is dead."
+          "transcript": "This is not a sweater."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-30:i09:r1",
-            "targetText": "It is dead.",
+            "targetText": "This is not a sweater.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i09:r2",
-            "targetText": "It is alive.",
+            "targetText": "That is not a sweater.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i09:r3",
-            "targetText": "It is missing.",
+            "targetText": "This is not a mirror.",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +603,19 @@
           {
             "responseId": "en:lesson-03:session-30:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про іншу рослину",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dead`, а в этом варианте — `alive`.",
-              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `alive`."
+              "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+              "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
             }
           },
           {
             "responseId": "en:lesson-03:session-30:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про іншу рослину",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dead`, а в этом варианте — `missing`.",
-              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `missing`."
+              "ru": "В записи последнее слово — `sweater`, а в этом варианте — `mirror`.",
+              "uk": "У записі останнє слово — `sweater`, а в цьому варіанті — `mirror`."
             }
           }
         ],
@@ -538,7 +626,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-30:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -552,48 +640,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-30:i10:p1",
-            "target": "missing",
+            "target": "sweater",
             "meaningByLocale": {
-              "ru": "пропавший, отсутствующий",
-              "uk": "зниклий, відсутній"
+              "ru": "свитер",
+              "uk": "светр"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i10:p2",
-            "target": "elsewhere",
+            "target": "mirror",
             "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
+              "ru": "зеркало",
+              "uk": "дзеркало"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i10:p3",
-            "target": "windows",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "полка",
+              "uk": "полиця"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i10:p4",
-            "target": "cups",
+            "target": "hanger",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "вешалка-плечики",
+              "uk": "плічка для одягу"
             }
           }
         ],
         "leftColumn": [
-          "missing",
-          "elsewhere",
-          "windows",
-          "cups"
+          "sweater",
+          "mirror",
+          "shelf",
+          "hanger"
         ],
         "rightColumn": [
-          "зниклий, відсутній",
-          "в іншому місці",
-          "вікна",
-          "чашки"
+          "светр",
+          "дзеркало",
+          "полиця",
+          "плічка для одягу"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,42 +699,43 @@
     },
     {
       "interactionId": "en:lesson-03:session-30:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте продавця й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте продавця й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i11:audio",
-          "transcript": "The cups are elsewhere."
+          "transcript": "That is not a scarf."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cups are elsewhere.",
+        "hiddenTargetPhrase": "That is not a scarf.",
         "orderedTokens": [
-          "The",
-          "cups",
-          "are",
-          "elsewhere"
+          "That",
+          "is",
+          "not",
+          "a",
+          "scarf"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте продавця й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cups are elsewhere.`",
-              "uk": "тут потрібно `are` — `The cups are elsewhere.`"
+              "ru": "здесь нужно `a` — `That is not a scarf.`",
+              "uk": "тут потрібно `a` — `That is not a scarf.`"
             }
           }
         ],
@@ -659,39 +748,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-30:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна",
+      "prompt": "Продавець питає, що у вас у руках. Скажіть, що це светр.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна",
+      "accessibilityLabel": "Продавець питає, що у вас у руках. Скажіть, що це светр.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the windows?",
+        "targetPhrase": "This is a sweater.",
         "localizedMeaning": {
-          "ru": "Вы рассматриваете план новой комнаты. Анна знает её расположение. Спросите, где окна",
-          "uk": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна"
+          "ru": "Продавец спрашивает, что у вас в руках. Скажите, что это свитер.",
+          "uk": "Продавець питає, що у вас у руках. Скажіть, що це светр."
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "windows"
+          "This",
+          "is",
+          "a",
+          "sweater"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "That"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви розглядаєте план нової кімнати. Анна знає її розташування. Запитайте, де вікна",
+            "testedDimension": "Продавець питає, що у вас у руках. Скажіть, що це светр.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where are the windows?`",
-              "uk": "тут потрібно `Where` — `Where are the windows?`"
+              "ru": "здесь нужно `This` — `This is a sweater.`",
+              "uk": "тут потрібно `This` — `This is a sweater.`"
             }
           }
         ],
@@ -703,26 +792,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-30:word:glove",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glove",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:word:glove:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glove",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:word:glove:audio",
+          "transcript": "glove"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-30:word:glove:r1",
+            "targetText": "glove",
+            "meaningByLocale": {
+              "ru": "перчатка, одежда для одной руки. Is this a glove? — «Это перчатка?» Об одной перчатке: пара — это две перчатки.",
+              "uk": "рукавичка, одяг для однієї руки. Is this a glove? — «Це рукавичка?» Про одну рукавичку: пара — це дві рукавички."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glove",
+          "definitionByLocale": {
+            "ru": "перчатка, одежда для одной руки. Is this a glove? — «Это перчатка?» Об одной перчатке: пара — это две перчатки.",
+            "uk": "рукавичка, одяг для однієї руки. Is this a glove? — «Це рукавичка?» Про одну рукавичку: пара — це дві рукавички."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-30:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег запитує про чашки. Їх прибрали в інше місце. Скажіть «Вони в іншому місці» зі скороченням",
+      "prompt": "Продавець називає річ, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i13:audio"
       ],
-      "accessibilityLabel": "Олег запитує про чашки. Їх прибрали в інше місце. Скажіть «Вони в іншому місці» зі скороченням",
+      "accessibilityLabel": "Продавець називає річ, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i13:audio",
-          "transcript": "They're elsewhere."
+          "transcript": "glove"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're elsewhere.",
+        "targetPhrase": "glove",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,68 +868,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-30:word:vest",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:word:vest:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:word:vest:audio",
+          "transcript": "vest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-30:word:vest:r1",
+            "targetText": "vest",
+            "meaningByLocale": {
+              "ru": "жилет, одежда без рукавов, которую надевают поверх рубашки. That is a vest — «Это жилет». О жилете для тепла или для вида.",
+              "uk": "жилет, одяг без рукавів, який вдягають поверх сорочки. That is a vest — «Це жилет». Про жилет для тепла чи для вигляду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vest",
+          "definitionByLocale": {
+            "ru": "жилет, одежда без рукавов, которую надевают поверх рубашки. That is a vest — «Это жилет». О жилете для тепла или для вида.",
+            "uk": "жилет, одяг без рукавів, який вдягають поверх сорочки. That is a vest — «Це жилет». Про жилет для тепла чи для вигляду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+      "prompt": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-30:i14:r1",
-          "text": "are"
+          "text": "vest"
         },
         {
           "responseId": "en:lesson-03:session-30:i14:r2",
-          "text": "is"
+          "text": "sweater"
         },
         {
           "responseId": "en:lesson-03:session-30:i14:r3",
-          "text": "am"
+          "text": "scarf"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+      "accessibilityLabel": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы сообщаете, что несколько окон в комнате открыты",
-          "uk": "Ви повідомляєте, що кілька вікон у кімнаті відчинені"
+          "ru": "Продавец показывает тёплую вещь без рукавов, которую надевают поверх рубашки. Как она называется по-английски?",
+          "uk": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "The windows ___ open.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-30:i14:r1",
-            "text": "are"
+            "text": "vest"
           },
           {
             "responseId": "en:lesson-03:session-30:i14:r2",
-            "text": "is"
+            "text": "sweater"
           },
           {
             "responseId": "en:lesson-03:session-30:i14:r3",
-            "text": "am"
+            "text": "scarf"
           }
         ],
-        "testedDimension": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+        "testedDimension": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+            "testedDimension": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Окон несколько: нужно `are`.",
-              "uk": "Вікон кілька: потрібно `are`."
+              "ru": "sweater — это свитер с рукавами, а вещь без рукавов называется vest.",
+              "uk": "sweater — це светр з рукавами, а річ без рукавів називається vest."
             }
           },
           {
             "responseId": "en:lesson-03:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Ви повідомляєте, що кілька вікон у кімнаті відчинені",
+            "testedDimension": "Продавець показує теплу річ без рукавів, яку вдягають поверх сорочки. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "С `the windows` здесь нужно `are`.",
-              "uk": "З `the windows` тут потрібно `are`."
+              "ru": "scarf — это шарф на шею, а вещь без рукавов называется vest.",
+              "uk": "scarf — це шарф на шию, а річ без рукавів називається vest."
             }
           }
         ]
@@ -806,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-30:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про рослину біля вікна",
+      "prompt": "Послухайте питання подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-30:i15:r1",
-          "text": "It is alive."
+          "text": "Is that a glove?"
         },
         {
           "responseId": "en:lesson-03:session-30:i15:r2",
-          "text": "It is dead."
+          "text": "Is this a glove?"
         },
         {
           "responseId": "en:lesson-03:session-30:i15:r3",
-          "text": "It is missing."
+          "text": "Is that a vest?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте повідомлення про рослину біля вікна",
+      "accessibilityLabel": "Послухайте питання подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i15:audio",
-          "transcript": "It is alive."
+          "transcript": "Is that a glove?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-30:i15:r1",
-            "targetText": "It is alive.",
+            "targetText": "Is that a glove?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i15:r2",
-            "targetText": "It is dead.",
+            "targetText": "Is this a glove?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i15:r3",
-            "targetText": "It is missing.",
+            "targetText": "Is that a vest?",
             "meaningByLocale": null
           }
         ],
@@ -859,19 +1034,19 @@
           {
             "responseId": "en:lesson-03:session-30:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про рослину біля вікна",
+            "testedDimension": "Послухайте питання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alive`, а в этом варианте — `dead`.",
-              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `dead`."
+              "ru": "В записи второе слово — `that`, а в этом варианте — `this`.",
+              "uk": "У записі друге слово — `that`, а в цьому варіанті — `this`."
             }
           },
           {
             "responseId": "en:lesson-03:session-30:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про рослину біля вікна",
+            "testedDimension": "Послухайте питання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alive`, а в этом варианте — `missing`.",
-              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `missing`."
+              "ru": "В записи последнее слово — `glove`, а в этом варианте — `vest`.",
+              "uk": "У записі останнє слово — `glove`, а в цьому варіанті — `vest`."
             }
           }
         ],
@@ -882,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-30:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -896,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-30:i16:p1",
-            "target": "alive",
+            "target": "vest",
             "meaningByLocale": {
-              "ru": "живой",
-              "uk": "живий"
+              "ru": "жилет",
+              "uk": "жилет"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i16:p2",
-            "target": "dead",
+            "target": "glove",
             "meaningByLocale": {
-              "ru": "мёртвый, погибший",
-              "uk": "мертвий, загиблий"
+              "ru": "перчатка",
+              "uk": "рукавичка"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i16:p3",
-            "target": "missing",
+            "target": "scarf",
             "meaningByLocale": {
-              "ru": "пропавший, отсутствующий",
-              "uk": "зниклий, відсутній"
+              "ru": "шарф",
+              "uk": "шарф"
             }
           },
           {
             "pairId": "en:lesson-03:session-30:i16:p4",
-            "target": "elsewhere",
+            "target": "sweater",
             "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
+              "ru": "свитер",
+              "uk": "светр"
             }
           }
         ],
         "leftColumn": [
-          "alive",
-          "dead",
-          "missing",
-          "elsewhere"
+          "vest",
+          "glove",
+          "scarf",
+          "sweater"
         ],
         "rightColumn": [
-          "живий",
-          "мертвий, загиблий",
-          "зниклий, відсутній",
-          "в іншому місці"
+          "жилет",
+          "рукавичка",
+          "шарф",
+          "светр"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -955,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-30:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви обговорюєте з другом, чому приміщенням потрібне денне світло. Скажіть «Вікна важливі» про вікна загалом",
+      "prompt": "Продавець показує на жилет на дальньому вішаку. Скажіть, що це.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Ви обговорюєте з другом, чому приміщенням потрібне денне світло. Скажіть «Вікна важливі» про вікна загалом",
+      "accessibilityLabel": "Продавець показує на жилет на дальньому вішаку. Скажіть, що це.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i17:audio",
-          "transcript": "Windows are important."
+          "transcript": "That is a vest."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Windows are important.",
+        "targetPhrase": "That is a vest.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -995,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5337788309e7a001796c1a6e7b259f1eeda3a96ff30f079c30773a67e1122ca8"
+  "learnerFingerprint": "804da20738a325b32a9e7e5afeee5c8f07fecd41c259ecd3075bf65e6c0b358c"
 }

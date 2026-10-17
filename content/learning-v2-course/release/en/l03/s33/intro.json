@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-33",
   "learningOutcomeByLocale": {
-    "ru": "показать на один или несколько предметов рядом и дальше: this, that, these, those",
-    "uk": "показати на один або кілька предметів поруч і далі: this, that, these, those"
+    "ru": "называть несколько предметов рядом и спрашивать о них: These are …, Are these …?",
+    "uk": "називати кілька предметів поруч і питати про них: These are …, Are these …?"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вот этот и вон тот",
-        "uk": "Ось цей і он той"
+        "ru": "Коробка с обувью",
+        "uk": "Коробка зі взуттям"
       },
       "bodyByLocale": {
-        "ru": "`phone` — «телефон». `This is a phone` — «Это телефон»: показываем на один телефон рядом. `That is a phone` — тоже «Это телефон», но показываем на один телефон дальше от нас. `this` — «этот, вот это», `that` — «тот, вон то». В обеих фразах сохраняется `is a phone`. Анна спрашивает, какой телефон взять. Ответ «телефон» пока помогает не больше, чем «тот, который звонит»: звонят оба. Покажите точнее — рядом или дальше.",
-        "uk": "`phone` — «телефон». `This is a phone` — «Це телефон»: показуємо на один телефон поруч. `That is a phone` — теж «Це телефон», але показуємо на один телефон далі від нас. `this` — «цей, ось це», `that` — «той, он те». В обох фразах зберігається `is a phone`. Анна запитує, який телефон узяти. Відповідь «телефон» поки допомагає не більше, ніж «той, що дзвонить»: дзвонять обидва. Покажіть точніше — поруч чи далі."
+        "ru": "Вы с подругой разбираете вещи для ярмарки в школьном зале. Волонтёр ставит перед вами на стол коробку с обувью и просит сказать, что в ней. shoe — «туфля». Туфель несколько, и они прямо перед вами, поэтому these: These are shoes — «Это туфли».",
+        "uk": "Ви з подругою розбираєте речі для ярмарку в шкільній залі. Волонтер ставить перед вами на стіл коробку зі взуттям і просить сказати, що в ній. shoe — «туфля». Туфель кілька, і вони просто перед вами, тому these: These are shoes — «Це туфлі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-33:intro1:q",
         "promptByLocale": {
-          "ru": "Телефон лежит прямо перед вами. Назовите его, начиная со слова для одного предмета рядом.",
-          "uk": "Телефон лежить просто перед вами. Назвіть його, починаючи зі слова для одного предмета поруч."
+          "ru": "Волонтёр показывает на коробку перед вами. Скажите, что это туфли.",
+          "uk": "Волонтер показує на коробку перед вами. Скажіть, що це туфлі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-33:intro1:r1",
-              "text": "This is a phone."
+              "text": "These are shoes."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r2",
-              "text": "That is a phone."
+              "text": "This is shoes."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r3",
-              "text": "This are a phone."
+              "text": "These are a shoes."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-33:intro1:r1",
-              "text": "This is a phone."
+              "text": "These are shoes."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r2",
-              "text": "That is a phone."
+              "text": "This is shoes."
             },
             {
               "responseId": "en:lesson-03:session-33:intro1:r3",
-              "text": "This are a phone."
+              "text": "These are a shoes."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Телефон лежит прямо перед вами. Назовите его, начиная со слова для одного предмета рядом.",
-          "uk": "Телефон лежить просто перед вами. Назвіть його, починаючи зі слова для одного предмета поруч."
+          "ru": "Волонтёр показывает на коробку перед вами. Скажите, что это туфли.",
+          "uk": "Волонтер показує на коробку перед вами. Скажіть, що це туфлі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "А если их несколько",
-        "uk": "А якщо їх кілька"
+        "ru": "Носки на столе",
+        "uk": "Шкарпетки на столі"
       },
       "bodyByLocale": {
-        "ru": "Для нескольких рядом используем `these` — «эти», для нескольких дальше — `those` — «те». `These are dogs` — «Это собаки», показываем на собак рядом. `Those are dogs` — «Это собаки», показываем на собак дальше. После `these` и `those` в этих фразах нужно `are`, а перед `dogs` нет `a`.",
-        "uk": "Для кількох поруч використовуємо `these` — «ці», для кількох далі — `those` — «ті». `These are dogs` — «Це собаки», показуємо на собак поруч. `Those are dogs` — «Це собаки», показуємо на собак далі. Після `these` і `those` у цих фразах потрібно `are`, а перед `dogs` немає `a`."
+        "ru": "Брат аккуратно раскладывает на столе перед вами носки, которые принёс для ярмарки. Вы хотите узнать, новые они или нет. sock — «носок». Носков несколько, и они рядом: these socks. Вопрос начинаем с Are: Are these socks new? — «Эти носки новые?»",
+        "uk": "Брат акуратно розкладає на столі перед вами шкарпетки, які приніс для ярмарку. Ви хочете дізнатися, чи нові вони. sock — «шкарпетка». Шкарпеток кілька, і вони поруч: these socks. Запитання починаємо з Are: Are these socks new? — «Ці шкарпетки нові?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-33:intro2:q",
         "promptByLocale": {
-          "ru": "Несколько собак стоят рядом с вами. Назовите их, начиная со слова для нескольких рядом.",
-          "uk": "Кілька собак стоять поруч із вами. Назвіть їх, починаючи зі слова для кількох поруч."
+          "ru": "Брат разложил носки рядом с вами. Спросите его, новые ли эти носки.",
+          "uk": "Брат розклав шкарпетки поруч із вами. Запитайте його, чи нові ці шкарпетки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-33:intro2:r1",
-              "text": "These are dogs."
+              "text": "Are these socks new?"
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r2",
-              "text": "This is a dog."
+              "text": "Is these socks new?"
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r3",
-              "text": "Those are dogs."
+              "text": "Are these sock new?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-33:intro2:r1",
-              "text": "These are dogs."
+              "text": "Are these socks new?"
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r2",
-              "text": "This is a dog."
+              "text": "Is these socks new?"
             },
             {
               "responseId": "en:lesson-03:session-33:intro2:r3",
-              "text": "Those are dogs."
+              "text": "Are these sock new?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Несколько собак стоят рядом с вами. Назовите их, начиная со слова для нескольких рядом.",
-          "uk": "Кілька собак стоять поруч із вами. Назвіть їх, починаючи зі слова для кількох поруч."
+          "ru": "Брат разложил носки рядом с вами. Спросите его, новые ли эти носки.",
+          "uk": "Брат розклав шкарпетки поруч із вами. Запитайте його, чи нові ці шкарпетки."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не только назвать",
-        "uk": "Не тільки назвати"
+        "ru": "Рубашки от соседки",
+        "uk": "Сорочки від сусідки"
       },
       "bodyByLocale": {
-        "ru": "`okay` — «в порядке», `active` — «активный». `This phone is okay` — «Этот телефон в порядке». Между `this` и `phone` не ставим `a`: `this phone`. `Those dogs are active` — «Те собаки активны». Можно назвать нужную группу словами `those dogs`, а потом сказать, какая она. Здесь речь о нескольких собаках, поэтому `are`.",
-        "uk": "`okay` — «у порядку», `active` — «активний». `This phone is okay` — «Цей телефон у порядку». Між `this` і `phone` не ставимо `a`: `this phone`. `Those dogs are active` — «Ті собаки активні». Можна назвати потрібну групу словами `those dogs`, а потім сказати, яка вона. Тут ідеться про кількох собак, тому `are`."
+        "ru": "Соседка принесла на ярмарку стопку рубашек и кладёт её перед вами на стол. Она спрашивает, можно ли их продавать. Вы внимательно смотрите и видите, что всё в порядке. shirt — «рубашка». Рубашек несколько, и они рядом: These shirts are clean — «Эти рубашки чистые».",
+        "uk": "Сусідка принесла на ярмарок стос сорочок і кладе його перед вами на стіл. Вона питає, чи можна їх продавати. Ви уважно дивитеся й бачите, що все гаразд. shirt — «сорочка». Сорочок кілька, і вони поруч: These shirts are clean — «Ці сорочки чисті»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-33:intro3:q",
         "promptByLocale": {
-          "ru": "Телефон у вас в руке исправен. Скажите «Этот телефон в порядке», указывая на телефон рядом.",
-          "uk": "Телефон у вас у руці справний. Скажіть «Цей телефон у порядку», указуючи на телефон поруч."
+          "ru": "Соседка положила рубашки перед вами. Скажите ей, что эти рубашки чистые.",
+          "uk": "Сусідка поклала сорочки перед вами. Скажіть їй, що ці сорочки чисті."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-33:intro3:r1",
-              "text": "This phone is okay."
+              "text": "These shirts are clean."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r2",
-              "text": "This a phone is okay."
+              "text": "This shirts are clean."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r3",
-              "text": "This phone are okay."
+              "text": "These shirts is clean."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-33:intro3:r1",
-              "text": "This phone is okay."
+              "text": "These shirts are clean."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r2",
-              "text": "This a phone is okay."
+              "text": "This shirts are clean."
             },
             {
               "responseId": "en:lesson-03:session-33:intro3:r3",
-              "text": "This phone are okay."
+              "text": "These shirts is clean."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Телефон у вас в руке исправен. Скажите «Этот телефон в порядке», указывая на телефон рядом.",
-          "uk": "Телефон у вас у руці справний. Скажіть «Цей телефон у порядку», указуючи на телефон поруч."
+          "ru": "Соседка положила рубашки перед вами. Скажите ей, что эти рубашки чистые.",
+          "uk": "Сусідка поклала сорочки перед вами. Скажіть їй, що ці сорочки чисті."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a935ac75924cd35ea38b98a64a554f3ae02799b5db83ef7623667dccbb4f6842"
+  "introFingerprint": "f9cbe59aa42cff1e2008f9062997390af97048b75effa1c911f19b442324df78"
 }

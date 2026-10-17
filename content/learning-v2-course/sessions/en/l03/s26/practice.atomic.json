@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-26:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Техник показывает на дальнюю стену. Скажите, что там дверь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Техник показывает на дальнюю стену. Скажите, что там дверь.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a door.",
+          "localizedMeaning": {
+            "ru": "Техник показывает на дальнюю стену. Скажите, что там дверь.",
+            "uk": "Технік показує на дальню стіну. Скажіть, що там двері."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Техник показывает на дальнюю стену. Скажите, что там дверь.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is a door.`",
+                "uk": "тут потрібно `a` — `That is a door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит техник",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i02:r1",
+            "text": "That is a window."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r2",
+            "text": "This is a window."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r3",
+            "text": "That is a shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит техник",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i02:audio",
+            "transcript": "That is a window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:i02:r1",
+              "targetText": "That is a window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i02:r2",
+              "targetText": "This is a window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i02:r3",
+              "targetText": "That is a shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит техник",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит техник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `window`, а в этом варианте — `shelf`.",
+                "uk": "У записі останнє слово — `window`, а в цьому варіанті — `shelf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Стул стоит у дальней стены. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стул стоит у дальней стены. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Стул стоит у дальней стены. Дополните фразу",
+            "uk": "Стілець стоїть біля дальньої стіни. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "That ___ a chair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Стул стоит у дальней стены. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Стул стоит у дальней стены. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "С that нужно is: That is a chair.",
+                "uk": "З that потрібно is: That is a chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Стул стоит у дальней стены. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "С that нужно is: That is a chair.",
+                "uk": "З that потрібно is: That is a chair."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-26:i04:p1",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i04:p2",
+              "target": "projector",
+              "meaningByLocale": {
+                "ru": "проектор",
+                "uk": "проєктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i04:p3",
+              "target": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка",
+                "uk": "колонка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i04:p4",
+              "target": "banner",
+              "meaningByLocale": {
+                "ru": "баннер",
+                "uk": "банер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "screen",
+            "projector",
+            "speaker",
+            "banner"
+          ],
+          "rightColumn": [
+            "экран",
+            "проектор",
+            "колонка",
+            "баннер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте техника и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте техника и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i05:audio",
+            "transcript": "That is not a table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a table.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте техника и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a table.`",
+                "uk": "тут потрібно `a` — `That is not a table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на стул рядом с вами. Скажите, что это стул.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на стул рядом с вами. Скажите, что это стул.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a chair.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на стул рядом с вами. Скажите, что это стул.",
+            "uk": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на стул рядом с вами. Скажите, что это стул.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a chair.`",
+                "uk": "тут потрібно `This` — `This is a chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:screen",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — screen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:screen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — screen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:screen:audio",
+            "transcript": "screen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:screen:r1",
+              "targetText": "screen",
+              "meaningByLocale": {
+                "ru": "экран, на который выводят картинку с проектора. That is a screen — «Это экран». Об экране на стене или на сцене.",
+                "uk": "екран, на який виводять картинку з проєктора. That is a screen — «Це екран». Про екран на стіні чи на сцені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "screen",
+            "definitionByLocale": {
+              "ru": "экран, на который выводят картинку с проектора. That is a screen — «Это экран». Об экране на стене или на сцене.",
+              "uk": "екран, на який виводять картинку з проєктора. That is a screen — «Це екран». Про екран на стіні чи на сцені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Техник называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Техник называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i07:audio",
+            "transcript": "screen"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "screen",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:projector",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — projector",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:projector:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — projector",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:projector:audio",
+            "transcript": "projector"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:projector:r1",
+              "targetText": "projector",
+              "meaningByLocale": {
+                "ru": "проектор, прибор, который показывает картинку на стене. This is a projector — «Это проектор». О приборе для презентаций и фильмов.",
+                "uk": "проєктор, прилад, який показує картинку на стіні. This is a projector — «Це проєктор». Про прилад для презентацій і фільмів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "projector",
+            "definitionByLocale": {
+              "ru": "проектор, прибор, который показывает картинку на стене. This is a projector — «Это проектор». О приборе для презентаций и фильмов.",
+              "uk": "проєктор, прилад, який показує картинку на стіні. This is a projector — «Це проєктор». Про прилад для презентацій і фільмів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i08:r1",
+            "text": "projector"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i08:r2",
+            "text": "screen"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i08:r3",
+            "text": "table"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+            "uk": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i08:r1",
+              "text": "projector"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i08:r2",
+              "text": "screen"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i08:r3",
+              "text": "table"
+            }
+          ],
+          "testedDimension": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "screen — это экран, на который выводят картинку, а прибор называется projector.",
+                "uk": "screen — це екран, на який виводять картинку, а прилад називається projector."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "table — это стол, а прибор называется projector.",
+                "uk": "table — це стіл, а прилад називається projector."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит подруга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i09:r1",
+            "text": "That is not a screen."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i09:r2",
+            "text": "This is not a screen."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i09:r3",
+            "text": "That is not a door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i09:audio",
+            "transcript": "That is not a screen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r1",
+              "targetText": "That is not a screen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "targetText": "This is not a screen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r3",
+              "targetText": "That is not a door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `screen`, а в этом варианте — `door`.",
+                "uk": "У записі останнє слово — `screen`, а в цьому варіанті — `door`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-26:i10:p1",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "screen",
+            "door",
+            "window",
+            "shelf"
+          ],
+          "rightColumn": [
+            "экран",
+            "дверь",
+            "окно",
+            "полка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i11:audio",
+            "transcript": "This is not a projector."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a projector.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "projector"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a projector.`",
+                "uk": "тут потрібно `a` — `This is not a projector.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Техник спрашивает, что висит на дальней стене. Скажите, что это экран.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Техник спрашивает, что висит на дальней стене. Скажите, что это экран.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a screen.",
+          "localizedMeaning": {
+            "ru": "Техник спрашивает, что висит на дальней стене. Скажите, что это экран.",
+            "uk": "Технік питає, що висить на дальній стіні. Скажіть, що це екран."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "screen"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Техник спрашивает, что висит на дальней стене. Скажите, что это экран.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a screen.`",
+                "uk": "тут потрібно `That` — `That is a screen.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:speaker",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — speaker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:speaker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — speaker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:speaker:audio",
+            "transcript": "speaker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:speaker:r1",
+              "targetText": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка, из которой звучит музыка или голос. That is a speaker — «Это колонка». О колонке в зале, дома, в машине.",
+                "uk": "колонка, з якої звучить музика чи голос. That is a speaker — «Це колонка». Про колонку в залі, вдома, в авто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speaker",
+            "definitionByLocale": {
+              "ru": "колонка, из которой звучит музыка или голос. That is a speaker — «Это колонка». О колонке в зале, дома, в машине.",
+              "uk": "колонка, з якої звучить музика чи голос. That is a speaker — «Це колонка». Про колонку в залі, вдома, в авто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Техник называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Техник называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i13:audio",
+            "transcript": "speaker"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "speaker",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:banner",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — banner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:banner:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — banner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:banner:audio",
+            "transcript": "banner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:banner:r1",
+              "targetText": "banner",
+              "meaningByLocale": {
+                "ru": "баннер, длинное полотно с надписью. That is a banner — «Это баннер». О полотне над входом или на стене.",
+                "uk": "банер, довге полотно з написом. That is a banner — «Це банер». Про полотно над входом чи на стіні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "banner",
+            "definitionByLocale": {
+              "ru": "баннер, длинное полотно с надписью. That is a banner — «Это баннер». О полотне над входом или на стене.",
+              "uk": "банер, довге полотно з написом. That is a banner — «Це банер». Про полотно над входом чи на стіні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i14:r1",
+            "text": "banner"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r2",
+            "text": "speaker"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r3",
+            "text": "window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+            "uk": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i14:r1",
+              "text": "banner"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i14:r2",
+              "text": "speaker"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i14:r3",
+              "text": "window"
+            }
+          ],
+          "testedDimension": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "speaker — это колонка, а длинное полотно называется banner.",
+                "uk": "speaker — це колонка, а довге полотно називається banner."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "window — это окно, а длинное полотно называется banner.",
+                "uk": "window — це вікно, а довге полотно називається banner."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит ведущая",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i15:r1",
+            "text": "This is not a speaker."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i15:r2",
+            "text": "That is not a speaker."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i15:r3",
+            "text": "This is not a screen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит ведущая",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i15:audio",
+            "transcript": "This is not a speaker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:i15:r1",
+              "targetText": "This is not a speaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i15:r2",
+              "targetText": "That is not a speaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i15:r3",
+              "targetText": "This is not a screen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит ведущая",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит ведущая",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `speaker`, а в этом варианте — `screen`.",
+                "uk": "У записі останнє слово — `speaker`, а в цьому варіанті — `screen`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-26:i16:p1",
+              "target": "banner",
+              "meaningByLocale": {
+                "ru": "баннер",
+                "uk": "банер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i16:p2",
+              "target": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка",
+                "uk": "колонка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i16:p3",
+              "target": "projector",
+              "meaningByLocale": {
+                "ru": "проектор",
+                "uk": "проєктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i16:p4",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            }
+          ],
+          "leftColumn": [
+            "banner",
+            "speaker",
+            "projector",
+            "screen"
+          ],
+          "rightColumn": [
+            "баннер",
+            "колонка",
+            "проектор",
+            "экран"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Техник показывает на длинное полотно над дальней дверью. Скажите, что это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Техник показывает на длинное полотно над дальней дверью. Скажите, что это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i17:audio",
+            "transcript": "That is a banner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is a banner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-26:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Технік показує на дальню стіну. Скажіть, що там двері.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Технік показує на дальню стіну. Скажіть, що там двері.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a door.",
+          "localizedMeaning": {
+            "ru": "Техник показывает на дальнюю стену. Скажите, что там дверь.",
+            "uk": "Технік показує на дальню стіну. Скажіть, що там двері."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Технік показує на дальню стіну. Скажіть, що там двері.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is a door.`",
+                "uk": "тут потрібно `a` — `That is a door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже технік",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i02:r1",
+            "text": "That is a window."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r2",
+            "text": "This is a window."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r3",
+            "text": "That is a shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже технік",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i02:audio",
+            "transcript": "That is a window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:i02:r1",
+              "targetText": "That is a window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i02:r2",
+              "targetText": "This is a window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i02:r3",
+              "targetText": "That is a shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже технік",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже технік",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `window`, а в этом варианте — `shelf`.",
+                "uk": "У записі останнє слово — `window`, а в цьому варіанті — `shelf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Стул стоит у дальней стены. Дополните фразу",
+            "uk": "Стілець стоїть біля дальньої стіни. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "That ___ a chair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "С that нужно is: That is a chair.",
+                "uk": "З that потрібно is: That is a chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "С that нужно is: That is a chair.",
+                "uk": "З that потрібно is: That is a chair."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-26:i04:p1",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i04:p2",
+              "target": "projector",
+              "meaningByLocale": {
+                "ru": "проектор",
+                "uk": "проєктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i04:p3",
+              "target": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка",
+                "uk": "колонка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i04:p4",
+              "target": "banner",
+              "meaningByLocale": {
+                "ru": "баннер",
+                "uk": "банер"
+              }
+            }
+          ],
+          "leftColumn": [
+            "screen",
+            "projector",
+            "speaker",
+            "banner"
+          ],
+          "rightColumn": [
+            "екран",
+            "проєктор",
+            "колонка",
+            "банер"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте техніка й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте техніка й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i05:audio",
+            "transcript": "That is not a table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a table.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте техніка й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a table.`",
+                "uk": "тут потрібно `a` — `That is not a table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a chair.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на стул рядом с вами. Скажите, что это стул.",
+            "uk": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "chair"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a chair.`",
+                "uk": "тут потрібно `This` — `This is a chair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:screen",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — screen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:screen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — screen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:screen:audio",
+            "transcript": "screen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:screen:r1",
+              "targetText": "screen",
+              "meaningByLocale": {
+                "ru": "экран, на который выводят картинку с проектора. That is a screen — «Это экран». Об экране на стене или на сцене.",
+                "uk": "екран, на який виводять картинку з проєктора. That is a screen — «Це екран». Про екран на стіні чи на сцені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "screen",
+            "definitionByLocale": {
+              "ru": "экран, на который выводят картинку с проектора. That is a screen — «Это экран». Об экране на стене или на сцене.",
+              "uk": "екран, на який виводять картинку з проєктора. That is a screen — «Це екран». Про екран на стіні чи на сцені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Технік називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Технік називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i07:audio",
+            "transcript": "screen"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "screen",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:projector",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — projector",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:projector:audio"
+        ],
+        "accessibilityLabel": "Картка слова — projector",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:projector:audio",
+            "transcript": "projector"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:projector:r1",
+              "targetText": "projector",
+              "meaningByLocale": {
+                "ru": "проектор, прибор, который показывает картинку на стене. This is a projector — «Это проектор». О приборе для презентаций и фильмов.",
+                "uk": "проєктор, прилад, який показує картинку на стіні. This is a projector — «Це проєктор». Про прилад для презентацій і фільмів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "projector",
+            "definitionByLocale": {
+              "ru": "проектор, прибор, который показывает картинку на стене. This is a projector — «Это проектор». О приборе для презентаций и фильмов.",
+              "uk": "проєктор, прилад, який показує картинку на стіні. This is a projector — «Це проєктор». Про прилад для презентацій і фільмів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i08:r1",
+            "text": "projector"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i08:r2",
+            "text": "screen"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i08:r3",
+            "text": "table"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+            "uk": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i08:r1",
+              "text": "projector"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i08:r2",
+              "text": "screen"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i08:r3",
+              "text": "table"
+            }
+          ],
+          "testedDimension": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "screen — это экран, на который выводят картинку, а прибор называется projector.",
+                "uk": "screen — це екран, на який виводять картинку, а прилад називається projector."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "table — это стол, а прибор называется projector.",
+                "uk": "table — це стіл, а прилад називається projector."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже подруга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i09:r1",
+            "text": "That is not a screen."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i09:r2",
+            "text": "This is not a screen."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i09:r3",
+            "text": "That is not a door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i09:audio",
+            "transcript": "That is not a screen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r1",
+              "targetText": "That is not a screen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "targetText": "This is not a screen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r3",
+              "targetText": "That is not a door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `screen`, а в этом варианте — `door`.",
+                "uk": "У записі останнє слово — `screen`, а в цьому варіанті — `door`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-26:i10:p1",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i10:p4",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "screen",
+            "door",
+            "window",
+            "shelf"
+          ],
+          "rightColumn": [
+            "екран",
+            "двері",
+            "вікно",
+            "полиця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i11:audio",
+            "transcript": "This is not a projector."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a projector.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "projector"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a projector.`",
+                "uk": "тут потрібно `a` — `This is not a projector.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Технік питає, що висить на дальній стіні. Скажіть, що це екран.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Технік питає, що висить на дальній стіні. Скажіть, що це екран.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a screen.",
+          "localizedMeaning": {
+            "ru": "Техник спрашивает, что висит на дальней стене. Скажите, что это экран.",
+            "uk": "Технік питає, що висить на дальній стіні. Скажіть, що це екран."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "screen"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Технік питає, що висить на дальній стіні. Скажіть, що це екран.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a screen.`",
+                "uk": "тут потрібно `That` — `That is a screen.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:speaker",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — speaker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:speaker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — speaker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:speaker:audio",
+            "transcript": "speaker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:speaker:r1",
+              "targetText": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка, из которой звучит музыка или голос. That is a speaker — «Это колонка». О колонке в зале, дома, в машине.",
+                "uk": "колонка, з якої звучить музика чи голос. That is a speaker — «Це колонка». Про колонку в залі, вдома, в авто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speaker",
+            "definitionByLocale": {
+              "ru": "колонка, из которой звучит музыка или голос. That is a speaker — «Это колонка». О колонке в зале, дома, в машине.",
+              "uk": "колонка, з якої звучить музика чи голос. That is a speaker — «Це колонка». Про колонку в залі, вдома, в авто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Технік називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Технік називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i13:audio",
+            "transcript": "speaker"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "speaker",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:word:banner",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — banner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:word:banner:audio"
+        ],
+        "accessibilityLabel": "Картка слова — banner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:word:banner:audio",
+            "transcript": "banner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:word:banner:r1",
+              "targetText": "banner",
+              "meaningByLocale": {
+                "ru": "баннер, длинное полотно с надписью. That is a banner — «Это баннер». О полотне над входом или на стене.",
+                "uk": "банер, довге полотно з написом. That is a banner — «Це банер». Про полотно над входом чи на стіні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "banner",
+            "definitionByLocale": {
+              "ru": "баннер, длинное полотно с надписью. That is a banner — «Это баннер». О полотне над входом или на стене.",
+              "uk": "банер, довге полотно з написом. That is a banner — «Це банер». Про полотно над входом чи на стіні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i14:r1",
+            "text": "banner"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r2",
+            "text": "speaker"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r3",
+            "text": "window"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+            "uk": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i14:r1",
+              "text": "banner"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i14:r2",
+              "text": "speaker"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i14:r3",
+              "text": "window"
+            }
+          ],
+          "testedDimension": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "speaker — это колонка, а длинное полотно называется banner.",
+                "uk": "speaker — це колонка, а довге полотно називається banner."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
+              "feedbackByLocale": {
+                "ru": "window — это окно, а длинное полотно называется banner.",
+                "uk": "window — це вікно, а довге полотно називається banner."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже ведуча",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i15:r1",
+            "text": "This is not a speaker."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i15:r2",
+            "text": "That is not a speaker."
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i15:r3",
+            "text": "This is not a screen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже ведуча",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i15:audio",
+            "transcript": "This is not a speaker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-26:i15:r1",
+              "targetText": "This is not a speaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i15:r2",
+              "targetText": "That is not a speaker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i15:r3",
+              "targetText": "This is not a screen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже ведуча",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже ведуча",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `speaker`, а в этом варианте — `screen`.",
+                "uk": "У записі останнє слово — `speaker`, а в цьому варіанті — `screen`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-26:i16:p1",
+              "target": "banner",
+              "meaningByLocale": {
+                "ru": "баннер",
+                "uk": "банер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i16:p2",
+              "target": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка",
+                "uk": "колонка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i16:p3",
+              "target": "projector",
+              "meaningByLocale": {
+                "ru": "проектор",
+                "uk": "проєктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-26:i16:p4",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            }
+          ],
+          "leftColumn": [
+            "banner",
+            "speaker",
+            "projector",
+            "screen"
+          ],
+          "rightColumn": [
+            "банер",
+            "колонка",
+            "проєктор",
+            "екран"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Технік показує на довге полотно над дальніми дверима. Скажіть, що це.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Технік показує на довге полотно над дальніми дверима. Скажіть, що це.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-26:i17:audio",
+            "transcript": "That is a banner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is a banner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-26:i01",
+      "correctText": "That is a door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i02",
+      "correctText": "That is a window.",
+      "correctResponseId": "en:lesson-03:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i05",
+      "correctText": "That is not a table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i06",
+      "correctText": "This is a chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:screen",
+      "correctText": "screen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i07",
+      "correctText": "screen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:projector",
+      "correctText": "projector",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i08",
+      "correctText": "projector",
+      "correctResponseId": "en:lesson-03:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i09",
+      "correctText": "That is not a screen.",
+      "correctResponseId": "en:lesson-03:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i11",
+      "correctText": "This is not a projector.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i12",
+      "correctText": "That is a screen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:speaker",
+      "correctText": "speaker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i13",
+      "correctText": "speaker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:word:banner",
+      "correctText": "banner",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i14",
+      "correctText": "banner",
+      "correctResponseId": "en:lesson-03:session-26:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i15",
+      "correctText": "This is not a speaker.",
+      "correctResponseId": "en:lesson-03:session-26:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i17",
+      "correctText": "That is a banner.",
+      "correctResponseId": null
+    }
+  ]
+}

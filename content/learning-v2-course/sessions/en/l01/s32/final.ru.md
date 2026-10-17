@@ -63,15 +63,15 @@
 - She is worried. — *В записи первое слово — `He`, а в этом варианте — `She`.*
 - He is surprised. — *В записи последнее слово — `worried`, а в этом варианте — `surprised`.*
 
-**3 · Вы сверили время открытия в приглашении: оно верное. Вставьте слово**
-<!-- interaction_id: en:lesson-01:session-32:i03; family: context_gap_grammar -->
-It ___ correct. → **is** · am · are
-- am — *После `It` нужно `is`.*
-- are — *С `It` здесь ставим `is`.*
-
-**4 · Карточка слова — crooked**
+**3 · Карточка слова — crooked**
 <!-- interaction_id: en:lesson-01:session-32:word:crooked; family: word_card -->
 > **crooked** — кривой, висит или стоит неровно. It is crooked — «Она висит криво»: например, рамка на стене.
+
+**4 · Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово**
+<!-- interaction_id: en:lesson-01:session-32:i03; family: context_gap_grammar -->
+It ___ crooked. → **is** · am · are
+- am — *После `It` нужно `is`.*
+- are — *С `It` здесь ставим `is`.*
 
 **5 · Карточка слова — huge**
 <!-- interaction_id: en:lesson-01:session-32:word:huge; family: word_card -->
@@ -101,9 +101,9 @@ They ___ equal. → **are** · am · is
 - am — *После `They` нужна форма `are`.*
 - is — *О двух суммах говорим `They are`.*
 
-**11 · Карточка слова — blurry**
-<!-- interaction_id: en:lesson-01:session-32:word:blurry; family: word_card -->
-> **blurry** — размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.
+**11 · Карточка слова — tiny**
+<!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
+> **tiny** — крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.
 
 **12 · Подпись под снимком напечатана таким мелким шрифтом, что её почти не видно. Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-32:i09; family: listen_choose -->
@@ -141,9 +141,9 @@ She is ___ . → **worried** · bored · proud
 - They are equal. — *В записи последнее слово — `similar`, а в этом варианте — `equal`.*
 - They are separate. — *В записи последнее слово — `similar`, а в этом варианте — `separate`.*
 
-**19 · Карточка слова — tiny**
-<!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
-> **tiny** — крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.
+**19 · Карточка слова — blurry**
+<!-- interaction_id: en:lesson-01:session-32:word:blurry; family: word_card -->
+> **blurry** — размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.
 
 **20 · Соедините слова и значения**
 <!-- interaction_id: en:lesson-01:session-32:i16; family: speed_match -->

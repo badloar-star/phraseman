@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-25:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что стоит на стойке рядом с вами. Скажите, что это лампа.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что стоит на стойке рядом с вами. Скажите, что это лампа.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a lamp.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что стоит на стойке рядом с вами. Скажите, что это лампа.",
+            "uk": "Подруга питає, що стоїть на стійці поруч із вами. Скажіть, що це лампа."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, что стоит на стойке рядом с вами. Скажите, что это лампа.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a lamp.`",
+                "uk": "тут потрібно `a` — `This is a lamp.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит мастер",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i02:r1",
+            "text": "This is a box."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r2",
+            "text": "This is a key."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r3",
+            "text": "This is a bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит мастер",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i02:audio",
+            "transcript": "This is a box."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:i02:r1",
+              "targetText": "This is a box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i02:r2",
+              "targetText": "This is a key.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i02:r3",
+              "targetText": "This is a bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит мастер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `box`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `box`, а в цьому варіанті — `key`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит мастер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `box`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `box`, а в цьому варіанті — `bag`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы держите в руке ключ и показываете его подруге. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы держите в руке ключ и показываете его подруге. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы держите в руке ключ и показываете его подруге. Дополните фразу",
+            "uk": "Ви тримаєте в руці ключ і показуєте його подрузі. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This ___ a key.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-25:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы держите в руке ключ и показываете его подруге. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы держите в руке ключ и показываете его подруге. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is a key.",
+                "uk": "З this потрібно is: This is a key."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы держите в руке ключ и показываете его подруге. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is a key.",
+                "uk": "З this потрібно is: This is a key."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-25:i04:p1",
+              "target": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка",
+                "uk": "зарядка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i04:p2",
+              "target": "cable",
+              "meaningByLocale": {
+                "ru": "кабель",
+                "uk": "кабель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i04:p3",
+              "target": "adapter",
+              "meaningByLocale": {
+                "ru": "переходник",
+                "uk": "перехідник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i04:p4",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "charger",
+            "cable",
+            "adapter",
+            "socket"
+          ],
+          "rightColumn": [
+            "зарядка",
+            "кабель",
+            "переходник",
+            "розетка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i05:audio",
+            "transcript": "This is not a bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a bag.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a bag.`",
+                "uk": "тут потрібно `a` — `This is not a bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мастер показывает на часы на стене рядом с вами. Скажите, что это часы.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мастер показывает на часы на стене рядом с вами. Скажите, что это часы.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a clock.",
+          "localizedMeaning": {
+            "ru": "Мастер показывает на часы на стене рядом с вами. Скажите, что это часы.",
+            "uk": "Майстер показує на годинник на стіні поруч із вами. Скажіть, що це годинник."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "clock"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Мастер показывает на часы на стене рядом с вами. Скажите, что это часы.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a clock.`",
+                "uk": "тут потрібно `a` — `This is a clock.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:charger",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — charger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:charger:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — charger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:charger:audio",
+            "transcript": "charger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:charger:r1",
+              "targetText": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка, устройство, которым заряжают телефон. This is a charger — «Это зарядка». О зарядке для телефона, часов, наушников.",
+                "uk": "зарядка, пристрій, яким заряджають телефон. This is a charger — «Це зарядка». Про зарядку для телефона, годинника, навушників."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charger",
+            "definitionByLocale": {
+              "ru": "зарядка, устройство, которым заряжают телефон. This is a charger — «Это зарядка». О зарядке для телефона, часов, наушников.",
+              "uk": "зарядка, пристрій, яким заряджають телефон. This is a charger — «Це зарядка». Про зарядку для телефона, годинника, навушників."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мастер называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i07:audio"
+        ],
+        "accessibilityLabel": "Мастер называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i07:audio",
+            "transcript": "charger"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "charger",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:cable",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:cable:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:cable:audio",
+            "transcript": "cable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:cable:r1",
+              "targetText": "cable",
+              "meaningByLocale": {
+                "ru": "кабель, провод с вилками на концах. This is a cable — «Это кабель». О проводе для зарядки или для подключения техники.",
+                "uk": "кабель, дріт із вилками на кінцях. This is a cable — «Це кабель». Про дріт для зарядки або для підключення техніки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cable",
+            "definitionByLocale": {
+              "ru": "кабель, провод с вилками на концах. This is a cable — «Это кабель». О проводе для зарядки или для подключения техники.",
+              "uk": "кабель, дріт із вилками на кінцях. This is a cable — «Це кабель». Про дріт для зарядки або для підключення техніки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга держит провод с вилками на концах. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i08:r1",
+            "text": "cable"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r2",
+            "text": "socket"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r3",
+            "text": "lamp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга держит провод с вилками на концах. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга держит провод с вилками на концах. Как он называется по-английски?",
+            "uk": "Подруга тримає дріт із вилками на кінцях. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-25:i08:r1",
+              "text": "cable"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "text": "socket"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "text": "lamp"
+            }
+          ],
+          "testedDimension": "Подруга держит провод с вилками на концах. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга держит провод с вилками на концах. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "socket — это розетка в стене, а провод называется cable.",
+                "uk": "socket — це розетка в стіні, а дріт називається cable."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга держит провод с вилками на концах. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "lamp — это лампа, а провод называется cable.",
+                "uk": "lamp — це лампа, а дріт називається cable."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит подруга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i09:r1",
+            "text": "This is not a charger."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i09:r2",
+            "text": "This is not a box."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i09:r3",
+            "text": "This is not a key."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i09:audio",
+            "transcript": "This is not a charger."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:i09:r1",
+              "targetText": "This is not a charger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i09:r2",
+              "targetText": "This is not a box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i09:r3",
+              "targetText": "This is not a key.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `charger`, а в этом варианте — `box`.",
+                "uk": "У записі останнє слово — `charger`, а в цьому варіанті — `box`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `charger`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `charger`, а в цьому варіанті — `key`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-25:i10:p1",
+              "target": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка",
+                "uk": "зарядка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i10:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i10:p3",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i10:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "charger",
+            "lamp",
+            "key",
+            "box"
+          ],
+          "rightColumn": [
+            "зарядка",
+            "лампа",
+            "ключ",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте мастера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте мастера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i11:audio",
+            "transcript": "This is not a cable."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a cable.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "cable"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте мастера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a cable.`",
+                "uk": "тут потрібно `a` — `This is not a cable.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мастер спрашивает, что у вас в руке. Скажите, что это зарядка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мастер спрашивает, что у вас в руке. Скажите, что это зарядка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a charger.",
+          "localizedMeaning": {
+            "ru": "Мастер спрашивает, что у вас в руке. Скажите, что это зарядка.",
+            "uk": "Майстер питає, що у вас у руці. Скажіть, що це зарядка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "charger"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Мастер спрашивает, что у вас в руке. Скажите, что это зарядка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a charger.`",
+                "uk": "тут потрібно `a` — `This is a charger.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:adapter",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — adapter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:adapter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — adapter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:adapter:audio",
+            "transcript": "adapter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:adapter:r1",
+              "targetText": "adapter",
+              "meaningByLocale": {
+                "ru": "переходник, деталь, с которой вилка подходит к чужой розетке. This is an adapter — «Это переходник». О детали для поездок и для старой техники.",
+                "uk": "перехідник, деталь, з якою вилка підходить до чужої розетки. This is an adapter — «Це перехідник». Про деталь для подорожей і для старої техніки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adapter",
+            "definitionByLocale": {
+              "ru": "переходник, деталь, с которой вилка подходит к чужой розетке. This is an adapter — «Это переходник». О детали для поездок и для старой техники.",
+              "uk": "перехідник, деталь, з якою вилка підходить до чужої розетки. This is an adapter — «Це перехідник». Про деталь для подорожей і для старої техніки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мастер называет вещь, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i13:audio"
+        ],
+        "accessibilityLabel": "Мастер называет вещь, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i13:audio",
+            "transcript": "adapter"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "adapter",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:socket",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — socket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:socket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — socket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:socket:audio",
+            "transcript": "socket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:socket:r1",
+              "targetText": "socket",
+              "meaningByLocale": {
+                "ru": "розетка, место в стене, куда включают вилку. This is a socket — «Это розетка». О розетке на стене или на удлинителе.",
+                "uk": "розетка, місце в стіні, куди вмикають вилку. This is a socket — «Це розетка». Про розетку на стіні чи на подовжувачі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "socket",
+            "definitionByLocale": {
+              "ru": "розетка, место в стене, куда включают вилку. This is a socket — «Это розетка». О розетке на стене или на удлинителе.",
+              "uk": "розетка, місце в стіні, куди вмикають вилку. This is a socket — «Це розетка». Про розетку на стіні чи на подовжувачі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i14:r1",
+            "text": "socket"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r2",
+            "text": "adapter"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?",
+            "uk": "У стіні поруч із вами отвори, куди вставляють вилку. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-25:i14:r1",
+              "text": "socket"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i14:r2",
+              "text": "adapter"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i14:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i14:r2",
+              "correct": false,
+              "testedDimension": "В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "adapter — это переходник для вилки, а отверстие в стене называется socket.",
+                "uk": "adapter — це перехідник для вилки, а отвір у стіні називається socket."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i14:r3",
+              "correct": false,
+              "testedDimension": "В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а отверстие в стене называется socket.",
+                "uk": "box — це коробка, а отвір у стіні називається socket."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит мастер",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i15:r1",
+            "text": "This is not an adapter."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i15:r2",
+            "text": "This is not a charger."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i15:r3",
+            "text": "This is not a cable."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит мастер",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i15:audio",
+            "transcript": "This is not an adapter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:i15:r1",
+              "targetText": "This is not an adapter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i15:r2",
+              "targetText": "This is not a charger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i15:r3",
+              "targetText": "This is not a cable.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит мастер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adapter`, а в этом варианте — `charger`.",
+                "uk": "У записі останнє слово — `adapter`, а в цьому варіанті — `charger`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит мастер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adapter`, а в этом варианте — `cable`.",
+                "uk": "У записі останнє слово — `adapter`, а в цьому варіанті — `cable`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-25:i16:p1",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i16:p2",
+              "target": "cable",
+              "meaningByLocale": {
+                "ru": "кабель",
+                "uk": "кабель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i16:p3",
+              "target": "adapter",
+              "meaningByLocale": {
+                "ru": "переходник",
+                "uk": "перехідник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i16:p4",
+              "target": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка",
+                "uk": "зарядка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "socket",
+            "cable",
+            "adapter",
+            "charger"
+          ],
+          "rightColumn": [
+            "розетка",
+            "кабель",
+            "переходник",
+            "зарядка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мастер показывает на розетку в стене рядом с вами. Скажите, что это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Мастер показывает на розетку в стене рядом с вами. Скажите, что это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i17:audio",
+            "transcript": "This is a socket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a socket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-25:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що стоїть на стійці поруч із вами. Скажіть, що це лампа.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що стоїть на стійці поруч із вами. Скажіть, що це лампа.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a lamp.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что стоит на стойке рядом с вами. Скажите, что это лампа.",
+            "uk": "Подруга питає, що стоїть на стійці поруч із вами. Скажіть, що це лампа."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, що стоїть на стійці поруч із вами. Скажіть, що це лампа.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a lamp.`",
+                "uk": "тут потрібно `a` — `This is a lamp.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже майстер",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i02:r1",
+            "text": "This is a box."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r2",
+            "text": "This is a key."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r3",
+            "text": "This is a bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже майстер",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i02:audio",
+            "transcript": "This is a box."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:i02:r1",
+              "targetText": "This is a box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i02:r2",
+              "targetText": "This is a key.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i02:r3",
+              "targetText": "This is a bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже майстер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `box`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `box`, а в цьому варіанті — `key`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже майстер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `box`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `box`, а в цьому варіанті — `bag`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви тримаєте в руці ключ і показуєте його подрузі. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви тримаєте в руці ключ і показуєте його подрузі. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы держите в руке ключ и показываете его подруге. Дополните фразу",
+            "uk": "Ви тримаєте в руці ключ і показуєте його подрузі. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "This ___ a key.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-25:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви тримаєте в руці ключ і показуєте його подрузі. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви тримаєте в руці ключ і показуєте його подрузі. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is a key.",
+                "uk": "З this потрібно is: This is a key."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви тримаєте в руці ключ і показуєте його подрузі. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "С this нужно is: This is a key.",
+                "uk": "З this потрібно is: This is a key."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-25:i04:p1",
+              "target": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка",
+                "uk": "зарядка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i04:p2",
+              "target": "cable",
+              "meaningByLocale": {
+                "ru": "кабель",
+                "uk": "кабель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i04:p3",
+              "target": "adapter",
+              "meaningByLocale": {
+                "ru": "переходник",
+                "uk": "перехідник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i04:p4",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "charger",
+            "cable",
+            "adapter",
+            "socket"
+          ],
+          "rightColumn": [
+            "зарядка",
+            "кабель",
+            "перехідник",
+            "розетка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i05:audio",
+            "transcript": "This is not a bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a bag.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a bag.`",
+                "uk": "тут потрібно `a` — `This is not a bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Майстер показує на годинник на стіні поруч із вами. Скажіть, що це годинник.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майстер показує на годинник на стіні поруч із вами. Скажіть, що це годинник.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a clock.",
+          "localizedMeaning": {
+            "ru": "Мастер показывает на часы на стене рядом с вами. Скажите, что это часы.",
+            "uk": "Майстер показує на годинник на стіні поруч із вами. Скажіть, що це годинник."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "clock"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Майстер показує на годинник на стіні поруч із вами. Скажіть, що це годинник.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a clock.`",
+                "uk": "тут потрібно `a` — `This is a clock.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:charger",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — charger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:charger:audio"
+        ],
+        "accessibilityLabel": "Картка слова — charger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:charger:audio",
+            "transcript": "charger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:charger:r1",
+              "targetText": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка, устройство, которым заряжают телефон. This is a charger — «Это зарядка». О зарядке для телефона, часов, наушников.",
+                "uk": "зарядка, пристрій, яким заряджають телефон. This is a charger — «Це зарядка». Про зарядку для телефона, годинника, навушників."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charger",
+            "definitionByLocale": {
+              "ru": "зарядка, устройство, которым заряжают телефон. This is a charger — «Это зарядка». О зарядке для телефона, часов, наушников.",
+              "uk": "зарядка, пристрій, яким заряджають телефон. This is a charger — «Це зарядка». Про зарядку для телефона, годинника, навушників."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Майстер називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i07:audio"
+        ],
+        "accessibilityLabel": "Майстер називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i07:audio",
+            "transcript": "charger"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "charger",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:cable",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:cable:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:cable:audio",
+            "transcript": "cable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:cable:r1",
+              "targetText": "cable",
+              "meaningByLocale": {
+                "ru": "кабель, провод с вилками на концах. This is a cable — «Это кабель». О проводе для зарядки или для подключения техники.",
+                "uk": "кабель, дріт із вилками на кінцях. This is a cable — «Це кабель». Про дріт для зарядки або для підключення техніки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cable",
+            "definitionByLocale": {
+              "ru": "кабель, провод с вилками на концах. This is a cable — «Это кабель». О проводе для зарядки или для подключения техники.",
+              "uk": "кабель, дріт із вилками на кінцях. This is a cable — «Це кабель». Про дріт для зарядки або для підключення техніки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга тримає дріт із вилками на кінцях. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i08:r1",
+            "text": "cable"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r2",
+            "text": "socket"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r3",
+            "text": "lamp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга тримає дріт із вилками на кінцях. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга держит провод с вилками на концах. Как он называется по-английски?",
+            "uk": "Подруга тримає дріт із вилками на кінцях. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-25:i08:r1",
+              "text": "cable"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "text": "socket"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "text": "lamp"
+            }
+          ],
+          "testedDimension": "Подруга тримає дріт із вилками на кінцях. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга тримає дріт із вилками на кінцях. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "socket — это розетка в стене, а провод называется cable.",
+                "uk": "socket — це розетка в стіні, а дріт називається cable."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга тримає дріт із вилками на кінцях. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "lamp — это лампа, а провод называется cable.",
+                "uk": "lamp — це лампа, а дріт називається cable."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже подруга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i09:r1",
+            "text": "This is not a charger."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i09:r2",
+            "text": "This is not a box."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i09:r3",
+            "text": "This is not a key."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i09:audio",
+            "transcript": "This is not a charger."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:i09:r1",
+              "targetText": "This is not a charger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i09:r2",
+              "targetText": "This is not a box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i09:r3",
+              "targetText": "This is not a key.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `charger`, а в этом варианте — `box`.",
+                "uk": "У записі останнє слово — `charger`, а в цьому варіанті — `box`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `charger`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `charger`, а в цьому варіанті — `key`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-25:i10:p1",
+              "target": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка",
+                "uk": "зарядка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i10:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i10:p3",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i10:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "charger",
+            "lamp",
+            "key",
+            "box"
+          ],
+          "rightColumn": [
+            "зарядка",
+            "лампа",
+            "ключ",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте майстра й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте майстра й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i11:audio",
+            "transcript": "This is not a cable."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a cable.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "cable"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте майстра й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a cable.`",
+                "uk": "тут потрібно `a` — `This is not a cable.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Майстер питає, що у вас у руці. Скажіть, що це зарядка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майстер питає, що у вас у руці. Скажіть, що це зарядка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a charger.",
+          "localizedMeaning": {
+            "ru": "Мастер спрашивает, что у вас в руке. Скажите, что это зарядка.",
+            "uk": "Майстер питає, що у вас у руці. Скажіть, що це зарядка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "charger"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Майстер питає, що у вас у руці. Скажіть, що це зарядка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is a charger.`",
+                "uk": "тут потрібно `a` — `This is a charger.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:adapter",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — adapter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:adapter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — adapter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:adapter:audio",
+            "transcript": "adapter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:adapter:r1",
+              "targetText": "adapter",
+              "meaningByLocale": {
+                "ru": "переходник, деталь, с которой вилка подходит к чужой розетке. This is an adapter — «Это переходник». О детали для поездок и для старой техники.",
+                "uk": "перехідник, деталь, з якою вилка підходить до чужої розетки. This is an adapter — «Це перехідник». Про деталь для подорожей і для старої техніки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adapter",
+            "definitionByLocale": {
+              "ru": "переходник, деталь, с которой вилка подходит к чужой розетке. This is an adapter — «Это переходник». О детали для поездок и для старой техники.",
+              "uk": "перехідник, деталь, з якою вилка підходить до чужої розетки. This is an adapter — «Це перехідник». Про деталь для подорожей і для старої техніки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Майстер називає річ, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i13:audio"
+        ],
+        "accessibilityLabel": "Майстер називає річ, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i13:audio",
+            "transcript": "adapter"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "adapter",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:word:socket",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — socket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:word:socket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — socket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:word:socket:audio",
+            "transcript": "socket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:word:socket:r1",
+              "targetText": "socket",
+              "meaningByLocale": {
+                "ru": "розетка, место в стене, куда включают вилку. This is a socket — «Это розетка». О розетке на стене или на удлинителе.",
+                "uk": "розетка, місце в стіні, куди вмикають вилку. This is a socket — «Це розетка». Про розетку на стіні чи на подовжувачі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "socket",
+            "definitionByLocale": {
+              "ru": "розетка, место в стене, куда включают вилку. This is a socket — «Это розетка». О розетке на стене или на удлинителе.",
+              "uk": "розетка, місце в стіні, куди вмикають вилку. This is a socket — «Це розетка». Про розетку на стіні чи на подовжувачі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У стіні поруч із вами отвори, куди вставляють вилку. Як це називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i14:r1",
+            "text": "socket"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r2",
+            "text": "adapter"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r3",
+            "text": "box"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У стіні поруч із вами отвори, куди вставляють вилку. Як це називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?",
+            "uk": "У стіні поруч із вами отвори, куди вставляють вилку. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-25:i14:r1",
+              "text": "socket"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i14:r2",
+              "text": "adapter"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i14:r3",
+              "text": "box"
+            }
+          ],
+          "testedDimension": "У стіні поруч із вами отвори, куди вставляють вилку. Як це називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i14:r2",
+              "correct": false,
+              "testedDimension": "У стіні поруч із вами отвори, куди вставляють вилку. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "adapter — это переходник для вилки, а отверстие в стене называется socket.",
+                "uk": "adapter — це перехідник для вилки, а отвір у стіні називається socket."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i14:r3",
+              "correct": false,
+              "testedDimension": "У стіні поруч із вами отвори, куди вставляють вилку. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "box — это коробка, а отверстие в стене называется socket.",
+                "uk": "box — це коробка, а отвір у стіні називається socket."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже майстер",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i15:r1",
+            "text": "This is not an adapter."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i15:r2",
+            "text": "This is not a charger."
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i15:r3",
+            "text": "This is not a cable."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже майстер",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i15:audio",
+            "transcript": "This is not an adapter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-25:i15:r1",
+              "targetText": "This is not an adapter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i15:r2",
+              "targetText": "This is not a charger.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i15:r3",
+              "targetText": "This is not a cable.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-25:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже майстер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adapter`, а в этом варианте — `charger`.",
+                "uk": "У записі останнє слово — `adapter`, а в цьому варіанті — `charger`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже майстер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `adapter`, а в этом варианте — `cable`.",
+                "uk": "У записі останнє слово — `adapter`, а в цьому варіанті — `cable`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-25:i16:p1",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i16:p2",
+              "target": "cable",
+              "meaningByLocale": {
+                "ru": "кабель",
+                "uk": "кабель"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i16:p3",
+              "target": "adapter",
+              "meaningByLocale": {
+                "ru": "переходник",
+                "uk": "перехідник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-25:i16:p4",
+              "target": "charger",
+              "meaningByLocale": {
+                "ru": "зарядка",
+                "uk": "зарядка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "socket",
+            "cable",
+            "adapter",
+            "charger"
+          ],
+          "rightColumn": [
+            "розетка",
+            "кабель",
+            "перехідник",
+            "зарядка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-25:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Майстер показує на розетку в стіні поруч із вами. Скажіть, що це.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Майстер показує на розетку в стіні поруч із вами. Скажіть, що це.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-25:i17:audio",
+            "transcript": "This is a socket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a socket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-25:i01",
+      "correctText": "This is a lamp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i02",
+      "correctText": "This is a box.",
+      "correctResponseId": "en:lesson-03:session-25:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i05",
+      "correctText": "This is not a bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i06",
+      "correctText": "This is a clock.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:word:charger",
+      "correctText": "charger",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i07",
+      "correctText": "charger",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:word:cable",
+      "correctText": "cable",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i08",
+      "correctText": "cable",
+      "correctResponseId": "en:lesson-03:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i09",
+      "correctText": "This is not a charger.",
+      "correctResponseId": "en:lesson-03:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i11",
+      "correctText": "This is not a cable.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i12",
+      "correctText": "This is a charger.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:word:adapter",
+      "correctText": "adapter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i13",
+      "correctText": "adapter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:word:socket",
+      "correctText": "socket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i14",
+      "correctText": "socket",
+      "correctResponseId": "en:lesson-03:session-25:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i15",
+      "correctText": "This is not an adapter.",
+      "correctResponseId": "en:lesson-03:session-25:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i17",
+      "correctText": "This is a socket.",
+      "correctResponseId": null
+    }
+  ]
+}

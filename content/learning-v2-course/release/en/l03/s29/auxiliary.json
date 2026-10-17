@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-29:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-29:intro1:r2": {
-          "ru": "`table` — один стол; несколько — `tables`.",
-          "uk": "`table` — один стіл; кілька — `tables`."
+          "ru": "Посылка у вас в руках, а that говорим о далёком: This is a parcel.",
+          "uk": "Посилка у вас у руках, а that кажемо про далеке: This is a parcel."
         },
         "en:lesson-03:session-29:intro1:r3": {
-          "ru": "Перед названием нескольких столов не ставим `a`.",
-          "uk": "Перед назвою кількох столів не ставимо `a`."
+          "ru": "Перед parcel нужно a: This is a parcel.",
+          "uk": "Перед parcel потрібно a: This is a parcel."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-29:intro2:r2": {
-          "ru": "`The tables` — определённые столы. Здесь речь о столах вообще: `Tables`.",
-          "uk": "`The tables` — певні столи. Тут ідеться про столи загалом: `Tables`."
+          "ru": "Конверт лежит далеко, а this говорим о том, что рядом: That is a letter.",
+          "uk": "Конверт лежить далеко, а this кажемо про те, що поруч: That is a letter."
         },
         "en:lesson-03:session-29:intro2:r3": {
-          "ru": "Перед `tables` не ставим `a`.",
-          "uk": "Перед `tables` не ставимо `a`."
+          "ru": "Перед letter нужно a: слово начинается с согласного звука.",
+          "uk": "Перед letter потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-29:intro3:r2": {
-          "ru": "`local` — «местная», а сейчас важно, что она в сети: `online`.",
-          "uk": "`local` — «місцева», а зараз важливо, що вона в мережі: `online`."
+          "ru": "Между It и new нужно is: It is new.",
+          "uk": "Між It і new потрібно is: It is new."
         },
         "en:lesson-03:session-29:intro3:r3": {
-          "ru": "`foreign` — «иностранная», а для «в сети» нужно `online`.",
-          "uk": "`foreign` — «іноземна», а для «у мережі» потрібне `online`."
+          "ru": "С it нужно is, а не are: It is new.",
+          "uk": "З it потрібно is, а не are: It is new."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bfc9a120c846e3aacd6e398be72d220e4e001d16481d1d8092c55c879ac9b47c"
+  "auxiliaryFingerprint": "5aa63bb66d103ca10c603cbfabdad1d1d16d473ff6909b25675cb15a2ec7e30f"
 }

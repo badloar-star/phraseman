@@ -99,15 +99,15 @@ basket — кошик · trolley — візок · tag — ярлик, бирк�
 <!-- interaction_id: en:lesson-03:session-06:i07; family: scripted_repeat_compare -->
 🎙 **It's a basket.**
 
-**11 · Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»**
+**11 · Картка слова — bag**
+<!-- interaction_id: en:lesson-03:session-06:word:bag; family: word_card -->
+> **bag** — сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок.
+
+**12 · Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»**
 <!-- interaction_id: en:lesson-03:session-06:i08; family: context_gap_grammar -->
 Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
-
-**12 · Картка слова — bag**
-<!-- interaction_id: en:lesson-03:session-06:word:bag; family: word_card -->
-> **bag** — сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок.
 
 **13 · Послухайте запитання консультанта**
 <!-- interaction_id: en:lesson-03:session-06:i09; family: listen_choose -->

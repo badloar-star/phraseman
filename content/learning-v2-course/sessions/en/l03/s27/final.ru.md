@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 27 — Машины для ранней поездки
+# Английский · Урок 3 · Занятие 27 — Что за чем: новая техника у соседки
 
-**Ситуация.** Вы с Анной собираете группу для ранней поездки. Олег предложил свои машины и помогает с сумками. До выезда ещё есть время: Анна уже проснулась, а её брат пока спит. Вы уточняете, где машины и можно ли ими воспользоваться.
+**Ситуация.** Соседка купила телевизор и интернет и просит вас помочь. Вы смотрите на вещи вокруг и уточняете, что есть что. Про то, что рядом, спрашиваете Is this …?, про то, что дальше, — Is that …?
 
-**Что вы освоите:** назвать несколько машин, спросить об их месте и отличить машины вообще от конкретных машин
-**Новые слова:** cars
+**Что вы освоите:** спрашивать, что это за вещь: Is this a …? и Is that a …?
+**Новые слова:** remote, button, switch, router
+**Возвращаются:** sofa, shelf, clock, lamp, table
 
 ---
 
 ## Интро 1
 
-### Не одна машина
+### Вещь с кнопками
 
-`car` — «машина, автомобиль», `cars` — «машины». `They are cars` — «Это машины». Для нескольких машин добавляем `s`, а `a` перед `cars` не ставим. Олег предложил одну машину на всю группу. Сумки он уже уложил. Осталось решить, где поедут люди. Нужны `cars` — несколько машин.
+Соседка протягивает вам плоскую коробочку с кнопками и просит включить телевизор. remote — «пульт». Вы не уверены, что это он, и хотите спросить. Для вопроса ставим Is вперёд, а вещь лежит у вас в руке, то есть рядом, — this: Is this a remote? — «Это пульт?»
 
-**На фотографии несколько автомобилей. Назовите их одним английским словом.**
+**Соседка протягивает вам вещь с кнопками. Спросите, пульт ли это.**
 
-- ✅ **cars**
-- ❌ car — *`car` — одна машина; несколько — `cars`.*
-- ❌ a cars — *Перед названием нескольких машин не ставим `a`.*
+- ✅ **Is this a remote?**
+- ❌ This is a remote. — *Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is this a remote?*
+- ❌ Is this an remote? — *Перед remote нужно a: слово начинается с согласного звука.*
 
 ---
 
 ## Интро 2
 
-### Какие машины доступны
+### Деталь на телевизоре
 
-`available` — «доступный, имеющийся в распоряжении». `The cars are available` — «Машины доступны»: этими машинами сейчас можно воспользоваться. `the cars` — конкретные машины, о которых вы говорите. А `Cars are different` — «Машины разные»: можно говорить о машинах вообще, например об их размерах. Перед `cars` в таком общем высказывании нет `the`.
+Соседка показывает на телевизор в другом конце комнаты: у края торчит маленькая круглая деталь. Вам нужно понять, что это. button — «кнопка», то, что нажимают пальцем. Телевизор далеко, поэтому в вопросе that: Is that a button? — «Это кнопка?»
 
-**Вы говорите о машинах вообще: у них бывают разные размеры. Выберите фразу «Машины разные».**
+**Соседка показывает на телевизор в другом конце комнаты. Спросите, кнопка ли это.**
 
-- ✅ **Cars are different.**
-- ❌ The cars are different. — *`The cars` — определённые машины. Здесь речь о машинах вообще: `Cars`.*
-- ❌ A cars are different. — *Перед `cars` не ставим `a`.*
+- ✅ **Is that a button?**
+- ❌ Is this a button? — *Телевизор далеко, а this говорим о том, что рядом: Is that a button?*
+- ❌ Is that button? — *Перед button нужно a: Is that a button?*
 
 ---
 
 ## Интро 3
 
-### Кто уже проснулся
+### Пластинка у двери
 
-`awake` — «не спит», `asleep` — «спит». Анна уже проснулась: `She is awake` — «Она не спит». Её брат ещё спит: `He is asleep`. Олег охотно делится машинами и помогает группе: `He is generous` — «Он щедрый». Пока брат спит, можно найти машины: `Where are the cars?` — «Где машины?»
+Вы стоите у двери, а рядом на стене квадратная пластинка с клавишей. Соседка просит вас включить свет. switch — «выключатель», им включают и выключают свет. Он совсем рядом, поэтому this. Вы спрашиваете соседку: Is this a switch? — «Это выключатель?»
 
-**Анна знает, какие машины выделены для поездки. Спросите, где машины.**
+**Вы стоите у стены рядом с пластинкой. Спросите соседку, выключатель ли это.**
 
-- ✅ **Where are the cars?**
-- ❌ Where is the cars? — *Машин несколько: нужно `are`.*
-- ❌ What are the cars? — *О месте спрашиваем `Where` — «Где».*
+- ✅ **Is this a switch?**
+- ❌ Is this switch? — *Перед switch нужно a: Is this a switch?*
+- ❌ Are this a switch? — *С this нужно Is, а не Are: Is this a switch?*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Анна ищет приготовленные сумки. Сообщите «Сумки здесь»**
+**1 · Соседка показывает на диван рядом с вами. Спросите, диван ли это.**
 <!-- interaction_id: en:lesson-03:session-27:i01; family: phrase_builder -->
-Плитки: `here` `are` `bags` `The` `is` → **The bags are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bags are here.`)*
+Плитки: `sofa` `Is` `this` `a` `an` → **Is this a sofa?**
+*(плитка `an` лишняя: здесь нужно `a` — `Is this a sofa?`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте вопрос соседки**
 <!-- interaction_id: en:lesson-03:session-27:i02; family: listen_choose -->
-🔊 *cars* → **cars** · cats · cups
-- cats — *В записи первое слово — `cars`, а в этом варианте — `cats`.*
-- cups — *В записи первое слово — `cars`, а в этом варианте — `cups`.*
+🔊 *Is that a shelf?* → **Is that a shelf?** · Is this a shelf? · Is that a clock?
+- Is this a shelf? — *В записи второе слово — `that`, а в этом варианте — `this`.*
+- Is that a clock? — *В записи последнее слово — `shelf`, а в этом варианте — `clock`.*
 
-**3 · Назовите несколько автомобилей одним английским словом**
+**3 · Лампа стоит рядом с вами. Дополните вопрос**
 <!-- interaction_id: en:lesson-03:session-27:i03; family: context_gap_grammar -->
-___ → **cars** · car · a cars
-- car — *Несколько машин — `cars`.*
-- a cars — *Перед `cars` не ставим `a`.*
+Is this ___ lamp? → **a** · an · is
+- an — *Слово lamp начинается с согласного звука, поэтому здесь a.*
+- is — *Слово Is уже стоит в начале вопроса. Перед lamp нужно a.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-27:i04; family: speed_match -->
-cars — машины · bags — сумки · awake — не спит · asleep — спит
+remote — пульт · button — кнопка · switch — выключатель · router — роутер
 
-**5 · Послушайте и соберите сообщение**
+**5 · Послушайте соседку и соберите вопрос**
 <!-- interaction_id: en:lesson-03:session-27:i05; family: listen_build_dictation -->
-🔊 *The cars are available.* Плитки: `available` `are` `cars` `The` `is` → **The cars are available.**
-*(плитка `is` лишняя: здесь нужно `are` — `The cars are available.`)*
+🔊 *Is that a table?* Плитки: `table` `that` `Is` `a` `an` → **Is that a table?**
+*(плитка `an` лишняя: здесь нужно `a` — `Is that a table?`)*
 
-**6 · Скажите «Машины разные» о машинах вообще, например об их размерах**
+**6 · Часы висят на дальней стене. Спросите соседку, часы ли это.**
 <!-- interaction_id: en:lesson-03:session-27:i06; family: phrase_builder -->
-Плитки: `different` `are` `Cars` `is` → **Cars are different.**
-*(плитка `is` лишняя: здесь нужно `are` — `Cars are different.`)*
+Плитки: `clock` `that` `Is` `a` `this` → **Is that a clock?**
+*(плитка `this` лишняя: здесь нужно `that` — `Is that a clock?`)*
 
-**7 · Анна уже проснулась. Скажите «Она не спит» с сокращением**
+**7 · Карточка слова — remote**
+<!-- interaction_id: en:lesson-03:session-27:word:remote; family: word_card -->
+> **remote** — пульт, прибор, которым включают технику на расстоянии. Is this a remote? — «Это пульт?» О пульте от телевизора или кондиционера.
+
+**8 · Соседка называет вещь, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-27:i07; family: scripted_repeat_compare -->
-🎙 **She's awake.**
+🎙 **remote**
 
-**8 · Вы говорите о разных размерах машин вообще, без указания на определённые машины**
+**9 · Карточка слова — button**
+<!-- interaction_id: en:lesson-03:session-27:word:button; family: word_card -->
+> **button** — кнопка, маленькая деталь, которую нажимают. Is that a button? — «Это кнопка?» О кнопке на технике, на пульте, на звонке.
+
+**10 · Соседка показывает на круглую деталь на телевизоре, которую нажимают. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-27:i08; family: context_gap_grammar -->
-___ are different. → **Cars** · The cars · A cars
-- The cars — *`The cars` — конкретные машины. Здесь нужно общее `Cars`.*
-- A cars — *Перед `cars` не ставим `a`.*
+___ → **button** · switch · shelf
+- switch — *switch — это выключатель на стене, а деталь, которую нажимают, называется button.*
+- shelf — *shelf — это полка, а деталь, которую нажимают, называется button.*
 
-**9 · Послушайте сообщение о брате Анны**
+**11 · Послушайте вопрос подруги**
 <!-- interaction_id: en:lesson-03:session-27:i09; family: listen_choose -->
-🔊 *He is asleep.* → **He is asleep.** · He is awake. · He is available.
-- He is awake. — *В записи последнее слово — `asleep`, а в этом варианте — `awake`.*
-- He is available. — *В записи последнее слово — `asleep`, а в этом варианте — `available`.*
+🔊 *Is that a remote?* → **Is that a remote?** · Is this a remote? · Is that a lamp?
+- Is this a remote? — *В записи второе слово — `that`, а в этом варианте — `this`.*
+- Is that a lamp? — *В записи последнее слово — `remote`, а в этом варианте — `lamp`.*
 
-**10 · Соедините слова со значениями**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-27:i10; family: speed_match -->
-available — доступный · generous — щедрый · cars — машины · bags — сумки
+remote — пульт · sofa — диван · lamp — лампа · table — стол
 
-**11 · Послушайте и соберите сообщение**
+**13 · Послушайте соседку и соберите вопрос**
 <!-- interaction_id: en:lesson-03:session-27:i11; family: listen_build_dictation -->
-🔊 *The bags are inside.* Плитки: `inside` `are` `bags` `The` `is` → **The bags are inside.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bags are inside.`)*
+🔊 *Is this a button?* Плитки: `button` `Is` `this` `a` `an` → **Is this a button?**
+*(плитка `an` лишняя: здесь нужно `a` — `Is this a button?`)*
 
-**12 · Олег знает, какие машины нужны группе. Спросите, где машины**
+**14 · Соседка протягивает вам прибор, которым включают телевизор. Спросите, пульт ли это.**
 <!-- interaction_id: en:lesson-03:session-27:i12; family: phrase_builder -->
-Плитки: `cars` `the` `are` `Where` `What` → **Where are the cars?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the cars?`)*
+Плитки: `remote` `this` `Is` `a` `that` → **Is this a remote?**
+*(плитка `that` лишняя: здесь нужно `this` — `Is this a remote?`)*
 
-**13 · Олег охотно делится тем, что у него есть. Скажите «Он щедрый» с сокращением**
+**15 · Карточка слова — switch**
+<!-- interaction_id: en:lesson-03:session-27:word:switch; family: word_card -->
+> **switch** — выключатель, им включают и выключают свет. Is this a switch? — «Это выключатель?» О выключателе на стене или на лампе.
+
+**16 · Соседка называет вещь, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-27:i13; family: scripted_repeat_compare -->
-🎙 **He's generous.**
+🎙 **switch**
 
-**14 · Вы сообщаете, что несколькими выбранными машинами можно воспользоваться**
+**17 · Карточка слова — router**
+<!-- interaction_id: en:lesson-03:session-27:word:router; family: word_card -->
+> **router** — роутер, коробка, которая раздаёт интернет. Is that a router? — «Это роутер?» О роутере дома или в офисе.
+
+**18 · На полке в другом углу комнаты стоит коробка с антеннами, которая раздаёт интернет. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-27:i14; family: context_gap_grammar -->
-The cars ___ available. → **are** · is · am
-- is — *Машин несколько: нужно `are`.*
-- am — *С `the cars` здесь нужно `are`.*
+___ → **router** · remote · shelf
+- remote — *remote — это пульт, а коробка, которая раздаёт интернет, называется router.*
+- shelf — *shelf — это полка, а коробка, которая раздаёт интернет, называется router.*
 
-**15 · Послушайте сообщение об Анне**
+**19 · Послушайте вопрос соседки**
 <!-- interaction_id: en:lesson-03:session-27:i15; family: listen_choose -->
-🔊 *She is awake.* → **She is awake.** · She is asleep. · She is available.
-- She is asleep. — *В записи последнее слово — `awake`, а в этом варианте — `asleep`.*
-- She is available. — *В записи последнее слово — `awake`, а в этом варианте — `available`.*
+🔊 *Is that a switch?* → **Is that a switch?** · Is this a switch? · Is that a sofa?
+- Is this a switch? — *В записи второе слово — `that`, а в этом варианте — `this`.*
+- Is that a sofa? — *В записи последнее слово — `switch`, а в этом варианте — `sofa`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-27:i16; family: speed_match -->
-awake — не спит · asleep — спит · available — доступный · generous — щедрый
+router — роутер · button — кнопка · switch — выключатель · remote — пульт
 
-**17 · Вы обсуждаете автомобили с другом: машины вообще бывают разных размеров. Скажите «Машины разные», без указания на конкретную группу**
+**21 · Соседка показывает на коробку на дальней полке. Спросите, роутер ли это.**
 <!-- interaction_id: en:lesson-03:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Cars are different.**
-
+🎙 **Is that a router?**

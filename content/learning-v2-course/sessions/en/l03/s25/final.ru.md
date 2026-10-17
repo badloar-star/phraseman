@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 25 — Собаки помогают читать
+# Английский · Урок 3 · Занятие 25 — Что вы принесли в мастерскую
 
-**Ситуация.** В библиотеке проходит встреча: дети читают вслух рядом со спокойными собаками. Анна рассказывает о таких встречах, Олег приносит книги. Вы обсуждаете собак вообще, затем конкретных собак, которых ждёте сегодня.
+**Ситуация.** Вы с подругой несёте в мастерскую электроники вещи в ремонт. Всё, что вы называете, лежит у вас в руках или рядом с вами. Про такую вещь по-английски говорят this: «вот это, здесь рядом».
 
-**Что вы освоите:** говорить о собаках и книгах вообще без a и the, отличать это от разговора о конкретных собаках
-**Новые слова:** dogs
+**Что вы освоите:** называть вещь, которая рядом: This is a … и This is an …
+**Новые слова:** charger, cable, adapter, socket
+**Возвращаются:** lamp, box, key, bag, clock
 
 ---
 
 ## Интро 1
 
-### Собаки вообще
+### Мастер просит назвать вещи
 
-`dog` — «собака», `dogs` — «собаки». `Dogs are helpful` — «Собаки помогают», буквально «Собаки полезны, готовы помочь». Здесь мы говорим о собаках в целом: перед `dogs` не ставим ни `a`, ни `the`. Это общее высказывание, а не обещание, что любая собака выполнит любую просьбу. Попросить собаку принести книгу можно. Попросить её прочитать следующую главу — уже слишком.
+Вы с подругой пришли в мастерскую электроники и принесли вещи в ремонт. Мастер просит назвать каждую. Вы берёте в руку зарядку: charger — «зарядка» для телефона. Она у вас в руке, то есть рядом, поэтому говорим this: This is a charger — «Это зарядка».
 
-**Вы говорите о собаках в целом: «Собаки помогают». Выберите фразу без указания на определённую группу.**
+**Мастер просит назвать вещь у вас в руке. Скажите, что это зарядка.**
 
-- ✅ **Dogs are helpful.**
-- ❌ The dogs are helpful. — *С `the dogs` речь о конкретных собаках. Здесь говорим о собаках в целом: `Dogs`.*
-- ❌ A dogs are helpful. — *`a` не ставим перед названием нескольких собак.*
+- ✅ **This is a charger.**
+- ❌ This is an charger. — *Перед charger нужно a: слово начинается с согласного звука.*
+- ❌ This a charger. — *Между This и a нужно is: This is a charger.*
 
 ---
 
 ## Интро 2
 
-### А эти собаки где
+### Деталь с вилкой
 
-`The dogs are absent` — «Собаки отсутствуют»: речь о тех собаках, которых ждали сегодня. `absent` — «отсутствующий». Сравните: `Dogs are helpful` — о собаках вообще; `The dogs are absent` — об определённых собаках. `Where are the dogs?` — «Где собаки?» Так можно спросить о собаках, которых вы с Анной ждёте.
+Дома вы собираете сумку для мастерской. Брат сидит рядом и видит в вашей руке маленькую деталь с вилкой. adapter — «переходник». Деталь у вас в руке, поэтому this, а слово начинается с гласного звука, поэтому an: This is an adapter — «Это переходник».
 
-**Сегодняшние собаки ещё не пришли. Сообщите, что эти собаки отсутствуют.**
+**Брат спрашивает, что у вас в руке. Скажите, что это переходник.**
 
-- ✅ **The dogs are absent.**
-- ❌ Dogs are absent. — *Здесь речь о конкретных ожидаемых собаках: `The dogs`.*
-- ❌ The dogs is absent. — *Собак несколько, поэтому нужно `are`.*
+- ✅ **This is an adapter.**
+- ❌ This is a adapter. — *Перед adapter нужно an: слово начинается с гласного звука.*
+- ❌ This an adapter. — *Между This и an нужно is: This is an adapter.*
 
 ---
 
 ## Интро 3
 
-### Книги тоже важны
+### Провод в очереди
 
-`Books are important` — «Книги важны». Говорим о книгах в целом, поэтому перед `books` нет `a` или `the`. Анна довольна тем, как дети читают: `She is proud` — «Она гордится». Олег забыл коробку книг, и ему стыдно: `He is ashamed`. Вы не ожидали такого занятия: `I am surprised` — «Я удивлён».
+В очереди в мастерскую соседка заглядывает в ваш пакет и показывает на длинный провод. cable — «кабель», провод с вилками на концах. Вы держите его в руках, он рядом, поэтому this. Перед cable ставим a, потому что слово начинается с согласного звука: This is a cable — «Это кабель».
 
-**Вы говорите о книгах вообще: «Книги важны». Выберите подходящую фразу.**
+**Соседка по очереди спрашивает, что это за провод. Скажите, что это кабель.**
 
-- ✅ **Books are important.**
-- ❌ The books are important. — *`The books` указывает на конкретные книги. Здесь речь о книгах в целом.*
-- ❌ A books are important. — *Перед названием нескольких книг не ставим `a`.*
+- ✅ **This is a cable.**
+- ❌ This is cable. — *Перед cable нужно a: This is a cable.*
+- ❌ This are a cable. — *С this нужно is, а не are: This is a cable.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Олег показывает несколько книг. Назовите их полной фразой**
+**1 · Подруга спрашивает, что стоит на стойке рядом с вами. Скажите, что это лампа.**
 <!-- interaction_id: en:lesson-03:session-25:i01; family: phrase_builder -->
-Плитки: `books` `are` `They` `is` → **They are books.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are books.`)*
+Плитки: `lamp` `This` `is` `a` `an` → **This is a lamp.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is a lamp.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте, что говорит мастер**
 <!-- interaction_id: en:lesson-03:session-25:i02; family: listen_choose -->
-🔊 *dogs* → **dogs** · books · boxes
-- books — *В записи первое слово — `dogs`, а в этом варианте — `books`.*
-- boxes — *В записи первое слово — `dogs`, а в этом варианте — `boxes`.*
+🔊 *This is a box.* → **This is a box.** · This is a key. · This is a bag.
+- This is a key. — *В записи последнее слово — `box`, а в этом варианте — `key`.*
+- This is a bag. — *В записи последнее слово — `box`, а в этом варианте — `bag`.*
 
-**3 · Назовите несколько собак одним английским словом**
+**3 · Вы держите в руке ключ и показываете его подруге. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-25:i03; family: context_gap_grammar -->
-___ → **dogs** · dog · a dogs
-- dog — *Это одна собака; несколько — `dogs`.*
-- a dogs — *Перед `dogs` не ставим `a`.*
+This ___ a key. → **is** · are · am
+- are — *С this нужно is: This is a key.*
+- am — *С this нужно is: This is a key.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-25:i04; family: speed_match -->
-dogs — собаки · proud — гордый · ashamed — испытывающий стыд · books — книги
+charger — зарядка · cable — кабель · adapter — переходник · socket — розетка
 
-**5 · Послушайте и соберите сообщение**
+**5 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-25:i05; family: listen_build_dictation -->
-🔊 *The dogs are absent.* Плитки: `absent` `are` `dogs` `The` `is` → **The dogs are absent.**
-*(плитка `is` лишняя: здесь нужно `are` — `The dogs are absent.`)*
+🔊 *This is not a bag.* Плитки: `bag` `not` `is` `This` `a` `an` → **This is not a bag.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is not a bag.`)*
 
-**6 · Скажите «Книги важны», говоря о книгах в целом**
+**6 · Мастер показывает на часы на стене рядом с вами. Скажите, что это часы.**
 <!-- interaction_id: en:lesson-03:session-25:i06; family: phrase_builder -->
-Плитки: `important` `are` `Books` `a` → **Books are important.**
-*(плитка `a` лишняя: перед `Books` в этом общем высказывании ничего не добавляем — `Books are important.`)*
+Плитки: `clock` `is` `This` `an` `a` → **This is a clock.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is a clock.`)*
 
-**7 · Вы не ожидали увидеть собак на занятии по чтению. Скажите «Я удивлён» с сокращением**
+**7 · Карточка слова — charger**
+<!-- interaction_id: en:lesson-03:session-25:word:charger; family: word_card -->
+> **charger** — зарядка, устройство, которым заряжают телефон. This is a charger — «Это зарядка». О зарядке для телефона, часов, наушников.
+
+**8 · Мастер называет вещь, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-25:i07; family: scripted_repeat_compare -->
-🎙 **I'm surprised.**
+🎙 **charger**
 
-**8 · Вы сообщаете, что несколько конкретных собак, которых ждали сегодня, отсутствуют**
+**9 · Карточка слова — cable**
+<!-- interaction_id: en:lesson-03:session-25:word:cable; family: word_card -->
+> **cable** — кабель, провод с вилками на концах. This is a cable — «Это кабель». О проводе для зарядки или для подключения техники.
+
+**10 · Подруга держит провод с вилками на концах. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-25:i08; family: context_gap_grammar -->
-___ are absent. → **The dogs** · A dogs · The dog
-- A dogs — *Несколько конкретных собак — `the dogs`, не `a dogs`.*
-- The dog — *Собак несколько: нужно `the dogs`.*
+___ → **cable** · socket · lamp
+- socket — *socket — это розетка в стене, а провод называется cable.*
+- lamp — *lamp — это лампа, а провод называется cable.*
 
-**9 · Послушайте сообщение об Олеге**
+**11 · Послушайте, что говорит подруга**
 <!-- interaction_id: en:lesson-03:session-25:i09; family: listen_choose -->
-🔊 *He is ashamed.* → **He is ashamed.** · He is proud. · He is surprised.
-- He is proud. — *В записи последнее слово — `ashamed`, а в этом варианте — `proud`.*
-- He is surprised. — *В записи последнее слово — `ashamed`, а в этом варианте — `surprised`.*
+🔊 *This is not a charger.* → **This is not a charger.** · This is not a box. · This is not a key.
+- This is not a box. — *В записи последнее слово — `charger`, а в этом варианте — `box`.*
+- This is not a key. — *В записи последнее слово — `charger`, а в этом варианте — `key`.*
 
-**10 · Соедините слова со значениями**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-25:i10; family: speed_match -->
-surprised — удивлённый · absent — отсутствующий · dogs — собаки · books — книги
+charger — зарядка · lamp — лампа · key — ключ · box — коробка
 
-**11 · Послушайте и соберите фразу**
+**13 · Послушайте мастера и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-25:i11; family: listen_build_dictation -->
-🔊 *Books are important.* Плитки: `important` `are` `Books` `is` → **Books are important.**
-*(плитка `is` лишняя: здесь нужно `are` — `Books are important.`)*
+🔊 *This is not a cable.* Плитки: `cable` `not` `is` `This` `a` `an` → **This is not a cable.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is not a cable.`)*
 
-**12 · Анна знает, каких собак ждут сегодня. Спросите, где собаки**
+**14 · Мастер спрашивает, что у вас в руке. Скажите, что это зарядка.**
 <!-- interaction_id: en:lesson-03:session-25:i12; family: phrase_builder -->
-Плитки: `dogs` `the` `are` `Where` `What` → **Where are the dogs?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the dogs?`)*
+Плитки: `charger` `is` `This` `an` `a` → **This is a charger.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is a charger.`)*
 
-**13 · Анна гордится успехами детей. Скажите о ней «Она гордится» с сокращением**
+**15 · Карточка слова — adapter**
+<!-- interaction_id: en:lesson-03:session-25:word:adapter; family: word_card -->
+> **adapter** — переходник, деталь, с которой вилка подходит к чужой розетке. This is an adapter — «Это переходник». О детали для поездок и для старой техники.
+
+**16 · Мастер называет вещь, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-25:i13; family: scripted_repeat_compare -->
-🎙 **She's proud.**
+🎙 **adapter**
 
-**14 · Скажите «Книги важны» о книгах вообще, без указания на конкретные книги**
+**17 · Карточка слова — socket**
+<!-- interaction_id: en:lesson-03:session-25:word:socket; family: word_card -->
+> **socket** — розетка, место в стене, куда включают вилку. This is a socket — «Это розетка». О розетке на стене или на удлинителе.
+
+**18 · В стене рядом с вами отверстия, куда вставляют вилку. Как это называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-25:i14; family: context_gap_grammar -->
-___ are important. → **Books** · The books · A books
-- The books — *Здесь говорим о книгах в целом: `Books`, без `the`.*
-- A books — *Перед `books` не ставим `a`.*
+___ → **socket** · adapter · box
+- adapter — *adapter — это переходник для вилки, а отверстие в стене называется socket.*
+- box — *box — это коробка, а отверстие в стене называется socket.*
 
-**15 · Послушайте реакцию посетителя**
+**19 · Послушайте, что говорит мастер**
 <!-- interaction_id: en:lesson-03:session-25:i15; family: listen_choose -->
-🔊 *I am surprised.* → **I am surprised.** · I am proud. · I am ashamed.
-- I am proud. — *В записи последнее слово — `surprised`, а в этом варианте — `proud`.*
-- I am ashamed. — *В записи последнее слово — `surprised`, а в этом варианте — `ashamed`.*
+🔊 *This is not an adapter.* → **This is not an adapter.** · This is not a charger. · This is not a cable.
+- This is not a charger. — *В записи последнее слово — `adapter`, а в этом варианте — `charger`.*
+- This is not a cable. — *В записи последнее слово — `adapter`, а в этом варианте — `cable`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-25:i16; family: speed_match -->
-proud — гордый · ashamed — испытывающий стыд · surprised — удивлённый · absent — отсутствующий
+socket — розетка · cable — кабель · adapter — переходник · charger — зарядка
 
-**17 · На другой встрече вы рассказываете, что собаки помогают людям. Скажите «Собаки помогают» о собаках в целом, без указания на определённую группу**
+**21 · Мастер показывает на розетку в стене рядом с вами. Скажите, что это.**
 <!-- interaction_id: en:lesson-03:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Dogs are helpful.**
-
+🎙 **This is a socket.**

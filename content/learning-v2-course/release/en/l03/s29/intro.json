@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-29",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько столов, спросить, где они, и говорить о столах вообще",
-    "uk": "назвати кілька столів, запитати, де вони, й говорити про столи загалом"
+    "ru": "называть вещь через this и that, а дальше говорить о ней it",
+    "uk": "називати річ через this і that, а далі говорити про неї it"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одного стола мало",
-        "uk": "Одного столу замало"
+        "ru": "Коробка от почтальона",
+        "uk": "Коробка від листоноші"
       },
       "bodyByLocale": {
-        "ru": "`table` — «стол», `tables` — «столы». `They are tables` — «Это столы». Для нескольких столов добавляем `s`, а `a` перед `tables` не ставим. Олег принёс один маленький стол на всю группу. Ручки поместились, бумага поместилась. Локти участников — уже по записи. Нужны `tables` — столы.",
-        "uk": "`table` — «стіл», `tables` — «столи». `They are tables` — «Це столи». Для кількох столів додаємо `s`, а `a` перед `tables` не ставимо. Олег приніс один маленький стіл на всю групу. Ручки помістилися, папір помістився. Лікті учасників — уже за записом. Потрібні `tables` — столи."
+        "ru": "У двери подъезда почтальон протягивает вам большую коробку, а соседка просит принять её, пока ищет ключи. parcel — «посылка», коробка с вещами, которую отправили по почте. Она у вас в руках, рядом, поэтому this: This is a parcel — «Это посылка».",
+        "uk": "Біля дверей під’їзду листоноша простягає вам велику коробку, а сусідка просить прийняти її, поки шукає ключі. parcel — «посилка», коробка з речами, яку відправили поштою. Вона у вас у руках, поруч, тому this: This is a parcel — «Це посилка»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "На фотографии несколько столов. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька столів. Назвіть їх одним англійським словом."
+          "ru": "Почтальон протягивает вам коробку. Скажите, что это посылка.",
+          "uk": "Листоноша простягає вам коробку. Скажіть, що це посилка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro1:r1",
-              "text": "tables"
+              "text": "This is a parcel."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r2",
-              "text": "table"
+              "text": "That is a parcel."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r3",
-              "text": "a tables"
+              "text": "This is parcel."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro1:r1",
-              "text": "tables"
+              "text": "This is a parcel."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r2",
-              "text": "table"
+              "text": "That is a parcel."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r3",
-              "text": "a tables"
+              "text": "This is parcel."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На фотографии несколько столов. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька столів. Назвіть їх одним англійським словом."
+          "ru": "Почтальон протягивает вам коробку. Скажите, что это посылка.",
+          "uk": "Листоноша простягає вам коробку. Скажіть, що це посилка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Столы важны",
-        "uk": "Столи важливі"
+        "ru": "Конверт у дальней двери",
+        "uk": "Конверт біля дальніх дверей"
       },
       "bodyByLocale": {
-        "ru": "`Tables are important` — «Столы важны». Обсуждая, что нужно для занятий письмом, можно сказать так о столах вообще: перед `tables` нет `the`. `The tables are upstairs` — «Столы наверху»: речь об определённых столах для нашей встречи. Чтобы найти их, спросите `Where are the tables?` — «Где столы?»",
-        "uk": "`Tables are important` — «Столи важливі». Обговорюючи, що потрібно для занять письмом, можна сказати так про столи загалом: перед `tables` немає `the`. `The tables are upstairs` — «Столи нагорі»: ідеться про певні столи для нашої зустрічі. Щоб знайти їх, запитайте `Where are the tables?` — «Де столи?»"
+        "ru": "На полу у дальней двери лежит белый конверт, и соседка не может разглядеть, что на нём написано. letter — «письмо», бумага с текстом в конверте, например от друга. Конверт далеко от вас, поэтому that. Перед letter ставим a: That is a letter — «Это письмо».",
+        "uk": "На підлозі біля дальніх дверей лежить білий конверт, і сусідка не може розгледіти, що на ньому написано. letter — «лист», папір із текстом у конверті, наприклад від друга. Конверт далеко від вас, тому that. Перед letter ставимо a: That is a letter — «Це лист»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Вы обсуждаете занятия письмом вообще. Скажите, что столы важны, без указания на определённые столы.",
-          "uk": "Ви обговорюєте заняття письмом загалом. Скажіть, що столи важливі, без указівки на певні столи."
+          "ru": "Соседка показывает на пол у дальней двери. Скажите, что это письмо.",
+          "uk": "Сусідка показує на підлогу біля дальніх дверей. Скажіть, що це лист."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro2:r1",
-              "text": "Tables are important."
+              "text": "That is a letter."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r2",
-              "text": "The tables are important."
+              "text": "This is a letter."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r3",
-              "text": "A tables are important."
+              "text": "That is an letter."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro2:r1",
-              "text": "Tables are important."
+              "text": "That is a letter."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r2",
-              "text": "The tables are important."
+              "text": "This is a letter."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r3",
-              "text": "A tables are important."
+              "text": "That is an letter."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы обсуждаете занятия письмом вообще. Скажите, что столы важны, без указания на определённые столы.",
-          "uk": "Ви обговорюєте заняття письмом загалом. Скажіть, що столи важливі, без указівки на певні столи."
+          "ru": "Соседка показывает на пол у дальней двери. Скажите, что это письмо.",
+          "uk": "Сусідка показує на підлогу біля дальніх дверей. Скажіть, що це лист."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Помощь издалека",
-        "uk": "Допомога здалеку"
+        "ru": "Угол конверта",
+        "uk": "Кут конверта"
       },
       "bodyByLocale": {
-        "ru": "`away` здесь — «в отъезде», `online` — «в сети». Анна в другом городе: `She is away`. Но сейчас она на связи через интернет: `She is online`. Это не противоречие: можно быть далеко и помогать онлайн. `local` — «местный», `foreign` — «иностранный». Эти слова помогают различать местное и относящееся к другой стране.",
-        "uk": "`away` тут — «у від’їзді», `online` — «у мережі». Анна в іншому місті: `She is away`. Але зараз вона на зв’язку через інтернет: `She is online`. Це не суперечність: можна бути далеко й допомагати онлайн. `local` — «місцевий», `foreign` — «іноземний». Ці слова допомагають розрізняти місцеве й те, що стосується іншої країни."
+        "ru": "Вы подняли конверт, а соседка показывает на его угол. stamp — «почтовая марка», маленькая картинка, которую клеят в угол. Вы только что сказали: This is a stamp — «Это марка». Теперь о ней же говорим it, без указания пальцем: It is new — «Она новая».",
+        "uk": "Ви підняли конверт, а сусідка показує на його кут. stamp — «поштова марка», маленька картинка, яку клеять у кут. Ви щойно сказали: This is a stamp — «Це марка». Тепер про цю ж марку кажемо it, без вказування пальцем: It is new — «Вона нова»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Анна сейчас подключена к интернету и отвечает вам. Сообщите «Она в сети».",
-          "uk": "Анна зараз підключена до інтернету й відповідає вам. Повідомте «Вона в мережі»."
+          "ru": "Вы уже назвали марку на конверте в вашей руке. Скажите, что она новая.",
+          "uk": "Ви вже назвали марку на конверті у вашій руці. Скажіть, що вона нова."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro3:r1",
-              "text": "She is online."
+              "text": "It is new."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r2",
-              "text": "She is local."
+              "text": "It new."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r3",
-              "text": "She is foreign."
+              "text": "It are new."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro3:r1",
-              "text": "She is online."
+              "text": "It is new."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r2",
-              "text": "She is local."
+              "text": "It new."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r3",
-              "text": "She is foreign."
+              "text": "It are new."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна сейчас подключена к интернету и отвечает вам. Сообщите «Она в сети».",
-          "uk": "Анна зараз підключена до інтернету й відповідає вам. Повідомте «Вона в мережі»."
+          "ru": "Вы уже назвали марку на конверте в вашей руке. Скажите, что она новая.",
+          "uk": "Ви вже назвали марку на конверті у вашій руці. Скажіть, що вона нова."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "73ee97d0f646d981c8ab4415b0c9d7a986b6506d6f87eaa0b3643f8f7cefaea1"
+  "introFingerprint": "874bd227e03ff81f775ef8a0d5ea5d8db04861d96a729e0635de7d1351870838"
 }

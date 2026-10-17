@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 40 — Усе на місці перед поїздкою
+# Англійська · Урок 3 · Заняття 40 — Перевіряємо покупки перед виходом
 
-**Ситуація.** Перед поїздкою ви допомагаєте гостеві розібратися, де речі й хто чекає біля машини. Телефон і фотографії поруч, гаманець і пляшки — на дальньому столі. Діти чекають трохи далі. Ви називаєте людей і предмети, не плутаючи число та відстань.
+**Ситуація.** Ви з подругою вже заплатили й перевіряєте покупки перед виходом із магазину. Продавець допомагає. Один предмет поруч — this, один далеко — that, кілька поруч — these, кілька далеко — those. Нової граматики немає, лише всі чотири слова разом.
 
-**Що ви опануєте:** самостійно вибрати this, that, these або those з уже знайомими словами
-**Нові слова:** —
+**Що ви опануєте:** обирати this, that, these або those за кількістю й відстанню без підказок
+**Нові слова:** barcode, seal, coupon, scanner
+**Повертаються:** bag, box, jar, apple, bottle
 
 ---
 
 ## Інтро 1
 
-### Спочатку один чи кілька
+### Код на коробці
 
-У цьому занятті нових слів немає. Повторюємо `phone` — телефон, `wallet` — гаманець, `photos` — фотографії, `children` — діти, `car` — машина, `ticket` — квиток, `bottles` — пляшки. Один предмет поруч: `This is a phone`. Кілька поруч: `These are photos`. Фотографій може бути сто, але їм однаково достатньо одного `are`.
+Ви з подругою перевіряєте покупки перед виходом. Продавець каже, що прилад не читає код на одній коробці. Коробка у вас в руках, і ви дивитеся на смужки на її боці. barcode — «штрихкод». Штрихкод один і поруч, тому this: This barcode is small — «Цей штрихкод малий».
 
-**Перед вами кілька фотографій. Назвіть їх, показуючи на групу поруч.**
+**Продавець чекає пояснення. Скажіть йому, що цей штрихкод малий.**
 
-- ✅ **These are photos.**
-- ❌ This is a photo. — *Так називають одну фотографію. Тут кілька поруч: `These are photos`.*
-- ❌ Those are photos. — *`Those` вказує далі. Фотографії просто перед вами: `These`.*
+- ✅ **This barcode is small.**
+- ❌ That barcode is small. — *Штрихкод у вас у руках, а that кажемо про далеке: This barcode is small.*
+- ❌ This barcode are small. — *Штрихкод один, тому потрібно is: This barcode is small.*
 
 ---
 
 ## Інтро 2
 
-### Потім поруч чи далі
+### Банки на дальній полиці
 
-Один далі — `that`: `That is a wallet` — «Це гаманець». Кілька далі — `those`: `Those are children` — «Це діти». Для `children` не додаємо ще одне `s`: це вже кілька дітей. Відстань визначає `this/that` або `these/those`, а число — `is/are`.
+Подруга помічає на дальній полиці банки з порваною захисною плівкою на кришках. Вона показує на них і питає продавця, що сталося. seal — «пломба». Пломб кілька, і вони далеко, тому those. Ви пояснюєте продавцю: Those seals are broken — «Ті пломби зірвані».
 
-**Гаманець лежить на дальньому столі. Назвіть один предмет далі.**
+**Продавець питає, що з банками на дальній полиці. Скажіть, що ті пломби зірвані.**
 
-- ✅ **That is a wallet.**
-- ❌ This is a wallet. — *`This` — поруч, а гаманець далі: `That`.*
-- ❌ Those are wallets. — *Так називають кілька гаманців. Тут один: `That is a wallet`.*
+- ✅ **Those seals are broken.**
+- ❌ These seals are broken. — *Пломби на дальній полиці, а these кажемо про те, що поруч: Those seals are broken.*
+- ❌ Those seal are broken. — *Пломб кілька, тому потрібно seals з s.*
 
 ---
 
 ## Інтро 3
 
-### Назвати чи уточнити який
+### Купони на знижку
 
-`This is a ticket` — «Це квиток»: називаємо предмет. `This ticket is here` — «Цей квиток тут»: `this` стоїть просто перед `ticket`, і ще одне `a` не потрібне. Для кількох: `Those bottles are there` — «Ті пляшки там». Спочатку вирішіть, скільки предметів і куди ви показуєте.
+У вас у руці кілька папірців зі знижкою, які вам дали зранку. Продавець стоїть біля каси й може їх прийняти, але спершу треба дізнатися, чи не скінчився термін. coupon — «купон». Купонів кілька, і вони поруч: Are these coupons valid? — «Ці купони дійсні?»
 
-**Ви показуєте на квиток у своїй руці. Скажіть «Цей квиток тут».**
+**Продавець стоїть біля каси. Запитайте його, чи дійсні ці купони.**
 
-- ✅ **This ticket is here.**
-- ❌ This a ticket is here. — *Після `This` перед `ticket` не додаємо `a`.*
-- ❌ This ticket are here. — *Квиток один: потрібне `is`.*
+- ✅ **Are these coupons valid?**
+- ❌ Is these coupons valid? — *З these потрібно Are: Are these coupons valid?*
+- ❌ Are these coupon valid? — *Купонів кілька, тому потрібно coupons з s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Гість запитує про предмет у вас у руці. Це телефон. Назвіть його зі словом для одного поруч**
+**1 · Продавець поставив поруч із вами пляшки. Скажіть подрузі повною фразою: ці пляшки порожні.**
 <!-- interaction_id: en:lesson-03:session-40:i01; family: phrase_builder -->
-Плитки: `phone` `a` `is` `This` `are` → **This is a phone.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a phone.`)*
+Плитки: `empty` `bottles` `are` `These` `bottle` → **These bottles are empty.**
+*(плитка `bottle` зайва: тут потрібно `bottles` — `These bottles are empty.`)*
 
-**2 · Послухайте й виберіть точну фразу**
+**2 · Послухайте запитання продавця про банку**
 <!-- interaction_id: en:lesson-03:session-40:i02; family: listen_choose -->
-🔊 *That is a wallet.* → **That is a wallet.** · This is a wallet. · That is a ticket.
-- This is a wallet. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- That is a ticket. — *У записі останнє слово — `wallet`, а в цьому варіанті — `ticket`.*
+🔊 *Is that jar full?* → **Is that jar full?** · Are those jars full? · Is this jar full?
+- Are those jars full? — *У записі `Is that jar` — банка одна, а в цьому варіанті `Are those jars` — кілька.*
+- Is this jar full? — *У записі перше слово після Is — `that` (далеко), а в цьому варіанті — `this` (поруч).*
 
-**3 · Перед вами кілька фотографій. Ви показуєте на них**
+**3 · Продавець показує на коробку вдалині. Доповніть його фразу**
 <!-- interaction_id: en:lesson-03:session-40:i03; family: context_gap_grammar -->
-___ are photos. → **These** · This · Those
-- This — *Фотографій кілька: потрібне `These`.*
-- Those — *`Those` — далі. Тут фотографії поруч: `These`.*
+That ___ is heavy. → **box** · boxes · a box
+- boxes — *Після That потрібен один предмет: box без es.*
+- a box — *Після That артикль a не ставимо: That box is heavy.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-40:i04; family: speed_match -->
-phone — телефон · wallet — гаманець · photos — фотографії · children — діти
+barcode — штрихкод · seal — пломба · coupon — купон · scanner — сканер
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-40:i05; family: listen_build_dictation -->
-🔊 *Those bottles are there.* Плитки: `there` `are` `bottles` `Those` `is` → **Those bottles are there.**
-*(плитка `is` зайва: тут потрібно `are` — `Those bottles are there.`)*
+🔊 *Those apples are fresh.* Плитки: `fresh` `apples` `are` `Those` `is` → **Those apples are fresh.**
+*(плитка `is` зайва: тут потрібно `are` — `Those apples are fresh.`)*
 
-**6 · Ви стоїте біля машини. Назвіть її: «Це машина», використовуючи слово для одного поруч**
+**6 · Банка стоїть далеко від вас на полиці. Скажіть продавцю, що це банка.**
 <!-- interaction_id: en:lesson-03:session-40:i06; family: phrase_builder -->
-Плитки: `car` `a` `is` `This` `are` → **This is a car.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a car.`)*
+Плитки: `jar` `a` `is` `That` `This` → **That is a jar.**
+*(плитка `This` зайва: тут потрібно `That` — `That is a jar.`)*
 
-**7 · Гість запитує про групу людей удалині. Це діти. Назвіть їх зі словом для кількох далі**
+**7 · Картка слова — barcode**
+<!-- interaction_id: en:lesson-03:session-40:word:barcode; family: word_card -->
+> **barcode** — штрихкод. This barcode is small — «Цей штрихкод малий». Про смужки на упаковці, які читає прилад у магазині.
+
+**8 · Продавець показує на смужки на коробці й називає їх, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-40:i07; family: scripted_repeat_compare -->
-🎙 **Those are children.**
+🎙 **barcode**
 
-**8 · Ви говорите про один квиток у вас у руці**
+**9 · Картка слова — seal**
+<!-- interaction_id: en:lesson-03:session-40:word:seal; family: word_card -->
+> **seal** — пломба. Those seals are broken — «Ті пломби зірвані». Про захисну плівку чи наліпку на кришці.
+
+**10 · Подруга показує на захисну плівку, яку рвуть при відкритті банки. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-03:session-40:i08; family: context_gap_grammar -->
-This ticket ___ here. → **is** · are · am
-- are — *Квиток один: `This ticket is here`.*
-- am — *З `This ticket` потрібне `is`.*
+___ → **seal** · jar · bag
+- jar — *jar — це банка, а захисна плівка на кришці називається seal.*
+- bag — *bag — це сумка, а захисна плівка на кришці називається seal.*
 
-**9 · Послухайте й виберіть точну фразу**
+**11 · Послухайте, що каже продавець про штрихкод**
 <!-- interaction_id: en:lesson-03:session-40:i09; family: listen_choose -->
-🔊 *These are bottles.* → **These are bottles.** · Those are bottles. · These are photos.
-- Those are bottles. — *У записі перше слово — `These`, а в цьому варіанті — `Those`.*
-- These are photos. — *У записі останнє слово — `bottles`, а в цьому варіанті — `photos`.*
+🔊 *That barcode is old.* → **That barcode is old.** · Those barcodes are old. · This barcode is old.
+- Those barcodes are old. — *У записі `That barcode` — штрихкод один, а в цьому варіанті `Those barcodes` — кілька.*
+- This barcode is old. — *У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч).*
 
-**10 · З’єднайте слова зі значеннями**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-40:i10; family: speed_match -->
-car — машина · ticket — квиток · bottles — пляшки · wallet — гаманець
+barcode — штрихкод · bag — сумка · box — коробка · jar — банка
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте продавця й складіть запитання**
 <!-- interaction_id: en:lesson-03:session-40:i11; family: listen_build_dictation -->
-🔊 *That phone is there.* Плитки: `there` `is` `phone` `That` `are` → **That phone is there.**
-*(плитка `are` зайва: тут потрібно `is` — `That phone is there.`)*
+🔊 *Are these seals broken?* Плитки: `broken` `seals` `these` `Are` `Is` → **Are these seals broken?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are these seals broken?`)*
 
-**12 · Фотографії лежать просто перед вами. Скажіть «Ці фотографії тут»**
+**14 · Продавець тримає одну пломбу поруч із вами. Скажіть подрузі, що це пломба.**
 <!-- interaction_id: en:lesson-03:session-40:i12; family: phrase_builder -->
-Плитки: `here` `are` `photos` `These` `is` → **These photos are here.**
-*(плитка `is` зайва: тут потрібно `are` — `These photos are here.`)*
+Плитки: `seal` `a` `is` `This` `These` → **This is a seal.**
+*(плитка `These` зайва: тут потрібно `This` — `This is a seal.`)*
 
-**13 · На дальньому столі один квиток. Назвіть його повною фразою зі словом для одного далі**
+**15 · Картка слова — coupon**
+<!-- interaction_id: en:lesson-03:session-40:word:coupon; family: word_card -->
+> **coupon** — купон. Are these coupons valid? — «Ці купони дійсні?» Про папірець, за яким дають знижку.
+
+**16 · Продавець дістає папірець зі знижкою й називає його, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-40:i13; family: scripted_repeat_compare -->
-🎙 **That is a ticket.**
+🎙 **coupon**
 
-**14 · Ви вперше називаєте один предмет удалині: це машина**
+**17 · Картка слова — scanner**
+<!-- interaction_id: en:lesson-03:session-40:word:scanner; family: word_card -->
+> **scanner** — сканер. That is a scanner — «Це сканер». Про прилад, який читає штрихкод.
+
+**18 · Продавець проводить по коробці приладом, який читає штрихкод. Як він називається англійською?**
 <!-- interaction_id: en:lesson-03:session-40:i14; family: context_gap_grammar -->
-That is ___ car. → **a** · an · are
-- an — *`car` починається з приголосного звука: `a car`.*
-- are — *Перед назвою однієї машини тут потрібне `a`: `a car`.*
+___ → **scanner** · barcode · box
+- barcode — *barcode — це штрихкод, а прилад, який його читає, називається scanner.*
+- box — *box — це коробка, а прилад, який читає штрихкод, називається scanner.*
 
-**15 · Послухайте й виберіть точну фразу**
+**19 · Послухайте, що каже подруга про купони**
 <!-- interaction_id: en:lesson-03:session-40:i15; family: listen_choose -->
-🔊 *These children are here.* → **These children are here.** · Those children are here. · The children are here.
-- Those children are here. — *У записі перше слово — `These`, а в цьому варіанті — `Those`.*
-- The children are here. — *У записі перше слово — `These`, а в цьому варіанті — `The`.*
+🔊 *Those coupons are old.* → **Those coupons are old.** · That coupon is old. · Those coupons are new.
+- That coupon is old. — *У записі `Those coupons` — купонів кілька, а в цьому варіанті `That coupon` — один.*
+- Those coupons are new. — *У записі останнє слово — `old`, а в цьому варіанті — `new`.*
 
-**16 · З’єднайте вказівні слова зі значеннями в наших прикладах**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-40:i16; family: speed_match -->
-this — цей, один поруч · that — той, один далі · these — ці, кілька поруч · those — ті, кілька далі
+scanner — сканер · coupon — купон · seal — пломба · barcode — штрихкод
 
-**17 · Ви приїхали на пікнік. Друг запитує про кілька предметів на дальньому столі. Це пляшки. Назвіть їх одним повним реченням із вказівним словом для кількох далі**
+**21 · Продавець питає, який прилад біля каси працює. Скажіть йому коротко: той сканер новий.**
 <!-- interaction_id: en:lesson-03:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Those are bottles.**
-
+🎙 **That scanner is new.**

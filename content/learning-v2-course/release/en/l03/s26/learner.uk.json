@@ -9,34 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег приніс кілька коробок. Назвіть їх повною фразою",
+      "prompt": "Технік показує на дальню стіну. Скажіть, що там двері.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег приніс кілька коробок. Назвіть їх повною фразою",
+      "accessibilityLabel": "Технік показує на дальню стіну. Скажіть, що там двері.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are boxes.",
+        "targetPhrase": "That is a door.",
         "localizedMeaning": {
-          "ru": "Олег принёс несколько коробок. Назовите их полной фразой",
-          "uk": "Олег приніс кілька коробок. Назвіть їх повною фразою"
+          "ru": "Техник показывает на дальнюю стену. Скажите, что там дверь.",
+          "uk": "Технік показує на дальню стіну. Скажіть, що там двері."
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "boxes"
+          "That",
+          "is",
+          "a",
+          "door"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Олег приніс кілька коробок. Назвіть їх повною фразою",
+            "testedDimension": "Технік показує на дальню стіну. Скажіть, що там двері.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are boxes.`",
-              "uk": "тут потрібно `are` — `They are boxes.`"
+              "ru": "здесь нужно `a` — `That is a door.`",
+              "uk": "тут потрібно `a` — `That is a door.`"
             }
           }
         ],
@@ -53,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте, що каже технік",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i02:r1",
-          "text": "cats"
+          "text": "That is a window."
         },
         {
           "responseId": "en:lesson-03:session-26:i02:r2",
-          "text": "dogs"
+          "text": "This is a window."
         },
         {
           "responseId": "en:lesson-03:session-26:i02:r3",
-          "text": "cups"
+          "text": "That is a shelf."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте, що каже технік",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i02:audio",
-          "transcript": "cats"
+          "transcript": "That is a window."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-26:i02:r1",
-            "targetText": "cats",
+            "targetText": "That is a window.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-26:i02:r2",
-            "targetText": "dogs",
+            "targetText": "This is a window.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-26:i02:r3",
-            "targetText": "cups",
+            "targetText": "That is a shelf.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-26:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте, що каже технік",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `cats`, а в этом варианте — `dogs`.",
-              "uk": "У записі перше слово — `cats`, а в цьому варіанті — `dogs`."
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
             }
           },
           {
             "responseId": "en:lesson-03:session-26:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте, що каже технік",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `cats`, а в этом варианте — `cups`.",
-              "uk": "У записі перше слово — `cats`, а в цьому варіанті — `cups`."
+              "ru": "В записи последнее слово — `window`, а в этом варианте — `shelf`.",
+              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `shelf`."
             }
           }
         ],
@@ -129,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть кількох котів одним англійським словом",
+      "prompt": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i03:r1",
-          "text": "cats"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-03:session-26:i03:r2",
-          "text": "cat"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-03:session-26:i03:r3",
-          "text": "a cats"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть кількох котів одним англійським словом",
+      "accessibilityLabel": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите нескольких кошек одним английским словом",
-          "uk": "Назвіть кількох котів одним англійським словом"
+          "ru": "Стул стоит у дальней стены. Дополните фразу",
+          "uk": "Стілець стоїть біля дальньої стіни. Доповніть фразу"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "That ___ a chair.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-26:i03:r1",
-            "text": "cats"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-03:session-26:i03:r2",
-            "text": "cat"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-03:session-26:i03:r3",
-            "text": "a cats"
+            "text": "am"
           }
         ],
-        "testedDimension": "Назвіть кількох котів одним англійським словом",
+        "testedDimension": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть кількох котів одним англійським словом",
+            "testedDimension": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Несколько кошек — `cats`.",
-              "uk": "Кілька котів — `cats`."
+              "ru": "С that нужно is: That is a chair.",
+              "uk": "З that потрібно is: That is a chair."
             }
           },
           {
             "responseId": "en:lesson-03:session-26:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть кількох котів одним англійським словом",
+            "testedDimension": "Стілець стоїть біля дальньої стіни. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "Перед `cats` не ставим `a`.",
-              "uk": "Перед `cats` не ставимо `a`."
+              "ru": "С that нужно is: That is a chair.",
+              "uk": "З that потрібно is: That is a chair."
             }
           }
         ]
@@ -208,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-26:i04:p1",
-            "target": "cats",
+            "target": "screen",
             "meaningByLocale": {
-              "ru": "кошки",
-              "uk": "коти"
+              "ru": "экран",
+              "uk": "екран"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i04:p2",
-            "target": "boxes",
+            "target": "projector",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "проектор",
+              "uk": "проєктор"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i04:p3",
-            "target": "bored",
+            "target": "speaker",
             "meaningByLocale": {
-              "ru": "скучающий",
-              "uk": "той, кому нудно"
+              "ru": "колонка",
+              "uk": "колонка"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i04:p4",
-            "target": "confused",
+            "target": "banner",
             "meaningByLocale": {
-              "ru": "растерянный",
-              "uk": "розгублений"
+              "ru": "баннер",
+              "uk": "банер"
             }
           }
         ],
         "leftColumn": [
-          "cats",
-          "boxes",
-          "bored",
-          "confused"
+          "screen",
+          "projector",
+          "speaker",
+          "banner"
         ],
         "rightColumn": [
-          "коти",
-          "коробки",
-          "той, кому нудно",
-          "розгублений"
+          "екран",
+          "проєктор",
+          "колонка",
+          "банер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -271,38 +272,39 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте техніка й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте техніка й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i05:audio",
-          "transcript": "The cats are inside."
+          "transcript": "That is not a table."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cats are inside.",
+        "hiddenTargetPhrase": "That is not a table.",
         "orderedTokens": [
-          "The",
-          "cats",
-          "are",
-          "inside"
+          "That",
+          "is",
+          "not",
+          "a",
+          "table"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте техніка й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cats are inside.`",
-              "uk": "тут потрібно `are` — `The cats are inside.`"
+              "ru": "здесь нужно `a` — `That is not a table.`",
+              "uk": "тут потрібно `a` — `That is not a table.`"
             }
           }
         ],
@@ -319,34 +321,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Коти різні», говорячи про котів загалом та їхні різні характери",
+      "prompt": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Коти різні», говорячи про котів загалом та їхні різні характери",
+      "accessibilityLabel": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Cats are different.",
+        "targetPhrase": "This is a chair.",
         "localizedMeaning": {
-          "ru": "Скажите «Кошки разные», говоря о кошках в целом и их разных характерах",
-          "uk": "Скажіть «Коти різні», говорячи про котів загалом та їхні різні характери"
+          "ru": "Подруга показывает на стул рядом с вами. Скажите, что это стул.",
+          "uk": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець."
         },
         "orderedTokens": [
-          "Cats",
-          "are",
-          "different"
+          "This",
+          "is",
+          "a",
+          "chair"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "That"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Коти різні», говорячи про котів загалом та їхні різні характери",
+            "testedDimension": "Подруга показує на стілець поруч із вами. Скажіть, що це стілець.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Cats are different.`",
-              "uk": "тут потрібно `are` — `Cats are different.`"
+              "ru": "здесь нужно `This` — `This is a chair.`",
+              "uk": "тут потрібно `This` — `This is a chair.`"
             }
           }
         ],
@@ -358,26 +361,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-26:i07",
+      "interactionId": "en:lesson-03:session-26:word:screen",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — screen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:word:screen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — screen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:word:screen:audio",
+          "transcript": "screen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:word:screen:r1",
+            "targetText": "screen",
+            "meaningByLocale": {
+              "ru": "экран, на который выводят картинку с проектора. That is a screen — «Это экран». Об экране на стене или на сцене.",
+              "uk": "екран, на який виводять картинку з проєктора. That is a screen — «Це екран». Про екран на стіні чи на сцені."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "screen",
+          "definitionByLocale": {
+            "ru": "экран, на который выводят картинку с проектора. That is a screen — «Это экран». Об экране на стене или на сцене.",
+            "uk": "екран, на який виводять картинку з проєктора. That is a screen — «Це екран». Про екран на стіні чи на сцені."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви поки не знаєте, де коти, і хвилюєтеся. Скажіть «Я стурбований» зі скороченням",
+      "prompt": "Технік називає річ, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i07:audio"
       ],
-      "accessibilityLabel": "Ви поки не знаєте, де коти, і хвилюєтеся. Скажіть «Я стурбований» зі скороченням",
+      "accessibilityLabel": "Технік називає річ, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i07:audio",
-          "transcript": "I'm worried."
+          "transcript": "screen"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm worried.",
+        "targetPhrase": "screen",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,68 +437,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-26:word:projector",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — projector",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:word:projector:audio"
+      ],
+      "accessibilityLabel": "Картка слова — projector",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:word:projector:audio",
+          "transcript": "projector"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:word:projector:r1",
+            "targetText": "projector",
+            "meaningByLocale": {
+              "ru": "проектор, прибор, который показывает картинку на стене. This is a projector — «Это проектор». О приборе для презентаций и фильмов.",
+              "uk": "проєктор, прилад, який показує картинку на стіні. This is a projector — «Це проєктор». Про прилад для презентацій і фільмів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "projector",
+          "definitionByLocale": {
+            "ru": "проектор, прибор, который показывает картинку на стене. This is a projector — «Это проектор». О приборе для презентаций и фильмов.",
+            "uk": "проєктор, прилад, який показує картинку на стіні. This is a projector — «Це проєктор». Про прилад для презентацій і фільмів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-26:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви говорите про різні характери котів загалом, без указівки на певних котів",
+      "prompt": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i08:r1",
-          "text": "Cats"
+          "text": "projector"
         },
         {
           "responseId": "en:lesson-03:session-26:i08:r2",
-          "text": "The cats"
+          "text": "screen"
         },
         {
           "responseId": "en:lesson-03:session-26:i08:r3",
-          "text": "A cats"
+          "text": "table"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви говорите про різні характери котів загалом, без указівки на певних котів",
+      "accessibilityLabel": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорите о разных характерах кошек вообще, без указания на определённых кошек",
-          "uk": "Ви говорите про різні характери котів загалом, без указівки на певних котів"
+          "ru": "Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?",
+          "uk": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "___ are different.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-26:i08:r1",
-            "text": "Cats"
+            "text": "projector"
           },
           {
             "responseId": "en:lesson-03:session-26:i08:r2",
-            "text": "The cats"
+            "text": "screen"
           },
           {
             "responseId": "en:lesson-03:session-26:i08:r3",
-            "text": "A cats"
+            "text": "table"
           }
         ],
-        "testedDimension": "Ви говорите про різні характери котів загалом, без указівки на певних котів",
+        "testedDimension": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i08:r2",
             "correct": false,
-            "testedDimension": "Ви говорите про різні характери котів загалом, без указівки на певних котів",
+            "testedDimension": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`The cats` — конкретные кошки. Для общего высказывания здесь нужно `Cats`.",
-              "uk": "`The cats` — конкретні коти. Для загального висловлювання тут потрібно `Cats`."
+              "ru": "screen — это экран, на который выводят картинку, а прибор называется projector.",
+              "uk": "screen — це екран, на який виводять картинку, а прилад називається projector."
             }
           },
           {
             "responseId": "en:lesson-03:session-26:i08:r3",
             "correct": false,
-            "testedDimension": "Ви говорите про різні характери котів загалом, без указівки на певних котів",
+            "testedDimension": "Подруга ставить перед вами коробку, яка показує картинку на стіні. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Перед `cats` не ставим `a`.",
-              "uk": "Перед `cats` не ставимо `a`."
+              "ru": "table — это стол, а прибор называется projector.",
+              "uk": "table — це стіл, а прилад називається projector."
             }
           }
         ]
@@ -461,51 +550,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-26:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис Олега",
+      "prompt": "Послухайте, що каже подруга",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i09:r1",
-          "text": "He is confused."
+          "text": "That is not a screen."
         },
         {
           "responseId": "en:lesson-03:session-26:i09:r2",
-          "text": "He is bored."
+          "text": "This is not a screen."
         },
         {
           "responseId": "en:lesson-03:session-26:i09:r3",
-          "text": "He is worried."
+          "text": "That is not a door."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте опис Олега",
+      "accessibilityLabel": "Послухайте, що каже подруга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i09:audio",
-          "transcript": "He is confused."
+          "transcript": "That is not a screen."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-26:i09:r1",
-            "targetText": "He is confused.",
+            "targetText": "That is not a screen.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-26:i09:r2",
-            "targetText": "He is bored.",
+            "targetText": "This is not a screen.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-26:i09:r3",
-            "targetText": "He is worried.",
+            "targetText": "That is not a door.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +603,19 @@
           {
             "responseId": "en:lesson-03:session-26:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис Олега",
+            "testedDimension": "Послухайте, що каже подруга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `confused`, а в этом варианте — `bored`.",
-              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `bored`."
+              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
             }
           },
           {
             "responseId": "en:lesson-03:session-26:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис Олега",
+            "testedDimension": "Послухайте, що каже подруга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `confused`, а в этом варианте — `worried`.",
-              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `worried`."
+              "ru": "В записи последнее слово — `screen`, а в этом варианте — `door`.",
+              "uk": "У записі останнє слово — `screen`, а в цьому варіанті — `door`."
             }
           }
         ],
@@ -537,7 +626,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-26:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -551,48 +640,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-26:i10:p1",
-            "target": "worried",
+            "target": "screen",
             "meaningByLocale": {
-              "ru": "обеспокоенный",
-              "uk": "стурбований"
+              "ru": "экран",
+              "uk": "екран"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i10:p2",
-            "target": "careless",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "невнимательный, неосторожный",
-              "uk": "неуважний, необережний"
+              "ru": "дверь",
+              "uk": "двері"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i10:p3",
-            "target": "cats",
+            "target": "window",
             "meaningByLocale": {
-              "ru": "кошки",
-              "uk": "коти"
+              "ru": "окно",
+              "uk": "вікно"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i10:p4",
-            "target": "boxes",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "полка",
+              "uk": "полиця"
             }
           }
         ],
         "leftColumn": [
-          "worried",
-          "careless",
-          "cats",
-          "boxes"
+          "screen",
+          "door",
+          "window",
+          "shelf"
         ],
         "rightColumn": [
-          "стурбований",
-          "неуважний, необережний",
-          "коти",
-          "коробки"
+          "екран",
+          "двері",
+          "вікно",
+          "полиця"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,42 +699,43 @@
     },
     {
       "interactionId": "en:lesson-03:session-26:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i11:audio",
-          "transcript": "The boxes are here."
+          "transcript": "This is not a projector."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The boxes are here.",
+        "hiddenTargetPhrase": "This is not a projector.",
         "orderedTokens": [
-          "The",
-          "boxes",
-          "are",
-          "here"
+          "This",
+          "is",
+          "not",
+          "a",
+          "projector"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The boxes are here.`",
-              "uk": "тут потрібно `are` — `The boxes are here.`"
+              "ru": "здесь нужно `a` — `This is not a projector.`",
+              "uk": "тут потрібно `a` — `This is not a projector.`"
             }
           }
         ],
@@ -658,39 +748,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-26:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна знає, яких котів ви шукаєте. Запитайте, де коти",
+      "prompt": "Технік питає, що висить на дальній стіні. Скажіть, що це екран.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна знає, яких котів ви шукаєте. Запитайте, де коти",
+      "accessibilityLabel": "Технік питає, що висить на дальній стіні. Скажіть, що це екран.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the cats?",
+        "targetPhrase": "That is a screen.",
         "localizedMeaning": {
-          "ru": "Анна знает, каких кошек вы ищете. Спросите, где кошки",
-          "uk": "Анна знає, яких котів ви шукаєте. Запитайте, де коти"
+          "ru": "Техник спрашивает, что висит на дальней стене. Скажите, что это экран.",
+          "uk": "Технік питає, що висить на дальній стіні. Скажіть, що це екран."
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "cats"
+          "That",
+          "is",
+          "a",
+          "screen"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "This"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна знає, яких котів ви шукаєте. Запитайте, де коти",
+            "testedDimension": "Технік питає, що висить на дальній стіні. Скажіть, що це екран.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where are the cats?`",
-              "uk": "тут потрібно `Where` — `Where are the cats?`"
+              "ru": "здесь нужно `That` — `That is a screen.`",
+              "uk": "тут потрібно `That` — `That is a screen.`"
             }
           }
         ],
@@ -702,26 +792,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-26:word:speaker",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — speaker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:word:speaker:audio"
+      ],
+      "accessibilityLabel": "Картка слова — speaker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:word:speaker:audio",
+          "transcript": "speaker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:word:speaker:r1",
+            "targetText": "speaker",
+            "meaningByLocale": {
+              "ru": "колонка, из которой звучит музыка или голос. That is a speaker — «Это колонка». О колонке в зале, дома, в машине.",
+              "uk": "колонка, з якої звучить музика чи голос. That is a speaker — «Це колонка». Про колонку в залі, вдома, в авто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "speaker",
+          "definitionByLocale": {
+            "ru": "колонка, из которой звучит музыка или голос. That is a speaker — «Это колонка». О колонке в зале, дома, в машине.",
+            "uk": "колонка, з якої звучить музика чи голос. That is a speaker — «Це колонка». Про колонку в залі, вдома, в авто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-26:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олегові нічим зайнятися, йому нудно. Скажіть «Йому нудно» зі скороченням",
+      "prompt": "Технік називає річ, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i13:audio"
       ],
-      "accessibilityLabel": "Олегові нічим зайнятися, йому нудно. Скажіть «Йому нудно» зі скороченням",
+      "accessibilityLabel": "Технік називає річ, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i13:audio",
-          "transcript": "He's bored."
+          "transcript": "speaker"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's bored.",
+        "targetPhrase": "speaker",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,68 +868,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-26:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-26:word:banner",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — banner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:word:banner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — banner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:word:banner:audio",
+          "transcript": "banner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:word:banner:r1",
+            "targetText": "banner",
+            "meaningByLocale": {
+              "ru": "баннер, длинное полотно с надписью. That is a banner — «Это баннер». О полотне над входом или на стене.",
+              "uk": "банер, довге полотно з написом. That is a banner — «Це банер». Про полотно над входом чи на стіні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "banner",
+          "definitionByLocale": {
+            "ru": "баннер, длинное полотно с надписью. That is a banner — «Это баннер». О полотне над входом или на стене.",
+            "uk": "банер, довге полотно з написом. That is a banner — «Це банер». Про полотно над входом чи на стіні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви знайшли кількох котів усередині кімнати й повідомляєте про це",
+      "prompt": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i14:r1",
-          "text": "are"
+          "text": "banner"
         },
         {
           "responseId": "en:lesson-03:session-26:i14:r2",
-          "text": "is"
+          "text": "speaker"
         },
         {
           "responseId": "en:lesson-03:session-26:i14:r3",
-          "text": "am"
+          "text": "window"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли кількох котів усередині кімнати й повідомляєте про це",
+      "accessibilityLabel": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы нашли несколько кошек внутри комнаты и сообщаете об этом",
-          "uk": "Ви знайшли кількох котів усередині кімнати й повідомляєте про це"
+          "ru": "Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?",
+          "uk": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?"
         },
-        "gappedTargetPhrase": "The cats ___ inside.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-26:i14:r1",
-            "text": "are"
+            "text": "banner"
           },
           {
             "responseId": "en:lesson-03:session-26:i14:r2",
-            "text": "is"
+            "text": "speaker"
           },
           {
             "responseId": "en:lesson-03:session-26:i14:r3",
-            "text": "am"
+            "text": "window"
           }
         ],
-        "testedDimension": "Ви знайшли кількох котів усередині кімнати й повідомляєте про це",
+        "testedDimension": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-26:i14:r2",
             "correct": false,
-            "testedDimension": "Ви знайшли кількох котів усередині кімнати й повідомляєте про це",
+            "testedDimension": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
             "feedbackByLocale": {
-              "ru": "Кошек несколько: нужно `are`.",
-              "uk": "Котів кілька: потрібно `are`."
+              "ru": "speaker — это колонка, а длинное полотно называется banner.",
+              "uk": "speaker — це колонка, а довге полотно називається banner."
             }
           },
           {
             "responseId": "en:lesson-03:session-26:i14:r3",
             "correct": false,
-            "testedDimension": "Ви знайшли кількох котів усередині кімнати й повідомляєте про це",
+            "testedDimension": "Над входом у дальньому кінці зали висить довге полотно з назвою зустрічі. Як воно називається англійською?",
             "feedbackByLocale": {
-              "ru": "С `the cats` здесь нужно `are`.",
-              "uk": "З `the cats` тут потрібно `are`."
+              "ru": "window — это окно, а длинное полотно называется banner.",
+              "uk": "window — це вікно, а довге полотно називається banner."
             }
           }
         ]
@@ -805,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-26:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис Олега",
+      "prompt": "Послухайте, що каже ведуча",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i15:r1",
-          "text": "He is careless."
+          "text": "This is not a speaker."
         },
         {
           "responseId": "en:lesson-03:session-26:i15:r2",
-          "text": "He is careful."
+          "text": "That is not a speaker."
         },
         {
           "responseId": "en:lesson-03:session-26:i15:r3",
-          "text": "He is confused."
+          "text": "This is not a screen."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте опис Олега",
+      "accessibilityLabel": "Послухайте, що каже ведуча",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i15:audio",
-          "transcript": "He is careless."
+          "transcript": "This is not a speaker."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-26:i15:r1",
-            "targetText": "He is careless.",
+            "targetText": "This is not a speaker.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-26:i15:r2",
-            "targetText": "He is careful.",
+            "targetText": "That is not a speaker.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-26:i15:r3",
-            "targetText": "He is confused.",
+            "targetText": "This is not a screen.",
             "meaningByLocale": null
           }
         ],
@@ -858,19 +1034,19 @@
           {
             "responseId": "en:lesson-03:session-26:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис Олега",
+            "testedDimension": "Послухайте, що каже ведуча",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `careless`, а в этом варианте — `careful`.",
-              "uk": "У записі останнє слово — `careless`, а в цьому варіанті — `careful`."
+              "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+              "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
             }
           },
           {
             "responseId": "en:lesson-03:session-26:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис Олега",
+            "testedDimension": "Послухайте, що каже ведуча",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `careless`, а в этом варианте — `confused`.",
-              "uk": "У записі останнє слово — `careless`, а в цьому варіанті — `confused`."
+              "ru": "В записи последнее слово — `speaker`, а в этом варианте — `screen`.",
+              "uk": "У записі останнє слово — `speaker`, а в цьому варіанті — `screen`."
             }
           }
         ],
@@ -881,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-26:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -895,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-26:i16:p1",
-            "target": "bored",
+            "target": "banner",
             "meaningByLocale": {
-              "ru": "скучающий",
-              "uk": "той, кому нудно"
+              "ru": "баннер",
+              "uk": "банер"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i16:p2",
-            "target": "confused",
+            "target": "speaker",
             "meaningByLocale": {
-              "ru": "растерянный",
-              "uk": "розгублений"
+              "ru": "колонка",
+              "uk": "колонка"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i16:p3",
-            "target": "worried",
+            "target": "projector",
             "meaningByLocale": {
-              "ru": "обеспокоенный",
-              "uk": "стурбований"
+              "ru": "проектор",
+              "uk": "проєктор"
             }
           },
           {
             "pairId": "en:lesson-03:session-26:i16:p4",
-            "target": "careless",
+            "target": "screen",
             "meaningByLocale": {
-              "ru": "невнимательный, неосторожный",
-              "uk": "неуважний, необережний"
+              "ru": "экран",
+              "uk": "екран"
             }
           }
         ],
         "leftColumn": [
-          "bored",
-          "confused",
-          "worried",
-          "careless"
+          "banner",
+          "speaker",
+          "projector",
+          "screen"
         ],
         "rightColumn": [
-          "той, кому нудно",
-          "розгублений",
-          "стурбований",
-          "неуважний, необережний"
+          "банер",
+          "колонка",
+          "проєктор",
+          "екран"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -954,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-26:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви обговорюєте з другом котів загалом: у них різні звички й характери. Скажіть «Коти різні», не вказуючи на конкретну групу",
+      "prompt": "Технік показує на довге полотно над дальніми дверима. Скажіть, що це.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-26:i17:audio"
       ],
-      "accessibilityLabel": "Ви обговорюєте з другом котів загалом: у них різні звички й характери. Скажіть «Коти різні», не вказуючи на конкретну групу",
+      "accessibilityLabel": "Технік показує на довге полотно над дальніми дверима. Скажіть, що це.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-26:i17:audio",
-          "transcript": "Cats are different."
+          "transcript": "That is a banner."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Cats are different.",
+        "targetPhrase": "That is a banner.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -994,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f92a157fa25887b9bed99b195e714669db088e33741cf9d1168d3c17a659f8c1"
+  "learnerFingerprint": "988f1c4b6969bb5cf27757e48abeefc1c8a5659d40d53d6f9d76f325a03eb606"
 }

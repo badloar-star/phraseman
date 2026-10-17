@@ -65,8 +65,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-33:word:shy",
+    "correctText": "shy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-33:i13",
-    "correctText": "He's surprised.",
+    "correctText": "He's shy.",
     "correctResponseId": null
   },
   {
@@ -83,11 +88,6 @@
     "interactionId": "en:lesson-01:session-33:i15",
     "correctText": "It's amazing.",
     "correctResponseId": "en:lesson-01:session-33:i15:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-33:word:shy",
-    "correctText": "shy",
-    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-33:word:great",

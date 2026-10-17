@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-32:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавщица показывает на шарф рядом с вами. Скажите, что это шарф.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавщица показывает на шарф рядом с вами. Скажите, что это шарф.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a scarf.",
+          "localizedMeaning": {
+            "ru": "Продавщица показывает на шарф рядом с вами. Скажите, что это шарф.",
+            "uk": "Продавчиня показує на шарф поруч із вами. Скажіть, що це шарф."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "scarf"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавщица показывает на шарф рядом с вами. Скажите, что это шарф.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a scarf.`",
+                "uk": "тут потрібно `This` — `This is a scarf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит продавщица",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i02:r1",
+            "text": "That is a button."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r2",
+            "text": "This is a button."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r3",
+            "text": "That is a parcel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит продавщица",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i02:audio",
+            "transcript": "That is a button."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i02:r1",
+              "targetText": "That is a button.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i02:r2",
+              "targetText": "This is a button.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i02:r3",
+              "targetText": "That is a parcel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавщица",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит продавщица",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `button`, а в этом варианте — `parcel`.",
+                "uk": "У записі останнє слово — `button`, а в цьому варіанті — `parcel`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Чемодан стоит у дальней стены киоска. Дополните вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Чемодан стоит у дальней стены киоска. Дополните вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Чемодан стоит у дальней стены киоска. Дополните вопрос",
+            "uk": "Валіза стоїть біля дальньої стіни кіоску. Доповніть питання"
+          },
+          "gappedTargetPhrase": "Is that ___ suitcase?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Чемодан стоит у дальней стены киоска. Дополните вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Чемодан стоит у дальней стены киоска. Дополните вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово suitcase начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово suitcase починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Чемодан стоит у дальней стены киоска. Дополните вопрос",
+              "feedbackByLocale": {
+                "ru": "Слово Is уже стоит в начале вопроса. Перед suitcase нужно a.",
+                "uk": "Слово Is уже стоїть на початку питання. Перед suitcase потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-32:i04:p1",
+              "target": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i04:p2",
+              "target": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит",
+                "uk": "магніт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i04:p3",
+              "target": "keyring",
+              "meaningByLocale": {
+                "ru": "брелок",
+                "uk": "брелок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i04:p4",
+              "target": "souvenir",
+              "meaningByLocale": {
+                "ru": "сувенир",
+                "uk": "сувенір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "postcard",
+            "magnet",
+            "keyring",
+            "souvenir"
+          ],
+          "rightColumn": [
+            "открытка",
+            "магнит",
+            "брелок",
+            "сувенир"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i05:audio",
+            "transcript": "That is not a speaker."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a speaker.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "speaker"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a speaker.`",
+                "uk": "тут потрібно `a` — `That is not a speaker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посылка лежит рядом с вами. Спросите продавщицу, посылка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посылка лежит рядом с вами. Спросите продавщицу, посылка ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this a parcel?",
+          "localizedMeaning": {
+            "ru": "Посылка лежит рядом с вами. Спросите продавщицу, посылка ли это.",
+            "uk": "Посилка лежить поруч із вами. Запитайте продавчиню, чи це посилка."
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "a",
+            "parcel"
+          ],
+          "authoredDistractorTokens": [
+            "that"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Посылка лежит рядом с вами. Спросите продавщицу, посылка ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `this` — `Is this a parcel?`",
+                "uk": "тут потрібно `this` — `Is this a parcel?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:postcard",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — postcard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:postcard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — postcard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:postcard:audio",
+            "transcript": "postcard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:postcard:r1",
+              "targetText": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка, картонный прямоугольник с картинкой, который отправляют другу. This is a postcard — «Это открытка». Об открытке из музея или из поездки.",
+                "uk": "листівка, картонний прямокутник із картинкою, який надсилають другові. This is a postcard — «Це листівка». Про листівку з музею чи з поїздки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postcard",
+            "definitionByLocale": {
+              "ru": "открытка, картонный прямоугольник с картинкой, который отправляют другу. This is a postcard — «Это открытка». Об открытке из музея или из поездки.",
+              "uk": "листівка, картонний прямокутник із картинкою, який надсилають другові. This is a postcard — «Це листівка». Про листівку з музею чи з поїздки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавщица называет вещь, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Продавщица называет вещь, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i07:audio",
+            "transcript": "postcard"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "postcard",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:magnet",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — magnet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:magnet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — magnet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:magnet:audio",
+            "transcript": "magnet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:magnet:r1",
+              "targetText": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит, маленькая вещь, которая держится на холодильнике. Is that a magnet? — «Это магнит?» О магните на память о городе.",
+                "uk": "магніт, маленька річ, що тримається на холодильнику. Is that a magnet? — «Це магніт?» Про магніт на пам’ять про місто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "magnet",
+            "definitionByLocale": {
+              "ru": "магнит, маленькая вещь, которая держится на холодильнике. Is that a magnet? — «Это магнит?» О магните на память о городе.",
+              "uk": "магніт, маленька річ, що тримається на холодильнику. Is that a magnet? — «Це магніт?» Про магніт на пам’ять про місто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавщица показывает маленький круглый предмет, который держится на холодильнике. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i08:r1",
+            "text": "magnet"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r2",
+            "text": "button"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r3",
+            "text": "parcel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавщица показывает маленький круглый предмет, который держится на холодильнике. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавщица показывает маленький круглый предмет, который держится на холодильнике. Как он называется по-английски?",
+            "uk": "Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r1",
+              "text": "magnet"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "text": "button"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "text": "parcel"
+            }
+          ],
+          "testedDimension": "Продавщица показывает маленький круглый предмет, который держится на холодильнике. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавщица показывает маленький круглый предмет, который держится на холодильнике. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "button — это кнопка, которую нажимают, а предмет для холодильника называется magnet.",
+                "uk": "button — це кнопка, яку натискають, а предмет для холодильника називається magnet."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавщица показывает маленький круглый предмет, который держится на холодильнике. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "parcel — это посылка, а предмет для холодильника называется magnet.",
+                "uk": "parcel — це посилка, а предмет для холодильника називається magnet."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i09:r1",
+            "text": "This is not a postcard."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i09:r2",
+            "text": "That is not a postcard."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i09:r3",
+            "text": "This is not a scarf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i09:audio",
+            "transcript": "This is not a postcard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i09:r1",
+              "targetText": "This is not a postcard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i09:r2",
+              "targetText": "That is not a postcard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i09:r3",
+              "targetText": "This is not a scarf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `postcard`, а в этом варианте — `scarf`.",
+                "uk": "У записі останнє слово — `postcard`, а в цьому варіанті — `scarf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-32:i10:p1",
+              "target": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i10:p2",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i10:p3",
+              "target": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка",
+                "uk": "колонка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i10:p4",
+              "target": "button",
+              "meaningByLocale": {
+                "ru": "кнопка",
+                "uk": "кнопка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "postcard",
+            "scarf",
+            "speaker",
+            "button"
+          ],
+          "rightColumn": [
+            "открытка",
+            "шарф",
+            "колонка",
+            "кнопка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавщицу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавщицу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i11:audio",
+            "transcript": "This is not a magnet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a magnet.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "magnet"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавщицу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a magnet.`",
+                "uk": "тут потрібно `a` — `This is not a magnet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавщица спрашивает, что лежит перед вами. Скажите, что это открытка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавщица спрашивает, что лежит перед вами. Скажите, что это открытка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a postcard.",
+          "localizedMeaning": {
+            "ru": "Продавщица спрашивает, что лежит перед вами. Скажите, что это открытка.",
+            "uk": "Продавчиня питає, що лежить перед вами. Скажіть, що це листівка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "postcard"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавщица спрашивает, что лежит перед вами. Скажите, что это открытка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a postcard.`",
+                "uk": "тут потрібно `This` — `This is a postcard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:keyring",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keyring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:keyring:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keyring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:keyring:audio",
+            "transcript": "keyring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:keyring:r1",
+              "targetText": "keyring",
+              "meaningByLocale": {
+                "ru": "брелок, кольцо с цепочкой для ключей. That is not a keyring — «Это не брелок». О брелоке с фигуркой или надписью.",
+                "uk": "брелок, кільце з ланцюжком для ключів. That is not a keyring — «Це не брелок». Про брелок із фігуркою чи написом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keyring",
+            "definitionByLocale": {
+              "ru": "брелок, кольцо с цепочкой для ключей. That is not a keyring — «Это не брелок». О брелоке с фигуркой или надписью.",
+              "uk": "брелок, кільце з ланцюжком для ключів. That is not a keyring — «Це не брелок». Про брелок із фігуркою чи написом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавщица называет вещь, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Продавщица называет вещь, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i13:audio",
+            "transcript": "keyring"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "keyring",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:souvenir",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — souvenir",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:souvenir:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — souvenir",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:souvenir:audio",
+            "transcript": "souvenir"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:souvenir:r1",
+              "targetText": "souvenir",
+              "meaningByLocale": {
+                "ru": "сувенир, вещь на память о поездке. This is a souvenir — «Это сувенир». О вещи, которую привозят в подарок.",
+                "uk": "сувенір, річ на пам’ять про поїздку. This is a souvenir — «Це сувенір». Про річ, яку привозять у подарунок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "souvenir",
+            "definitionByLocale": {
+              "ru": "сувенир, вещь на память о поездке. This is a souvenir — «Это сувенир». О вещи, которую привозят в подарок.",
+              "uk": "сувенір, річ на пам’ять про поїздку. This is a souvenir — «Це сувенір». Про річ, яку привозять у подарунок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Как по-английски называется вещь, которую привозят на память о поездке?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i14:r1",
+            "text": "souvenir"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i14:r2",
+            "text": "postcard"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i14:r3",
+            "text": "suitcase"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Как по-английски называется вещь, которую привозят на память о поездке?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Как по-английски называется вещь, которую привозят на память о поездке?",
+            "uk": "Як англійською називається річ, яку привозять на пам’ять про поїздку?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i14:r1",
+              "text": "souvenir"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i14:r2",
+              "text": "postcard"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i14:r3",
+              "text": "suitcase"
+            }
+          ],
+          "testedDimension": "Как по-английски называется вещь, которую привозят на память о поездке?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Как по-английски называется вещь, которую привозят на память о поездке?",
+              "feedbackByLocale": {
+                "ru": "postcard — это открытка, которую отправляют другу, а вещь на память называется souvenir.",
+                "uk": "postcard — це листівка, яку надсилають другові, а річ на пам’ять називається souvenir."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Как по-английски называется вещь, которую привозят на память о поездке?",
+              "feedbackByLocale": {
+                "ru": "suitcase — это чемодан, а вещь на память называется souvenir.",
+                "uk": "suitcase — це валіза, а річ на пам’ять називається souvenir."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i15:r1",
+            "text": "Is this a keyring?"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i15:r2",
+            "text": "Is that a keyring?"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i15:r3",
+            "text": "Is this a souvenir?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i15:audio",
+            "transcript": "Is this a keyring?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i15:r1",
+              "targetText": "Is this a keyring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i15:r2",
+              "targetText": "Is that a keyring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i15:r3",
+              "targetText": "Is this a souvenir?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі друге слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `keyring`, а в этом варианте — `souvenir`.",
+                "uk": "У записі останнє слово — `keyring`, а в цьому варіанті — `souvenir`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-32:i16:p1",
+              "target": "souvenir",
+              "meaningByLocale": {
+                "ru": "сувенир",
+                "uk": "сувенір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i16:p2",
+              "target": "keyring",
+              "meaningByLocale": {
+                "ru": "брелок",
+                "uk": "брелок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i16:p3",
+              "target": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит",
+                "uk": "магніт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i16:p4",
+              "target": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка",
+                "uk": "листівка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "souvenir",
+            "keyring",
+            "magnet",
+            "postcard"
+          ],
+          "rightColumn": [
+            "сувенир",
+            "брелок",
+            "магнит",
+            "открытка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавщица показывает на вещь, которую вы купили на память о поездке. Скажите, что это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Продавщица показывает на вещь, которую вы купили на память о поездке. Скажите, что это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i17:audio",
+            "transcript": "This is a souvenir."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a souvenir.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-32:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавчиня показує на шарф поруч із вами. Скажіть, що це шарф.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавчиня показує на шарф поруч із вами. Скажіть, що це шарф.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a scarf.",
+          "localizedMeaning": {
+            "ru": "Продавщица показывает на шарф рядом с вами. Скажите, что это шарф.",
+            "uk": "Продавчиня показує на шарф поруч із вами. Скажіть, що це шарф."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "scarf"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавчиня показує на шарф поруч із вами. Скажіть, що це шарф.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a scarf.`",
+                "uk": "тут потрібно `This` — `This is a scarf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже продавчиня",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i02:r1",
+            "text": "That is a button."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r2",
+            "text": "This is a button."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r3",
+            "text": "That is a parcel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже продавчиня",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i02:audio",
+            "transcript": "That is a button."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i02:r1",
+              "targetText": "That is a button.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i02:r2",
+              "targetText": "This is a button.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i02:r3",
+              "targetText": "That is a parcel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавчиня",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
+                "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже продавчиня",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `button`, а в этом варианте — `parcel`.",
+                "uk": "У записі останнє слово — `button`, а в цьому варіанті — `parcel`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Валіза стоїть біля дальньої стіни кіоску. Доповніть питання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Валіза стоїть біля дальньої стіни кіоску. Доповніть питання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Чемодан стоит у дальней стены киоска. Дополните вопрос",
+            "uk": "Валіза стоїть біля дальньої стіни кіоску. Доповніть питання"
+          },
+          "gappedTargetPhrase": "Is that ___ suitcase?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Валіза стоїть біля дальньої стіни кіоску. Доповніть питання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Валіза стоїть біля дальньої стіни кіоску. Доповніть питання",
+              "feedbackByLocale": {
+                "ru": "Слово suitcase начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово suitcase починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Валіза стоїть біля дальньої стіни кіоску. Доповніть питання",
+              "feedbackByLocale": {
+                "ru": "Слово Is уже стоит в начале вопроса. Перед suitcase нужно a.",
+                "uk": "Слово Is уже стоїть на початку питання. Перед suitcase потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-32:i04:p1",
+              "target": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i04:p2",
+              "target": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит",
+                "uk": "магніт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i04:p3",
+              "target": "keyring",
+              "meaningByLocale": {
+                "ru": "брелок",
+                "uk": "брелок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i04:p4",
+              "target": "souvenir",
+              "meaningByLocale": {
+                "ru": "сувенир",
+                "uk": "сувенір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "postcard",
+            "magnet",
+            "keyring",
+            "souvenir"
+          ],
+          "rightColumn": [
+            "листівка",
+            "магніт",
+            "брелок",
+            "сувенір"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i05:audio",
+            "transcript": "That is not a speaker."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That is not a speaker.",
+          "orderedTokens": [
+            "That",
+            "is",
+            "not",
+            "a",
+            "speaker"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `That is not a speaker.`",
+                "uk": "тут потрібно `a` — `That is not a speaker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посилка лежить поруч із вами. Запитайте продавчиню, чи це посилка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посилка лежить поруч із вами. Запитайте продавчиню, чи це посилка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this a parcel?",
+          "localizedMeaning": {
+            "ru": "Посылка лежит рядом с вами. Спросите продавщицу, посылка ли это.",
+            "uk": "Посилка лежить поруч із вами. Запитайте продавчиню, чи це посилка."
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "a",
+            "parcel"
+          ],
+          "authoredDistractorTokens": [
+            "that"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Посилка лежить поруч із вами. Запитайте продавчиню, чи це посилка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `this` — `Is this a parcel?`",
+                "uk": "тут потрібно `this` — `Is this a parcel?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:postcard",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — postcard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:postcard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — postcard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:postcard:audio",
+            "transcript": "postcard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:postcard:r1",
+              "targetText": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка, картонный прямоугольник с картинкой, который отправляют другу. This is a postcard — «Это открытка». Об открытке из музея или из поездки.",
+                "uk": "листівка, картонний прямокутник із картинкою, який надсилають другові. This is a postcard — «Це листівка». Про листівку з музею чи з поїздки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postcard",
+            "definitionByLocale": {
+              "ru": "открытка, картонный прямоугольник с картинкой, который отправляют другу. This is a postcard — «Это открытка». Об открытке из музея или из поездки.",
+              "uk": "листівка, картонний прямокутник із картинкою, який надсилають другові. This is a postcard — «Це листівка». Про листівку з музею чи з поїздки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавчиня називає річ, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Продавчиня називає річ, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i07:audio",
+            "transcript": "postcard"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "postcard",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:magnet",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — magnet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:magnet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — magnet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:magnet:audio",
+            "transcript": "magnet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:magnet:r1",
+              "targetText": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит, маленькая вещь, которая держится на холодильнике. Is that a magnet? — «Это магнит?» О магните на память о городе.",
+                "uk": "магніт, маленька річ, що тримається на холодильнику. Is that a magnet? — «Це магніт?» Про магніт на пам’ять про місто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "magnet",
+            "definitionByLocale": {
+              "ru": "магнит, маленькая вещь, которая держится на холодильнике. Is that a magnet? — «Это магнит?» О магните на память о городе.",
+              "uk": "магніт, маленька річ, що тримається на холодильнику. Is that a magnet? — «Це магніт?» Про магніт на пам’ять про місто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i08:r1",
+            "text": "magnet"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r2",
+            "text": "button"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r3",
+            "text": "parcel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавщица показывает маленький круглый предмет, который держится на холодильнике. Как он называется по-английски?",
+            "uk": "Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r1",
+              "text": "magnet"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "text": "button"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "text": "parcel"
+            }
+          ],
+          "testedDimension": "Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "button — это кнопка, которую нажимают, а предмет для холодильника называется magnet.",
+                "uk": "button — це кнопка, яку натискають, а предмет для холодильника називається magnet."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавчиня показує маленький круглий предмет, який тримається на холодильнику. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "parcel — это посылка, а предмет для холодильника называется magnet.",
+                "uk": "parcel — це посилка, а предмет для холодильника називається magnet."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i09:r1",
+            "text": "This is not a postcard."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i09:r2",
+            "text": "That is not a postcard."
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i09:r3",
+            "text": "This is not a scarf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i09:audio",
+            "transcript": "This is not a postcard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i09:r1",
+              "targetText": "This is not a postcard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i09:r2",
+              "targetText": "That is not a postcard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i09:r3",
+              "targetText": "This is not a scarf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
+                "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `postcard`, а в этом варианте — `scarf`.",
+                "uk": "У записі останнє слово — `postcard`, а в цьому варіанті — `scarf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-32:i10:p1",
+              "target": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка",
+                "uk": "листівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i10:p2",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i10:p3",
+              "target": "speaker",
+              "meaningByLocale": {
+                "ru": "колонка",
+                "uk": "колонка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i10:p4",
+              "target": "button",
+              "meaningByLocale": {
+                "ru": "кнопка",
+                "uk": "кнопка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "postcard",
+            "scarf",
+            "speaker",
+            "button"
+          ],
+          "rightColumn": [
+            "листівка",
+            "шарф",
+            "колонка",
+            "кнопка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавчиню й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавчиню й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i11:audio",
+            "transcript": "This is not a magnet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is not a magnet.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "not",
+            "a",
+            "magnet"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавчиню й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `This is not a magnet.`",
+                "uk": "тут потрібно `a` — `This is not a magnet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавчиня питає, що лежить перед вами. Скажіть, що це листівка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавчиня питає, що лежить перед вами. Скажіть, що це листівка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a postcard.",
+          "localizedMeaning": {
+            "ru": "Продавщица спрашивает, что лежит перед вами. Скажите, что это открытка.",
+            "uk": "Продавчиня питає, що лежить перед вами. Скажіть, що це листівка."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "postcard"
+          ],
+          "authoredDistractorTokens": [
+            "That"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавчиня питає, що лежить перед вами. Скажіть, що це листівка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `This` — `This is a postcard.`",
+                "uk": "тут потрібно `This` — `This is a postcard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:keyring",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keyring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:keyring:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keyring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:keyring:audio",
+            "transcript": "keyring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:keyring:r1",
+              "targetText": "keyring",
+              "meaningByLocale": {
+                "ru": "брелок, кольцо с цепочкой для ключей. That is not a keyring — «Это не брелок». О брелоке с фигуркой или надписью.",
+                "uk": "брелок, кільце з ланцюжком для ключів. That is not a keyring — «Це не брелок». Про брелок із фігуркою чи написом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keyring",
+            "definitionByLocale": {
+              "ru": "брелок, кольцо с цепочкой для ключей. That is not a keyring — «Это не брелок». О брелоке с фигуркой или надписью.",
+              "uk": "брелок, кільце з ланцюжком для ключів. That is not a keyring — «Це не брелок». Про брелок із фігуркою чи написом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавчиня називає річ, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Продавчиня називає річ, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i13:audio",
+            "transcript": "keyring"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "keyring",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:word:souvenir",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — souvenir",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:word:souvenir:audio"
+        ],
+        "accessibilityLabel": "Картка слова — souvenir",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:word:souvenir:audio",
+            "transcript": "souvenir"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:word:souvenir:r1",
+              "targetText": "souvenir",
+              "meaningByLocale": {
+                "ru": "сувенир, вещь на память о поездке. This is a souvenir — «Это сувенир». О вещи, которую привозят в подарок.",
+                "uk": "сувенір, річ на пам’ять про поїздку. This is a souvenir — «Це сувенір». Про річ, яку привозять у подарунок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "souvenir",
+            "definitionByLocale": {
+              "ru": "сувенир, вещь на память о поездке. This is a souvenir — «Это сувенир». О вещи, которую привозят в подарок.",
+              "uk": "сувенір, річ на пам’ять про поїздку. This is a souvenir — «Це сувенір». Про річ, яку привозять у подарунок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Як англійською називається річ, яку привозять на пам’ять про поїздку?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i14:r1",
+            "text": "souvenir"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i14:r2",
+            "text": "postcard"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i14:r3",
+            "text": "suitcase"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Як англійською називається річ, яку привозять на пам’ять про поїздку?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Как по-английски называется вещь, которую привозят на память о поездке?",
+            "uk": "Як англійською називається річ, яку привозять на пам’ять про поїздку?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i14:r1",
+              "text": "souvenir"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i14:r2",
+              "text": "postcard"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i14:r3",
+              "text": "suitcase"
+            }
+          ],
+          "testedDimension": "Як англійською називається річ, яку привозять на пам’ять про поїздку?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Як англійською називається річ, яку привозять на пам’ять про поїздку?",
+              "feedbackByLocale": {
+                "ru": "postcard — это открытка, которую отправляют другу, а вещь на память называется souvenir.",
+                "uk": "postcard — це листівка, яку надсилають другові, а річ на пам’ять називається souvenir."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Як англійською називається річ, яку привозять на пам’ять про поїздку?",
+              "feedbackByLocale": {
+                "ru": "suitcase — это чемодан, а вещь на память называется souvenir.",
+                "uk": "suitcase — це валіза, а річ на пам’ять називається souvenir."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i15:r1",
+            "text": "Is this a keyring?"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i15:r2",
+            "text": "Is that a keyring?"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i15:r3",
+            "text": "Is this a souvenir?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i15:audio",
+            "transcript": "Is this a keyring?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i15:r1",
+              "targetText": "Is this a keyring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i15:r2",
+              "targetText": "Is that a keyring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i15:r3",
+              "targetText": "Is this a souvenir?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `this`, а в этом варианте — `that`.",
+                "uk": "У записі друге слово — `this`, а в цьому варіанті — `that`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `keyring`, а в этом варианте — `souvenir`.",
+                "uk": "У записі останнє слово — `keyring`, а в цьому варіанті — `souvenir`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-32:i16:p1",
+              "target": "souvenir",
+              "meaningByLocale": {
+                "ru": "сувенир",
+                "uk": "сувенір"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i16:p2",
+              "target": "keyring",
+              "meaningByLocale": {
+                "ru": "брелок",
+                "uk": "брелок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i16:p3",
+              "target": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит",
+                "uk": "магніт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-32:i16:p4",
+              "target": "postcard",
+              "meaningByLocale": {
+                "ru": "открытка",
+                "uk": "листівка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "souvenir",
+            "keyring",
+            "magnet",
+            "postcard"
+          ],
+          "rightColumn": [
+            "сувенір",
+            "брелок",
+            "магніт",
+            "листівка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавчиня показує на річ, яку ви купили на пам’ять про поїздку. Скажіть, що це.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Продавчиня показує на річ, яку ви купили на пам’ять про поїздку. Скажіть, що це.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i17:audio",
+            "transcript": "This is a souvenir."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a souvenir.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-32:i01",
+      "correctText": "This is a scarf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i02",
+      "correctText": "That is a button.",
+      "correctResponseId": "en:lesson-03:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i05",
+      "correctText": "That is not a speaker.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i06",
+      "correctText": "Is this a parcel?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:postcard",
+      "correctText": "postcard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i07",
+      "correctText": "postcard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:magnet",
+      "correctText": "magnet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i08",
+      "correctText": "magnet",
+      "correctResponseId": "en:lesson-03:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i09",
+      "correctText": "This is not a postcard.",
+      "correctResponseId": "en:lesson-03:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i11",
+      "correctText": "This is not a magnet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i12",
+      "correctText": "This is a postcard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:keyring",
+      "correctText": "keyring",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i13",
+      "correctText": "keyring",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:word:souvenir",
+      "correctText": "souvenir",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i14",
+      "correctText": "souvenir",
+      "correctResponseId": "en:lesson-03:session-32:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i15",
+      "correctText": "Is this a keyring?",
+      "correctResponseId": "en:lesson-03:session-32:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i17",
+      "correctText": "This is a souvenir.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -522,8 +522,51 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-06:i08",
+      "interactionId": "en:lesson-03:session-06:word:bag",
       "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:word:bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:word:bag:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-06:word:bag:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
+              "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
+            "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i08",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -587,49 +630,6 @@
             }
           }
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-06:word:bag",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — bag",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-06:word:bag:audio"
-      ],
-      "accessibilityLabel": "Картка слова — bag",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-06:word:bag:audio",
-          "transcript": "bag"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-06:word:bag:r1",
-            "targetText": "bag",
-            "meaningByLocale": {
-              "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
-              "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "bag",
-          "definitionByLocale": {
-            "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
-            "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
-          }
-        }
       },
       "scriptedAlternate": null
     },
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cd7b7499c50e47a0424ca1d9e093fe63e1ec0ab97b18a03895d1c2715d5ea8d7"
+  "learnerFingerprint": "c0c7df7e4bec967be79e4837de51a0cc5df41162ac589edc08649b0675bf817b"
 }

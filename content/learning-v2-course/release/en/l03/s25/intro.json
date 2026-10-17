@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-25",
   "learningOutcomeByLocale": {
-    "ru": "говорить о собаках и книгах вообще без a и the, отличать это от разговора о конкретных собаках",
-    "uk": "говорити про собак і книжки загалом без a та the, відрізняти це від розмови про конкретних собак"
+    "ru": "называть вещь, которая рядом: This is a … и This is an …",
+    "uk": "називати річ, що лежить поруч: This is a … і This is an …"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Собаки вообще",
-        "uk": "Собаки загалом"
+        "ru": "Мастер просит назвать вещи",
+        "uk": "Майстер просить назвати речі"
       },
       "bodyByLocale": {
-        "ru": "`dog` — «собака», `dogs` — «собаки». `Dogs are helpful` — «Собаки помогают», буквально «Собаки полезны, готовы помочь». Здесь мы говорим о собаках в целом: перед `dogs` не ставим ни `a`, ни `the`. Это общее высказывание, а не обещание, что любая собака выполнит любую просьбу. Попросить собаку принести книгу можно. Попросить её прочитать следующую главу — уже слишком.",
-        "uk": "`dog` — «собака», `dogs` — «собаки». `Dogs are helpful` — «Собаки допомагають», буквально «Собаки корисні, готові допомогти». Тут ми говоримо про собак загалом: перед `dogs` не ставимо ні `a`, ні `the`. Це загальне висловлювання, а не обіцянка, що будь-яка собака виконає будь-яке прохання. Попросити собаку принести книжку можна. Попросити її прочитати наступний розділ — уже занадто."
+        "ru": "Вы с подругой пришли в мастерскую электроники и принесли вещи в ремонт. Мастер просит назвать каждую. Вы берёте в руку зарядку: charger — «зарядка» для телефона. Она у вас в руке, то есть рядом, поэтому говорим this: This is a charger — «Это зарядка».",
+        "uk": "Ви з подругою прийшли до майстерні електроніки й принесли речі в ремонт. Майстер просить назвати кожну. Ви берете до рук зарядку: charger — «зарядка» для телефона. Вона у вас у руці, тобто поруч, тому кажемо this: This is a charger — «Це зарядка»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-25:intro1:q",
         "promptByLocale": {
-          "ru": "Вы говорите о собаках в целом: «Собаки помогают». Выберите фразу без указания на определённую группу.",
-          "uk": "Ви говорите про собак загалом: «Собаки допомагають». Виберіть фразу без указівки на певну групу."
+          "ru": "Мастер просит назвать вещь у вас в руке. Скажите, что это зарядка.",
+          "uk": "Майстер просить назвати річ у вас у руці. Скажіть, що це зарядка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-25:intro1:r1",
-              "text": "Dogs are helpful."
+              "text": "This is a charger."
             },
             {
               "responseId": "en:lesson-03:session-25:intro1:r2",
-              "text": "The dogs are helpful."
+              "text": "This is an charger."
             },
             {
               "responseId": "en:lesson-03:session-25:intro1:r3",
-              "text": "A dogs are helpful."
+              "text": "This a charger."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-25:intro1:r1",
-              "text": "Dogs are helpful."
+              "text": "This is a charger."
             },
             {
               "responseId": "en:lesson-03:session-25:intro1:r2",
-              "text": "The dogs are helpful."
+              "text": "This is an charger."
             },
             {
               "responseId": "en:lesson-03:session-25:intro1:r3",
-              "text": "A dogs are helpful."
+              "text": "This a charger."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы говорите о собаках в целом: «Собаки помогают». Выберите фразу без указания на определённую группу.",
-          "uk": "Ви говорите про собак загалом: «Собаки допомагають». Виберіть фразу без указівки на певну групу."
+          "ru": "Мастер просит назвать вещь у вас в руке. Скажите, что это зарядка.",
+          "uk": "Майстер просить назвати річ у вас у руці. Скажіть, що це зарядка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "А эти собаки где",
-        "uk": "А ці собаки де"
+        "ru": "Деталь с вилкой",
+        "uk": "Деталь із вилкою"
       },
       "bodyByLocale": {
-        "ru": "`The dogs are absent` — «Собаки отсутствуют»: речь о тех собаках, которых ждали сегодня. `absent` — «отсутствующий». Сравните: `Dogs are helpful` — о собаках вообще; `The dogs are absent` — об определённых собаках. `Where are the dogs?` — «Где собаки?» Так можно спросить о собаках, которых вы с Анной ждёте.",
-        "uk": "`The dogs are absent` — «Собаки відсутні»: ідеться про тих собак, яких чекали сьогодні. `absent` — «відсутній». Порівняйте: `Dogs are helpful` — про собак загалом; `The dogs are absent` — про певних собак. `Where are the dogs?` — «Де собаки?» Так можна запитати про собак, яких ви з Анною чекаєте."
+        "ru": "Дома вы собираете сумку для мастерской. Брат сидит рядом и видит в вашей руке маленькую деталь с вилкой. adapter — «переходник». Деталь у вас в руке, поэтому this, а слово начинается с гласного звука, поэтому an: This is an adapter — «Это переходник».",
+        "uk": "Вдома ви збираєте сумку для майстерні. Брат сидить поруч і бачить у вашій руці маленьку деталь із вилкою. adapter — «перехідник». Деталь у вас у руці, тому this, а слово починається з голосного звуку, тому an: This is an adapter — «Це перехідник»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "Сегодняшние собаки ещё не пришли. Сообщите, что эти собаки отсутствуют.",
-          "uk": "Сьогоднішні собаки ще не прийшли. Повідомте, що ці собаки відсутні."
+          "ru": "Брат спрашивает, что у вас в руке. Скажите, что это переходник.",
+          "uk": "Брат питає, що у вас у руці. Скажіть, що це перехідник."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-25:intro2:r1",
-              "text": "The dogs are absent."
+              "text": "This is an adapter."
             },
             {
               "responseId": "en:lesson-03:session-25:intro2:r2",
-              "text": "Dogs are absent."
+              "text": "This is a adapter."
             },
             {
               "responseId": "en:lesson-03:session-25:intro2:r3",
-              "text": "The dogs is absent."
+              "text": "This an adapter."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-25:intro2:r1",
-              "text": "The dogs are absent."
+              "text": "This is an adapter."
             },
             {
               "responseId": "en:lesson-03:session-25:intro2:r2",
-              "text": "Dogs are absent."
+              "text": "This is a adapter."
             },
             {
               "responseId": "en:lesson-03:session-25:intro2:r3",
-              "text": "The dogs is absent."
+              "text": "This an adapter."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сегодняшние собаки ещё не пришли. Сообщите, что эти собаки отсутствуют.",
-          "uk": "Сьогоднішні собаки ще не прийшли. Повідомте, що ці собаки відсутні."
+          "ru": "Брат спрашивает, что у вас в руке. Скажите, что это переходник.",
+          "uk": "Брат питає, що у вас у руці. Скажіть, що це перехідник."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Книги тоже важны",
-        "uk": "Книжки теж важливі"
+        "ru": "Провод в очереди",
+        "uk": "Дріт у черзі"
       },
       "bodyByLocale": {
-        "ru": "`Books are important` — «Книги важны». Говорим о книгах в целом, поэтому перед `books` нет `a` или `the`. Анна довольна тем, как дети читают: `She is proud` — «Она гордится». Олег забыл коробку книг, и ему стыдно: `He is ashamed`. Вы не ожидали такого занятия: `I am surprised` — «Я удивлён».",
-        "uk": "`Books are important` — «Книжки важливі». Говоримо про книжки загалом, тому перед `books` немає `a` або `the`. Анна задоволена тим, як діти читають: `She is proud` — «Вона пишається». Олег забув коробку книжок, і йому соромно: `He is ashamed`. Ви не очікували такого заняття: `I am surprised` — «Я здивований»."
+        "ru": "В очереди в мастерскую соседка заглядывает в ваш пакет и показывает на длинный провод. cable — «кабель», провод с вилками на концах. Вы держите его в руках, он рядом, поэтому this. Перед cable ставим a, потому что слово начинается с согласного звука: This is a cable — «Это кабель».",
+        "uk": "У черзі до майстерні сусідка заглядає у ваш пакет і показує на довгий дріт. cable — «кабель», дріт із вилками на кінцях. Ви тримаєте його в руках, він поруч, тому this. Перед cable ставимо a, бо слово починається з приголосного звуку: This is a cable — «Це кабель»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Вы говорите о книгах вообще: «Книги важны». Выберите подходящую фразу.",
-          "uk": "Ви говорите про книжки загалом: «Книжки важливі». Виберіть відповідну фразу."
+          "ru": "Соседка по очереди спрашивает, что это за провод. Скажите, что это кабель.",
+          "uk": "Сусідка в черзі питає, що це за дріт. Скажіть, що це кабель."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-25:intro3:r1",
-              "text": "Books are important."
+              "text": "This is a cable."
             },
             {
               "responseId": "en:lesson-03:session-25:intro3:r2",
-              "text": "The books are important."
+              "text": "This is cable."
             },
             {
               "responseId": "en:lesson-03:session-25:intro3:r3",
-              "text": "A books are important."
+              "text": "This are a cable."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-25:intro3:r1",
-              "text": "Books are important."
+              "text": "This is a cable."
             },
             {
               "responseId": "en:lesson-03:session-25:intro3:r2",
-              "text": "The books are important."
+              "text": "This is cable."
             },
             {
               "responseId": "en:lesson-03:session-25:intro3:r3",
-              "text": "A books are important."
+              "text": "This are a cable."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы говорите о книгах вообще: «Книги важны». Выберите подходящую фразу.",
-          "uk": "Ви говорите про книжки загалом: «Книжки важливі». Виберіть відповідну фразу."
+          "ru": "Соседка по очереди спрашивает, что это за провод. Скажите, что это кабель.",
+          "uk": "Сусідка в черзі питає, що це за дріт. Скажіть, що це кабель."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "026ece47869f7bec1459e8635167a71077008d4342de34ea761194c0f6eb8186"
+  "introFingerprint": "73092456b204cc4d7eb34b13e840d15e4f21ef7f616af1054af387963cfa321d"
 }

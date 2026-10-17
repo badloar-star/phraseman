@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-31:intro1:r2": {
-          "ru": "`park` — один парк; несколько — `parks`.",
-          "uk": "`park` — один парк; кілька — `parks`."
+          "ru": "Полка далеко, а this говорим о том, что рядом: That is a hat.",
+          "uk": "Полиця далеко, а this кажемо про те, що поруч: That is a hat."
         },
         "en:lesson-03:session-31:intro1:r3": {
-          "ru": "Перед названием нескольких парков не ставим `a`.",
-          "uk": "Перед назвою кількох парків не ставимо `a`."
+          "ru": "Перед hat нужно a: слово начинается с согласного звука.",
+          "uk": "Перед hat потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-31:intro2:r2": {
-          "ru": "Парков несколько: нужно `are`.",
-          "uk": "Парків кілька: потрібно `are`."
+          "ru": "Ремень лежит рядом, а that говорим о далёком: This is a belt.",
+          "uk": "Пасок лежить поруч, а that кажемо про далеке: This is a belt."
         },
         "en:lesson-03:session-31:intro2:r3": {
-          "ru": "`unusual` — «необычные». Здесь важно, что парки похожи: `similar`.",
-          "uk": "`unusual` — «незвичайні». Тут важливо, що парки схожі: `similar`."
+          "ru": "Перед belt нужно a: This is a belt.",
+          "uk": "Перед belt потрібно a: This is a belt."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-31:intro3:r2": {
-          "ru": "`The parks` — определённые парки. Здесь говорим о парках вообще: `Parks`.",
-          "uk": "`The parks` — певні парки. Тут говоримо про парки загалом: `Parks`."
+          "ru": "Угол далеко, а this говорим о том, что рядом: Is that a boot?",
+          "uk": "Кут далеко, а this кажемо про те, що поруч: Is that a boot?"
         },
         "en:lesson-03:session-31:intro3:r3": {
-          "ru": "Перед `parks` не ставим `a`.",
-          "uk": "Перед `parks` не ставимо `a`."
+          "ru": "Перед boot нужно a: Is that a boot?",
+          "uk": "Перед boot потрібно a: Is that a boot?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "52850a61d6de76bb046a8c4bdf5cc8a30568a8cd3b986933851e987739ee7d64"
+  "auxiliaryFingerprint": "6f2bf279ec5b555b5d0bd00c99e3d415ef193929dde23bc4cdfcd03006cd7d78"
 }

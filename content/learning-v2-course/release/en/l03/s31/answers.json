@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-31:i01",
-    "correctText": "The tickets are here.",
+    "correctText": "This is a table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i02",
-    "correctText": "parks",
+    "correctText": "That is a chair.",
     "correctResponseId": "en:lesson-03:session-31:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-31:i03",
-    "correctText": "parks",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-31:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-31:i04",
-    "correctText": "en:lesson-03:session-31:i04:p1=parks\nen:lesson-03:session-31:i04:p2=tickets\nen:lesson-03:session-31:i04:p3=equal\nen:lesson-03:session-31:i04:p4=similar",
+    "correctText": "en:lesson-03:session-31:i04:p1=hat\nen:lesson-03:session-31:i04:p2=belt\nen:lesson-03:session-31:i04:p3=boot\nen:lesson-03:session-31:i04:p4=cape",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i05",
-    "correctText": "The parks are similar.",
+    "correctText": "Is this a shelf?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i06",
-    "correctText": "Parks are important.",
+    "correctText": "Is that a door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:word:hat",
+    "correctText": "hat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i07",
-    "correctText": "They're separate.",
+    "correctText": "hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:word:belt",
+    "correctText": "belt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i08",
-    "correctText": "Parks",
+    "correctText": "belt",
     "correctResponseId": "en:lesson-03:session-31:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-31:i09",
-    "correctText": "They are unusual.",
+    "correctText": "That is not a hat.",
     "correctResponseId": "en:lesson-03:session-31:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-31:i10",
-    "correctText": "en:lesson-03:session-31:i10:p1=separate\nen:lesson-03:session-31:i10:p2=unusual\nen:lesson-03:session-31:i10:p3=parks\nen:lesson-03:session-31:i10:p4=tickets",
+    "correctText": "en:lesson-03:session-31:i10:p1=hat\nen:lesson-03:session-31:i10:p2=table\nen:lesson-03:session-31:i10:p3=shelf\nen:lesson-03:session-31:i10:p4=door",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i11",
-    "correctText": "The tickets are valid.",
+    "correctText": "This is not a belt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i12",
-    "correctText": "Where are the parks?",
+    "correctText": "That is a hat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:word:boot",
+    "correctText": "boot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i13",
-    "correctText": "They're equal.",
+    "correctText": "boot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:word:cape",
+    "correctText": "cape",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i14",
-    "correctText": "are",
+    "correctText": "cape",
     "correctResponseId": "en:lesson-03:session-31:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-31:i15",
-    "correctText": "They are separate.",
+    "correctText": "Is this a boot?",
     "correctResponseId": "en:lesson-03:session-31:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-31:i16",
-    "correctText": "en:lesson-03:session-31:i16:p1=equal\nen:lesson-03:session-31:i16:p2=similar\nen:lesson-03:session-31:i16:p3=separate\nen:lesson-03:session-31:i16:p4=unusual",
+    "correctText": "en:lesson-03:session-31:i16:p1=cape\nen:lesson-03:session-31:i16:p2=boot\nen:lesson-03:session-31:i16:p3=belt\nen:lesson-03:session-31:i16:p4=hat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i17",
-    "correctText": "Where are the parks?",
+    "correctText": "This is a cape.",
     "correctResponseId": null
   }
 ]

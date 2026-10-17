@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-34",
   "learningOutcomeByLocale": {
-    "ru": "указать на кошелёк рядом или дальше и на нескольких кошек",
-    "uk": "указати на гаманець поруч або далі й на кількох котів"
+    "ru": "называть несколько предметов вдали и спрашивать о них: Those are …, Are those …?",
+    "uk": "називати кілька предметів удалині й питати про них: Those are …, Are those …?"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кошелёк на столе",
-        "uk": "Гаманець на столі"
+        "ru": "Пледы на высокой полке",
+        "uk": "Пледи на високій полиці"
       },
       "bodyByLocale": {
-        "ru": "`wallet` — «кошелёк». `This is a wallet` — «Это кошелёк»: показываем на один кошелёк рядом. Для одного дальше — `That is a wallet`. В обеих фразах перед `wallet` нужно `a`. Олег проверил все карманы, кроме того, в котором лежал кошелёк. Последний карман снова оказался самым полезным.",
-        "uk": "`wallet` — «гаманець». `This is a wallet` — «Це гаманець»: показуємо на один гаманець поруч. Для одного далі — `That is a wallet`. В обох фразах перед `wallet` потрібне `a`. Олег перевірив усі кишені, крім тієї, у якій лежав гаманець. Остання кишеня знову виявилася найкориснішою."
+        "ru": "Вы с подругой зашли в магазин домашнего текстиля. Все пледы сложены на высокой полке в дальнем конце зала, а продавец стоит у кассы. Подруга спрашивает, что там лежит. blanket — «плед». Пледов несколько, и они далеко, поэтому those: Those are blankets — «Это пледы».",
+        "uk": "Ви з подругою зайшли до магазину домашнього текстилю. Усі пледи складені на високій полиці в дальньому кінці зали, а продавець стоїть біля каси. Подруга питає, що там лежить. blanket — «плед». Пледів кілька, і вони далеко, тому those: Those are blankets — «Це пледи»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-34:intro1:q",
         "promptByLocale": {
-          "ru": "Кошелёк лежит прямо перед вами. Назовите его полной фразой со словом для одного предмета рядом.",
-          "uk": "Гаманець лежить просто перед вами. Назвіть його повною фразою зі словом для одного предмета поруч."
+          "ru": "Подруга показывает на дальнюю полку. Скажите, что это пледы.",
+          "uk": "Подруга показує на дальню полицю. Скажіть, що це пледи."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-34:intro1:r1",
-              "text": "This is a wallet."
+              "text": "Those are blankets."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r2",
-              "text": "That is a wallet."
+              "text": "These are blankets."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r3",
-              "text": "This is wallet."
+              "text": "Those is blankets."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-34:intro1:r1",
-              "text": "This is a wallet."
+              "text": "Those are blankets."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r2",
-              "text": "That is a wallet."
+              "text": "These are blankets."
             },
             {
               "responseId": "en:lesson-03:session-34:intro1:r3",
-              "text": "This is wallet."
+              "text": "Those is blankets."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кошелёк лежит прямо перед вами. Назовите его полной фразой со словом для одного предмета рядом.",
-          "uk": "Гаманець лежить просто перед вами. Назвіть його повною фразою зі словом для одного предмета поруч."
+          "ru": "Подруга показывает на дальнюю полку. Скажите, что это пледы.",
+          "uk": "Подруга показує на дальню полицю. Скажіть, що це пледи."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Не тот предмет",
-        "uk": "Не той предмет"
+        "ru": "Простыни для новой кровати",
+        "uk": "Простирадла для нового ліжка"
       },
       "bodyByLocale": {
-        "ru": "`That is a wallet` — показываем на один кошелёк дальше. Если называем вещь сразу после `that`, слово `a` между ними не ставим: `that wallet` — «тот кошелёк». Например, `That wallet is here` — «Тот кошелёк здесь»: тот, о котором говорили раньше, нашёлся здесь. Расстояние — не единственный повод выбрать `that`, но в упражнениях этой встречи смотрим, где лежит предмет.",
-        "uk": "`That is a wallet` — показуємо на один гаманець далі. Якщо називаємо річ одразу після `that`, слово `a` між ними не ставимо: `that wallet` — «той гаманець». Наприклад, `That wallet is here` — «Той гаманець тут»: той, про який говорили раніше, знайшовся тут. Відстань — не єдиний привід вибрати `that`, але у вправах цієї зустрічі дивимося, де лежить предмет."
+        "ru": "Подруге нужны большие простыни для новой кровати. Продавец показывает на дальнюю стойку, где они лежат стопками, а подходить ближе вам некогда. sheet — «простыня». Простыней несколько, и они далеко: those sheets. Вы видите издалека: Those sheets are big — «Те простыни большие».",
+        "uk": "Подрузі потрібні великі простирадла для нового ліжка. Продавець показує на дальню стійку, де вони лежать стосами, а підходити ближче вам ніколи. sheet — «простирадло». Простирадл кілька, і вони далеко: those sheets. Ви бачите здалеку: Those sheets are big — «Ті простирадла великі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-34:intro2:q",
         "promptByLocale": {
-          "ru": "Кошелёк лежит на полке в другом конце комнаты. Назовите его полной фразой со словом для одного предмета дальше.",
-          "uk": "Гаманець лежить на полиці в іншому кінці кімнати. Назвіть його повною фразою зі словом для одного предмета далі."
+          "ru": "Подруга спрашивает, какие простыни на дальней стойке. Скажите, что те простыни большие.",
+          "uk": "Подруга питає, які простирадла на дальній стійці. Скажіть, що ті простирадла великі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-34:intro2:r1",
-              "text": "That is a wallet."
+              "text": "Those sheets are big."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r2",
-              "text": "This is a wallet."
+              "text": "These sheets are big."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r3",
-              "text": "Those are a wallet."
+              "text": "Those sheet are big."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-34:intro2:r1",
-              "text": "That is a wallet."
+              "text": "Those sheets are big."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r2",
-              "text": "This is a wallet."
+              "text": "These sheets are big."
             },
             {
               "responseId": "en:lesson-03:session-34:intro2:r3",
-              "text": "Those are a wallet."
+              "text": "Those sheet are big."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кошелёк лежит на полке в другом конце комнаты. Назовите его полной фразой со словом для одного предмета дальше.",
-          "uk": "Гаманець лежить на полиці в іншому кінці кімнати. Назвіть його повною фразою зі словом для одного предмета далі."
+          "ru": "Подруга спрашивает, какие простыни на дальней стойке. Скажите, что те простыни большие.",
+          "uk": "Подруга питає, які простирадла на дальній стійці. Скажіть, що ті простирадла великі."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кошки не помогают",
-        "uk": "Коти не допомагають"
+        "ru": "Одеяла на зиму",
+        "uk": "Ковдри на зиму"
       },
       "bodyByLocale": {
-        "ru": "`afraid` — «боится, испуганный», `inactive` — «неактивный». Шум напугал кошек у дальней двери: `Those cats are afraid` — «Те кошки боятся». Кошки рядом спокойно лежат и ничего не делают: `These cats are inactive` — «Эти кошки неактивны». `these` выбирает нескольких рядом, `those` — нескольких дальше; с обеими группами здесь нужно `are`.",
-        "uk": "`afraid` — «боїться, наляканий», `inactive` — «неактивний». Шум налякав котів біля дальніх дверей: `Those cats are afraid` — «Ті коти бояться». Коти поруч спокійно лежать і нічого не роблять: `These cats are inactive` — «Ці коти неактивні». `these` вибирає кількох поруч, `those` — кількох далі; з обома групами тут потрібно `are`."
+        "ru": "Вы с подругой ищете тёплые одеяла на зиму. Они лежат на нижней полке в углу магазина, далеко от вас. Продавец стоит рядом, и вы хотите узнать, тёплые ли они. duvet — «одеяло». Одеял несколько, и они далеко: Are those duvets warm? — «Те одеяла тёплые?»",
+        "uk": "Ви з подругою шукаєте теплі ковдри на зиму. Вони лежать на нижній полиці в кутку магазину, далеко від вас. Продавець стоїть поруч, і ви хочете дізнатися, чи теплі вони. duvet — «ковдра». Ковдр кілька, і вони далеко: Are those duvets warm? — «Ті ковдри теплі?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-34:intro3:q",
         "promptByLocale": {
-          "ru": "Несколько кошек лежат рядом и совсем не двигаются. Скажите «Эти кошки неактивны».",
-          "uk": "Кілька котів лежать поруч і зовсім не рухаються. Скажіть «Ці коти неактивні»."
+          "ru": "Продавец стоит рядом. Спросите его, тёплые ли те одеяла.",
+          "uk": "Продавець стоїть поруч. Запитайте його, чи теплі ті ковдри."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-34:intro3:r1",
-              "text": "These cats are inactive."
+              "text": "Are those duvets warm?"
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r2",
-              "text": "This cats are inactive."
+              "text": "Is those duvets warm?"
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r3",
-              "text": "These cats is inactive."
+              "text": "Are that duvets warm?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-34:intro3:r1",
-              "text": "These cats are inactive."
+              "text": "Are those duvets warm?"
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r2",
-              "text": "This cats are inactive."
+              "text": "Is those duvets warm?"
             },
             {
               "responseId": "en:lesson-03:session-34:intro3:r3",
-              "text": "These cats is inactive."
+              "text": "Are that duvets warm?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Несколько кошек лежат рядом и совсем не двигаются. Скажите «Эти кошки неактивны».",
-          "uk": "Кілька котів лежать поруч і зовсім не рухаються. Скажіть «Ці коти неактивні»."
+          "ru": "Продавец стоит рядом. Спросите его, тёплые ли те одеяла.",
+          "uk": "Продавець стоїть поруч. Запитайте його, чи теплі ті ковдри."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "965ad9487708b4b9ee2f342779560c24e662600995cac0f530b69868019dece2"
+  "introFingerprint": "6a205dc00ca586155b835834e7f1c582d362ffac680ad51acccafaaa8395e04e"
 }

@@ -117,29 +117,29 @@ You're — You are · We're — We are · They're — They are · I'm — I am
 Плитки: `ashamed` `I'm` `She's` → **I'm ashamed.**
 *(плитка `She's` лишняя: здесь нужно `I'm` — `I'm ashamed.`)*
 
-**14 · Друг удивлён аплодисментами. Скажите о его удивлении короткой фразой**
-<!-- interaction_id: en:lesson-01:session-33:i13; family: scripted_repeat_compare -->
-🎙 **He's surprised.**
+**14 · Карточка слова — shy**
+<!-- interaction_id: en:lesson-01:session-33:word:shy; family: word_card -->
+> **shy** — застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.
 
-**15 · После суматошной сцены подруга и сестра выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»**
+**15 · Друга зовут на поклон, а он прячется за кулисами и краснеет. Скажите о нём короткой фразой**
+<!-- interaction_id: en:lesson-01:session-33:i13; family: scripted_repeat_compare -->
+🎙 **He's shy.**
+
+**16 · После суматошной сцены подруга и сестра выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»**
 <!-- interaction_id: en:lesson-01:session-33:i14; family: context_gap_grammar -->
 ___ okay. → **You're** · We're · She's
 - We're — *Это включает говорящего: «мы». К собеседницам — `You're`.*
 - She's — *Это рассказ об одной женщине. Обращение к ним обеим — `You're`.*
 
-**16 · Карточка слова — amazing**
+**17 · Карточка слова — amazing**
 <!-- interaction_id: en:lesson-01:session-33:word:amazing; family: word_card -->
 > **amazing** — потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.
 
-**17 · Зал аплодирует стоя. Послушайте, что говорит подруга, и выберите услышанное**
+**18 · Зал аплодирует стоя. Послушайте, что говорит подруга, и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-33:i15; family: listen_choose -->
 🔊 *It's amazing.* → **It's amazing.** · It's awful. · He's amazing.
 - It's awful. — *В записи последнее слово — `amazing`, а в этом варианте — `awful`.*
 - He's amazing. — *В записи первое слово — `It's`, а в этом варианте — `He's`.*
-
-**18 · Карточка слова — shy**
-<!-- interaction_id: en:lesson-01:session-33:word:shy; family: word_card -->
-> **shy** — застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.
 
 **19 · Карточка слова — great**
 <!-- interaction_id: en:lesson-01:session-33:word:great; family: word_card -->

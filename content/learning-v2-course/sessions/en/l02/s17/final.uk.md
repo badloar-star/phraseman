@@ -52,14 +52,14 @@
 
 ## Практика (21 завдання)
 
-**1 · Подруга питає: «Are you well?» Ви добре почуваєтеся. Складіть коротке «так»**
+**1 · Картка слова — well**
+<!-- interaction_id: en:lesson-02:session-17:word:well; family: word_card -->
+> **well** — який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби.
+
+**2 · Подруга питає: «Are you well?» Ви добре почуваєтеся. Складіть коротке «так»**
 <!-- interaction_id: en:lesson-02:session-17:i01; family: phrase_builder -->
 Плитки: `am` `I` `Yes,` `No,` → **Yes, I am.**
 *(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, I am.`)*
-
-**2 · Картка слова — well**
-<!-- interaction_id: en:lesson-02:session-17:word:well; family: word_card -->
-> **well** — який добре почувається. Are you well? — «Як ви почуваєтеся? Усе добре?» Про людину після дороги чи хвороби.
 
 **3 · За годину сестра встала з дивана. Послухайте, що каже брат**
 <!-- interaction_id: en:lesson-02:session-17:i02; family: listen_choose -->
@@ -107,27 +107,27 @@ No, I ___ not. → **am** · is · are
 <!-- interaction_id: en:lesson-02:session-17:i10; family: speed_match -->
 safe — у безпеці · welcome — бажаний гість · right — правий, який не помиляється · lost — який заблукав
 
-**12 · Сестра й брат розібрали сумки. Подруга знову питає: «Are they unpacked?» Послухайте й складіть вашу відповідь**
+**12 · Картка слова — unpacked**
+<!-- interaction_id: en:lesson-02:session-17:word:unpacked; family: word_card -->
+> **unpacked** — розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки.
+
+**13 · Сестра й брат розібрали сумки. Подруга знову питає: «Are they unpacked?» Послухайте й складіть вашу відповідь**
 <!-- interaction_id: en:lesson-02:session-17:i11; family: listen_build_dictation -->
 🔊 *Yes, they are.* Плитки: `are` `they` `Yes,` `No,` → **Yes, they are.**
 *(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, they are.`)*
 
-**13 · Сестрі й братові недобре після дороги. Подруга питає: «Are they well?» Відповідайте коротким «ні»**
+**14 · Сестрі й братові недобре після дороги. Подруга питає: «Are they well?» Відповідайте коротким «ні»**
 <!-- interaction_id: en:lesson-02:session-17:i12; family: phrase_builder -->
 Плитки: `not` `are` `they` `No,` `Yes,` → **No, they are not.**
 *(плитка `Yes,` зайва: тут потрібно `No,` — `No, they are not.`)*
 
-**14 · Картка слова — stiff**
+**15 · Картка слова — stiff**
 <!-- interaction_id: en:lesson-02:session-17:word:stiff; family: word_card -->
 > **stiff** — затерплий, скутий. I'm stiff — «У мене все затерпло». Після довгої дороги, сну в незручній позі, тренування.
 
-**15 · Ви шість годин просиділи в автобусі й насилу розгинаєтеся. Коротко скажіть подрузі, що у вас усе затерпло**
+**16 · Ви шість годин просиділи в автобусі й насилу розгинаєтеся. Коротко скажіть подрузі, що у вас усе затерпло**
 <!-- interaction_id: en:lesson-02:session-17:i13; family: scripted_repeat_compare -->
 🎙 **I'm stiff.**
-
-**16 · Картка слова — unpacked**
-<!-- interaction_id: en:lesson-02:session-17:word:unpacked; family: word_card -->
-> **unpacked** — розпакований. They are unpacked — «Вони розпаковані». Про сумки, валізи, коробки.
 
 **17 · Ви дістали з обох сумок усі речі. Доповніть фразу про сумки**
 <!-- interaction_id: en:lesson-02:session-17:i14; family: context_gap_grammar -->

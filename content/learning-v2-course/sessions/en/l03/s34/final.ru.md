@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 34 — Кошелёк после встречи
+# Английский · Урок 3 · Занятие 34 — Выбираем постельное бельё
 
-**Ситуация.** После встречи в клубе Анна собирает забытые вещи. Один кошелёк лежит рядом на столе, другой — на дальней полке. Олег ищет свой кошелёк, а клубные кошки наблюдают за поисками.
+**Ситуация.** Вы с подругой выбираете постельное бельё в магазине домашнего текстиля. Продавец показывает вещи на полках в дальнем конце зала. Всё, чего несколько и что лежит далеко от вас, вы называете словом those: «вон те». Один далёкий предмет — по-прежнему that.
 
-**Что вы освоите:** указать на кошелёк рядом или дальше и на нескольких кошек
-**Новые слова:** wallet
+**Что вы освоите:** называть несколько предметов вдали и спрашивать о них: Those are …, Are those …?
+**Новые слова:** blanket, sheet, duvet, pillowcase
+**Возвращаются:** shelf, pillow, towel, bed, curtain
 
 ---
 
 ## Интро 1
 
-### Кошелёк на столе
+### Пледы на высокой полке
 
-`wallet` — «кошелёк». `This is a wallet` — «Это кошелёк»: показываем на один кошелёк рядом. Для одного дальше — `That is a wallet`. В обеих фразах перед `wallet` нужно `a`. Олег проверил все карманы, кроме того, в котором лежал кошелёк. Последний карман снова оказался самым полезным.
+Вы с подругой зашли в магазин домашнего текстиля. Все пледы сложены на высокой полке в дальнем конце зала, а продавец стоит у кассы. Подруга спрашивает, что там лежит. blanket — «плед». Пледов несколько, и они далеко, поэтому those: Those are blankets — «Это пледы».
 
-**Кошелёк лежит прямо перед вами. Назовите его полной фразой со словом для одного предмета рядом.**
+**Подруга показывает на дальнюю полку. Скажите, что это пледы.**
 
-- ✅ **This is a wallet.**
-- ❌ That is a wallet. — *Здесь выбираем по расстоянию: кошелёк рядом, поэтому `This`.*
-- ❌ This is wallet. — *Называя предмет в этой фразе, говорим `a wallet`.*
+- ✅ **Those are blankets.**
+- ❌ These are blankets. — *Пледы лежат далеко, в конце зала, а these говорим о том, что рядом: Those are blankets.*
+- ❌ Those is blankets. — *Пледов несколько, поэтому нужно are: Those are blankets.*
 
 ---
 
 ## Интро 2
 
-### Не тот предмет
+### Простыни для новой кровати
 
-`That is a wallet` — показываем на один кошелёк дальше. Если называем вещь сразу после `that`, слово `a` между ними не ставим: `that wallet` — «тот кошелёк». Например, `That wallet is here` — «Тот кошелёк здесь»: тот, о котором говорили раньше, нашёлся здесь. Расстояние — не единственный повод выбрать `that`, но в упражнениях этой встречи смотрим, где лежит предмет.
+Подруге нужны большие простыни для новой кровати. Продавец показывает на дальнюю стойку, где они лежат стопками, а подходить ближе вам некогда. sheet — «простыня». Простыней несколько, и они далеко: those sheets. Вы видите издалека: Those sheets are big — «Те простыни большие».
 
-**Кошелёк лежит на полке в другом конце комнаты. Назовите его полной фразой со словом для одного предмета дальше.**
+**Подруга спрашивает, какие простыни на дальней стойке. Скажите, что те простыни большие.**
 
-- ✅ **That is a wallet.**
-- ❌ This is a wallet. — *Для предмета дальше в этом упражнении нужно `That`.*
-- ❌ Those are a wallet. — *`Those` — несколько дальше. Кошелёк один: `That is a wallet`.*
+- ✅ **Those sheets are big.**
+- ❌ These sheets are big. — *Простыни лежат далеко, а these говорим о том, что рядом: Those sheets are big.*
+- ❌ Those sheet are big. — *Простыней несколько, поэтому нужно sheets с s.*
 
 ---
 
 ## Интро 3
 
-### Кошки не помогают
+### Одеяла на зиму
 
-`afraid` — «боится, испуганный», `inactive` — «неактивный». Шум напугал кошек у дальней двери: `Those cats are afraid` — «Те кошки боятся». Кошки рядом спокойно лежат и ничего не делают: `These cats are inactive` — «Эти кошки неактивны». `these` выбирает нескольких рядом, `those` — нескольких дальше; с обеими группами здесь нужно `are`.
+Вы с подругой ищете тёплые одеяла на зиму. Они лежат на нижней полке в углу магазина, далеко от вас. Продавец стоит рядом, и вы хотите узнать, тёплые ли они. duvet — «одеяло». Одеял несколько, и они далеко: Are those duvets warm? — «Те одеяла тёплые?»
 
-**Несколько кошек лежат рядом и совсем не двигаются. Скажите «Эти кошки неактивны».**
+**Продавец стоит рядом. Спросите его, тёплые ли те одеяла.**
 
-- ✅ **These cats are inactive.**
-- ❌ This cats are inactive. — *`This` — один предмет. Для нескольких рядом нужно `These`.*
-- ❌ These cats is inactive. — *Кошек несколько: нужно `are`.*
+- ✅ **Are those duvets warm?**
+- ❌ Is those duvets warm? — *С those нужно Are: Are those duvets warm?*
+- ❌ Are that duvets warm? — *Одеял несколько, поэтому не that, а those: Are those duvets warm?*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Шум напугал кошек. Сообщите «Кошки боятся»**
+**1 · Продавец показывает на подушки на дальней полке. Скажите подруге полной фразой: те подушки мягкие.**
 <!-- interaction_id: en:lesson-03:session-34:i01; family: phrase_builder -->
-Плитки: `afraid` `are` `cats` `The` `is` → **The cats are afraid.**
-*(плитка `is` лишняя: здесь нужно `are` — `The cats are afraid.`)*
+Плитки: `soft` `pillows` `are` `Those` `pillow` → **Those pillows are soft.**
+*(плитка `pillow` лишняя: здесь нужно `pillows` — `Those pillows are soft.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте вопрос подруги о полотенцах**
 <!-- interaction_id: en:lesson-03:session-34:i02; family: listen_choose -->
-🔊 *wallet* → **wallet** · window · phone
-- window — *В записи первое слово — `wallet`, а в этом варианте — `window`.*
-- phone — *В записи первое слово — `wallet`, а в этом варианте — `phone`.*
+🔊 *Are those towels clean?* → **Are those towels clean?** · Is that towel clean? · Are these towels clean?
+- Is that towel clean? — *В записи `Are those towels` — полотенец несколько, а в этом варианте `Is that towel` — одно.*
+- Are these towels clean? — *В записи слово `those` — полотенца далеко, а в этом варианте `these` — рядом.*
 
-**3 · Назовите кошелёк одним английским словом**
+**3 · Продавец показывает на дальнюю стену. Дополните его фразу**
 <!-- interaction_id: en:lesson-03:session-34:i03; family: context_gap_grammar -->
-___ → **wallet** · window · phone
-- window — *`window` — окно. Кошелёк — `wallet`.*
-- phone — *`phone` — телефон. Кошелёк — `wallet`.*
+Those ___ are long. → **curtains** · curtain · a curtain
+- curtain — *Занавесок несколько, поэтому нужно curtains с s.*
+- a curtain — *После Those нужно несколько занавесок: curtains с s.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-34:i04; family: speed_match -->
-wallet — кошелёк · cats — кошки · afraid — боится, испуганный · inactive — неактивный
+blanket — плед · sheet — простыня · duvet — одеяло · pillowcase — наволочка
 
-**5 · Послушайте и соберите фразу**
+**5 · Послушайте продавца и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-34:i05; family: listen_build_dictation -->
-🔊 *This is a wallet.* Плитки: `wallet` `a` `is` `This` `are` → **This is a wallet.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a wallet.`)*
+🔊 *Those beds are small.* Плитки: `small` `beds` `are` `Those` `bed` → **Those beds are small.**
+*(плитка `bed` лишняя: здесь нужно `beds` — `Those beds are small.`)*
 
-**6 · Кошелёк лежит на дальней полке. Назовите его со словом для одного предмета дальше**
+**6 · Одна подушка лежит далеко, на верхней полке. Скажите продавцу, что это подушка.**
 <!-- interaction_id: en:lesson-03:session-34:i06; family: phrase_builder -->
-Плитки: `wallet` `a` `is` `That` `are` → **That is a wallet.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is a wallet.`)*
+Плитки: `pillow` `a` `is` `That` `Those` → **That is a pillow.**
+*(плитка `Those` лишняя: здесь нужно `That` — `That is a pillow.`)*
 
-**7 · Кошки прямо рядом лежат без движения. Скажите «Эти кошки неактивны»**
+**7 · Карточка слова — blanket**
+<!-- interaction_id: en:lesson-03:session-34:word:blanket; family: word_card -->
+> **blanket** — плед, мягкое покрывало. Those are blankets — «Это пледы». О покрывале, которым накрывают диван или колени.
+
+**8 · Продавец называет вещь с дальней полки, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-34:i07; family: scripted_repeat_compare -->
-🎙 **These cats are inactive.**
+🎙 **blanket**
 
-**8 · Вы называете один кошелёк перед собой**
+**9 · Карточка слова — sheet**
+<!-- interaction_id: en:lesson-03:session-34:word:sheet; family: word_card -->
+> **sheet** — простыня. Those sheets are big — «Те простыни большие». О ткани, которую стелят на кровать.
+
+**10 · Подруга ищет ткань, которую стелят на кровать под себя. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-34:i08; family: context_gap_grammar -->
-This is ___ wallet. → **a** · an · are
-- an — *Перед `wallet` здесь нужно `a`: `a wallet`.*
-- are — *В этой фразе перед `wallet` нужно `a`.*
+___ → **sheet** · towel · blanket
+- towel — *towel — это полотенце, а ткань для кровати называется sheet.*
+- blanket — *blanket — это плед, а ткань под себя называется sheet.*
 
-**9 · Послушайте и выберите точную фразу**
+**11 · Послушайте, что говорит подруга о пледах**
 <!-- interaction_id: en:lesson-03:session-34:i09; family: listen_choose -->
-🔊 *Those cats are afraid.* → **Those cats are afraid.** · These cats are afraid. · The cats are afraid.
-- These cats are afraid. — *В записи первое слово — `Those`, а в этом варианте — `These`.*
-- The cats are afraid. — *В записи первое слово — `Those`, а в этом варианте — `The`.*
+🔊 *Those blankets are soft.* → **Those blankets are soft.** · That blanket is soft. · Those blankets are big.
+- That blanket is soft. — *В записи `Those blankets are` — пледов несколько, а в этом варианте `That blanket is` — один.*
+- Those blankets are big. — *В записи последнее слово — `soft`, а в этом варианте — `big`.*
 
-**10 · Соедините слова со значениями для наших примеров**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-34:i10; family: speed_match -->
-this — этот, один рядом · that — тот, один дальше · these — эти, несколько рядом · those — те, несколько дальше
+blanket — плед · pillow — подушка · towel — полотенце · bed — кровать
 
-**11 · Послушайте и соберите фразу**
+**13 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-03:session-34:i11; family: listen_build_dictation -->
-🔊 *Those cats are inactive.* Плитки: `inactive` `are` `cats` `Those` `is` → **Those cats are inactive.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those cats are inactive.`)*
+🔊 *Are those sheets new?* Плитки: `new` `sheets` `those` `Are` `Is` → **Are those sheets new?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are those sheets new?`)*
 
-**12 · Вы показываете на кошелёк прямо перед собой. Скажите «Этот кошелёк здесь»**
+**14 · Подруга спрашивает, что лежит на дальней стойке. Скажите, что это простыни.**
 <!-- interaction_id: en:lesson-03:session-34:i12; family: phrase_builder -->
-Плитки: `here` `is` `wallet` `This` `are` → **This wallet is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `This wallet is here.`)*
+Плитки: `sheets` `are` `Those` `These` → **Those are sheets.**
+*(плитка `These` лишняя: здесь нужно `Those` — `Those are sheets.`)*
 
-**13 · Неожиданный шум напугал и вас. Скажите «Я боюсь» с сокращением**
+**15 · Карточка слова — duvet**
+<!-- interaction_id: en:lesson-03:session-34:word:duvet; family: word_card -->
+> **duvet** — одеяло, толстое и тёплое. Are those duvets warm? — «Те одеяла тёплые?» Об одеяле для сна зимой.
+
+**16 · Продавец называет толстое одеяло, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-34:i13; family: scripted_repeat_compare -->
-🎙 **I'm afraid.**
+🎙 **duvet**
 
-**14 · Вы показываете на нескольких испуганных кошек в дальнем конце комнаты**
+**17 · Карточка слова — pillowcase**
+<!-- interaction_id: en:lesson-03:session-34:word:pillowcase; family: word_card -->
+> **pillowcase** — наволочка. Are those pillowcases clean? — «Те наволочки чистые?» О чехле, который надевают на подушку.
+
+**18 · Подруга хочет надеть чехол на подушку. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-34:i14; family: context_gap_grammar -->
-___ cats are afraid. → **Those** · That · This
-- That — *`That` — один. Для нескольких дальше нужно `Those`.*
-- This — *`This` — один рядом. Здесь несколько дальше: `Those`.*
+___ → **pillowcase** · sheet · towel
+- sheet — *sheet — это простыня, а чехол для подушки называется pillowcase.*
+- towel — *towel — это полотенце, а чехол для подушки называется pillowcase.*
 
-**15 · Послушайте и выберите точную фразу**
+**19 · Послушайте, что говорит продавец об одеялах**
 <!-- interaction_id: en:lesson-03:session-34:i15; family: listen_choose -->
-🔊 *That is a wallet.* → **That is a wallet.** · This is a wallet. · It is a wallet.
-- This is a wallet. — *В записи первое слово — `That`, а в этом варианте — `This`.*
-- It is a wallet. — *В записи первое слово — `That`, а в этом варианте — `It`.*
+🔊 *Those duvets are warm.* → **Those duvets are warm.** · That duvet is warm. · Those duvets are cheap.
+- That duvet is warm. — *В записи `Those duvets are` — одеял несколько, а в этом варианте `That duvet is` — одно.*
+- Those duvets are cheap. — *В записи последнее слово — `warm`, а в этом варианте — `cheap`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-34:i16; family: speed_match -->
-wallet — кошелёк · afraid — боится, испуганный · inactive — неактивный · cats — кошки
+pillowcase — наволочка · duvet — одеяло · sheet — простыня · blanket — плед
 
-**17 · На другой встрече вы показываете гостю кошелёк в руке. Назовите его полной фразой со словом для одного предмета рядом**
+**21 · Подруга спрашивает, какие наволочки лежат на дальней полке. Скажите ей коротко: те наволочки мягкие.**
 <!-- interaction_id: en:lesson-03:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is a wallet.**
-
+🎙 **Those pillowcases are soft.**

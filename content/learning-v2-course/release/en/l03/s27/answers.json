@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-27:i01",
-    "correctText": "The bags are here.",
+    "correctText": "Is this a sofa?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i02",
-    "correctText": "cars",
+    "correctText": "Is that a shelf?",
     "correctResponseId": "en:lesson-03:session-27:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-27:i03",
-    "correctText": "cars",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-27:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-27:i04",
-    "correctText": "en:lesson-03:session-27:i04:p1=cars\nen:lesson-03:session-27:i04:p2=bags\nen:lesson-03:session-27:i04:p3=awake\nen:lesson-03:session-27:i04:p4=asleep",
+    "correctText": "en:lesson-03:session-27:i04:p1=remote\nen:lesson-03:session-27:i04:p2=button\nen:lesson-03:session-27:i04:p3=switch\nen:lesson-03:session-27:i04:p4=router",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i05",
-    "correctText": "The cars are available.",
+    "correctText": "Is that a table?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i06",
-    "correctText": "Cars are different.",
+    "correctText": "Is that a clock?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:word:remote",
+    "correctText": "remote",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i07",
-    "correctText": "She's awake.",
+    "correctText": "remote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:word:button",
+    "correctText": "button",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i08",
-    "correctText": "Cars",
+    "correctText": "button",
     "correctResponseId": "en:lesson-03:session-27:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-27:i09",
-    "correctText": "He is asleep.",
+    "correctText": "Is that a remote?",
     "correctResponseId": "en:lesson-03:session-27:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-27:i10",
-    "correctText": "en:lesson-03:session-27:i10:p1=available\nen:lesson-03:session-27:i10:p2=generous\nen:lesson-03:session-27:i10:p3=cars\nen:lesson-03:session-27:i10:p4=bags",
+    "correctText": "en:lesson-03:session-27:i10:p1=remote\nen:lesson-03:session-27:i10:p2=sofa\nen:lesson-03:session-27:i10:p3=lamp\nen:lesson-03:session-27:i10:p4=table",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i11",
-    "correctText": "The bags are inside.",
+    "correctText": "Is this a button?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i12",
-    "correctText": "Where are the cars?",
+    "correctText": "Is this a remote?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:word:switch",
+    "correctText": "switch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i13",
-    "correctText": "He's generous.",
+    "correctText": "switch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:word:router",
+    "correctText": "router",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i14",
-    "correctText": "are",
+    "correctText": "router",
     "correctResponseId": "en:lesson-03:session-27:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-27:i15",
-    "correctText": "She is awake.",
+    "correctText": "Is that a switch?",
     "correctResponseId": "en:lesson-03:session-27:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-27:i16",
-    "correctText": "en:lesson-03:session-27:i16:p1=awake\nen:lesson-03:session-27:i16:p2=asleep\nen:lesson-03:session-27:i16:p3=available\nen:lesson-03:session-27:i16:p4=generous",
+    "correctText": "en:lesson-03:session-27:i16:p1=router\nen:lesson-03:session-27:i16:p2=button\nen:lesson-03:session-27:i16:p3=switch\nen:lesson-03:session-27:i16:p4=remote",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i17",
-    "correctText": "Cars are different.",
+    "correctText": "Is that a router?",
     "correctResponseId": null
   }
 ]

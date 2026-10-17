@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-37:i01",
-    "correctText": "The tables are here.",
+    "correctText": "These doors are big.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i02",
-    "correctText": "car",
+    "correctText": "That wall is old.",
     "correctResponseId": "en:lesson-03:session-37:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i03",
-    "correctText": "car",
+    "correctText": "windows",
     "correctResponseId": "en:lesson-03:session-37:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i04",
-    "correctText": "en:lesson-03:session-37:i04:p1=car\nen:lesson-03:session-37:i04:p2=lonely\nen:lesson-03:session-37:i04:p3=official\nen:lesson-03:session-37:i04:p4=tables",
+    "correctText": "en:lesson-03:session-37:i04:p1=building\nen:lesson-03:session-37:i04:p2=entrance\nen:lesson-03:session-37:i04:p3=exit\nen:lesson-03:session-37:i04:p4=yard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i05",
-    "correctText": "This is a car.",
+    "correctText": "This floor is clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i06",
-    "correctText": "That car is outside.",
+    "correctText": "That is a ceiling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:word:building",
+    "correctText": "building",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i07",
-    "correctText": "He's lonely.",
+    "correctText": "building",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:word:entrance",
+    "correctText": "entrance",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i08",
-    "correctText": "a",
+    "correctText": "entrance",
     "correctResponseId": "en:lesson-03:session-37:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i09",
-    "correctText": "It is official.",
+    "correctText": "This building is big.",
     "correctResponseId": "en:lesson-03:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i10",
-    "correctText": "en:lesson-03:session-37:i10:p1=car\nen:lesson-03:session-37:i10:p2=cars\nen:lesson-03:session-37:i10:p3=this\nen:lesson-03:session-37:i10:p4=that",
+    "correctText": "en:lesson-03:session-37:i10:p1=building\nen:lesson-03:session-37:i10:p2=door\nen:lesson-03:session-37:i10:p3=window\nen:lesson-03:session-37:i10:p4=wall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i11",
-    "correctText": "Those tables are outside.",
+    "correctText": "Are these entrances open?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i12",
-    "correctText": "This car is here.",
+    "correctText": "This is a building.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:word:exit",
+    "correctText": "exit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i13",
-    "correctText": "It's official.",
+    "correctText": "exit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:word:yard",
+    "correctText": "yard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i14",
-    "correctText": "is",
+    "correctText": "yard",
     "correctResponseId": "en:lesson-03:session-37:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i15",
-    "correctText": "He is lonely.",
+    "correctText": "Is that exit open?",
     "correctResponseId": "en:lesson-03:session-37:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i16",
-    "correctText": "en:lesson-03:session-37:i16:p1=car\nen:lesson-03:session-37:i16:p2=lonely\nen:lesson-03:session-37:i16:p3=official\nen:lesson-03:session-37:i16:p4=tables",
+    "correctText": "en:lesson-03:session-37:i16:p1=yard\nen:lesson-03:session-37:i16:p2=exit\nen:lesson-03:session-37:i16:p3=entrance\nen:lesson-03:session-37:i16:p4=building",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i17",
-    "correctText": "That is a car.",
+    "correctText": "That yard is clean.",
     "correctResponseId": null
   }
 ]

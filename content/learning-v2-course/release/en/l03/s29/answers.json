@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-29:i01",
-    "correctText": "The pens are here.",
+    "correctText": "It is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i02",
-    "correctText": "tables",
+    "correctText": "That is a door.",
     "correctResponseId": "en:lesson-03:session-29:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-29:i03",
-    "correctText": "tables",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-29:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-29:i04",
-    "correctText": "en:lesson-03:session-29:i04:p1=tables\nen:lesson-03:session-29:i04:p2=pens\nen:lesson-03:session-29:i04:p3=local\nen:lesson-03:session-29:i04:p4=foreign",
+    "correctText": "en:lesson-03:session-29:i04:p1=parcel\nen:lesson-03:session-29:i04:p2=letter\nen:lesson-03:session-29:i04:p3=stamp\nen:lesson-03:session-29:i04:p4=mailbox",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i05",
-    "correctText": "The tables are upstairs.",
+    "correctText": "That is not a box.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i06",
-    "correctText": "Tables are important.",
+    "correctText": "This is a door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:word:parcel",
+    "correctText": "parcel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i07",
-    "correctText": "She's online.",
+    "correctText": "parcel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:word:letter",
+    "correctText": "letter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i08",
-    "correctText": "Tables",
+    "correctText": "letter",
     "correctResponseId": "en:lesson-03:session-29:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-29:i09",
-    "correctText": "She is away.",
+    "correctText": "This is not a parcel.",
     "correctResponseId": "en:lesson-03:session-29:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-29:i10",
-    "correctText": "en:lesson-03:session-29:i10:p1=online\nen:lesson-03:session-29:i10:p2=away\nen:lesson-03:session-29:i10:p3=tables\nen:lesson-03:session-29:i10:p4=pens",
+    "correctText": "en:lesson-03:session-29:i10:p1=parcel\nen:lesson-03:session-29:i10:p2=door\nen:lesson-03:session-29:i10:p3=box\nen:lesson-03:session-29:i10:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i11",
-    "correctText": "The pens are inside.",
+    "correctText": "That is not a letter.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i12",
-    "correctText": "Where are the tables?",
+    "correctText": "This is a parcel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:word:stamp",
+    "correctText": "stamp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i13",
-    "correctText": "She's away.",
+    "correctText": "stamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:word:mailbox",
+    "correctText": "mailbox",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i14",
-    "correctText": "are",
+    "correctText": "mailbox",
     "correctResponseId": "en:lesson-03:session-29:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-29:i15",
-    "correctText": "He is local.",
+    "correctText": "It is small.",
     "correctResponseId": "en:lesson-03:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-29:i16",
-    "correctText": "en:lesson-03:session-29:i16:p1=local\nen:lesson-03:session-29:i16:p2=foreign\nen:lesson-03:session-29:i16:p3=online\nen:lesson-03:session-29:i16:p4=away",
+    "correctText": "en:lesson-03:session-29:i16:p1=mailbox\nen:lesson-03:session-29:i16:p2=stamp\nen:lesson-03:session-29:i16:p3=letter\nen:lesson-03:session-29:i16:p4=parcel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-29:i17",
-    "correctText": "Where are the tables?",
+    "correctText": "That is a mailbox.",
     "correctResponseId": null
   }
 ]

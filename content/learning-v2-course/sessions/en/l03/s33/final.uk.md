@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 33 — Телефон поруч, собаки далі
+# Англійська · Урок 3 · Заняття 33 — Сортуємо речі на ярмарку
 
-**Ситуація.** Ви з Анною готуєте знімання собак у дворі клубу. Один телефон лежить перед вами, інший — на дальній лавці. Дві собаки стоять поруч, ще кілька бігають в іншому кінці двору. Ви показуєте Анні, про що говорите.
+**Ситуація.** Ви з подругою та братом розбираєте речі, які люди принесли на благодійний ярмарок. Усе, чого кілька і що лежить на столі просто перед вами, ви називаєте словом these: «ось ці». Один предмет поруч — як і раніше, this.
 
-**Що ви опануєте:** показати на один або кілька предметів поруч і далі: this, that, these, those
-**Нові слова:** phone
+**Що ви опануєте:** називати кілька предметів поруч і питати про них: These are …, Are these …?
+**Нові слова:** shoe, sock, shirt, coat
+**Повертаються:** table, box, bag, sweater, hat
 
 ---
 
 ## Інтро 1
 
-### Ось цей і он той
+### Коробка зі взуттям
 
-`phone` — «телефон». `This is a phone` — «Це телефон»: показуємо на один телефон поруч. `That is a phone` — теж «Це телефон», але показуємо на один телефон далі від нас. `this` — «цей, ось це», `that` — «той, он те». В обох фразах зберігається `is a phone`. Анна запитує, який телефон узяти. Відповідь «телефон» поки допомагає не більше, ніж «той, що дзвонить»: дзвонять обидва. Покажіть точніше — поруч чи далі.
+Ви з подругою розбираєте речі для ярмарку в шкільній залі. Волонтер ставить перед вами на стіл коробку зі взуттям і просить сказати, що в ній. shoe — «туфля». Туфель кілька, і вони просто перед вами, тому these: These are shoes — «Це туфлі».
 
-**Телефон лежить просто перед вами. Назвіть його, починаючи зі слова для одного предмета поруч.**
+**Волонтер показує на коробку перед вами. Скажіть, що це туфлі.**
 
-- ✅ **This is a phone.**
-- ❌ That is a phone. — *Для цієї вправи вибираємо за відстанню: телефон поруч, тому `This`.*
-- ❌ This are a phone. — *З одним предметом після `This` тут потрібно `is`.*
+- ✅ **These are shoes.**
+- ❌ This is shoes. — *Туфель кілька, тому не This, а These: These are shoes.*
+- ❌ These are a shoes. — *Перед shoes не ставимо a: These are shoes.*
 
 ---
 
 ## Інтро 2
 
-### А якщо їх кілька
+### Шкарпетки на столі
 
-Для кількох поруч використовуємо `these` — «ці», для кількох далі — `those` — «ті». `These are dogs` — «Це собаки», показуємо на собак поруч. `Those are dogs` — «Це собаки», показуємо на собак далі. Після `these` і `those` у цих фразах потрібно `are`, а перед `dogs` немає `a`.
+Брат акуратно розкладає на столі перед вами шкарпетки, які приніс для ярмарку. Ви хочете дізнатися, чи нові вони. sock — «шкарпетка». Шкарпеток кілька, і вони поруч: these socks. Запитання починаємо з Are: Are these socks new? — «Ці шкарпетки нові?»
 
-**Кілька собак стоять поруч із вами. Назвіть їх, починаючи зі слова для кількох поруч.**
+**Брат розклав шкарпетки поруч із вами. Запитайте його, чи нові ці шкарпетки.**
 
-- ✅ **These are dogs.**
-- ❌ This is a dog. — *Так показують на одну собаку. Тут їх кілька: `These are dogs`.*
-- ❌ Those are dogs. — *Для собак поруч тут вибираємо `These`; `Those` — для тих, що далі.*
+- ✅ **Are these socks new?**
+- ❌ Is these socks new? — *З these потрібно Are: Are these socks new?*
+- ❌ Are these sock new? — *Шкарпеток кілька, тому потрібно socks з s.*
 
 ---
 
 ## Інтро 3
 
-### Не тільки назвати
+### Сорочки від сусідки
 
-`okay` — «у порядку», `active` — «активний». `This phone is okay` — «Цей телефон у порядку». Між `this` і `phone` не ставимо `a`: `this phone`. `Those dogs are active` — «Ті собаки активні». Можна назвати потрібну групу словами `those dogs`, а потім сказати, яка вона. Тут ідеться про кількох собак, тому `are`.
+Сусідка принесла на ярмарок стос сорочок і кладе його перед вами на стіл. Вона питає, чи можна їх продавати. Ви уважно дивитеся й бачите, що все гаразд. shirt — «сорочка». Сорочок кілька, і вони поруч: These shirts are clean — «Ці сорочки чисті».
 
-**Телефон у вас у руці справний. Скажіть «Цей телефон у порядку», указуючи на телефон поруч.**
+**Сусідка поклала сорочки перед вами. Скажіть їй, що ці сорочки чисті.**
 
-- ✅ **This phone is okay.**
-- ❌ This a phone is okay. — *Між `This` і `phone` не ставимо `a`: `This phone`.*
-- ❌ This phone are okay. — *Телефон один: `This phone is okay`.*
+- ✅ **These shirts are clean.**
+- ❌ This shirts are clean. — *Сорочок кілька, тому не This, а These: These shirts are clean.*
+- ❌ These shirts is clean. — *З these потрібно are: These shirts are clean.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Собаки у дворі багато бігають. Повідомте «Собаки активні»**
+**1 · Брат поставив на стіл коробки. Скажіть подрузі повною фразою: ці коробки важкі.**
 <!-- interaction_id: en:lesson-03:session-33:i01; family: phrase_builder -->
-Плитки: `active` `are` `dogs` `The` `is` → **The dogs are active.**
-*(плитка `is` зайва: тут потрібно `are` — `The dogs are active.`)*
+Плитки: `heavy` `boxes` `are` `These` `box` → **These boxes are heavy.**
+*(плитка `box` зайва: тут потрібно `boxes` — `These boxes are heavy.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте запитання подруги про сумки**
 <!-- interaction_id: en:lesson-03:session-33:i02; family: listen_choose -->
-🔊 *phone* → **phone** · pen · coat
-- pen — *У записі перше слово — `phone`, а в цьому варіанті — `pen`.*
-- coat — *У записі перше слово — `phone`, а в цьому варіанті — `coat`.*
+🔊 *Are these bags new?* → **Are these bags new?** · Is this bag new? · Are these hats new?
+- Is this bag new? — *У записі `Are these bags` — сумок кілька, а в цьому варіанті `Is this bag` — одна.*
+- Are these hats new? — *У записі йдеться про сумки — `bags`, а в цьому варіанті — `hats`.*
 
-**3 · Назвіть телефон одним англійським словом**
+**3 · Сусідка кладе поруч светри. Доповніть її фразу**
 <!-- interaction_id: en:lesson-03:session-33:i03; family: context_gap_grammar -->
-___ → **phone** · pen · coat
-- pen — *`pen` — ручка. Телефон — `phone`.*
-- coat — *`coat` — пальто. Телефон — `phone`.*
+These ___ are cheap. → **sweaters** · sweater · a sweater
+- sweater — *Светрів кілька, тому потрібно sweaters з s.*
+- a sweater — *Після These потрібно кілька светрів: sweaters з s.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-33:i04; family: speed_match -->
-phone — телефон · dogs — собаки · okay — у порядку · active — активний
+shoe — туфля · sock — шкарпетка · shirt — сорочка · coat — пальто
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-33:i05; family: listen_build_dictation -->
-🔊 *This is a phone.* Плитки: `phone` `a` `is` `This` `are` → **This is a phone.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a phone.`)*
+🔊 *These hats are old.* Плитки: `old` `hats` `are` `These` `hat` → **These hats are old.**
+*(плитка `hat` зайва: тут потрібно `hats` — `These hats are old.`)*
 
-**6 · Телефон лежить на дальній лавці. Назвіть його зі словом для одного предмета вдалині**
+**6 · Подруга тримає одну сумку. Скажіть їй, що це сумка.**
 <!-- interaction_id: en:lesson-03:session-33:i06; family: phrase_builder -->
-Плитки: `phone` `a` `is` `That` `are` → **That is a phone.**
-*(плитка `are` зайва: тут потрібно `is` — `That is a phone.`)*
+Плитки: `bag` `a` `is` `This` `These` → **This is a bag.**
+*(плитка `These` зайва: тут потрібно `This` — `This is a bag.`)*
 
-**7 · Кілька собак стоять поруч. Назвіть їх зі словом для кількох поруч, без скорочень**
+**7 · Картка слова — shoe**
+<!-- interaction_id: en:lesson-03:session-33:word:shoe; family: word_card -->
+> **shoe** — туфля. These are shoes — «Це туфлі». Про взуття, яке закриває ногу не вище щиколотки.
+
+**8 · Волонтер дістає взуття з коробки й називає його, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-33:i07; family: scripted_repeat_compare -->
-🎙 **These are dogs.**
+🎙 **shoe**
 
-**8 · Ви показуєте на один телефон просто перед вами**
+**9 · Картка слова — sock**
+<!-- interaction_id: en:lesson-03:session-33:word:sock; family: word_card -->
+> **sock** — шкарпетка. Are these socks new? — «Ці шкарпетки нові?» Про шкарпетку, яку вдягають під взуття.
+
+**10 · Брат тримає річ, яку вдягають на ногу під взуття. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-03:session-33:i08; family: context_gap_grammar -->
-___ is a phone. → **This** · These · Those
-- These — *`These` — кілька поруч. Телефон один: `This`.*
-- Those — *`Those` — кілька далі. Тут один телефон поруч: `This`.*
+___ → **sock** · hat · shirt
+- hat — *hat — це капелюх, а річ для ноги називається sock.*
+- shirt — *shirt — це сорочка, а річ для ноги називається sock.*
 
-**9 · Послухайте й виберіть точну фразу**
+**11 · Послухайте, що каже подруга про туфлі**
 <!-- interaction_id: en:lesson-03:session-33:i09; family: listen_choose -->
-🔊 *Those are dogs.* → **Those are dogs.** · These are dogs. · They are dogs.
-- These are dogs. — *У записі перше слово — `Those`, а в цьому варіанті — `These`.*
-- They are dogs. — *У записі перше слово — `Those`, а в цьому варіанті — `They`.*
+🔊 *These shoes are new.* → **These shoes are new.** · This shoe is new. · These shoes are old.
+- This shoe is new. — *У записі `These shoes are` — туфель кілька, а в цьому варіанті `This shoe is` — одна.*
+- These shoes are old. — *У записі останнє слово — `new`, а в цьому варіанті — `old`.*
 
-**10 · З’єднайте слова зі значеннями в наших прикладах**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-33:i10; family: speed_match -->
-this — цей, для одного поруч · that — той, для одного далі · these — ці, для кількох поруч · those — ті, для кількох далі
+shoes — туфлі · boxes — коробки · bags — сумки · hats — капелюхи
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте подругу й складіть запитання**
 <!-- interaction_id: en:lesson-03:session-33:i11; family: listen_build_dictation -->
-🔊 *Those dogs are active.* Плитки: `active` `are` `dogs` `Those` `is` → **Those dogs are active.**
-*(плитка `is` зайва: тут потрібно `are` — `Those dogs are active.`)*
+🔊 *Are these socks big?* Плитки: `big` `socks` `these` `Are` `Is` → **Are these socks big?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are these socks big?`)*
 
-**12 · Телефон просто перед вами працює нормально. Скажіть «Цей телефон у порядку»**
+**14 · Брат тримає одну шкарпетку. Скажіть йому, що це шкарпетка.**
 <!-- interaction_id: en:lesson-03:session-33:i12; family: phrase_builder -->
-Плитки: `okay` `is` `phone` `This` `are` → **This phone is okay.**
-*(плитка `are` зайва: тут потрібно `is` — `This phone is okay.`)*
+Плитки: `sock` `a` `is` `This` `These` → **This is a sock.**
+*(плитка `These` зайва: тут потрібно `This` — `This is a sock.`)*
 
-**13 · Анна запитує про один телефон на дальній лавці. Повідомте «Той у порядку», почніть зі слова для одного предмета далі, без скорочень**
+**15 · Картка слова — shirt**
+<!-- interaction_id: en:lesson-03:session-33:word:shirt; family: word_card -->
+> **shirt** — сорочка. These shirts are clean — «Ці сорочки чисті». Про сорочку з коміром і ґудзиками.
+
+**16 · Сусідка дістає сорочку зі стосу й називає її, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-33:i13; family: scripted_repeat_compare -->
-🎙 **That is okay.**
+🎙 **shirt**
 
-**14 · Ви називаєте кількох собак у дальньому кінці двору**
+**17 · Картка слова — coat**
+<!-- interaction_id: en:lesson-03:session-33:word:coat; family: word_card -->
+> **coat** — пальто. These are coats — «Це пальта». Про теплий верхній одяг.
+
+**18 · Брат виходить на мороз, і подруга дає йому теплий верхній одяг. Як він називається англійською?**
 <!-- interaction_id: en:lesson-03:session-33:i14; family: context_gap_grammar -->
-Those ___ dogs. → **are** · is · am
-- is — *Після `Those` тут потрібно `are`: собак кілька.*
-- am — *З `Those` тут потрібно `are`.*
+___ → **coat** · shirt · sock
+- shirt — *shirt — це сорочка, а теплий верхній одяг називається coat.*
+- sock — *sock — це шкарпетка, а теплий верхній одяг називається coat.*
 
-**15 · Послухайте й виберіть точну фразу**
+**19 · Послухайте запитання сусідки про сорочки**
 <!-- interaction_id: en:lesson-03:session-33:i15; family: listen_choose -->
-🔊 *That phone is okay.* → **That phone is okay.** · This phone is okay. · The phone is okay.
-- This phone is okay. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
-- The phone is okay. — *У записі перше слово — `That`, а в цьому варіанті — `The`.*
+🔊 *Are these shirts clean?* → **Are these shirts clean?** · Is this shirt clean? · Are these shoes clean?
+- Is this shirt clean? — *У записі `Are these shirts` — сорочок кілька, а в цьому варіанті `Is this shirt` — одна.*
+- Are these shoes clean? — *У записі йдеться про сорочки — `shirts`, а в цьому варіанті — `shoes`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-33:i16; family: speed_match -->
-phone — телефон · okay — у порядку · active — активний · dogs — собаки
+coat — пальто · shirt — сорочка · sock — шкарпетка · shoe — туфля
 
-**17 · На іншій зустрічі ви показуєте гостю телефон у своїй руці. Назвіть його повною фразою зі словом для одного предмета поруч**
+**21 · Брат питає, які пальта на столі теплі. Скажіть йому коротко: ці пальта теплі.**
 <!-- interaction_id: en:lesson-03:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is a phone.**
-
+🎙 **These coats are warm.**

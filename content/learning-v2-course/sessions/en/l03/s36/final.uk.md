@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 36 — Діти на ранковій зустрічі
+# Англійська · Урок 3 · Заняття 36 — Дивимося на вітрини
 
-**Ситуація.** Ви з Анною зустрічаєте сім’ї в клубі рано-вранці. Діти поруч розглядають книжки, інша група чекає в дальньому кінці кімнати. Олег розставляє стільці. Зустріч проходить без офіційних виступів: можна просто познайомитися й поговорити.
+**Ситуація.** Ви з подругою та братом гуляєте вулицею й дивитеся на вітрини магазинів. Усе стоїть за склом, далеко від вас. Один предмет удалині ви називаєте словом that, а кілька предметів удалині — словом those. Розрізняти їх допомагає слух: That is … і Those are ….
 
-**Що ви опануєте:** назвати дітей поруч і далі, використовуючи форму children, та описати їхній стан
-**Нові слова:** children
+**Що ви опануєте:** чути різницю між that і those та називати далекі предмети
+**Нові слова:** tree, flower, bicycle, toy
+**Повертаються:** window, glass, bench, door, shelf
 
 ---
 
 ## Інтро 1
 
-### Діти без зайвого s
+### Дерево в горщику
 
-`child` — «дитина», `children` — «діти». Тут для кількох не додаємо звичайне `s`: запам’ятовуємо `children`, не `childs` і не `childrens`. `These are children` — «Це діти», показуємо на кількох поруч. `children` уже означає кількох: додаткове `s` не приведе на зустріч іще одну дитину.
+Ви з подругою гуляєте вулицею. У вітрині садового магазину стоїть невелике дерево в горщику. Воно за склом, далеко від вас, і подруга питає, що це за рослина. tree — «дерево». Дерево одне і воно далеко, тому that: That is a tree — «Це дерево».
 
-**Перед вами кілька дітей. Назвіть їх одним англійським словом.**
+**Подруга показує на вітрину. Скажіть, що це дерево.**
 
-- ✅ **children**
-- ❌ child — *`child` — одна дитина; кілька — `children`.*
-- ❌ childrens — *`children` уже означає «діти», додаткове `s` не потрібне.*
+- ✅ **That is a tree.**
+- ❌ This is a tree. — *Дерево стоїть далеко, за склом, а this кажемо про те, що поруч: That is a tree.*
+- ❌ That is tree. — *Перед tree потрібно a: That is a tree.*
 
 ---
 
 ## Інтро 2
 
-### Ті діти ще сонні
+### Букет для мами
 
-`sleepy` — «сонний»: хочеться спати, але людина не обов’язково вже спить. `Those children are sleepy` — «Ті діти сонні», говоримо про групу далі від нас. `Those children` — кілька дітей далі, тому після них потрібно `are`. Для дітей поруч змінюємо `Those` на `These`.
+Подруга хоче купити мамі букет. У вітрині квіткового магазину стоять у вазах кілька квітів, але підійти ближче вона не може: магазин зачинений. Вона просить вас оцінити їх здалеку. flower — «квітка». Квітів кілька, і вони далеко: Those flowers are fresh — «Ті квіти свіжі».
 
-**Діти в дальньому кінці кімнати позіхають, їм хочеться спати. Скажіть «Ті діти сонні».**
+**Подруга просить оцінити квіти у вітрині. Скажіть, що ті квіти свіжі.**
 
-- ✅ **Those children are sleepy.**
-- ❌ That children are sleepy. — *`That` — один. Дітей кілька й вони далі: `Those`.*
-- ❌ Those children is sleepy. — *Дітей кілька: потрібно `are`.*
+- ✅ **Those flowers are fresh.**
+- ❌ These flowers are fresh. — *Квіти стоять далеко, за склом, а these кажемо про те, що поруч: Those flowers are fresh.*
+- ❌ Those flower are fresh. — *Квітів кілька, тому потрібно flowers з s.*
 
 ---
 
 ## Інтро 3
 
-### Зустріч без церемоній
+### Велосипеди за склом
 
-`informal` — «неформальний, невимушений». Про нашу зустріч можна сказати `It is informal` — «Вона неформальна»: немає суворого порядку виступів, учасники просто спілкуються. Це не означає, що зустріч таємна чи заборонена. Поки всі знайомляться, Олег розставляє стільці: `These chairs are here` — «Ці стільці тут». `these chairs` — кілька стільців поруч.
+Брат хоче купити велосипед. Магазин зачинений, і ви дивитеся через вітрину на велосипеди, що стоять у ряд далеко за склом. bicycle — «велосипед». Велосипедів кілька, і вони далеко. Брат дивиться на ціни й чекає вашого запитання: Are those bicycles expensive? — «Ті велосипеди дорогі?»
 
-**Зустріч проходить невимушено, без офіційних виступів. Скажіть про неї «Вона неформальна».**
+**Брат дивиться на вітрину. Запитайте його, чи дорогі ті велосипеди.**
 
-- ✅ **It is informal.**
-- ❌ It is formal. — *`formal` — «офіційна». Тут зустріч невимушена: `informal`.*
-- ❌ It are informal. — *Ідеться про одну зустріч: `It is informal`.*
+- ✅ **Are those bicycles expensive?**
+- ❌ Is those bicycles expensive? — *З those потрібно Are: Are those bicycles expensive?*
+- ❌ Are that bicycles expensive? — *Велосипедів кілька, тому не that, а those: Are those bicycles expensive?*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Олег шукає стільці для зустрічі. Повідомте «Стільці тут»**
+**1 · Подруга показує на вікна магазину. Скажіть їй повною фразою: ті вікна великі.**
 <!-- interaction_id: en:lesson-03:session-36:i01; family: phrase_builder -->
-Плитки: `here` `are` `chairs` `The` `is` → **The chairs are here.**
-*(плитка `is` зайва: тут потрібно `are` — `The chairs are here.`)*
+Плитки: `big` `windows` `are` `Those` `window` → **Those windows are big.**
+*(плитка `window` зайва: тут потрібно `windows` — `Those windows are big.`)*
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте, що каже подруга про двері**
 <!-- interaction_id: en:lesson-03:session-36:i02; family: listen_choose -->
-🔊 *children* → **children** · cats · chairs
-- cats — *У записі перше слово — `children`, а в цьому варіанті — `cats`.*
-- chairs — *У записі перше слово — `children`, а в цьому варіанті — `chairs`.*
+🔊 *That door is old.* → **That door is old.** · Those doors are old. · This door is old.
+- Those doors are old. — *У записі `That door` — двері одні, а в цьому варіанті `Those doors` — кілька.*
+- This door is old. — *У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч).*
 
-**3 · Назвіть кількох дітей одним англійським словом**
+**3 · Брат дивиться на лавки біля магазину. Доповніть його фразу**
 <!-- interaction_id: en:lesson-03:session-36:i03; family: context_gap_grammar -->
-___ → **children** · child · childrens
-- child — *`child` — одна дитина. Тут потрібне `children`.*
-- childrens — *Для кількох дітей потрібне `children`, без додаткового `s`.*
+Those ___ are empty. → **benches** · bench · a bench
+- bench — *Лавок кілька, тому потрібно benches.*
+- a bench — *Після Those потрібно кілька лавок: benches.*
 
 **4 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-36:i04; family: speed_match -->
-children — діти · sleepy — сонний · informal — неформальний, невимушений · chairs — стільці
+tree — дерево · flower — квітка · bicycle — велосипед · toy — іграшка
 
-**5 · Послухайте й складіть фразу**
+**5 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-36:i05; family: listen_build_dictation -->
-🔊 *These are children.* Плитки: `children` `are` `These` `is` → **These are children.**
-*(плитка `is` зайва: тут потрібно `are` — `These are children.`)*
+🔊 *That shelf is long.* Плитки: `long` `shelf` `is` `That` `are` → **That shelf is long.**
+*(плитка `are` зайва: тут потрібно `is` — `That shelf is long.`)*
 
-**6 · Дітям в іншому кінці кімнати хочеться спати. Скажіть «Ті діти сонні»**
+**6 · Лавка стоїть далеко від вас. Скажіть подрузі, що це лавка.**
 <!-- interaction_id: en:lesson-03:session-36:i06; family: phrase_builder -->
-Плитки: `sleepy` `are` `children` `Those` `is` → **Those children are sleepy.**
-*(плитка `is` зайва: тут потрібно `are` — `Those children are sleepy.`)*
+Плитки: `bench` `a` `is` `That` `This` → **That is a bench.**
+*(плитка `This` зайва: тут потрібно `That` — `That is a bench.`)*
 
-**7 · Ви теж рано встали, і вам хочеться спати. Скажіть «Я сонний» зі скороченням**
+**7 · Картка слова — tree**
+<!-- interaction_id: en:lesson-03:session-36:word:tree; family: word_card -->
+> **tree** — дерево. That is a tree — «Це дерево». Про велику рослину зі стовбуром і гілками.
+
+**8 · Подруга називає те, що стоїть у горщику за склом, а ви повторюєте за нею слово**
 <!-- interaction_id: en:lesson-03:session-36:i07; family: scripted_repeat_compare -->
-🎙 **I'm sleepy.**
+🎙 **tree**
 
-**8 · Ви показуєте на кількох дітей просто поруч із вами**
+**9 · Картка слова — flower**
+<!-- interaction_id: en:lesson-03:session-36:word:flower; family: word_card -->
+> **flower** — квітка. Those flowers are fresh — «Ті квіти свіжі». Про квітку на стеблі чи в букеті.
+
+**10 · Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?**
 <!-- interaction_id: en:lesson-03:session-36:i08; family: context_gap_grammar -->
-___ are children. → **These** · This · That
-- This — *`This` — один. Для кількох поруч потрібне `These`.*
-- That — *`That` — один далі. Тут кілька поруч: `These`.*
+___ → **flower** · tree · toy
+- tree — *tree — це дерево, а те, що дарують у букеті, називається flower.*
+- toy — *toy — це іграшка, а те, що дарують у букеті, називається flower.*
 
-**9 · Послухайте опис зустрічі**
+**11 · Послухайте, що каже брат про дерево**
 <!-- interaction_id: en:lesson-03:session-36:i09; family: listen_choose -->
-🔊 *It is informal.* → **It is informal.** · It is formal. · It is unusual.
-- It is formal. — *У записі останнє слово — `informal`, а в цьому варіанті — `formal`.*
-- It is unusual. — *У записі останнє слово — `informal`, а в цьому варіанті — `unusual`.*
+🔊 *That tree is small.* → **That tree is small.** · Those trees are small. · That tree is big.
+- Those trees are small. — *У записі `That tree` — дерево одне, а в цьому варіанті `Those trees` — кілька.*
+- That tree is big. — *У записі останнє слово — `small`, а в цьому варіанті — `big`.*
 
-**10 · З’єднайте слова зі значеннями для наших прикладів**
+**12 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-36:i10; family: speed_match -->
-these — ці, кілька поруч · those — ті, кілька далі · children — діти · chairs — стільці
+tree — дерево · window — вікно · door — двері · bench — лавка
 
-**11 · Послухайте й складіть фразу**
+**13 · Послухайте подругу й складіть запитання**
 <!-- interaction_id: en:lesson-03:session-36:i11; family: listen_build_dictation -->
-🔊 *Those chairs are outside.* Плитки: `outside` `are` `chairs` `Those` `is` → **Those chairs are outside.**
-*(плитка `is` зайва: тут потрібно `are` — `Those chairs are outside.`)*
+🔊 *Are those flowers fresh?* Плитки: `fresh` `flowers` `those` `Are` `Is` → **Are those flowers fresh?**
+*(плитка `Is` зайва: тут потрібно `Are` — `Are those flowers fresh?`)*
 
-**12 · Ви показуєте на стільці просто перед вами. Скажіть «Ці стільці тут»**
+**14 · Подруга питає, що стоїть за склом удалині. Скажіть, що це дерева.**
 <!-- interaction_id: en:lesson-03:session-36:i12; family: phrase_builder -->
-Плитки: `here` `are` `chairs` `These` `is` → **These chairs are here.**
-*(плитка `is` зайва: тут потрібно `are` — `These chairs are here.`)*
+Плитки: `trees` `are` `Those` `These` → **Those are trees.**
+*(плитка `These` зайва: тут потрібно `Those` — `Those are trees.`)*
 
-**13 · Анна запитує про характер зустрічі. Вона невимушена, без офіційних виступів. Скажіть «Вона неформальна» зі скороченням**
+**15 · Картка слова — bicycle**
+<!-- interaction_id: en:lesson-03:session-36:word:bicycle; family: word_card -->
+> **bicycle** — велосипед. Are those bicycles expensive? — «Ті велосипеди дорогі?» Про транспорт на двох колесах із педалями.
+
+**16 · Брат називає те, на чому їздять на двох колесах, а ви повторюєте за ним слово**
 <!-- interaction_id: en:lesson-03:session-36:i13; family: scripted_repeat_compare -->
-🎙 **It's informal.**
+🎙 **bicycle**
 
-**14 · Ви повідомляєте, що кільком дітям у дальньому кінці кімнати хочеться спати**
+**17 · Картка слова — toy**
+<!-- interaction_id: en:lesson-03:session-36:word:toy; family: word_card -->
+> **toy** — іграшка. That is a toy — «Це іграшка». Про річ, з якою граються діти.
+
+**18 · Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?**
 <!-- interaction_id: en:lesson-03:session-36:i14; family: context_gap_grammar -->
-Those children ___ sleepy. → **are** · is · am
-- is — *`children` — кілька дітей: потрібно `are`.*
-- am — *З `Those children` тут потрібно `are`.*
+___ → **toy** · bicycle · flower
+- bicycle — *bicycle — це велосипед, а те, з чим граються, називається toy.*
+- flower — *flower — це квітка, а те, з чим граються, називається toy.*
 
-**15 · Послухайте й виберіть точну фразу**
+**19 · Послухайте, що каже подруга про велосипеди**
 <!-- interaction_id: en:lesson-03:session-36:i15; family: listen_choose -->
-🔊 *These children are sleepy.* → **These children are sleepy.** · Those children are sleepy. · The children are sleepy.
-- Those children are sleepy. — *У записі перше слово — `These`, а в цьому варіанті — `Those`.*
-- The children are sleepy. — *У записі перше слово — `These`, а в цьому варіанті — `The`.*
+🔊 *That bicycle is cheap.* → **That bicycle is cheap.** · Those bicycles are cheap. · That bicycle is new.
+- Those bicycles are cheap. — *У записі `That bicycle` — велосипед один, а в цьому варіанті `Those bicycles` — кілька.*
+- That bicycle is new. — *У записі останнє слово — `cheap`, а в цьому варіанті — `new`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-36:i16; family: speed_match -->
-children — діти · sleepy — сонний · informal — неформальний, невимушений · chairs — стільці
+toy — іграшка · bicycle — велосипед · flower — квітка · tree — дерево
 
-**17 · На іншій зустрічі гість запитує про групу людей у дальньому кінці кімнати. Там діти. Назвіть їх повною фразою зі словом для кількох далі**
+**21 · Подруга показує на вітрину з іграшками. Скажіть їй коротко: ті іграшки нові.**
 <!-- interaction_id: en:lesson-03:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Those are children.**
-
+🎙 **Those toys are new.**

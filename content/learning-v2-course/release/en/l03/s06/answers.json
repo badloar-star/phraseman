@@ -50,14 +50,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-06:i08",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-06:i08:r1"
-  },
-  {
     "interactionId": "en:lesson-03:session-06:word:bag",
     "correctText": "bag",
     "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-06:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-06:i09",

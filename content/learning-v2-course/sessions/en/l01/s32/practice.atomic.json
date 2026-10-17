@@ -124,77 +124,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-32:i03",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Вы сверили время открытия в приглашении: оно верное. Вставьте слово",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-32:i03:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-01:session-32:i03:r2",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-01:session-32:i03:r3",
-            "text": "are"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вы сверили время открытия в приглашении: оно верное. Вставьте слово",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вы сверили время открытия в приглашении: оно верное. Вставьте слово",
-            "uk": "Ви звірили час відкриття в запрошенні: він правильний. Вставте слово"
-          },
-          "gappedTargetPhrase": "It ___ correct.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-32:i03:r1",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-01:session-32:i03:r2",
-              "text": "am"
-            },
-            {
-              "responseId": "en:lesson-01:session-32:i03:r3",
-              "text": "are"
-            }
-          ],
-          "testedDimension": "Вы сверили время открытия в приглашении: оно верное. Вставьте слово",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-01:session-32:i03:r2",
-              "correct": false,
-              "testedDimension": "Вы сверили время открытия в приглашении: оно верное. Вставьте слово",
-              "feedbackByLocale": {
-                "ru": "После `It` нужно `is`.",
-                "uk": "Після `It` потрібно `is`."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-32:i03:r3",
-              "correct": false,
-              "testedDimension": "Вы сверили время открытия в приглашении: оно верное. Вставьте слово",
-              "feedbackByLocale": {
-                "ru": "С `It` здесь ставим `is`.",
-                "uk": "Із `It` тут ставимо `is`."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-32:word:crooked",
-        "ordinal": 7,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -232,6 +163,75 @@
               "uk": "кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні."
             }
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-32:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово",
+            "uk": "Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово"
+          },
+          "gappedTargetPhrase": "It ___ crooked.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-32:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-32:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-32:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово",
+              "feedbackByLocale": {
+                "ru": "С `It` здесь ставим `is`.",
+                "uk": "Із `It` тут ставимо `is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -545,32 +545,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-32:word:blurry",
+        "interactionId": "en:lesson-01:session-32:word:tiny",
         "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — blurry",
+        "prompt": "Карточка слова — tiny",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-01:session-32:word:blurry:audio"
+          "en:lesson-01:session-32:word:tiny:audio"
         ],
-        "accessibilityLabel": "Карточка слова — blurry",
+        "accessibilityLabel": "Карточка слова — tiny",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-32:word:blurry:audio",
-            "transcript": "blurry"
+            "audioTargetId": "en:lesson-01:session-32:word:tiny:audio",
+            "transcript": "tiny"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-01:session-32:word:blurry:r1",
-              "targetText": "blurry",
+              "responseId": "en:lesson-01:session-32:word:tiny:r1",
+              "targetText": "tiny",
               "meaningByLocale": {
-                "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
-                "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
+                "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
+                "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
               }
             }
           ],
@@ -578,10 +578,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "blurry",
+            "word": "tiny",
             "definitionByLocale": {
-              "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
-              "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
+              "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
+              "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
             }
           }
         },
@@ -1006,32 +1006,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-32:word:tiny",
+        "interactionId": "en:lesson-01:session-32:word:blurry",
         "ordinal": 22,
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — tiny",
+        "prompt": "Карточка слова — blurry",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-01:session-32:word:tiny:audio"
+          "en:lesson-01:session-32:word:blurry:audio"
         ],
-        "accessibilityLabel": "Карточка слова — tiny",
+        "accessibilityLabel": "Карточка слова — blurry",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-32:word:tiny:audio",
-            "transcript": "tiny"
+            "audioTargetId": "en:lesson-01:session-32:word:blurry:audio",
+            "transcript": "blurry"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-01:session-32:word:tiny:r1",
-              "targetText": "tiny",
+              "responseId": "en:lesson-01:session-32:word:blurry:r1",
+              "targetText": "blurry",
               "meaningByLocale": {
-                "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
-                "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
+                "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
+                "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
               }
             }
           ],
@@ -1039,10 +1039,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tiny",
+            "word": "blurry",
             "definitionByLocale": {
-              "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
-              "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
+              "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
+              "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
             }
           }
         },
@@ -1285,77 +1285,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-32:i03",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Ви звірили час відкриття в запрошенні: він правильний. Вставте слово",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-32:i03:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-01:session-32:i03:r2",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-01:session-32:i03:r3",
-            "text": "are"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Ви звірили час відкриття в запрошенні: він правильний. Вставте слово",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вы сверили время открытия в приглашении: оно верное. Вставьте слово",
-            "uk": "Ви звірили час відкриття в запрошенні: він правильний. Вставте слово"
-          },
-          "gappedTargetPhrase": "It ___ correct.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-32:i03:r1",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-01:session-32:i03:r2",
-              "text": "am"
-            },
-            {
-              "responseId": "en:lesson-01:session-32:i03:r3",
-              "text": "are"
-            }
-          ],
-          "testedDimension": "Ви звірили час відкриття в запрошенні: він правильний. Вставте слово",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-01:session-32:i03:r2",
-              "correct": false,
-              "testedDimension": "Ви звірили час відкриття в запрошенні: він правильний. Вставте слово",
-              "feedbackByLocale": {
-                "ru": "После `It` нужно `is`.",
-                "uk": "Після `It` потрібно `is`."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-32:i03:r3",
-              "correct": false,
-              "testedDimension": "Ви звірили час відкриття в запрошенні: він правильний. Вставте слово",
-              "feedbackByLocale": {
-                "ru": "С `It` здесь ставим `is`.",
-                "uk": "Із `It` тут ставимо `is`."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-01:session-32:word:crooked",
-        "ordinal": 7,
+        "ordinal": 6,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1393,6 +1324,75 @@
               "uk": "кривий, висить або стоїть нерівно. It is crooked — «Вона висить криво»: наприклад, рамка на стіні."
             }
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-32:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы отошли от стены: рамка с главным снимком висит с наклоном. Вставьте слово",
+            "uk": "Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово"
+          },
+          "gappedTargetPhrase": "It ___ crooked.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-32:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-32:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-32:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви відійшли від стіни: рамка з головним знімком висить нахилено. Вставте слово",
+              "feedbackByLocale": {
+                "ru": "С `It` здесь ставим `is`.",
+                "uk": "Із `It` тут ставимо `is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1706,32 +1706,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-32:word:blurry",
+        "interactionId": "en:lesson-01:session-32:word:tiny",
         "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — blurry",
+        "prompt": "Картка слова — tiny",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-01:session-32:word:blurry:audio"
+          "en:lesson-01:session-32:word:tiny:audio"
         ],
-        "accessibilityLabel": "Картка слова — blurry",
+        "accessibilityLabel": "Картка слова — tiny",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-32:word:blurry:audio",
-            "transcript": "blurry"
+            "audioTargetId": "en:lesson-01:session-32:word:tiny:audio",
+            "transcript": "tiny"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-01:session-32:word:blurry:r1",
-              "targetText": "blurry",
+              "responseId": "en:lesson-01:session-32:word:tiny:r1",
+              "targetText": "tiny",
               "meaningByLocale": {
-                "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
-                "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
+                "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
+                "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
               }
             }
           ],
@@ -1739,10 +1739,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "blurry",
+            "word": "tiny",
             "definitionByLocale": {
-              "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
-              "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
+              "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
+              "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
             }
           }
         },
@@ -2167,32 +2167,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-32:word:tiny",
+        "interactionId": "en:lesson-01:session-32:word:blurry",
         "ordinal": 22,
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — tiny",
+        "prompt": "Картка слова — blurry",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-01:session-32:word:tiny:audio"
+          "en:lesson-01:session-32:word:blurry:audio"
         ],
-        "accessibilityLabel": "Картка слова — tiny",
+        "accessibilityLabel": "Картка слова — blurry",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-32:word:tiny:audio",
-            "transcript": "tiny"
+            "audioTargetId": "en:lesson-01:session-32:word:blurry:audio",
+            "transcript": "blurry"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-01:session-32:word:tiny:r1",
-              "targetText": "tiny",
+              "responseId": "en:lesson-01:session-32:word:blurry:r1",
+              "targetText": "blurry",
               "meaningByLocale": {
-                "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
-                "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
+                "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
+                "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
               }
             }
           ],
@@ -2200,10 +2200,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tiny",
+            "word": "blurry",
             "definitionByLocale": {
-              "ru": "крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.",
-              "uk": "крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small."
+              "ru": "размытый, нечёткий. It is blurry — «Он размытый»: снимок не в фокусе.",
+              "uk": "розмитий, нечіткий. It is blurry — «Він розмитий»: знімок не у фокусі."
             }
           }
         },
@@ -2337,14 +2337,14 @@
       "correctResponseId": "en:lesson-01:session-32:i02:r1"
     },
     {
-      "interactionId": "en:lesson-01:session-32:i03",
-      "correctText": "is",
-      "correctResponseId": "en:lesson-01:session-32:i03:r1"
-    },
-    {
       "interactionId": "en:lesson-01:session-32:word:crooked",
       "correctText": "crooked",
       "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-32:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-32:i03:r1"
     },
     {
       "interactionId": "en:lesson-01:session-32:word:huge",
@@ -2377,8 +2377,8 @@
       "correctResponseId": "en:lesson-01:session-32:i08:r1"
     },
     {
-      "interactionId": "en:lesson-01:session-32:word:blurry",
-      "correctText": "blurry",
+      "interactionId": "en:lesson-01:session-32:word:tiny",
+      "correctText": "tiny",
       "correctResponseId": null
     },
     {
@@ -2417,8 +2417,8 @@
       "correctResponseId": "en:lesson-01:session-32:i15:r1"
     },
     {
-      "interactionId": "en:lesson-01:session-32:word:tiny",
-      "correctText": "tiny",
+      "interactionId": "en:lesson-01:session-32:word:blurry",
+      "correctText": "blurry",
       "correctResponseId": null
     },
     {

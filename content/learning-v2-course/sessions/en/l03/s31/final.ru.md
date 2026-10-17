@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 31 — Два парка на выходные
+# Английский · Урок 3 · Занятие 31 — Костюмерная театра
 
-**Ситуация.** Вы с Анной выбираете места для прогулки. На карте отмечены два парка по разные стороны реки. Олег готовит билеты на выставку в одном из них; вы сравниваете парки и уточняете, где они находятся.
+**Ситуация.** Вы с подругой помогаете в театральной костюмерной. Костюмерша быстро просит назвать детали костюма. То, что лежит на столе рядом с вами, вы называете this, а то, что на верхней полке в другом конце комнаты, — that.
 
-**Что вы освоите:** назвать несколько парков, сравнить их и отличить парки вообще от конкретных парков
-**Новые слова:** parks
+**Что вы освоите:** быстро выбирать this или that для близкой и далёкой вещи
+**Новые слова:** hat, belt, boot, cape
+**Возвращаются:** shelf, table, door, chair, box
 
 ---
 
 ## Интро 1
 
-### Один парк или несколько
+### Верхняя полка
 
-`park` — «парк», `parks` — «парки». `They are parks` — «Это парки». Для нескольких парков добавляем `s`, перед `parks` не ставим `a`. Олег отметил один парк и объявил, что знает все парки города. На карте осталось ещё несколько зелёных пятен, которые портят ему статистику. Нужны `parks` — парки.
+Костюмерша просит быстро принести головной убор для роли капитана в новом спектакле. На верхней полке в другом конце комнаты вы видите круглую вещь с полями. hat — «шляпа». Полка далеко от вас, поэтому that. Перед hat ставим a: That is a hat — «Это шляпа».
 
-**На карте отмечены несколько парков. Назовите их одним английским словом.**
+**Костюмерша показывает на верхнюю полку в другом конце комнаты. Скажите, что это шляпа.**
 
-- ✅ **parks**
-- ❌ park — *`park` — один парк; несколько — `parks`.*
-- ❌ a parks — *Перед названием нескольких парков не ставим `a`.*
+- ✅ **That is a hat.**
+- ❌ This is a hat. — *Полка далеко, а this говорим о том, что рядом: That is a hat.*
+- ❌ That is an hat. — *Перед hat нужно a: слово начинается с согласного звука.*
 
 ---
 
 ## Интро 2
 
-### Похожи, но не один парк
+### Стол перед вами
 
-`similar` — «похожий», `separate` — «отдельный», `unusual` — «необычный». `The parks are similar` — «Парки похожи». У обоих есть дорожки и пруд, но это два отдельных парка: `They are separate` — «Они отдельные». `equal` — «равный»: это не то же самое, что «похожий». Например, две одинаковые суммы равны, а два парка могут быть похожи, хотя один больше другого.
+На столе прямо перед вами лежит длинная кожаная полоса с пряжкой, и костюмерша просит назвать её. belt — «ремень». Он рядом с вами, поэтому this. Перед belt ставим a, потому что слово начинается с согласного звука: This is a belt — «Это ремень».
 
-**Вы сравниваете два известных вам парка: у них похожая планировка. Сообщите «Парки похожи».**
+**Костюмерша показывает на стол перед вами. Скажите, что это ремень.**
 
-- ✅ **The parks are similar.**
-- ❌ The parks is similar. — *Парков несколько: нужно `are`.*
-- ❌ The parks are unusual. — *`unusual` — «необычные». Здесь важно, что парки похожи: `similar`.*
+- ✅ **This is a belt.**
+- ❌ That is a belt. — *Ремень лежит рядом, а that говорим о далёком: This is a belt.*
+- ❌ This is belt. — *Перед belt нужно a: This is a belt.*
 
 ---
 
 ## Интро 3
 
-### Парки для города
+### Обувь в углу
 
-`Parks are important` — «Парки важны». Можно сказать так о парках вообще, обсуждая места для прогулок в городе. Перед `parks` тогда нет `the`. `Where are the parks?` — «Где парки?» Здесь с `the` вы спрашиваете об определённых парках, которые выбрали вместе с Анной.
+Под вешалкой в дальнем углу стоит высокая обувь, накрытая куском ткани, и подруга не уверена, что это. boot — «сапог», обувь с высоким верхом. Угол далеко от вас, поэтому в вопросе that. Подруга спрашивает костюмершу: Is that a boot? — «Это сапог?»
 
-**Вы говорите о парках вообще и их пользе для города. Скажите «Парки важны», не указывая на конкретные парки.**
+**Подруга показывает на дальний угол. Спросите костюмершу, сапог ли это.**
 
-- ✅ **Parks are important.**
-- ❌ The parks are important. — *`The parks` — определённые парки. Здесь говорим о парках вообще: `Parks`.*
-- ❌ A parks are important. — *Перед `parks` не ставим `a`.*
+- ✅ **Is that a boot?**
+- ❌ Is this a boot? — *Угол далеко, а this говорим о том, что рядом: Is that a boot?*
+- ❌ Is that boot? — *Перед boot нужно a: Is that a boot?*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Олег ищет билеты на выставку. Сообщите «Билеты здесь»**
+**1 · Костюмерша показывает на стол рядом с вами. Скажите, что это стол.**
 <!-- interaction_id: en:lesson-03:session-31:i01; family: phrase_builder -->
-Плитки: `here` `are` `tickets` `The` `is` → **The tickets are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The tickets are here.`)*
+Плитки: `table` `This` `is` `a` `That` → **This is a table.**
+*(плитка `That` лишняя: здесь нужно `This` — `This is a table.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте, что говорит костюмерша**
 <!-- interaction_id: en:lesson-03:session-31:i02; family: listen_choose -->
-🔊 *parks* → **parks** · pens · cars
-- pens — *В записи первое слово — `parks`, а в этом варианте — `pens`.*
-- cars — *В записи первое слово — `parks`, а в этом варианте — `cars`.*
+🔊 *That is a chair.* → **That is a chair.** · This is a chair. · That is a door.
+- This is a chair. — *В записи первое слово — `That`, а в этом варианте — `This`.*
+- That is a door. — *В записи последнее слово — `chair`, а в этом варианте — `door`.*
 
-**3 · Назовите несколько парков одним английским словом**
+**3 · Коробка стоит у дальней стены. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-31:i03; family: context_gap_grammar -->
-___ → **parks** · park · a parks
-- park — *Несколько парков — `parks`.*
-- a parks — *Перед `parks` не ставим `a`.*
+That ___ a box. → **is** · are · am
+- are — *С that нужно is: That is a box.*
+- am — *С that нужно is: That is a box.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-31:i04; family: speed_match -->
-parks — парки · tickets — билеты · equal — равный · similar — похожий
+hat — шляпа · belt — ремень · boot — ботинок · cape — накидка
 
-**5 · Послушайте и соберите сообщение**
+**5 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-03:session-31:i05; family: listen_build_dictation -->
-🔊 *The parks are similar.* Плитки: `similar` `are` `parks` `The` `is` → **The parks are similar.**
-*(плитка `is` лишняя: здесь нужно `are` — `The parks are similar.`)*
+🔊 *Is this a shelf?* Плитки: `shelf` `this` `Is` `a` `an` → **Is this a shelf?**
+*(плитка `an` лишняя: здесь нужно `a` — `Is this a shelf?`)*
 
-**6 · Обсуждая места для прогулок, скажите «Парки важны» о парках вообще**
+**6 · Дверь в дальнем конце комнаты. Спросите костюмершу, дверь ли это.**
 <!-- interaction_id: en:lesson-03:session-31:i06; family: phrase_builder -->
-Плитки: `important` `are` `Parks` `is` → **Parks are important.**
-*(плитка `is` лишняя: здесь нужно `are` — `Parks are important.`)*
+Плитки: `door` `that` `Is` `a` `this` → **Is that a door?**
+*(плитка `this` лишняя: здесь нужно `that` — `Is that a door?`)*
 
-**7 · Олег принял два парка на карте за один. Скажите о них «Они отдельные» с сокращением**
+**7 · Карточка слова — hat**
+<!-- interaction_id: en:lesson-03:session-31:word:hat; family: word_card -->
+> **hat** — шляпа, головной убор с полями. That is a hat — «Это шляпа». О шляпе для роли, для лета, для праздника.
+
+**8 · Костюмерша называет вещь, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-31:i07; family: scripted_repeat_compare -->
-🎙 **They're separate.**
+🎙 **hat**
 
-**8 · Вы говорите о пользе парков вообще, не о конкретных парках**
+**9 · Карточка слова — belt**
+<!-- interaction_id: en:lesson-03:session-31:word:belt; family: word_card -->
+> **belt** — ремень, кожаная полоса, которой подпоясывают одежду. This is a belt — «Это ремень». О ремне для брюк или для костюма.
+
+**10 · Костюмерша показывает длинную кожаную полосу, которой подпоясывают одежду. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-31:i08; family: context_gap_grammar -->
-___ are important. → **Parks** · The parks · A parks
-- The parks — *`The parks` — определённые парки. Здесь нужно общее `Parks`.*
-- A parks — *Перед `parks` не ставим `a`.*
+___ → **belt** · hat · table
+- hat — *hat — это шляпа, а полоса, которой подпоясывают одежду, называется belt.*
+- table — *table — это стол, а полоса, которой подпоясывают одежду, называется belt.*
 
-**9 · Послушайте описание выбранных парков**
+**11 · Послушайте подругу**
 <!-- interaction_id: en:lesson-03:session-31:i09; family: listen_choose -->
-🔊 *They are unusual.* → **They are unusual.** · They are similar. · They are separate.
-- They are similar. — *В записи последнее слово — `unusual`, а в этом варианте — `similar`.*
-- They are separate. — *В записи последнее слово — `unusual`, а в этом варианте — `separate`.*
+🔊 *That is not a hat.* → **That is not a hat.** · This is not a hat. · That is not a table.
+- This is not a hat. — *В записи первое слово — `That`, а в этом варианте — `This`.*
+- That is not a table. — *В записи последнее слово — `hat`, а в этом варианте — `table`.*
 
-**10 · Соедините слова со значениями**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-31:i10; family: speed_match -->
-separate — отдельный · unusual — необычный · parks — парки · tickets — билеты
+hat — шляпа · table — стол · shelf — полка · door — дверь
 
-**11 · Послушайте и соберите сообщение**
+**13 · Послушайте костюмершу и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-31:i11; family: listen_build_dictation -->
-🔊 *The tickets are valid.* Плитки: `valid` `are` `tickets` `The` `is` → **The tickets are valid.**
-*(плитка `is` лишняя: здесь нужно `are` — `The tickets are valid.`)*
+🔊 *This is not a belt.* Плитки: `belt` `not` `is` `This` `a` `an` → **This is not a belt.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is not a belt.`)*
 
-**12 · Анна знает, какие парки вы выбрали. Спросите, где парки**
+**14 · Костюмерша спрашивает, что лежит на верхней полке. Скажите, что это шляпа.**
 <!-- interaction_id: en:lesson-03:session-31:i12; family: phrase_builder -->
-Плитки: `parks` `the` `are` `Where` `What` → **Where are the parks?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the parks?`)*
+Плитки: `hat` `That` `is` `a` `This` → **That is a hat.**
+*(плитка `This` лишняя: здесь нужно `That` — `That is a hat.`)*
 
-**13 · Вы сравнили две суммы за билеты: суммы одинаковые. Скажите о суммах «Они равны» с сокращением**
+**15 · Карточка слова — boot**
+<!-- interaction_id: en:lesson-03:session-31:word:boot; family: word_card -->
+> **boot** — сапог, обувь с высоким верхом. Is that a boot? — «Это сапог?» Об одном сапоге: пара — это два сапога.
+
+**16 · Костюмерша называет вещь, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-31:i13; family: scripted_repeat_compare -->
-🎙 **They're equal.**
+🎙 **boot**
 
-**14 · Вы сообщаете, что два выбранных парка похожи**
+**17 · Карточка слова — cape**
+<!-- interaction_id: en:lesson-03:session-31:word:cape; family: word_card -->
+> **cape** — накидка, длинная ткань без рукавов, которую набрасывают на плечи. This is a cape — «Это накидка». О накидке для роли или для праздника.
+
+**18 · Костюмерша показывает длинную ткань без рукавов, которую набрасывают на плечи. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-31:i14; family: context_gap_grammar -->
-The parks ___ similar. → **are** · is · am
-- is — *Парков несколько: нужно `are`.*
-- am — *С `the parks` здесь нужно `are`.*
+___ → **cape** · scarf · hat
+- scarf — *scarf — это шарф на шею, а длинная накидка на плечи называется cape.*
+- hat — *hat — это шляпа, а длинная накидка на плечи называется cape.*
 
-**15 · Послушайте сообщение о выбранных парках**
+**19 · Послушайте вопрос подруги**
 <!-- interaction_id: en:lesson-03:session-31:i15; family: listen_choose -->
-🔊 *They are separate.* → **They are separate.** · They are similar. · They are unusual.
-- They are similar. — *В записи последнее слово — `separate`, а в этом варианте — `similar`.*
-- They are unusual. — *В записи последнее слово — `separate`, а в этом варианте — `unusual`.*
+🔊 *Is this a boot?* → **Is this a boot?** · Is that a boot? · Is this a belt?
+- Is that a boot? — *В записи второе слово — `this`, а в этом варианте — `that`.*
+- Is this a belt? — *В записи последнее слово — `boot`, а в этом варианте — `belt`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-31:i16; family: speed_match -->
-equal — равный · similar — похожий · separate — отдельный · unusual — необычный
+cape — накидка · boot — ботинок · belt — ремень · hat — шляпа
 
-**17 · В другом городе Анна выбрала несколько парков для прогулок. Спросите, где парки**
+**21 · Костюмерша протягивает вам накидку. Скажите, что это.**
 <!-- interaction_id: en:lesson-03:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where are the parks?**
-
+🎙 **This is a cape.**

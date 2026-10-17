@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 26 — Кошки и коробки
+# Английский · Урок 3 · Занятие 26 — Проверяем зал перед презентацией
 
-**Ситуация.** Вы помогаете Анне подготовить комнату в приюте для кошек. Олег принёс пустые коробки. Пока вы расставляете их, кошки прячутся внутри, а Олег пытается понять, куда все делись.
+**Ситуация.** Вы с подругой готовите зал к презентации, а техник проверяет оборудование. Всё, что стоит далеко от вас, у дальней стены или в углу зала, вы называете словом that: «вот то, там». То, что рядом, по-прежнему this.
 
-**Что вы освоите:** назвать нескольких кошек и отличить разговор о кошках вообще от разговора об определённых кошках
-**Новые слова:** cats
+**Что вы освоите:** называть вещь, которая далеко: That is a … и That is an …, и отличать её от this
+**Новые слова:** screen, projector, speaker, banner
+**Возвращаются:** chair, table, door, window, shelf
 
 ---
 
 ## Интро 1
 
-### Кошек несколько
+### Экран на дальней стене
 
-`cat` — «кошка», `cats` — «кошки». `They are cats` — «Это кошки». Перед `cats` не ставим `a`: кошек несколько. Коробки — `boxes`. Олег принёс коробки для вещей, но кошки заселились первыми. Теперь вещи снова без жилья.
+Вы с подругой пришли в зал за час до презентации. Техник стоит у входа и спрашивает, готов ли экран. Вы смотрите в другой конец зала. screen — «экран». Он висит на дальней стене, далеко от вас, поэтому не this, а that: That is a screen — «Это экран».
 
-**На фотографии несколько кошек. Назовите их одним английским словом.**
+**Техник показывает на дальнюю стену. Скажите, что это экран.**
 
-- ✅ **cats**
-- ❌ cat — *`cat` — одна кошка; несколько — `cats`.*
-- ❌ a cats — *Перед названием нескольких кошек не ставим `a`.*
+- ✅ **That is a screen.**
+- ❌ This is a screen. — *Экран висит далеко, на дальней стене, а this говорим о том, что рядом: That is a screen.*
+- ❌ That a screen. — *Между That и a нужно is: That is a screen.*
 
 ---
 
 ## Интро 2
 
-### Вообще или именно эти
+### Коробка на столе
 
-`Cats are different` — «Кошки разные». Так можно сказать о кошках в целом: у них разные привычки и характеры. Перед `cats` здесь нет `the`. `The cats are inside` — «Кошки внутри»: здесь речь об определённых кошках, которых вы ищете. `Where are the cats?` — «Где кошки?»
+Подруга ставит перед вами на стол небольшую чёрную коробку с линзой. projector — «проектор». Он стоит прямо перед вами, рядом, поэтому this, а экран на дальней стене — that. Подруга спрашивает, что это за коробка: This is a projector — «Это проектор».
 
-**Вы говорите, что у кошек вообще разные характеры, без указания на определённую группу. Выберите фразу «Кошки разные».**
+**Подруга показывает на стол перед вами. Скажите, что это проектор.**
 
-- ✅ **Cats are different.**
-- ❌ The cats are different. — *`The cats` — определённые кошки. Здесь говорим о кошках вообще: `Cats`.*
-- ❌ A cats are different. — *Перед `cats` не ставим `a`.*
+- ✅ **This is a projector.**
+- ❌ That is a projector. — *Проектор стоит на столе рядом, а that говорим о далёком: This is a projector.*
+- ❌ This is an projector. — *Перед projector нужно a: слово начинается с согласного звука.*
 
 ---
 
 ## Интро 3
 
-### Куда все делись
+### Колонка в углу
 
-`confused` — «растерянный, запутавшийся», `worried` — «обеспокоенный», `bored` — «скучающий», `careless` — «невнимательный, неосторожный». Олег не понимает, куда исчезли кошки: `He is confused` — «Он растерян». Анна знает, что они в коробках, поэтому не волнуется. Олег спрашивает её: `Where are the cats?` — «Где кошки?»
+В дальнем углу зала стоит колонка, и ведущая просит вас проверить звук. speaker — «колонка». Она далеко от вас, у стены напротив, поэтому that. Перед speaker ставим a, потому что слово начинается с согласного звука: That is a speaker — «Это колонка».
 
-**Анна знает, каких кошек вы ищете. Спросите, где кошки.**
+**Ведущая показывает на дальний угол зала. Скажите, что это колонка.**
 
-- ✅ **Where are the cats?**
-- ❌ Where is the cats? — *Кошек несколько: нужно `are`.*
-- ❌ What are the cats? — *О месте спрашиваем `Where` — «Где».*
+- ✅ **That is a speaker.**
+- ❌ That is speaker. — *Перед speaker нужно a: That is a speaker.*
+- ❌ That are a speaker. — *С that нужно is, а не are: That is a speaker.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Олег принёс несколько коробок. Назовите их полной фразой**
+**1 · Техник показывает на дальнюю стену. Скажите, что там дверь.**
 <!-- interaction_id: en:lesson-03:session-26:i01; family: phrase_builder -->
-Плитки: `boxes` `are` `They` `is` → **They are boxes.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are boxes.`)*
+Плитки: `door` `That` `is` `a` `an` → **That is a door.**
+*(плитка `an` лишняя: здесь нужно `a` — `That is a door.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте, что говорит техник**
 <!-- interaction_id: en:lesson-03:session-26:i02; family: listen_choose -->
-🔊 *cats* → **cats** · dogs · cups
-- dogs — *В записи первое слово — `cats`, а в этом варианте — `dogs`.*
-- cups — *В записи первое слово — `cats`, а в этом варианте — `cups`.*
+🔊 *That is a window.* → **That is a window.** · This is a window. · That is a shelf.
+- This is a window. — *В записи первое слово — `That`, а в этом варианте — `This`.*
+- That is a shelf. — *В записи последнее слово — `window`, а в этом варианте — `shelf`.*
 
-**3 · Назовите нескольких кошек одним английским словом**
+**3 · Стул стоит у дальней стены. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-26:i03; family: context_gap_grammar -->
-___ → **cats** · cat · a cats
-- cat — *Несколько кошек — `cats`.*
-- a cats — *Перед `cats` не ставим `a`.*
+That ___ a chair. → **is** · are · am
+- are — *С that нужно is: That is a chair.*
+- am — *С that нужно is: That is a chair.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-26:i04; family: speed_match -->
-cats — кошки · boxes — коробки · bored — скучающий · confused — растерянный
+screen — экран · projector — проектор · speaker — колонка · banner — баннер
 
-**5 · Послушайте и соберите сообщение**
+**5 · Послушайте техника и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-26:i05; family: listen_build_dictation -->
-🔊 *The cats are inside.* Плитки: `inside` `are` `cats` `The` `is` → **The cats are inside.**
-*(плитка `is` лишняя: здесь нужно `are` — `The cats are inside.`)*
+🔊 *That is not a table.* Плитки: `table` `not` `is` `That` `a` `an` → **That is not a table.**
+*(плитка `an` лишняя: здесь нужно `a` — `That is not a table.`)*
 
-**6 · Скажите «Кошки разные», говоря о кошках в целом и их разных характерах**
+**6 · Подруга показывает на стул рядом с вами. Скажите, что это стул.**
 <!-- interaction_id: en:lesson-03:session-26:i06; family: phrase_builder -->
-Плитки: `different` `are` `Cats` `is` → **Cats are different.**
-*(плитка `is` лишняя: здесь нужно `are` — `Cats are different.`)*
+Плитки: `chair` `This` `is` `a` `That` → **This is a chair.**
+*(плитка `That` лишняя: здесь нужно `This` — `This is a chair.`)*
 
-**7 · Вы пока не знаете, где кошки, и волнуетесь. Скажите «Я обеспокоен» с сокращением**
+**7 · Карточка слова — screen**
+<!-- interaction_id: en:lesson-03:session-26:word:screen; family: word_card -->
+> **screen** — экран, на который выводят картинку с проектора. That is a screen — «Это экран». Об экране на стене или на сцене.
+
+**8 · Техник называет вещь, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-26:i07; family: scripted_repeat_compare -->
-🎙 **I'm worried.**
+🎙 **screen**
 
-**8 · Вы говорите о разных характерах кошек вообще, без указания на определённых кошек**
+**9 · Карточка слова — projector**
+<!-- interaction_id: en:lesson-03:session-26:word:projector; family: word_card -->
+> **projector** — проектор, прибор, который показывает картинку на стене. This is a projector — «Это проектор». О приборе для презентаций и фильмов.
+
+**10 · Подруга ставит перед вами коробку, которая показывает картинку на стене. Как она называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-26:i08; family: context_gap_grammar -->
-___ are different. → **Cats** · The cats · A cats
-- The cats — *`The cats` — конкретные кошки. Для общего высказывания здесь нужно `Cats`.*
-- A cats — *Перед `cats` не ставим `a`.*
+___ → **projector** · screen · table
+- screen — *screen — это экран, на который выводят картинку, а прибор называется projector.*
+- table — *table — это стол, а прибор называется projector.*
 
-**9 · Послушайте описание Олега**
+**11 · Послушайте, что говорит подруга**
 <!-- interaction_id: en:lesson-03:session-26:i09; family: listen_choose -->
-🔊 *He is confused.* → **He is confused.** · He is bored. · He is worried.
-- He is bored. — *В записи последнее слово — `confused`, а в этом варианте — `bored`.*
-- He is worried. — *В записи последнее слово — `confused`, а в этом варианте — `worried`.*
+🔊 *That is not a screen.* → **That is not a screen.** · This is not a screen. · That is not a door.
+- This is not a screen. — *В записи первое слово — `That`, а в этом варианте — `This`.*
+- That is not a door. — *В записи последнее слово — `screen`, а в этом варианте — `door`.*
 
-**10 · Соедините слова со значениями**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-26:i10; family: speed_match -->
-worried — обеспокоенный · careless — невнимательный, неосторожный · cats — кошки · boxes — коробки
+screen — экран · door — дверь · window — окно · shelf — полка
 
-**11 · Послушайте и соберите сообщение**
+**13 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-26:i11; family: listen_build_dictation -->
-🔊 *The boxes are here.* Плитки: `here` `are` `boxes` `The` `is` → **The boxes are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `The boxes are here.`)*
+🔊 *This is not a projector.* Плитки: `projector` `not` `is` `This` `a` `an` → **This is not a projector.**
+*(плитка `an` лишняя: здесь нужно `a` — `This is not a projector.`)*
 
-**12 · Анна знает, каких кошек вы ищете. Спросите, где кошки**
+**14 · Техник спрашивает, что висит на дальней стене. Скажите, что это экран.**
 <!-- interaction_id: en:lesson-03:session-26:i12; family: phrase_builder -->
-Плитки: `cats` `the` `are` `Where` `What` → **Where are the cats?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where are the cats?`)*
+Плитки: `screen` `That` `is` `a` `This` → **That is a screen.**
+*(плитка `This` лишняя: здесь нужно `That` — `That is a screen.`)*
 
-**13 · Олегу нечем заняться, ему скучно. Скажите «Ему скучно» с сокращением**
+**15 · Карточка слова — speaker**
+<!-- interaction_id: en:lesson-03:session-26:word:speaker; family: word_card -->
+> **speaker** — колонка, из которой звучит музыка или голос. That is a speaker — «Это колонка». О колонке в зале, дома, в машине.
+
+**16 · Техник называет вещь, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-26:i13; family: scripted_repeat_compare -->
-🎙 **He's bored.**
+🎙 **speaker**
 
-**14 · Вы нашли несколько кошек внутри комнаты и сообщаете об этом**
+**17 · Карточка слова — banner**
+<!-- interaction_id: en:lesson-03:session-26:word:banner; family: word_card -->
+> **banner** — баннер, длинное полотно с надписью. That is a banner — «Это баннер». О полотне над входом или на стене.
+
+**18 · Над входом в дальнем конце зала висит длинное полотно с названием встречи. Как оно называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-26:i14; family: context_gap_grammar -->
-The cats ___ inside. → **are** · is · am
-- is — *Кошек несколько: нужно `are`.*
-- am — *С `the cats` здесь нужно `are`.*
+___ → **banner** · speaker · window
+- speaker — *speaker — это колонка, а длинное полотно называется banner.*
+- window — *window — это окно, а длинное полотно называется banner.*
 
-**15 · Послушайте описание Олега**
+**19 · Послушайте, что говорит ведущая**
 <!-- interaction_id: en:lesson-03:session-26:i15; family: listen_choose -->
-🔊 *He is careless.* → **He is careless.** · He is careful. · He is confused.
-- He is careful. — *В записи последнее слово — `careless`, а в этом варианте — `careful`.*
-- He is confused. — *В записи последнее слово — `careless`, а в этом варианте — `confused`.*
+🔊 *This is not a speaker.* → **This is not a speaker.** · That is not a speaker. · This is not a screen.
+- That is not a speaker. — *В записи первое слово — `This`, а в этом варианте — `That`.*
+- This is not a screen. — *В записи последнее слово — `speaker`, а в этом варианте — `screen`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-26:i16; family: speed_match -->
-bored — скучающий · confused — растерянный · worried — обеспокоенный · careless — невнимательный, неосторожный
+banner — баннер · speaker — колонка · projector — проектор · screen — экран
 
-**17 · Вы обсуждаете с другом кошек вообще: у них разные привычки и характеры. Скажите «Кошки разные», не указывая на конкретную группу**
+**21 · Техник показывает на длинное полотно над дальней дверью. Скажите, что это.**
 <!-- interaction_id: en:lesson-03:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Cats are different.**
-
+🎙 **That is a banner.**

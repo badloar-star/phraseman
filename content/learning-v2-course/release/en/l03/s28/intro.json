@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-28",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько стульев, найти нужные стулья и сказать о предметах в целом",
-    "uk": "назвати кілька стільців, знайти потрібні стільці й сказати про предмети загалом"
+    "ru": "различать this и that в ответе и на слух",
+    "uk": "розрізняти this і that у відповіді та на слух"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для каждого",
-        "uk": "Місце для кожного"
+        "ru": "Покупка на колёсиках",
+        "uk": "Покупка на колесах"
       },
       "bodyByLocale": {
-        "ru": "`chair` — «стул», `chairs` — «стулья». `They are chairs` — «Это стулья». Для нескольких стульев добавляем `s`, перед `chairs` не ставим `a`. Олег принёс один стул на трёх гостей. Если это не игра с музыкой, лучше принести ещё. Нужны `chairs` — стулья.",
-        "uk": "`chair` — «стілець», `chairs` — «стільці». `They are chairs` — «Це стільці». Для кількох стільців додаємо `s`, перед `chairs` не ставимо `a`. Олег приніс один стілець на трьох гостей. Якщо це не гра з музикою, краще принести ще. Потрібні `chairs` — стільці."
+        "ru": "Вы с подругой расплатились и собираетесь уходить. У кассы стоит ваша новая покупка на колёсиках. Продавец проверяет чек и спрашивает, что это за вещь. suitcase — «чемодан». Вы держите его за ручку, он рядом с вами, поэтому this: This is a suitcase — «Это чемодан».",
+        "uk": "Ви з подругою розрахувалися й збираєтеся йти. Біля каси стоїть ваша нова покупка на колесах. Продавець перевіряє чек і питає, що це за річ. suitcase — «валіза». Ви тримаєте її за ручку, вона поруч із вами, тому this: This is a suitcase — «Це валіза»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "На фотографии несколько стульев. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька стільців. Назвіть їх одним англійським словом."
+          "ru": "Продавец спрашивает, что за покупка рядом с вами. Скажите, что это чемодан.",
+          "uk": "Продавець питає, що за покупка поруч із вами. Скажіть, що це валіза."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-28:intro1:r1",
-              "text": "chairs"
+              "text": "This is a suitcase."
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r2",
-              "text": "chair"
+              "text": "That is a suitcase."
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r3",
-              "text": "a chairs"
+              "text": "This is suitcase."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-28:intro1:r1",
-              "text": "chairs"
+              "text": "This is a suitcase."
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r2",
-              "text": "chair"
+              "text": "That is a suitcase."
             },
             {
               "responseId": "en:lesson-03:session-28:intro1:r3",
-              "text": "a chairs"
+              "text": "This is suitcase."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На фотографии несколько стульев. Назовите их одним английским словом.",
-          "uk": "На фотографії кілька стільців. Назвіть їх одним англійським словом."
+          "ru": "Продавец спрашивает, что за покупка рядом с вами. Скажите, что это чемодан.",
+          "uk": "Продавець питає, що за покупка поруч із вами. Скажіть, що це валіза."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Стулья вообще и наши стулья",
-        "uk": "Стільці загалом і наші стільці"
+        "ru": "Скамья в другом конце зала",
+        "uk": "Лава в іншому кінці зали"
       },
       "bodyByLocale": {
-        "ru": "`Chairs are different` — «Стулья разные». Можно говорить о стульях вообще: они бывают разной высоты и формы. Перед `chairs` здесь нет `the`. `The chairs are upstairs` — «Стулья наверху»: речь о конкретных стульях для встречи. `Where are the chairs?` — «Где стулья?»",
-        "uk": "`Chairs are different` — «Стільці різні». Можна говорити про стільці загалом: вони бувають різної висоти й форми. Перед `chairs` тут немає `the`. `The chairs are upstairs` — «Стільці нагорі»: ідеться про конкретні стільці для зустрічі. `Where are the chairs?` — «Де стільці?»"
+        "ru": "Подруга уже ждёт у выхода, а на скамье в другом конце зала лежит её вещь с двумя лямками. backpack — «рюкзак», его носят на спине. Скамья далеко от вас, поэтому that: That is a backpack — «Это рюкзак». Продавец просит проверить, не забыли ли вы её.",
+        "uk": "Подруга вже чекає біля виходу, а на лаві в іншому кінці зали лежить її річ із двома лямками. backpack — «рюкзак», його носять на спині. Лава далеко від вас, тому that: That is a backpack — «Це рюкзак». Продавець просить перевірити, чи не забули ви її."
       },
       "question": {
         "interactionId": "en:lesson-03:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Вы говорите о стульях вообще и их разной форме, без указания на определённые стулья. Выберите фразу «Стулья разные».",
-          "uk": "Ви говорите про стільці загалом та їхню різну форму, без указівки на певні стільці. Виберіть фразу «Стільці різні»."
+          "ru": "Продавец показывает на скамью в другом конце зала. Скажите, что это рюкзак.",
+          "uk": "Продавець показує на лаву в іншому кінці зали. Скажіть, що це рюкзак."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-28:intro2:r1",
-              "text": "Chairs are different."
+              "text": "That is a backpack."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r2",
-              "text": "The chairs are different."
+              "text": "This is a backpack."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r3",
-              "text": "A chairs are different."
+              "text": "That is an backpack."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-28:intro2:r1",
-              "text": "Chairs are different."
+              "text": "That is a backpack."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r2",
-              "text": "The chairs are different."
+              "text": "This is a backpack."
             },
             {
               "responseId": "en:lesson-03:session-28:intro2:r3",
-              "text": "A chairs are different."
+              "text": "That is an backpack."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы говорите о стульях вообще и их разной форме, без указания на определённые стулья. Выберите фразу «Стулья разные».",
-          "uk": "Ви говорите про стільці загалом та їхню різну форму, без указівки на певні стільці. Виберіть фразу «Стільці різні»."
+          "ru": "Продавец показывает на скамью в другом конце зала. Скажите, что это рюкзак.",
+          "uk": "Продавець показує на лаву в іншому кінці зали. Скажіть, що це рюкзак."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Можно переставить",
-        "uk": "Можна переставити"
+        "ru": "Сумка на стуле у выхода",
+        "uk": "Сумка на стільці біля виходу"
       },
       "bodyByLocale": {
-        "ru": "`correct` — «верный», `certain` — «уверенный», `serious` — «серьёзный», `flexible` — «гибкий, готовый подстроиться». Анна готова изменить расстановку: `She is flexible` — «Она готова подстроиться». Здесь речь о подходе к планам, а не о растяжке. Олег уверен в своём ответе: `He is certain` — «Он уверен». Вы проверили карты: `The maps are correct` — «Карты верные».",
-        "uk": "`correct` — «правильний», `certain` — «упевнений», `serious` — «серйозний», `flexible` — «гнучкий, готовий пристосуватися». Анна готова змінити розташування: `She is flexible` — «Вона готова пристосуватися». Тут ідеться про підхід до планів, а не про розтяжку. Олег упевнений у своїй відповіді: `He is certain` — «Він упевнений». Ви перевірили карти: `The maps are correct` — «Карти правильні»."
+        "ru": "Вы стоите у кассы, а на стуле у самого выхода лежит чья-то сумка, и охранница смотрит в её сторону. handbag — «дамская сумка», небольшая, с двумя ручками. Она далеко от вас, поэтому that. Вы хотите спросить охранницу: Is that a handbag? — «Это дамская сумка?»",
+        "uk": "Ви стоїте біля каси, а на стільці біля самого виходу лежить чиясь сумка, і охоронниця дивиться в її бік. handbag — «жіноча сумка», невелика, з двома ручками. Вона далеко від вас, тому that. Ви хочете запитати охоронницю: Is that a handbag? — «Це жіноча сумка?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Анна знает, какие стулья нужны для встречи. Спросите, где стулья.",
-          "uk": "Анна знає, які стільці потрібні для зустрічі. Запитайте, де стільці."
+          "ru": "Охранница стоит у выхода. Спросите её, дамская ли это сумка на стуле.",
+          "uk": "Охоронниця стоїть біля виходу. Запитайте її, чи це жіноча сумка на стільці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-28:intro3:r1",
-              "text": "Where are the chairs?"
+              "text": "Is that a handbag?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r2",
-              "text": "Where is the chairs?"
+              "text": "Is this a handbag?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r3",
-              "text": "What are the chairs?"
+              "text": "Is that handbag?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-28:intro3:r1",
-              "text": "Where are the chairs?"
+              "text": "Is that a handbag?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r2",
-              "text": "Where is the chairs?"
+              "text": "Is this a handbag?"
             },
             {
               "responseId": "en:lesson-03:session-28:intro3:r3",
-              "text": "What are the chairs?"
+              "text": "Is that handbag?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна знает, какие стулья нужны для встречи. Спросите, где стулья.",
-          "uk": "Анна знає, які стільці потрібні для зустрічі. Запитайте, де стільці."
+          "ru": "Охранница стоит у выхода. Спросите её, дамская ли это сумка на стуле.",
+          "uk": "Охоронниця стоїть біля виходу. Запитайте її, чи це жіноча сумка на стільці."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0b32f8661e40def4c1c2940e69767caef77db465d4ffd138e078b65f60d1ad45"
+  "introFingerprint": "84b1d0c3c6e3c1a4f10dabe4ca153b1b86347e0f099f39c2c1ff28caf308ced4"
 }

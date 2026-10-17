@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-28:intro1:r2": {
-          "ru": "`chair` — один стул; несколько — `chairs`.",
-          "uk": "`chair` — один стілець; кілька — `chairs`."
+          "ru": "Чемодан стоит рядом с вами, а that говорим о далёком: This is a suitcase.",
+          "uk": "Валіза стоїть поруч із вами, а that кажемо про далеке: This is a suitcase."
         },
         "en:lesson-03:session-28:intro1:r3": {
-          "ru": "Перед названием нескольких стульев не ставим `a`.",
-          "uk": "Перед назвою кількох стільців не ставимо `a`."
+          "ru": "Перед suitcase нужно a: This is a suitcase.",
+          "uk": "Перед suitcase потрібно a: This is a suitcase."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-28:intro2:r2": {
-          "ru": "`The chairs` — определённые стулья. Здесь речь о стульях вообще: `Chairs`.",
-          "uk": "`The chairs` — певні стільці. Тут ідеться про стільці загалом: `Chairs`."
+          "ru": "Рюкзак лежит далеко, а this говорим о том, что рядом: That is a backpack.",
+          "uk": "Рюкзак лежить далеко, а this кажемо про те, що поруч: That is a backpack."
         },
         "en:lesson-03:session-28:intro2:r3": {
-          "ru": "Перед `chairs` не ставим `a`.",
-          "uk": "Перед `chairs` не ставимо `a`."
+          "ru": "Перед backpack нужно a: слово начинается с согласного звука.",
+          "uk": "Перед backpack потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-28:intro3:r2": {
-          "ru": "Стульев несколько: нужно `are`.",
-          "uk": "Стільців кілька: потрібно `are`."
+          "ru": "Сумка далеко, а this говорим о том, что рядом: Is that a handbag?",
+          "uk": "Сумка далеко, а this кажемо про те, що поруч: Is that a handbag?"
         },
         "en:lesson-03:session-28:intro3:r3": {
-          "ru": "О месте спрашиваем `Where` — «Где».",
-          "uk": "Про місце запитуємо `Where` — «Де»."
+          "ru": "Перед handbag нужно a: Is that a handbag?",
+          "uk": "Перед handbag потрібно a: Is that a handbag?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "db8f441c046846794209cc0d4c4ab6eb3173f6be2bb09a4b457f371608734b51"
+  "auxiliaryFingerprint": "8306b8330c69591d358b01bf9310c4b55fbdda1c5e48a42102e09c47ac309aa9"
 }

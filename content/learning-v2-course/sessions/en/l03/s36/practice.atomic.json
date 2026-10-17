@@ -1,0 +1,2443 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-36:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на окна магазина. Скажите ей полной фразой: те окна большие.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на окна магазина. Скажите ей полной фразой: те окна большие.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those windows are big.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на окна магазина. Скажите ей полной фразой: те окна большие.",
+            "uk": "Подруга показує на вікна магазину. Скажіть їй повною фразою: ті вікна великі."
+          },
+          "orderedTokens": [
+            "Those",
+            "windows",
+            "are",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "window"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на окна магазина. Скажите ей полной фразой: те окна большие.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `windows` — `Those windows are big.`",
+                "uk": "тут потрібно `windows` — `Those windows are big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит подруга о двери",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i02:r1",
+            "text": "That door is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r2",
+            "text": "Those doors are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r3",
+            "text": "This door is old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга о двери",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i02:audio",
+            "transcript": "That door is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:i02:r1",
+              "targetText": "That door is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i02:r2",
+              "targetText": "Those doors are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i02:r3",
+              "targetText": "This door is old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга о двери",
+              "feedbackByLocale": {
+                "ru": "В записи `That door` — дверь одна, а в этом варианте `Those doors` — несколько.",
+                "uk": "У записі `That door` — двері одні, а в цьому варіанті `Those doors` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга о двери",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
+                "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат смотрит на скамейки у магазина. Дополните его фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i03:r1",
+            "text": "benches"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i03:r2",
+            "text": "bench"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i03:r3",
+            "text": "a bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат смотрит на скамейки у магазина. Дополните его фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат смотрит на скамейки у магазина. Дополните его фразу",
+            "uk": "Брат дивиться на лавки біля магазину. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "Those ___ are empty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i03:r1",
+              "text": "benches"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i03:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i03:r3",
+              "text": "a bench"
+            }
+          ],
+          "testedDimension": "Брат смотрит на скамейки у магазина. Дополните его фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат смотрит на скамейки у магазина. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "Скамеек несколько, поэтому нужно benches.",
+                "uk": "Лавок кілька, тому потрібно benches."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат смотрит на скамейки у магазина. Дополните его фразу",
+              "feedbackByLocale": {
+                "ru": "После Those нужно несколько скамеек: benches.",
+                "uk": "Після Those потрібно кілька лавок: benches."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-36:i04:p1",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i04:p2",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i04:p3",
+              "target": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед",
+                "uk": "велосипед"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i04:p4",
+              "target": "toy",
+              "meaningByLocale": {
+                "ru": "игрушка",
+                "uk": "іграшка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tree",
+            "flower",
+            "bicycle",
+            "toy"
+          ],
+          "rightColumn": [
+            "дерево",
+            "цветок",
+            "велосипед",
+            "игрушка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i05:audio",
+            "transcript": "That shelf is long."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That shelf is long.",
+          "orderedTokens": [
+            "That",
+            "shelf",
+            "is",
+            "long"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `That shelf is long.`",
+                "uk": "тут потрібно `is` — `That shelf is long.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скамейка стоит далеко от вас. Скажите подруге, что это скамейка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скамейка стоит далеко от вас. Скажите подруге, что это скамейка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a bench.",
+          "localizedMeaning": {
+            "ru": "Скамейка стоит далеко от вас. Скажите подруге, что это скамейка.",
+            "uk": "Лавка стоїть далеко від вас. Скажіть подрузі, що це лавка."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Скамейка стоит далеко от вас. Скажите подруге, что это скамейка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a bench.`",
+                "uk": "тут потрібно `That` — `That is a bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:tree",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tree",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:tree:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tree",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:tree:audio",
+            "transcript": "tree"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:tree:r1",
+              "targetText": "tree",
+              "meaningByLocale": {
+                "ru": "дерево. That is a tree — «Это дерево». О большом растении со стволом и ветками.",
+                "uk": "дерево. That is a tree — «Це дерево». Про велику рослину зі стовбуром і гілками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tree",
+            "definitionByLocale": {
+              "ru": "дерево. That is a tree — «Это дерево». О большом растении со стволом и ветками.",
+              "uk": "дерево. That is a tree — «Це дерево». Про велику рослину зі стовбуром і гілками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга называет то, что стоит в горшке за стеклом, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга называет то, что стоит в горшке за стеклом, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i07:audio",
+            "transcript": "tree"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "tree",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:flower",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flower",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:flower:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flower",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:flower:audio",
+            "transcript": "flower"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:flower:r1",
+              "targetText": "flower",
+              "meaningByLocale": {
+                "ru": "цветок. Those flowers are fresh — «Те цветы свежие». О цветке на стебле или в букете.",
+                "uk": "квітка. Those flowers are fresh — «Ті квіти свіжі». Про квітку на стеблі чи в букеті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flower",
+            "definitionByLocale": {
+              "ru": "цветок. Those flowers are fresh — «Те цветы свежие». О цветке на стебле или в букете.",
+              "uk": "квітка. Those flowers are fresh — «Ті квіти свіжі». Про квітку на стеблі чи в букеті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга выбирает в витрине то, что дарят маме в букете. Как это называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i08:r1",
+            "text": "flower"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i08:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i08:r3",
+            "text": "toy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга выбирает в витрине то, что дарят маме в букете. Как это называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга выбирает в витрине то, что дарят маме в букете. Как это называется по-английски?",
+            "uk": "Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i08:r1",
+              "text": "flower"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i08:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i08:r3",
+              "text": "toy"
+            }
+          ],
+          "testedDimension": "Подруга выбирает в витрине то, что дарят маме в букете. Как это называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга выбирает в витрине то, что дарят маме в букете. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "tree — это дерево, а то, что дарят в букете, называется flower.",
+                "uk": "tree — це дерево, а те, що дарують у букеті, називається flower."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга выбирает в витрине то, что дарят маме в букете. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "toy — это игрушка, а то, что дарят в букете, называется flower.",
+                "uk": "toy — це іграшка, а те, що дарують у букеті, називається flower."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит брат о дереве",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i09:r1",
+            "text": "That tree is small."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i09:r2",
+            "text": "Those trees are small."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i09:r3",
+            "text": "That tree is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит брат о дереве",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i09:audio",
+            "transcript": "That tree is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:i09:r1",
+              "targetText": "That tree is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i09:r2",
+              "targetText": "Those trees are small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i09:r3",
+              "targetText": "That tree is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат о дереве",
+              "feedbackByLocale": {
+                "ru": "В записи `That tree` — дерево одно, а в этом варианте `Those trees` — несколько.",
+                "uk": "У записі `That tree` — дерево одне, а в цьому варіанті `Those trees` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит брат о дереве",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
+                "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-36:i10:p1",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i10:p2",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i10:p3",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tree",
+            "window",
+            "door",
+            "bench"
+          ],
+          "rightColumn": [
+            "дерево",
+            "окно",
+            "дверь",
+            "скамейка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i11:audio",
+            "transcript": "Are those flowers fresh?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are those flowers fresh?",
+          "orderedTokens": [
+            "Are",
+            "those",
+            "flowers",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are those flowers fresh?`",
+                "uk": "тут потрібно `Are` — `Are those flowers fresh?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что стоит за стеклом вдали. Скажите, что это деревья.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что стоит за стеклом вдали. Скажите, что это деревья.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those are trees.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что стоит за стеклом вдали. Скажите, что это деревья.",
+            "uk": "Подруга питає, що стоїть за склом удалині. Скажіть, що це дерева."
+          },
+          "orderedTokens": [
+            "Those",
+            "are",
+            "trees"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, что стоит за стеклом вдали. Скажите, что это деревья.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Those` — `Those are trees.`",
+                "uk": "тут потрібно `Those` — `Those are trees.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:bicycle",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bicycle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:bicycle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bicycle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:bicycle:audio",
+            "transcript": "bicycle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:bicycle:r1",
+              "targetText": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед. Are those bicycles expensive? — «Те велосипеды дорогие?» О транспорте на двух колёсах с педалями.",
+                "uk": "велосипед. Are those bicycles expensive? — «Ті велосипеди дорогі?» Про транспорт на двох колесах із педалями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bicycle",
+            "definitionByLocale": {
+              "ru": "велосипед. Are those bicycles expensive? — «Те велосипеды дорогие?» О транспорте на двух колёсах с педалями.",
+              "uk": "велосипед. Are those bicycles expensive? — «Ті велосипеди дорогі?» Про транспорт на двох колесах із педалями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат называет то, на чём ездят на двух колёсах, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Брат называет то, на чём ездят на двух колёсах, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i13:audio",
+            "transcript": "bicycle"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bicycle",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:toy",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — toy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:toy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — toy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:toy:audio",
+            "transcript": "toy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:toy:r1",
+              "targetText": "toy",
+              "meaningByLocale": {
+                "ru": "игрушка. That is a toy — «Это игрушка». О вещи, с которой играют дети.",
+                "uk": "іграшка. That is a toy — «Це іграшка». Про річ, з якою граються діти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toy",
+            "definitionByLocale": {
+              "ru": "игрушка. That is a toy — «Это игрушка». О вещи, с которой играют дети.",
+              "uk": "іграшка. That is a toy — «Це іграшка». Про річ, з якою граються діти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хочет купить подарок маленькому ребёнку: то, с чем играют. Как это называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i14:r1",
+            "text": "toy"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i14:r2",
+            "text": "bicycle"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i14:r3",
+            "text": "flower"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хочет купить подарок маленькому ребёнку: то, с чем играют. Как это называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет купить подарок маленькому ребёнку: то, с чем играют. Как это называется по-английски?",
+            "uk": "Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i14:r1",
+              "text": "toy"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:r2",
+              "text": "bicycle"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:r3",
+              "text": "flower"
+            }
+          ],
+          "testedDimension": "Брат хочет купить подарок маленькому ребёнку: то, с чем играют. Как это называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат хочет купить подарок маленькому ребёнку: то, с чем играют. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bicycle — это велосипед, а то, с чем играют, называется toy.",
+                "uk": "bicycle — це велосипед, а те, з чим граються, називається toy."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат хочет купить подарок маленькому ребёнку: то, с чем играют. Как это называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "flower — это цветок, а то, с чем играют, называется toy.",
+                "uk": "flower — це квітка, а те, з чим граються, називається toy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит подруга о велосипедах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i15:r1",
+            "text": "That bicycle is cheap."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i15:r2",
+            "text": "Those bicycles are cheap."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i15:r3",
+            "text": "That bicycle is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга о велосипедах",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i15:audio",
+            "transcript": "That bicycle is cheap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:i15:r1",
+              "targetText": "That bicycle is cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i15:r2",
+              "targetText": "Those bicycles are cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i15:r3",
+              "targetText": "That bicycle is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга о велосипедах",
+              "feedbackByLocale": {
+                "ru": "В записи `That bicycle` — велосипед один, а в этом варианте `Those bicycles` — несколько.",
+                "uk": "У записі `That bicycle` — велосипед один, а в цьому варіанті `Those bicycles` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга о велосипедах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheap`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-36:i16:p1",
+              "target": "toy",
+              "meaningByLocale": {
+                "ru": "игрушка",
+                "uk": "іграшка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i16:p2",
+              "target": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед",
+                "uk": "велосипед"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i16:p3",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i16:p4",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            }
+          ],
+          "leftColumn": [
+            "toy",
+            "bicycle",
+            "flower",
+            "tree"
+          ],
+          "rightColumn": [
+            "игрушка",
+            "велосипед",
+            "цветок",
+            "дерево"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на витрину с игрушками. Скажите ей коротко: те игрушки новые.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на витрину с игрушками. Скажите ей коротко: те игрушки новые.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i17:audio",
+            "transcript": "Those toys are new."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Those toys are new.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-36:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на вікна магазину. Скажіть їй повною фразою: ті вікна великі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на вікна магазину. Скажіть їй повною фразою: ті вікна великі.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those windows are big.",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на окна магазина. Скажите ей полной фразой: те окна большие.",
+            "uk": "Подруга показує на вікна магазину. Скажіть їй повною фразою: ті вікна великі."
+          },
+          "orderedTokens": [
+            "Those",
+            "windows",
+            "are",
+            "big"
+          ],
+          "authoredDistractorTokens": [
+            "window"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на вікна магазину. Скажіть їй повною фразою: ті вікна великі.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `windows` — `Those windows are big.`",
+                "uk": "тут потрібно `windows` — `Those windows are big.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже подруга про двері",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i02:r1",
+            "text": "That door is old."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r2",
+            "text": "Those doors are old."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r3",
+            "text": "This door is old."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга про двері",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i02:audio",
+            "transcript": "That door is old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:i02:r1",
+              "targetText": "That door is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i02:r2",
+              "targetText": "Those doors are old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i02:r3",
+              "targetText": "This door is old.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга про двері",
+              "feedbackByLocale": {
+                "ru": "В записи `That door` — дверь одна, а в этом варианте `Those doors` — несколько.",
+                "uk": "У записі `That door` — двері одні, а в цьому варіанті `Those doors` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга про двері",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
+                "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат дивиться на лавки біля магазину. Доповніть його фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i03:r1",
+            "text": "benches"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i03:r2",
+            "text": "bench"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i03:r3",
+            "text": "a bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат дивиться на лавки біля магазину. Доповніть його фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат смотрит на скамейки у магазина. Дополните его фразу",
+            "uk": "Брат дивиться на лавки біля магазину. Доповніть його фразу"
+          },
+          "gappedTargetPhrase": "Those ___ are empty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i03:r1",
+              "text": "benches"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i03:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i03:r3",
+              "text": "a bench"
+            }
+          ],
+          "testedDimension": "Брат дивиться на лавки біля магазину. Доповніть його фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат дивиться на лавки біля магазину. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "Скамеек несколько, поэтому нужно benches.",
+                "uk": "Лавок кілька, тому потрібно benches."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат дивиться на лавки біля магазину. Доповніть його фразу",
+              "feedbackByLocale": {
+                "ru": "После Those нужно несколько скамеек: benches.",
+                "uk": "Після Those потрібно кілька лавок: benches."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-36:i04:p1",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i04:p2",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i04:p3",
+              "target": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед",
+                "uk": "велосипед"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i04:p4",
+              "target": "toy",
+              "meaningByLocale": {
+                "ru": "игрушка",
+                "uk": "іграшка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tree",
+            "flower",
+            "bicycle",
+            "toy"
+          ],
+          "rightColumn": [
+            "дерево",
+            "квітка",
+            "велосипед",
+            "іграшка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i05:audio",
+            "transcript": "That shelf is long."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "That shelf is long.",
+          "orderedTokens": [
+            "That",
+            "shelf",
+            "is",
+            "long"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `That shelf is long.`",
+                "uk": "тут потрібно `is` — `That shelf is long.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лавка стоїть далеко від вас. Скажіть подрузі, що це лавка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лавка стоїть далеко від вас. Скажіть подрузі, що це лавка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That is a bench.",
+          "localizedMeaning": {
+            "ru": "Скамейка стоит далеко от вас. Скажите подруге, что это скамейка.",
+            "uk": "Лавка стоїть далеко від вас. Скажіть подрузі, що це лавка."
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "This"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Лавка стоїть далеко від вас. Скажіть подрузі, що це лавка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `That` — `That is a bench.`",
+                "uk": "тут потрібно `That` — `That is a bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:tree",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tree",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:tree:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tree",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:tree:audio",
+            "transcript": "tree"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:tree:r1",
+              "targetText": "tree",
+              "meaningByLocale": {
+                "ru": "дерево. That is a tree — «Это дерево». О большом растении со стволом и ветками.",
+                "uk": "дерево. That is a tree — «Це дерево». Про велику рослину зі стовбуром і гілками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tree",
+            "definitionByLocale": {
+              "ru": "дерево. That is a tree — «Это дерево». О большом растении со стволом и ветками.",
+              "uk": "дерево. That is a tree — «Це дерево». Про велику рослину зі стовбуром і гілками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i07",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга називає те, що стоїть у горщику за склом, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга називає те, що стоїть у горщику за склом, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i07:audio",
+            "transcript": "tree"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "tree",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:flower",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flower",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:flower:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flower",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:flower:audio",
+            "transcript": "flower"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:flower:r1",
+              "targetText": "flower",
+              "meaningByLocale": {
+                "ru": "цветок. Those flowers are fresh — «Те цветы свежие». О цветке на стебле или в букете.",
+                "uk": "квітка. Those flowers are fresh — «Ті квіти свіжі». Про квітку на стеблі чи в букеті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flower",
+            "definitionByLocale": {
+              "ru": "цветок. Those flowers are fresh — «Те цветы свежие». О цветке на стебле или в букете.",
+              "uk": "квітка. Those flowers are fresh — «Ті квіти свіжі». Про квітку на стеблі чи в букеті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i08:r1",
+            "text": "flower"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i08:r2",
+            "text": "tree"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i08:r3",
+            "text": "toy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга выбирает в витрине то, что дарят маме в букете. Как это называется по-английски?",
+            "uk": "Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i08:r1",
+              "text": "flower"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i08:r2",
+              "text": "tree"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i08:r3",
+              "text": "toy"
+            }
+          ],
+          "testedDimension": "Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "tree — это дерево, а то, что дарят в букете, называется flower.",
+                "uk": "tree — це дерево, а те, що дарують у букеті, називається flower."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга вибирає у вітрині те, що дарують мамі в букеті. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "toy — это игрушка, а то, что дарят в букете, называется flower.",
+                "uk": "toy — це іграшка, а те, що дарують у букеті, називається flower."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i09",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже брат про дерево",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i09:r1",
+            "text": "That tree is small."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i09:r2",
+            "text": "Those trees are small."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i09:r3",
+            "text": "That tree is big."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже брат про дерево",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i09:audio",
+            "transcript": "That tree is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:i09:r1",
+              "targetText": "That tree is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i09:r2",
+              "targetText": "Those trees are small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i09:r3",
+              "targetText": "That tree is big.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат про дерево",
+              "feedbackByLocale": {
+                "ru": "В записи `That tree` — дерево одно, а в этом варианте `Those trees` — несколько.",
+                "uk": "У записі `That tree` — дерево одне, а в цьому варіанті `Those trees` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже брат про дерево",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
+                "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i10",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-36:i10:p1",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i10:p2",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i10:p3",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tree",
+            "window",
+            "door",
+            "bench"
+          ],
+          "rightColumn": [
+            "дерево",
+            "вікно",
+            "двері",
+            "лавка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i11",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i11:audio",
+            "transcript": "Are those flowers fresh?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are those flowers fresh?",
+          "orderedTokens": [
+            "Are",
+            "those",
+            "flowers",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are those flowers fresh?`",
+                "uk": "тут потрібно `Are` — `Are those flowers fresh?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i12",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що стоїть за склом удалині. Скажіть, що це дерева.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що стоїть за склом удалині. Скажіть, що це дерева.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those are trees.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что стоит за стеклом вдали. Скажите, что это деревья.",
+            "uk": "Подруга питає, що стоїть за склом удалині. Скажіть, що це дерева."
+          },
+          "orderedTokens": [
+            "Those",
+            "are",
+            "trees"
+          ],
+          "authoredDistractorTokens": [
+            "These"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, що стоїть за склом удалині. Скажіть, що це дерева.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Those` — `Those are trees.`",
+                "uk": "тут потрібно `Those` — `Those are trees.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:bicycle",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bicycle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:bicycle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bicycle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:bicycle:audio",
+            "transcript": "bicycle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:bicycle:r1",
+              "targetText": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед. Are those bicycles expensive? — «Те велосипеды дорогие?» О транспорте на двух колёсах с педалями.",
+                "uk": "велосипед. Are those bicycles expensive? — «Ті велосипеди дорогі?» Про транспорт на двох колесах із педалями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bicycle",
+            "definitionByLocale": {
+              "ru": "велосипед. Are those bicycles expensive? — «Те велосипеды дорогие?» О транспорте на двух колёсах с педалями.",
+              "uk": "велосипед. Are those bicycles expensive? — «Ті велосипеди дорогі?» Про транспорт на двох колесах із педалями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i13",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат називає те, на чому їздять на двох колесах, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Брат називає те, на чому їздять на двох колесах, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i13:audio",
+            "transcript": "bicycle"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bicycle",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:word:toy",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — toy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:word:toy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — toy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:word:toy:audio",
+            "transcript": "toy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:word:toy:r1",
+              "targetText": "toy",
+              "meaningByLocale": {
+                "ru": "игрушка. That is a toy — «Это игрушка». О вещи, с которой играют дети.",
+                "uk": "іграшка. That is a toy — «Це іграшка». Про річ, з якою граються діти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toy",
+            "definitionByLocale": {
+              "ru": "игрушка. That is a toy — «Это игрушка». О вещи, с которой играют дети.",
+              "uk": "іграшка. That is a toy — «Це іграшка». Про річ, з якою граються діти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i14:r1",
+            "text": "toy"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i14:r2",
+            "text": "bicycle"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i14:r3",
+            "text": "flower"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хочет купить подарок маленькому ребёнку: то, с чем играют. Как это называется по-английски?",
+            "uk": "Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i14:r1",
+              "text": "toy"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:r2",
+              "text": "bicycle"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:r3",
+              "text": "flower"
+            }
+          ],
+          "testedDimension": "Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bicycle — это велосипед, а то, с чем играют, называется toy.",
+                "uk": "bicycle — це велосипед, а те, з чим граються, називається toy."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат хоче купити подарунок маленькій дитині: те, з чим граються. Як це називається англійською?",
+              "feedbackByLocale": {
+                "ru": "flower — это цветок, а то, с чем играют, называется toy.",
+                "uk": "flower — це квітка, а те, з чим граються, називається toy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже подруга про велосипеди",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i15:r1",
+            "text": "That bicycle is cheap."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i15:r2",
+            "text": "Those bicycles are cheap."
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i15:r3",
+            "text": "That bicycle is new."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга про велосипеди",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i15:audio",
+            "transcript": "That bicycle is cheap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-36:i15:r1",
+              "targetText": "That bicycle is cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i15:r2",
+              "targetText": "Those bicycles are cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i15:r3",
+              "targetText": "That bicycle is new.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга про велосипеди",
+              "feedbackByLocale": {
+                "ru": "В записи `That bicycle` — велосипед один, а в этом варианте `Those bicycles` — несколько.",
+                "uk": "У записі `That bicycle` — велосипед один, а в цьому варіанті `Those bicycles` — кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга про велосипеди",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheap`, а в этом варианте — `new`.",
+                "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `new`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-36:i16:p1",
+              "target": "toy",
+              "meaningByLocale": {
+                "ru": "игрушка",
+                "uk": "іграшка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i16:p2",
+              "target": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед",
+                "uk": "велосипед"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i16:p3",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i16:p4",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            }
+          ],
+          "leftColumn": [
+            "toy",
+            "bicycle",
+            "flower",
+            "tree"
+          ],
+          "rightColumn": [
+            "іграшка",
+            "велосипед",
+            "квітка",
+            "дерево"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на вітрину з іграшками. Скажіть їй коротко: ті іграшки нові.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на вітрину з іграшками. Скажіть їй коротко: ті іграшки нові.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i17:audio",
+            "transcript": "Those toys are new."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Those toys are new.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-36:i01",
+      "correctText": "Those windows are big.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i02",
+      "correctText": "That door is old.",
+      "correctResponseId": "en:lesson-03:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i03",
+      "correctText": "benches",
+      "correctResponseId": "en:lesson-03:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i05",
+      "correctText": "That shelf is long.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i06",
+      "correctText": "That is a bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:tree",
+      "correctText": "tree",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i07",
+      "correctText": "tree",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:flower",
+      "correctText": "flower",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i08",
+      "correctText": "flower",
+      "correctResponseId": "en:lesson-03:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i09",
+      "correctText": "That tree is small.",
+      "correctResponseId": "en:lesson-03:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i11",
+      "correctText": "Are those flowers fresh?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i12",
+      "correctText": "Those are trees.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:bicycle",
+      "correctText": "bicycle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i13",
+      "correctText": "bicycle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:word:toy",
+      "correctText": "toy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i14",
+      "correctText": "toy",
+      "correctResponseId": "en:lesson-03:session-36:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i15",
+      "correctText": "That bicycle is cheap.",
+      "correctResponseId": "en:lesson-03:session-36:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i17",
+      "correctText": "Those toys are new.",
+      "correctResponseId": null
+    }
+  ]
+}

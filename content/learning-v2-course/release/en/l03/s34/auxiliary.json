@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-34:intro1:r2": {
-          "ru": "Здесь выбираем по расстоянию: кошелёк рядом, поэтому `This`.",
-          "uk": "Тут вибираємо за відстанню: гаманець поруч, тому `This`."
+          "ru": "Пледы лежат далеко, в конце зала, а these говорим о том, что рядом: Those are blankets.",
+          "uk": "Пледи лежать далеко, в кінці зали, а these кажемо про те, що поруч: Those are blankets."
         },
         "en:lesson-03:session-34:intro1:r3": {
-          "ru": "Называя предмет в этой фразе, говорим `a wallet`.",
-          "uk": "Називаючи предмет у цій фразі, кажемо `a wallet`."
+          "ru": "Пледов несколько, поэтому нужно are: Those are blankets.",
+          "uk": "Пледів кілька, тому потрібно are: Those are blankets."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-34:intro2:r2": {
-          "ru": "Для предмета дальше в этом упражнении нужно `That`.",
-          "uk": "Для предмета далі в цій вправі потрібне `That`."
+          "ru": "Простыни лежат далеко, а these говорим о том, что рядом: Those sheets are big.",
+          "uk": "Простирадла лежать далеко, а these кажемо про те, що поруч: Those sheets are big."
         },
         "en:lesson-03:session-34:intro2:r3": {
-          "ru": "`Those` — несколько дальше. Кошелёк один: `That is a wallet`.",
-          "uk": "`Those` — кілька далі. Гаманець один: `That is a wallet`."
+          "ru": "Простыней несколько, поэтому нужно sheets с s.",
+          "uk": "Простирадл кілька, тому потрібно sheets з s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-34:intro3:r2": {
-          "ru": "`This` — один предмет. Для нескольких рядом нужно `These`.",
-          "uk": "`This` — один предмет. Для кількох поруч потрібне `These`."
+          "ru": "С those нужно Are: Are those duvets warm?",
+          "uk": "З those потрібно Are: Are those duvets warm?"
         },
         "en:lesson-03:session-34:intro3:r3": {
-          "ru": "Кошек несколько: нужно `are`.",
-          "uk": "Котів кілька: потрібно `are`."
+          "ru": "Одеял несколько, поэтому не that, а those: Are those duvets warm?",
+          "uk": "Ковдр кілька, тому не that, а those: Are those duvets warm?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2b8c375f983b86b544234e1eb51c0c5889c587f12fe5e79ef643ed1aef0c81c5"
+  "auxiliaryFingerprint": "045d23e181edcb88d31c944aa1e41dade5061756adf5fb60db5e21697d82b065"
 }

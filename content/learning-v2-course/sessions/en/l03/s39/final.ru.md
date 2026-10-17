@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 39 — Бутылки для прогулки
+# Английский · Урок 3 · Занятие 39 — Собираем заказ у продавца
 
-**Ситуация.** Вы с Анной собираете вещи для прогулки. Одни бутылки стоят рядом, другие — на дальнем столе. На карте отмечены парки. Анна боится выступать перед группой, но всё же решается объяснить маршрут; её замечание помогает выбрать парк.
+**Ситуация.** Вы с братом и подругой собираете заказ в овощной палатке. Продавец кладёт продукты в сумки, а вы показываете, что именно вам нужно: что рядом — this и these, что далеко — that и those. Подсказок в заданиях меньше.
 
-**Что вы освоите:** назвать несколько бутылок рядом или дальше и связать указатель с формой are
-**Новые слова:** bottles
+**Что вы освоите:** показывать на продукты рядом и вдали без подсказок: this, that, these, those
+**Новые слова:** grape, lemon, onion, cucumber
+**Возвращаются:** apple, banana, orange, bag, jar
 
 ---
 
 ## Интро 1
 
-### Несколько бутылок
+### Виноград на весах
 
-`bottles` — «бутылки», одна — `bottle`. Для нескольких добавляем `s`. `These are bottles` — «Это бутылки»: показываем на несколько рядом. Здесь нужно `are`, потому что бутылок несколько. Даже пустая бутылка считается: для выбора `is` или `are` считаем бутылки, а не воду.
+Вы с братом стоите у овощной палатки. Продавец кладёт на весы перед вами гроздь винограда, и брат боится, что ягоды кислые. Вы пробуете одну и уверены в ответе. grape — «виноградина». Виноградин много, и они рядом: These grapes are sweet — «Эти виноградины сладкие».
 
-**Назовите несколько бутылок одним английским словом.**
+**Продавец положил виноград перед вами. Скажите брату, что эти виноградины сладкие.**
 
-- ✅ **bottles**
-- ❌ bottle — *`bottle` — одна бутылка. Несколько — `bottles`.*
-- ❌ boxes — *`boxes` — коробки. Бутылки — `bottles`.*
+- ✅ **These grapes are sweet.**
+- ❌ This grapes are sweet. — *Виноградин много, поэтому не this, а these: These grapes are sweet.*
+- ❌ These grapes is sweet. — *С these нужно are: These grapes are sweet.*
 
 ---
 
 ## Интро 2
 
-### Эти здесь, те там
+### Лимон для чая
 
-`These bottles are here` — «Эти бутылки здесь». `Those bottles are there` — «Те бутылки там». `These` указывает на несколько рядом, `those` — на несколько дальше. После `these bottles` и `those bottles` нужно `are`. Перед названием не добавляем `a`: оно относится к одному предмету.
+Подруга заваривает чай и просит купить один лимон. Продавец берёт с прилавка лимон и держит его рядом с вами. Лимон нужен спелый, а по цвету сразу не понять. lemon — «лимон». Лимон один и он рядом, поэтому this. Вопрос начинаем с Is: Is this lemon ripe? — «Этот лимон спелый?»
 
-**Несколько бутылок стоят на дальнем столе. Скажите «Те бутылки там».**
+**Продавец держит лимон рядом с вами. Спросите его, спелый ли этот лимон.**
 
-- ✅ **Those bottles are there.**
-- ❌ That bottles are there. — *`That` — один предмет. Бутылок несколько и они дальше: `Those`.*
-- ❌ Those bottles is there. — *Бутылок несколько: нужно `are`.*
+- ✅ **Is this lemon ripe?**
+- ❌ Are this lemon ripe? — *С this нужно Is: Is this lemon ripe?*
+- ❌ Is this lemons ripe? — *Лимон один, поэтому нужно lemon без s.*
 
 ---
 
 ## Интро 3
 
-### Смелость и полезное замечание
+### Лук для супа
 
-`brave` — «смелый». Анне страшно говорить перед группой, но она решается: `She is brave` — «Она смелая». Смелость не обязательно означает отсутствие страха. `relevant` — «относящийся к делу, уместный». Об её замечании по выбору парка: `It is relevant` — «Оно относится к делу». На карте можно показать несколько парков: `Those are parks` — «Это парки», если они дальше от вас на карте.
+Подруга варит суп и хочет крупный лук. На дальнем прилавке лежат луковицы в сетках, ближе их нет. Подруга спрашивает, какие они там. onion — «лук, луковица». Луковиц несколько, и они далеко, поэтому those: Those onions are big — «Те луковицы большие».
 
-**Анна решается говорить перед группой, несмотря на страх. Скажите «Она смелая».**
+**Подруга спрашивает о луке на дальнем прилавке. Скажите, что те луковицы большие.**
 
-- ✅ **She is brave.**
-- ❌ She is weak. — *`weak` — слабая. Здесь описываем смелость: `brave`.*
-- ❌ She are brave. — *С `She` нужно `is`.*
+- ✅ **Those onions are big.**
+- ❌ These onions are big. — *Луковицы лежат далеко, а these говорим о том, что рядом: Those onions are big.*
+- ❌ Those onion are big. — *Луковиц несколько, поэтому нужно onions с s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы показываете на несколько парков в дальней части карты. Скажите «Это парки» со словом для нескольких дальше**
+**1 · Продавец поставил рядом с вами сумки. Скажите брату полной фразой: эти сумки лёгкие.**
 <!-- interaction_id: en:lesson-03:session-39:i01; family: phrase_builder -->
-Плитки: `parks` `are` `Those` `is` → **Those are parks.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those are parks.`)*
+Плитки: `light` `bags` `are` `These` `bag` → **These bags are light.**
+*(плитка `bag` лишняя: здесь нужно `bags` — `These bags are light.`)*
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте вопрос брата о грушах**
 <!-- interaction_id: en:lesson-03:session-39:i02; family: listen_choose -->
-🔊 *bottles* → **bottles** · boxes · tables
-- boxes — *В записи первое слово — `bottles`, а в этом варианте — `boxes`.*
-- tables — *В записи первое слово — `bottles`, а в этом варианте — `tables`.*
+🔊 *Are those pears ripe?* → **Are those pears ripe?** · Is that pear ripe? · Are these pears ripe?
+- Is that pear ripe? — *В записи `Are those pears` — груш несколько, а в этом варианте `Is that pear` — одна.*
+- Are these pears ripe? — *В записи слово `those` — груши далеко, а в этом варианте `these` — рядом.*
 
-**3 · Назовите несколько бутылок одним английским словом**
+**3 · Подруга показывает на бананы вдали. Дополните её фразу**
 <!-- interaction_id: en:lesson-03:session-39:i03; family: context_gap_grammar -->
-___ → **bottles** · bottle · boxes
-- bottle — *`bottle` — одна бутылка. Несколько — `bottles`.*
-- boxes — *`boxes` — коробки. Бутылки — `bottles`.*
+Those ___ are cheap. → **bananas** · banana · a banana
+- banana — *Бананов несколько, поэтому нужно bananas с s.*
+- a banana — *После Those нужно несколько бананов: bananas с s.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-39:i04; family: speed_match -->
-bottles — бутылки · brave — смелый · relevant — относящийся к делу · parks — парки
+grape — виноградина · lemon — лимон · onion — лук (луковица) · cucumber — огурец
 
-**5 · Послушайте и соберите фразу**
+**5 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-39:i05; family: listen_build_dictation -->
-🔊 *These are bottles.* Плитки: `bottles` `are` `These` `is` → **These are bottles.**
-*(плитка `is` лишняя: здесь нужно `are` — `These are bottles.`)*
+🔊 *That orange is sweet.* Плитки: `sweet` `orange` `is` `That` `are` → **That orange is sweet.**
+*(плитка `are` лишняя: здесь нужно `is` — `That orange is sweet.`)*
 
-**6 · Бутылки стоят на дальнем столе. Скажите «Те бутылки там»**
+**6 · Продавец держит один персик рядом с вами. Скажите брату, что это персик.**
 <!-- interaction_id: en:lesson-03:session-39:i06; family: phrase_builder -->
-Плитки: `there` `are` `bottles` `Those` `is` → **Those bottles are there.**
-*(плитка `is` лишняя: здесь нужно `are` — `Those bottles are there.`)*
+Плитки: `peach` `a` `is` `This` `These` → **This is a peach.**
+*(плитка `These` лишняя: здесь нужно `This` — `This is a peach.`)*
 
-**7 · Анна преодолела страх выступить. Скажите «Она смелая» с сокращением**
+**7 · Карточка слова — grape**
+<!-- interaction_id: en:lesson-03:session-39:word:grape; family: word_card -->
+> **grape** — виноградина. These grapes are sweet — «Эти виноградины сладкие». О ягоде, которая растёт гроздью.
+
+**8 · Продавец берёт ягоды с грозди и называет их, а вы повторяете за ним слово**
 <!-- interaction_id: en:lesson-03:session-39:i07; family: scripted_repeat_compare -->
-🎙 **She's brave.**
+🎙 **grape**
 
-**8 · Вы показываете на несколько бутылок прямо рядом с вами**
+**9 · Карточка слова — lemon**
+<!-- interaction_id: en:lesson-03:session-39:word:lemon; family: word_card -->
+> **lemon** — лимон. Is this lemon ripe? — «Этот лимон спелый?» О кислом жёлтом фрукте, который кладут в чай.
+
+**10 · Брат хочет положить в чай кислый жёлтый фрукт. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-39:i08; family: context_gap_grammar -->
-___ are bottles. → **These** · This · That
-- This — *`This` — один предмет. Для нескольких рядом нужно `These`.*
-- That — *`That` — один дальше. Здесь несколько рядом: `These`.*
+___ → **lemon** · apple · pear
+- apple — *apple — это яблоко, а кислый жёлтый фрукт для чая называется lemon.*
+- pear — *pear — это груша, а кислый жёлтый фрукт для чая называется lemon.*
 
-**9 · Послушайте оценку замечания Анны**
+**11 · Послушайте, что говорит продавец о винограде**
 <!-- interaction_id: en:lesson-03:session-39:i09; family: listen_choose -->
-🔊 *It is relevant.* → **It is relevant.** · It is official. · It is informal.
-- It is official. — *В записи последнее слово — `relevant`, а в этом варианте — `official`.*
-- It is informal. — *В записи последнее слово — `relevant`, а в этом варианте — `informal`.*
+🔊 *Those grapes are ripe.* → **Those grapes are ripe.** · That grape is ripe. · Those grapes are old.
+- That grape is ripe. — *В записи `Those grapes` — виноградин несколько, а в этом варианте `That grape` — одна.*
+- Those grapes are old. — *В записи последнее слово — `ripe`, а в этом варианте — `old`.*
 
-**10 · Соедините слова со значениями для наших примеров**
+**12 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-39:i10; family: speed_match -->
-bottles — бутылки · parks — парки · these — эти, несколько рядом · those — те, несколько дальше
+grape — виноградина · apple — яблоко · banana — банан · pear — груша
 
-**11 · Послушайте и соберите фразу**
+**13 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-03:session-39:i11; family: listen_build_dictation -->
-🔊 *These parks are here.* Плитки: `here` `are` `parks` `These` `is` → **These parks are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `These parks are here.`)*
+🔊 *Are these lemons cheap?* Плитки: `cheap` `lemons` `these` `Are` `Is` → **Are these lemons cheap?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are these lemons cheap?`)*
 
-**12 · Вы показываете на бутылки прямо перед вами. Скажите «Эти бутылки здесь»**
+**14 · Продавец кладёт на весы один лимон рядом с вами. Скажите подруге, что это лимон.**
 <!-- interaction_id: en:lesson-03:session-39:i12; family: phrase_builder -->
-Плитки: `here` `are` `bottles` `These` `is` → **These bottles are here.**
-*(плитка `is` лишняя: здесь нужно `are` — `These bottles are here.`)*
+Плитки: `lemon` `a` `is` `This` `These` → **This is a lemon.**
+*(плитка `These` лишняя: здесь нужно `This` — `This is a lemon.`)*
 
-**13 · Замечание Анны касается именно выбора парка. Скажите о замечании «Оно относится к делу» с сокращением**
+**15 · Карточка слова — onion**
+<!-- interaction_id: en:lesson-03:session-39:word:onion; family: word_card -->
+> **onion** — лук, луковица. Those onions are big — «Те луковицы большие». Об овоще, который кладут в суп.
+
+**16 · Подруга достаёт из сетки овощ для супа и называет его, а вы повторяете за ней слово**
 <!-- interaction_id: en:lesson-03:session-39:i13; family: scripted_repeat_compare -->
-🎙 **It's relevant.**
+🎙 **onion**
 
-**14 · Вы говорите о нескольких бутылках на дальнем столе**
+**17 · Карточка слова — cucumber**
+<!-- interaction_id: en:lesson-03:session-39:word:cucumber; family: word_card -->
+> **cucumber** — огурец. That is a cucumber — «Это огурец». О длинном зелёном овоще для салата.
+
+**18 · Подруга режет в салат длинный зелёный овощ. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-03:session-39:i14; family: context_gap_grammar -->
-Those bottles ___ there. → **are** · is · am
-- is — *Бутылок несколько: `Those bottles are there`.*
-- am — *С `Those bottles` нужно `are`.*
+___ → **cucumber** · onion · lemon
+- onion — *onion — это лук, а длинный зелёный овощ для салата называется cucumber.*
+- lemon — *lemon — это лимон, а длинный зелёный овощ для салата называется cucumber.*
 
-**15 · Послушайте описание Анны**
+**19 · Послушайте вопрос подруги о луке**
 <!-- interaction_id: en:lesson-03:session-39:i15; family: listen_choose -->
-🔊 *She is brave.* → **She is brave.** · She is weak. · She is afraid.
-- She is weak. — *В записи последнее слово — `brave`, а в этом варианте — `weak`.*
-- She is afraid. — *В записи последнее слово — `brave`, а в этом варианте — `afraid`.*
+🔊 *Are those onions fresh?* → **Are those onions fresh?** · Is that onion fresh? · Are these onions fresh?
+- Is that onion fresh? — *В записи `Are those onions` — луковиц несколько, а в этом варианте `Is that onion` — одна.*
+- Are these onions fresh? — *В записи слово `those` — луковицы далеко, а в этом варианте `these` — рядом.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-39:i16; family: speed_match -->
-bottles — бутылки · brave — смелый · relevant — относящийся к делу · parks — парки
+cucumber — огурец · onion — лук (луковица) · lemon — лимон · grape — виноградина
 
-**17 · На пикнике друг спрашивает о нескольких предметах на дальнем столе. Это бутылки. Назовите их полной фразой, начав с указателя на несколько предметов дальше**
+**21 · Продавец спрашивает, какие овощи нужны для салата. Скажите ему коротко: эти огурцы свежие.**
 <!-- interaction_id: en:lesson-03:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Those are bottles.**
-
+🎙 **These cucumbers are fresh.**

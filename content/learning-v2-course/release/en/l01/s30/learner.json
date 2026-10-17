@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-30:i01",
+      "interactionId": "en:lesson-01:session-30:word:alive",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:word:alive:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:word:alive:audio",
+          "transcript": "alive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:word:alive:r1",
+            "targetText": "alive",
+            "meaningByLocale": {
+              "ru": "живой, жив. She is alive — «Она жива». Противоположность — dead.",
+              "uk": "живий, живий-здоровий. She is alive — «Вона жива». Протилежність — dead."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alive",
+          "definitionByLocale": {
+            "ru": "живой, жив. She is alive — «Она жива». Противоположность — dead.",
+            "uk": "живий, живий-здоровий. She is alive — «Вона жива». Протилежність — dead."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:word:dead",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:word:dead:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:word:dead:audio",
+          "transcript": "dead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:word:dead:r1",
+            "targetText": "dead",
+            "meaningByLocale": {
+              "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+              "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dead",
+          "definitionByLocale": {
+            "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+            "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:word:missing",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — missing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:word:missing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — missing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:word:missing:audio",
+          "transcript": "missing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:word:missing:r1",
+            "targetText": "missing",
+            "meaningByLocale": {
+              "ru": "пропал, нет там, где должен быть. She is missing — «Она пропала». Про вещь: It is missing.",
+              "uk": "зник, немає там, де має бути. She is missing — «Вона зникла». Про річ: It is missing."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "missing",
+          "definitionByLocale": {
+            "ru": "пропал, нет там, где должен быть. She is missing — «Она пропала». Про вещь: It is missing.",
+            "uk": "зник, немає там, де має бути. She is missing — «Вона зникла». Про річ: It is missing."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:word:injured",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — injured",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:word:injured:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — injured",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:word:injured:audio",
+          "transcript": "injured"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:word:injured:r1",
+            "targetText": "injured",
+            "meaningByLocale": {
+              "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+              "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "injured",
+          "definitionByLocale": {
+            "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+            "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,8 +366,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -232,10 +404,10 @@
           },
           {
             "pairId": "en:lesson-01:session-30:i04:p4",
-            "target": "famous",
+            "target": "injured",
             "meaningByLocale": {
-              "ru": "знаменитый",
-              "uk": "знаменитий"
+              "ru": "раненый",
+              "uk": "поранений"
             }
           }
         ],
@@ -243,13 +415,13 @@
           "alive",
           "dead",
           "missing",
-          "famous"
+          "injured"
         ],
         "rightColumn": [
           "живой",
           "мёртвый",
           "пропавший",
-          "знаменитый"
+          "раненый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Ключа нет на месте, герой его ищет. Соберите фразу о ключе: «Он пропал»",
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините знакомые слова и значения",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте реплику спасённых героев и соберите её",
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,25 +872,25 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У героя по сюжету почти нет денег. Скажите о его положении",
+      "prompt": "Героя ранили в перестрелке, но он жив. Скажите о нём одной фразой",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-30:i13:audio"
       ],
-      "accessibilityLabel": "У героя по сюжету почти нет денег. Скажите о его положении",
+      "accessibilityLabel": "Героя ранили в перестрелке, но он жив. Скажите о нём одной фразой",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-30:i13:audio",
-          "transcript": "He is poor."
+          "transcript": "He is injured."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is poor.",
+        "targetPhrase": "He is injured.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,10 +1064,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-30:i16:p1",
-            "target": "poor",
+            "target": "injured",
             "meaningByLocale": {
-              "ru": "бедный",
-              "uk": "бідний"
+              "ru": "раненый",
+              "uk": "поранений"
             }
           },
           {
@@ -924,13 +1096,13 @@
           }
         ],
         "leftColumn": [
-          "poor",
+          "injured",
           "alive",
           "dead",
           "missing"
         ],
         "rightColumn": [
-          "бедный",
+          "раненый",
           "живой",
           "мёртвый",
           "пропавший"
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-30:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8e9c9f564b4668e216f5c6a487d426b0499e50b8971f133eaaba5e04279eacc2"
+  "learnerFingerprint": "cf10defa914396102a64068760f9fa2881a53d32a505375cd7290156f5d58161"
 }

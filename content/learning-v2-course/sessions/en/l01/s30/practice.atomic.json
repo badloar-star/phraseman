@@ -1,0 +1,2435 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-30",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-30:word:alive",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — alive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:alive:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — alive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:alive:audio",
+            "transcript": "alive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:alive:r1",
+              "targetText": "alive",
+              "meaningByLocale": {
+                "ru": "живой, жив. She is alive — «Она жива». Противоположность — dead.",
+                "uk": "живий, живий-здоровий. She is alive — «Вона жива». Протилежність — dead."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "alive",
+            "definitionByLocale": {
+              "ru": "живой, жив. She is alive — «Она жива». Противоположность — dead.",
+              "uk": "живий, живий-здоровий. She is alive — «Вона жива». Протилежність — dead."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:word:dead",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:dead:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:dead:audio",
+            "transcript": "dead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:dead:r1",
+              "targetText": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+                "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dead",
+            "definitionByLocale": {
+              "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+              "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:word:missing",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — missing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:missing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — missing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:missing:audio",
+            "transcript": "missing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:missing:r1",
+              "targetText": "missing",
+              "meaningByLocale": {
+                "ru": "пропал, нет там, где должен быть. She is missing — «Она пропала». Про вещь: It is missing.",
+                "uk": "зник, немає там, де має бути. She is missing — «Вона зникла». Про річ: It is missing."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "missing",
+            "definitionByLocale": {
+              "ru": "пропал, нет там, где должен быть. She is missing — «Она пропала». Про вещь: It is missing.",
+              "uk": "зник, немає там, де має бути. She is missing — «Вона зникла». Про річ: It is missing."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:word:injured",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — injured",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:injured:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — injured",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:injured:audio",
+            "transcript": "injured"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:injured:r1",
+              "targetText": "injured",
+              "meaningByLocale": {
+                "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+                "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "injured",
+            "definitionByLocale": {
+              "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+              "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Героя нашли живым. Соберите сообщение об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Героя нашли живым. Соберите сообщение об этом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is alive.",
+          "localizedMeaning": {
+            "ru": "Героя нашли живым. Соберите сообщение об этом",
+            "uk": "Героя знайшли живим. Складіть повідомлення про це"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "alive"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Героя нашли живым. Соберите сообщение об этом",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is alive.`",
+                "uk": "тут потрібно `is` — `He is alive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i02:r1",
+            "text": "She is missing."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r2",
+            "text": "He is missing."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r3",
+            "text": "She is alive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i02:audio",
+            "transcript": "She is missing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:i02:r1",
+              "targetText": "She is missing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r2",
+              "targetText": "He is missing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r3",
+              "targetText": "She is alive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `missing`, а в этом варианте — `alive`.",
+                "uk": "У записі останнє слово — `missing`, а в цьому варіанті — `alive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них",
+            "uk": "За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них"
+          },
+          "gappedTargetPhrase": "They ___ dead.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-30:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них",
+              "feedbackByLocale": {
+                "ru": "`am` подходит к `I`. О них говорим `They are`.",
+                "uk": "`am` поєднується з `I`. Про них кажемо `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-30:i04:p1",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i04:p2",
+              "target": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый",
+                "uk": "мертвий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i04:p3",
+              "target": "missing",
+              "meaningByLocale": {
+                "ru": "пропавший",
+                "uk": "зниклий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i04:p4",
+              "target": "injured",
+              "meaningByLocale": {
+                "ru": "раненый",
+                "uk": "поранений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "alive",
+            "dead",
+            "missing",
+            "injured"
+          ],
+          "rightColumn": [
+            "живой",
+            "мёртвый",
+            "пропавший",
+            "раненый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i05:audio",
+            "transcript": "They are alive."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are alive.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "alive"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are alive.`",
+                "uk": "тут потрібно `They` — `They are alive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ключа нет на месте, герой его ищет. Соберите фразу о ключе: «Он пропал»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключа нет на месте, герой его ищет. Соберите фразу о ключе: «Он пропал»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is missing.",
+          "localizedMeaning": {
+            "ru": "Ключа нет на месте, герой его ищет. Соберите фразу о ключе: «Он пропал»",
+            "uk": "Ключа немає на місці, герой його шукає. Складіть фразу про ключ: «Він зник»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "missing"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ключа нет на месте, герой его ищет. Соберите фразу о ключе: «Он пропал»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is missing.`",
+                "uk": "тут потрібно `It` — `It is missing.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Врач в фильме подтвердил, что героиня умерла. Скажите о ней одной фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Врач в фильме подтвердил, что героиня умерла. Скажите о ней одной фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i07:audio",
+            "transcript": "She is dead."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is dead.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику",
+            "uk": "Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку"
+          },
+          "gappedTargetPhrase": "I ___ alive.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-30:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику",
+              "feedbackByLocale": {
+                "ru": "О себе герой говорит `I am`.",
+                "uk": "Про себе герой каже `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику",
+              "feedbackByLocale": {
+                "ru": "После `I` нужна форма `am`.",
+                "uk": "Після `I` потрібна форма `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i09:r1",
+            "text": "He is dead."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i09:r2",
+            "text": "She is dead."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i09:r3",
+            "text": "He is missing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i09:audio",
+            "transcript": "He is dead."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:i09:r1",
+              "targetText": "He is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i09:r2",
+              "targetText": "She is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i09:r3",
+              "targetText": "He is missing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dead`, а в этом варианте — `missing`.",
+                "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `missing`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые слова и значения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые слова и значения",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-30:i10:p1",
+              "target": "local",
+              "meaningByLocale": {
+                "ru": "местный",
+                "uk": "місцевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i10:p2",
+              "target": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный",
+                "uk": "іноземний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i10:p3",
+              "target": "online",
+              "meaningByLocale": {
+                "ru": "в интернете",
+                "uk": "в інтернеті"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i10:p4",
+              "target": "rich",
+              "meaningByLocale": {
+                "ru": "богатый",
+                "uk": "багатий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "local",
+            "foreign",
+            "online",
+            "rich"
+          ],
+          "rightColumn": [
+            "местный",
+            "иностранный",
+            "в интернете",
+            "богатый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте реплику спасённых героев и соберите её",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте реплику спасённых героев и соберите её",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i11:audio",
+            "transcript": "We are alive."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are alive.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "alive"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте реплику спасённых героев и соберите её",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are alive.`",
+                "uk": "тут потрібно `We` — `We are alive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двух героев ищут; где они, неизвестно. Соберите фразу о них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двух героев ищут; где они, неизвестно. Соберите фразу о них",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are missing.",
+          "localizedMeaning": {
+            "ru": "Двух героев ищут; где они, неизвестно. Соберите фразу о них",
+            "uk": "Двох героїв шукають; де вони, невідомо. Складіть фразу про них"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "missing"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двух героев ищут; где они, неизвестно. Соберите фразу о них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are missing.`",
+                "uk": "тут потрібно `are` — `They are missing.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Героя ранили в перестрелке, но он жив. Скажите о нём одной фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Героя ранили в перестрелке, но он жив. Скажите о нём одной фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i13:audio",
+            "transcript": "He is injured."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is injured.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i14:r1",
+            "text": "missing"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i14:r2",
+            "text": "dead"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i14:r3",
+            "text": "famous"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
+            "uk": "Героїню шукають, її місцеперебування невідоме. Виберіть слово лише для цього факту"
+          },
+          "gappedTargetPhrase": "She is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-30:i14:r1",
+              "text": "missing"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r2",
+              "text": "dead"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r3",
+              "text": "famous"
+            }
+          ],
+          "testedDimension": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
+              "feedbackByLocale": {
+                "ru": "Нет сведений, что она умерла. Она пропала: `missing`.",
+                "uk": "Немає відомостей, що вона померла. Вона зникла: `missing`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
+              "feedbackByLocale": {
+                "ru": "`famous` — «знаменитая». Здесь речь об исчезновении: `missing`.",
+                "uk": "`famous` — «знаменита». Тут ідеться про зникнення: `missing`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i15:r1",
+            "text": "You are alive."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i15:r2",
+            "text": "We are alive."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i15:r3",
+            "text": "You are famous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i15:audio",
+            "transcript": "You are alive."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:i15:r1",
+              "targetText": "You are alive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i15:r2",
+              "targetText": "We are alive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i15:r3",
+              "targetText": "You are famous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `alive`, а в этом варианте — `famous`.",
+                "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `famous`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и значения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и значения",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-30:i16:p1",
+              "target": "injured",
+              "meaningByLocale": {
+                "ru": "раненый",
+                "uk": "поранений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i16:p2",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i16:p3",
+              "target": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый",
+                "uk": "мертвий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i16:p4",
+              "target": "missing",
+              "meaningByLocale": {
+                "ru": "пропавший",
+                "uk": "зниклий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "injured",
+            "alive",
+            "dead",
+            "missing"
+          ],
+          "rightColumn": [
+            "раненый",
+            "живой",
+            "мёртвый",
+            "пропавший"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "После отпуска вы осмотрели растение: оно живое, на нём новые листья. Скажите соседу о растении одной фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "После отпуска вы осмотрели растение: оно живое, на нём новые листья. Скажите соседу о растении одной фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i17:audio",
+            "transcript": "It is alive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is alive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-30:word:alive",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — alive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:alive:audio"
+        ],
+        "accessibilityLabel": "Картка слова — alive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:alive:audio",
+            "transcript": "alive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:alive:r1",
+              "targetText": "alive",
+              "meaningByLocale": {
+                "ru": "живой, жив. She is alive — «Она жива». Противоположность — dead.",
+                "uk": "живий, живий-здоровий. She is alive — «Вона жива». Протилежність — dead."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "alive",
+            "definitionByLocale": {
+              "ru": "живой, жив. She is alive — «Она жива». Противоположность — dead.",
+              "uk": "живий, живий-здоровий. She is alive — «Вона жива». Протилежність — dead."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:word:dead",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:dead:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:dead:audio",
+            "transcript": "dead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:dead:r1",
+              "targetText": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+                "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dead",
+            "definitionByLocale": {
+              "ru": "мёртвый, умер. He is dead — «Он мёртв». Говорим, когда смерть точно известна.",
+              "uk": "мертвий, помер. He is dead — «Він мертвий». Кажемо, коли смерть точно відома."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:word:missing",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — missing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:missing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — missing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:missing:audio",
+            "transcript": "missing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:missing:r1",
+              "targetText": "missing",
+              "meaningByLocale": {
+                "ru": "пропал, нет там, где должен быть. She is missing — «Она пропала». Про вещь: It is missing.",
+                "uk": "зник, немає там, де має бути. She is missing — «Вона зникла». Про річ: It is missing."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "missing",
+            "definitionByLocale": {
+              "ru": "пропал, нет там, где должен быть. She is missing — «Она пропала». Про вещь: It is missing.",
+              "uk": "зник, немає там, де має бути. She is missing — «Вона зникла». Про річ: It is missing."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:word:injured",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — injured",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:word:injured:audio"
+        ],
+        "accessibilityLabel": "Картка слова — injured",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:word:injured:audio",
+            "transcript": "injured"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:word:injured:r1",
+              "targetText": "injured",
+              "meaningByLocale": {
+                "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+                "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "injured",
+            "definitionByLocale": {
+              "ru": "ранен, получил травму. He is injured — «Он ранен». Раненый человек жив: это не то же, что dead.",
+              "uk": "поранений, отримав травму. He is injured — «Він поранений». Поранена людина жива: це не те саме, що dead."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Героя знайшли живим. Складіть повідомлення про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Героя знайшли живим. Складіть повідомлення про це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is alive.",
+          "localizedMeaning": {
+            "ru": "Героя нашли живым. Соберите сообщение об этом",
+            "uk": "Героя знайшли живим. Складіть повідомлення про це"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "alive"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Героя знайшли живим. Складіть повідомлення про це",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is alive.`",
+                "uk": "тут потрібно `is` — `He is alive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i02:r1",
+            "text": "She is missing."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r2",
+            "text": "He is missing."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r3",
+            "text": "She is alive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i02:audio",
+            "transcript": "She is missing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:i02:r1",
+              "targetText": "She is missing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r2",
+              "targetText": "He is missing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r3",
+              "targetText": "She is alive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `missing`, а в этом варианте — `alive`.",
+                "uk": "У записі останнє слово — `missing`, а в цьому варіанті — `alive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "По сюжету врач подтвердил смерть двух персонажей. Вставьте слово в сообщение о них",
+            "uk": "За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них"
+          },
+          "gappedTargetPhrase": "They ___ dead.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-30:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`.",
+                "uk": "Після `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "За сюжетом лікар підтвердив смерть двох персонажів. Вставте слово в повідомлення про них",
+              "feedbackByLocale": {
+                "ru": "`am` подходит к `I`. О них говорим `They are`.",
+                "uk": "`am` поєднується з `I`. Про них кажемо `They are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-30:i04:p1",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i04:p2",
+              "target": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый",
+                "uk": "мертвий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i04:p3",
+              "target": "missing",
+              "meaningByLocale": {
+                "ru": "пропавший",
+                "uk": "зниклий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i04:p4",
+              "target": "injured",
+              "meaningByLocale": {
+                "ru": "раненый",
+                "uk": "поранений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "alive",
+            "dead",
+            "missing",
+            "injured"
+          ],
+          "rightColumn": [
+            "живий",
+            "мертвий",
+            "зниклий",
+            "поранений"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i05:audio",
+            "transcript": "They are alive."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are alive.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "alive"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are alive.`",
+                "uk": "тут потрібно `They` — `They are alive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ключа немає на місці, герой його шукає. Складіть фразу про ключ: «Він зник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключа немає на місці, герой його шукає. Складіть фразу про ключ: «Він зник»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is missing.",
+          "localizedMeaning": {
+            "ru": "Ключа нет на месте, герой его ищет. Соберите фразу о ключе: «Он пропал»",
+            "uk": "Ключа немає на місці, герой його шукає. Складіть фразу про ключ: «Він зник»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "missing"
+          ],
+          "authoredDistractorTokens": [
+            "He"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ключа немає на місці, герой його шукає. Складіть фразу про ключ: «Він зник»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `It` — `It is missing.`",
+                "uk": "тут потрібно `It` — `It is missing.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Лікар у фільмі підтвердив, що героїня померла. Скажіть про неї однією фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Лікар у фільмі підтвердив, що героїня померла. Скажіть про неї однією фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i07:audio",
+            "transcript": "She is dead."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is dead.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Герой звонит после спасения и сообщает о себе: «Я жив». Вставьте слово в его реплику",
+            "uk": "Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку"
+          },
+          "gappedTargetPhrase": "I ___ alive.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-30:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку",
+              "feedbackByLocale": {
+                "ru": "О себе герой говорит `I am`.",
+                "uk": "Про себе герой каже `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Герой телефонує після порятунку й повідомляє про себе: «Я живий». Вставте слово в його репліку",
+              "feedbackByLocale": {
+                "ru": "После `I` нужна форма `am`.",
+                "uk": "Після `I` потрібна форма `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i09:r1",
+            "text": "He is dead."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i09:r2",
+            "text": "She is dead."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i09:r3",
+            "text": "He is missing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i09:audio",
+            "transcript": "He is dead."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:i09:r1",
+              "targetText": "He is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i09:r2",
+              "targetText": "She is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i09:r3",
+              "targetText": "He is missing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
+                "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dead`, а в этом варианте — `missing`.",
+                "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `missing`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі слова та значення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі слова та значення",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-30:i10:p1",
+              "target": "local",
+              "meaningByLocale": {
+                "ru": "местный",
+                "uk": "місцевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i10:p2",
+              "target": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный",
+                "uk": "іноземний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i10:p3",
+              "target": "online",
+              "meaningByLocale": {
+                "ru": "в интернете",
+                "uk": "в інтернеті"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i10:p4",
+              "target": "rich",
+              "meaningByLocale": {
+                "ru": "богатый",
+                "uk": "багатий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "local",
+            "foreign",
+            "online",
+            "rich"
+          ],
+          "rightColumn": [
+            "місцевий",
+            "іноземний",
+            "в інтернеті",
+            "багатий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте репліку врятованих героїв і складіть її",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте репліку врятованих героїв і складіть її",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i11:audio",
+            "transcript": "We are alive."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are alive.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "alive"
+          ],
+          "authoredDistractorTokens": [
+            "They"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте репліку врятованих героїв і складіть її",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We` — `We are alive.`",
+                "uk": "тут потрібно `We` — `We are alive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двох героїв шукають; де вони, невідомо. Складіть фразу про них",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двох героїв шукають; де вони, невідомо. Складіть фразу про них",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are missing.",
+          "localizedMeaning": {
+            "ru": "Двух героев ищут; где они, неизвестно. Соберите фразу о них",
+            "uk": "Двох героїв шукають; де вони, невідомо. Складіть фразу про них"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "missing"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двох героїв шукають; де вони, невідомо. Складіть фразу про них",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are missing.`",
+                "uk": "тут потрібно `are` — `They are missing.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Героя поранили в перестрілці, але він живий. Скажіть про нього однією фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Героя поранили в перестрілці, але він живий. Скажіть про нього однією фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i13:audio",
+            "transcript": "He is injured."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is injured.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Героїню шукають, її місцеперебування невідоме. Виберіть слово лише для цього факту",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i14:r1",
+            "text": "missing"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i14:r2",
+            "text": "dead"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i14:r3",
+            "text": "famous"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Героїню шукають, її місцеперебування невідоме. Виберіть слово лише для цього факту",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Героиню ищут, её местонахождение неизвестно. Выберите слово только для этого факта",
+            "uk": "Героїню шукають, її місцеперебування невідоме. Виберіть слово лише для цього факту"
+          },
+          "gappedTargetPhrase": "She is ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-30:i14:r1",
+              "text": "missing"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r2",
+              "text": "dead"
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r3",
+              "text": "famous"
+            }
+          ],
+          "testedDimension": "Героїню шукають, її місцеперебування невідоме. Виберіть слово лише для цього факту",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Героїню шукають, її місцеперебування невідоме. Виберіть слово лише для цього факту",
+              "feedbackByLocale": {
+                "ru": "Нет сведений, что она умерла. Она пропала: `missing`.",
+                "uk": "Немає відомостей, що вона померла. Вона зникла: `missing`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Героїню шукають, її місцеперебування невідоме. Виберіть слово лише для цього факту",
+              "feedbackByLocale": {
+                "ru": "`famous` — «знаменитая». Здесь речь об исчезновении: `missing`.",
+                "uk": "`famous` — «знаменита». Тут ідеться про зникнення: `missing`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i15:r1",
+            "text": "You are alive."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i15:r2",
+            "text": "We are alive."
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i15:r3",
+            "text": "You are famous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i15:audio",
+            "transcript": "You are alive."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-30:i15:r1",
+              "targetText": "You are alive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i15:r2",
+              "targetText": "We are alive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i15:r3",
+              "targetText": "You are famous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `alive`, а в этом варианте — `famous`.",
+                "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `famous`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова та значення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова та значення",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-30:i16:p1",
+              "target": "injured",
+              "meaningByLocale": {
+                "ru": "раненый",
+                "uk": "поранений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i16:p2",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i16:p3",
+              "target": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый",
+                "uk": "мертвий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-30:i16:p4",
+              "target": "missing",
+              "meaningByLocale": {
+                "ru": "пропавший",
+                "uk": "зниклий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "injured",
+            "alive",
+            "dead",
+            "missing"
+          ],
+          "rightColumn": [
+            "поранений",
+            "живий",
+            "мертвий",
+            "зниклий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Після відпустки ви оглянули рослину: вона жива, на ній нове листя. Скажіть сусідові про рослину однією фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Після відпустки ви оглянули рослину: вона жива, на ній нове листя. Скажіть сусідові про рослину однією фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-30:i17:audio",
+            "transcript": "It is alive."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is alive.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-30:word:alive",
+      "correctText": "alive",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:word:dead",
+      "correctText": "dead",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:word:missing",
+      "correctText": "missing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:word:injured",
+      "correctText": "injured",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i01",
+      "correctText": "He is alive.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i02",
+      "correctText": "She is missing.",
+      "correctResponseId": "en:lesson-01:session-30:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-30:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i05",
+      "correctText": "They are alive.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i06",
+      "correctText": "It is missing.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i07",
+      "correctText": "She is dead.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i08",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-01:session-30:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i09",
+      "correctText": "He is dead.",
+      "correctResponseId": "en:lesson-01:session-30:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i11",
+      "correctText": "We are alive.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i12",
+      "correctText": "They are missing.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i13",
+      "correctText": "He is injured.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i14",
+      "correctText": "missing",
+      "correctResponseId": "en:lesson-01:session-30:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i15",
+      "correctText": "You are alive.",
+      "correctResponseId": "en:lesson-01:session-30:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i17",
+      "correctText": "It is alive.",
+      "correctResponseId": null
+    }
+  ]
+}

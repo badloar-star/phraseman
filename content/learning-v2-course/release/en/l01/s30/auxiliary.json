@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-30:intro1:r2": {
-          "ru": "Между `She` и `alive` нужно `is`.",
-          "uk": "Між `She` і `alive` потрібно `is`."
+          "ru": "Между She и alive нужно is.",
+          "uk": "Між She і alive потрібно is."
         },
         "en:lesson-01:session-30:intro1:r3": {
-          "ru": "После `She` ставим `is`.",
-          "uk": "Після `She` ставимо `is`."
+          "ru": "После She ставим is.",
+          "uk": "Після She ставимо is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-30:intro2:r2": {
-          "ru": "`alive` — «жив». Здесь подтверждено обратное: `dead`.",
-          "uk": "`alive` — «живий». Тут підтверджено протилежне: `dead`."
+          "ru": "alive — «жив». Здесь подтверждено обратное: dead.",
+          "uk": "alive — «живий». Тут підтверджено протилежне: dead."
         },
         "en:lesson-01:session-30:intro2:r3": {
-          "ru": "После `He` нужно `is`.",
-          "uk": "Після `He` потрібно `is`."
+          "ru": "После He нужно is.",
+          "uk": "Після He потрібно is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-30:intro3:r2": {
-          "ru": "Смерть не установлена. Известно только, что она пропала: `missing`.",
-          "uk": "Смерть не встановлено. Відомо лише, що вона зникла: `missing`."
+          "ru": "Смерть не установлена. Известно только, что она пропала: missing.",
+          "uk": "Смерть не встановлено. Відомо лише, що вона зникла: missing."
         },
         "en:lesson-01:session-30:intro3:r3": {
-          "ru": "После `She` нужна форма `is`.",
-          "uk": "Після `She` потрібна форма `is`."
+          "ru": "После She нужна форма is.",
+          "uk": "Після She потрібна форма is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ae71d3d0bd124c0c356f7d8bc8dae961014f64ad6c9d90f8fceceed6f0098878"
+  "auxiliaryFingerprint": "685b50c6ff964e3856d6600a04ea455d408762f4dc2236790822e9d177477c4f"
 }

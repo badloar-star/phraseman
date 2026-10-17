@@ -2968,8 +2968,8 @@ export default function LearningV2DirectSessionPlayerV1() {
         <LearningV2VoiceHeadsupSheet
           visible={voiceHeadsupOpen}
           lang={lang}
-          voiceTasks={voiceHeadsupTasks}
           remaining={voiceAllowance.remaining ?? 0}
+          limit={voiceAllowance.limit}
           onTryPlus={voiceHeadsupTryPlus}
           onStartAnyway={voiceHeadsupStartAnyway}
         />

@@ -63,6 +63,19 @@ describe('Learning V2 voice heads-up wiring in the direct player', () => {
     expect(src).toMatch(/if \(result\.decision !== "show"\) return;\s*markLearningV2VoiceHeadsupShownV1\(runId\);\s*setVoiceHeadsupOpen\(true\);/);
   });
 
+  // владелец 17.10, вариант 1 — шторка снизу (макет 700ad5788 #sheet): микрофон с остатком, счётчик «K из лимита», главная Plus,
+  // тихая «Начать всё равно», свайп вниз = «Начать всё равно», без обводок
+  it('the sheet follows the approved mockup: mic badge, counter, Plus primary, quiet start, swipe down = start anyway', () => {
+    const sheet = fs.readFileSync(path.join(__dirname, '..', 'components', 'learning-v2', 'LearningV2VoiceHeadsupSheet.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    expect(sheet).toContain("title: 'Голоса на всё занятие не хватит'");
+    expect(sheet).toContain('`${copy.today} · ${remaining} ${copy.of} ${limit}`');
+    expect(sheet).toMatch(/<Lv2Cta onPress=\{tryPlus\}/);
+    expect(sheet).toMatch(/gs\.dy > DISMISS_DISTANCE \|\| gs\.vy > DISMISS_VELOCITY[\s\S]{0,200}startAnywayRef\.current\(\);/);
+    expect(sheet).toContain('onRequestClose={startAnyway}');
+    expect(sheet).not.toMatch(/borderWidth|borderColor/);
+    expect(src).toMatch(/<LearningV2VoiceHeadsupSheet[\s\S]{0,200}limit=\{voiceAllowance\.limit\}/);
+  });
+
   it('the sheet sits over the intro; Plus goes to the course voice paywall, «start anyway» just closes', () => {
     expect(src).toMatch(/<LearningV2VoiceHeadsupSheet\s+visible=\{voiceHeadsupOpen\}/);
     const tryPlus = src.slice(src.indexOf('const voiceHeadsupTryPlus = useCallback('), src.indexOf('const voiceHeadsupStartAnyway'));

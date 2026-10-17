@@ -106,3 +106,23 @@ Contain: каждая красная строка — чей-то долг; чи
 
 - **video_market_loader_error_contract** — устарел (заглушка): communityFirestore давно (fdab41c40) тянет `hub_lifecycle_probe` (импортирует react-native с Flow-синтаксисом) и `dev_cards_state`; в тесте не было заглушек этих импортов — падал на загрузке модуля (`Unexpected "typeof"`), а не на поведении кэша. После заглушек все 6 проверок зелёные: ошибка индекса без кэша отклоняется, пустая витрина легитимна, кэш того же языка живёт, чужой язык не отдаётся, forceRemote обходит кэш — поведение при TTL 24 ч не сломано.
 - **saved_packs_completion** — устарел (заглушки), не связан с каталогом: 3 падения — (1) `filterCardsByPackLanguage(cards,'en')` вернул 4 вместо 1 в тесте загрузки сохранённых (контур хранения/язык, файлы db44eece1 их не трогал), (2) `TypeError: isDevPackDraftNone is not a function` — в заглушке `dev_cards_state` нет нового экспорта, (3) `ReferenceError: STUDY_SPEECH_LOCALE is not defined` — `extract(...)` для `inferExpoSpeechLanguage` не получил новую константу. Чинить владельцу зоны «Карточки»; поведение сохранения карточки (Optimistic UI) тестом не затронуто.
+
+## Пересчёт 18.10 (Дизайн, 23:40): было 69 → 41 → 23 → **9** из 1310
+
+Прогон: `node --test --test-concurrency=1 tests/*.test.mjs tests/*.test.cjs` на HEAD d554d8f51+ (лог вне репозитория `C:\Temp\claude\c1\node_full4.log`), 1310 проверок, 1300 зелёных, 9 красных. Закрыто за ночь: Ядро (6, 29, 38), Темы (1, 2, 3, 23, 39 и разбор 18.10), Моменты (24, 25, 36 и `spire_moments_v3_contract` — плитка Пика больше не тянет модуль моментов, d554d8f51), Переводчик (9, 14, 15), Сайт (27, 34, 40), `saved_packs_completion` (6912c1725 — заглушки, не баг), `flashcards_swipe_access_behavior` (1e47919fc).
+
+Оставшиеся 9 — по владельцам (первая ошибка прогона; перед правкой проверь `node --test tests/<файл>`):
+
+| Владелец | Тест | Что красное | Вердикт |
+|---|---|---|---|
+| Карточки / LABEL-FIT | cards_hub_large_font_contract | нет `lineHeight: lh(19)` — строки хаба после R109 / 893db7388 | устарел (перепин под новые строки) |
+| Карточки / LABEL-FIT | flashcards_my_packs_review_p1_contract | нет регулярки `accessibilityLabel={t.count === '' ? t.title : …}` — у плитки добавлена единица (`t.unit`) | устарел (перепин) |
+| Карточки | flashcards_deck_picker_liquid_glass_source_contract | хэш «до-правочных» контрактов DeckPickerSheet изменился | проверить: намеренная правка кнопок (05198c295, BackGlyph) → перепин с причиной |
+| Макеты | cards_section_locked | изменён зафиксированный макет `cards-section-extra.js` (4e71be616, «хаб Карточек зазор») | решение владельца: макет заморожен 04.10 — либо вернуть, либо владелец снимает фиксацию |
+| Макеты / Фраза дня | render_daily_phrase_content_preview | strict equal на предпросмотре фразы дня (старый №28) | устарел |
+| Темы | action_toast_liquid_glass_source_contract | `ActionToast.tsx` больше не содержит `glass.card` (7247ff99d) | устарел (перепин на новый токен) |
+| Темы / Ошибки | mistake_list_detail_liquid_glass_source_contract | нет `g.opaqueCard/Control/Sheet` и `glassButtonFill(g)` в списке/детали ошибок | проверить код: нужна ли непрозрачная заливка |
+| Курс V2 | shadow_style_no_container_borders | новая обводка `modules/learning-v2/modes/mode_feedback_v1.tsx` | код (убрать обводку или пометить «shadow-ok: причина») |
+| Моменты | theme_hardcoded_colors_ratchet | 3 захардкоженных цвета в `components/legacy_bonus/LegacyBonusHero.tsx` | код (токены темы или «theme-exempt») |
+
+Мои сироты закрыты: у Дизайна красных не осталось.

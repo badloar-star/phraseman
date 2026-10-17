@@ -191,3 +191,48 @@ pt-BR «Não deu para…» — неформально, как «не получ�
   на «ты», без системных слов.
 - **Код друга «не нашли такой код»** (659a909ce): новых строк нет — ранний отказ без сети показывает существующий текст `unknown_code`
   в `components/referral_code_sheet.tsx` («Такой код не найден. Убедись, что это код приглашения Phraseman.»), 9 языков верны.
+
+## ВЫЧИТКА 17.10 (координатор): новые строки дня
+
+- **«Классический курс»** (98f738846, c92f7585d): все 9 языков без правок. Самый длинный — vi, 16 знаков, помещается в одну строку.
+- **Экран «Сегодня»** (8b41a51b7, c9a5ca93d): заголовок, «Назад» и «Смотреть все» без правок. «Смотреть все» совпадает с лентой видео (`HomeV2VideoRail`), «Сегодня» — с заголовком блока на Главной (pl «Dziś» в обоих местах).
+- **«Пока не выходит — попробуй через минуту»** (493135bf6): поправлена только id — «coba lagi semenit lagi» → «coba lagi dalam semenit» (там повторялось «lagi»). Остальные 10 языков (включая fr/de) без правок.
+- **Окно голосового лимита** (eb0cf55d1 → макет `docs/design/v2-app/voice-limit-session-start.html`, D194): тексты в компоненте расходятся с макетом. Сайт перекладывает окно в шторку и берёт тексты ниже. Все на «ты». `{n}` — число попыток со словом, через `pluralWithCount`.
+
+| | Заголовок | Текст | Счётчик | Главная кнопка | Вторая кнопка |
+|---|---|---|---|---|---|
+| ru | Голоса на всё занятие не хватит | В этом занятии есть задания с голосом, а на сегодня у тебя осталось {n} — закончить не получится. С Plus лимита на голос нет. | Голос на сегодня · {left} из {max} | Попробовать Plus | Начать всё равно |
+| uk | Голосу на все заняття не вистачить | У цьому занятті є завдання з голосом, а на сьогодні в тебе лишилося {n} — завершити не вийде. З Plus ліміту на голос немає. | Голос на сьогодні · {left} з {max} | Спробувати Plus | Почати все одно |
+| en | Not enough voice tries for this session | This session has voice tasks, and you have {n} left today — not enough to finish. Plus has no voice limit. | Voice today · {left} of {max} | Try Plus | Start anyway |
+| es | Te faltan intentos de voz para esta sesión | Esta sesión tiene tareas de voz y hoy te quedan {n}: no podrás terminarla. Con Plus no hay límite de voz. | Voz de hoy · {left} de {max} | Probar Plus | Empezar igualmente |
+| pt-BR | Faltam tentativas de voz para esta sessão | Esta sessão tem tarefas de voz e hoje você só tem {n} — não dá para terminar. Com o Plus não há limite de voz. | Voz hoje · {left} de {max} | Experimentar o Plus | Começar mesmo assim |
+| vi | Không đủ lượt nói cho cả buổi học | Buổi học này có bài nói, nhưng hôm nay bạn chỉ còn {n} — không đủ để học hết. Với Plus, nói không giới hạn. | Giọng nói hôm nay · {left}/{max} | Dùng thử Plus | Vẫn bắt đầu |
+| id | Percobaan suara tak cukup untuk sesi ini | Sesi ini punya tugas suara, tapi sisa percobaanmu hari ini {n} — tidak cukup sampai selesai. Dengan Plus, suara tanpa batas. | Suara hari ini · {left} dari {max} | Coba Plus | Tetap mulai |
+| tr | Ses hakkın bu derse yetmeyecek | Bu derste sesli görevler var, bugün ise {n} kaldı — bitirmeye yetmez. Plus ile ses sınırı yok. | Bugünkü ses · {left}/{max} | Plus'ı dene | Yine de başla |
+| pl | Za mało prób głosowych na całą lekcję | W tej lekcji są zadania głosowe, a na dziś zostały ci {n} — nie dasz rady skończyć. Z Plus nie ma limitu głosu. | Głos na dziś · {left} z {max} | Wypróbuj Plus | Zacznij mimo to |
+
+Слово к числу `{n}`:
+
+| Язык | Формы |
+|---|---|
+| ru | попытка / попытки / попыток |
+| uk | спроба / спроби / спроб |
+| pl | próba / próby / prób; глагол: «została ci 1 próba», «zostały ci 2 próby», «zostało ci 5 prób» |
+| en | try / tries |
+| es | intento / intentos |
+| pt-BR | tentativa / tentativas |
+| vi | «{left} lượt» |
+| id | «{left}» без слова, в тексте уже есть «percobaanmu» |
+| tr | «{left} ses hakkın» |
+
+Если Сайт оставит одну строку без склонения глагола, для pl безопаснее «na dziś masz jeszcze {n}»: «masz» не склоняется по числу.
+
+**Когда осталась одна попытка, глагол тоже меняется.** Окно показывается при 0, 1 или 2 оставшихся попытках, поэтому при 1 глагол в строке нужен другой:
+
+| Язык | При 0 и 2 | При 1 |
+|---|---|---|
+| ru | «осталось 2 попытки», «осталось 0 попыток» | «осталась 1 попытка» |
+| uk | «лишилося 2 спроби» | «лишилася 1 спроба» |
+| pl | «zostały ci 2 próby» | «została ci 1 próba» |
+
+Проще всего хранить строку целиком на каждую форму: one / few / many через `pluralFormFor`.

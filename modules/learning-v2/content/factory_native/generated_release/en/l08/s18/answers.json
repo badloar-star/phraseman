@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-18:i01",
+    "correctText": "Can you pass me the key?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i02",
+    "correctText": "pass",
+    "correctResponseId": "en:lesson-08:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i03",
+    "correctText": "pass",
+    "correctResponseId": "en:lesson-08:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i04",
+    "correctText": "en:lesson-08:session-18:i04:p1=pass\nen:lesson-08:session-18:i04:p2=milk\nen:lesson-08:session-18:i04:p3=smile\nen:lesson-08:session-18:i04:p4=dive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i05",
+    "correctText": "Can you pass me the key?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i06",
+    "correctText": "Can you pass me the milk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i07",
+    "correctText": "I can’t dive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i08",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-08:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i09",
+    "correctText": "Can you pass me the key?",
+    "correctResponseId": "en:lesson-08:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i10",
+    "correctText": "en:lesson-08:session-18:i10:p1=gamble\nen:lesson-08:session-18:i10:p2=pass\nen:lesson-08:session-18:i10:p3=milk\nen:lesson-08:session-18:i10:p4=smile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i11",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i12",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i13",
+    "correctText": "I often smile.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i14",
+    "correctText": "Can",
+    "correctResponseId": "en:lesson-08:session-18:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i15",
+    "correctText": "Can you open the door?",
+    "correctResponseId": "en:lesson-08:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i16",
+    "correctText": "en:lesson-08:session-18:i16:p1=pass\nen:lesson-08:session-18:i16:p2=gamble\nen:lesson-08:session-18:i16:p3=dive\nen:lesson-08:session-18:i16:p4=milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-18:i17",
+    "correctText": "Can you pass me the book?",
+    "correctResponseId": null
+  }
+]

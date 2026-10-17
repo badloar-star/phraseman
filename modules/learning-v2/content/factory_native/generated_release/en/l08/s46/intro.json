@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "повторить can для умения и сохранить действие без to и окончаний",
+    "uk": "повторити can для вміння та залишити дію без to і закінчень"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Компьютер не запускается",
+        "uk": "Комп’ютер не запускається"
+      },
+      "bodyByLocale": {
+        "ru": "Компьютер друга не запускается. Вы умеете находить причины таких неполадок. `Diagnose` — «диагностировать»: здесь — определить причину неисправности. Скажите: `I can diagnose it` — «Я могу определить причину». Здесь `it` относится к неисправности. После `can` нужно `diagnose`, без `to`. Уговоры «ну включись» пока не помогли.",
+        "uk": "Комп’ютер друга не запускається. Ви вмієте знаходити причини таких неполадок. `Diagnose` — «діагностувати»: тут — визначити причину несправності. Скажіть: `I can diagnose it` — «Я можу визначити причину». Тут `it` стосується несправності. Після `can` потрібне `diagnose`, без `to`. Умовляння «ну ввімкнися» поки не допомогли."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что можете определить причину неисправности.",
+          "uk": "Скажіть, що можете визначити причину несправності."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-46:intro1:r1",
+              "text": "I can diagnose it."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro1:r2",
+              "text": "I can to diagnose it."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro1:r3",
+              "text": "I can diagnoses it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-46:intro1:r1",
+              "text": "I can diagnose it."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro1:r2",
+              "text": "I can to diagnose it."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro1:r3",
+              "text": "I can diagnoses it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что можете определить причину неисправности.",
+          "uk": "Скажіть, що можете визначити причину несправності."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поездка за покупками",
+        "uk": "Поїздка по покупки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы планируете купить продукты на всю неделю. Друг спрашивает, умеет ли ваша подруга водить машину. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
+        "uk": "Ви плануєте купити продукти на весь тиждень. Друг запитує, чи вміє ваша подруга водити машину. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что она умеет водить.",
+          "uk": "Скажіть, що вона вміє водити."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-46:intro2:r1",
+              "text": "She can drive."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro2:r2",
+              "text": "She can drives."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro2:r3",
+              "text": "She can to drive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-46:intro2:r1",
+              "text": "She can drive."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro2:r2",
+              "text": "She can drives."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro2:r3",
+              "text": "She can to drive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что она умеет водить.",
+          "uk": "Скажіть, що вона вміє водити."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сигнал на тренировке",
+        "uk": "Сигнал на тренуванні"
+      },
+      "bodyByLocale": {
+        "ru": "Во дворе друзья тренируются бегать. Нужен человек, который подаст стартовый сигнал свистом. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
+        "uk": "У дворі друзі тренуються бігати. Потрібна людина, яка подасть стартовий сигнал свистом. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что умеете свистеть.",
+          "uk": "Скажіть, що вмієте свистіти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-46:intro3:r1",
+              "text": "I can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro3:r2",
+              "text": "I can to whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro3:r3",
+              "text": "I can whistles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-46:intro3:r1",
+              "text": "I can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro3:r2",
+              "text": "I can to whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-46:intro3:r3",
+              "text": "I can whistles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что умеете свистеть.",
+          "uk": "Скажіть, що вмієте свистіти."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bb1d9d59448592b7fb1a795c94705b49df491f8be2e5a18d1b84ec57b5a2de8d"
+}

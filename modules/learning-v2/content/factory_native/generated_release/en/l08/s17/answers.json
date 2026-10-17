@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-17:i01",
+    "correctText": "Can you lend me a pen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i02",
+    "correctText": "lend",
+    "correctResponseId": "en:lesson-08:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i03",
+    "correctText": "lend",
+    "correctResponseId": "en:lesson-08:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i04",
+    "correctText": "en:lesson-08:session-17:i04:p1=lend\nen:lesson-08:session-17:i04:p2=berry\nen:lesson-08:session-17:i04:p3=drive\nen:lesson-08:session-17:i04:p4=skate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i05",
+    "correctText": "Can you lend me a pen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i06",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i07",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i08",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-08:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i09",
+    "correctText": "Can you lend me a pen?",
+    "correctResponseId": "en:lesson-08:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i10",
+    "correctText": "en:lesson-08:session-17:i10:p1=smoke\nen:lesson-08:session-17:i10:p2=lend\nen:lesson-08:session-17:i10:p3=berry\nen:lesson-08:session-17:i10:p4=drive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i11",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i12",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i13",
+    "correctText": "I can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i14",
+    "correctText": "Can",
+    "correctResponseId": "en:lesson-08:session-17:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i15",
+    "correctText": "Can you open the door?",
+    "correctResponseId": "en:lesson-08:session-17:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i16",
+    "correctText": "en:lesson-08:session-17:i16:p1=lend\nen:lesson-08:session-17:i16:p2=smoke\nen:lesson-08:session-17:i16:p3=skate\nen:lesson-08:session-17:i16:p4=berry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-17:i17",
+    "correctText": "Can you lend me a pencil?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-48:i01",
+    "correctText": "I can negotiate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i02",
+    "correctText": "navigate",
+    "correctResponseId": "en:lesson-08:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i03",
+    "correctText": "assemble",
+    "correctResponseId": "en:lesson-08:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i04",
+    "correctText": "en:lesson-08:session-48:i04:p1=negotiate\nen:lesson-08:session-48:i04:p2=navigate\nen:lesson-08:session-48:i04:p3=assemble\nen:lesson-08:session-48:i04:p4=community kitchen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i05",
+    "correctText": "I can assemble it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i06",
+    "correctText": "I can operate it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i07",
+    "correctText": "I can adapt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i08",
+    "correctText": "supervise",
+    "correctResponseId": "en:lesson-08:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i09",
+    "correctText": "I can negotiate.",
+    "correctResponseId": "en:lesson-08:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i10",
+    "correctText": "en:lesson-08:session-48:i10:p1=operate\nen:lesson-08:session-48:i10:p2=supervise\nen:lesson-08:session-48:i10:p3=diagnose\nen:lesson-08:session-48:i10:p4=adapt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i11",
+    "correctText": "I can adapt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i12",
+    "correctText": "I can diagnose it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i13",
+    "correctText": "I can navigate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i14",
+    "correctText": "adapt",
+    "correctResponseId": "en:lesson-08:session-48:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i15",
+    "correctText": "I can operate it.",
+    "correctResponseId": "en:lesson-08:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i16",
+    "correctText": "en:lesson-08:session-48:i16:p1=community kitchen\nen:lesson-08:session-48:i16:p2=supervise\nen:lesson-08:session-48:i16:p3=negotiate\nen:lesson-08:session-48:i16:p4=assemble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-48:i17",
+    "correctText": "I can supervise.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить короткие указания со словом label",
+    "uk": "закріпити короткі вказівки зі словом label"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коробки для переезда",
+        "uk": "Коробки для переїзду"
+      },
+      "bodyByLocale": {
+        "ru": "Друг закрыл коробку с книгами. Нужно написать на ней, что внутри. `Label` — «подписать, пометить». `Label it` — «Подпиши её». Здесь `it` — коробка. Это подпись с содержимым, а не ваш автограф. Для короткого указания начните с `Label`, без `to`.",
+        "uk": "Друг закрив коробку з книжками. Треба написати на ній, що всередині. `Label` — «підписати, позначити». `Label it` — «Підпиши її». Тут `it` — коробка. Це напис про вміст, а не ваш автограф. Для короткої вказівки почніть із `Label`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу подписать коробку.",
+          "uk": "Скажіть другові підписати коробку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-30:intro1:r1",
+              "text": "Label it."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro1:r2",
+              "text": "To label it."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro1:r3",
+              "text": "Labels it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-30:intro1:r1",
+              "text": "Label it."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro1:r2",
+              "text": "To label it."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro1:r3",
+              "text": "Labels it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу подписать коробку.",
+          "uk": "Скажіть другові підписати коробку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Указатель на развилке",
+        "uk": "Вказівник на розвилці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом дошли до развилки. Указатель показывает нужное направление налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем `left`.",
+        "uk": "Ви з другом дійшли до розвилки. Вказівник показує потрібний напрямок ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім `left`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-30:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro2:r3",
+              "text": "To turn left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-30:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro2:r3",
+              "text": "To turn left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не забыть встречу",
+        "uk": "Не забути зустріч"
+      },
+      "bodyByLocale": {
+        "ru": "Вы договорились встретиться с другом завтра и боитесь забыть. `Can you remind me?` — «Можешь мне напомнить?» О встрече другу уже известно. После `Can you` нужно `remind me`, без `to`.",
+        "uk": "Ви домовилися зустрітися з другом завтра й боїтеся забути. `Can you remind me?` — «Можеш мені нагадати?» Про зустріч другові вже відомо. Після `Can you` потрібне `remind me`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга напомнить вам о встрече.",
+          "uk": "Попросіть друга нагадати вам про зустріч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-30:intro3:r1",
+              "text": "Can you remind me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro3:r2",
+              "text": "Can you reminds me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro3:r3",
+              "text": "Can you to remind me?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-30:intro3:r1",
+              "text": "Can you remind me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro3:r2",
+              "text": "Can you reminds me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-30:intro3:r3",
+              "text": "Can you to remind me?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга напомнить вам о встрече.",
+          "uk": "Попросіть друга нагадати вам про зустріч."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4991f56d65987c9c46f867a17db8dbbf48dd988b2aa5dbbdd8ecefd1592de4c0"
+}

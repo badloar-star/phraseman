@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить просьбы Can you…? со словом fetch",
+    "uk": "закріпити прохання Can you…? зі словом fetch"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Зонт остался наверху",
+        "uk": "Парасолька залишилася нагорі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже у двери, а зонт остался в комнате наверху. Друг ещё не спустился. `Fetch` — «сходить за чем-то и принести». `Can you fetch it?` — «Можешь сходить за ним и принести?» Здесь `it` — ваш зонт. После `Can you` нужно `fetch it`, без `to`. Зонт готов к дождю — только пока в комнате.",
+        "uk": "Ви вже біля дверей, а парасолька залишилася в кімнаті нагорі. Друг ще не спустився. `Fetch` — «сходити по щось і принести». `Can you fetch it?` — «Можеш сходити по неї та принести?» Тут `it` — ваша парасолька. Після `Can you` потрібне `fetch it`, без `to`. Парасолька готова до дощу — тільки поки в кімнаті."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите друга сходить за зонтом и принести его.",
+          "uk": "Попросіть друга сходити по парасольку й принести її."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-21:intro1:r1",
+              "text": "Can you fetch it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro1:r2",
+              "text": "Can you to fetch it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro1:r3",
+              "text": "You can fetch it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-21:intro1:r1",
+              "text": "Can you fetch it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro1:r2",
+              "text": "Can you to fetch it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro1:r3",
+              "text": "You can fetch it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга сходить за зонтом и принести его.",
+          "uk": "Попросіть друга сходити по парасольку й принести її."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записать адрес",
+        "uk": "Записати адресу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг диктует адрес, а вашей ручки нет. У него есть запасная. `Can you lend me a pen?` — «Можешь одолжить мне ручку?» `Lend` значит дать на время; ручку вы вернёте.",
+        "uk": "Друг диктує адресу, а вашої ручки немає. У нього є запасна. `Can you lend me a pen?` — «Можеш позичити мені ручку?» `Lend` означає дати на певний час; ручку ви повернете."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-21:intro2:r1",
+              "text": "Can you lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro2:r2",
+              "text": "Can you lends me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro2:r3",
+              "text": "Can you to lend me a pen?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-21:intro2:r1",
+              "text": "Can you lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro2:r2",
+              "text": "Can you lends me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro2:r3",
+              "text": "Can you to lend me a pen?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "На прогулке в лодке",
+        "uk": "На прогулянці в човні"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает вам взять руль лодки, но вы ещё не умеете им управлять. `I can’t steer` — «Я не умею управлять рулём». После `can’t` нужно `steer`, без `to`.",
+        "uk": "Друг пропонує вам узяти кермо човна, але ви ще не вмієте ним керувати. `I can’t steer` — «Я не вмію керувати кермом». Після `can’t` потрібне `steer`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что пока не умеете управлять рулём.",
+          "uk": "Скажіть другові, що поки не вмієте керувати кермом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-21:intro3:r1",
+              "text": "I can’t steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro3:r2",
+              "text": "I can steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro3:r3",
+              "text": "I can’t to steer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-21:intro3:r1",
+              "text": "I can’t steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro3:r2",
+              "text": "I can steer."
+            },
+            {
+              "responseId": "en:lesson-08:session-21:intro3:r3",
+              "text": "I can’t to steer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что пока не умеете управлять рулём.",
+          "uk": "Скажіть другові, що поки не вмієте керувати кермом."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "57b809df094b9e401ca3e224dfbcba79129208a214135f22d0e745c9c064dcef"
+}

@@ -1,0 +1,943 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я вмію шепотіти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я вмію шепотіти»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can whisper.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я умею шептать»",
+          "uk": "Скажіть «Я вмію шепотіти»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "whisper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-06:i02:r1",
+          "text": "whisper"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i02:r2",
+          "text": "whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i02:r3",
+          "text": "translate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i02:audio",
+          "transcript": "whisper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-06:i02:r1",
+            "targetText": "whisper",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i02:r2",
+            "targetText": "whistle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i02:r3",
+            "targetText": "translate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `whisper`, а в этом варианте — `whistle`.",
+              "uk": "У записі перше слово — `whisper`, а в цьому варіанті — `whistle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `whisper`, а в этом варианте — `translate`.",
+              "uk": "У записі перше слово — `whisper`, а в цьому варіанті — `translate`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я вмію шепотіти»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-06:i03:r1",
+          "text": "whisper"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i03:r2",
+          "text": "to whisper"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i03:r3",
+          "text": "whispers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я вмію шепотіти»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я умею шептать»",
+          "uk": "Скажіть «Я вмію шепотіти»"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-06:i03:r1",
+            "text": "whisper"
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i03:r2",
+            "text": "to whisper"
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i03:r3",
+            "text": "whispers"
+          }
+        ],
+        "testedDimension": "Скажіть «Я вмію шепотіти»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я вмію шепотіти»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whisper`, без `to`.",
+              "uk": "Після `can` потрібне `whisper`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я вмію шепотіти»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whisper`, без `s`.",
+              "uk": "Після `can` потрібне `whisper`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-06:i04:p1",
+            "target": "whisper",
+            "meaningByLocale": {
+              "ru": "шептать",
+              "uk": "шепотіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i04:p2",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i04:p3",
+            "target": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка",
+              "uk": "закладка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i04:p4",
+            "target": "customer",
+            "meaningByLocale": {
+              "ru": "покупатель",
+              "uk": "покупець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "whisper",
+          "clinic",
+          "bookmark",
+          "customer"
+        ],
+        "rightColumn": [
+          "шепотіти",
+          "клініка",
+          "закладка",
+          "покупець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i05:audio",
+          "transcript": "I can whisper."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can whisper.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "whisper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть про знайому «Вона вміє перекладати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть про знайому «Вона вміє перекладати»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can translate.",
+        "localizedMeaning": {
+          "ru": "Скажите о знакомой «Она умеет переводить»",
+          "uk": "Скажіть про знайому «Вона вміє перекладати»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "translate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друзів «Чия це закладка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте друзів «Чия це закладка?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i07:audio",
+          "transcript": "Whose bookmark is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose bookmark is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона вміє перекладати»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-06:i08:r1",
+          "text": "translate"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i08:r2",
+          "text": "translates"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i08:r3",
+          "text": "to translate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона вміє перекладати»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет переводить»",
+          "uk": "Скажіть «Вона вміє перекладати»"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-06:i08:r1",
+            "text": "translate"
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i08:r2",
+            "text": "translates"
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i08:r3",
+            "text": "to translate"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона вміє перекладати»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона вміє перекладати»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `translate`, без `s`.",
+              "uk": "Після `can` потрібне `translate`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона вміє перекладати»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `translate`, без `to`.",
+              "uk": "Після `can` потрібне `translate`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-06:i09:r1",
+          "text": "I can whisper."
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i09:r2",
+          "text": "I can whistle."
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i09:r3",
+          "text": "I can translate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i09:audio",
+          "transcript": "I can whisper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-06:i09:r1",
+            "targetText": "I can whisper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i09:r2",
+            "targetText": "I can whistle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i09:r3",
+            "targetText": "I can translate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `whisper`, а в этом варианте — `whistle`.",
+              "uk": "У записі останнє слово — `whisper`, а в цьому варіанті — `whistle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `whisper`, а в этом варианте — `translate`.",
+              "uk": "У записі останнє слово — `whisper`, а в цьому варіанті — `translate`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-06:i10:p1",
+            "target": "browse",
+            "meaningByLocale": {
+              "ru": "просматривать",
+              "uk": "переглядати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i10:p2",
+            "target": "whisper",
+            "meaningByLocale": {
+              "ru": "шептать",
+              "uk": "шепотіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i10:p3",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i10:p4",
+            "target": "customer",
+            "meaningByLocale": {
+              "ru": "покупатель",
+              "uk": "покупець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "browse",
+          "whisper",
+          "clinic",
+          "customer"
+        ],
+        "rightColumn": [
+          "переглядати",
+          "шепотіти",
+          "клініка",
+          "покупець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i11:audio",
+          "transcript": "Whose bookmark is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose bookmark is this?",
+        "orderedTokens": [
+          "Whose",
+          "bookmark",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покупець прийшов до магазину. Скажіть колезі «Покупець тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покупець прийшов до магазину. Скажіть колезі «Покупець тут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The customer is here.",
+        "localizedMeaning": {
+          "ru": "Покупатель пришёл в магазин. Скажите коллеге «Покупатель здесь»",
+          "uk": "Покупець прийшов до магазину. Скажіть колезі «Покупець тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "customer",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про звички в інтернеті. Скажіть «Я зазвичай переглядаю сайти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про звички в інтернеті. Скажіть «Я зазвичай переглядаю сайти»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i13:audio",
+          "transcript": "I usually browse online."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I usually browse online.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона вміє шепотіти»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-06:i14:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i14:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i14:r3",
+          "text": "is can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона вміє шепотіти»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет шептать»",
+          "uk": "Скажіть «Вона вміє шепотіти»"
+        },
+        "gappedTargetPhrase": "She ___ whisper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-06:i14:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i14:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i14:r3",
+            "text": "is can"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона вміє шепотіти»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-06:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона вміє шепотіти»",
+            "feedbackByLocale": {
+              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
+              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона вміє шепотіти»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `she can`; `is` не нужно.",
+              "uk": "Достатньо `she can`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-06:i15:r1",
+          "text": "Where is the clinic?"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i15:r2",
+          "text": "Where is the pharmacy?"
+        },
+        {
+          "responseId": "en:lesson-08:session-06:i15:r3",
+          "text": "Where is the bank?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i15:audio",
+          "transcript": "Where is the clinic?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-06:i15:r1",
+            "targetText": "Where is the clinic?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i15:r2",
+            "targetText": "Where is the pharmacy?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i15:r3",
+            "targetText": "Where is the bank?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-06:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `clinic`, а в этом варианте — `pharmacy`.",
+              "uk": "У записі останнє слово — `clinic`, а в цьому варіанті — `pharmacy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-06:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `clinic`, а в этом варианте — `bank`.",
+              "uk": "У записі останнє слово — `clinic`, а в цьому варіанті — `bank`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-06:i16:p1",
+            "target": "whisper",
+            "meaningByLocale": {
+              "ru": "шептать",
+              "uk": "шепотіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i16:p2",
+            "target": "bookmark",
+            "meaningByLocale": {
+              "ru": "закладка",
+              "uk": "закладка"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i16:p3",
+            "target": "customer",
+            "meaningByLocale": {
+              "ru": "покупатель",
+              "uk": "покупець"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-06:i16:p4",
+            "target": "browse",
+            "meaningByLocale": {
+              "ru": "просматривать",
+              "uk": "переглядати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "whisper",
+          "bookmark",
+          "customer",
+          "browse"
+        ],
+        "rightColumn": [
+          "шепотіти",
+          "закладка",
+          "покупець",
+          "переглядати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Під час гри друг запитує, чи вміє Том передавати слова пошепки. Скажіть «Том уміє шепотіти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Під час гри друг запитує, чи вміє Том передавати слова пошепки. Скажіть «Том уміє шепотіти»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:i17:audio",
+          "transcript": "Tom can whisper."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can whisper.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6eca98b4ecfb5748d78c5a0eac25da4d38085fcdc35a4563d06851ea9d94c07b"
+}

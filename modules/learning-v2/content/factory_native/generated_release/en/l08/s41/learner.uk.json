@@ -1,0 +1,940 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть «Я вмію вести переговори»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть «Я вмію вести переговори»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can negotiate.",
+        "localizedMeaning": {
+          "ru": "Соберите «Я умею вести переговоры»",
+          "uk": "Складіть «Я вмію вести переговори»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "negotiate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-41:i02:r1",
+          "text": "negotiate"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i02:r2",
+          "text": "chat"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i02:r3",
+          "text": "meditate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i02:audio",
+          "transcript": "negotiate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-41:i02:r1",
+            "targetText": "negotiate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i02:r2",
+            "targetText": "chat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i02:r3",
+            "targetText": "meditate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `negotiate`, а в этом варианте — `chat`.",
+              "uk": "У записі перше слово — `negotiate`, а в цьому варіанті — `chat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `negotiate`, а в этом варианте — `meditate`.",
+              "uk": "У записі перше слово — `negotiate`, а в цьому варіанті — `meditate`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що вмієте вести переговори",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-41:i03:r1",
+          "text": "negotiate"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i03:r2",
+          "text": "to negotiate"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i03:r3",
+          "text": "negotiates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вмієте вести переговори",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что умеете вести переговоры",
+          "uk": "Скажіть, що вмієте вести переговори"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-41:i03:r1",
+            "text": "negotiate"
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i03:r2",
+            "text": "to negotiate"
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i03:r3",
+            "text": "negotiates"
+          }
+        ],
+        "testedDimension": "Скажіть, що вмієте вести переговори",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що вмієте вести переговори",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `negotiate`, без `to`.",
+              "uk": "Після `can` потрібне `negotiate`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що вмієте вести переговори",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `negotiate`, без `s`.",
+              "uk": "Після `can` потрібне `negotiate`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-41:i04:p1",
+            "target": "negotiate",
+            "meaningByLocale": {
+              "ru": "вести переговоры",
+              "uk": "вести переговори"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i04:p2",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i04:p3",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i04:p4",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "negotiate",
+          "cashpoint",
+          "chat",
+          "meditate"
+        ],
+        "rightColumn": [
+          "вести переговори",
+          "банкомат",
+          "розмовляти",
+          "медитувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i05:audio",
+          "transcript": "I can negotiate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can negotiate.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "negotiate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть про подругу «Вона вміє водити»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть про подругу «Вона вміє водити»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can drive.",
+        "localizedMeaning": {
+          "ru": "Скажите о подруге «Она умеет водить»",
+          "uk": "Скажіть про подругу «Вона вміє водити»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "drive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть «Я вмію свистіти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i07:audio",
+          "transcript": "I can whistle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can whistle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що вона вміє водити",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-41:i08:r1",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i08:r2",
+          "text": "drives"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i08:r3",
+          "text": "to drive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вона вміє водити",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что она умеет водить",
+          "uk": "Скажіть, що вона вміє водити"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-41:i08:r1",
+            "text": "drive"
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i08:r2",
+            "text": "drives"
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i08:r3",
+            "text": "to drive"
+          }
+        ],
+        "testedDimension": "Скажіть, що вона вміє водити",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що вона вміє водити",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, даже с `she`.",
+              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що вона вміє водити",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, без `to`.",
+              "uk": "Після `can` потрібне `drive`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-41:i09:r1",
+          "text": "I can negotiate."
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i09:r2",
+          "text": "I can swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i09:r3",
+          "text": "I can whistle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i09:audio",
+          "transcript": "I can negotiate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-41:i09:r1",
+            "targetText": "I can negotiate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i09:r2",
+            "targetText": "I can swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i09:r3",
+            "targetText": "I can whistle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `negotiate`, а в этом варианте — `swim`.",
+              "uk": "У записі останнє слово — `negotiate`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `negotiate`, а в этом варианте — `whistle`.",
+              "uk": "У записі останнє слово — `negotiate`, а в цьому варіанті — `whistle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-41:i10:p1",
+            "target": "rush",
+            "meaningByLocale": {
+              "ru": "торопиться",
+              "uk": "поспішати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i10:p2",
+            "target": "negotiate",
+            "meaningByLocale": {
+              "ru": "вести переговоры",
+              "uk": "вести переговори"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i10:p3",
+            "target": "chat",
+            "meaningByLocale": {
+              "ru": "беседовать",
+              "uk": "розмовляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i10:p4",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rush",
+          "negotiate",
+          "chat",
+          "cashpoint"
+        ],
+        "rightColumn": [
+          "поспішати",
+          "вести переговори",
+          "розмовляти",
+          "банкомат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i11:audio",
+          "transcript": "She can drive."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She can drive.",
+        "orderedTokens": [
+          "She",
+          "can",
+          "drive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг поспішає підписати документ. Скажіть «Не поспішай»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг поспішає підписати документ. Скажіть «Не поспішай»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t rush.",
+        "localizedMeaning": {
+          "ru": "Друг спешит подписать документ. Скажите «Не торопись»",
+          "uk": "Друг поспішає підписати документ. Скажіть «Не поспішай»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "rush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть «Я часто медитую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Розкажіть «Я часто медитую»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i13:audio",
+          "transcript": "I often meditate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often meditate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що вмієте свистіти",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-41:i14:r1",
+          "text": "whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i14:r2",
+          "text": "whistles"
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i14:r3",
+          "text": "to whistle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вмієте свистіти",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что умеете свистеть",
+          "uk": "Скажіть, що вмієте свистіти"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-41:i14:r1",
+            "text": "whistle"
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i14:r2",
+            "text": "whistles"
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i14:r3",
+            "text": "to whistle"
+          }
+        ],
+        "testedDimension": "Скажіть, що вмієте свистіти",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-41:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що вмієте свистіти",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `s`.",
+              "uk": "Після `can` потрібне `whistle`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що вмієте свистіти",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `to`.",
+              "uk": "Після `can` потрібне `whistle`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-41:i15:r1",
+          "text": "I can swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i15:r2",
+          "text": "I can drive."
+        },
+        {
+          "responseId": "en:lesson-08:session-41:i15:r3",
+          "text": "I can whistle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i15:audio",
+          "transcript": "I can swim."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-41:i15:r1",
+            "targetText": "I can swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i15:r2",
+            "targetText": "I can drive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i15:r3",
+            "targetText": "I can whistle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-41:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
+              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-41:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
+              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-41:i16:p1",
+            "target": "negotiate",
+            "meaningByLocale": {
+              "ru": "вести переговоры",
+              "uk": "вести переговори"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i16:p2",
+            "target": "meditate",
+            "meaningByLocale": {
+              "ru": "медитировать",
+              "uk": "медитувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i16:p3",
+            "target": "rush",
+            "meaningByLocale": {
+              "ru": "торопиться",
+              "uk": "поспішати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-41:i16:p4",
+            "target": "cashpoint",
+            "meaningByLocale": {
+              "ru": "банкомат",
+              "uk": "банкомат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "negotiate",
+          "meditate",
+          "rush",
+          "cashpoint"
+        ],
+        "rightColumn": [
+          "вести переговори",
+          "медитувати",
+          "поспішати",
+          "банкомат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-41:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега шукає людину, яка вміє обговорювати умови з партнерами. Скажіть «Я вмію вести переговори»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Колега шукає людину, яка вміє обговорювати умови з партнерами. Скажіть «Я вмію вести переговори»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-41:i17:audio",
+          "transcript": "I can negotiate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can negotiate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d45897f61bedbcf171eb0f1673454827cee8d71b394219a1765f870532c28e6f"
+}

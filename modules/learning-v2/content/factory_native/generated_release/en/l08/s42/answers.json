@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-42:i01",
+    "correctText": "I can navigate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i02",
+    "correctText": "navigate",
+    "correctResponseId": "en:lesson-08:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i03",
+    "correctText": "navigate",
+    "correctResponseId": "en:lesson-08:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i04",
+    "correctText": "en:lesson-08:session-42:i04:p1=navigate\nen:lesson-08:session-42:i04:p2=bus shelter\nen:lesson-08:session-42:i04:p3=share\nen:lesson-08:session-42:i04:p4=decorate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i05",
+    "correctText": "I can navigate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i06",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i07",
+    "correctText": "I can whistle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i08",
+    "correctText": "drive",
+    "correctResponseId": "en:lesson-08:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i09",
+    "correctText": "I can navigate.",
+    "correctResponseId": "en:lesson-08:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i10",
+    "correctText": "en:lesson-08:session-42:i10:p1=interrupt\nen:lesson-08:session-42:i10:p2=navigate\nen:lesson-08:session-42:i10:p3=share\nen:lesson-08:session-42:i10:p4=bus shelter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i11",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i12",
+    "correctText": "Don’t interrupt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i13",
+    "correctText": "I often decorate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i14",
+    "correctText": "whistle",
+    "correctResponseId": "en:lesson-08:session-42:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i15",
+    "correctText": "I can swim.",
+    "correctResponseId": "en:lesson-08:session-42:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i16",
+    "correctText": "en:lesson-08:session-42:i16:p1=navigate\nen:lesson-08:session-42:i16:p2=decorate\nen:lesson-08:session-42:i16:p3=interrupt\nen:lesson-08:session-42:i16:p4=bus shelter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:i17",
+    "correctText": "I can navigate.",
+    "correctResponseId": null
+  }
+]

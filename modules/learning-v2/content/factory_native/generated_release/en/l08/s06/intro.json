@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить can для умений и повторить вопрос «чей?»",
+    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тихая игра",
+        "uk": "Тиха гра"
+      },
+      "bodyByLocale": {
+        "ru": "Вы играете с другом: нужно передать слово шёпотом. Друг спрашивает, умеете ли вы говорить совсем тихо. `Whisper` — «шептать». `I can whisper` — «Я умею шептать». После `can` нужно `whisper`, без `to` и окончания `s`. Если слово услышали соседи, это был не очень удачный шёпот.",
+        "uk": "Ви граєте з другом: потрібно передати слово пошепки. Друг запитує, чи вмієте ви говорити зовсім тихо. `Whisper` — «шепотіти». `I can whisper` — «Я вмію шепотіти». Після `can` потрібне `whisper`, без `to` й закінчення `s`. Якщо слово почули сусіди, це був не дуже вдалий шепіт."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что умеете шептать.",
+          "uk": "Скажіть другові, що вмієте шепотіти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-06:intro1:r1",
+              "text": "I can whisper."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro1:r2",
+              "text": "I can to whisper."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro1:r3",
+              "text": "I can whispers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-06:intro1:r1",
+              "text": "I can whisper."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro1:r2",
+              "text": "I can to whisper."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro1:r3",
+              "text": "I can whispers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что умеете шептать.",
+          "uk": "Скажіть другові, що вмієте шепотіти."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она умеет переводить",
+        "uk": "Вона вміє перекладати"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега ищет человека, который умеет переводить тексты. Вы рассказываете о знакомой. `She can translate` — «Она умеет переводить». `Can` не меняется после `she`; после него нужно `translate`, без окончания `s`.",
+        "uk": "Колега шукає людину, яка вміє перекладати тексти. Ви розповідаєте про знайому. `She can translate` — «Вона вміє перекладати». `Can` не змінюється після `she`; після нього потрібне `translate`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-06:intro2:r1",
+              "text": "She can translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro2:r2",
+              "text": "She cans translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro2:r3",
+              "text": "She can translates."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-06:intro2:r1",
+              "text": "She can translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro2:r2",
+              "text": "She cans translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro2:r3",
+              "text": "She can translates."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чья закладка",
+        "uk": "Чия закладка"
+      },
+      "bodyByLocale": {
+        "ru": "После чтения на столе осталась закладка. Вы хотите вернуть её владельцу. `Whose bookmark is this?` — «Чья это закладка?» Сначала `whose bookmark` — «чья закладка», затем `is this`.",
+        "uk": "Після читання на столі залишилася закладка. Ви хочете повернути її власникові. `Whose bookmark is this?` — «Чия це закладка?» Спочатку `whose bookmark` — «чия закладка», потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите друзей, чья это закладка.",
+          "uk": "Запитайте друзів, чия це закладка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-06:intro3:r1",
+              "text": "Whose bookmark is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro3:r2",
+              "text": "Who bookmark is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro3:r3",
+              "text": "Whose bookmark are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-06:intro3:r1",
+              "text": "Whose bookmark is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro3:r2",
+              "text": "Who bookmark is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-06:intro3:r3",
+              "text": "Whose bookmark are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друзей, чья это закладка.",
+          "uk": "Запитайте друзів, чия це закладка."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fb50b52b38f1a5f6ec9e4f615f518f7cfac8cbc9eddb578712ce19cb371a53c5"
+}

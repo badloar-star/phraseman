@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-20:i01",
+    "correctText": "Can you hold this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i02",
+    "correctText": "hold",
+    "correctResponseId": "en:lesson-08:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i03",
+    "correctText": "hold",
+    "correctResponseId": "en:lesson-08:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i04",
+    "correctText": "en:lesson-08:session-20:i04:p1=hold\nen:lesson-08:session-20:i04:p2=mushroom\nen:lesson-08:session-20:i04:p3=cook\nen:lesson-08:session-20:i04:p4=knit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i05",
+    "correctText": "Can you hold this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i06",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i07",
+    "correctText": "I can’t knit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i08",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-08:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i09",
+    "correctText": "Can you hold this?",
+    "correctResponseId": "en:lesson-08:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i10",
+    "correctText": "en:lesson-08:session-20:i10:p1=shout\nen:lesson-08:session-20:i10:p2=hold\nen:lesson-08:session-20:i10:p3=mushroom\nen:lesson-08:session-20:i10:p4=cook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i11",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i12",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i13",
+    "correctText": "I often cook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i14",
+    "correctText": "Can",
+    "correctResponseId": "en:lesson-08:session-20:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i15",
+    "correctText": "Can you open the door?",
+    "correctResponseId": "en:lesson-08:session-20:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i16",
+    "correctText": "en:lesson-08:session-20:i16:p1=hold\nen:lesson-08:session-20:i16:p2=shout\nen:lesson-08:session-20:i16:p3=knit\nen:lesson-08:session-20:i16:p4=mushroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:i17",
+    "correctText": "Can you hold this?",
+    "correctResponseId": null
+  }
+]

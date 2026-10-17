@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "повторить просьбы Can you…? без новых слов",
+    "uk": "повторити прохання Can you…? без нових слів"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Записка соседу",
+        "uk": "Записка сусідові"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите оставить соседу записку, но ручки нет. Друг может дать свою на минуту. `Can you lend me a pen?` — «Можешь одолжить мне ручку?» `Lend` — дать на время. Начните с `Can you`, затем `lend me a pen`. Записка короткая — если ручка не закончится на первом слове.",
+        "uk": "Ви хочете залишити сусідові записку, але ручки немає. Друг може дати свою на хвилину. `Can you lend me a pen?` — «Можеш позичити мені ручку?» `Lend` — дати на певний час. Почніть із `Can you`, потім `lend me a pen`. Записка коротка — якщо ручка не закінчиться на першому слові."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-24:intro1:r1",
+              "text": "Can you lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro1:r2",
+              "text": "Can you to lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro1:r3",
+              "text": "You can lend me a pen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-24:intro1:r1",
+              "text": "Can you lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro1:r2",
+              "text": "Can you to lend me a pen?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro1:r3",
+              "text": "You can lend me a pen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга одолжить вам ручку.",
+          "uk": "Попросіть друга позичити вам ручку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Правило осталось непонятным",
+        "uk": "Правило залишилося незрозумілим"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказал правило игры, но вы не поняли, когда делать ход. `Can you explain it?` — «Можешь это объяснить?» `It` здесь — правило, о котором вы говорите. После `can` нужно `explain`, без `to`.",
+        "uk": "Друг розповів правило гри, але ви не зрозуміли, коли робити хід. `Can you explain it?` — «Можеш це пояснити?» `It` тут — правило, про яке ви говорите. Після `can` потрібне `explain`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Попросите друга объяснить правило.",
+          "uk": "Попросіть друга пояснити правило."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-24:intro2:r1",
+              "text": "Can you explain it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro2:r2",
+              "text": "Can you explains it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro2:r3",
+              "text": "Can you to explain it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-24:intro2:r1",
+              "text": "Can you explain it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro2:r2",
+              "text": "Can you explains it?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro2:r3",
+              "text": "Can you to explain it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга объяснить правило.",
+          "uk": "Попросіть друга пояснити правило."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ужин без ожидания",
+        "uk": "Вечеря без очікування"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом идёте в ресторан и хотите заранее договориться о столике. `Can you reserve a table?` — «Можешь забронировать столик?» После `Can you` нужно `reserve a table`.",
+        "uk": "Ви з другом ідете до ресторану й хочете заздалегідь домовитися про столик. `Can you reserve a table?` — «Можеш забронювати столик?» Після `Can you` потрібне `reserve a table`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга забронировать столик.",
+          "uk": "Попросіть друга забронювати столик."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-24:intro3:r1",
+              "text": "Can you reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro3:r2",
+              "text": "Can you reserves a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro3:r3",
+              "text": "You can reserve a table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-24:intro3:r1",
+              "text": "Can you reserve a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro3:r2",
+              "text": "Can you reserves a table?"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:intro3:r3",
+              "text": "You can reserve a table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга забронировать столик.",
+          "uk": "Попросіть друга забронювати столик."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f137489a17cc09a778e9333d3e7ae9da688a2861531c0bb4fc5ae031185ae13"
+}

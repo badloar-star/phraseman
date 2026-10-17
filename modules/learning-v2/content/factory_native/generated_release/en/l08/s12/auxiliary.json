@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-12:intro1:r2": {
+          "ru": "`Can` значит «умею», а вам нужно «не умею»: `can’t`.",
+          "uk": "`Can` означає «вмію», а вам потрібно «не вмію»: `can’t`."
+        },
+        "en:lesson-08:session-12:intro1:r3": {
+          "ru": "После `can’t` нужно `knit`, без `to`.",
+          "uk": "Після `can’t` потрібне `knit`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-12:intro2:r2": {
+          "ru": "После `can` нужно `paint`, без `s`.",
+          "uk": "Після `can` потрібне `paint`, без `s`."
+        },
+        "en:lesson-08:session-12:intro2:r3": {
+          "ru": "Подруга умеет: нужно `can`, а не `can’t`.",
+          "uk": "Подруга вміє: потрібне `can`, а не `can’t`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-12:intro3:r2": {
+          "ru": "Для «чей» нужно `whose`.",
+          "uk": "Для «чий» потрібне `whose`."
+        },
+        "en:lesson-08:session-12:intro3:r3": {
+          "ru": "Будильник один: нужно `is this`.",
+          "uk": "Будильник один: потрібне `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b8ff155b968b22c15df723b831e5e2d9afd021e9d4bbfac851435cbb216d3fea"
+}

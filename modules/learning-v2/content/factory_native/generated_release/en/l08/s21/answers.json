@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-21:i01",
+    "correctText": "Can you fetch it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i02",
+    "correctText": "fetch",
+    "correctResponseId": "en:lesson-08:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i03",
+    "correctText": "fetch",
+    "correctResponseId": "en:lesson-08:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i04",
+    "correctText": "en:lesson-08:session-21:i04:p1=fetch\nen:lesson-08:session-21:i04:p2=juice\nen:lesson-08:session-21:i04:p3=write\nen:lesson-08:session-21:i04:p4=steer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i05",
+    "correctText": "Can you fetch it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i06",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i07",
+    "correctText": "I can’t steer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i08",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-08:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i09",
+    "correctText": "Can you fetch it?",
+    "correctResponseId": "en:lesson-08:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i10",
+    "correctText": "en:lesson-08:session-21:i10:p1=lie\nen:lesson-08:session-21:i10:p2=fetch\nen:lesson-08:session-21:i10:p3=juice\nen:lesson-08:session-21:i10:p4=write",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i11",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i12",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i13",
+    "correctText": "I often write.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i14",
+    "correctText": "Can",
+    "correctResponseId": "en:lesson-08:session-21:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i15",
+    "correctText": "Can you open the door?",
+    "correctResponseId": "en:lesson-08:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i16",
+    "correctText": "en:lesson-08:session-21:i16:p1=fetch\nen:lesson-08:session-21:i16:p2=lie\nen:lesson-08:session-21:i16:p3=steer\nen:lesson-08:session-21:i16:p4=juice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-21:i17",
+    "correctText": "Can you fetch it?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить can’t для отсутствия умения и повторить вопрос «чей?»",
+    "uk": "закріпити can’t для відсутності вміння й повторити запитання «чий?»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В бассейне",
+        "uk": "У басейні"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, умеете ли вы нырять. Вы пока не научились. `Dive` — «нырять». `I can’t dive` — «Я не умею нырять». После `can’t` нужно `dive`, без `to` и окончания `s`. Намочить волосы легко; красиво нырнуть — отдельное умение.",
+        "uk": "Друг запитує, чи вмієте ви пірнати. Ви поки не навчилися. `Dive` — «пірнати». `I can’t dive` — «Я не вмію пірнати». Після `can’t` потрібне `dive`, без `to` й закінчення `s`. Намочити волосся легко; красиво пірнути — окреме вміння."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что не умеете нырять.",
+          "uk": "Скажіть другові, що не вмієте пірнати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-10:intro1:r1",
+              "text": "I can’t dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro1:r2",
+              "text": "I can dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro1:r3",
+              "text": "I can’t to dive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-10:intro1:r1",
+              "text": "I can’t dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro1:r2",
+              "text": "I can dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro1:r3",
+              "text": "I can’t to dive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что не умеете нырять.",
+          "uk": "Скажіть другові, що не вмієте пірнати."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мячи падают",
+        "uk": "М’ячі падають"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомая пробует жонглировать, но пока не умеет. Вы рассказываете об этом другу. `She can’t juggle` — «Она не умеет жонглировать». `Can’t` не меняется после `she`; после него нужно `juggle`, без окончания `s`.",
+        "uk": "Знайома пробує жонглювати, але поки не вміє. Ви розповідаєте про це другові. `She can’t juggle` — «Вона не вміє жонглювати». `Can’t` не змінюється після `she`; після нього потрібне `juggle`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-10:intro2:r1",
+              "text": "She can’t juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro2:r2",
+              "text": "She can juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro2:r3",
+              "text": "She can’t juggles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-10:intro2:r1",
+              "text": "She can’t juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro2:r2",
+              "text": "She can juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro2:r3",
+              "text": "She can’t juggles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чьё устройство",
+        "uk": "Чий пристрій"
+      },
+      "bodyByLocale": {
+        "ru": "На рабочем столе стоит небольшое устройство. Вы хотите узнать, кому оно принадлежит. `Whose machine is this?` — «Чьё это устройство?» Здесь `machine` — устройство. Сначала `whose machine`, затем `is this`.",
+        "uk": "На робочому столі стоїть невеликий пристрій. Ви хочете дізнатися, кому він належить. `Whose machine is this?` — «Чий це пристрій?» Тут `machine` — пристрій. Спочатку `whose machine`, потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег, чьё это устройство.",
+          "uk": "Запитайте колег, чий це пристрій."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-10:intro3:r1",
+              "text": "Whose machine is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro3:r2",
+              "text": "Who machine is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro3:r3",
+              "text": "Whose machine are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-10:intro3:r1",
+              "text": "Whose machine is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro3:r2",
+              "text": "Who machine is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-10:intro3:r3",
+              "text": "Whose machine are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег, чьё это устройство.",
+          "uk": "Запитайте колег, чий це пристрій."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "949908ac64bf5715713efc97132d4a4cdd23005e09bc346bcbf225c56afd5d91"
+}

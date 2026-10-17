@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я умею переводить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею переводить»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can translate.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я умею переводить»",
+          "uk": "Скажіть «Я вмію перекладати»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "translate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-05:i02:r1",
+          "text": "translate"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i02:r2",
+          "text": "surf"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i02:r3",
+          "text": "type"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i02:audio",
+          "transcript": "translate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-05:i02:r1",
+            "targetText": "translate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i02:r2",
+            "targetText": "surf",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i02:r3",
+            "targetText": "type",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `translate`, а в этом варианте — `surf`.",
+              "uk": "У записі перше слово — `translate`, а в цьому варіанті — `surf`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `translate`, а в этом варианте — `type`.",
+              "uk": "У записі перше слово — `translate`, а в цьому варіанті — `type`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я умею переводить»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-05:i03:r1",
+          "text": "translate"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i03:r2",
+          "text": "to translate"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i03:r3",
+          "text": "translates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею переводить»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я умею переводить»",
+          "uk": "Скажіть «Я вмію перекладати»"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-05:i03:r1",
+            "text": "translate"
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i03:r2",
+            "text": "to translate"
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i03:r3",
+            "text": "translates"
+          }
+        ],
+        "testedDimension": "Скажите «Я умею переводить»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею переводить»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `translate`, без `to`.",
+              "uk": "Після `can` потрібне `translate`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею переводить»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `translate`, без `s`.",
+              "uk": "Після `can` потрібне `translate`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-05:i04:p1",
+            "target": "translate",
+            "meaningByLocale": {
+              "ru": "переводить на другой язык",
+              "uk": "перекладати іншою мовою"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i04:p2",
+            "target": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i04:p3",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i04:p4",
+            "target": "shift",
+            "meaningByLocale": {
+              "ru": "рабочая смена",
+              "uk": "робоча зміна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "translate",
+          "supermarket",
+          "keychain",
+          "shift"
+        ],
+        "rightColumn": [
+          "переводить на другой язык",
+          "супермаркет",
+          "брелок",
+          "рабочая смена"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i05:audio",
+          "transcript": "I can translate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can translate.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "translate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о знакомой «Она умеет заниматься сёрфингом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о знакомой «Она умеет заниматься сёрфингом»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can surf.",
+        "localizedMeaning": {
+          "ru": "Скажите о знакомой «Она умеет заниматься сёрфингом»",
+          "uk": "Скажіть про знайому «Вона вміє займатися серфінгом»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "surf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите участников встречи «Чей это брелок?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите участников встречи «Чей это брелок?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i07:audio",
+          "transcript": "Whose keychain is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose keychain is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет заниматься сёрфингом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-05:i08:r1",
+          "text": "surf"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i08:r2",
+          "text": "surfs"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i08:r3",
+          "text": "to surf"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет заниматься сёрфингом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет заниматься сёрфингом»",
+          "uk": "Скажіть «Вона вміє займатися серфінгом»"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-05:i08:r1",
+            "text": "surf"
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i08:r2",
+            "text": "surfs"
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i08:r3",
+            "text": "to surf"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет заниматься сёрфингом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет заниматься сёрфингом»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `surf`, без `s`.",
+              "uk": "Після `can` потрібне `surf`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет заниматься сёрфингом»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `surf`, без `to`.",
+              "uk": "Після `can` потрібне `surf`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-05:i09:r1",
+          "text": "I can translate."
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i09:r2",
+          "text": "I can surf."
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i09:r3",
+          "text": "I can type."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i09:audio",
+          "transcript": "I can translate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-05:i09:r1",
+            "targetText": "I can translate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i09:r2",
+            "targetText": "I can surf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i09:r3",
+            "targetText": "I can type.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `translate`, а в этом варианте — `surf`.",
+              "uk": "У записі останнє слово — `translate`, а в цьому варіанті — `surf`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `translate`, а в этом варианте — `type`.",
+              "uk": "У записі останнє слово — `translate`, а в цьому варіанті — `type`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-05:i10:p1",
+            "target": "surf",
+            "meaningByLocale": {
+              "ru": "заниматься сёрфингом",
+              "uk": "займатися серфінгом"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i10:p2",
+            "target": "translate",
+            "meaningByLocale": {
+              "ru": "переводить на другой язык",
+              "uk": "перекладати іншою мовою"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i10:p3",
+            "target": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i10:p4",
+            "target": "shift",
+            "meaningByLocale": {
+              "ru": "рабочая смена",
+              "uk": "робоча зміна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "surf",
+          "translate",
+          "supermarket",
+          "shift"
+        ],
+        "rightColumn": [
+          "заниматься сёрфингом",
+          "переводить на другой язык",
+          "супермаркет",
+          "рабочая смена"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i11:audio",
+          "transcript": "Whose keychain is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose keychain is this?",
+        "orderedTokens": [
+          "Whose",
+          "keychain",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает о вашей работе. Скажите «Я работаю в супермаркете»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает о вашей работе. Скажите «Я работаю в супермаркете»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I work in a supermarket.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает о вашей работе. Скажите «Я работаю в супермаркете»",
+          "uk": "Друг запитує про вашу роботу. Скажіть «Я працюю в супермаркеті»"
+        },
+        "orderedTokens": [
+          "I",
+          "work",
+          "in",
+          "a",
+          "supermarket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает об отдыхе на море. Скажите «Я часто занимаюсь сёрфингом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает об отдыхе на море. Скажите «Я часто занимаюсь сёрфингом»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i13:audio",
+          "transcript": "I often surf."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often surf.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет переводить»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-05:i14:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i14:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i14:r3",
+          "text": "is can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет переводить»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет переводить»",
+          "uk": "Скажіть «Вона вміє перекладати»"
+        },
+        "gappedTargetPhrase": "She ___ translate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-05:i14:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i14:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i14:r3",
+            "text": "is can"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет переводить»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-05:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет переводить»",
+            "feedbackByLocale": {
+              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
+              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет переводить»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `she can`; `is` не нужно.",
+              "uk": "Достатньо `she can`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-05:i15:r1",
+          "text": "Where is the supermarket?"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i15:r2",
+          "text": "Where is the bank?"
+        },
+        {
+          "responseId": "en:lesson-08:session-05:i15:r3",
+          "text": "Where is the pharmacy?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i15:audio",
+          "transcript": "Where is the supermarket?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-05:i15:r1",
+            "targetText": "Where is the supermarket?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i15:r2",
+            "targetText": "Where is the bank?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i15:r3",
+            "targetText": "Where is the pharmacy?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-05:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `supermarket`, а в этом варианте — `bank`.",
+              "uk": "У записі останнє слово — `supermarket`, а в цьому варіанті — `bank`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-05:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `supermarket`, а в этом варианте — `pharmacy`.",
+              "uk": "У записі останнє слово — `supermarket`, а в цьому варіанті — `pharmacy`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-05:i16:p1",
+            "target": "translate",
+            "meaningByLocale": {
+              "ru": "переводить на другой язык",
+              "uk": "перекладати іншою мовою"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i16:p2",
+            "target": "keychain",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i16:p3",
+            "target": "shift",
+            "meaningByLocale": {
+              "ru": "рабочая смена",
+              "uk": "робоча зміна"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-05:i16:p4",
+            "target": "surf",
+            "meaningByLocale": {
+              "ru": "заниматься сёрфингом",
+              "uk": "займатися серфінгом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "translate",
+          "keychain",
+          "shift",
+          "surf"
+        ],
+        "rightColumn": [
+          "переводить на другой язык",
+          "брелок",
+          "рабочая смена",
+          "заниматься сёрфингом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, умеет ли Том переводить тексты. Скажите «Том умеет переводить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, умеет ли Том переводить тексты. Скажите «Том умеет переводить»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-05:i17:audio",
+          "transcript": "Tom can translate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can translate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c281fe41aa2c2e9484a87d07c935cda1aabb10849fbb2c2b13fa1b85eb1fea79"
+}

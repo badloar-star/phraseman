@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-09:intro1:r2": {
+          "ru": "`Can` означает «умею», а здесь нужно «не умею»: `can’t`.",
+          "uk": "`Can` означає «вмію», а тут потрібно «не вмію»: `can’t`."
+        },
+        "en:lesson-08:session-09:intro1:r3": {
+          "ru": "После `can’t` нужно `skate`, без `to`.",
+          "uk": "Після `can’t` потрібне `skate`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-09:intro2:r2": {
+          "ru": "Здесь нужно `can’t` — «не умеет».",
+          "uk": "Тут потрібне `can’t` — «не вміє»."
+        },
+        "en:lesson-08:session-09:intro2:r3": {
+          "ru": "После `can’t` нужно `whistle`, без `s`.",
+          "uk": "Після `can’t` потрібне `whistle`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-09:intro3:r2": {
+          "ru": "Здесь нужно `can’t` — «не умеет».",
+          "uk": "Тут потрібне `can’t` — «не вміє»."
+        },
+        "en:lesson-08:session-09:intro3:r3": {
+          "ru": "После `can’t` нужно `swim`, без `s`.",
+          "uk": "Після `can’t` потрібне `swim`, без `s`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6011611d4fa69b55499b74a96633c7c9beb13934c7c5f1ad4d7d8d21296f1ccb"
+}

@@ -1,0 +1,947 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть «Можеш сходити по нього й принести?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть «Можеш сходити по нього й принести?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you fetch it?",
+        "localizedMeaning": {
+          "ru": "Попросите «Можешь сходить за ним и принести?»",
+          "uk": "Попросіть «Можеш сходити по нього й принести?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "fetch",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-21:i02:r1",
+          "text": "fetch"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i02:r2",
+          "text": "write"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i02:r3",
+          "text": "steer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i02:audio",
+          "transcript": "fetch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-21:i02:r1",
+            "targetText": "fetch",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i02:r2",
+            "targetText": "write",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i02:r3",
+            "targetText": "steer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `fetch`, а в этом варианте — `write`.",
+              "uk": "У записі перше слово — `fetch`, а в цьому варіанті — `write`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `fetch`, а в этом варианте — `steer`.",
+              "uk": "У записі перше слово — `fetch`, а в цьому варіанті — `steer`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробка в сусідній кімнаті. Попросіть сходити по неї й принести",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-21:i03:r1",
+          "text": "fetch"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i03:r2",
+          "text": "to fetch"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i03:r3",
+          "text": "fetches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробка в сусідній кімнаті. Попросіть сходити по неї й принести",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробка в соседней комнате. Попросите сходить за ней и принести",
+          "uk": "Коробка в сусідній кімнаті. Попросіть сходити по неї й принести"
+        },
+        "gappedTargetPhrase": "Can you ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i03:r1",
+            "text": "fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i03:r2",
+            "text": "to fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i03:r3",
+            "text": "fetches"
+          }
+        ],
+        "testedDimension": "Коробка в сусідній кімнаті. Попросіть сходити по неї й принести",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Коробка в сусідній кімнаті. Попросіть сходити по неї й принести",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `fetch`, без `to`.",
+              "uk": "Після `can` потрібне `fetch`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Коробка в сусідній кімнаті. Попросіть сходити по неї й принести",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `fetch`, без `es`.",
+              "uk": "Після `can` потрібне `fetch`, без `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-21:i04:p1",
+            "target": "fetch",
+            "meaningByLocale": {
+              "ru": "сходить и принести",
+              "uk": "сходити й принести"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i04:p2",
+            "target": "juice",
+            "meaningByLocale": {
+              "ru": "сок",
+              "uk": "сік"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i04:p3",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i04:p4",
+            "target": "steer",
+            "meaningByLocale": {
+              "ru": "управлять рулём",
+              "uk": "керувати кермом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fetch",
+          "juice",
+          "write",
+          "steer"
+        ],
+        "rightColumn": [
+          "сходити й принести",
+          "сік",
+          "писати",
+          "керувати кермом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i05:audio",
+          "transcript": "Can you fetch it?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you fetch it?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "fetch",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть «Можеш мені допомогти?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть «Можеш мені допомогти?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you help me?",
+        "localizedMeaning": {
+          "ru": "Попросите «Можешь мне помочь?»",
+          "uk": "Попросіть «Можеш мені допомогти?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "help",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг пропонує взяти кермо човна. Скажіть «Я не вмію керувати кермом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i07:audio"
+      ],
+      "accessibilityLabel": "Друг пропонує взяти кермо човна. Скажіть «Я не вмію керувати кермом»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i07:audio",
+          "transcript": "I can’t steer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can’t steer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросіть допомогти вам",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-21:i08:r1",
+          "text": "help"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i08:r2",
+          "text": "helps"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i08:r3",
+          "text": "to help"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть допомогти вам",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите помочь вам",
+          "uk": "Попросіть допомогти вам"
+        },
+        "gappedTargetPhrase": "Can you ___ me?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i08:r1",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i08:r2",
+            "text": "helps"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i08:r3",
+            "text": "to help"
+          }
+        ],
+        "testedDimension": "Попросіть допомогти вам",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Попросіть допомогти вам",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `help`, без `s`.",
+              "uk": "Після `can` потрібне `help`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Попросіть допомогти вам",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `help`, без `to`.",
+              "uk": "Після `can` потрібне `help`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-21:i09:r1",
+          "text": "Can you fetch it?"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i09:r2",
+          "text": "Can you fetch this?"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i09:r3",
+          "text": "Can you fetch that?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i09:audio",
+          "transcript": "Can you fetch it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-21:i09:r1",
+            "targetText": "Can you fetch it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i09:r2",
+            "targetText": "Can you fetch this?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i09:r3",
+            "targetText": "Can you fetch that?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-21:i10:p1",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i10:p2",
+            "target": "fetch",
+            "meaningByLocale": {
+              "ru": "сходить и принести",
+              "uk": "сходити й принести"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i10:p3",
+            "target": "juice",
+            "meaningByLocale": {
+              "ru": "сок",
+              "uk": "сік"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i10:p4",
+            "target": "write",
+            "meaningByLocale": {
+              "ru": "писать",
+              "uk": "писати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lie",
+          "fetch",
+          "juice",
+          "write"
+        ],
+        "rightColumn": [
+          "брехати",
+          "сходити й принести",
+          "сік",
+          "писати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i11:audio",
+          "transcript": "Can you help me?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you help me?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "help",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть «Можеш відчинити двері?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть «Можеш відчинити двері?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you open the door?",
+        "localizedMeaning": {
+          "ru": "Попросите «Можешь открыть дверь?»",
+          "uk": "Попросіть «Можеш відчинити двері?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "open",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи часто ви пишете. Скажіть «Я часто пишу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи часто ви пишете. Скажіть «Я часто пишу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i13:audio",
+          "transcript": "I often write."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often write.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть прохання «Можеш сходити по нього й принести?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-21:i14:r1",
+          "text": "Can"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i14:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i14:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть прохання «Можеш сходити по нього й принести?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните просьбу «Можешь сходить за ним и принести?»",
+          "uk": "Почніть прохання «Можеш сходити по нього й принести?»"
+        },
+        "gappedTargetPhrase": "___ you fetch it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Почніть прохання «Можеш сходити по нього й принести?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-21:i14:r2",
+            "correct": false,
+            "testedDimension": "Почніть прохання «Можеш сходити по нього й принести?»",
+            "feedbackByLocale": {
+              "ru": "В этой просьбе нужно `Can you fetch`, без `are`.",
+              "uk": "У цьому проханні потрібне `Can you fetch`, без `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i14:r3",
+            "correct": false,
+            "testedDimension": "Почніть прохання «Можеш сходити по нього й принести?»",
+            "feedbackByLocale": {
+              "ru": "Начните с `Can you fetch`.",
+              "uk": "Почніть із `Can you fetch`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-21:i15:r1",
+          "text": "Can you open the door?"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i15:r2",
+          "text": "Can you open the window?"
+        },
+        {
+          "responseId": "en:lesson-08:session-21:i15:r3",
+          "text": "Can you open the box?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i15:audio",
+          "transcript": "Can you open the door?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-21:i15:r1",
+            "targetText": "Can you open the door?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i15:r2",
+            "targetText": "Can you open the window?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i15:r3",
+            "targetText": "Can you open the box?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-21:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `box`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `box`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-21:i16:p1",
+            "target": "fetch",
+            "meaningByLocale": {
+              "ru": "сходить и принести",
+              "uk": "сходити й принести"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i16:p2",
+            "target": "lie",
+            "meaningByLocale": {
+              "ru": "лгать",
+              "uk": "брехати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i16:p3",
+            "target": "steer",
+            "meaningByLocale": {
+              "ru": "управлять рулём",
+              "uk": "керувати кермом"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-21:i16:p4",
+            "target": "juice",
+            "meaningByLocale": {
+              "ru": "сок",
+              "uk": "сік"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fetch",
+          "lie",
+          "steer",
+          "juice"
+        ],
+        "rightColumn": [
+          "сходити й принести",
+          "брехати",
+          "керувати кермом",
+          "сік"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Телефон залишився в сусідній кімнаті. Друг знає, де він лежить. Попросіть «Можеш сходити по нього й принести?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Телефон залишився в сусідній кімнаті. Друг знає, де він лежить. Попросіть «Можеш сходити по нього й принести?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-21:i17:audio",
+          "transcript": "Can you fetch it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you fetch it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "035967c1bc21220d845942d57793bce61d6b6133a51165ced77275a472ca0d38"
+}

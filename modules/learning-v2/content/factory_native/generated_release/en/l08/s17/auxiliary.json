@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-17:intro1:r2": {
+          "ru": "Это утверждение. Для просьбы начните с `Can you`.",
+          "uk": "Це твердження. Для прохання почніть із `Can you`."
+        },
+        "en:lesson-08:session-17:intro1:r3": {
+          "ru": "После `Can you` нужно `lend`, без `to`.",
+          "uk": "Після `Can you` потрібне `lend`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-17:intro2:r2": {
+          "ru": "После `can` нужно `help`, без `s`.",
+          "uk": "Після `can` потрібне `help`, без `s`."
+        },
+        "en:lesson-08:session-17:intro2:r3": {
+          "ru": "Для этой просьбы начните с `Can you`.",
+          "uk": "Для цього прохання почніть із `Can you`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-17:intro3:r2": {
+          "ru": "После `Can you` нужно `open`, без `to`.",
+          "uk": "Після `Can you` потрібне `open`, без `to`."
+        },
+        "en:lesson-08:session-17:intro3:r3": {
+          "ru": "Для просьбы начните с `Can you`.",
+          "uk": "Для прохання почніть із `Can you`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ede516716096da8175a92b6886e5727abbb62f21f6811353aabcf117ddd4ab60"
+}

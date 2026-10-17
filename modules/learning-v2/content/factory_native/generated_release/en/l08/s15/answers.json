@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-15:i01",
+    "correctText": "I can’t calculate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i02",
+    "correctText": "calculate",
+    "correctResponseId": "en:lesson-08:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i03",
+    "correctText": "calculate",
+    "correctResponseId": "en:lesson-08:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i04",
+    "correctText": "en:lesson-08:session-15:i04:p1=calculate\nen:lesson-08:session-15:i04:p2=gym\nen:lesson-08:session-15:i04:p3=sing\nen:lesson-08:session-15:i04:p4=website",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i05",
+    "correctText": "I can’t calculate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i06",
+    "correctText": "She can sing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i07",
+    "correctText": "Whose website is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i08",
+    "correctText": "sing",
+    "correctResponseId": "en:lesson-08:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i09",
+    "correctText": "I can’t calculate.",
+    "correctResponseId": "en:lesson-08:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i10",
+    "correctText": "en:lesson-08:session-15:i10:p1=climb\nen:lesson-08:session-15:i10:p2=calculate\nen:lesson-08:session-15:i10:p3=website\nen:lesson-08:session-15:i10:p4=sing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i11",
+    "correctText": "Whose website is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i12",
+    "correctText": "I can climb.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i13",
+    "correctText": "I often sing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i14",
+    "correctText": "can’t",
+    "correctResponseId": "en:lesson-08:session-15:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i15",
+    "correctText": "Where is the gym?",
+    "correctResponseId": "en:lesson-08:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i16",
+    "correctText": "en:lesson-08:session-15:i16:p1=calculate\nen:lesson-08:session-15:i16:p2=gym\nen:lesson-08:session-15:i16:p3=climb\nen:lesson-08:session-15:i16:p4=website",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-15:i17",
+    "correctText": "Tom can’t calculate.",
+    "correctResponseId": null
+  }
+]

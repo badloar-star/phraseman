@@ -1,0 +1,940 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Файл готовий. Дайте вказівку «Прикріпи його»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Файл готовий. Дайте вказівку «Прикріпи його»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Attach it.",
+        "localizedMeaning": {
+          "ru": "Файл готов. Дайте указание «Прикрепи его»",
+          "uk": "Файл готовий. Дайте вказівку «Прикріпи його»"
+        },
+        "orderedTokens": [
+          "Attach",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-32:i02:r1",
+          "text": "measure"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i02:r2",
+          "text": "charge"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i02:r3",
+          "text": "fold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i02:audio",
+          "transcript": "measure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-32:i02:r1",
+            "targetText": "measure",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i02:r2",
+            "targetText": "charge",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i02:r3",
+            "targetText": "fold",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `measure`, а в этом варианте — `charge`.",
+              "uk": "У записі перше слово — `measure`, а в цьому варіанті — `charge`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `measure`, а в этом варианте — `fold`.",
+              "uk": "У записі перше слово — `measure`, а в цьому варіанті — `fold`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дайте коротку вказівку зарядити телефон",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-32:i03:r1",
+          "text": "Charge"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i03:r2",
+          "text": "Charges"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i03:r3",
+          "text": "To charge"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте коротку вказівку зарядити телефон",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дайте короткое указание зарядить телефон",
+          "uk": "Дайте коротку вказівку зарядити телефон"
+        },
+        "gappedTargetPhrase": "___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-32:i03:r1",
+            "text": "Charge"
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i03:r2",
+            "text": "Charges"
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i03:r3",
+            "text": "To charge"
+          }
+        ],
+        "testedDimension": "Дайте коротку вказівку зарядити телефон",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Дайте коротку вказівку зарядити телефон",
+            "feedbackByLocale": {
+              "ru": "Для указания нужно `Charge`, без `s`.",
+              "uk": "Для вказівки потрібне `Charge`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Дайте коротку вказівку зарядити телефон",
+            "feedbackByLocale": {
+              "ru": "Начните с `Charge`, без `to`.",
+              "uk": "Почніть із `Charge`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-32:i04:p1",
+            "target": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить",
+              "uk": "прикріпити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i04:p2",
+            "target": "plug in",
+            "meaningByLocale": {
+              "ru": "подключить к розетке",
+              "uk": "підключити до розетки"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i04:p3",
+            "target": "charge",
+            "meaningByLocale": {
+              "ru": "зарядить",
+              "uk": "зарядити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i04:p4",
+            "target": "fold",
+            "meaningByLocale": {
+              "ru": "сложить",
+              "uk": "скласти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "attach",
+          "plug in",
+          "charge",
+          "fold"
+        ],
+        "rightColumn": [
+          "прикріпити",
+          "підключити до розетки",
+          "зарядити",
+          "скласти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i05:audio",
+          "transcript": "Measure it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Measure it.",
+        "orderedTokens": [
+          "Measure",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Лампу ще не підключено. Скажіть «Увімкни її в розетку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лампу ще не підключено. Скажіть «Увімкни її в розетку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Plug it in.",
+        "localizedMeaning": {
+          "ru": "Лампа ещё не подключена. Скажите «Включи её в розетку»",
+          "uk": "Лампу ще не підключено. Скажіть «Увімкни її в розетку»"
+        },
+        "orderedTokens": [
+          "Plug",
+          "it",
+          "in"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг кладе шарф у сумку. Скажіть «Склади його»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Друг кладе шарф у сумку. Скажіть «Склади його»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i07:audio",
+          "transcript": "Fold it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Fold it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На столі розлито чай. Дайте вказівку витерти стіл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-32:i08:r1",
+          "text": "Wipe"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i08:r2",
+          "text": "Wipes"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i08:r3",
+          "text": "To wipe"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столі розлито чай. Дайте вказівку витерти стіл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На столе пролит чай. Дайте указание вытереть стол",
+          "uk": "На столі розлито чай. Дайте вказівку витерти стіл"
+        },
+        "gappedTargetPhrase": "___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-32:i08:r1",
+            "text": "Wipe"
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i08:r2",
+            "text": "Wipes"
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i08:r3",
+            "text": "To wipe"
+          }
+        ],
+        "testedDimension": "На столі розлито чай. Дайте вказівку витерти стіл",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "На столі розлито чай. Дайте вказівку витерти стіл",
+            "feedbackByLocale": {
+              "ru": "Для указания нужно `Wipe`, без `s`.",
+              "uk": "Для вказівки потрібне `Wipe`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "На столі розлито чай. Дайте вказівку витерти стіл",
+            "feedbackByLocale": {
+              "ru": "Начните с `Wipe`, без `to`.",
+              "uk": "Почніть із `Wipe`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-32:i09:r1",
+          "text": "Label it."
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i09:r2",
+          "text": "Label this."
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i09:r3",
+          "text": "Label that."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i09:audio",
+          "transcript": "Label it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-32:i09:r1",
+            "targetText": "Label it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i09:r2",
+            "targetText": "Label this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i09:r3",
+            "targetText": "Label that.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-32:i10:p1",
+            "target": "measure",
+            "meaningByLocale": {
+              "ru": "измерить",
+              "uk": "виміряти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i10:p2",
+            "target": "label",
+            "meaningByLocale": {
+              "ru": "подписать",
+              "uk": "підписати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i10:p3",
+            "target": "wipe",
+            "meaningByLocale": {
+              "ru": "вытереть",
+              "uk": "витерти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i10:p4",
+            "target": "fountain",
+            "meaningByLocale": {
+              "ru": "фонтан",
+              "uk": "фонтан"
+            }
+          }
+        ],
+        "leftColumn": [
+          "measure",
+          "label",
+          "wipe",
+          "fountain"
+        ],
+        "rightColumn": [
+          "виміряти",
+          "підписати",
+          "витерти",
+          "фонтан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i11:audio",
+          "transcript": "Plug it in."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Plug it in.",
+        "orderedTokens": [
+          "Plug",
+          "it",
+          "in"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте «Де фонтан?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте «Де фонтан?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the fountain?",
+        "localizedMeaning": {
+          "ru": "Спросите «Где фонтан?»",
+          "uk": "Запитайте «Де фонтан?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "fountain"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коробка важка. Попросіть друга «Можеш мені допомогти?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Коробка важка. Попросіть друга «Можеш мені допомогти?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i13:audio",
+          "transcript": "Can you help me?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you help me?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дайте вказівку підписати коробку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-32:i14:r1",
+          "text": "Label"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i14:r2",
+          "text": "Labels"
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i14:r3",
+          "text": "To label"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте вказівку підписати коробку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дайте указание подписать коробку",
+          "uk": "Дайте вказівку підписати коробку"
+        },
+        "gappedTargetPhrase": "___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-32:i14:r1",
+            "text": "Label"
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i14:r2",
+            "text": "Labels"
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i14:r3",
+            "text": "To label"
+          }
+        ],
+        "testedDimension": "Дайте вказівку підписати коробку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-32:i14:r2",
+            "correct": false,
+            "testedDimension": "Дайте вказівку підписати коробку",
+            "feedbackByLocale": {
+              "ru": "Для указания нужно `Label`, без `s`.",
+              "uk": "Для вказівки потрібне `Label`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i14:r3",
+            "correct": false,
+            "testedDimension": "Дайте вказівку підписати коробку",
+            "feedbackByLocale": {
+              "ru": "Начните с `Label`, без `to`.",
+              "uk": "Почніть із `Label`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-32:i15:r1",
+          "text": "Charge it."
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i15:r2",
+          "text": "Charge this."
+        },
+        {
+          "responseId": "en:lesson-08:session-32:i15:r3",
+          "text": "Charge that."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i15:audio",
+          "transcript": "Charge it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-32:i15:r1",
+            "targetText": "Charge it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i15:r2",
+            "targetText": "Charge this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i15:r3",
+            "targetText": "Charge that.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-32:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-32:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-32:i16:p1",
+            "target": "fold",
+            "meaningByLocale": {
+              "ru": "сложить",
+              "uk": "скласти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i16:p2",
+            "target": "measure",
+            "meaningByLocale": {
+              "ru": "измерить",
+              "uk": "виміряти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i16:p3",
+            "target": "label",
+            "meaningByLocale": {
+              "ru": "подписать",
+              "uk": "підписати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i16:p4",
+            "target": "wipe",
+            "meaningByLocale": {
+              "ru": "вытереть",
+              "uk": "витерти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fold",
+          "measure",
+          "label",
+          "wipe"
+        ],
+        "rightColumn": [
+          "скласти",
+          "виміряти",
+          "підписати",
+          "витерти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг розлив воду на стілець. Серветка в нього в руці. Покажіть на стілець і скажіть «Витри його»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Друг розлив воду на стілець. Серветка в нього в руці. Покажіть на стілець і скажіть «Витри його»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:i17:audio",
+          "transcript": "Wipe it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Wipe it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "73cc1676986613ee90998559ab85a2971a24e89662bb600788f4e8b42a585ed9"
+}

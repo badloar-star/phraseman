@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-02:i01",
+    "correctText": "I can juggle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i02",
+    "correctText": "juggle",
+    "correctResponseId": "en:lesson-08:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i03",
+    "correctText": "juggle",
+    "correctResponseId": "en:lesson-08:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i04",
+    "correctText": "en:lesson-08:session-02:i04:p1=juggle\nen:lesson-08:session-02:i04:p2=garden\nen:lesson-08:session-02:i04:p3=folder\nen:lesson-08:session-02:i04:p4=package",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i05",
+    "correctText": "I can juggle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i06",
+    "correctText": "She can whistle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i07",
+    "correctText": "Whose folder is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i08",
+    "correctText": "whistle",
+    "correctResponseId": "en:lesson-08:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i09",
+    "correctText": "I can juggle.",
+    "correctResponseId": "en:lesson-08:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i10",
+    "correctText": "en:lesson-08:session-02:i10:p1=hike\nen:lesson-08:session-02:i10:p2=juggle\nen:lesson-08:session-02:i10:p3=garden\nen:lesson-08:session-02:i10:p4=package",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i11",
+    "correctText": "Whose folder is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i12",
+    "correctText": "Whose package is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i13",
+    "correctText": "I usually hike.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i14",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-08:session-02:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i15",
+    "correctText": "Where is the garden?",
+    "correctResponseId": "en:lesson-08:session-02:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i16",
+    "correctText": "en:lesson-08:session-02:i16:p1=juggle\nen:lesson-08:session-02:i16:p2=folder\nen:lesson-08:session-02:i16:p3=package\nen:lesson-08:session-02:i16:p4=hike",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-02:i17",
+    "correctText": "Tom can juggle.",
+    "correctResponseId": null
+  }
+]

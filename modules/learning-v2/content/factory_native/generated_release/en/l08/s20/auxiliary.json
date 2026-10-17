@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-20:intro1:r2": {
+          "ru": "После `can` нужно `hold`, без `to`.",
+          "uk": "Після `can` потрібне `hold`, без `to`."
+        },
+        "en:lesson-08:session-20:intro1:r3": {
+          "ru": "Для этой просьбы начните с `Can you`.",
+          "uk": "Для цього прохання почніть із `Can you`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-20:intro2:r2": {
+          "ru": "После `can` нужно `open`, без `s`.",
+          "uk": "Після `can` потрібне `open`, без `s`."
+        },
+        "en:lesson-08:session-20:intro2:r3": {
+          "ru": "После `can` нужно `open`, без `to`.",
+          "uk": "Після `can` потрібне `open`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-20:intro3:r2": {
+          "ru": "Вы пока не умеете: нужно `can’t`.",
+          "uk": "Ви поки не вмієте: потрібне `can’t`."
+        },
+        "en:lesson-08:session-20:intro3:r3": {
+          "ru": "После `can’t` нужно `knit`, без `to`.",
+          "uk": "Після `can’t` потрібне `knit`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c4e779778cda85c58a8dd90637622419e7bcd0e43b539aaae99c4853ee5b50cc"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить can для умений и повторить вопрос «чей?»",
+    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ловлю на лету",
+        "uk": "Ловлю на льоту"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает, как подбрасывать и ловить несколько мячей. `Juggle` — «жонглировать». `I can juggle` — «Я умею жонглировать». После `can` нужно `juggle`, без `to` и без окончания `s`. Просто подбросить легко — главное потом поймать.",
+        "uk": "Друг показує, як підкидати й ловити кілька м’ячів. `Juggle` — «жонглювати». `I can juggle` — «Я вмію жонглювати». Після `can` потрібне `juggle`, без `to` й без закінчення `s`. Просто підкинути легко — головне потім упіймати."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что умеете жонглировать.",
+          "uk": "Скажіть другові, що вмієте жонглювати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-02:intro1:r1",
+              "text": "I can juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro1:r2",
+              "text": "I can to juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro1:r3",
+              "text": "I can juggles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-02:intro1:r1",
+              "text": "I can juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro1:r2",
+              "text": "I can to juggle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro1:r3",
+              "text": "I can juggles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что умеете жонглировать.",
+          "uk": "Скажіть другові, що вмієте жонглювати."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она умеет свистеть",
+        "uk": "Вона вміє свистіти"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомая насвистывает мелодию, и друг спрашивает о её умении. `She can whistle` — «Она умеет свистеть». `Can` не меняется после `she`; после него нужно `whistle`, без окончания `s`.",
+        "uk": "Знайома насвистує мелодію, і друг запитує про її вміння. `She can whistle` — «Вона вміє свистіти». `Can` не змінюється після `she`; після нього потрібне `whistle`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-02:intro2:r1",
+              "text": "She can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro2:r2",
+              "text": "She cans whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro2:r3",
+              "text": "She can whistles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-02:intro2:r1",
+              "text": "She can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro2:r2",
+              "text": "She cans whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro2:r3",
+              "text": "She can whistles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чья папка",
+        "uk": "Чия папка"
+      },
+      "bodyByLocale": {
+        "ru": "На общем столе лежит папка, и вы хотите найти её владельца. `Whose folder is this?` — «Чья это папка?» Сначала `whose folder` — «чья папка», затем `is this`.",
+        "uk": "На спільному столі лежить папка, і ви хочете знайти її власника. `Whose folder is this?` — «Чия це папка?» Спочатку `whose folder` — «чия папка», потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите коллег, чья это папка.",
+          "uk": "Запитайте колег, чия це папка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-02:intro3:r1",
+              "text": "Whose folder is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro3:r2",
+              "text": "Who folder is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro3:r3",
+              "text": "Whose folder are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-02:intro3:r1",
+              "text": "Whose folder is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro3:r2",
+              "text": "Who folder is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-02:intro3:r3",
+              "text": "Whose folder are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коллег, чья это папка.",
+          "uk": "Запитайте колег, чия це папка."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a3d942c23c8e48ea63a51a33409a8387c61bdae4b8434b9f541f24d5ed637b8d"
+}

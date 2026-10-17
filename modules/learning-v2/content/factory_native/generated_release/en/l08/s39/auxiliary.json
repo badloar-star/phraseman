@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-39:intro1:r2": {
+          "ru": "После `don’t` нужно `shove`, без `s`.",
+          "uk": "Після `don’t` потрібне `shove`, без `s`."
+        },
+        "en:lesson-08:session-39:intro1:r3": {
+          "ru": "После `don’t` нужно `shove`, без `to`.",
+          "uk": "Після `don’t` потрібне `shove`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-39:intro2:r2": {
+          "ru": "После `don’t` нужно `touch`, без `es`.",
+          "uk": "Після `don’t` потрібне `touch`, без `es`."
+        },
+        "en:lesson-08:session-39:intro2:r3": {
+          "ru": "В такой просьбе нужно `Don’t touch this`.",
+          "uk": "У такому проханні потрібне `Don’t touch this`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-39:intro3:r2": {
+          "ru": "В обращении к человеку нужно `don’t rush`.",
+          "uk": "У звертанні до людини потрібне `don’t rush`."
+        },
+        "en:lesson-08:session-39:intro3:r3": {
+          "ru": "После `don’t` нужно `rush`, без `to`.",
+          "uk": "Після `don’t` потрібне `rush`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4905e836de111fca63c6f86b35575c8ff2b578395755ad1375b2f9774c094bac"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить can для умений и повторить вопрос «чей?»",
+    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Помогу с переводом",
+        "uk": "Допоможу з перекладом"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает текст на другом языке и спрашивает, умеете ли вы переводить. `Translate` — «переводить с одного языка на другой». `I can translate` — «Я умею переводить». После `can` нужно `translate`, без `to` и окончания `s`. Это перевод слов, а не денег: номер карты не понадобится.",
+        "uk": "Друг показує текст іншою мовою й запитує, чи вмієте ви перекладати. `Translate` — «перекладати з однієї мови іншою». `I can translate` — «Я вмію перекладати». Після `can` потрібне `translate`, без `to` й закінчення `s`. Це переклад слів, а не переказ грошей: номер картки не знадобиться."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу о своём умении.",
+          "uk": "Скажіть другові про своє вміння."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-05:intro1:r1",
+              "text": "I can translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro1:r2",
+              "text": "I can to translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro1:r3",
+              "text": "I can translates."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-05:intro1:r1",
+              "text": "I can translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro1:r2",
+              "text": "I can to translate."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro1:r3",
+              "text": "I can translates."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу о своём умении.",
+          "uk": "Скажіть другові про своє вміння."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она умеет кататься по волнам",
+        "uk": "Вона вміє кататися по хвилях"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете отдых на море. Друг спрашивает, умеет ли ваша знакомая заниматься сёрфингом. `She can surf` — «Она умеет заниматься сёрфингом». `Can` не меняется после `she`; после него нужно `surf`, без окончания `s`.",
+        "uk": "Ви обговорюєте відпочинок на морі. Друг запитує, чи вміє ваша знайома займатися серфінгом. `She can surf` — «Вона вміє займатися серфінгом». `Can` не змінюється після `she`; після нього потрібне `surf`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-05:intro2:r1",
+              "text": "She can surf."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro2:r2",
+              "text": "She cans surf."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro2:r3",
+              "text": "She can surfs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-05:intro2:r1",
+              "text": "She can surf."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro2:r2",
+              "text": "She cans surf."
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro2:r3",
+              "text": "She can surfs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите об умении знакомой.",
+          "uk": "Розкажіть про вміння знайомої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чей брелок",
+        "uk": "Чий брелок"
+      },
+      "bodyByLocale": {
+        "ru": "После встречи на столе остался брелок. Вы хотите вернуть его владельцу. `Whose keychain is this?` — «Чей это брелок?» Сначала `whose keychain` — «чей брелок», затем `is this`.",
+        "uk": "Після зустрічі на столі залишився брелок. Ви хочете повернути його власникові. `Whose keychain is this?` — «Чий це брелок?» Спочатку `whose keychain` — «чий брелок», потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите участников встречи, чей это брелок.",
+          "uk": "Запитайте учасників зустрічі, чий це брелок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-05:intro3:r1",
+              "text": "Whose keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro3:r2",
+              "text": "Who keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro3:r3",
+              "text": "Whose keychain are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-05:intro3:r1",
+              "text": "Whose keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro3:r2",
+              "text": "Who keychain is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-05:intro3:r3",
+              "text": "Whose keychain are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите участников встречи, чей это брелок.",
+          "uk": "Запитайте учасників зустрічі, чий це брелок."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c25f0c1f7ad07014c18762340c3ecd0210df0486653d96adbdd38c5a969033e2"
+}

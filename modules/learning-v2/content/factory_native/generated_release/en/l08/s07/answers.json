@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-07:i01",
+    "correctText": "I can climb.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i02",
+    "correctText": "climb",
+    "correctResponseId": "en:lesson-08:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i03",
+    "correctText": "climb",
+    "correctResponseId": "en:lesson-08:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i04",
+    "correctText": "en:lesson-08:session-07:i04:p1=climb\nen:lesson-08:session-07:i04:p2=playground\nen:lesson-08:session-07:i04:p3=calendar\nen:lesson-08:session-07:i04:p4=schedule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i05",
+    "correctText": "I can climb.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i06",
+    "correctText": "She can balance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i07",
+    "correctText": "Whose calendar is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i08",
+    "correctText": "balance",
+    "correctResponseId": "en:lesson-08:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i09",
+    "correctText": "I can climb.",
+    "correctResponseId": "en:lesson-08:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i10",
+    "correctText": "en:lesson-08:session-07:i10:p1=stream\nen:lesson-08:session-07:i10:p2=climb\nen:lesson-08:session-07:i10:p3=playground\nen:lesson-08:session-07:i10:p4=schedule",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i11",
+    "correctText": "Whose calendar is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i12",
+    "correctText": "Whose schedule is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i13",
+    "correctText": "I often stream films.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i14",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-08:session-07:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i15",
+    "correctText": "Where is the playground?",
+    "correctResponseId": "en:lesson-08:session-07:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i16",
+    "correctText": "en:lesson-08:session-07:i16:p1=climb\nen:lesson-08:session-07:i16:p2=calendar\nen:lesson-08:session-07:i16:p3=schedule\nen:lesson-08:session-07:i16:p4=stream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-07:i17",
+    "correctText": "Tom can climb.",
+    "correctResponseId": null
+  }
+]

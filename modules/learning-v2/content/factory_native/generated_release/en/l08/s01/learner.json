@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я умею свистеть»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею свистеть»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can whistle.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я умею свистеть»",
+          "uk": "Скажіть «Я вмію свистіти»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "whistle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-01:i02:r1",
+          "text": "whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i02:r2",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i02:r3",
+          "text": "camp"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i02:audio",
+          "transcript": "whistle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-01:i02:r1",
+            "targetText": "whistle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i02:r2",
+            "targetText": "work",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i02:r3",
+            "targetText": "camp",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `whistle`, а в этом варианте — `work`.",
+              "uk": "У записі перше слово — `whistle`, а в цьому варіанті — `work`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `whistle`, а в этом варианте — `camp`.",
+              "uk": "У записі перше слово — `whistle`, а в цьому варіанті — `camp`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я умею свистеть»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-01:i03:r1",
+          "text": "whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i03:r2",
+          "text": "to whistle"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i03:r3",
+          "text": "whistles"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею свистеть»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я умею свистеть»",
+          "uk": "Скажіть «Я вмію свистіти»"
+        },
+        "gappedTargetPhrase": "I can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-01:i03:r1",
+            "text": "whistle"
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i03:r2",
+            "text": "to whistle"
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i03:r3",
+            "text": "whistles"
+          }
+        ],
+        "testedDimension": "Скажите «Я умею свистеть»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею свистеть»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `to`.",
+              "uk": "Після `can` потрібне `whistle`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я умею свистеть»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `whistle`, без `s`.",
+              "uk": "Після `can` потрібне `whistle`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-01:i04:p1",
+            "target": "whistle",
+            "meaningByLocale": {
+              "ru": "свистеть",
+              "uk": "свистіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i04:p2",
+            "target": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i04:p3",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i04:p4",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "whistle",
+          "pharmacy",
+          "library",
+          "bakery"
+        ],
+        "rightColumn": [
+          "свистеть",
+          "аптека",
+          "библиотека",
+          "пекарня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i05:audio",
+          "transcript": "I can whistle."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can whistle.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "whistle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я умею плавать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я умею плавать»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can swim.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я умею плавать»",
+          "uk": "Скажіть «Я вмію плавати»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "swim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о знакомой «Она умеет водить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите о знакомой «Она умеет водить»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i07:audio",
+          "transcript": "She can drive."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She can drive.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет водить»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-01:i08:r1",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i08:r2",
+          "text": "drives"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i08:r3",
+          "text": "to drive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет водить»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет водить»",
+          "uk": "Скажіть «Вона вміє водити»"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-01:i08:r1",
+            "text": "drive"
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i08:r2",
+            "text": "drives"
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i08:r3",
+            "text": "to drive"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет водить»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет водить»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, без `s`.",
+              "uk": "Після `can` потрібне `drive`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет водить»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `drive`, без `to`.",
+              "uk": "Після `can` потрібне `drive`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-01:i09:r1",
+          "text": "I can whistle."
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i09:r2",
+          "text": "I can swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i09:r3",
+          "text": "I can drive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i09:audio",
+          "transcript": "I can whistle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-01:i09:r1",
+            "targetText": "I can whistle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i09:r2",
+            "targetText": "I can swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i09:r3",
+            "targetText": "I can drive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `whistle`, а в этом варианте — `swim`.",
+              "uk": "У записі останнє слово — `whistle`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `whistle`, а в этом варианте — `drive`.",
+              "uk": "У записі останнє слово — `whistle`, а в цьому варіанті — `drive`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-01:i10:p1",
+            "target": "factory",
+            "meaningByLocale": {
+              "ru": "фабрика",
+              "uk": "фабрика"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i10:p2",
+            "target": "work",
+            "meaningByLocale": {
+              "ru": "работать",
+              "uk": "працювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i10:p3",
+            "target": "camp",
+            "meaningByLocale": {
+              "ru": "ночевать в палатке",
+              "uk": "ночувати в наметі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i10:p4",
+            "target": "whistle",
+            "meaningByLocale": {
+              "ru": "свистеть",
+              "uk": "свистіти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "factory",
+          "work",
+          "camp",
+          "whistle"
+        ],
+        "rightColumn": [
+          "фабрика",
+          "работать",
+          "ночевать в палатке",
+          "свистеть"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i11:audio",
+          "transcript": "She can drive."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She can drive.",
+        "orderedTokens": [
+          "She",
+          "can",
+          "drive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ищете аптеку. Спросите прохожего «Где аптека?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете аптеку. Спросите прохожего «Где аптека?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the pharmacy?",
+        "localizedMeaning": {
+          "ru": "Вы ищете аптеку. Спросите прохожего «Где аптека?»",
+          "uk": "Ви шукаєте аптеку. Запитайте перехожого «Де аптека?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "pharmacy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о вашей работе. Скажите «Я работаю на фабрике»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о вашей работе. Скажите «Я работаю на фабрике»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i13:audio",
+          "transcript": "I work in a factory."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I work in a factory.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет плавать»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-01:i14:r1",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i14:r2",
+          "text": "cans"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i14:r3",
+          "text": "is can"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет плавать»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет плавать»",
+          "uk": "Скажіть «Вона вміє плавати»"
+        },
+        "gappedTargetPhrase": "She ___ swim.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-01:i14:r1",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i14:r2",
+            "text": "cans"
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i14:r3",
+            "text": "is can"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет плавать»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-01:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет плавать»",
+            "feedbackByLocale": {
+              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
+              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет плавать»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `she can`; `is` не нужно.",
+              "uk": "Достатньо `she can`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-01:i15:r1",
+          "text": "Where is the library?"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i15:r2",
+          "text": "Where is the pharmacy?"
+        },
+        {
+          "responseId": "en:lesson-08:session-01:i15:r3",
+          "text": "Where is the bakery?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i15:audio",
+          "transcript": "Where is the library?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-01:i15:r1",
+            "targetText": "Where is the library?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i15:r2",
+            "targetText": "Where is the pharmacy?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i15:r3",
+            "targetText": "Where is the bakery?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-01:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `library`, а в этом варианте — `pharmacy`.",
+              "uk": "У записі останнє слово — `library`, а в цьому варіанті — `pharmacy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-01:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `library`, а в этом варианте — `bakery`.",
+              "uk": "У записі останнє слово — `library`, а в цьому варіанті — `bakery`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-01:i16:p1",
+            "target": "whistle",
+            "meaningByLocale": {
+              "ru": "свистеть",
+              "uk": "свистіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i16:p2",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i16:p3",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-01:i16:p4",
+            "target": "work",
+            "meaningByLocale": {
+              "ru": "работать",
+              "uk": "працювати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "whistle",
+          "library",
+          "bakery",
+          "work"
+        ],
+        "rightColumn": [
+          "свистеть",
+          "библиотека",
+          "пекарня",
+          "работать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает об умении Тома. Скажите «Том умеет свистеть»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает об умении Тома. Скажите «Том умеет свистеть»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-01:i17:audio",
+          "transcript": "Tom can whistle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can whistle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "59da7fb7d82883ce3bc57e339de5197d954148b00822319690b72380066f17da"
+}

@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Я не вмію керувати кермом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не вмію керувати кермом»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can’t steer.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я не умею управлять рулём»",
+          "uk": "Скажіть «Я не вмію керувати кермом»"
+        },
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "steer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-13:i02:r1",
+          "text": "steer"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i02:r2",
+          "text": "swim"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i02:r3",
+          "text": "translate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i02:audio",
+          "transcript": "steer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-13:i02:r1",
+            "targetText": "steer",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i02:r2",
+            "targetText": "swim",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i02:r3",
+            "targetText": "translate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `steer`, а в этом варианте — `swim`.",
+              "uk": "У записі перше слово — `steer`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `steer`, а в этом варианте — `translate`.",
+              "uk": "У записі перше слово — `steer`, а в цьому варіанті — `translate`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Я не вмію керувати кермом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-13:i03:r1",
+          "text": "steer"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i03:r2",
+          "text": "to steer"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i03:r3",
+          "text": "steers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Я не вмію керувати кермом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не умею управлять рулём»",
+          "uk": "Скажіть «Я не вмію керувати кермом»"
+        },
+        "gappedTargetPhrase": "I can’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-13:i03:r1",
+            "text": "steer"
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i03:r2",
+            "text": "to steer"
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i03:r3",
+            "text": "steers"
+          }
+        ],
+        "testedDimension": "Скажіть «Я не вмію керувати кермом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не вмію керувати кермом»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `steer`, без `to`.",
+              "uk": "Після `can’t` потрібне `steer`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Я не вмію керувати кермом»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `steer`, без `s`.",
+              "uk": "Після `can’t` потрібне `steer`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-13:i04:p1",
+            "target": "steer",
+            "meaningByLocale": {
+              "ru": "управлять рулём",
+              "uk": "керувати кермом"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i04:p2",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "такси",
+              "uk": "таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i04:p3",
+            "target": "swim",
+            "meaningByLocale": {
+              "ru": "плавать",
+              "uk": "плавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i04:p4",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          }
+        ],
+        "leftColumn": [
+          "steer",
+          "taxi",
+          "swim",
+          "screen"
+        ],
+        "rightColumn": [
+          "керувати кермом",
+          "таксі",
+          "плавати",
+          "екран"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i05:audio",
+          "transcript": "I can’t steer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can’t steer.",
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "steer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть «Вона не вміє плавати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона не вміє плавати»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can’t swim.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она не умеет плавать»",
+          "uk": "Скажіть «Вона не вміє плавати»"
+        },
+        "orderedTokens": [
+          "She",
+          "can’t",
+          "swim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте «Чий це екран?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте «Чий це екран?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i07:audio",
+          "transcript": "Whose screen is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose screen is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Вона не вміє плавати»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-13:i08:r1",
+          "text": "swim"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i08:r2",
+          "text": "swims"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i08:r3",
+          "text": "to swim"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Вона не вміє плавати»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она не умеет плавать»",
+          "uk": "Скажіть «Вона не вміє плавати»"
+        },
+        "gappedTargetPhrase": "She can’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-13:i08:r1",
+            "text": "swim"
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i08:r2",
+            "text": "swims"
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i08:r3",
+            "text": "to swim"
+          }
+        ],
+        "testedDimension": "Скажіть «Вона не вміє плавати»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона не вміє плавати»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `swim`, без `s`.",
+              "uk": "Після `can’t` потрібне `swim`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Вона не вміє плавати»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `swim`, без `to`.",
+              "uk": "Після `can’t` потрібне `swim`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-13:i09:r1",
+          "text": "I can’t steer."
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i09:r2",
+          "text": "I can’t swim."
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i09:r3",
+          "text": "I can’t translate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i09:audio",
+          "transcript": "I can’t steer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-13:i09:r1",
+            "targetText": "I can’t steer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i09:r2",
+            "targetText": "I can’t swim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i09:r3",
+            "targetText": "I can’t translate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `steer`, а в этом варианте — `swim`.",
+              "uk": "У записі останнє слово — `steer`, а в цьому варіанті — `swim`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `steer`, а в этом варианте — `translate`.",
+              "uk": "У записі останнє слово — `steer`, а в цьому варіанті — `translate`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-13:i10:p1",
+            "target": "translate",
+            "meaningByLocale": {
+              "ru": "переводить",
+              "uk": "перекладати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i10:p2",
+            "target": "steer",
+            "meaningByLocale": {
+              "ru": "управлять рулём",
+              "uk": "керувати кермом"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i10:p3",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i10:p4",
+            "target": "swim",
+            "meaningByLocale": {
+              "ru": "плавать",
+              "uk": "плавати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "translate",
+          "steer",
+          "screen",
+          "swim"
+        ],
+        "rightColumn": [
+          "перекладати",
+          "керувати кермом",
+          "екран",
+          "плавати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i11:audio",
+          "transcript": "Whose screen is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose screen is this?",
+        "orderedTokens": [
+          "Whose",
+          "screen",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг запитує, чи вмієте ви перекладати. Скажіть «Я вмію перекладати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує, чи вмієте ви перекладати. Скажіть «Я вмію перекладати»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can translate.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, умеете ли вы переводить. Скажите «Я умею переводить»",
+          "uk": "Друг запитує, чи вмієте ви перекладати. Скажіть «Я вмію перекладати»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "translate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи часто ви плаваєте. Скажіть «Я часто плаваю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи часто ви плаваєте. Скажіть «Я часто плаваю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i13:audio",
+          "transcript": "I often swim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often swim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть «Він не вміє керувати кермом»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-13:i14:r1",
+          "text": "can’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i14:r2",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i14:r3",
+          "text": "is can’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть «Він не вміє керувати кермом»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он не умеет управлять рулём»",
+          "uk": "Скажіть «Він не вміє керувати кермом»"
+        },
+        "gappedTargetPhrase": "He ___ steer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-13:i14:r1",
+            "text": "can’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i14:r2",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i14:r3",
+            "text": "is can’t"
+          }
+        ],
+        "testedDimension": "Скажіть «Він не вміє керувати кермом»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-13:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажіть «Він не вміє керувати кермом»",
+            "feedbackByLocale": {
+              "ru": "Он не умеет: нужно `can’t`.",
+              "uk": "Він не вміє: потрібне `can’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажіть «Він не вміє керувати кермом»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `he can’t`; `is` не нужно.",
+              "uk": "Достатньо `he can’t`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-13:i15:r1",
+          "text": "Where is the taxi?"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i15:r2",
+          "text": "Where is the bus?"
+        },
+        {
+          "responseId": "en:lesson-08:session-13:i15:r3",
+          "text": "Where is the tram?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i15:audio",
+          "transcript": "Where is the taxi?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-13:i15:r1",
+            "targetText": "Where is the taxi?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i15:r2",
+            "targetText": "Where is the bus?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i15:r3",
+            "targetText": "Where is the tram?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `taxi`, а в этом варианте — `bus`.",
+              "uk": "У записі останнє слово — `taxi`, а в цьому варіанті — `bus`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-13:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `taxi`, а в этом варианте — `tram`.",
+              "uk": "У записі останнє слово — `taxi`, а в цьому варіанті — `tram`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-13:i16:p1",
+            "target": "steer",
+            "meaningByLocale": {
+              "ru": "управлять рулём",
+              "uk": "керувати кермом"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i16:p2",
+            "target": "taxi",
+            "meaningByLocale": {
+              "ru": "такси",
+              "uk": "таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i16:p3",
+            "target": "translate",
+            "meaningByLocale": {
+              "ru": "переводить",
+              "uk": "перекладати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-13:i16:p4",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          }
+        ],
+        "leftColumn": [
+          "steer",
+          "taxi",
+          "translate",
+          "screen"
+        ],
+        "rightColumn": [
+          "керувати кермом",
+          "таксі",
+          "перекладати",
+          "екран"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-13:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг пропонує Томові взяти кермо човна. Том ще не навчився. Скажіть «Том не вміє керувати кермом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Друг пропонує Томові взяти кермо човна. Том ще не навчився. Скажіть «Том не вміє керувати кермом»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-13:i17:audio",
+          "transcript": "Tom can’t steer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can’t steer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "72acdd427387acfeb65da8a1ae9f452c671a6980b7957b591192c879b590d5ee"
+}

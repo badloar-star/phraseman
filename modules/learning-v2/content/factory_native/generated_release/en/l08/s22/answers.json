@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-22:i01",
+    "correctText": "Can you remind me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i02",
+    "correctText": "remind",
+    "correctResponseId": "en:lesson-08:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i03",
+    "correctText": "remind",
+    "correctResponseId": "en:lesson-08:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i04",
+    "correctText": "en:lesson-08:session-22:i04:p1=remind\nen:lesson-08:session-22:i04:p2=carrot\nen:lesson-08:session-22:i04:p3=read\nen:lesson-08:session-22:i04:p4=spell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i05",
+    "correctText": "Can you remind me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i06",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i07",
+    "correctText": "I can’t spell.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i08",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-08:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i09",
+    "correctText": "Can you remind me?",
+    "correctResponseId": "en:lesson-08:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i10",
+    "correctText": "en:lesson-08:session-22:i10:p1=argue\nen:lesson-08:session-22:i10:p2=remind\nen:lesson-08:session-22:i10:p3=carrot\nen:lesson-08:session-22:i10:p4=read",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i11",
+    "correctText": "Can you help me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i12",
+    "correctText": "Can you open the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i13",
+    "correctText": "I often read.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i14",
+    "correctText": "Can",
+    "correctResponseId": "en:lesson-08:session-22:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i15",
+    "correctText": "Can you open the door?",
+    "correctResponseId": "en:lesson-08:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i16",
+    "correctText": "en:lesson-08:session-22:i16:p1=remind\nen:lesson-08:session-22:i16:p2=argue\nen:lesson-08:session-22:i16:p3=spell\nen:lesson-08:session-22:i16:p4=carrot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-22:i17",
+    "correctText": "Can you remind me?",
+    "correctResponseId": null
+  }
+]

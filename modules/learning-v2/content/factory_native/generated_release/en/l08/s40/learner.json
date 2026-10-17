@@ -1,0 +1,940 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подарок ещё успеете упаковать. Скажите «Не торопись»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подарок ещё успеете упаковать. Скажите «Не торопись»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t rush.",
+        "localizedMeaning": {
+          "ru": "Подарок ещё успеете упаковать. Скажите «Не торопись»",
+          "uk": "Подарунок ще встигнете запакувати. Скажіть «Не поспішай»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "rush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-40:i02:r1",
+          "text": "spill"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i02:r2",
+          "text": "bend"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i02:r3",
+          "text": "shove"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i02:audio",
+          "transcript": "spill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-40:i02:r1",
+            "targetText": "spill",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i02:r2",
+            "targetText": "bend",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i02:r3",
+            "targetText": "shove",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `spill`, а в этом варианте — `bend`.",
+              "uk": "У записі перше слово — `spill`, а в цьому варіанті — `bend`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `spill`, а в этом варианте — `shove`.",
+              "uk": "У записі перше слово — `spill`, а в цьому варіанті — `shove`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Не пролей это»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-40:i03:r1",
+          "text": "spill"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i03:r2",
+          "text": "spills"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i03:r3",
+          "text": "to spill"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Не пролей это»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Не пролей это»",
+          "uk": "Скажіть «Не пролий це»"
+        },
+        "gappedTargetPhrase": "Don’t ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-40:i03:r1",
+            "text": "spill"
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i03:r2",
+            "text": "spills"
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i03:r3",
+            "text": "to spill"
+          }
+        ],
+        "testedDimension": "Скажите «Не пролей это»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Не пролей это»",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `spill`, без `s`.",
+              "uk": "Після `don’t` потрібне `spill`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Не пролей это»",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `spill`, без `to`.",
+              "uk": "Після `don’t` потрібне `spill`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-40:i04:p1",
+            "target": "rush",
+            "meaningByLocale": {
+              "ru": "торопиться",
+              "uk": "поспішати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i04:p2",
+            "target": "interrupt",
+            "meaningByLocale": {
+              "ru": "перебивать",
+              "uk": "перебивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i04:p3",
+            "target": "spill",
+            "meaningByLocale": {
+              "ru": "проливать",
+              "uk": "проливати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i04:p4",
+            "target": "thermostat",
+            "meaningByLocale": {
+              "ru": "термостат",
+              "uk": "термостат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rush",
+          "interrupt",
+          "spill",
+          "thermostat"
+        ],
+        "rightColumn": [
+          "торопиться",
+          "перебивать",
+          "проливать",
+          "термостат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i05:audio",
+          "transcript": "Don’t spill it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Don’t spill it.",
+        "orderedTokens": [
+          "Don’t",
+          "spill",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг сгибает открытку. Скажите «Не сгибай это»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сгибает открытку. Скажите «Не сгибай это»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t bend it.",
+        "localizedMeaning": {
+          "ru": "Друг сгибает открытку. Скажите «Не сгибай это»",
+          "uk": "Друг згинає листівку. Скажіть «Не згинай це»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "bend",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё объясняете дорогу. Скажите «Пожалуйста, не перебивай»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i07:audio"
+      ],
+      "accessibilityLabel": "Вы ещё объясняете дорогу. Скажите «Пожалуйста, не перебивай»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i07:audio",
+          "transcript": "Please don’t interrupt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don’t interrupt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг двигает коробку по столу. Скажите «Не поцарапай это»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-40:i08:r1",
+          "text": "scratch"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i08:r2",
+          "text": "scratches"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i08:r3",
+          "text": "to scratch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг двигает коробку по столу. Скажите «Не поцарапай это»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг двигает коробку по столу. Скажите «Не поцарапай это»",
+          "uk": "Друг рухає коробку по столу. Скажіть «Не подряпай це»"
+        },
+        "gappedTargetPhrase": "Don’t ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-40:i08:r1",
+            "text": "scratch"
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i08:r2",
+            "text": "scratches"
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i08:r3",
+            "text": "to scratch"
+          }
+        ],
+        "testedDimension": "Друг двигает коробку по столу. Скажите «Не поцарапай это»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Друг двигает коробку по столу. Скажите «Не поцарапай это»",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `scratch`, без `es`.",
+              "uk": "Після `don’t` потрібне `scratch`, без `es`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Друг двигает коробку по столу. Скажите «Не поцарапай это»",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `scratch`, без `to`.",
+              "uk": "Після `don’t` потрібне `scratch`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-40:i09:r1",
+          "text": "Don’t shove."
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i09:r2",
+          "text": "Don’t rush."
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i09:r3",
+          "text": "Don’t wait."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i09:audio",
+          "transcript": "Don’t shove."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-40:i09:r1",
+            "targetText": "Don’t shove.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i09:r2",
+            "targetText": "Don’t rush.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i09:r3",
+            "targetText": "Don’t wait.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shove`, а в этом варианте — `rush`.",
+              "uk": "У записі останнє слово — `shove`, а в цьому варіанті — `rush`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `shove`, а в этом варианте — `wait`.",
+              "uk": "У записі останнє слово — `shove`, а в цьому варіанті — `wait`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-40:i10:p1",
+            "target": "scratch",
+            "meaningByLocale": {
+              "ru": "царапать",
+              "uk": "дряпати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i10:p2",
+            "target": "bend",
+            "meaningByLocale": {
+              "ru": "сгибать",
+              "uk": "згинати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i10:p3",
+            "target": "panic",
+            "meaningByLocale": {
+              "ru": "паниковать",
+              "uk": "панікувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i10:p4",
+            "target": "shove",
+            "meaningByLocale": {
+              "ru": "грубо толкать",
+              "uk": "грубо штовхати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "scratch",
+          "bend",
+          "panic",
+          "shove"
+        ],
+        "rightColumn": [
+          "царапать",
+          "сгибать",
+          "паниковать",
+          "грубо толкать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i11:audio",
+          "transcript": "Please don’t interrupt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don’t interrupt.",
+        "orderedTokens": [
+          "Please",
+          "don’t",
+          "interrupt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг снимает наклейку с телефона острым предметом. Скажите «Не поцарапай это»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг снимает наклейку с телефона острым предметом. Скажите «Не поцарапай это»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t scratch it.",
+        "localizedMeaning": {
+          "ru": "Друг снимает наклейку с телефона острым предметом. Скажите «Не поцарапай это»",
+          "uk": "Друг знімає наліпку з телефона гострим предметом. Скажіть «Не подряпай це»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "scratch",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг не видит свой чемодан, но вы уже нашли его. Скажите «Не паникуй»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i13:audio"
+      ],
+      "accessibilityLabel": "Друг не видит свой чемодан, но вы уже нашли его. Скажите «Не паникуй»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i13:audio",
+          "transcript": "Don’t panic."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Don’t panic.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите «Пожалуйста, не перебивай»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-40:i14:r1",
+          "text": "don’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i14:r2",
+          "text": "doesn’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i14:r3",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите «Пожалуйста, не перебивай»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите «Пожалуйста, не перебивай»",
+          "uk": "Попросіть «Будь ласка, не перебивай»"
+        },
+        "gappedTargetPhrase": "Please ___ interrupt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-40:i14:r1",
+            "text": "don’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i14:r2",
+            "text": "doesn’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i14:r3",
+            "text": "not"
+          }
+        ],
+        "testedDimension": "Попросите «Пожалуйста, не перебивай»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-40:i14:r2",
+            "correct": false,
+            "testedDimension": "Попросите «Пожалуйста, не перебивай»",
+            "feedbackByLocale": {
+              "ru": "В обращении нужно `don’t interrupt`.",
+              "uk": "У звертанні потрібне `don’t interrupt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i14:r3",
+            "correct": false,
+            "testedDimension": "Попросите «Пожалуйста, не перебивай»",
+            "feedbackByLocale": {
+              "ru": "Для этой просьбы нужно `don’t`: `Please don’t interrupt`.",
+              "uk": "Для цього прохання потрібне `don’t`: `Please don’t interrupt`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-40:i15:r1",
+          "text": "Don’t bend it."
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i15:r2",
+          "text": "Don’t bend this."
+        },
+        {
+          "responseId": "en:lesson-08:session-40:i15:r3",
+          "text": "Don’t bend that."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i15:audio",
+          "transcript": "Don’t bend it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-40:i15:r1",
+            "targetText": "Don’t bend it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i15:r2",
+            "targetText": "Don’t bend this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i15:r3",
+            "targetText": "Don’t bend that.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-40:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-40:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-40:i16:p1",
+            "target": "thermostat",
+            "meaningByLocale": {
+              "ru": "термостат",
+              "uk": "термостат"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i16:p2",
+            "target": "spill",
+            "meaningByLocale": {
+              "ru": "проливать",
+              "uk": "проливати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i16:p3",
+            "target": "interrupt",
+            "meaningByLocale": {
+              "ru": "перебивать",
+              "uk": "перебивати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-40:i16:p4",
+            "target": "shove",
+            "meaningByLocale": {
+              "ru": "грубо толкать",
+              "uk": "грубо штовхати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "thermostat",
+          "spill",
+          "interrupt",
+          "shove"
+        ],
+        "rightColumn": [
+          "термостат",
+          "проливать",
+          "перебивать",
+          "грубо толкать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-40:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У выхода из зала друг толкает людей перед собой. Попросите его «Не толкайся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "У выхода из зала друг толкает людей перед собой. Попросите его «Не толкайся»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-40:i17:audio",
+          "transcript": "Don’t shove."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Don’t shove.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3afbcb3c852afe166f125eca147662e28e0506c9bd7ed999e085866c2ad44297"
+}

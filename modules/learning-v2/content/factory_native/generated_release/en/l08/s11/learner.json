@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я не умею писать код»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я не умею писать код»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can’t code.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я не умею писать код»",
+          "uk": "Скажіть «Я не вмію писати код»"
+        },
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "code"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i02:r1",
+          "text": "code"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i02:r2",
+          "text": "type"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i02:r3",
+          "text": "learn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i02:audio",
+          "transcript": "code"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:i02:r1",
+            "targetText": "code",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i02:r2",
+            "targetText": "type",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i02:r3",
+            "targetText": "learn",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `code`, а в этом варианте — `type`.",
+              "uk": "У записі перше слово — `code`, а в цьому варіанті — `type`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `code`, а в этом варианте — `learn`.",
+              "uk": "У записі перше слово — `code`, а в цьому варіанті — `learn`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я не умею писать код»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i03:r1",
+          "text": "code"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i03:r2",
+          "text": "to code"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i03:r3",
+          "text": "codes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я не умею писать код»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не умею писать код»",
+          "uk": "Скажіть «Я не вмію писати код»"
+        },
+        "gappedTargetPhrase": "I can’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-11:i03:r1",
+            "text": "code"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i03:r2",
+            "text": "to code"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i03:r3",
+            "text": "codes"
+          }
+        ],
+        "testedDimension": "Скажите «Я не умею писать код»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я не умею писать код»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `code`, без `to`.",
+              "uk": "Після `can’t` потрібне `code`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я не умею писать код»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `code`, без `s`.",
+              "uk": "Після `can’t` потрібне `code`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-11:i04:p1",
+            "target": "code",
+            "meaningByLocale": {
+              "ru": "писать код",
+              "uk": "писати код"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i04:p2",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i04:p3",
+            "target": "learn",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "вчитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i04:p4",
+            "target": "printer",
+            "meaningByLocale": {
+              "ru": "принтер",
+              "uk": "принтер"
+            }
+          }
+        ],
+        "leftColumn": [
+          "code",
+          "tram",
+          "learn",
+          "printer"
+        ],
+        "rightColumn": [
+          "писать код",
+          "трамвай",
+          "учиться",
+          "принтер"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i05:audio",
+          "transcript": "I can’t code."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can’t code.",
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "code"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о знакомой «Она не умеет печатать на клавиатуре»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о знакомой «Она не умеет печатать на клавиатуре»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can’t type.",
+        "localizedMeaning": {
+          "ru": "Скажите о знакомой «Она не умеет печатать на клавиатуре»",
+          "uk": "Скажіть про знайому «Вона не вміє друкувати на клавіатурі»"
+        },
+        "orderedTokens": [
+          "She",
+          "can’t",
+          "type"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите коллег «Чей это принтер?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите коллег «Чей это принтер?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i07:audio",
+          "transcript": "Whose printer is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose printer is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она не умеет печатать на клавиатуре»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i08:r1",
+          "text": "type"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i08:r2",
+          "text": "types"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i08:r3",
+          "text": "to type"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она не умеет печатать на клавиатуре»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она не умеет печатать на клавиатуре»",
+          "uk": "Скажіть «Вона не вміє друкувати на клавіатурі»"
+        },
+        "gappedTargetPhrase": "She can’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-11:i08:r1",
+            "text": "type"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i08:r2",
+            "text": "types"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i08:r3",
+            "text": "to type"
+          }
+        ],
+        "testedDimension": "Скажите «Она не умеет печатать на клавиатуре»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она не умеет печатать на клавиатуре»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `type`, без `s`.",
+              "uk": "Після `can’t` потрібне `type`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она не умеет печатать на клавиатуре»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `type`, без `to`.",
+              "uk": "Після `can’t` потрібне `type`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i09:r1",
+          "text": "I can’t code."
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i09:r2",
+          "text": "I can’t type."
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i09:r3",
+          "text": "I can’t dive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i09:audio",
+          "transcript": "I can’t code."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:i09:r1",
+            "targetText": "I can’t code.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i09:r2",
+            "targetText": "I can’t type.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i09:r3",
+            "targetText": "I can’t dive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `code`, а в этом варианте — `type`.",
+              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `type`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `code`, а в этом варианте — `dive`.",
+              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `dive`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-11:i10:p1",
+            "target": "type",
+            "meaningByLocale": {
+              "ru": "печатать на клавиатуре",
+              "uk": "друкувати на клавіатурі"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i10:p2",
+            "target": "code",
+            "meaningByLocale": {
+              "ru": "писать код",
+              "uk": "писати код"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i10:p3",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i10:p4",
+            "target": "learn",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "вчитися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "type",
+          "code",
+          "tram",
+          "learn"
+        ],
+        "rightColumn": [
+          "печатать на клавиатуре",
+          "писать код",
+          "трамвай",
+          "учиться"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i11:audio",
+          "transcript": "Whose printer is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose printer is this?",
+        "orderedTokens": [
+          "Whose",
+          "printer",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега спрашивает о вашем умении. Скажите «Я умею печатать на клавиатуре»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега спрашивает о вашем умении. Скажите «Я умею печатать на клавиатуре»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can type.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает о вашем умении. Скажите «Я умею печатать на клавиатуре»",
+          "uk": "Колега запитує про ваше вміння. Скажіть «Я вмію друкувати на клавіатурі»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "type"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, где вы обычно учитесь. Используйте learn: «Я обычно учусь дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, где вы обычно учитесь. Используйте learn: «Я обычно учусь дома»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i13:audio",
+          "transcript": "I usually learn at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I usually learn at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она не умеет писать код»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i14:r1",
+          "text": "can’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i14:r2",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i14:r3",
+          "text": "is can’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она не умеет писать код»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она не умеет писать код»",
+          "uk": "Скажіть «Вона не вміє писати код»"
+        },
+        "gappedTargetPhrase": "She ___ code.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-11:i14:r1",
+            "text": "can’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i14:r2",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i14:r3",
+            "text": "is can’t"
+          }
+        ],
+        "testedDimension": "Скажите «Она не умеет писать код»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она не умеет писать код»",
+            "feedbackByLocale": {
+              "ru": "`Can` значит «умеет», здесь нужно `can’t` — «не умеет».",
+              "uk": "`Can` означає «вміє», тут потрібне `can’t` — «не вміє»."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она не умеет писать код»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `she can’t`; `is` не нужно.",
+              "uk": "Достатньо `she can’t`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i15:r1",
+          "text": "Where is the tram?"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i15:r2",
+          "text": "Where is the bus?"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i15:r3",
+          "text": "Where is the train?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i15:audio",
+          "transcript": "Where is the tram?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:i15:r1",
+            "targetText": "Where is the tram?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i15:r2",
+            "targetText": "Where is the bus?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i15:r3",
+            "targetText": "Where is the train?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `tram`, а в этом варианте — `bus`.",
+              "uk": "У записі останнє слово — `tram`, а в цьому варіанті — `bus`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `tram`, а в этом варианте — `train`.",
+              "uk": "У записі останнє слово — `tram`, а в цьому варіанті — `train`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-11:i16:p1",
+            "target": "code",
+            "meaningByLocale": {
+              "ru": "писать код",
+              "uk": "писати код"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i16:p2",
+            "target": "printer",
+            "meaningByLocale": {
+              "ru": "принтер",
+              "uk": "принтер"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i16:p3",
+            "target": "learn",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "вчитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-11:i16:p4",
+            "target": "type",
+            "meaningByLocale": {
+              "ru": "печатать на клавиатуре",
+              "uk": "друкувати на клавіатурі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "code",
+          "printer",
+          "learn",
+          "type"
+        ],
+        "rightColumn": [
+          "писать код",
+          "принтер",
+          "учиться",
+          "печатать на клавиатуре"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, умеет ли Том программировать. Том пока не научился. Скажите «Том не умеет писать код»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, умеет ли Том программировать. Том пока не научился. Скажите «Том не умеет писать код»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i17:audio",
+          "transcript": "Tom can’t code."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can’t code.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "30a6220a2d7de93e67a339acd1fca5646cfb3bb548a26e0c6c780755ee498a69"
+}

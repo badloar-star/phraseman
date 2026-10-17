@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-11:intro1:r2": {
+          "ru": "Здесь нужно `can’t` — «не умею».",
+          "uk": "Тут потрібне `can’t` — «не вмію»."
+        },
+        "en:lesson-08:session-11:intro1:r3": {
+          "ru": "После `can’t` нужно `code`, без `to`.",
+          "uk": "Після `can’t` потрібне `code`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-11:intro2:r2": {
+          "ru": "Здесь нужно `can’t` — «не умеет».",
+          "uk": "Тут потрібне `can’t` — «не вміє»."
+        },
+        "en:lesson-08:session-11:intro2:r3": {
+          "ru": "После `can’t` нужно `type`, без `s`.",
+          "uk": "Після `can’t` потрібне `type`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-11:intro3:r2": {
+          "ru": "Для «чей» нужно `whose`, а не `who`.",
+          "uk": "Для «чий» потрібне `whose`, а не `who`."
+        },
+        "en:lesson-08:session-11:intro3:r3": {
+          "ru": "Принтер один: нужно `is this`.",
+          "uk": "Принтер один: потрібне `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e0060f3fd64249431e32c4ac7c9681319f5889bf321ecf1a57e2e3ea4ef207dd"
+}

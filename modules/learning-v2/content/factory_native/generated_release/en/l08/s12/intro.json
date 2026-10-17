@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, чего вы пока не умеете, и повторить знакомые вопросы",
+    "uk": "сказати, чого ви поки не вмієте, і повторити знайомі запитання"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Первое занятие в кружке",
+        "uk": "Перше заняття в гуртку"
+      },
+      "bodyByLocale": {
+        "ru": "В кружке предлагают связать шарф. Вы пришли учиться и пока не умеете вязать. `Knit` — «вязать». `I can’t knit` — «Я не умею вязать». После `can’t` нужно `knit`, без `to`. Купить шарф вы уже умеете — теперь хочется научиться вязать.",
+        "uk": "У гуртку пропонують зв’язати шарф. Ви прийшли вчитися й поки не вмієте в’язати. `Knit` — «в’язати». `I can’t knit` — «Я не вмію в’язати». Після `can’t` потрібне `knit`, без `to`. Купити шарф ви вже вмієте — тепер хочеться навчитися в’язати."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите ведущему, что пока не умеете вязать.",
+          "uk": "Скажіть керівникові гуртка, що поки не вмієте в’язати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-12:intro1:r1",
+              "text": "I can’t knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro1:r2",
+              "text": "I can knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro1:r3",
+              "text": "I can’t to knit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-12:intro1:r1",
+              "text": "I can’t knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro1:r2",
+              "text": "I can knit."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro1:r3",
+              "text": "I can’t to knit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите ведущему, что пока не умеете вязать.",
+          "uk": "Скажіть керівникові гуртка, що поки не вмієте в’язати."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подруга выбирает рисование",
+        "uk": "Подруга вибирає малювання"
+      },
+      "bodyByLocale": {
+        "ru": "В том же кружке подруга выбирает рисование: она уже умеет рисовать красками. `She can paint` — «Она умеет рисовать красками». После `can` нужно `paint`, без окончания `s`. Если бы она не умела, получилось бы `She can’t paint`.",
+        "uk": "У тому самому гуртку подруга вибирає малювання: вона вже вміє малювати фарбами. `She can paint` — «Вона вміє малювати фарбами». Після `can` потрібне `paint`, без закінчення `s`. Якби вона не вміла, вийшло б `She can’t paint`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что подруга умеет рисовать красками.",
+          "uk": "Скажіть, що подруга вміє малювати фарбами."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-12:intro2:r1",
+              "text": "She can paint."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro2:r2",
+              "text": "She can paints."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro2:r3",
+              "text": "She can’t paint."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-12:intro2:r1",
+              "text": "She can paint."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro2:r2",
+              "text": "She can paints."
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro2:r3",
+              "text": "She can’t paint."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что подруга умеет рисовать красками.",
+          "uk": "Скажіть, що подруга вміє малювати фарбами."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Забытый будильник",
+        "uk": "Забутий будильник"
+      },
+      "bodyByLocale": {
+        "ru": "После занятия на столе остался будильник. Вы хотите найти хозяина. Здесь `alarm` — будильник. `Whose alarm is this?` — «Чей это будильник?» Начните с `whose alarm`, затем добавьте `is this`.",
+        "uk": "Після заняття на столі залишився будильник. Ви хочете знайти власника. Тут `alarm` — будильник. `Whose alarm is this?` — «Чий це будильник?» Почніть із `whose alarm`, потім додайте `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, чей это будильник.",
+          "uk": "Запитайте, чий це будильник."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-12:intro3:r1",
+              "text": "Whose alarm is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro3:r2",
+              "text": "Who alarm is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro3:r3",
+              "text": "Whose alarm are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-12:intro3:r1",
+              "text": "Whose alarm is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro3:r2",
+              "text": "Who alarm is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-12:intro3:r3",
+              "text": "Whose alarm are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чей это будильник.",
+          "uk": "Запитайте, чий це будильник."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd67d89df72d654462943332c48e1053fba8b672605c44fbf1ebdd3be8079772"
+}

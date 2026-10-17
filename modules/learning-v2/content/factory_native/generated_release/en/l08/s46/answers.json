@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-46:i01",
+    "correctText": "I can diagnose it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i02",
+    "correctText": "diagnose",
+    "correctResponseId": "en:lesson-08:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i03",
+    "correctText": "diagnose",
+    "correctResponseId": "en:lesson-08:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i04",
+    "correctText": "en:lesson-08:session-46:i04:p1=diagnose\nen:lesson-08:session-46:i04:p2=pantry\nen:lesson-08:session-46:i04:p3=mug\nen:lesson-08:session-46:i04:p4=organize",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i05",
+    "correctText": "I can diagnose it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i06",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i07",
+    "correctText": "I can whistle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i08",
+    "correctText": "drive",
+    "correctResponseId": "en:lesson-08:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i09",
+    "correctText": "I can diagnose it.",
+    "correctResponseId": "en:lesson-08:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i10",
+    "correctText": "en:lesson-08:session-46:i10:p1=panic\nen:lesson-08:session-46:i10:p2=diagnose\nen:lesson-08:session-46:i10:p3=mug\nen:lesson-08:session-46:i10:p4=pantry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i11",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i12",
+    "correctText": "Don’t panic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i13",
+    "correctText": "I can organize it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i14",
+    "correctText": "whistle",
+    "correctResponseId": "en:lesson-08:session-46:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i15",
+    "correctText": "I can swim.",
+    "correctResponseId": "en:lesson-08:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i16",
+    "correctText": "en:lesson-08:session-46:i16:p1=diagnose\nen:lesson-08:session-46:i16:p2=organize\nen:lesson-08:session-46:i16:p3=panic\nen:lesson-08:session-46:i16:p4=pantry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-46:i17",
+    "correctText": "I can diagnose it.",
+    "correctResponseId": null
+  }
+]

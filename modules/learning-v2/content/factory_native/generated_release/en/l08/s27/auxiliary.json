@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-27:intro1:r2": {
+          "ru": "Для указания начните с `Charge`, без `to`.",
+          "uk": "Для вказівки почніть із `Charge`, без `to`."
+        },
+        "en:lesson-08:session-27:intro1:r3": {
+          "ru": "Здесь нужно `Charge`, без `s`.",
+          "uk": "Тут потрібне `Charge`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-27:intro2:r2": {
+          "ru": "Для указания нужно `Open`, без `s`.",
+          "uk": "Для вказівки потрібне `Open`, без `s`."
+        },
+        "en:lesson-08:session-27:intro2:r3": {
+          "ru": "Начните с `Open`, без `to`.",
+          "uk": "Почніть із `Open`, без `to`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-27:intro3:r2": {
+          "ru": "После `can` нужно `explain`, без `s`.",
+          "uk": "Після `can` потрібне `explain`, без `s`."
+        },
+        "en:lesson-08:session-27:intro3:r3": {
+          "ru": "После `can` нужно `explain`, без `to`.",
+          "uk": "Після `can` потрібне `explain`, без `to`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6cfbe0947884dcf5703d4dce336372986c40b0d2331ab6a160093089838037d0"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить просьбы Can you…? и повторить can’t",
+    "uk": "закріпити прохання Can you…? і повторити can’t"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ключ на другом краю стола",
+        "uk": "Ключ на іншому краю столу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь уходить. Ключ лежит рядом с другом, а вам до него не дотянуться. `Pass` — «передать». `Can you pass me the key?` — «Можешь передать мне ключ?» После `Can you` нужно `pass me the key`. Ключ от машины рядом — осталось добраться до ключа.",
+        "uk": "Ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Pass` — «передати». `Can you pass me the key?` — «Можеш передати мені ключ?» Після `Can you` потрібне `pass me the key`. Ключ від машини поруч — залишилося дістатися до ключа."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите друга передать вам ключ.",
+          "uk": "Попросіть друга передати вам ключ."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-18:intro1:r1",
+              "text": "Can you pass me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro1:r2",
+              "text": "Can you to pass me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro1:r3",
+              "text": "You can pass me the key."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-18:intro1:r1",
+              "text": "Can you pass me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro1:r2",
+              "text": "Can you to pass me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro1:r3",
+              "text": "You can pass me the key."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга передать вам ключ.",
+          "uk": "Попросіть друга передати вам ключ."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Молоко за завтраком",
+        "uk": "Молоко за сніданком"
+      },
+      "bodyByLocale": {
+        "ru": "За завтраком молоко стоит возле друга. Вы хотите добавить его в кофе. `Can you pass me the milk?` — «Можешь передать мне молоко?» В знакомой просьбе замените `the key` на `the milk`.",
+        "uk": "За сніданком молоко стоїть біля друга. Ви хочете додати його в каву. `Can you pass me the milk?` — «Можеш передати мені молоко?» У знайомому проханні замініть `the key` на `the milk`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Попросите передать молоко.",
+          "uk": "Попросіть передати молоко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-18:intro2:r1",
+              "text": "Can you pass me the milk?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro2:r2",
+              "text": "Can you passes me the milk?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro2:r3",
+              "text": "Can you to pass me the milk?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-18:intro2:r1",
+              "text": "Can you pass me the milk?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro2:r2",
+              "text": "Can you passes me the milk?"
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro2:r3",
+              "text": "Can you to pass me the milk?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите передать молоко.",
+          "uk": "Попросіть передати молоко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Первое занятие в бассейне",
+        "uk": "Перше заняття в басейні"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает вам нырнуть, но вы пока не умеете. `I can’t dive` — «Я не умею нырять». Для «не умею» нужно `can’t`; после него `dive`, без `to`.",
+        "uk": "Друг пропонує вам пірнути, але ви поки не вмієте. `I can’t dive` — «Я не вмію пірнати». Для «не вмію» потрібне `can’t`; після нього `dive`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что не умеете нырять.",
+          "uk": "Скажіть другові, що не вмієте пірнати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-18:intro3:r1",
+              "text": "I can’t dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro3:r2",
+              "text": "I can dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro3:r3",
+              "text": "I can’t to dive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-18:intro3:r1",
+              "text": "I can’t dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro3:r2",
+              "text": "I can dive."
+            },
+            {
+              "responseId": "en:lesson-08:session-18:intro3:r3",
+              "text": "I can’t to dive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что не умеете нырять.",
+          "uk": "Скажіть другові, що не вмієте пірнати."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f7f3822fc13cfc9d26f21caf057251ca44d348318be83d161ab819348edfaea3"
+}

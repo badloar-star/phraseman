@@ -1,0 +1,938 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите другу «Не торопись»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу «Не торопись»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t rush.",
+        "localizedMeaning": {
+          "ru": "Скажите другу «Не торопись»",
+          "uk": "Скажіть другові «Не поспішай»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "rush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-33:i02:r1",
+          "text": "rush"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i02:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i02:r3",
+          "text": "attach"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i02:audio",
+          "transcript": "rush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-33:i02:r1",
+            "targetText": "rush",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i02:r2",
+            "targetText": "study",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i02:r3",
+            "targetText": "attach",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `rush`, а в этом варианте — `study`.",
+              "uk": "У записі перше слово — `rush`, а в цьому варіанті — `study`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `rush`, а в этом варианте — `attach`.",
+              "uk": "У записі перше слово — `rush`, а в цьому варіанті — `attach`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите другу не торопиться",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-33:i03:r1",
+          "text": "rush"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i03:r2",
+          "text": "to rush"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i03:r3",
+          "text": "rushes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу не торопиться",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите другу не торопиться",
+          "uk": "Скажіть другові не поспішати"
+        },
+        "gappedTargetPhrase": "Don’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-33:i03:r1",
+            "text": "rush"
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i03:r2",
+            "text": "to rush"
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i03:r3",
+            "text": "rushes"
+          }
+        ],
+        "testedDimension": "Скажите другу не торопиться",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите другу не торопиться",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `rush`, без `to`.",
+              "uk": "Після `don’t` потрібне `rush`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите другу не торопиться",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `rush`, без `es`.",
+              "uk": "Після `don’t` потрібне `rush`, без `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-33:i04:p1",
+            "target": "rush",
+            "meaningByLocale": {
+              "ru": "торопиться",
+              "uk": "поспішати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i04:p2",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i04:p3",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "навчатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i04:p4",
+            "target": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить",
+              "uk": "прикріпити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rush",
+          "doorbell",
+          "study",
+          "attach"
+        ],
+        "rightColumn": [
+          "торопиться",
+          "дверной звонок",
+          "учиться",
+          "прикрепить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i05:audio",
+          "transcript": "Don’t rush."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Don’t rush.",
+        "orderedTokens": [
+          "Don’t",
+          "rush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите на свежую краску: «Не трогай это»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите на свежую краску: «Не трогай это»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Don’t touch this.",
+        "localizedMeaning": {
+          "ru": "Покажите на свежую краску: «Не трогай это»",
+          "uk": "Покажіть на свіжу фарбу: «Не чіпай це»"
+        },
+        "orderedTokens": [
+          "Don’t",
+          "touch",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы задерживаетесь. Скажите «Пожалуйста, не жди»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Вы задерживаетесь. Скажите «Пожалуйста, не жди»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i07:audio",
+          "transcript": "Please don’t wait."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don’t wait.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Предупредите «Не трогай это»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-33:i08:r1",
+          "text": "touch"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i08:r2",
+          "text": "touches"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i08:r3",
+          "text": "to touch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предупредите «Не трогай это»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Предупредите «Не трогай это»",
+          "uk": "Попередьте «Не чіпай це»"
+        },
+        "gappedTargetPhrase": "Don’t ___ this.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-33:i08:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i08:r2",
+            "text": "touches"
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i08:r3",
+            "text": "to touch"
+          }
+        ],
+        "testedDimension": "Предупредите «Не трогай это»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Предупредите «Не трогай это»",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `touch`, без `es`.",
+              "uk": "Після `don’t` потрібне `touch`, без `es`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Предупредите «Не трогай это»",
+            "feedbackByLocale": {
+              "ru": "После `don’t` нужно `touch`, без `to`.",
+              "uk": "Після `don’t` потрібне `touch`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-33:i09:r1",
+          "text": "Don’t rush."
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i09:r2",
+          "text": "Don’t wait."
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i09:r3",
+          "text": "Don’t shout."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i09:audio",
+          "transcript": "Don’t rush."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-33:i09:r1",
+            "targetText": "Don’t rush.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i09:r2",
+            "targetText": "Don’t wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i09:r3",
+            "targetText": "Don’t shout.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `rush`, а в этом варианте — `wait`.",
+              "uk": "У записі останнє слово — `rush`, а в цьому варіанті — `wait`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `rush`, а в этом варианте — `shout`.",
+              "uk": "У записі останнє слово — `rush`, а в цьому варіанті — `shout`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-33:i10:p1",
+            "target": "recycle",
+            "meaningByLocale": {
+              "ru": "сдавать на переработку",
+              "uk": "здавати на переробку"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i10:p2",
+            "target": "rush",
+            "meaningByLocale": {
+              "ru": "торопиться",
+              "uk": "поспішати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i10:p3",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i10:p4",
+            "target": "study",
+            "meaningByLocale": {
+              "ru": "учиться",
+              "uk": "навчатися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "recycle",
+          "rush",
+          "doorbell",
+          "study"
+        ],
+        "rightColumn": [
+          "сдавать на переработку",
+          "торопиться",
+          "дверной звонок",
+          "учиться"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i11:audio",
+          "transcript": "Please don’t wait."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don’t wait.",
+        "orderedTokens": [
+          "Please",
+          "don’t",
+          "wait"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Файл готов. Дайте короткое указание «Прикрепи его»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Файл готов. Дайте короткое указание «Прикрепи его»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Attach it.",
+        "localizedMeaning": {
+          "ru": "Файл готов. Дайте короткое указание «Прикрепи его»",
+          "uk": "Файл готовий. Дайте коротку вказівку «Прикріпи його»"
+        },
+        "orderedTokens": [
+          "Attach",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о ваших занятиях. Используйте study: «Я часто учусь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о ваших занятиях. Используйте study: «Я часто учусь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i13:audio",
+          "transcript": "I often study."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often study.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите другу «Пожалуйста, не жди»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-33:i14:r1",
+          "text": "don’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i14:r2",
+          "text": "doesn’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i14:r3",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу «Пожалуйста, не жди»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите другу «Пожалуйста, не жди»",
+          "uk": "Скажіть другові «Будь ласка, не чекай»"
+        },
+        "gappedTargetPhrase": "Please ___ wait.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-33:i14:r1",
+            "text": "don’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i14:r2",
+            "text": "doesn’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i14:r3",
+            "text": "not"
+          }
+        ],
+        "testedDimension": "Скажите другу «Пожалуйста, не жди»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-33:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите другу «Пожалуйста, не жди»",
+            "feedbackByLocale": {
+              "ru": "В обращении нужно `don’t wait`.",
+              "uk": "У звертанні потрібне `don’t wait`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите другу «Пожалуйста, не жди»",
+            "feedbackByLocale": {
+              "ru": "Начните запрет с `don’t`: `Please don’t wait`.",
+              "uk": "Почніть заборону з `don’t`: `Please don’t wait`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-33:i15:r1",
+          "text": "Don’t touch this."
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i15:r2",
+          "text": "Don’t touch that."
+        },
+        {
+          "responseId": "en:lesson-08:session-33:i15:r3",
+          "text": "Don’t touch it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i15:audio",
+          "transcript": "Don’t touch this."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-33:i15:r1",
+            "targetText": "Don’t touch this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i15:r2",
+            "targetText": "Don’t touch that.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i15:r3",
+            "targetText": "Don’t touch it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-33:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `this`, а в этом варианте — `that`.",
+              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `that`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-33:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `this`, а в этом варианте — `it`.",
+              "uk": "У записі останнє слово — `this`, а в цьому варіанті — `it`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-33:i16:p1",
+            "target": "rush",
+            "meaningByLocale": {
+              "ru": "торопиться",
+              "uk": "поспішати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i16:p2",
+            "target": "recycle",
+            "meaningByLocale": {
+              "ru": "сдавать на переработку",
+              "uk": "здавати на переробку"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i16:p3",
+            "target": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить",
+              "uk": "прикріпити"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-33:i16:p4",
+            "target": "doorbell",
+            "meaningByLocale": {
+              "ru": "дверной звонок",
+              "uk": "дверний дзвінок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rush",
+          "recycle",
+          "attach",
+          "doorbell"
+        ],
+        "rightColumn": [
+          "торопиться",
+          "сдавать на переработку",
+          "прикрепить",
+          "дверной звонок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-33:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг поспешно заполняет анкету и пропускает строки. Времени достаточно. Скажите ему «Не торопись»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Друг поспешно заполняет анкету и пропускает строки. Времени достаточно. Скажите ему «Не торопись»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-33:i17:audio",
+          "transcript": "Don’t rush."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Don’t rush.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3947b1c56dbdfdde4e469f635ee5ef801d1244b313f0538c59aa5ef90d5e6b9c"
+}

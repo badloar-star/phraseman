@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить просьбы Can you…? со словом remind",
+    "uk": "закріпити прохання Can you…? зі словом remind"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вернуть книгу другу",
+        "uk": "Повернути книжку другові"
+      },
+      "bodyByLocale": {
+        "ru": "Вы договорились завтра вернуть другу книгу и боитесь забыть. `Remind` — «напомнить». `Can you remind me?` — «Можешь мне напомнить?» После `Can you` нужно `remind me`. О чём напомнить, другу уже известно. Книга лежит у двери — главное завтра не перешагнуть через неё.",
+        "uk": "Ви домовилися завтра повернути другові книжку й боїтеся забути. `Remind` — «нагадати». `Can you remind me?` — «Можеш мені нагадати?» Після `Can you` потрібне `remind me`. Про що нагадати, другові вже відомо. Книжка лежить біля дверей — головне завтра не переступити через неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите друга напомнить вам.",
+          "uk": "Попросіть друга нагадати вам."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-22:intro1:r1",
+              "text": "Can you remind me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro1:r2",
+              "text": "Can you to remind me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro1:r3",
+              "text": "You can remind me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-22:intro1:r1",
+              "text": "Can you remind me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro1:r2",
+              "text": "Can you to remind me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro1:r3",
+              "text": "You can remind me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга напомнить вам.",
+          "uk": "Попросіть друга нагадати вам."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Коробка на верхней полке",
+        "uk": "Коробка на верхній полиці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы снимаете большую коробку с верхней полки. Друг стоит рядом и может помочь. `Can you help me?` — «Можешь мне помочь?» После `Can you` нужно `help me`, без `to`.",
+        "uk": "Ви знімаєте велику коробку з верхньої полиці. Друг стоїть поруч і може допомогти. `Can you help me?` — «Можеш мені допомогти?» Після `Can you` потрібне `help me`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Попросите друга помочь вам.",
+          "uk": "Попросіть друга допомогти вам."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-22:intro2:r1",
+              "text": "Can you help me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro2:r2",
+              "text": "Can you helps me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro2:r3",
+              "text": "Can you to help me?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-22:intro2:r1",
+              "text": "Can you help me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro2:r2",
+              "text": "Can you helps me?"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro2:r3",
+              "text": "Can you to help me?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга помочь вам.",
+          "uk": "Попросіть друга допомогти вам."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Буквы путаются",
+        "uk": "Літери плутаються"
+      },
+      "bodyByLocale": {
+        "ru": "На занятии вы узнаёте знакомые английские слова на слух, но при записи путаете буквы. `I can’t spell` — «У меня не получается правильно писать слова». Здесь `spell` относится к написанию слов по буквам. После `can’t` нужно `spell`, без `to`.",
+        "uk": "На занятті ви впізнаєте знайомі англійські слова на слух, але під час запису плутаєте літери. `I can’t spell` — «У мене не виходить правильно писати слова». Тут `spell` стосується написання слів по літерах. Після `can’t` потрібне `spell`, без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Расскажите преподавателю о трудности с написанием слов.",
+          "uk": "Розкажіть викладачеві про труднощі з написанням слів."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-22:intro3:r1",
+              "text": "I can’t spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro3:r2",
+              "text": "I can spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro3:r3",
+              "text": "I can’t to spell."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-22:intro3:r1",
+              "text": "I can’t spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro3:r2",
+              "text": "I can spell."
+            },
+            {
+              "responseId": "en:lesson-08:session-22:intro3:r3",
+              "text": "I can’t to spell."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите преподавателю о трудности с написанием слов.",
+          "uk": "Розкажіть викладачеві про труднощі з написанням слів."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "28df7a912bc092c06779ecd4f7c65e26fbcd5215fe07c5cf77263f82dd154a9c"
+}

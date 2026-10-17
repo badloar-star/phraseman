@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-33:i01",
+    "correctText": "Don’t rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i02",
+    "correctText": "rush",
+    "correctResponseId": "en:lesson-08:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i03",
+    "correctText": "rush",
+    "correctResponseId": "en:lesson-08:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i04",
+    "correctText": "en:lesson-08:session-33:i04:p1=rush\nen:lesson-08:session-33:i04:p2=doorbell\nen:lesson-08:session-33:i04:p3=study\nen:lesson-08:session-33:i04:p4=attach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i05",
+    "correctText": "Don’t rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i06",
+    "correctText": "Don’t touch this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i07",
+    "correctText": "Please don’t wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i08",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-08:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i09",
+    "correctText": "Don’t rush.",
+    "correctResponseId": "en:lesson-08:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i10",
+    "correctText": "en:lesson-08:session-33:i10:p1=recycle\nen:lesson-08:session-33:i10:p2=rush\nen:lesson-08:session-33:i10:p3=doorbell\nen:lesson-08:session-33:i10:p4=study",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i11",
+    "correctText": "Please don’t wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i12",
+    "correctText": "Attach it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i13",
+    "correctText": "I often study.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i14",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-08:session-33:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i15",
+    "correctText": "Don’t touch this.",
+    "correctResponseId": "en:lesson-08:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i16",
+    "correctText": "en:lesson-08:session-33:i16:p1=rush\nen:lesson-08:session-33:i16:p2=recycle\nen:lesson-08:session-33:i16:p3=attach\nen:lesson-08:session-33:i16:p4=doorbell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-33:i17",
+    "correctText": "Don’t rush.",
+    "correctResponseId": null
+  }
+]

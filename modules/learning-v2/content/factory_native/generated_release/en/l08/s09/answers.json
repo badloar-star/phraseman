@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-09:i01",
+    "correctText": "I can’t skate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i02",
+    "correctText": "skate",
+    "correctResponseId": "en:lesson-08:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i03",
+    "correctText": "skate",
+    "correctResponseId": "en:lesson-08:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i04",
+    "correctText": "en:lesson-08:session-09:i04:p1=skate\nen:lesson-08:session-09:i04:p2=dentist\nen:lesson-08:session-09:i04:p3=manager\nen:lesson-08:session-09:i04:p4=whistle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i05",
+    "correctText": "I can’t skate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i06",
+    "correctText": "She can’t whistle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i07",
+    "correctText": "He can’t swim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i08",
+    "correctText": "whistle",
+    "correctResponseId": "en:lesson-08:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i09",
+    "correctText": "I can’t skate.",
+    "correctResponseId": "en:lesson-08:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i10",
+    "correctText": "en:lesson-08:session-09:i10:p1=start\nen:lesson-08:session-09:i10:p2=skate\nen:lesson-08:session-09:i10:p3=dentist\nen:lesson-08:session-09:i10:p4=manager",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i11",
+    "correctText": "He can’t swim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i12",
+    "correctText": "My manager is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i13",
+    "correctText": "I usually start early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i14",
+    "correctText": "can’t",
+    "correctResponseId": "en:lesson-08:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i15",
+    "correctText": "Where is the dentist?",
+    "correctResponseId": "en:lesson-08:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i16",
+    "correctText": "en:lesson-08:session-09:i16:p1=skate\nen:lesson-08:session-09:i16:p2=whistle\nen:lesson-08:session-09:i16:p3=start\nen:lesson-08:session-09:i16:p4=dentist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:i17",
+    "correctText": "Tom can’t skate.",
+    "correctResponseId": null
+  }
+]

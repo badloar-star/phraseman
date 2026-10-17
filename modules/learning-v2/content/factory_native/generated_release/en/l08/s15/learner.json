@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Я не могу посчитать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я не могу посчитать»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can’t calculate.",
+        "localizedMeaning": {
+          "ru": "Скажите «Я не могу посчитать»",
+          "uk": "Скажіть «Я не можу порахувати»"
+        },
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "calculate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i02:r1",
+          "text": "calculate"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i02:r2",
+          "text": "sing"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i02:r3",
+          "text": "climb"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i02:audio",
+          "transcript": "calculate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:i02:r1",
+            "targetText": "calculate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i02:r2",
+            "targetText": "sing",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i02:r3",
+            "targetText": "climb",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `calculate`, а в этом варианте — `sing`.",
+              "uk": "У записі перше слово — `calculate`, а в цьому варіанті — `sing`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `calculate`, а в этом варианте — `climb`.",
+              "uk": "У записі перше слово — `calculate`, а в цьому варіанті — `climb`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Я не могу посчитать»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i03:r1",
+          "text": "calculate"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i03:r2",
+          "text": "to calculate"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i03:r3",
+          "text": "calculates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Я не могу посчитать»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Я не могу посчитать»",
+          "uk": "Скажіть «Я не можу порахувати»"
+        },
+        "gappedTargetPhrase": "I can’t ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i03:r1",
+            "text": "calculate"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i03:r2",
+            "text": "to calculate"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i03:r3",
+            "text": "calculates"
+          }
+        ],
+        "testedDimension": "Скажите «Я не могу посчитать»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Я не могу посчитать»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `calculate`, без `to`.",
+              "uk": "Після `can’t` потрібне `calculate`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Я не могу посчитать»",
+            "feedbackByLocale": {
+              "ru": "После `can’t` нужно `calculate`, без `s`.",
+              "uk": "Після `can’t` потрібне `calculate`, без `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-15:i04:p1",
+            "target": "calculate",
+            "meaningByLocale": {
+              "ru": "вычислять",
+              "uk": "обчислювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i04:p2",
+            "target": "gym",
+            "meaningByLocale": {
+              "ru": "тренажёрный зал",
+              "uk": "тренажерний зал"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i04:p3",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i04:p4",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "calculate",
+          "gym",
+          "sing",
+          "website"
+        ],
+        "rightColumn": [
+          "вычислять",
+          "тренажёрный зал",
+          "петь",
+          "сайт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i05:audio",
+          "transcript": "I can’t calculate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can’t calculate.",
+        "orderedTokens": [
+          "I",
+          "can’t",
+          "calculate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Она умеет петь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет петь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She can sing.",
+        "localizedMeaning": {
+          "ru": "Скажите «Она умеет петь»",
+          "uk": "Скажіть «Вона вміє співати»"
+        },
+        "orderedTokens": [
+          "She",
+          "can",
+          "sing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите «Чей это сайт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите «Чей это сайт?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i07:audio",
+          "transcript": "Whose website is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose website is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Она умеет петь»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i08:r1",
+          "text": "sing"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i08:r2",
+          "text": "sings"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i08:r3",
+          "text": "to sing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Она умеет петь»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Она умеет петь»",
+          "uk": "Скажіть «Вона вміє співати»"
+        },
+        "gappedTargetPhrase": "She can ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i08:r1",
+            "text": "sing"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r2",
+            "text": "sings"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r3",
+            "text": "to sing"
+          }
+        ],
+        "testedDimension": "Скажите «Она умеет петь»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет петь»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `sing`, без `s`.",
+              "uk": "Після `can` потрібне `sing`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Она умеет петь»",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `sing`, без `to`.",
+              "uk": "Після `can` потрібне `sing`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i09:r1",
+          "text": "I can’t calculate."
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i09:r2",
+          "text": "I can’t sing."
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i09:r3",
+          "text": "I can’t climb."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i09:audio",
+          "transcript": "I can’t calculate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:i09:r1",
+            "targetText": "I can’t calculate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r2",
+            "targetText": "I can’t sing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r3",
+            "targetText": "I can’t climb.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `calculate`, а в этом варианте — `sing`.",
+              "uk": "У записі останнє слово — `calculate`, а в цьому варіанті — `sing`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `calculate`, а в этом варианте — `climb`.",
+              "uk": "У записі останнє слово — `calculate`, а в цьому варіанті — `climb`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-15:i10:p1",
+            "target": "climb",
+            "meaningByLocale": {
+              "ru": "взбираться",
+              "uk": "видиратися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i10:p2",
+            "target": "calculate",
+            "meaningByLocale": {
+              "ru": "вычислять",
+              "uk": "обчислювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i10:p3",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i10:p4",
+            "target": "sing",
+            "meaningByLocale": {
+              "ru": "петь",
+              "uk": "співати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "climb",
+          "calculate",
+          "website",
+          "sing"
+        ],
+        "rightColumn": [
+          "взбираться",
+          "вычислять",
+          "сайт",
+          "петь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i11:audio",
+          "transcript": "Whose website is this?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Whose website is this?",
+        "orderedTokens": [
+          "Whose",
+          "website",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, умеете ли вы взбираться. Скажите «Я умею взбираться»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, умеете ли вы взбираться. Скажите «Я умею взбираться»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can climb.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, умеете ли вы взбираться. Скажите «Я умею взбираться»",
+          "uk": "Друг запитує, чи вмієте ви видиратися. Скажіть «Я вмію видиратися»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "climb"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, часто ли вы поёте. Скажите «Я часто пою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, часто ли вы поёте. Скажите «Я часто пою»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i13:audio",
+          "transcript": "I often sing."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often sing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите «Он не может посчитать»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i14:r1",
+          "text": "can’t"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i14:r2",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i14:r3",
+          "text": "is can’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Он не может посчитать»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите «Он не может посчитать»",
+          "uk": "Скажіть «Він не може порахувати»"
+        },
+        "gappedTargetPhrase": "He ___ calculate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i14:r1",
+            "text": "can’t"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i14:r2",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i14:r3",
+            "text": "is can’t"
+          }
+        ],
+        "testedDimension": "Скажите «Он не может посчитать»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i14:r2",
+            "correct": false,
+            "testedDimension": "Скажите «Он не может посчитать»",
+            "feedbackByLocale": {
+              "ru": "У него не получается: нужно `can’t`.",
+              "uk": "У нього не виходить: потрібне `can’t`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i14:r3",
+            "correct": false,
+            "testedDimension": "Скажите «Он не может посчитать»",
+            "feedbackByLocale": {
+              "ru": "Достаточно `he can’t`; `is` не нужно.",
+              "uk": "Достатньо `he can’t`; `is` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i15:r1",
+          "text": "Where is the gym?"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i15:r2",
+          "text": "Where is the bus?"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i15:r3",
+          "text": "Where is the tram?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i15:audio",
+          "transcript": "Where is the gym?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:i15:r1",
+            "targetText": "Where is the gym?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i15:r2",
+            "targetText": "Where is the bus?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i15:r3",
+            "targetText": "Where is the tram?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `gym`, а в этом варианте — `bus`.",
+              "uk": "У записі останнє слово — `gym`, а в цьому варіанті — `bus`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `gym`, а в этом варианте — `tram`.",
+              "uk": "У записі останнє слово — `gym`, а в цьому варіанті — `tram`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-15:i16:p1",
+            "target": "calculate",
+            "meaningByLocale": {
+              "ru": "вычислять",
+              "uk": "обчислювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i16:p2",
+            "target": "gym",
+            "meaningByLocale": {
+              "ru": "тренажёрный зал",
+              "uk": "тренажерний зал"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i16:p3",
+            "target": "climb",
+            "meaningByLocale": {
+              "ru": "взбираться",
+              "uk": "видиратися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-15:i16:p4",
+            "target": "website",
+            "meaningByLocale": {
+              "ru": "сайт",
+              "uk": "сайт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "calculate",
+          "gym",
+          "climb",
+          "website"
+        ],
+        "rightColumn": [
+          "вычислять",
+          "тренажёрный зал",
+          "взбираться",
+          "сайт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Том пытается посчитать стоимость покупок, но путается в числах. Скажите «Том не может посчитать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Том пытается посчитать стоимость покупок, но путается в числах. Скажите «Том не может посчитать»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i17:audio",
+          "transcript": "Tom can’t calculate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can’t calculate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6e24feb0736c37fa7ec0af18ce6dea6fb60ba9e37833ea6e70d051ecaac809af"
+}

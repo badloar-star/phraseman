@@ -1,0 +1,953 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите «Можешь передать мне ключ?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите «Можешь передать мне ключ?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you pass me the key?",
+        "localizedMeaning": {
+          "ru": "Попросите «Можешь передать мне ключ?»",
+          "uk": "Попросіть «Можеш передати мені ключ?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "pass",
+          "me",
+          "the",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-18:i02:r1",
+          "text": "pass"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i02:r2",
+          "text": "smile"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i02:r3",
+          "text": "dive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i02:audio",
+          "transcript": "pass"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-18:i02:r1",
+            "targetText": "pass",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i02:r2",
+            "targetText": "smile",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i02:r3",
+            "targetText": "dive",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pass`, а в этом варианте — `smile`.",
+              "uk": "У записі перше слово — `pass`, а в цьому варіанті — `smile`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи первое слово — `pass`, а в этом варианте — `dive`.",
+              "uk": "У записі перше слово — `pass`, а в цьому варіанті — `dive`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите передать вам ключ",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-18:i03:r1",
+          "text": "pass"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i03:r2",
+          "text": "to pass"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i03:r3",
+          "text": "passes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите передать вам ключ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите передать вам ключ",
+          "uk": "Попросіть передати вам ключ"
+        },
+        "gappedTargetPhrase": "Can you ___ me the key?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-18:i03:r1",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i03:r2",
+            "text": "to pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i03:r3",
+            "text": "passes"
+          }
+        ],
+        "testedDimension": "Попросите передать вам ключ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Попросите передать вам ключ",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `pass`, без `to`.",
+              "uk": "Після `can` потрібне `pass`, без `to`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Попросите передать вам ключ",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `pass`, без `es`.",
+              "uk": "Після `can` потрібне `pass`, без `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-18:i04:p1",
+            "target": "pass",
+            "meaningByLocale": {
+              "ru": "передать",
+              "uk": "передати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i04:p2",
+            "target": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i04:p3",
+            "target": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться",
+              "uk": "усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i04:p4",
+            "target": "dive",
+            "meaningByLocale": {
+              "ru": "нырять",
+              "uk": "пірнати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pass",
+          "milk",
+          "smile",
+          "dive"
+        ],
+        "rightColumn": [
+          "передать",
+          "молоко",
+          "улыбаться",
+          "нырять"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i05:audio",
+          "transcript": "Can you pass me the key?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you pass me the key?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "pass",
+          "me",
+          "the",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите «Можешь передать мне молоко?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите «Можешь передать мне молоко?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you pass me the milk?",
+        "localizedMeaning": {
+          "ru": "Попросите «Можешь передать мне молоко?»",
+          "uk": "Попросіть «Можеш передати мені молоко?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "pass",
+          "me",
+          "the",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг предлагает нырнуть. Скажите «Я не умею нырять»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Друг предлагает нырнуть. Скажите «Я не умею нырять»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i07:audio",
+          "transcript": "I can’t dive."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can’t dive.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите помочь вам",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-18:i08:r1",
+          "text": "help"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i08:r2",
+          "text": "helps"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i08:r3",
+          "text": "to help"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите помочь вам",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите помочь вам",
+          "uk": "Попросіть допомогти вам"
+        },
+        "gappedTargetPhrase": "Can you ___ me?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-18:i08:r1",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i08:r2",
+            "text": "helps"
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i08:r3",
+            "text": "to help"
+          }
+        ],
+        "testedDimension": "Попросите помочь вам",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Попросите помочь вам",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `help`, без `s`.",
+              "uk": "Після `can` потрібне `help`, без `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Попросите помочь вам",
+            "feedbackByLocale": {
+              "ru": "После `can` нужно `help`, без `to`.",
+              "uk": "Після `can` потрібне `help`, без `to`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-18:i09:r1",
+          "text": "Can you pass me the key?"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i09:r2",
+          "text": "Can you pass me the milk?"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i09:r3",
+          "text": "Can you pass me the book?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i09:audio",
+          "transcript": "Can you pass me the key?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-18:i09:r1",
+            "targetText": "Can you pass me the key?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i09:r2",
+            "targetText": "Can you pass me the milk?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i09:r3",
+            "targetText": "Can you pass me the book?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `key`, а в этом варианте — `milk`.",
+              "uk": "У записі останнє слово — `key`, а в цьому варіанті — `milk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `key`, а в этом варианте — `book`.",
+              "uk": "У записі останнє слово — `key`, а в цьому варіанті — `book`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-18:i10:p1",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i10:p2",
+            "target": "pass",
+            "meaningByLocale": {
+              "ru": "передать",
+              "uk": "передати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i10:p3",
+            "target": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i10:p4",
+            "target": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться",
+              "uk": "усміхатися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gamble",
+          "pass",
+          "milk",
+          "smile"
+        ],
+        "rightColumn": [
+          "играть в азартные игры",
+          "передать",
+          "молоко",
+          "улыбаться"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i11:audio",
+          "transcript": "Can you help me?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you help me?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "help",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите «Можешь открыть дверь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите «Можешь открыть дверь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you open the door?",
+        "localizedMeaning": {
+          "ru": "Попросите «Можешь открыть дверь?»",
+          "uk": "Попросіть «Можеш відчинити двері?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "open",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг замечает ваше хорошее настроение. Скажите «Я часто улыбаюсь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Друг замечает ваше хорошее настроение. Скажите «Я часто улыбаюсь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i13:audio",
+          "transcript": "I often smile."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I often smile.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните просьбу «Можешь передать мне ключ?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-18:i14:r1",
+          "text": "Can"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i14:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i14:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните просьбу «Можешь передать мне ключ?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните просьбу «Можешь передать мне ключ?»",
+          "uk": "Почніть прохання «Можеш передати мені ключ?»"
+        },
+        "gappedTargetPhrase": "___ you pass me the key?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-18:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Начните просьбу «Можешь передать мне ключ?»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-18:i14:r2",
+            "correct": false,
+            "testedDimension": "Начните просьбу «Можешь передать мне ключ?»",
+            "feedbackByLocale": {
+              "ru": "В этой просьбе нужно `Can you pass`, без `are`.",
+              "uk": "У цьому проханні потрібне `Can you pass`, без `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i14:r3",
+            "correct": false,
+            "testedDimension": "Начните просьбу «Можешь передать мне ключ?»",
+            "feedbackByLocale": {
+              "ru": "Начните с `Can you pass`.",
+              "uk": "Почніть із `Can you pass`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-18:i15:r1",
+          "text": "Can you open the door?"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i15:r2",
+          "text": "Can you open the window?"
+        },
+        {
+          "responseId": "en:lesson-08:session-18:i15:r3",
+          "text": "Can you open the box?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i15:audio",
+          "transcript": "Can you open the door?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-18:i15:r1",
+            "targetText": "Can you open the door?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i15:r2",
+            "targetText": "Can you open the window?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i15:r3",
+            "targetText": "Can you open the box?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `door`, а в этом варианте — `box`.",
+              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `box`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-18:i16:p1",
+            "target": "pass",
+            "meaningByLocale": {
+              "ru": "передать",
+              "uk": "передати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i16:p2",
+            "target": "gamble",
+            "meaningByLocale": {
+              "ru": "играть в азартные игры",
+              "uk": "грати в азартні ігри"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i16:p3",
+            "target": "dive",
+            "meaningByLocale": {
+              "ru": "нырять",
+              "uk": "пірнати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i16:p4",
+            "target": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pass",
+          "gamble",
+          "dive",
+          "milk"
+        ],
+        "rightColumn": [
+          "передать",
+          "играть в азартные игры",
+          "нырять",
+          "молоко"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Книга лежит рядом с другом. Вы хотите её почитать. Попросите «Можешь передать мне книгу?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Книга лежит рядом с другом. Вы хотите её почитать. Попросите «Можешь передать мне книгу?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:i17:audio",
+          "transcript": "Can you pass me the book?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you pass me the book?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5f23eda54b1dc45a7f64fdf05bfb9fe3ce773daf50159db318b6f5741b49d1cb"
+}

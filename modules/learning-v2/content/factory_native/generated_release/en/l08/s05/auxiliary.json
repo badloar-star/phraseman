@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-05:intro1:r2": {
+          "ru": "После `can` нужно `translate`, без `to`.",
+          "uk": "Після `can` потрібне `translate`, без `to`."
+        },
+        "en:lesson-08:session-05:intro1:r3": {
+          "ru": "После `can` нужно `translate`, без `s`.",
+          "uk": "Після `can` потрібне `translate`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-05:intro2:r2": {
+          "ru": "После `she` нужно `can`, без `s`.",
+          "uk": "Після `she` потрібне `can`, без `s`."
+        },
+        "en:lesson-08:session-05:intro2:r3": {
+          "ru": "После `can` нужно `surf`, без `s`.",
+          "uk": "Після `can` потрібне `surf`, без `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-05:intro3:r2": {
+          "ru": "Для «чей» нужно `whose`, а не `who`.",
+          "uk": "Для «чий» потрібне `whose`, а не `who`."
+        },
+        "en:lesson-08:session-05:intro3:r3": {
+          "ru": "Брелок один: нужно `is this`.",
+          "uk": "Брелок один: потрібне `is this`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f336dd82613ddfbc49a22f2d8d0d124720270fc3af28c2941e0478ba065f8564"
+}

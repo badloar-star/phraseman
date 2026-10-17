@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "говорить «не умею» с can’t",
+    "uk": "говорити «не вмію» з can’t"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Первый раз на катке",
+        "uk": "Уперше на ковзанці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг приглашает вас на лёд, но вы не умеете кататься на коньках. `Skate` — «кататься на коньках». `I can’t skate` — «Я не умею кататься на коньках». `Can’t` — сокращение от `cannot`: здесь оно означает «не умею». После него нужно `skate`, без `to`. Пока ваш любимый маршрут — вдоль бортика.",
+        "uk": "Друг запрошує вас на лід, але ви не вмієте кататися на ковзанах. `Skate` — «кататися на ковзанах». `I can’t skate` — «Я не вмію кататися на ковзанах». `Can’t` — скорочення від `cannot`: тут воно означає «не вмію». Після нього потрібне `skate`, без `to`. Поки ваш улюблений маршрут — уздовж бортика."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что не умеете кататься на коньках.",
+          "uk": "Скажіть другові, що не вмієте кататися на ковзанах."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-09:intro1:r1",
+              "text": "I can’t skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro1:r2",
+              "text": "I can skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro1:r3",
+              "text": "I can’t to skate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-09:intro1:r1",
+              "text": "I can’t skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro1:r2",
+              "text": "I can skate."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro1:r3",
+              "text": "I can’t to skate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что не умеете кататься на коньках.",
+          "uk": "Скажіть другові, що не вмієте кататися на ковзанах."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Свист не получается",
+        "uk": "Свист не виходить"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомая пытается свистнуть, но пока не умеет. Вы рассказываете об этом другу. `She can’t whistle` — «Она не умеет свистеть». `Can’t` не меняется после `she`; после него нужно `whistle`, без окончания `s`.",
+        "uk": "Знайома намагається свиснути, але поки не вміє. Ви розповідаєте про це другові. `She can’t whistle` — «Вона не вміє свистіти». `Can’t` не змінюється після `she`; після нього потрібне `whistle`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о знакомой: «Она не умеет свистеть».",
+          "uk": "Скажіть про знайому: «Вона не вміє свистіти»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-09:intro2:r1",
+              "text": "She can’t whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro2:r2",
+              "text": "She can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro2:r3",
+              "text": "She can’t whistles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-09:intro2:r1",
+              "text": "She can’t whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro2:r2",
+              "text": "She can whistle."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro2:r3",
+              "text": "She can’t whistles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о знакомой: «Она не умеет свистеть».",
+          "uk": "Скажіть про знайому: «Вона не вміє свистіти»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перед купанием",
+        "uk": "Перед купанням"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, умеет ли ваш брат плавать. Брат пока не научился. `He can’t swim` — «Он не умеет плавать». После `he` остаётся `can’t`, затем идёт `swim`, без `s` и без `to`.",
+        "uk": "Друг запитує, чи вміє ваш брат плавати. Брат поки не навчився. `He can’t swim` — «Він не вміє плавати». Після `he` залишається `can’t`, потім іде `swim`, без `s` і без `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте другу об умении брата.",
+          "uk": "Дайте другові відповідь про вміння брата."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-09:intro3:r1",
+              "text": "He can’t swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro3:r2",
+              "text": "He can swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro3:r3",
+              "text": "He can’t swims."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-09:intro3:r1",
+              "text": "He can’t swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro3:r2",
+              "text": "He can swim."
+            },
+            {
+              "responseId": "en:lesson-08:session-09:intro3:r3",
+              "text": "He can’t swims."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте другу об умении брата.",
+          "uk": "Дайте другові відповідь про вміння брата."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "14c444f4ff97b9c51f57c212ccde4c644fb325f7560cf3df50dd958dafea29d7"
+}

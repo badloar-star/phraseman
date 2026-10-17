@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-40:i01",
+    "correctText": "Don’t rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i02",
+    "correctText": "spill",
+    "correctResponseId": "en:lesson-08:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i03",
+    "correctText": "spill",
+    "correctResponseId": "en:lesson-08:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i04",
+    "correctText": "en:lesson-08:session-40:i04:p1=rush\nen:lesson-08:session-40:i04:p2=interrupt\nen:lesson-08:session-40:i04:p3=spill\nen:lesson-08:session-40:i04:p4=thermostat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i05",
+    "correctText": "Don’t spill it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i06",
+    "correctText": "Don’t bend it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i07",
+    "correctText": "Please don’t interrupt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i08",
+    "correctText": "scratch",
+    "correctResponseId": "en:lesson-08:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i09",
+    "correctText": "Don’t shove.",
+    "correctResponseId": "en:lesson-08:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i10",
+    "correctText": "en:lesson-08:session-40:i10:p1=scratch\nen:lesson-08:session-40:i10:p2=bend\nen:lesson-08:session-40:i10:p3=panic\nen:lesson-08:session-40:i10:p4=shove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i11",
+    "correctText": "Please don’t interrupt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i12",
+    "correctText": "Don’t scratch it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i13",
+    "correctText": "Don’t panic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i14",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-08:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i15",
+    "correctText": "Don’t bend it.",
+    "correctResponseId": "en:lesson-08:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i16",
+    "correctText": "en:lesson-08:session-40:i16:p1=thermostat\nen:lesson-08:session-40:i16:p2=spill\nen:lesson-08:session-40:i16:p3=interrupt\nen:lesson-08:session-40:i16:p4=shove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-40:i17",
+    "correctText": "Don’t shove.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-08:i01",
+    "correctText": "I can juggle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i02",
+    "correctText": "whisper",
+    "correctResponseId": "en:lesson-08:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i03",
+    "correctText": "translate",
+    "correctResponseId": "en:lesson-08:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i04",
+    "correctText": "en:lesson-08:session-08:i04:p1=whistle\nen:lesson-08:session-08:i04:p2=juggle\nen:lesson-08:session-08:i04:p3=type\nen:lesson-08:session-08:i04:p4=balance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i05",
+    "correctText": "She can translate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i06",
+    "correctText": "I can type.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i07",
+    "correctText": "Whose folder is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i08",
+    "correctText": "can",
+    "correctResponseId": "en:lesson-08:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i09",
+    "correctText": "I can climb.",
+    "correctResponseId": "en:lesson-08:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i10",
+    "correctText": "en:lesson-08:session-08:i10:p1=translate\nen:lesson-08:session-08:i10:p2=whisper\nen:lesson-08:session-08:i10:p3=climb\nen:lesson-08:session-08:i10:p4=neighbourhood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i11",
+    "correctText": "Whose folder is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i12",
+    "correctText": "I often dance at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i13",
+    "correctText": "She can climb.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i14",
+    "correctText": "whistle",
+    "correctResponseId": "en:lesson-08:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i15",
+    "correctText": "I can type.",
+    "correctResponseId": "en:lesson-08:session-08:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i16",
+    "correctText": "en:lesson-08:session-08:i16:p1=balance\nen:lesson-08:session-08:i16:p2=translate\nen:lesson-08:session-08:i16:p3=whisper\nen:lesson-08:session-08:i16:p4=climb",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:i17",
+    "correctText": "Tom can whisper.",
+    "correctResponseId": null
+  }
+]

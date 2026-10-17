@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "повторить can’t, can, whose и often",
+    "uk": "повторити can’t, can, whose та often"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Покупки без калькулятора",
+        "uk": "Покупки без калькулятора"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите посчитать стоимость покупок, но путаетесь в числах. `Calculate` — «считать, вычислять». `I can’t calculate` — «Я не могу посчитать». Здесь вы говорите о том, что сейчас не получается. После `can’t` нужно `calculate`, без `to`. Калькулятор остался дома — вместе с вашей уверенностью в ответе.",
+        "uk": "Ви хочете порахувати вартість покупок, але плутаєтеся в числах. `Calculate` — «рахувати, обчислювати». `I can’t calculate` — «Я не можу порахувати». Тут ви говорите про те, що зараз не виходить. Після `can’t` потрібне `calculate`, без `to`. Калькулятор залишився вдома — разом із вашою впевненістю у відповіді."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что не можете посчитать.",
+          "uk": "Скажіть другові, що не можете порахувати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-15:intro1:r1",
+              "text": "I can’t calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro1:r2",
+              "text": "I can calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro1:r3",
+              "text": "I can’t to calculate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-15:intro1:r1",
+              "text": "I can’t calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro1:r2",
+              "text": "I can calculate."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro1:r3",
+              "text": "I can’t to calculate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что не можете посчитать.",
+          "uk": "Скажіть другові, що не можете порахувати."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подруга в хоре",
+        "uk": "Подруга в хорі"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга хорошо поёт, и вы советуете пригласить её в хор. `She can sing` — «Она умеет петь». После `can` нужно `sing`, без окончания `s`.",
+        "uk": "Подруга добре співає, і ви радите запросити її до хору. `She can sing` — «Вона вміє співати». Після `can` потрібне `sing`, без закінчення `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Расскажите, что подруга умеет петь.",
+          "uk": "Розкажіть, що подруга вміє співати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-15:intro2:r1",
+              "text": "She can sing."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro2:r2",
+              "text": "She can sings."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro2:r3",
+              "text": "She can’t sing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-15:intro2:r1",
+              "text": "She can sing."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro2:r2",
+              "text": "She can sings."
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro2:r3",
+              "text": "She can’t sing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Расскажите, что подруга умеет петь.",
+          "uk": "Розкажіть, що подруга вміє співати."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Открытая страница",
+        "uk": "Відкрита сторінка"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега показывает вам сайт. Вы хотите узнать, кому он принадлежит. `Whose website is this?` — «Чей это сайт?» Сначала `whose website`, затем `is this`.",
+        "uk": "Колега показує вам сайт. Ви хочете дізнатися, кому він належить. `Whose website is this?` — «Чий це сайт?» Спочатку `whose website`, потім `is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, чей это сайт.",
+          "uk": "Запитайте, чий це сайт."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-15:intro3:r1",
+              "text": "Whose website is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro3:r2",
+              "text": "Who website is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro3:r3",
+              "text": "Whose website are this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-15:intro3:r1",
+              "text": "Whose website is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro3:r2",
+              "text": "Who website is this?"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:intro3:r3",
+              "text": "Whose website are this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чей это сайт.",
+          "uk": "Запитайте, чий це сайт."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4fc184217891a0861206ae681fe22f616c7ebf219591915b8f90defad68f4e30"
+}

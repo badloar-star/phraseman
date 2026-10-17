@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить короткие указания и сочетание plug in",
+    "uk": "закріпити короткі вказівки й поєднання plug in"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вилка рядом с розеткой",
+        "uk": "Вилка поруч із розеткою"
+      },
+      "bodyByLocale": {
+        "ru": "Друг поставил лампу на стол, но не подключил её к розетке. `Plug in` — «подключить к розетке». `Plug it in` — «Включи её в розетку». Здесь `it` — лампа. Обратите внимание на порядок: `Plug`, затем `it`, потом `in`. В этой фразе `it` стоит между двумя словами. Лампа исправна — просто электричество пока не в курсе.",
+        "uk": "Друг поставив лампу на стіл, але не підключив її до розетки. `Plug in` — «підключити до розетки». `Plug it in` — «Увімкни її в розетку». Тут `it` — лампа. Зверніть увагу на порядок: `Plug`, потім `it`, далі `in`. У цій фразі `it` стоїть між двома словами. Лампа справна — просто електрика поки не в курсі."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Дайте другу короткое указание включить лампу в розетку.",
+          "uk": "Дайте другові коротку вказівку ввімкнути лампу в розетку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-26:intro1:r1",
+              "text": "Plug it in."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro1:r2",
+              "text": "Plug in it."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro1:r3",
+              "text": "Plugs it in."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-26:intro1:r1",
+              "text": "Plug it in."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro1:r2",
+              "text": "Plug in it."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro1:r3",
+              "text": "Plugs it in."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дайте другу короткое указание включить лампу в розетку.",
+          "uk": "Дайте другові коротку вказівку ввімкнути лампу в розетку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поворот к дому",
+        "uk": "Поворот до дому"
+      },
+      "bodyByLocale": {
+        "ru": "Вы идёте с другом домой. На следующем повороте нужно налево. `Turn left` — «Поверни налево». Короткое указание начинается сразу с `Turn`, без `you` и `to`.",
+        "uk": "Ви йдете з другом додому. На наступному повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Коротка вказівка починається одразу з `Turn`, без `you` і `to`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-26:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro2:r3",
+              "text": "To turn left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-26:intro2:r1",
+              "text": "Turn left."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro2:r2",
+              "text": "Turns left."
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro2:r3",
+              "text": "To turn left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подскажите другу «Поверни налево».",
+          "uk": "Підкажіть другові «Поверни ліворуч»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ возле друга",
+        "uk": "Ключ біля друга"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь уходить. Ключ лежит рядом с другом, а вам до него не дотянуться. `Can you pass me the key?` — «Можешь передать мне ключ?» Для этой просьбы начните с `Can you`, затем `pass me the key`.",
+        "uk": "Ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Can you pass me the key?` — «Можеш передати мені ключ?» Для цього прохання почніть із `Can you`, потім `pass me the key`."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите друга передать вам ключ.",
+          "uk": "Попросіть друга передати вам ключ."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-26:intro3:r1",
+              "text": "Can you pass me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro3:r2",
+              "text": "Can you passes me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro3:r3",
+              "text": "Can you to pass me the key?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-26:intro3:r1",
+              "text": "Can you pass me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro3:r2",
+              "text": "Can you passes me the key?"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:intro3:r3",
+              "text": "Can you to pass me the key?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите друга передать вам ключ.",
+          "uk": "Попросіть друга передати вам ключ."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7867224d5ad2e8871a0f57e094dc7658d58dfbcce62cde62f043094c84d362ba"
+}

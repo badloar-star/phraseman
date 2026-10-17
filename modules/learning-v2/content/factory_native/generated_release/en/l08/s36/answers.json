@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-36:i01",
+    "correctText": "Don’t scratch it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i02",
+    "correctText": "scratch",
+    "correctResponseId": "en:lesson-08:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i03",
+    "correctText": "scratch",
+    "correctResponseId": "en:lesson-08:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i04",
+    "correctText": "en:lesson-08:session-36:i04:p1=scratch\nen:lesson-08:session-36:i04:p2=smoke alarm\nen:lesson-08:session-36:i04:p3=live\nen:lesson-08:session-36:i04:p4=fold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i05",
+    "correctText": "Don’t scratch it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i06",
+    "correctText": "Don’t touch this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i07",
+    "correctText": "Please don’t wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i08",
+    "correctText": "don’t",
+    "correctResponseId": "en:lesson-08:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i09",
+    "correctText": "Don’t scratch it.",
+    "correctResponseId": "en:lesson-08:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i10",
+    "correctText": "en:lesson-08:session-36:i10:p1=relax\nen:lesson-08:session-36:i10:p2=scratch\nen:lesson-08:session-36:i10:p3=live\nen:lesson-08:session-36:i10:p4=smoke alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i11",
+    "correctText": "Please don’t wait.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i12",
+    "correctText": "Fold it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i13",
+    "correctText": "I often relax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i14",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-08:session-36:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i15",
+    "correctText": "Don’t rush.",
+    "correctResponseId": "en:lesson-08:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i16",
+    "correctText": "en:lesson-08:session-36:i16:p1=scratch\nen:lesson-08:session-36:i16:p2=relax\nen:lesson-08:session-36:i16:p3=fold\nen:lesson-08:session-36:i16:p4=smoke alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:i17",
+    "correctText": "Don’t scratch it.",
+    "correctResponseId": null
+  }
+]

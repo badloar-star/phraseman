@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-47:i01",
+    "correctText": "I can adapt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i02",
+    "correctText": "adapt",
+    "correctResponseId": "en:lesson-08:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i03",
+    "correctText": "adapt",
+    "correctResponseId": "en:lesson-08:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i04",
+    "correctText": "en:lesson-08:session-47:i04:p1=adapt\nen:lesson-08:session-47:i04:p2=leftover\nen:lesson-08:session-47:i04:p3=glove\nen:lesson-08:session-47:i04:p4=photograph",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i05",
+    "correctText": "I can adapt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i06",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i07",
+    "correctText": "I can whistle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i08",
+    "correctText": "drive",
+    "correctResponseId": "en:lesson-08:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i09",
+    "correctText": "I can adapt.",
+    "correctResponseId": "en:lesson-08:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i10",
+    "correctText": "en:lesson-08:session-47:i10:p1=shove\nen:lesson-08:session-47:i10:p2=adapt\nen:lesson-08:session-47:i10:p3=glove\nen:lesson-08:session-47:i10:p4=leftover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i11",
+    "correctText": "She can drive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i12",
+    "correctText": "Don’t shove.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i13",
+    "correctText": "I can photograph it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i14",
+    "correctText": "whistle",
+    "correctResponseId": "en:lesson-08:session-47:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i15",
+    "correctText": "I can swim.",
+    "correctResponseId": "en:lesson-08:session-47:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i16",
+    "correctText": "en:lesson-08:session-47:i16:p1=adapt\nen:lesson-08:session-47:i16:p2=photograph\nen:lesson-08:session-47:i16:p3=shove\nen:lesson-08:session-47:i16:p4=leftover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:i17",
+    "correctText": "I can adapt.",
+    "correctResponseId": null
+  }
+]

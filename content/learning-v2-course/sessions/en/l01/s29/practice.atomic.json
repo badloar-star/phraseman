@@ -1,0 +1,2435 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-29:word:local",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — local",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:local:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — local",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:local:audio",
+            "transcript": "local"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:local:r1",
+              "targetText": "local",
+              "meaningByLocale": {
+                "ru": "местный, живёт здесь или находится здесь. I am local — «Я местный / местная». Про местных зрителей: They are local.",
+                "uk": "місцевий, живе тут або розташований тут. I am local — «Я місцевий / місцева». Про місцевих глядачів: They are local."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "local",
+            "definitionByLocale": {
+              "ru": "местный, живёт здесь или находится здесь. I am local — «Я местный / местная». Про местных зрителей: They are local.",
+              "uk": "місцевий, живе тут або розташований тут. I am local — «Я місцевий / місцева». Про місцевих глядачів: They are local."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:word:foreign",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — foreign",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:foreign:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — foreign",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:foreign:audio",
+            "transcript": "foreign"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:foreign:r1",
+              "targetText": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный, из другой страны. It is foreign — «Он иностранный». Слово говорит о происхождении, а не о качестве.",
+                "uk": "іноземний, з іншої країни. It is foreign — «Він іноземний». Слово говорить про походження, а не про якість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foreign",
+            "definitionByLocale": {
+              "ru": "иностранный, из другой страны. It is foreign — «Он иностранный». Слово говорит о происхождении, а не о качестве.",
+              "uk": "іноземний, з іншої країни. It is foreign — «Він іноземний». Слово говорить про походження, а не про якість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:word:online",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — online",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:online:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — online",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:online:audio",
+            "transcript": "online"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:online:r1",
+              "targetText": "online",
+              "meaningByLocale": {
+                "ru": "в интернете, онлайн. It is online — «Это в интернете». Про людей: We are online — «Мы в сети».",
+                "uk": "в інтернеті, онлайн. It is online — «Це в інтернеті». Про людей: We are online — «Ми в мережі»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "online",
+            "definitionByLocale": {
+              "ru": "в интернете, онлайн. It is online — «Это в интернете». Про людей: We are online — «Мы в сети».",
+              "uk": "в інтернеті, онлайн. It is online — «Це в інтернеті». Про людей: We are online — «Ми в мережі»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:word:popular",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — popular",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:popular:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — popular",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:popular:audio",
+            "transcript": "popular"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:popular:r1",
+              "targetText": "popular",
+              "meaningByLocale": {
+                "ru": "популярный, его многие любят или выбирают. It is popular — «Он популярный». Про человека: She is popular.",
+                "uk": "популярний, його багато хто любить або вибирає. It is popular — «Він популярний». Про людину: She is popular."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "popular",
+            "definitionByLocale": {
+              "ru": "популярный, его многие любят или выбирают. It is popular — «Он популярный». Про человека: She is popular.",
+              "uk": "популярний, його багато хто любить або вибирає. It is popular — «Він популярний». Про людину: She is popular."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы живёте в городе фестиваля. Соберите исправленный ответ «I local»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы живёте в городе фестиваля. Соберите исправленный ответ «I local»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am local.",
+          "localizedMeaning": {
+            "ru": "Вы живёте в городе фестиваля. Соберите исправленный ответ «I local»",
+            "uk": "Ви живете в місті фестивалю. Складіть виправлену відповідь «I local»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "local"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы живёте в городе фестиваля. Соберите исправленный ответ «I local»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am local.`",
+                "uk": "тут потрібно `am` — `I am local.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите описание фильма",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i02:r1",
+            "text": "It is foreign."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i02:r2",
+            "text": "It is local."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i02:r3",
+            "text": "It is popular."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите описание фильма",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i02:audio",
+            "transcript": "It is foreign."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:i02:r1",
+              "targetText": "It is foreign.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r2",
+              "targetText": "It is local.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r3",
+              "targetText": "It is popular.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите описание фильма",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `foreign`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите описание фильма",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `foreign`, а в этом варианте — `popular`.",
+                "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `popular`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово",
+            "uk": "Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово"
+          },
+          "gappedTargetPhrase": "We ___ online.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-29:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово",
+              "feedbackByLocale": {
+                "ru": "После `We` нужна форма `are`.",
+                "uk": "Після `We` потрібна форма `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово",
+              "feedbackByLocale": {
+                "ru": "С `We` нужно `are`, а `am` — с `I`.",
+                "uk": "З `We` потрібно `are`, а `am` — з `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова и значения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова и значения",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-29:i04:p1",
+              "target": "local",
+              "meaningByLocale": {
+                "ru": "местный",
+                "uk": "місцевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i04:p2",
+              "target": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный",
+                "uk": "іноземний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i04:p3",
+              "target": "online",
+              "meaningByLocale": {
+                "ru": "в интернете",
+                "uk": "в інтернеті"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i04:p4",
+              "target": "popular",
+              "meaningByLocale": {
+                "ru": "популярный",
+                "uk": "популярний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "local",
+            "foreign",
+            "online",
+            "popular"
+          ],
+          "rightColumn": [
+            "местный",
+            "иностранный",
+            "в интернете",
+            "популярный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу о зрителях",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу о зрителях",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i05:audio",
+            "transcript": "They are local."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are local.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "local"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу о зрителях",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are local.`",
+                "uk": "тут потрібно `They` — `They are local.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один показ будет в интернете. Исправьте подпись «It online», собрав полную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один показ будет в интернете. Исправьте подпись «It online», собрав полную фразу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is online.",
+          "localizedMeaning": {
+            "ru": "Один показ будет в интернете. Исправьте подпись «It online», собрав полную фразу",
+            "uk": "Один показ буде в інтернеті. Виправте підпис «It online», склавши повну фразу"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "online"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Один показ будет в интернете. Исправьте подпись «It online», собрав полную фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is online.`",
+                "uk": "тут потрібно `is` — `It is online.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга живёт в городе фестиваля. Скажите о ней: «Она местная»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга живёт в городе фестиваля. Скажите о ней: «Она местная»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i07:audio",
+            "transcript": "She is local."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is local.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов",
+            "uk": "На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів"
+          },
+          "gappedTargetPhrase": "They ___ popular.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-29:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов",
+              "feedbackByLocale": {
+                "ru": "О двух фильмах говорим `They are`.",
+                "uk": "Про два фільми кажемо `They are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`; `am` ставим с `I`.",
+                "uk": "Після `They` потрібно `are`; `am` ставимо з `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i09:r1",
+            "text": "You are online."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i09:r2",
+            "text": "We are online."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i09:r3",
+            "text": "You are local."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i09:audio",
+            "transcript": "You are online."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:i09:r1",
+              "targetText": "You are online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r2",
+              "targetText": "We are online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r3",
+              "targetText": "You are local.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `online`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `online`, а в цьому варіанті — `local`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините знакомые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините знакомые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-29:i10:p1",
+              "target": "certain",
+              "meaningByLocale": {
+                "ru": "уверен",
+                "uk": "упевнений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i10:p2",
+              "target": "serious",
+              "meaningByLocale": {
+                "ru": "говорит всерьёз",
+                "uk": "говорить усерйоз"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i10:p3",
+              "target": "inside",
+              "meaningByLocale": {
+                "ru": "внутри",
+                "uk": "усередині"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i10:p4",
+              "target": "outside",
+              "meaningByLocale": {
+                "ru": "снаружи",
+                "uk": "надворі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "certain",
+            "serious",
+            "inside",
+            "outside"
+          ],
+          "rightColumn": [
+            "уверен",
+            "говорит всерьёз",
+            "внутри",
+            "снаружи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i11:audio",
+            "transcript": "They are foreign."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are foreign.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "foreign"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are foreign.`",
+                "uk": "тут потрібно `They` — `They are foreign.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом живёте здесь. Исправьте описание вашей компании «We is local»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом живёте здесь. Исправьте описание вашей компании «We is local»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are local.",
+          "localizedMeaning": {
+            "ru": "Вы с другом живёте здесь. Исправьте описание вашей компании «We is local»",
+            "uk": "Ви з другом живете тут. Виправте опис вашої компанії «We is local»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "local"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с другом живёте здесь. Исправьте описание вашей компании «We is local»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `We are local.`",
+                "uk": "тут потрібно `are` — `We are local.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзья ждут вас на втором этаже кинотеатра. Скажите, где они",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i13:audio"
+        ],
+        "accessibilityLabel": "Друзья ждут вас на втором этаже кинотеатра. Скажите, где они",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i13:audio",
+            "transcript": "They are upstairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are upstairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы описываете один японский фильм. Вставьте пропущенное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы описываете один японский фильм. Вставьте пропущенное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете один японский фильм. Вставьте пропущенное слово",
+            "uk": "Ви описуєте один японський фільм. Вставте пропущене слово"
+          },
+          "gappedTargetPhrase": "It ___ foreign.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-29:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы описываете один японский фильм. Вставьте пропущенное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы описываете один японский фильм. Вставьте пропущенное слово",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы описываете один японский фильм. Вставьте пропущенное слово",
+              "feedbackByLocale": {
+                "ru": "Речь об одном фильме: `It is`.",
+                "uk": "Ідеться про один фільм: `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i15:r1",
+            "text": "She is popular."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i15:r2",
+            "text": "She is local."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i15:r3",
+            "text": "He is popular."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i15:audio",
+            "transcript": "She is popular."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:i15:r1",
+              "targetText": "She is popular.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i15:r2",
+              "targetText": "She is local.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i15:r3",
+              "targetText": "He is popular.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `popular`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `popular`, а в цьому варіанті — `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и значения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и значения",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-29:i16:p1",
+              "target": "upstairs",
+              "meaningByLocale": {
+                "ru": "на верхнем этаже",
+                "uk": "на верхньому поверсі"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i16:p2",
+              "target": "popular",
+              "meaningByLocale": {
+                "ru": "популярный",
+                "uk": "популярний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i16:p3",
+              "target": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный",
+                "uk": "іноземний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i16:p4",
+              "target": "correct",
+              "meaningByLocale": {
+                "ru": "верный",
+                "uk": "правильний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "upstairs",
+            "popular",
+            "foreign",
+            "correct"
+          ],
+          "rightColumn": [
+            "на верхнем этаже",
+            "популярный",
+            "иностранный",
+            "верный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы записались на занятие, которое пройдёт в интернете. Друг спрашивает, где оно будет. Скажите о занятии одной фразой, используя online",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Вы записались на занятие, которое пройдёт в интернете. Друг спрашивает, где оно будет. Скажите о занятии одной фразой, используя online",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i17:audio",
+            "transcript": "It is online."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is online.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-29:word:local",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — local",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:local:audio"
+        ],
+        "accessibilityLabel": "Картка слова — local",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:local:audio",
+            "transcript": "local"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:local:r1",
+              "targetText": "local",
+              "meaningByLocale": {
+                "ru": "местный, живёт здесь или находится здесь. I am local — «Я местный / местная». Про местных зрителей: They are local.",
+                "uk": "місцевий, живе тут або розташований тут. I am local — «Я місцевий / місцева». Про місцевих глядачів: They are local."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "local",
+            "definitionByLocale": {
+              "ru": "местный, живёт здесь или находится здесь. I am local — «Я местный / местная». Про местных зрителей: They are local.",
+              "uk": "місцевий, живе тут або розташований тут. I am local — «Я місцевий / місцева». Про місцевих глядачів: They are local."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:word:foreign",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — foreign",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:foreign:audio"
+        ],
+        "accessibilityLabel": "Картка слова — foreign",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:foreign:audio",
+            "transcript": "foreign"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:foreign:r1",
+              "targetText": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный, из другой страны. It is foreign — «Он иностранный». Слово говорит о происхождении, а не о качестве.",
+                "uk": "іноземний, з іншої країни. It is foreign — «Він іноземний». Слово говорить про походження, а не про якість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foreign",
+            "definitionByLocale": {
+              "ru": "иностранный, из другой страны. It is foreign — «Он иностранный». Слово говорит о происхождении, а не о качестве.",
+              "uk": "іноземний, з іншої країни. It is foreign — «Він іноземний». Слово говорить про походження, а не про якість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:word:online",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — online",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:online:audio"
+        ],
+        "accessibilityLabel": "Картка слова — online",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:online:audio",
+            "transcript": "online"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:online:r1",
+              "targetText": "online",
+              "meaningByLocale": {
+                "ru": "в интернете, онлайн. It is online — «Это в интернете». Про людей: We are online — «Мы в сети».",
+                "uk": "в інтернеті, онлайн. It is online — «Це в інтернеті». Про людей: We are online — «Ми в мережі»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "online",
+            "definitionByLocale": {
+              "ru": "в интернете, онлайн. It is online — «Это в интернете». Про людей: We are online — «Мы в сети».",
+              "uk": "в інтернеті, онлайн. It is online — «Це в інтернеті». Про людей: We are online — «Ми в мережі»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:word:popular",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — popular",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:word:popular:audio"
+        ],
+        "accessibilityLabel": "Картка слова — popular",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:word:popular:audio",
+            "transcript": "popular"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:word:popular:r1",
+              "targetText": "popular",
+              "meaningByLocale": {
+                "ru": "популярный, его многие любят или выбирают. It is popular — «Он популярный». Про человека: She is popular.",
+                "uk": "популярний, його багато хто любить або вибирає. It is popular — «Він популярний». Про людину: She is popular."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "popular",
+            "definitionByLocale": {
+              "ru": "популярный, его многие любят или выбирают. It is popular — «Он популярный». Про человека: She is popular.",
+              "uk": "популярний, його багато хто любить або вибирає. It is popular — «Він популярний». Про людину: She is popular."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви живете в місті фестивалю. Складіть виправлену відповідь «I local»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви живете в місті фестивалю. Складіть виправлену відповідь «I local»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am local.",
+          "localizedMeaning": {
+            "ru": "Вы живёте в городе фестиваля. Соберите исправленный ответ «I local»",
+            "uk": "Ви живете в місті фестивалю. Складіть виправлену відповідь «I local»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "local"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви живете в місті фестивалю. Складіть виправлену відповідь «I local»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am local.`",
+                "uk": "тут потрібно `am` — `I am local.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть опис фільму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i02:r1",
+            "text": "It is foreign."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i02:r2",
+            "text": "It is local."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i02:r3",
+            "text": "It is popular."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть опис фільму",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i02:audio",
+            "transcript": "It is foreign."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:i02:r1",
+              "targetText": "It is foreign.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r2",
+              "targetText": "It is local.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r3",
+              "targetText": "It is popular.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть опис фільму",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `foreign`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть опис фільму",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `foreign`, а в этом варианте — `popular`.",
+                "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `popular`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с подругой подключились к показу в интернете. Вставьте пропущенное слово",
+            "uk": "Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово"
+          },
+          "gappedTargetPhrase": "We ___ online.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-29:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово",
+              "feedbackByLocale": {
+                "ru": "После `We` нужна форма `are`.",
+                "uk": "Після `We` потрібна форма `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви з подругою під’єдналися до показу в інтернеті. Вставте пропущене слово",
+              "feedbackByLocale": {
+                "ru": "С `We` нужно `are`, а `am` — с `I`.",
+                "uk": "З `We` потрібно `are`, а `am` — з `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова та значення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова та значення",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-29:i04:p1",
+              "target": "local",
+              "meaningByLocale": {
+                "ru": "местный",
+                "uk": "місцевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i04:p2",
+              "target": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный",
+                "uk": "іноземний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i04:p3",
+              "target": "online",
+              "meaningByLocale": {
+                "ru": "в интернете",
+                "uk": "в інтернеті"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i04:p4",
+              "target": "popular",
+              "meaningByLocale": {
+                "ru": "популярный",
+                "uk": "популярний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "local",
+            "foreign",
+            "online",
+            "popular"
+          ],
+          "rightColumn": [
+            "місцевий",
+            "іноземний",
+            "в інтернеті",
+            "популярний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу про глядачів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу про глядачів",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i05:audio",
+            "transcript": "They are local."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are local.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "local"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу про глядачів",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are local.`",
+                "uk": "тут потрібно `They` — `They are local.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один показ буде в інтернеті. Виправте підпис «It online», склавши повну фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один показ буде в інтернеті. Виправте підпис «It online», склавши повну фразу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is online.",
+          "localizedMeaning": {
+            "ru": "Один показ будет в интернете. Исправьте подпись «It online», собрав полную фразу",
+            "uk": "Один показ буде в інтернеті. Виправте підпис «It online», склавши повну фразу"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "online"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Один показ буде в інтернеті. Виправте підпис «It online», склавши повну фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is online.`",
+                "uk": "тут потрібно `is` — `It is online.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга живе в місті фестивалю. Скажіть про неї: «Вона місцева»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга живе в місті фестивалю. Скажіть про неї: «Вона місцева»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i07:audio",
+            "transcript": "She is local."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is local.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На оба фильма режиссёра билеты разобрали за час. Вставьте слово в описание этих фильмов",
+            "uk": "На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів"
+          },
+          "gappedTargetPhrase": "They ___ popular.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-29:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів",
+              "feedbackByLocale": {
+                "ru": "О двух фильмах говорим `They are`.",
+                "uk": "Про два фільми кажемо `They are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "На обидва фільми режисера квитки розібрали за годину. Вставте слово в опис цих фільмів",
+              "feedbackByLocale": {
+                "ru": "После `They` нужно `are`; `am` ставим с `I`.",
+                "uk": "Після `They` потрібно `are`; `am` ставимо з `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i09:r1",
+            "text": "You are online."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i09:r2",
+            "text": "We are online."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i09:r3",
+            "text": "You are local."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i09:audio",
+            "transcript": "You are online."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:i09:r1",
+              "targetText": "You are online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r2",
+              "targetText": "We are online.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r3",
+              "targetText": "You are local.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
+                "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `online`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `online`, а в цьому варіанті — `local`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте знайомі слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте знайомі слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-29:i10:p1",
+              "target": "certain",
+              "meaningByLocale": {
+                "ru": "уверен",
+                "uk": "упевнений"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i10:p2",
+              "target": "serious",
+              "meaningByLocale": {
+                "ru": "говорит всерьёз",
+                "uk": "говорить усерйоз"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i10:p3",
+              "target": "inside",
+              "meaningByLocale": {
+                "ru": "внутри",
+                "uk": "усередині"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i10:p4",
+              "target": "outside",
+              "meaningByLocale": {
+                "ru": "снаружи",
+                "uk": "надворі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "certain",
+            "serious",
+            "inside",
+            "outside"
+          ],
+          "rightColumn": [
+            "упевнений",
+            "говорить усерйоз",
+            "усередині",
+            "надворі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i11:audio",
+            "transcript": "They are foreign."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are foreign.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "foreign"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They are foreign.`",
+                "uk": "тут потрібно `They` — `They are foreign.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом живете тут. Виправте опис вашої компанії «We is local»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом живете тут. Виправте опис вашої компанії «We is local»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are local.",
+          "localizedMeaning": {
+            "ru": "Вы с другом живёте здесь. Исправьте описание вашей компании «We is local»",
+            "uk": "Ви з другом живете тут. Виправте опис вашої компанії «We is local»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "local"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з другом живете тут. Виправте опис вашої компанії «We is local»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `We are local.`",
+                "uk": "тут потрібно `are` — `We are local.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзі чекають на вас на другому поверсі кінотеатру. Скажіть, де вони",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i13:audio"
+        ],
+        "accessibilityLabel": "Друзі чекають на вас на другому поверсі кінотеатру. Скажіть, де вони",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i13:audio",
+            "transcript": "They are upstairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They are upstairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви описуєте один японський фільм. Вставте пропущене слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви описуєте один японський фільм. Вставте пропущене слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы описываете один японский фильм. Вставьте пропущенное слово",
+            "uk": "Ви описуєте один японський фільм. Вставте пропущене слово"
+          },
+          "gappedTargetPhrase": "It ___ foreign.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-29:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви описуєте один японський фільм. Вставте пропущене слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви описуєте один японський фільм. Вставте пропущене слово",
+              "feedbackByLocale": {
+                "ru": "После `It` нужно `is`.",
+                "uk": "Після `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви описуєте один японський фільм. Вставте пропущене слово",
+              "feedbackByLocale": {
+                "ru": "Речь об одном фильме: `It is`.",
+                "uk": "Ідеться про один фільм: `It is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i15:r1",
+            "text": "She is popular."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i15:r2",
+            "text": "She is local."
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i15:r3",
+            "text": "He is popular."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i15:audio",
+            "transcript": "She is popular."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-29:i15:r1",
+              "targetText": "She is popular.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i15:r2",
+              "targetText": "She is local.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i15:r3",
+              "targetText": "He is popular.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `popular`, а в этом варианте — `local`.",
+                "uk": "У записі останнє слово — `popular`, а в цьому варіанті — `local`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
+                "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова та значення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова та значення",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-29:i16:p1",
+              "target": "upstairs",
+              "meaningByLocale": {
+                "ru": "на верхнем этаже",
+                "uk": "на верхньому поверсі"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i16:p2",
+              "target": "popular",
+              "meaningByLocale": {
+                "ru": "популярный",
+                "uk": "популярний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i16:p3",
+              "target": "foreign",
+              "meaningByLocale": {
+                "ru": "иностранный",
+                "uk": "іноземний"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-29:i16:p4",
+              "target": "correct",
+              "meaningByLocale": {
+                "ru": "верный",
+                "uk": "правильний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "upstairs",
+            "popular",
+            "foreign",
+            "correct"
+          ],
+          "rightColumn": [
+            "на верхньому поверсі",
+            "популярний",
+            "іноземний",
+            "правильний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-29:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви записалися на заняття, яке відбудеться в інтернеті. Друг запитує, де воно буде. Скажіть про заняття однією фразою, використовуючи online",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Ви записалися на заняття, яке відбудеться в інтернеті. Друг запитує, де воно буде. Скажіть про заняття однією фразою, використовуючи online",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-29:i17:audio",
+            "transcript": "It is online."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is online.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-29:word:local",
+      "correctText": "local",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:word:foreign",
+      "correctText": "foreign",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:word:online",
+      "correctText": "online",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:word:popular",
+      "correctText": "popular",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i01",
+      "correctText": "I am local.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i02",
+      "correctText": "It is foreign.",
+      "correctResponseId": "en:lesson-01:session-29:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-29:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i05",
+      "correctText": "They are local.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i06",
+      "correctText": "It is online.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i07",
+      "correctText": "She is local.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-01:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i09",
+      "correctText": "You are online.",
+      "correctResponseId": "en:lesson-01:session-29:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i11",
+      "correctText": "They are foreign.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i12",
+      "correctText": "We are local.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i13",
+      "correctText": "They are upstairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-01:session-29:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i15",
+      "correctText": "She is popular.",
+      "correctResponseId": "en:lesson-01:session-29:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i17",
+      "correctText": "It is online.",
+      "correctResponseId": null
+    }
+  ]
+}

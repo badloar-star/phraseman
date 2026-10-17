@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-29:word:local",
+    "correctText": "local",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:word:foreign",
+    "correctText": "foreign",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:word:online",
+    "correctText": "online",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:word:popular",
+    "correctText": "popular",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-29:i01",
     "correctText": "I am local.",
     "correctResponseId": null
@@ -16,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i04",
-    "correctText": "en:lesson-01:session-29:i04:p1=local\nen:lesson-01:session-29:i04:p2=foreign\nen:lesson-01:session-29:i04:p3=online\nen:lesson-01:session-29:i04:p4=correct",
+    "correctText": "en:lesson-01:session-29:i04:p1=local\nen:lesson-01:session-29:i04:p2=foreign\nen:lesson-01:session-29:i04:p3=online\nen:lesson-01:session-29:i04:p4=popular",
     "correctResponseId": null
   },
   {
@@ -51,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i11",
-    "correctText": "He is local.",
+    "correctText": "They are foreign.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i15",
-    "correctText": "I am certain.",
+    "correctText": "She is popular.",
     "correctResponseId": "en:lesson-01:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-29:i16",
-    "correctText": "en:lesson-01:session-29:i16:p1=upstairs\nen:lesson-01:session-29:i16:p2=local\nen:lesson-01:session-29:i16:p3=foreign\nen:lesson-01:session-29:i16:p4=online",
+    "correctText": "en:lesson-01:session-29:i16:p1=upstairs\nen:lesson-01:session-29:i16:p2=popular\nen:lesson-01:session-29:i16:p3=foreign\nen:lesson-01:session-29:i16:p4=correct",
     "correctResponseId": null
   },
   {

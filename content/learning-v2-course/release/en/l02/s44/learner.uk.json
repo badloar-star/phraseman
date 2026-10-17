@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-44:i01",
+      "interactionId": "en:lesson-02:session-44:word:bumpy",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bumpy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:word:bumpy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bumpy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:word:bumpy:audio",
+          "transcript": "bumpy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:word:bumpy:r1",
+            "targetText": "bumpy",
+            "meaningByLocale": {
+              "ru": "ухабистый, тряский. It is bumpy — «Тут трясёт». О дороге, поездке, автобусе, посадке самолёта.",
+              "uk": "вибоїстий, трусючий. It is bumpy — «Тут трясе». Про дорогу, поїздку, автобус, посадку літака."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bumpy",
+          "definitionByLocale": {
+            "ru": "ухабистый, тряский. It is bumpy — «Тут трясёт». О дороге, поездке, автобусе, посадке самолёта.",
+            "uk": "вибоїстий, трусючий. It is bumpy — «Тут трясе». Про дорогу, поїздку, автобус, посадку літака."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У нашій історії юрист підтвердив законність перевіреного плану. Скажіть повною фразою, що це законно",
+      "prompt": "Водій питає через плече, як дорога. Скажіть йому повною фразою, що вона трусяча.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У нашій історії юрист підтвердив законність перевіреного плану. Скажіть повною фразою, що це законно",
+      "accessibilityLabel": "Водій питає через плече, як дорога. Скажіть йому повною фразою, що вона трусяча.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is legal.",
+        "targetPhrase": "It is bumpy.",
         "localizedMeaning": {
-          "ru": "В нашей истории юрист подтвердил законность проверенного плана. Скажите полной фразой, что это законно",
-          "uk": "У нашій історії юрист підтвердив законність перевіреного плану. Скажіть повною фразою, що це законно"
+          "ru": "Водитель спрашивает через плечо, как дорога. Скажите ему полной фразой, что она тряская.",
+          "uk": "Водій питає через плече, як дорога. Скажіть йому повною фразою, що вона трусяча."
         },
         "orderedTokens": [
           "It",
           "is",
-          "legal"
+          "bumpy"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-44:i01:tile:d1",
             "correct": false,
-            "testedDimension": "У нашій історії юрист підтвердив законність перевіреного плану. Скажіть повною фразою, що це законно",
+            "testedDimension": "Водій питає через плече, як дорога. Скажіть йому повною фразою, що вона трусяча.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is legal.`",
-              "uk": "тут потрібно `is` — `It is legal.`"
+              "ru": "здесь нужно `is` — `It is bumpy.`",
+              "uk": "тут потрібно `is` — `It is bumpy.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олега",
+      "prompt": "Послухайте, що учителька каже про дорогу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-44:i02:r1",
-          "text": "He is curious."
+          "text": "It is long."
         },
         {
           "responseId": "en:lesson-02:session-44:i02:r2",
-          "text": "He is patient."
+          "text": "It is narrow."
         },
         {
           "responseId": "en:lesson-02:session-44:i02:r3",
-          "text": "He is polite."
+          "text": "It is steep."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олега",
+      "accessibilityLabel": "Послухайте, що учителька каже про дорогу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i02:audio",
-          "transcript": "He is curious."
+          "transcript": "It is long."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-44:i02:r1",
-            "targetText": "He is curious.",
+            "targetText": "It is long.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-44:i02:r2",
-            "targetText": "He is patient.",
+            "targetText": "It is narrow.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-44:i02:r3",
-            "targetText": "He is polite.",
+            "targetText": "It is steep.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-44:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте, що учителька каже про дорогу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `curious`, а в этом варианте — `patient`.",
-              "uk": "У записі останнє слово — `curious`, а в цьому варіанті — `patient`."
+              "ru": "В записи последнее слово — `long`, а в этом варианте — `narrow`.",
+              "uk": "У записі останнє слово — `long`, а в цьому варіанті — `narrow`."
             }
           },
           {
             "responseId": "en:lesson-02:session-44:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте, що учителька каже про дорогу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `curious`, а в этом варианте — `polite`.",
-              "uk": "У записі останнє слово — `curious`, а в цьому варіанті — `polite`."
+              "ru": "В записи последнее слово — `long`, а в этом варианте — `steep`.",
+              "uk": "У записі останнє слово — `long`, а в цьому варіанті — `steep`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-44:word:vague",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vague",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:word:vague:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vague",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:word:vague:audio",
+          "transcript": "vague"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:word:vague:r1",
+            "targetText": "vague",
+            "meaningByLocale": {
+              "ru": "расплывчатый, неточный. It's vague — «Тут всё расплывчато». О записке, ответе, плане, воспоминании.",
+              "uk": "розпливчастий, неточний. It's vague — «Тут усе розпливчасто». Про записку, відповідь, план, спогад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vague",
+          "definitionByLocale": {
+            "ru": "расплывчатый, неточный. It's vague — «Тут всё расплывчато». О записке, ответе, плане, воспоминании.",
+            "uk": "розпливчастий, неточний. It's vague — «Тут усе розпливчасто». Про записку, відповідь, план, спогад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-44:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про законність іншого варіанта плану",
+      "prompt": "Ви читаєте записку гіда. Запитайте вчительку, чи вона розпливчаста",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-44:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про законність іншого варіанта плану",
+      "accessibilityLabel": "Ви читаєте записку гіда. Запитайте вчительку, чи вона розпливчаста",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о законности другого варианта плана",
-          "uk": "Запитайте про законність іншого варіанта плану"
+          "ru": "Вы читаете записку гида. Спросите учительницу, расплывчата ли она",
+          "uk": "Ви читаєте записку гіда. Запитайте вчительку, чи вона розпливчаста"
         },
-        "gappedTargetPhrase": "___ it legal?",
+        "gappedTargetPhrase": "___ it vague?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-44:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Запитайте про законність іншого варіанта плану",
+        "testedDimension": "Ви читаєте записку гіда. Запитайте вчительку, чи вона розпливчаста",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте про законність іншого варіанта плану",
+            "testedDimension": "Ви читаєте записку гіда. Запитайте вчительку, чи вона розпливчаста",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-44:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте про законність іншого варіанта плану",
+            "testedDimension": "Ви читаєте записку гіда. Запитайте вчительку, чи вона розпливчаста",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it legal?`.",
-              "uk": "Запитання — `Is it legal?`."
+              "ru": "Вопрос — `Is it vague?`.",
+              "uk": "Питання — `Is it vague?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-44:i04:p1",
-            "target": "legal",
+            "target": "bumpy",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "ухабистый",
+              "uk": "вибоїстий"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i04:p2",
-            "target": "curious",
+            "target": "tricky",
             "meaningByLocale": {
-              "ru": "любопытный, заинтересованный",
-              "uk": "допитливий, зацікавлений"
+              "ru": "непростой, с подвохом",
+              "uk": "непростий, з підступом"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i04:p3",
-            "target": "informal",
+            "target": "vague",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "расплывчатый",
+              "uk": "розпливчастий"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i04:p4",
-            "target": "official",
+            "target": "narrow",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "узкий",
+              "uk": "вузький"
             }
           }
         ],
         "leftColumn": [
-          "legal",
-          "curious",
-          "informal",
-          "official"
+          "bumpy",
+          "tricky",
+          "vague",
+          "narrow"
         ],
         "rightColumn": [
-          "законний",
-          "допитливий, зацікавлений",
-          "неформальний",
-          "офіційний"
+          "вибоїстий",
+          "непростий, з підступом",
+          "розпливчастий",
+          "вузький"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-44:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-44:word:tricky",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tricky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:word:tricky:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tricky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:word:tricky:audio",
+          "transcript": "tricky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:word:tricky:r1",
+            "targetText": "tricky",
+            "meaningByLocale": {
+              "ru": "непростой, с подвохом: легко ошибиться. Is it tricky? — «Это непросто?» О задании, повороте, вопросе, правиле.",
+              "uk": "непростий, з підступом: легко помилитися. Is it tricky? — «Це непросто?» Про завдання, поворот, питання, правило."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tricky",
+          "definitionByLocale": {
+            "ru": "непростой, с подвохом: легко ошибиться. Is it tricky? — «Это непросто?» О задании, повороте, вопросе, правиле.",
+            "uk": "непростий, з підступом: легко помилитися. Is it tricky? — «Це непросто?» Про завдання, поворот, питання, правило."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Послухайте, що учителька каже про друге завдання, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Послухайте, що учителька каже про друге завдання, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i05:audio",
-          "transcript": "No, it is not."
+          "transcript": "It is not tricky."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "No, it is not.",
+        "hiddenTargetPhrase": "It is not tricky.",
         "orderedTokens": [
-          "No,",
-          "it",
+          "It",
           "is",
-          "not"
+          "not",
+          "tricky"
         ],
         "authoredDistractorTokens": [
-          "Yes,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Послухайте, що учителька каже про друге завдання, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `No,` — `No, it is not.`",
-              "uk": "тут потрібно `No,` — `No, it is not.`"
+              "ru": "здесь нужно `is` — `It is not tricky.`",
+              "uk": "тут потрібно `is` — `It is not tricky.`"
             }
           }
         ],
@@ -315,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На зустрічі обговорюють кілька варіантів плану. Запитайте, що законно",
+      "prompt": "Учителька каже, що в сьогоднішній роботі є один непростий момент. Запитайте її, що непросте.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На зустрічі обговорюють кілька варіантів плану. Запитайте, що законно",
+      "accessibilityLabel": "Учителька каже, що в сьогоднішній роботі є один непростий момент. Запитайте її, що непросте.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is legal?",
+        "targetPhrase": "What is tricky?",
         "localizedMeaning": {
-          "ru": "На встрече обсуждают несколько вариантов плана. Спросите, что законно",
-          "uk": "На зустрічі обговорюють кілька варіантів плану. Запитайте, що законно"
+          "ru": "Учительница говорит, что в сегодняшней работе есть один непростой момент. Спросите её, что непростое.",
+          "uk": "Учителька каже, що в сьогоднішній роботі є один непростий момент. Запитайте її, що непросте."
         },
         "orderedTokens": [
           "What",
           "is",
-          "legal"
+          "tricky"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -343,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-44:i06:tile:d1",
             "correct": false,
-            "testedDimension": "На зустрічі обговорюють кілька варіантів плану. Запитайте, що законно",
+            "testedDimension": "Учителька каже, що в сьогоднішній роботі є один непростий момент. Запитайте її, що непросте.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is legal?`",
-              "uk": "тут потрібно `What` — `What is legal?`"
+              "ru": "здесь нужно `What` — `What is tricky?`",
+              "uk": "тут потрібно `What` — `What is tricky?`"
             }
           }
         ],
@@ -359,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "За умовою історії перевірений варіант відповідає закону. Коротко повідомте, що це законно",
+      "prompt": "Учителька читає записку гіда й просить оцінити її. Скажіть коротко, що записка розпливчаста.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i07:audio"
       ],
-      "accessibilityLabel": "За умовою історії перевірений варіант відповідає закону. Коротко повідомте, що це законно",
+      "accessibilityLabel": "Учителька читає записку гіда й просить оцінити її. Скажіть коротко, що записка розпливчаста.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i07:audio",
-          "transcript": "It's legal."
+          "transcript": "It's vague."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's legal.",
+        "targetPhrase": "It's vague.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +521,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олегові цікаві подробиці. На «Is he curious?» доповніть коротку відповідь «так»",
+      "prompt": "Учителька спитала: «Is it bumpy?» Автобус знову підкидає. Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-44:i08:r1",
@@ -413,14 +542,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олегові цікаві подробиці. На «Is he curious?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Учителька спитала: «Is it bumpy?» Автобус знову підкидає. Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олегу интересны подробности. На «Is he curious?» дополните короткое «да»",
-          "uk": "Олегові цікаві подробиці. На «Is he curious?» доповніть коротку відповідь «так»"
+          "ru": "Учительница спросила: «Is it bumpy?» Автобус снова подбрасывает. Дополните короткое «да»",
+          "uk": "Учителька спитала: «Is it bumpy?» Автобус знову підкидає. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "Yes, he ___.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-44:i08:r1",
@@ -435,24 +564,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олегові цікаві подробиці. На «Is he curious?» доповніть коротку відповідь «так»",
+        "testedDimension": "Учителька спитала: «Is it bumpy?» Автобус знову підкидає. Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Олегові цікаві подробиці. На «Is he curious?» доповніть коротку відповідь «так»",
+            "testedDimension": "Учителька спитала: «Is it bumpy?» Автобус знову підкидає. Доповніть коротке «так»",
             "feedbackByLocale": {
-              "ru": "С `he` нужно `is`.",
-              "uk": "З `he` потрібно `is`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Олегові цікаві подробиці. На «Is he curious?» доповніть коротку відповідь «так»",
+            "testedDimension": "Учителька спитала: «Is it bumpy?» Автобус знову підкидає. Доповніть коротке «так»",
             "feedbackByLocale": {
-              "ru": "Ответ — `Yes, he is`.",
-              "uk": "Відповідь — `Yes, he is`."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -460,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-44:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-44:word:vivid",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про зустріч",
+      "prompt": "Картка слова — vivid",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:word:vivid:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vivid",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:word:vivid:audio",
+          "transcript": "vivid"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:word:vivid:r1",
+            "targetText": "vivid",
+            "meaningByLocale": {
+              "ru": "яркий, насыщенный, о цвете и образе. They're vivid — «Они яркие». О красках, снах, воспоминаниях.",
+              "uk": "яскравий, насичений, про колір і образ. They're vivid — «Вони яскраві». Про фарби, сни, спогади."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vivid",
+          "definitionByLocale": {
+            "ru": "яркий, насыщенный, о цвете и образе. They're vivid — «Они яркие». О красках, снах, воспоминаниях.",
+            "uk": "яскравий, насичений, про колір і образ. They're vivid — «Вони яскраві». Про фарби, сни, спогади."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що учителька каже про фарби",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-44:i09:r1",
-          "text": "It is informal."
+          "text": "They are vivid."
         },
         {
           "responseId": "en:lesson-02:session-44:i09:r2",
-          "text": "It is official."
+          "text": "They are bright."
         },
         {
           "responseId": "en:lesson-02:session-44:i09:r3",
-          "text": "It is legal."
+          "text": "They are dim."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про зустріч",
+      "accessibilityLabel": "Послухайте, що учителька каже про фарби",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i09:audio",
-          "transcript": "It is informal."
+          "transcript": "They are vivid."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-44:i09:r1",
-            "targetText": "It is informal.",
+            "targetText": "They are vivid.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-44:i09:r2",
-            "targetText": "It is official.",
+            "targetText": "They are bright.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-44:i09:r3",
-            "targetText": "It is legal.",
+            "targetText": "They are dim.",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-44:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про зустріч",
+            "testedDimension": "Послухайте, що учителька каже про фарби",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `informal`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `informal`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `vivid`, а в этом варианте — `bright`.",
+              "uk": "У записі останнє слово — `vivid`, а в цьому варіанті — `bright`."
             }
           },
           {
             "responseId": "en:lesson-02:session-44:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про зустріч",
+            "testedDimension": "Послухайте, що учителька каже про фарби",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `informal`, а в этом варианте — `legal`.",
-              "uk": "У записі останнє слово — `informal`, а в цьому варіанті — `legal`."
+              "ru": "В записи последнее слово — `vivid`, а в этом варианте — `dim`.",
+              "uk": "У записі останнє слово — `vivid`, а в цьому варіанті — `dim`."
             }
           }
         ],
@@ -537,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -551,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-44:i10:p1",
-            "target": "informal",
+            "target": "vivid",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "яркий, насыщенный",
+              "uk": "яскравий, насичений"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i10:p2",
-            "target": "official",
+            "target": "tricky",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "непростой, с подвохом",
+              "uk": "непростий, з підступом"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i10:p3",
-            "target": "curious",
+            "target": "bumpy",
             "meaningByLocale": {
-              "ru": "любопытный, заинтересованный",
-              "uk": "допитливий, зацікавлений"
+              "ru": "ухабистый",
+              "uk": "вибоїстий"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i10:p4",
-            "target": "legal",
+            "target": "steep",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "крутой",
+              "uk": "крутий"
             }
           }
         ],
         "leftColumn": [
-          "informal",
-          "official",
-          "curious",
-          "legal"
+          "vivid",
+          "tricky",
+          "bumpy",
+          "steep"
         ],
         "rightColumn": [
-          "неформальний",
-          "офіційний",
-          "допитливий, зацікавлений",
-          "законний"
+          "яскравий, насичений",
+          "непростий, з підступом",
+          "вибоїстий",
+          "крутий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,42 +782,42 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте, що учителька каже про вказівки гіда, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте, що учителька каже про вказівки гіда, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i11:audio",
-          "transcript": "It is not legal."
+          "transcript": "They are not vague."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not legal.",
+        "hiddenTargetPhrase": "They are not vague.",
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "not",
-          "legal"
+          "vague"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте, що учителька каже про вказівки гіда, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not legal.`",
-              "uk": "тут потрібно `is` — `It is not legal.`"
+              "ru": "здесь нужно `are` — `They are not vague.`",
+              "uk": "тут потрібно `are` — `They are not vague.`"
             }
           }
         ],
@@ -658,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви не знаєте, чи цікавий Олегові проєкт. Запитайте Анну, чи йому цікаво",
+      "prompt": "Ви дивитеся на етюд сусідки по автобусу. Запитайте її, чи вийшло небо яскравим.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви не знаєте, чи цікавий Олегові проєкт. Запитайте Анну, чи йому цікаво",
+      "accessibilityLabel": "Ви дивитеся на етюд сусідки по автобусу. Запитайте її, чи вийшло небо яскравим.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is he curious?",
+        "targetPhrase": "Is it vivid?",
         "localizedMeaning": {
-          "ru": "Вы не знаете, интересен ли Олегу проект. Спросите Анну, любопытно ли ему",
-          "uk": "Ви не знаєте, чи цікавий Олегові проєкт. Запитайте Анну, чи йому цікаво"
+          "ru": "Вы смотрите на этюд соседки по автобусу. Спросите её, получилось ли небо ярким.",
+          "uk": "Ви дивитеся на етюд сусідки по автобусу. Запитайте її, чи вийшло небо яскравим."
         },
         "orderedTokens": [
           "Is",
-          "he",
-          "curious"
+          "it",
+          "vivid"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -686,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-44:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви не знаєте, чи цікавий Олегові проєкт. Запитайте Анну, чи йому цікаво",
+            "testedDimension": "Ви дивитеся на етюд сусідки по автобусу. Запитайте її, чи вийшло небо яскравим.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is he curious?`",
-              "uk": "тут потрібно `Is` — `Is he curious?`"
+              "ru": "здесь нужно `Is` — `Is it vivid?`",
+              "uk": "тут потрібно `Is` — `Is it vivid?`"
             }
           }
         ],
@@ -702,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Зустріч проходить як вільна бесіда за чаєм. Коротко скажіть, що вона неформальна",
+      "prompt": "Ви закінчили етюд, і фарби вийшли соковиті. Скажіть коротко, що вони яскраві.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i13:audio"
       ],
-      "accessibilityLabel": "Зустріч проходить як вільна бесіда за чаєм. Коротко скажіть, що вона неформальна",
+      "accessibilityLabel": "Ви закінчили етюд, і фарби вийшли соковиті. Скажіть коротко, що вони яскраві.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i13:audio",
-          "transcript": "It's informal."
+          "transcript": "They're vivid."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's informal.",
+        "targetPhrase": "They're vivid.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У вигаданій історії інший варіант прямо заборонений законом. Скажіть, що це не законно",
+      "prompt": "Учителька питає про дорогу назад: вона рівна. Скажіть, що вона не трусяча",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-44:i14:r1",
@@ -756,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У вигаданій історії інший варіант прямо заборонений законом. Скажіть, що це не законно",
+      "accessibilityLabel": "Учителька питає про дорогу назад: вона рівна. Скажіть, що вона не трусяча",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В вымышленной истории другой вариант прямо запрещён законом. Скажите, что это не законно",
-          "uk": "У вигаданій історії інший варіант прямо заборонений законом. Скажіть, що це не законно"
+          "ru": "Учительница спрашивает про дорогу назад: она ровная. Скажите, что она не тряская",
+          "uk": "Учителька питає про дорогу назад: вона рівна. Скажіть, що вона не трусяча"
         },
-        "gappedTargetPhrase": "It ___ not legal.",
+        "gappedTargetPhrase": "It ___ not bumpy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-44:i14:r1",
@@ -778,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "У вигаданій історії інший варіант прямо заборонений законом. Скажіть, що це не законно",
+        "testedDimension": "Учителька питає про дорогу назад: вона рівна. Скажіть, що вона не трусяча",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i14:r2",
             "correct": false,
-            "testedDimension": "У вигаданій історії інший варіант прямо заборонений законом. Скажіть, що це не законно",
+            "testedDimension": "Учителька питає про дорогу назад: вона рівна. Скажіть, що вона не трусяча",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -792,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-44:i14:r3",
             "correct": false,
-            "testedDimension": "У вигаданій історії інший варіант прямо заборонений законом. Скажіть, що це не законно",
+            "testedDimension": "Учителька питає про дорогу назад: вона рівна. Скажіть, що вона не трусяча",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not legal`.",
-              "uk": "Фраза — `It is not legal`."
+              "ru": "Фраза — `It is not bumpy`.",
+              "uk": "Фраза — `It is not bumpy`."
             }
           }
         ]
@@ -804,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте запитання вчительки",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-44:i15:r1",
-          "text": "Is it legal?"
+          "text": "Is it tricky?"
         },
         {
           "responseId": "en:lesson-02:session-44:i15:r2",
-          "text": "Is it official?"
+          "text": "Is it vague?"
         },
         {
           "responseId": "en:lesson-02:session-44:i15:r3",
-          "text": "Is it informal?"
+          "text": "Is it bumpy?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте запитання вчительки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i15:audio",
-          "transcript": "Is it legal?"
+          "transcript": "Is it tricky?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-44:i15:r1",
-            "targetText": "Is it legal?",
+            "targetText": "Is it tricky?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-44:i15:r2",
-            "targetText": "Is it official?",
+            "targetText": "Is it vague?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-44:i15:r3",
-            "targetText": "Is it informal?",
+            "targetText": "Is it bumpy?",
             "meaningByLocale": null
           }
         ],
@@ -857,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-44:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання вчительки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `legal`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `legal`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `tricky`, а в этом варианте — `vague`.",
+              "uk": "У записі останнє слово — `tricky`, а в цьому варіанті — `vague`."
             }
           },
           {
             "responseId": "en:lesson-02:session-44:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання вчительки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `legal`, а в этом варианте — `informal`.",
-              "uk": "У записі останнє слово — `legal`, а в цьому варіанті — `informal`."
+              "ru": "В записи последнее слово — `tricky`, а в этом варианте — `bumpy`.",
+              "uk": "У записі останнє слово — `tricky`, а в цьому варіанті — `bumpy`."
             }
           }
         ],
@@ -880,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-44:i16:p1",
-            "target": "curious",
+            "target": "bumpy",
             "meaningByLocale": {
-              "ru": "любопытный, заинтересованный",
-              "uk": "допитливий, зацікавлений"
+              "ru": "ухабистый",
+              "uk": "вибоїстий"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i16:p2",
-            "target": "legal",
+            "target": "tricky",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "непростой, с подвохом",
+              "uk": "непростий, з підступом"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i16:p3",
-            "target": "official",
+            "target": "vague",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "расплывчатый",
+              "uk": "розпливчастий"
             }
           },
           {
             "pairId": "en:lesson-02:session-44:i16:p4",
-            "target": "informal",
+            "target": "vivid",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "яркий, насыщенный",
+              "uk": "яскравий, насичений"
             }
           }
         ],
         "leftColumn": [
-          "curious",
-          "legal",
-          "official",
-          "informal"
+          "bumpy",
+          "tricky",
+          "vague",
+          "vivid"
         ],
         "rightColumn": [
-          "допитливий, зацікавлений",
-          "законний",
-          "офіційний",
-          "неформальний"
+          "вибоїстий",
+          "непростий, з підступом",
+          "розпливчастий",
+          "яскравий, насичений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-44:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна пропонує ще один варіант, який поки не перевірили. Запитайте, чи це законно",
+      "prompt": "Учителька показує нове завдання. Запитайте її, чи непросте воно.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i17:audio"
       ],
-      "accessibilityLabel": "Анна пропонує ще один варіант, який поки не перевірили. Запитайте, чи це законно",
+      "accessibilityLabel": "Учителька показує нове завдання. Запитайте її, чи непросте воно.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-44:i17:audio",
-          "transcript": "Is it legal?"
+          "transcript": "Is it tricky?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it legal?",
+        "targetPhrase": "Is it tricky?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -993,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a8a43f66d3559d0f7408dc3acaa13b73f9b0e328b678eec738e6702743c01b28"
+  "learnerFingerprint": "8fbbee15f25639eec684c8342a845dff41a5f229d01b683c9737f903b4ecf589"
 }

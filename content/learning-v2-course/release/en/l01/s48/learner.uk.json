@@ -172,7 +172,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї",
+      "prompt": "Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i03:r1",
@@ -189,12 +189,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї",
+      "accessibilityLabel": "Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Новая стамеска Лены режет дерево, как масло. Дополните фразу о ней",
-          "uk": "Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї"
+          "ru": "Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней",
+          "uk": "Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї"
         },
         "gappedTargetPhrase": "It ___ sharp.",
         "gapOptions": [
@@ -211,12 +211,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї",
+        "testedDimension": "Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-48:i03:r2",
             "correct": false,
-            "testedDimension": "Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї",
+            "testedDimension": "Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -225,7 +225,7 @@
           {
             "responseId": "en:lesson-01:session-48:i03:r3",
             "correct": false,
-            "testedDimension": "Нова стамеска Лени ріже дерево, як масло. Доповніть фразу про неї",
+            "testedDimension": "Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї",
             "feedbackByLocale": {
               "ru": "Стамеска одна, поэтому `It is`.",
               "uk": "Стамеска одна, тому `It is`."
@@ -490,13 +490,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Відвідувачка довго роздивляється скатертину, яку вишила Лена, і всміхається. Скажіть Лені коротко, що скатертина чудова",
+      "prompt": "Відвідувачка довго роздивляється скатертину, яку вишила подруга, і всміхається. Скажіть подрузі коротко, що скатертина чудова",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i07:audio"
       ],
-      "accessibilityLabel": "Відвідувачка довго роздивляється скатертину, яку вишила Лена, і всміхається. Скажіть Лені коротко, що скатертина чудова",
+      "accessibilityLabel": "Відвідувачка довго роздивляється скатертину, яку вишила подруга, і всміхається. Скажіть подрузі коротко, що скатертина чудова",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -784,13 +784,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу про ложки Лени",
+      "prompt": "Послухайте й складіть коротку фразу про ложки подруги",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу про ложки Лени",
+      "accessibilityLabel": "Послухайте й складіть коротку фразу про ложки подруги",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -810,7 +810,7 @@
           {
             "responseId": "en:lesson-01:session-48:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу про ложки Лени",
+            "testedDimension": "Послухайте й складіть коротку фразу про ложки подруги",
             "feedbackByLocale": {
               "ru": "здесь нужно `They're` — `They're handmade.`",
               "uk": "тут потрібно `They're` — `They're handmade.`"
@@ -830,17 +830,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви весь вечір допомагали Лені й раді, як усе вийшло. Скажіть про себе, що пишаєтеся",
+      "prompt": "Ви весь вечір допомагали подрузі й раді, як усе вийшло. Скажіть про себе, що пишаєтеся",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви весь вечір допомагали Лені й раді, як усе вийшло. Скажіть про себе, що пишаєтеся",
+      "accessibilityLabel": "Ви весь вечір допомагали подрузі й раді, як усе вийшло. Скажіть про себе, що пишаєтеся",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am proud.",
         "localizedMeaning": {
-          "ru": "Вы весь вечер помогали Лене и рады, как всё получилось. Скажите о себе, что гордитесь",
-          "uk": "Ви весь вечір допомагали Лені й раді, як усе вийшло. Скажіть про себе, що пишаєтеся"
+          "ru": "Вы весь вечер помогали подруге и рады, как всё получилось. Скажите о себе, что гордитесь",
+          "uk": "Ви весь вечір допомагали подрузі й раді, як усе вийшло. Скажіть про себе, що пишаєтеся"
         },
         "orderedTokens": [
           "I",
@@ -854,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-48:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви весь вечір допомагали Лені й раді, як усе вийшло. Скажіть про себе, що пишаєтеся",
+            "testedDimension": "Ви весь вечір допомагали подрузі й раді, як усе вийшло. Скажіть про себе, що пишаєтеся",
             "feedbackByLocale": {
               "ru": "здесь нужно `am` — `I am proud.`",
               "uk": "тут потрібно `am` — `I am proud.`"
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег спокійно чекає, поки висохне лак, і не квапить вас. Зверніться до нього: «Ти терплячий»",
+      "prompt": "Друг спокійно чекає, поки висохне лак, і не квапить вас. Зверніться до нього: «Ти терплячий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-48:i13:audio"
       ],
-      "accessibilityLabel": "Олег спокійно чекає, поки висохне лак, і не квапить вас. Зверніться до нього: «Ти терплячий»",
+      "accessibilityLabel": "Друг спокійно чекає, поки висохне лак, і не квапить вас. Зверніться до нього: «Ти терплячий»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -907,7 +907,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Два засохлі маркери зовсім не пишуть. Скажіть Лені, що для табличок вони марні",
+      "prompt": "Два засохлі маркери зовсім не пишуть. Скажіть подрузі, що для табличок вони марні",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i14:r1",
@@ -924,12 +924,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Два засохлі маркери зовсім не пишуть. Скажіть Лені, що для табличок вони марні",
+      "accessibilityLabel": "Два засохлі маркери зовсім не пишуть. Скажіть подрузі, що для табличок вони марні",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Два засохших маркера совсем не пишут. Скажите Лене, что для табличек они бесполезны",
-          "uk": "Два засохлі маркери зовсім не пишуть. Скажіть Лені, що для табличок вони марні"
+          "ru": "Два засохших маркера совсем не пишут. Скажите подруге, что для табличек они бесполезны",
+          "uk": "Два засохлі маркери зовсім не пишуть. Скажіть подрузі, що для табличок вони марні"
         },
         "gappedTargetPhrase": "They ___ useless.",
         "gapOptions": [
@@ -946,12 +946,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Два засохлі маркери зовсім не пишуть. Скажіть Лені, що для табличок вони марні",
+        "testedDimension": "Два засохлі маркери зовсім не пишуть. Скажіть подрузі, що для табличок вони марні",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-48:i14:r2",
             "correct": false,
-            "testedDimension": "Два засохлі маркери зовсім не пишуть. Скажіть Лені, що для табличок вони марні",
+            "testedDimension": "Два засохлі маркери зовсім не пишуть. Скажіть подрузі, що для табличок вони марні",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -960,7 +960,7 @@
           {
             "responseId": "en:lesson-01:session-48:i14:r3",
             "correct": false,
-            "testedDimension": "Два засохлі маркери зовсім не пишуть. Скажіть Лені, що для табличок вони марні",
+            "testedDimension": "Два засохлі маркери зовсім не пишуть. Скажіть подрузі, що для табличок вони марні",
             "feedbackByLocale": {
               "ru": "Маркеров два, поэтому `They are`.",
               "uk": "Маркерів два, тому `They are`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8d9374ad886768f35d3153120332e0f297f74b48ba5e4b03532fe5764a885b37"
+  "learnerFingerprint": "e9d4ecac90c6cf0f6f859c364b7403a33efa8cbb1a8d8021e596d9fb453a045a"
 }

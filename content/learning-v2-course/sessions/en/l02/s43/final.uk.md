@@ -1,138 +1,154 @@
-# Англійська · Урок 2 · Заняття 43 — Що вдягнути на зустріч
+# Англійська · Урок 2 · Заняття 43 — Вечір перед понеділком
 
-**Ситуація.** Ви з Анною збираєтеся на зустріч випускників. У запрошенні не пояснили, чи потрібне строге вбрання. Ви сумніваєтеся, а Олег терпляче чекає, поки ви уточните формат.
+**Ситуація.** Недільний вечір: завтра у вас перший день на новій роботі, а в сестри важливий дзвінок від лікаря. Вдома мама, брат і подруга, і всі по черзі розповідають, як вони себе почувають.
 
-**Що ви опануєте:** сказати про невпевненість та уточнити сумніви співрозмовника
-**Нові слова:** uncertain
+**Що ви опануєте:** сказати, який у вас настрій, і запитати про це інших
+**Нові слова:** anxious, jealous, tense, cheerful
+**Повертаються:** nervous, calm, tired, busy
 
 ---
 
 ## Інтро 1
 
-### Поки не впевнений
+### Перший день на роботі
 
-`uncertain` — «невпевнений, такий, що сумнівається». Ви ще не знаєте, яке вбрання вибрати: `I am uncertain` — «Я не впевнений». Так ви повідомляєте про свій сумнів, а не про помилку. Можна стояти перед шафою з цілком упевненим виглядом і все одно бути `uncertain`.
+Завтра перший день на новій роботі. Ввечері ви не можете всидіти на місці: ходите по кімнаті й вп’яте перевіряєте сумку. anxious — «тривожний, неспокійний». I am anxious — «Мені тривожно».
 
-**Ви поки не впевнені у виборі вбрання. Скажіть повною фразою, що сумніваєтеся.**
+**Сестра питає, чому ви ходите по кімнаті. Скажіть повною фразою, що вам тривожно.**
 
-- ✅ **I am uncertain.**
-- ❌ I is uncertain. — *З `I` потрібно `am`.*
-- ❌ I am not uncertain. — *З `not` ви заперечуєте сумнів. За умовою він є.*
+- ✅ **I am anxious.**
+- ❌ I am not anxious. — *З not виходить «Мені не тривожно». А ви вп’яте перевіряєте сумку: I am anxious.*
+- ❌ I anxious. — *Між I і anxious потрібно am: I am anxious.*
 
 ---
 
 ## Інтро 2
 
-### Уточнити в друга
+### Фото з пляжу
 
-`Are you uncertain?` — «Ти не впевнений?» або «Ви не впевнені?» Запитання починається з `Are you`. Якщо Анна справді сумнівається, вона може відповісти `Yes, I am`. У запитанні звертаємося до неї з `you`, а у відповіді вона говорить про себе з `I`.
+Подруга повернулася з відпустки засмаглою й показує на телефоні фото: море, пальми, вона в шезлонгу. А ви цілий тиждень сиділи над звітом. jealous — «заздрісний». I'm jealous — «Я заздрю».
 
-**Анна не може вирішити, яке вбрання підходить. Запитайте її, чи вона не впевнена.**
+**Подруга показує останній знімок і дивиться на вас. Скажіть їй коротко, що ви заздрите.**
 
-- ✅ **Are you uncertain?**
-- ❌ Am I uncertain? — *Це запитання про себе. Ви запитуєте Анну.*
-- ❌ You are uncertain. — *Це твердження. Для запитання почніть з `Are you`.*
+- ✅ **I'm jealous.**
+- ❌ I'm not jealous. — *З not виходить «Я не заздрю». А фото з пляжу зачепили: I'm jealous.*
+- ❌ He's jealous. — *Мова про вас, потрібно I'm: I'm jealous.*
 
 ---
 
 ## Інтро 3
 
-### Терпляче чекає
+### Дзвінок від лікаря
 
-`patient` — «терплячий». Олег спокійно чекає й не квапить вас: `He is patient`. А `formal` — «строгий, офіційний за стилем». Запитання `Is it formal?` допоможе уточнити формат зустрічі. Поки відповіді немає, терпіння Олега корисніше за ще одну краватку.
+Сестра чекає дзвінка від лікаря з результатами аналізів. Вона сидить на краю стільця, плечі підняті, а пальці стиснуті в кулаки. tense — «напружений». She is tense — «Вона напружена». Про сестру кажемо She.
 
-**Олег спокійно чекає, поки ви з’ясовуєте формат, і не квапить вас. Коротко скажіть, що він терплячий.**
+**Мама тихо питає вас у коридорі, як сестра. Скажіть повною фразою, що вона напружена.**
 
-- ✅ **He's patient.**
-- ❌ She's patient. — *Ви говорите про Олега: `He's`.*
-- ❌ He's uncertain. — *Це про сумнів. Тут потрібно відзначити терпіння.*
+- ✅ **She is tense.**
+- ❌ He is tense. — *Мова про сестру, потрібно She: She is tense.*
+- ❌ She is not tense. — *З not виходить «Вона не напружена». А пальці стиснуті в кулаки: She is tense.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви поки сумніваєтеся у виборі вбрання. Скажіть повною фразою, що не впевнені**
+**1 · Картка слова — anxious**
+<!-- interaction_id: en:lesson-02:session-43:word:anxious; family: word_card -->
+> **anxious** — тривожний, неспокійний. I am anxious — «Мені тривожно». Про людину, голос, очікування.
+
+**2 · Сестра питає, що з вами. Скажіть їй повною фразою, що вам тривожно.**
 <!-- interaction_id: en:lesson-02:session-43:i01; family: phrase_builder -->
-Плитки: `uncertain` `am` `I` `is` → **I am uncertain.**
-*(плитка `is` зайва: тут потрібно `am` — `I am uncertain.`)*
+Плитки: `anxious` `am` `I` `is` → **I am anxious.**
+*(плитка `is` зайва: тут потрібно `am` — `I am anxious.`)*
 
-**2 · Послухайте фразу про Олега**
+**3 · Послухайте, що сестра каже про себе**
 <!-- interaction_id: en:lesson-02:session-43:i02; family: listen_choose -->
-🔊 *He is patient.* → **He is patient.** · He is uncertain. · He is polite.
-- He is uncertain. — *У записі останнє слово — `patient`, а в цьому варіанті — `uncertain`.*
-- He is polite. — *У записі останнє слово — `patient`, а в цьому варіанті — `polite`.*
+🔊 *I am nervous.* → **I am nervous.** · I am calm. · I am busy.
+- I am calm. — *У записі останнє слово — `nervous`, а в цьому варіанті — `calm`.*
+- I am busy. — *У записі останнє слово — `nervous`, а в цьому варіанті — `busy`.*
 
-**3 · Запитайте Анну, чи вона не впевнена у виборі**
+**4 · Картка слова — jealous**
+<!-- interaction_id: en:lesson-02:session-43:word:jealous; family: word_card -->
+> **jealous** — заздрісний, якому прикро, що в іншого краще. I'm jealous — «Я заздрю». Про друга, брата, подругу.
+
+**5 · Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить**
 <!-- interaction_id: en:lesson-02:session-43:i03; family: context_gap_grammar -->
-___ you uncertain? → **Are** · Am · Is
+___ you jealous? → **Are** · Am · Is
 - Am — *З `you` потрібно `Are`.*
-- Is — *Запитання — `Are you uncertain?`.*
+- Is — *Питання — `Are you jealous?`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-43:i04; family: speed_match -->
-uncertain — невпевнений · patient — терплячий · formal — строгий, офіційний за стилем · informal — неформальний
+anxious — тривожний · jealous — заздрісний · tense — напружений · nervous — нервовий
 
-**5 · Послухайте й складіть коротку відповідь**
+**7 · Картка слова — tense**
+<!-- interaction_id: en:lesson-02:session-43:word:tense; family: word_card -->
+> **tense** — напружений, затиснутий. She is tense — «Вона напружена». Про людину, плечі, розмову, тишу.
+
+**8 · Послухайте, що мама каже про сестру, і складіть фразу**
 <!-- interaction_id: en:lesson-02:session-43:i05; family: listen_build_dictation -->
-🔊 *Yes, I am.* Плитки: `am` `I` `Yes,` `No,` → **Yes, I am.**
-*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, I am.`)*
+🔊 *She is not tense.* Плитки: `tense` `not` `is` `She` `are` → **She is not tense.**
+*(плитка `are` зайва: тут потрібно `is` — `She is not tense.`)*
 
-**6 · Олег згадав учасника зустрічі, який сумнівається, але не назвав імені. Запитайте, хто не впевнений**
+**9 · Мама каже, що одній людині в родині сьогодні особливо тривожно. Запитайте її, хто тривожний.**
 <!-- interaction_id: en:lesson-02:session-43:i06; family: phrase_builder -->
-Плитки: `uncertain` `is` `Who` `Where` → **Who is uncertain?**
-*(плитка `Where` зайва: тут потрібно `Who` — `Who is uncertain?`)*
+Плитки: `anxious` `is` `Who` `Where` → **Who is anxious?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is anxious?`)*
 
-**7 · Ви ще не вирішили, що вдягнути. Коротко повідомте, що не впевнені**
+**10 · Подруга показує нові кросівки. Вам такі теж хочеться. Скажіть їй коротко, що ви заздрите.**
 <!-- interaction_id: en:lesson-02:session-43:i07; family: scripted_repeat_compare -->
-🎙 **I'm uncertain.**
+🎙 **I'm jealous.**
 
-**8 · Олег терпляче чекає. На «Is he patient?» доповніть коротку відповідь «так»**
+**11 · Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»**
 <!-- interaction_id: en:lesson-02:session-43:i08; family: context_gap_grammar -->
-Yes, he ___. → **is** · am · are
-- am — *З `he` потрібно `is`.*
-- are — *Відповідь — `Yes, he is`.*
+Yes, I ___. → **am** · is · are
+- is — *З `I` потрібно `am`.*
+- are — *Відповідь — `Yes, I am`.*
 
-**9 · Послухайте запитання про зустріч**
+**12 · Картка слова — cheerful**
+<!-- interaction_id: en:lesson-02:session-43:word:cheerful; family: word_card -->
+> **cheerful** — веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок.
+
+**13 · Послухайте, що сестра каже про брата**
 <!-- interaction_id: en:lesson-02:session-43:i09; family: listen_choose -->
-🔊 *Is it formal?* → **Is it formal?** · Is it informal? · Is it official?
-- Is it informal? — *У записі останнє слово — `formal`, а в цьому варіанті — `informal`.*
-- Is it official? — *У записі останнє слово — `formal`, а в цьому варіанті — `official`.*
+🔊 *He is cheerful.* → **He is cheerful.** · He is nervous. · He is jealous.
+- He is nervous. — *У записі останнє слово — `cheerful`, а в цьому варіанті — `nervous`.*
+- He is jealous. — *У записі останнє слово — `cheerful`, а в цьому варіанті — `jealous`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-43:i10; family: speed_match -->
-formal — строгий, офіційний за стилем · informal — неформальний · patient — терплячий · uncertain — невпевнений
+cheerful — веселий, бадьорий · tense — напружений · jealous — заздрісний · tired — втомлений
 
-**11 · Послухайте й складіть фразу про формат**
+**15 · Послухайте, що мама каже про батьків, і складіть фразу**
 <!-- interaction_id: en:lesson-02:session-43:i11; family: listen_build_dictation -->
-🔊 *It is not formal.* Плитки: `formal` `not` `is` `It` `are` → **It is not formal.**
-*(плитка `are` зайва: тут потрібно `is` — `It is not formal.`)*
+🔊 *They are not anxious.* Плитки: `anxious` `not` `are` `They` `is` → **They are not anxious.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not anxious.`)*
 
-**12 · Ви ще не знайомі з Олегом. Запитайте Анну, чи він терплячий**
+**16 · Сестра каже, що один із гостей з ранку веселий. Запитайте її, хто веселий.**
 <!-- interaction_id: en:lesson-02:session-43:i12; family: phrase_builder -->
-Плитки: `patient` `he` `Is` `Are` → **Is he patient?**
-*(плитка `Are` зайва: тут потрібно `Is` — `Is he patient?`)*
+Плитки: `cheerful` `is` `Who` `Where` → **Who is cheerful?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is cheerful?`)*
 
-**13 · Організатор підтвердив: зустріч зі строгим офіційним форматом. Коротко повідомте про це**
+**17 · Ранок понеділка: брат уже на ногах і сміється. Скажіть коротко, що він бадьорий і веселий.**
 <!-- interaction_id: en:lesson-02:session-43:i13; family: scripted_repeat_compare -->
-🎙 **It's formal.**
+🎙 **He's cheerful.**
 
-**14 · Анна досі сумнівається у виборі вбрання. Скажіть, що вона не впевнена**
+**18 · Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно**
 <!-- interaction_id: en:lesson-02:session-43:i14; family: context_gap_grammar -->
-She ___ uncertain. → **is** · am · are
-- am — *З `She` потрібно `is`.*
-- are — *Фраза — `She is uncertain`.*
+I ___ not anxious. → **am** · is · are
+- is — *З `I` потрібно `am`.*
+- are — *Фраза — `I am not anxious`.*
 
-**15 · Послухайте запитання**
+**19 · Послухайте запитання подруги**
 <!-- interaction_id: en:lesson-02:session-43:i15; family: listen_choose -->
-🔊 *Are they uncertain?* → **Are they uncertain?** · Are they patient? · Are they polite?
-- Are they patient? — *У записі останнє слово — `uncertain`, а в цьому варіанті — `patient`.*
-- Are they polite? — *У записі останнє слово — `uncertain`, а в цьому варіанті — `polite`.*
+🔊 *Are you tense?* → **Are you tense?** · Are you jealous? · Are you cheerful?
+- Are you jealous? — *У записі останнє слово — `tense`, а в цьому варіанті — `jealous`.*
+- Are you cheerful? — *У записі останнє слово — `tense`, а в цьому варіанті — `cheerful`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-43:i16; family: speed_match -->
-patient — терплячий · uncertain — невпевнений · informal — неформальний · formal — строгий, офіційний за стилем
+anxious — тривожний · cheerful — веселий, бадьорий · tense — напружений · calm — спокійний
 
-**17 · Анна знову розглядає два вбрання. Запитайте її, чи вона не впевнена у виборі**
+**21 · Сестра сидить, стиснувши кулаки, перед дзвінком. Запитайте її, чи вона напружена.**
 <!-- interaction_id: en:lesson-02:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Are you uncertain?**
-
+🎙 **Are you tense?**

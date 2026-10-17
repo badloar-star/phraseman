@@ -215,7 +215,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+      "prompt": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-39:i03:r1",
@@ -232,12 +232,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+      "accessibilityLabel": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
-          "uk": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово"
+          "ru": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
+          "uk": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово"
         },
         "gappedTargetPhrase": "She ___ embarrassed.",
         "gapOptions": [
@@ -254,12 +254,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+        "testedDimension": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-39:i03:r2",
             "correct": false,
-            "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+            "testedDimension": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
             "feedbackByLocale": {
               "ru": "После `She` нужно `is`.",
               "uk": "Після `She` потрібно `is`."
@@ -268,7 +268,7 @@
           {
             "responseId": "en:lesson-01:session-39:i03:r3",
             "correct": false,
-            "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+            "testedDimension": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
             "feedbackByLocale": {
               "ru": "Здесь `She is embarrassed`.",
               "uk": "Тут `She is embarrassed`."
@@ -784,13 +784,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+      "prompt": "После вечера вы с подругой очень рады, как всё прошло. Послушайте и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-39:i11:audio"
       ],
-      "accessibilityLabel": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+      "accessibilityLabel": "После вечера вы с подругой очень рады, как всё прошло. Послушайте и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -811,7 +811,7 @@
           {
             "responseId": "en:lesson-01:session-39:i11:tile:d1",
             "correct": false,
-            "testedDimension": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+            "testedDimension": "После вечера вы с подругой очень рады, как всё прошло. Послушайте и соберите фразу",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `We are thrilled.`",
               "uk": "тут потрібно `are` — `We are thrilled.`"
@@ -908,7 +908,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+      "prompt": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-39:i14:r1",
@@ -925,12 +925,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+      "accessibilityLabel": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
-          "uk": "Ви й подруга подолали страх. Похваліть вас обох за сміливість"
+          "ru": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
+          "uk": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»"
         },
         "gappedTargetPhrase": "We ___ brave.",
         "gapOptions": [
@@ -947,12 +947,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+        "testedDimension": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-39:i14:r2",
             "correct": false,
-            "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+            "testedDimension": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
             "feedbackByLocale": {
               "ru": "После `We` нужно `are`.",
               "uk": "Після `We` потрібно `are`."
@@ -961,7 +961,7 @@
           {
             "responseId": "en:lesson-01:session-39:i14:r3",
             "correct": false,
-            "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+            "testedDimension": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
             "feedbackByLocale": {
               "ru": "Здесь `We are brave`.",
               "uk": "Тут `We are brave`."
@@ -1168,5 +1168,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dc513328059d3d0b487fff31d97f67fd60a768c9683133e5cc1cb980b6f67056"
+  "learnerFingerprint": "ad66207e03e9c119c9aa9f1d98130b43f422f2c1054424825157524699464d65"
 }

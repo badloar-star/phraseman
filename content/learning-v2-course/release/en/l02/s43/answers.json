@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-43:word:anxious",
+    "correctText": "anxious",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-43:i01",
-    "correctText": "I am uncertain.",
+    "correctText": "I am anxious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i02",
-    "correctText": "He is patient.",
+    "correctText": "I am nervous.",
     "correctResponseId": "en:lesson-02:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:word:jealous",
+    "correctText": "jealous",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i03",
@@ -16,72 +26,82 @@
   },
   {
     "interactionId": "en:lesson-02:session-43:i04",
-    "correctText": "en:lesson-02:session-43:i04:p1=uncertain\nen:lesson-02:session-43:i04:p2=patient\nen:lesson-02:session-43:i04:p3=formal\nen:lesson-02:session-43:i04:p4=informal",
+    "correctText": "en:lesson-02:session-43:i04:p1=anxious\nen:lesson-02:session-43:i04:p2=jealous\nen:lesson-02:session-43:i04:p3=tense\nen:lesson-02:session-43:i04:p4=nervous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:word:tense",
+    "correctText": "tense",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i05",
-    "correctText": "Yes, I am.",
+    "correctText": "She is not tense.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i06",
-    "correctText": "Who is uncertain?",
+    "correctText": "Who is anxious?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i07",
-    "correctText": "I'm uncertain.",
+    "correctText": "I'm jealous.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i08",
-    "correctText": "is",
+    "correctText": "am",
     "correctResponseId": "en:lesson-02:session-43:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-43:word:cheerful",
+    "correctText": "cheerful",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-43:i09",
-    "correctText": "Is it formal?",
+    "correctText": "He is cheerful.",
     "correctResponseId": "en:lesson-02:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i10",
-    "correctText": "en:lesson-02:session-43:i10:p1=formal\nen:lesson-02:session-43:i10:p2=informal\nen:lesson-02:session-43:i10:p3=patient\nen:lesson-02:session-43:i10:p4=uncertain",
+    "correctText": "en:lesson-02:session-43:i10:p1=cheerful\nen:lesson-02:session-43:i10:p2=tense\nen:lesson-02:session-43:i10:p3=jealous\nen:lesson-02:session-43:i10:p4=tired",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i11",
-    "correctText": "It is not formal.",
+    "correctText": "They are not anxious.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i12",
-    "correctText": "Is he patient?",
+    "correctText": "Who is cheerful?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i13",
-    "correctText": "It's formal.",
+    "correctText": "He's cheerful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i14",
-    "correctText": "is",
+    "correctText": "am",
     "correctResponseId": "en:lesson-02:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i15",
-    "correctText": "Are they uncertain?",
+    "correctText": "Are you tense?",
     "correctResponseId": "en:lesson-02:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-43:i16",
-    "correctText": "en:lesson-02:session-43:i16:p1=patient\nen:lesson-02:session-43:i16:p2=uncertain\nen:lesson-02:session-43:i16:p3=informal\nen:lesson-02:session-43:i16:p4=formal",
+    "correctText": "en:lesson-02:session-43:i16:p1=anxious\nen:lesson-02:session-43:i16:p2=cheerful\nen:lesson-02:session-43:i16:p3=tense\nen:lesson-02:session-43:i16:p4=calm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-43:i17",
-    "correctText": "Are you uncertain?",
+    "correctText": "Are you tense?",
     "correctResponseId": null
   }
 ]

@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+      "prompt": "На пирсе провалились доски. Соберите предупреждение для брата",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+      "accessibilityLabel": "На пирсе провалились доски. Соберите предупреждение для брата",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is dangerous.",
         "localizedMeaning": {
-          "ru": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
-          "uk": "На пірсі провалилися дошки. Складіть попередження для Тьоми"
+          "ru": "На пирсе провалились доски. Соберите предупреждение для брата",
+          "uk": "На пірсі провалилися дошки. Складіть попередження для брата"
         },
         "orderedTokens": [
           "It",
@@ -76,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-47:i01:tile:d1",
             "correct": false,
-            "testedDimension": "На пирсе провалились доски. Соберите предупреждение для Тёмы",
+            "testedDimension": "На пирсе провалились доски. Соберите предупреждение для брата",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `It is dangerous.`",
               "uk": "тут потрібно `is` — `It is dangerous.`"
@@ -446,17 +446,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+      "prompt": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите подруге, что они опасны",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+      "accessibilityLabel": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите подруге, что они опасны",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are dangerous.",
         "localizedMeaning": {
-          "ru": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
-          "uk": "Дві старі драбини на пірс хитаються й можуть упасти. Скажіть Ані, що вони небезпечні"
+          "ru": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите подруге, что они опасны",
+          "uk": "Дві старі драбини на пірс хитаються й можуть упасти. Скажіть подрузі, що вони небезпечні"
         },
         "orderedTokens": [
           "They",
@@ -470,7 +470,7 @@
           {
             "responseId": "en:lesson-01:session-47:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите Ане, что они опасны",
+            "testedDimension": "Две старые лестницы на пирс шатаются и могут рухнуть. Скажите подруге, что они опасны",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `They are dangerous.`",
               "uk": "тут потрібно `are` — `They are dangerous.`"
@@ -533,13 +533,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Аня хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый",
+      "prompt": "Подруга хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-47:i07:audio"
       ],
-      "accessibilityLabel": "Аня хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый",
+      "accessibilityLabel": "Подруга хочет опереться на железный столб у пирса, а он весь рыжий. Скажите ей коротко, что столб ржавый",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -566,7 +566,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+      "prompt": "Брат боится воды, но всё-таки зашёл по колено вместе с подругой. Похвалите его смелость",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-47:i08:r1",
@@ -583,12 +583,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+      "accessibilityLabel": "Брат боится воды, но всё-таки зашёл по колено вместе с подругой. Похвалите его смелость",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
-          "uk": "Тьома боїться води, але все-таки зайшов по коліна разом з Анею. Похваліть його сміливість"
+          "ru": "Брат боится воды, но всё-таки зашёл по колено вместе с подругой. Похвалите его смелость",
+          "uk": "Брат боїться води, але все-таки зайшов по коліна разом з подругою. Похваліть його сміливість"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -605,21 +605,21 @@
             "text": "deep"
           }
         ],
-        "testedDimension": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+        "testedDimension": "Брат боится воды, но всё-таки зашёл по колено вместе с подругой. Похвалите его смелость",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+            "testedDimension": "Брат боится воды, но всё-таки зашёл по колено вместе с подругой. Похвалите его смелость",
             "feedbackByLocale": {
-              "ru": "Так вы скажете, что Тёма опасен. Хвалим смелость: `brave`.",
-              "uk": "Так ви скажете, що Тьома небезпечний. Хвалимо сміливість: `brave`."
+              "ru": "Так вы скажете, что мальчик опасен. Хвалим смелость: `brave`.",
+              "uk": "Так ви скажете, що хлопчик небезпечний. Хвалимо сміливість: `brave`."
             }
           },
           {
             "responseId": "en:lesson-01:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Тёма боится воды, но всё-таки зашёл по колено вместе с Аней. Похвалите его смелость",
+            "testedDimension": "Брат боится воды, но всё-таки зашёл по колено вместе с подругой. Похвалите его смелость",
             "feedbackByLocale": {
               "ru": "`deep` — «глубокий», это про воду. Смелость — `brave`.",
               "uk": "`deep` — «глибокий», це про воду. Сміливість — `brave`."
@@ -830,17 +830,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+      "prompt": "Подруга первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+      "accessibilityLabel": "Подруга первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is brave.",
         "localizedMeaning": {
-          "ru": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
-          "uk": "Аня першою спустилася слизькими сходами й подала руку братові. Назвіть її сміливою"
+          "ru": "Подруга первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+          "uk": "Подруга першою спустилася слизькими сходами й подала руку братові. Назвіть її сміливою"
         },
         "orderedTokens": [
           "She",
@@ -854,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-47:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Аня первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
+            "testedDimension": "Подруга первой спустилась по скользким ступеням и подала руку брату. Назовите её смелой",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is brave.`",
               "uk": "тут потрібно `is` — `She is brave.`"
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Из досок пирса торчат старые гвозди в рыжих пятнах. Скажите Ане, что они ржавые",
+      "prompt": "Из досок пирса торчат старые гвозди в рыжих пятнах. Скажите подруге, что они ржавые",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-47:i13:audio"
       ],
-      "accessibilityLabel": "Из досок пирса торчат старые гвозди в рыжих пятнах. Скажите Ане, что они ржавые",
+      "accessibilityLabel": "Из досок пирса торчат старые гвозди в рыжих пятнах. Скажите подруге, что они ржавые",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -907,7 +907,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+      "prompt": "Одна доска у самой воды покрыта мокрым мхом. Предупредите брата о ней",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-47:i14:r1",
@@ -924,12 +924,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+      "accessibilityLabel": "Одна доска у самой воды покрыта мокрым мхом. Предупредите брата о ней",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
-          "uk": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте Тьому про неї"
+          "ru": "Одна доска у самой воды покрыта мокрым мхом. Предупредите брата о ней",
+          "uk": "Одна дошка біля самої води вкрита мокрим мохом. Попередьте брата про неї"
         },
         "gappedTargetPhrase": "It ___ slippery.",
         "gapOptions": [
@@ -946,12 +946,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+        "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите брата о ней",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-47:i14:r2",
             "correct": false,
-            "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+            "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите брата о ней",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -960,7 +960,7 @@
           {
             "responseId": "en:lesson-01:session-47:i14:r3",
             "correct": false,
-            "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите Тёму о ней",
+            "testedDimension": "Одна доска у самой воды покрыта мокрым мхом. Предупредите брата о ней",
             "feedbackByLocale": {
               "ru": "Доска одна, поэтому `It is`.",
               "uk": "Дошка одна, тому `It is`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "81f5d141a3bd97deec691e3e33f8705ff68e965f56400b8e3e57e6ffc0031fa8"
+  "learnerFingerprint": "48396d6f55bcdc42910ccf9d4bb64dbdbe20289c023111c0a3e2160d4b93bcf7"
 }

@@ -1,138 +1,154 @@
 # Английский · Урок 2 · Занятие 33 — Воскресенье в парке
 
-**Ситуация.** Вы с друзьями встретились в парке. Анна бегает, играет с мячом и предлагает ещё одну прогулку. Олег сегодня не пришёл.
+**Ситуация.** Вы с друзьями встретились в парке в воскресенье. Подруга бегает и играет с мячом, друг пришёл позже всех и сразу присоединился к игре, а вы после подъёма на холм никак не отдышитесь.
 
 **Что вы освоите:** сказать, что человек активный, и спросить о его состоянии
-**Новые слова:** active
+**Новые слова:** active, fit, breathless, energetic
+**Возвращаются:** okay, absent, awake, tired
 
 ---
 
 ## Интро 1
 
-### Много двигается
+### Ещё один круг
 
-`active` — «активный». Анна любит бегать и постоянно чем-то занимается: `She is active`. Она уже пробежала круг, поиграла с мячом и предлагает ещё пройтись. Вы пока активно ищете скамейку. Здесь `active` описывает человека, который много двигается и действует.
+Подруга уже пробежала круг по парку, поиграла в мяч и зовёт всех на следующий круг. active — «активный, много двигающийся». She is active — «Она активная».
 
-**Анна много двигается и охотно участвует в играх. Скажите полной фразой, что она активная.**
+**Друг удивляется, что подруга не садится отдохнуть. Скажите ему полной фразой, что она активная.**
 
 - ✅ **She is active.**
-- ❌ She active. — *Между `She` и `active` нужно `is`.*
-- ❌ She is not active. — *Это отрицает активность. В условии Анна активная.*
+- ❌ She active. — *Между She и active нужно is: She is active.*
+- ❌ She is not active. — *С not выходит «Она не активная». А подруга бегает уже час: She is active.*
 
 ---
 
 ## Интро 2
 
-### Всё в порядке?
+### Подъём на холм
 
-`okay` — «в порядке». Друг остановился после игры: `Are you okay?` — «Ты в порядке?» Если всё хорошо, он может ответить `Yes, I am`. Активность и самочувствие — не одно и то же: этим вопросом вы не спрашиваете, любит ли он бегать.
+Вы почти бегом поднялись на холм в парке и теперь стоите наверху. Дышать тяжело, говорить трудно. breathless — «запыхавшийся». I am breathless — «Я запыхался», коротко I'm breathless.
 
-**Анна остановилась и села на траву. Спросите её, всё ли с ней в порядке.**
+**Подруга спрашивает, как вы себя чувствуете. Скажите коротко, что вы запыхались.**
 
-- ✅ **Are you okay?**
-- ❌ Are you active? — *Это вопрос об активности, а вы спрашиваете о состоянии сейчас.*
-- ❌ You are okay. — *Это сообщение. Для вопроса поставьте `Are` перед `you`.*
+- ✅ **I'm breathless.**
+- ❌ I'm not breathless. — *С not выходит «Я не запыхался». А вы еле дышите: I'm breathless.*
+- ❌ I breathless. — *Нужна связка: I am или I'm breathless.*
 
 ---
 
 ## Интро 3
 
-### Кого нет
+### Друг пришёл позже всех
 
-`absent` — «отсутствующий». Олег не пришёл на встречу: `He is absent`. Вы хотите узнать, кого ещё нет: `Who is absent?`. А если хотите выяснить, где Олег, спросите `Where is he?`. Отсутствие не объясняет ни место, ни причину.
+Друг приехал в парк после рабочей недели, но сразу побежал играть с детьми. Он не устаёт, шутит и зовёт всех за собой. energetic — «энергичный, полный сил». Is he energetic? — «Он энергичный?»
 
-**Вы видите, что собрались не все, но пока не знаете, кого нет. Спросите, кто отсутствует.**
+**Вы удивлены, как много у друга сил. Спросите подругу, энергичный ли он.**
 
-- ✅ **Who is absent?**
-- ❌ Where is he? — *Это «Где он?» Вы пока хотите узнать, кого нет.*
-- ❌ Who absent? — *После `Who` здесь нужно `is`.*
+- ✅ **Is he energetic?**
+- ❌ He is energetic. — *Так звучит утверждение «Он энергичный». Чтобы спросить, ставим Is вперёд: Is he energetic?*
+- ❌ Are he energetic? — *С he нужно is: Is he energetic?*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Анна много двигается и участвует во всех играх. Скажите полной фразой, что она активная**
+**1 · Карточка слова — active**
+<!-- interaction_id: en:lesson-02:session-33:word:active; family: word_card -->
+> **active** — активный, много двигается. She is active — «Она активная». О человеке, который любит бегать, играть, ходить пешком.
+
+**2 · Двое друзей каждое утро бегают по парку. Скажите полной фразой, что они активные**
 <!-- interaction_id: en:lesson-02:session-33:i01; family: phrase_builder -->
-Плитки: `active` `is` `She` `are` → **She is active.**
-*(плитка `are` лишняя: здесь нужно `is` — `She is active.`)*
+Плитки: `active` `are` `They` `is` → **They are active.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are active.`)*
 
-**2 · Послушайте фразу об Олеге**
+**3 · Карточка слова — fit**
+<!-- interaction_id: en:lesson-02:session-33:word:fit; family: word_card -->
+> **fit** — в хорошей физической форме. She is fit — «Она в хорошей форме». О человеке, который регулярно тренируется.
+
+**4 · Послушайте фразу о подруге**
 <!-- interaction_id: en:lesson-02:session-33:i02; family: listen_choose -->
-🔊 *He is absent.* → **He is absent.** · He is active. · He is okay.
-- He is active. — *В записи последнее слово — `absent`, а в этом варианте — `active`.*
-- He is okay. — *В записи последнее слово — `absent`, а в этом варианте — `okay`.*
+🔊 *She is fit.* → **She is fit.** · She is tired. · She is awake.
+- She is tired. — *В записи последнее слово — `fit`, а в этом варианте — `tired`.*
+- She is awake. — *В записи последнее слово — `fit`, а в этом варианте — `awake`.*
 
-**3 · Спросите Анну, всё ли с ней в порядке**
+**5 · Подруга села на траву. Спросите её, всё ли в порядке**
 <!-- interaction_id: en:lesson-02:session-33:i03; family: context_gap_grammar -->
 ___ you okay? → **Are** · Am · Is
 - Am — *С `you` нужно `Are`.*
 - Is — *Вопрос — `Are you okay?`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-33:i04; family: speed_match -->
-active — активный · okay — в порядке · absent — отсутствующий · awake — не спит
+active — активный · fit — в хорошей форме · breathless — запыхавшийся · energetic — энергичный
 
-**5 · Послушайте и соберите короткий ответ**
+**7 · Карточка слова — breathless**
+<!-- interaction_id: en:lesson-02:session-33:word:breathless; family: word_card -->
+> **breathless** — запыхавшийся, не может отдышаться. I am breathless — «Я запыхался». О человеке после бега или подъёма по лестнице.
+
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-33:i05; family: listen_build_dictation -->
-🔊 *Yes, she is.* Плитки: `is` `she` `Yes,` `No,` → **Yes, she is.**
-*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, she is.`)*
+🔊 *I am not breathless.* Плитки: `breathless` `not` `am` `I` `is` → **I am not breathless.**
+*(плитка `is` лишняя: здесь нужно `am` — `I am not breathless.`)*
 
-**6 · Олег не пришёл. Спросите, где он**
+**9 · Вы видите, что собрались не все. Спросите, кто отсутствует**
 <!-- interaction_id: en:lesson-02:session-33:i06; family: phrase_builder -->
-Плитки: `he` `is` `Where` `Who` → **Where is he?**
-*(плитка `Who` лишняя: здесь нужно `Where` — `Where is he?`)*
+Плитки: `absent` `is` `Who` `What` → **Who is absent?**
+*(плитка `What` лишняя: здесь нужно `Who` — `Who is absent?`)*
 
-**7 · Вы просто присели отдохнуть, с вами всё хорошо. Коротко скажите, что вы в порядке**
+**10 · Карточка слова — energetic**
+<!-- interaction_id: en:lesson-02:session-33:word:energetic; family: word_card -->
+> **energetic** — энергичный, полный сил. He is energetic — «Он энергичный». О человеке, который полон сил и не устаёт.
+
+**11 · Друг бегает с детьми и не устаёт. Коротко скажите подруге, что он энергичный**
 <!-- interaction_id: en:lesson-02:session-33:i07; family: scripted_repeat_compare -->
-🎙 **I'm okay.**
+🎙 **He's energetic.**
 
-**8 · Вы ищете активного участника для команды. Спросите, кто активный**
+**12 · Подруга спрашивает: «Is he okay?» Друг отдыхает на скамейке, с ним всё хорошо. Дополните короткое «да»**
 <!-- interaction_id: en:lesson-02:session-33:i08; family: context_gap_grammar -->
-Who ___ active? → **is** · am · it
-- am — *Здесь вопрос `Who is active?`.*
-- it — *После `Who` нужно `is`.*
+Yes, he ___. → **is** · am · are
+- am — *С `he` нужно `is`.*
+- are — *Ответ — `Yes, he is`.*
 
-**9 · Послушайте фразу о двух друзьях**
+**13 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-33:i09; family: listen_choose -->
-🔊 *They are okay.* → **They are okay.** · They are active. · They are absent.
-- They are active. — *В записи последнее слово — `okay`, а в этом варианте — `active`.*
-- They are absent. — *В записи последнее слово — `okay`, а в этом варианте — `absent`.*
+🔊 *Are you breathless?* → **Are you breathless?** · Are you energetic? · Are you awake?
+- Are you energetic? — *В записи последнее слово — `breathless`, а в этом варианте — `energetic`.*
+- Are you awake? — *В записи последнее слово — `breathless`, а в этом варианте — `awake`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-33:i10; family: speed_match -->
-absent — отсутствующий · active — активный · awake — не спит · okay — в порядке
+okay — в порядке · absent — отсутствующий · awake — не спит · tired — уставший
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-02:session-33:i11; family: listen_build_dictation -->
-🔊 *They are not active.* Плитки: `active` `not` `are` `They` `is` → **They are not active.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are not active.`)*
+🔊 *Is she okay?* Плитки: `okay` `she` `Is` `Who` → **Is she okay?**
+*(плитка `Who` лишняя: здесь нужно `Is` — `Is she okay?`)*
 
-**12 · Олег пришёл и стоит рядом. На «Is he absent?» ответьте коротким «нет»**
+**16 · Друг пришёл и стоит рядом. На «Is he absent?» ответьте коротким «нет»**
 <!-- interaction_id: en:lesson-02:session-33:i12; family: phrase_builder -->
 Плитки: `not` `is` `he` `No,` `Yes,` → **No, he is not.**
 *(плитка `Yes,` лишняя: здесь нужно `No,` — `No, he is not.`)*
 
-**13 · Двое друзей любят спорт и много двигаются. Коротко скажите, что они активные**
+**17 · Двое друзей каждый день тренируются. Коротко скажите, что они в хорошей форме**
 <!-- interaction_id: en:lesson-02:session-33:i13; family: scripted_repeat_compare -->
-🎙 **They're active.**
+🎙 **They're fit.**
 
-**14 · Анна на встрече, просто отошла за мячом. Отрицайте, что она отсутствует**
+**18 · Подруга на встрече, она просто отошла за мячом. Скажите, что она не отсутствует**
 <!-- interaction_id: en:lesson-02:session-33:i14; family: context_gap_grammar -->
 She ___ not absent. → **is** · am · are
 - am — *С `She` нужно `is`.*
 - are — *Фраза — `She is not absent`.*
 
-**15 · Послушайте вопрос**
+**19 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-33:i15; family: listen_choose -->
-🔊 *Is she active?* → **Is she active?** · Is she absent? · Is she okay?
-- Is she absent? — *В записи последнее слово — `active`, а в этом варианте — `absent`.*
-- Is she okay? — *В записи последнее слово — `active`, а в этом варианте — `okay`.*
+🔊 *Is she active?* → **Is she active?** · Is she fit? · Is she energetic?
+- Is she fit? — *В записи последнее слово — `active`, а в этом варианте — `fit`.*
+- Is she energetic? — *В записи последнее слово — `active`, а в этом варианте — `energetic`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-33:i16; family: speed_match -->
-okay — в порядке · awake — не спит · active — активный · absent — отсутствующий
+fit — в хорошей форме · energetic — энергичный · okay — в порядке · absent — отсутствующий
 
-**17 · Олег остановился после игры. Вы хотите убедиться, что с ним всё хорошо. Спросите его об этом**
+**21 · Друг остановился после игры. Вы хотите убедиться, что с ним всё хорошо. Спросите его об этом**
 <!-- interaction_id: en:lesson-02:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Are you okay?**
-

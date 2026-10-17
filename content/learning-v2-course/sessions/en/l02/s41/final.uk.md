@@ -1,138 +1,154 @@
-# Англійська · Урок 2 · Заняття 41 — Карта для прогулянки
+# Англійська · Урок 2 · Заняття 41 — Доглянути за дітьми
 
-**Ситуація.** Ваш клуб прогулянок готує маршрут районом. Анна перевірила карту на місці, а Олег зізнався, що частину відстаней записав з пам’яті. Ви вибираєте, яким відомостям можна довіряти.
+**Ситуація.** Сусіди поїхали на вечір і попросили вас з подругою посидіти з дітьми та великим псом. Ви знайомитеся з кожним із них, розмовляєте з мамою по телефону й упродовж вечора описуєте, хто який.
 
-**Що ви опануєте:** назвати відомості точними та відрізнити точність від чесності
-**Нові слова:** accurate
+**Що ви опануєте:** описати характер людини чи тварини й запитати про нього
+**Нові слова:** stubborn, gentle, selfish, naughty
+**Повертаються:** kind, polite, tired, hungry, sleepy
 
 ---
 
 ## Інтро 1
 
-### Відповідає дійсності
+### Куртка на морозі
 
-`accurate` — «точний»: відомості правильно передають дійсність. Анна перевірила карту: вулиці й відстані вказано правильно. `It is accurate` — «Вона точна». Гарна карта ще не обов’язково точна: намальований на ній міст не допоможе перейти річку, якщо мосту немає.
+Надворі мінус п’ять, а молодший брат подруги стоїть біля дверей у самій футболці й повторює «ні». Куртку він вдягати не хоче. stubborn — «впертий». He is stubborn — «Він впертий». Про хлопчика кажемо He.
 
-**Анна перевірила карту на місці: вулиці й відстані вказано правильно. Скажіть повною фразою, що карта точна.**
+**Подруга питає, чому ви так довго не виходите. Скажіть повною фразою, що її брат впертий.**
 
-- ✅ **It is accurate.**
-- ❌ It accurate. — *Між `It` і `accurate` потрібно `is`.*
-- ❌ It is not accurate. — *Це заперечує точність. За умовою карту перевірили, дані правильні.*
+- ✅ **He is stubborn.**
+- ❌ She is stubborn. — *Мова про брата, потрібно He: He is stubborn.*
+- ❌ He stubborn. — *Між He і stubborn потрібно is: He is stubborn.*
 
 ---
 
 ## Інтро 2
 
-### Чесно — не завжди точно
+### Великий пес
 
-`honest` — «чесний». Олег не приховує, що записав відстані з пам’яті: `He is honest`. Але чесна людина теж може помилитися. Про людину тут кажемо `honest`, а про точність її відомостей запитуємо `Are they accurate?` — «Вони точні?»
+Сусідський пес завбільшки з теля. Він ходить кімнатою обережно, обходить малюка й тихо кладе морду вам на коліна. gentle — «лагідний, м’який у поводженні». Is he gentle? — «Він лагідний?»
 
-**Олег відкрито визнав, що не перевіряв відстані. Коротко скажіть, що він чесний.**
+**Ви вперше залишаєтеся з цим псом. Зателефонуйте господареві й запитайте, чи лагідний пес.**
 
-- ✅ **He's honest.**
-- ❌ She's honest. — *Ви говорите про Олега: `He's`.*
-- ❌ He's active. — *Це «Він активний». Тут ви відзначаєте чесність.*
+- ✅ **Is he gentle?**
+- ❌ He is gentle. — *Так звучить твердження «Він лагідний». Щоб запитати, ставимо Is наперед: Is he gentle?*
+- ❌ Are he gentle? — *З he потрібно is: Is he gentle?*
 
 ---
 
 ## Інтро 3
 
-### Клуб продовжує працювати
+### Остання цукерка
 
-`active` — «активний, діючий». Клуб регулярно влаштовує прогулянки: `It is active`. Якщо ви хочете уточнити, чи продовжує він діяти, запитайте `Is it active?`. Коротке `Yes, it is` підтверджує це. Зараз вам потрібно дізнатися про роботу клубу, а не про точність карти.
+Дві дівчинки знайшли у вазі одну цукерку. Старша одразу розламала її навпіл і віддала меншій половину. selfish — «егоїстичний, який думає тільки про себе». They're not selfish — «Вони не егоїстки».
 
-**Ви знайшли стару сторінку клубу. Запитайте, чи діє клуб зараз.**
+**Мама дівчаток по телефону питає, як вони себе поводили. Скажіть коротко, що вони не егоїстки.**
 
-- ✅ **Is it active?**
-- ❌ Is it accurate? — *Це запитання про точність. Ви запитуєте, чи діє клуб.*
-- ❌ It is active. — *Це твердження. Ви поки не знаєте й хочете запитати.*
+- ✅ **They're not selfish.**
+- ❌ They're selfish. — *Без not це «Вони егоїстки». А дівчатка поділилися: They're not selfish.*
+- ❌ She's not selfish. — *Дівчаток дві, потрібно They're: They're not selfish.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Перевірена карта правильно показує вулиці й відстані. Скажіть повною фразою, що вона точна**
+**1 · Картка слова — stubborn**
+<!-- interaction_id: en:lesson-02:session-41:word:stubborn; family: word_card -->
+> **stubborn** — впертий, який не поступається, навіть якщо просять. He is stubborn — «Він впертий». Про дитину, віслюка, характер, суперечку.
+
+**2 · Мама хлопчика питає по телефону, чому він не виходить. Скажіть їй повною фразою, що він впертий.**
 <!-- interaction_id: en:lesson-02:session-41:i01; family: phrase_builder -->
-Плитки: `accurate` `is` `It` `are` → **It is accurate.**
-*(плитка `are` зайва: тут потрібно `is` — `It is accurate.`)*
+Плитки: `stubborn` `is` `He` `are` → **He is stubborn.**
+*(плитка `are` зайва: тут потрібно `is` — `He is stubborn.`)*
 
-**2 · Послухайте фразу про Олега**
+**3 · Послухайте, що мама каже про дітей**
 <!-- interaction_id: en:lesson-02:session-41:i02; family: listen_choose -->
-🔊 *He is honest.* → **He is honest.** · He is active. · He is brave.
-- He is active. — *У записі останнє слово — `honest`, а в цьому варіанті — `active`.*
-- He is brave. — *У записі останнє слово — `honest`, а в цьому варіанті — `brave`.*
+🔊 *They are tired.* → **They are tired.** · They are hungry. · They are sleepy.
+- They are hungry. — *У записі останнє слово — `tired`, а в цьому варіанті — `hungry`.*
+- They are sleepy. — *У записі останнє слово — `tired`, а в цьому варіанті — `sleepy`.*
 
-**3 · Уточніть, чи точні ці відомості про відстані**
+**4 · Картка слова — selfish**
+<!-- interaction_id: en:lesson-02:session-41:word:selfish; family: word_card -->
+> **selfish** — егоїстичний, який думає тільки про себе. They're not selfish — «Вони не егоїсти». Про людину, вчинок, дитину.
+
+**5 · Мама двох дівчаток розповідає, що вони посварилися через цукерку. Запитайте її, чи вони егоїстичні**
 <!-- interaction_id: en:lesson-02:session-41:i03; family: context_gap_grammar -->
-___ they accurate? → **Are** · Am · Is
+___ they selfish? → **Are** · Am · Is
 - Am — *З `they` потрібно `Are`.*
-- Is — *Запитання — `Are they accurate?`.*
+- Is — *Питання — `Are they selfish?`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-41:i04; family: speed_match -->
-accurate — точний · honest — чесний · active — діючий · relevant — такий, що стосується теми
+stubborn — впертий · gentle — лагідний · selfish — егоїстичний · kind — добрий
 
-**5 · Послухайте й складіть коротку відповідь**
+**7 · Картка слова — gentle**
+<!-- interaction_id: en:lesson-02:session-41:word:gentle; family: word_card -->
+> **gentle** — лагідний, м’який у поводженні. Is he gentle? — «Він лагідний?» Про собаку, лікаря, голос, дотик.
+
+**8 · Послухайте запитання подруги про пса і складіть його**
 <!-- interaction_id: en:lesson-02:session-41:i05; family: listen_build_dictation -->
-🔊 *Yes, they are.* Плитки: `are` `they` `Yes,` `No,` → **Yes, they are.**
-*(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, they are.`)*
+🔊 *Is he gentle?* Плитки: `gentle` `he` `Is` `Are` → **Is he gentle?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is he gentle?`)*
 
-**6 · У двох описах маршруту різні відстані. Запитайте Анну, що є точним**
+**9 · Ви чули, що сусідський хлопчик не ділиться іграшками. Запитайте його маму, чи він егоїстичний.**
 <!-- interaction_id: en:lesson-02:session-41:i06; family: phrase_builder -->
-Плитки: `accurate` `is` `What` `Where` → **What is accurate?**
-*(плитка `Where` зайва: тут потрібно `What` — `What is accurate?`)*
+Плитки: `selfish` `he` `Is` `Are` → **Is he selfish?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is he selfish?`)*
 
-**7 · Анна звірила схему з реальними вулицями: усе вказано правильно. Коротко повідомте, що схема точна**
+**10 · Дівчатка поділилися цукеркою і з вами. Скажіть коротко, що вони не егоїстки.**
 <!-- interaction_id: en:lesson-02:session-41:i07; family: scripted_repeat_compare -->
-🎙 **It's accurate.**
+🎙 **They're not selfish.**
 
-**8 · Клуб продовжує влаштовувати прогулянки. На «Is it active?» доповніть коротку відповідь «так»**
+**11 · Мама спитала: «Is he stubborn?» Хлопчик знову стоїть біля дверей і не йде. Доповніть коротке «так»**
 <!-- interaction_id: en:lesson-02:session-41:i08; family: context_gap_grammar -->
-Yes, it ___. → **is** · am · are
-- am — *З `it` потрібно `is`.*
-- are — *Відповідь — `Yes, it is`.*
+Yes, he ___. → **is** · am · are
+- am — *З `he` потрібно `is`.*
+- are — *Відповідь — `Yes, he is`.*
 
-**9 · Послухайте фразу про клуб**
+**12 · Картка слова — naughty**
+<!-- interaction_id: en:lesson-02:session-41:word:naughty; family: word_card -->
+> **naughty** — неслухняний, пустотливий, про дитину чи щеня. He is naughty — «Він пустує». Про хлопчика, щеня, кошеня.
+
+**13 · Послухайте, що мама каже про пса**
 <!-- interaction_id: en:lesson-02:session-41:i09; family: listen_choose -->
-🔊 *It is active.* → **It is active.** · It is accurate. · It is relevant.
-- It is accurate. — *У записі останнє слово — `active`, а в цьому варіанті — `accurate`.*
-- It is relevant. — *У записі останнє слово — `active`, а в цьому варіанті — `relevant`.*
+🔊 *He is naughty.* → **He is naughty.** · He is gentle. · He is stubborn.
+- He is gentle. — *У записі останнє слово — `naughty`, а в цьому варіанті — `gentle`.*
+- He is stubborn. — *У записі останнє слово — `naughty`, а в цьому варіанті — `stubborn`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-41:i10; family: speed_match -->
-honest — чесний · relevant — такий, що стосується теми · accurate — точний · active — діючий
+naughty — неслухняний · selfish — егоїстичний · gentle — лагідний · polite — ввічливий
 
-**11 · Послухайте й складіть фразу про відомості**
+**15 · Послухайте, що мама каже про близнюків, і складіть фразу**
 <!-- interaction_id: en:lesson-02:session-41:i11; family: listen_build_dictation -->
-🔊 *They are not accurate.* Плитки: `accurate` `not` `are` `They` `is` → **They are not accurate.**
-*(плитка `is` зайва: тут потрібно `are` — `They are not accurate.`)*
+🔊 *They are not stubborn.* Плитки: `stubborn` `not` `are` `They` `is` → **They are not stubborn.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not stubborn.`)*
 
-**12 · Ви ще не знайомі з Олегом. Запитайте Анну, чи він чесний**
+**16 · Мама каже, що в домі сьогодні накоїли лиха: подушка порвана, а штори стягнуті. Запитайте її, хто неслухняний.**
 <!-- interaction_id: en:lesson-02:session-41:i12; family: phrase_builder -->
-Плитки: `honest` `he` `Is` `Are` → **Is he honest?**
-*(плитка `Are` зайва: тут потрібно `Is` — `Is he honest?`)*
+Плитки: `naughty` `is` `Who` `Where` → **Who is naughty?**
+*(плитка `Where` зайва: тут потрібно `Who` — `Who is naughty?`)*
 
-**13 · Клуб регулярно збирається на прогулянки. Коротко повідомте, що він діє**
+**17 · Щеня схопило вашу рукавичку й побігло. Скажіть коротко, що воно неслухняне.**
 <!-- interaction_id: en:lesson-02:session-41:i13; family: scripted_repeat_compare -->
-🎙 **It's active.**
+🎙 **He's naughty.**
 
-**14 · На старій карті відстань до парку вказано неправильно. Скажіть, що карта неточна**
+**18 · Мама питає про старшого хлопчика. Він віддав вам свій стілець. Скажіть, що він не егоїст**
 <!-- interaction_id: en:lesson-02:session-41:i14; family: context_gap_grammar -->
-It ___ not accurate. → **is** · am · are
-- am — *З `It` потрібно `is`.*
-- are — *Фраза — `It is not accurate`.*
+He ___ not selfish. → **is** · am · are
+- am — *З `He` потрібно `is`.*
+- are — *Фраза — `He is not selfish`.*
 
-**15 · Послухайте запитання**
+**19 · Послухайте запитання мами**
 <!-- interaction_id: en:lesson-02:session-41:i15; family: listen_choose -->
-🔊 *Are they accurate?* → **Are they accurate?** · Are they relevant? · Are they official?
-- Are they relevant? — *У записі останнє слово — `accurate`, а в цьому варіанті — `relevant`.*
-- Are they official? — *У записі останнє слово — `accurate`, а в цьому варіанті — `official`.*
+🔊 *Are they naughty?* → **Are they naughty?** · Are they gentle? · Are they selfish?
+- Are they gentle? — *У записі останнє слово — `naughty`, а в цьому варіанті — `gentle`.*
+- Are they selfish? — *У записі останнє слово — `naughty`, а в цьому варіанті — `selfish`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-41:i16; family: speed_match -->
-active — діючий · accurate — точний · relevant — такий, що стосується теми · honest — чесний
+stubborn — впертий · naughty — неслухняний · selfish — егоїстичний · polite — ввічливий
 
-**17 · Олег надіслав нову карту маршруту. Запитайте, чи вона точна**
+**21 · Ви зустріли господаря пса на сходах. Запитайте його, чи лагідний пес.**
 <!-- interaction_id: en:lesson-02:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is it accurate?**
-
+🎙 **Is he gentle?**

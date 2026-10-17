@@ -91,7 +91,7 @@ locked — замкнений · expired — прострочений · tight �
 Плитки: `ready` `am` `I` `is` → **I am ready.**
 *(плитка `is` зайва: тут потрібно `am` — `I am ready.`)*
 
-**9 · Костя впустив телефон біля під’їзду, і по екрану пішли тріщини. Скажіть йому коротко, що екран тріснув**
+**9 · Брат впустив телефон біля під’їзду, і по екрану пішли тріщини. Скажіть йому коротко, що екран тріснув**
 <!-- interaction_id: en:lesson-01:session-56:i07; family: scripted_repeat_compare -->
 🎙 **It's cracked.**
 
@@ -99,13 +99,13 @@ locked — замкнений · expired — прострочений · tight �
 <!-- interaction_id: en:lesson-01:session-56:word:expired; family: word_card -->
 > **expired** — прострочений. It's expired — «Він прострочений». Про паспорт, квиток, йогурт, у яких минув термін.
 
-**11 · Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений**
+**11 · Касирка роздивляється студентський квиток брата: термін закінчився в червні. Скажіть братові, що квиток прострочений**
 <!-- interaction_id: en:lesson-01:session-56:i08; family: context_gap_grammar -->
 It is ___ . → **expired** · familiar · tight
 - familiar — *`familiar` — «знайомий». А в квитка минув термін: `expired`.*
 - tight — *`tight` — «тісний», це про взуття й одяг. Про квиток, у якого минув термін, каже `expired`.*
 
-**12 · Послухайте фразу про тітку Віру**
+**12 · Послухайте фразу про тітку**
 <!-- interaction_id: en:lesson-01:session-56:i09; family: listen_choose -->
 🔊 *She is responsible.* → **She is responsible.** · She is independent. · She is dependent.
 - She is independent. — *У записі останнє слово — `responsible`, а в цьому варіанті — `independent`.*
@@ -125,7 +125,7 @@ hungry — голодний · tired — втомлений · lost — забл
 Плитки: `forgetful` `is` `He` `are` → **He is forgetful.**
 *(плитка `are` зайва: тут потрібно `is` — `He is forgetful.`)*
 
-**16 · У потязі тітка Віра пригощає вас пиріжком із вишнею. Похваліть його коротко**
+**16 · У потязі тітка пригощає вас пиріжком із вишнею. Похваліть його коротко**
 <!-- interaction_id: en:lesson-01:session-56:i13; family: scripted_repeat_compare -->
 🎙 **It's delicious.**
 

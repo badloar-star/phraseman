@@ -327,7 +327,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
+        "prompt": "Вставьте слово — начальница уточняет, впервые ли вы в этом офисе",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-08:i04:r1",
@@ -344,12 +344,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
+        "accessibilityLabel": "Вставьте слово — начальница уточняет, впервые ли вы в этом офисе",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
-            "uk": "Вставте слово — Міра уточнює, чи ви тут уперше"
+            "ru": "Вставьте слово — начальница уточняет, впервые ли вы в этом офисе",
+            "uk": "Вставте слово — керівниця уточнює, чи ви тут уперше"
           },
           "gappedTargetPhrase": "I ___ new here.",
           "gapOptions": [
@@ -366,12 +366,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
+          "testedDimension": "Вставьте слово — начальница уточняет, впервые ли вы в этом офисе",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-08:i04:r2",
               "correct": false,
-              "testedDimension": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
+              "testedDimension": "Вставьте слово — начальница уточняет, впервые ли вы в этом офисе",
               "feedbackByLocale": {
                 "ru": "`Is` используют с `he`, `she` или `it`. О себе говорят `I am`.",
                 "uk": "`Is` використовують з `he`, `she` або `it`. Про себе кажуть `I am`."
@@ -380,7 +380,7 @@
             {
               "responseId": "en:lesson-01:session-08:i04:r3",
               "correct": false,
-              "testedDimension": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
+              "testedDimension": "Вставьте слово — начальница уточняет, впервые ли вы в этом офисе",
               "feedbackByLocale": {
                 "ru": "В этой фразе о себе после `I` нужна форма `am`.",
                 "uk": "У цій фразі про себе після `I` потрібна форма `am`."
@@ -574,17 +574,17 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
+        "prompt": "Соберите фразу — начальница спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
+        "accessibilityLabel": "Соберите фразу — начальница спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am not sure.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
-            "uk": "Складіть речення — Міра питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час"
+            "ru": "Соберите фразу — начальница спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
+            "uk": "Складіть речення — керівниця питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час"
           },
           "orderedTokens": [
             "I",
@@ -911,17 +911,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — Мира спрашивает, закончили ли вы дела. Вы закончили.",
+        "prompt": "Соберите фразу — начальница спрашивает, закончили ли вы дела. Вы закончили.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — Мира спрашивает, закончили ли вы дела. Вы закончили.",
+        "accessibilityLabel": "Соберите фразу — начальница спрашивает, закончили ли вы дела. Вы закончили.",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am done.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — Мира спрашивает, закончили ли вы дела. Вы закончили.",
-            "uk": "Складіть речення — Міра питає, чи закінчили ви справи. Ви закінчили."
+            "ru": "Соберите фразу — начальница спрашивает, закончили ли вы дела. Вы закончили.",
+            "uk": "Складіть речення — керівниця питає, чи закінчили ви справи. Ви закінчили."
           },
           "orderedTokens": [
             "I",
@@ -935,7 +935,7 @@
             {
               "responseId": "en:lesson-01:session-08:i13:tile:d1",
               "correct": false,
-              "testedDimension": "Соберите фразу — Мира спрашивает, закончили ли вы дела. Вы закончили.",
+              "testedDimension": "Соберите фразу — начальница спрашивает, закончили ли вы дела. Вы закончили.",
               "feedbackByLocale": {
                 "ru": "`free` говорит о свободном времени, а здесь вы сообщаете, что с делами всё",
                 "uk": "`free` говорить про вільний час, а тут ви повідомляєте, що зі справами все"
@@ -1028,13 +1028,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — после длинного дня вы отвечаете Олегу, что устали",
+        "prompt": "Скажите вслух — после длинного дня вы отвечаете другу, что устали",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-08:i15:s01:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — после длинного дня вы отвечаете Олегу, что устали",
+        "accessibilityLabel": "Скажите вслух — после длинного дня вы отвечаете другу, что устали",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1061,13 +1061,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — после еды вы отвечаете Олегу, что не голодны",
+        "prompt": "Скажите вслух — после еды вы отвечаете другу, что не голодны",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-08:i15:s02:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — после еды вы отвечаете Олегу, что не голодны",
+        "accessibilityLabel": "Скажите вслух — после еды вы отвечаете другу, что не голодны",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1138,13 +1138,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — вы готовы идти; подтвердите это Нине полной фразой",
+        "prompt": "Скажите вслух — вы готовы идти; подтвердите это подруге полной фразой",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-08:i17:s01:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — вы готовы идти; подтвердите это Нине полной фразой",
+        "accessibilityLabel": "Скажите вслух — вы готовы идти; подтвердите это подруге полной фразой",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1590,7 +1590,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вставте слово — Міра уточнює, чи ви тут уперше",
+        "prompt": "Вставте слово — керівниця уточнює, чи ви тут уперше",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-08:i04:r1",
@@ -1607,12 +1607,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вставте слово — Міра уточнює, чи ви тут уперше",
+        "accessibilityLabel": "Вставте слово — керівниця уточнює, чи ви тут уперше",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — Мира уточняет, впервые ли вы в этом офисе",
-            "uk": "Вставте слово — Міра уточнює, чи ви тут уперше"
+            "ru": "Вставьте слово — начальница уточняет, впервые ли вы в этом офисе",
+            "uk": "Вставте слово — керівниця уточнює, чи ви тут уперше"
           },
           "gappedTargetPhrase": "I ___ new here.",
           "gapOptions": [
@@ -1629,12 +1629,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставте слово — Міра уточнює, чи ви тут уперше",
+          "testedDimension": "Вставте слово — керівниця уточнює, чи ви тут уперше",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-08:i04:r2",
               "correct": false,
-              "testedDimension": "Вставте слово — Міра уточнює, чи ви тут уперше",
+              "testedDimension": "Вставте слово — керівниця уточнює, чи ви тут уперше",
               "feedbackByLocale": {
                 "ru": "`Is` используют с `he`, `she` или `it`. О себе говорят `I am`.",
                 "uk": "`Is` використовують з `he`, `she` або `it`. Про себе кажуть `I am`."
@@ -1643,7 +1643,7 @@
             {
               "responseId": "en:lesson-01:session-08:i04:r3",
               "correct": false,
-              "testedDimension": "Вставте слово — Міра уточнює, чи ви тут уперше",
+              "testedDimension": "Вставте слово — керівниця уточнює, чи ви тут уперше",
               "feedbackByLocale": {
                 "ru": "В этой фразе о себе после `I` нужна форма `am`.",
                 "uk": "У цій фразі про себе після `I` потрібна форма `am`."
@@ -1837,17 +1837,17 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть речення — Міра питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час",
+        "prompt": "Складіть речення — керівниця питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть речення — Міра питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час",
+        "accessibilityLabel": "Складіть речення — керівниця питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am not sure.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — Мира спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
-            "uk": "Складіть речення — Міра питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час"
+            "ru": "Соберите фразу — начальница спрашивает, во сколько завтра начало; вы не уверены, что правильно запомнили время",
+            "uk": "Складіть речення — керівниця питає, о котрій завтра початок; ви не впевнені, що правильно запам’ятали час"
           },
           "orderedTokens": [
             "I",
@@ -2174,17 +2174,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть речення — Міра питає, чи закінчили ви справи. Ви закінчили.",
+        "prompt": "Складіть речення — керівниця питає, чи закінчили ви справи. Ви закінчили.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть речення — Міра питає, чи закінчили ви справи. Ви закінчили.",
+        "accessibilityLabel": "Складіть речення — керівниця питає, чи закінчили ви справи. Ви закінчили.",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am done.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — Мира спрашивает, закончили ли вы дела. Вы закончили.",
-            "uk": "Складіть речення — Міра питає, чи закінчили ви справи. Ви закінчили."
+            "ru": "Соберите фразу — начальница спрашивает, закончили ли вы дела. Вы закончили.",
+            "uk": "Складіть речення — керівниця питає, чи закінчили ви справи. Ви закінчили."
           },
           "orderedTokens": [
             "I",
@@ -2198,7 +2198,7 @@
             {
               "responseId": "en:lesson-01:session-08:i13:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть речення — Міра питає, чи закінчили ви справи. Ви закінчили.",
+              "testedDimension": "Складіть речення — керівниця питає, чи закінчили ви справи. Ви закінчили.",
               "feedbackByLocale": {
                 "ru": "`free` говорит о свободном времени, а здесь вы сообщаете, что с делами всё",
                 "uk": "`free` говорить про вільний час, а тут ви повідомляєте, що зі справами все"
@@ -2291,13 +2291,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — після довгого дня ви відповідаєте Олегові, що втомилися",
+        "prompt": "Скажіть уголос — після довгого дня ви відповідаєте другові, що втомилися",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-08:i15:s01:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — після довгого дня ви відповідаєте Олегові, що втомилися",
+        "accessibilityLabel": "Скажіть уголос — після довгого дня ви відповідаєте другові, що втомилися",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -2324,13 +2324,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — після їжі ви відповідаєте Олегові, що не голодні",
+        "prompt": "Скажіть уголос — після їжі ви відповідаєте другові, що не голодні",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-08:i15:s02:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — після їжі ви відповідаєте Олегові, що не голодні",
+        "accessibilityLabel": "Скажіть уголос — після їжі ви відповідаєте другові, що не голодні",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -2401,13 +2401,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — ви готові йти; підтвердьте це Ніні повною фразою",
+        "prompt": "Скажіть уголос — ви готові йти; підтвердьте це подрузі повною фразою",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-08:i17:s01:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — ви готові йти; підтвердьте це Ніні повною фразою",
+        "accessibilityLabel": "Скажіть уголос — ви готові йти; підтвердьте це подрузі повною фразою",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {

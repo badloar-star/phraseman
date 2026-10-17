@@ -1,0 +1,2435 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-34",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-34:word:inactive",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — inactive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:inactive:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — inactive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:inactive:audio",
+            "transcript": "inactive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:inactive:r1",
+              "targetText": "inactive",
+              "meaningByLocale": {
+                "ru": "неактивный, сейчас не работающий. It is inactive — «Он не работает». О клубе, группе, странице, аккаунте.",
+                "uk": "неактивний, зараз не працює. It is inactive — «Він не працює». Про клуб, групу, сторінку, акаунт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "inactive",
+            "definitionByLocale": {
+              "ru": "неактивный, сейчас не работающий. It is inactive — «Он не работает». О клубе, группе, странице, аккаунте.",
+              "uk": "неактивний, зараз не працює. It is inactive — «Він не працює». Про клуб, групу, сторінку, акаунт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Две группы клуба в соцсети давно ничего не публикуют. Скажите полной фразой, что они неактивны",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две группы клуба в соцсети давно ничего не публикуют. Скажите полной фразой, что они неактивны",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are inactive.",
+          "localizedMeaning": {
+            "ru": "Две группы клуба в соцсети давно ничего не публикуют. Скажите полной фразой, что они неактивны",
+            "uk": "Дві групи клубу в соцмережі давно нічого не публікують. Скажіть повною фразою, що вони неактивні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "inactive"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Две группы клуба в соцсети давно ничего не публикуют. Скажите полной фразой, что они неактивны",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are inactive.`",
+                "uk": "тут потрібно `are` — `They are inactive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:word:outdated",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — outdated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:outdated:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — outdated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:outdated:audio",
+            "transcript": "outdated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:outdated:r1",
+              "targetText": "outdated",
+              "meaningByLocale": {
+                "ru": "устаревший. It is outdated — «Оно устарело». Об объявлении, карте, расписании, телефоне.",
+                "uk": "застарілий. It is outdated — «Воно застаріло». Про оголошення, мапу, розклад, телефон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "outdated",
+            "definitionByLocale": {
+              "ru": "устаревший. It is outdated — «Оно устарело». Об объявлении, карте, расписании, телефоне.",
+              "uk": "застарілий. It is outdated — «Воно застаріло». Про оголошення, мапу, розклад, телефон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу об объявлении",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i02:r1",
+            "text": "It is outdated."
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i02:r2",
+            "text": "It is active."
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i02:r3",
+            "text": "It is dark."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу об объявлении",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i02:audio",
+            "transcript": "It is outdated."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:i02:r1",
+              "targetText": "It is outdated.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i02:r2",
+              "targetText": "It is active.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i02:r3",
+              "targetText": "It is dark.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об объявлении",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `outdated`, а в этом варианте — `active`.",
+                "uk": "У записі останнє слово — `outdated`, а в цьому варіанті — `active`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об объявлении",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `outdated`, а в этом варианте — `dark`.",
+                "uk": "У записі останнє слово — `outdated`, а в цьому варіанті — `dark`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите подругу, устарела ли карта маршрута",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите подругу, устарела ли карта маршрута",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу, устарела ли карта маршрута",
+            "uk": "Запитайте подругу, чи застаріла мапа маршруту"
+          },
+          "gappedTargetPhrase": "___ it outdated?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-34:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Спросите подругу, устарела ли карта маршрута",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите подругу, устарела ли карта маршрута",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите подругу, устарела ли карта маршрута",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it outdated?`.",
+                "uk": "Запитання — `Is it outdated?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-34:i04:p1",
+              "target": "inactive",
+              "meaningByLocale": {
+                "ru": "неактивный",
+                "uk": "неактивний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i04:p2",
+              "target": "outdated",
+              "meaningByLocale": {
+                "ru": "устаревший",
+                "uk": "застарілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i04:p3",
+              "target": "unsafe",
+              "meaningByLocale": {
+                "ru": "небезопасный",
+                "uk": "небезпечний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i04:p4",
+              "target": "cautious",
+              "meaningByLocale": {
+                "ru": "осторожный",
+                "uk": "обережний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "inactive",
+            "outdated",
+            "unsafe",
+            "cautious"
+          ],
+          "rightColumn": [
+            "неактивный",
+            "устаревший",
+            "небезопасный",
+            "осторожный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:word:cautious",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cautious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:cautious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cautious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:cautious:audio",
+            "transcript": "cautious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:cautious:r1",
+              "targetText": "cautious",
+              "meaningByLocale": {
+                "ru": "осторожный, внимательный. She is cautious — «Она осторожная». О человеке, который смотрит под ноги и не рискует.",
+                "uk": "обережний, уважний. She is cautious — «Вона обережна». Про людину, яка дивиться під ноги й не ризикує."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cautious",
+            "definitionByLocale": {
+              "ru": "осторожный, внимательный. She is cautious — «Она осторожная». О человеке, который смотрит под ноги и не рискует.",
+              "uk": "обережний, уважний. She is cautious — «Вона обережна». Про людину, яка дивиться під ноги й не ризикує."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i05:audio",
+            "transcript": "She is cautious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is cautious.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "cautious"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is cautious.`",
+                "uk": "тут потрібно `is` — `She is cautious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ушёл вперёд, и вы потеряли его из виду. Спросите подругу, где он",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ушёл вперёд, и вы потеряли его из виду. Спросите подругу, где он",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is he?",
+          "localizedMeaning": {
+            "ru": "Друг ушёл вперёд, и вы потеряли его из виду. Спросите подругу, где он",
+            "uk": "Друг пішов уперед, і ви втратили його з очей. Запитайте подругу, де він"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "he"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг ушёл вперёд, и вы потеряли его из виду. Спросите подругу, где он",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is he?`",
+                "uk": "тут потрібно `Where` — `Where is he?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:word:unsafe",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unsafe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:unsafe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unsafe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:unsafe:audio",
+            "transcript": "unsafe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:unsafe:r1",
+              "targetText": "unsafe",
+              "meaningByLocale": {
+                "ru": "небезопасный. It is unsafe — «Здесь небезопасно». О тропинке, мосте, лестнице, льде.",
+                "uk": "небезпечний. It is unsafe — «Тут небезпечно». Про стежку, міст, сходи, лід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unsafe",
+            "definitionByLocale": {
+              "ru": "небезопасный. It is unsafe — «Здесь небезопасно». О тропинке, мосте, лестнице, льде.",
+              "uk": "небезпечний. It is unsafe — «Тут небезпечно». Про стежку, міст, сходи, лід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на дорожку: на ней тонкий лёд. Коротко скажите, что здесь небезопасно",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на дорожку: на ней тонкий лёд. Коротко скажите, что здесь небезопасно",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i07:audio",
+            "transcript": "It's unsafe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's unsafe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»",
+            "uk": "Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-34:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i08:r2",
+              "correct": false,
+              "testedDimension": "Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i08:r3",
+              "correct": false,
+              "testedDimension": "Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i09:r1",
+            "text": "Is it inactive?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i09:r2",
+            "text": "Is it outdated?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i09:r3",
+            "text": "Is it dark?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i09:audio",
+            "transcript": "Is it inactive?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:i09:r1",
+              "targetText": "Is it inactive?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i09:r2",
+              "targetText": "Is it outdated?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i09:r3",
+              "targetText": "Is it dark?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `inactive`, а в этом варианте — `outdated`.",
+                "uk": "У записі останнє слово — `inactive`, а в цьому варіанті — `outdated`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `inactive`, а в этом варианте — `dark`.",
+                "uk": "У записі останнє слово — `inactive`, а в цьому варіанті — `dark`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-34:i10:p1",
+              "target": "active",
+              "meaningByLocale": {
+                "ru": "активный",
+                "uk": "активний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i10:p2",
+              "target": "afraid",
+              "meaningByLocale": {
+                "ru": "боится",
+                "uk": "боїться"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i10:p3",
+              "target": "careless",
+              "meaningByLocale": {
+                "ru": "неосторожный",
+                "uk": "необережний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i10:p4",
+              "target": "dark",
+              "meaningByLocale": {
+                "ru": "тёмный",
+                "uk": "темний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "active",
+            "afraid",
+            "careless",
+            "dark"
+          ],
+          "rightColumn": [
+            "активный",
+            "боится",
+            "неосторожный",
+            "тёмный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i11:audio",
+            "transcript": "Are you afraid?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you afraid?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "afraid"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are you afraid?`",
+                "uk": "тут потрібно `Are` — `Are you afraid?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг машет палкой рядом с людьми. Скажите полной фразой, что он неосторожен",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг машет палкой рядом с людьми. Скажите полной фразой, что он неосторожен",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is careless.",
+          "localizedMeaning": {
+            "ru": "Друг машет палкой рядом с людьми. Скажите полной фразой, что он неосторожен",
+            "uk": "Друг махає палицею поруч із людьми. Скажіть повною фразою, що він необережний"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "careless"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг машет палкой рядом с людьми. Скажите полной фразой, что он неосторожен",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is careless.`",
+                "uk": "тут потрібно `is` — `He is careless.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На мосту скользко, и подруга идёт медленно, держась за перила. Коротко скажите, что она осторожная",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i13:audio"
+        ],
+        "accessibilityLabel": "На мосту скользко, и подруга идёт медленно, держась за перила. Коротко скажите, что она осторожная",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i13:audio",
+            "transcript": "She's cautious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She's cautious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся",
+            "uk": "Подруга й друг сказали, що їм зовсім не страшно. Повідомте, що вони не бояться"
+          },
+          "gappedTargetPhrase": "They ___ not afraid.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-34:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся",
+              "feedbackByLocale": {
+                "ru": "С `They` нужно `are`.",
+                "uk": "З `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся",
+              "feedbackByLocale": {
+                "ru": "Фраза — `They are not afraid`.",
+                "uk": "Фраза — `They are not afraid`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i15:r1",
+            "text": "Who is cautious?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i15:r2",
+            "text": "Who is careless?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i15:r3",
+            "text": "Who is afraid?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i15:audio",
+            "transcript": "Who is cautious?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:i15:r1",
+              "targetText": "Who is cautious?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i15:r2",
+              "targetText": "Who is careless?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i15:r3",
+              "targetText": "Who is afraid?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cautious`, а в этом варианте — `careless`.",
+                "uk": "У записі останнє слово — `cautious`, а в цьому варіанті — `careless`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cautious`, а в этом варианте — `afraid`.",
+                "uk": "У записі останнє слово — `cautious`, а в цьому варіанті — `afraid`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-34:i16:p1",
+              "target": "outdated",
+              "meaningByLocale": {
+                "ru": "устаревший",
+                "uk": "застарілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i16:p2",
+              "target": "unsafe",
+              "meaningByLocale": {
+                "ru": "небезопасный",
+                "uk": "небезпечний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i16:p3",
+              "target": "cautious",
+              "meaningByLocale": {
+                "ru": "осторожный",
+                "uk": "обережний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i16:p4",
+              "target": "careless",
+              "meaningByLocale": {
+                "ru": "неосторожный",
+                "uk": "необережний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "outdated",
+            "unsafe",
+            "cautious",
+            "careless"
+          ],
+          "rightColumn": [
+            "устаревший",
+            "небезопасный",
+            "осторожный",
+            "неосторожный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг остановился перед тёмной тропинкой. Спросите его, боится ли он",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i17:audio"
+        ],
+        "accessibilityLabel": "Друг остановился перед тёмной тропинкой. Спросите его, боится ли он",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i17:audio",
+            "transcript": "Are you afraid?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you afraid?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-34:word:inactive",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — inactive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:inactive:audio"
+        ],
+        "accessibilityLabel": "Картка слова — inactive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:inactive:audio",
+            "transcript": "inactive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:inactive:r1",
+              "targetText": "inactive",
+              "meaningByLocale": {
+                "ru": "неактивный, сейчас не работающий. It is inactive — «Он не работает». О клубе, группе, странице, аккаунте.",
+                "uk": "неактивний, зараз не працює. It is inactive — «Він не працює». Про клуб, групу, сторінку, акаунт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "inactive",
+            "definitionByLocale": {
+              "ru": "неактивный, сейчас не работающий. It is inactive — «Он не работает». О клубе, группе, странице, аккаунте.",
+              "uk": "неактивний, зараз не працює. It is inactive — «Він не працює». Про клуб, групу, сторінку, акаунт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дві групи клубу в соцмережі давно нічого не публікують. Скажіть повною фразою, що вони неактивні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві групи клубу в соцмережі давно нічого не публікують. Скажіть повною фразою, що вони неактивні",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are inactive.",
+          "localizedMeaning": {
+            "ru": "Две группы клуба в соцсети давно ничего не публикуют. Скажите полной фразой, что они неактивны",
+            "uk": "Дві групи клубу в соцмережі давно нічого не публікують. Скажіть повною фразою, що вони неактивні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "inactive"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Дві групи клубу в соцмережі давно нічого не публікують. Скажіть повною фразою, що вони неактивні",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are inactive.`",
+                "uk": "тут потрібно `are` — `They are inactive.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:word:outdated",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — outdated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:outdated:audio"
+        ],
+        "accessibilityLabel": "Картка слова — outdated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:outdated:audio",
+            "transcript": "outdated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:outdated:r1",
+              "targetText": "outdated",
+              "meaningByLocale": {
+                "ru": "устаревший. It is outdated — «Оно устарело». Об объявлении, карте, расписании, телефоне.",
+                "uk": "застарілий. It is outdated — «Воно застаріло». Про оголошення, мапу, розклад, телефон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "outdated",
+            "definitionByLocale": {
+              "ru": "устаревший. It is outdated — «Оно устарело». Об объявлении, карте, расписании, телефоне.",
+              "uk": "застарілий. It is outdated — «Воно застаріло». Про оголошення, мапу, розклад, телефон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про оголошення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i02:r1",
+            "text": "It is outdated."
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i02:r2",
+            "text": "It is active."
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i02:r3",
+            "text": "It is dark."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про оголошення",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i02:audio",
+            "transcript": "It is outdated."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:i02:r1",
+              "targetText": "It is outdated.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i02:r2",
+              "targetText": "It is active.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i02:r3",
+              "targetText": "It is dark.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про оголошення",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `outdated`, а в этом варианте — `active`.",
+                "uk": "У записі останнє слово — `outdated`, а в цьому варіанті — `active`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про оголошення",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `outdated`, а в этом варианте — `dark`.",
+                "uk": "У записі останнє слово — `outdated`, а в цьому варіанті — `dark`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитайте подругу, чи застаріла мапа маршруту",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте подругу, чи застаріла мапа маршруту",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу, устарела ли карта маршрута",
+            "uk": "Запитайте подругу, чи застаріла мапа маршруту"
+          },
+          "gappedTargetPhrase": "___ it outdated?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-34:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Запитайте подругу, чи застаріла мапа маршруту",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитайте подругу, чи застаріла мапа маршруту",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитайте подругу, чи застаріла мапа маршруту",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it outdated?`.",
+                "uk": "Запитання — `Is it outdated?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-34:i04:p1",
+              "target": "inactive",
+              "meaningByLocale": {
+                "ru": "неактивный",
+                "uk": "неактивний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i04:p2",
+              "target": "outdated",
+              "meaningByLocale": {
+                "ru": "устаревший",
+                "uk": "застарілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i04:p3",
+              "target": "unsafe",
+              "meaningByLocale": {
+                "ru": "небезопасный",
+                "uk": "небезпечний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i04:p4",
+              "target": "cautious",
+              "meaningByLocale": {
+                "ru": "осторожный",
+                "uk": "обережний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "inactive",
+            "outdated",
+            "unsafe",
+            "cautious"
+          ],
+          "rightColumn": [
+            "неактивний",
+            "застарілий",
+            "небезпечний",
+            "обережний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:word:cautious",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cautious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:cautious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cautious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:cautious:audio",
+            "transcript": "cautious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:cautious:r1",
+              "targetText": "cautious",
+              "meaningByLocale": {
+                "ru": "осторожный, внимательный. She is cautious — «Она осторожная». О человеке, который смотрит под ноги и не рискует.",
+                "uk": "обережний, уважний. She is cautious — «Вона обережна». Про людину, яка дивиться під ноги й не ризикує."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cautious",
+            "definitionByLocale": {
+              "ru": "осторожный, внимательный. She is cautious — «Она осторожная». О человеке, который смотрит под ноги и не рискует.",
+              "uk": "обережний, уважний. She is cautious — «Вона обережна». Про людину, яка дивиться під ноги й не ризикує."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i05:audio",
+            "transcript": "She is cautious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is cautious.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "cautious"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is cautious.`",
+                "uk": "тут потрібно `is` — `She is cautious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг пішов уперед, і ви втратили його з очей. Запитайте подругу, де він",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг пішов уперед, і ви втратили його з очей. Запитайте подругу, де він",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is he?",
+          "localizedMeaning": {
+            "ru": "Друг ушёл вперёд, и вы потеряли его из виду. Спросите подругу, где он",
+            "uk": "Друг пішов уперед, і ви втратили його з очей. Запитайте подругу, де він"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "he"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг пішов уперед, і ви втратили його з очей. Запитайте подругу, де він",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is he?`",
+                "uk": "тут потрібно `Where` — `Where is he?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:word:unsafe",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unsafe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:word:unsafe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unsafe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:word:unsafe:audio",
+            "transcript": "unsafe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:word:unsafe:r1",
+              "targetText": "unsafe",
+              "meaningByLocale": {
+                "ru": "небезопасный. It is unsafe — «Здесь небезопасно». О тропинке, мосте, лестнице, льде.",
+                "uk": "небезпечний. It is unsafe — «Тут небезпечно». Про стежку, міст, сходи, лід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unsafe",
+            "definitionByLocale": {
+              "ru": "небезопасный. It is unsafe — «Здесь небезопасно». О тропинке, мосте, лестнице, льде.",
+              "uk": "небезпечний. It is unsafe — «Тут небезпечно». Про стежку, міст, сходи, лід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на доріжку: на ній тонкий лід. Коротко скажіть, що тут небезпечно",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на доріжку: на ній тонкий лід. Коротко скажіть, що тут небезпечно",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i07:audio",
+            "transcript": "It's unsafe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's unsafe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»",
+            "uk": "Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-34:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i08:r2",
+              "correct": false,
+              "testedDimension": "Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i08:r3",
+              "correct": false,
+              "testedDimension": "Клуб давно не проводить зустрічей. На «Is it inactive?» доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i09:r1",
+            "text": "Is it inactive?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i09:r2",
+            "text": "Is it outdated?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i09:r3",
+            "text": "Is it dark?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i09:audio",
+            "transcript": "Is it inactive?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:i09:r1",
+              "targetText": "Is it inactive?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i09:r2",
+              "targetText": "Is it outdated?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i09:r3",
+              "targetText": "Is it dark?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `inactive`, а в этом варианте — `outdated`.",
+                "uk": "У записі останнє слово — `inactive`, а в цьому варіанті — `outdated`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `inactive`, а в этом варианте — `dark`.",
+                "uk": "У записі останнє слово — `inactive`, а в цьому варіанті — `dark`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-34:i10:p1",
+              "target": "active",
+              "meaningByLocale": {
+                "ru": "активный",
+                "uk": "активний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i10:p2",
+              "target": "afraid",
+              "meaningByLocale": {
+                "ru": "боится",
+                "uk": "боїться"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i10:p3",
+              "target": "careless",
+              "meaningByLocale": {
+                "ru": "неосторожный",
+                "uk": "необережний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i10:p4",
+              "target": "dark",
+              "meaningByLocale": {
+                "ru": "тёмный",
+                "uk": "темний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "active",
+            "afraid",
+            "careless",
+            "dark"
+          ],
+          "rightColumn": [
+            "активний",
+            "боїться",
+            "необережний",
+            "темний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i11:audio",
+            "transcript": "Are you afraid?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you afraid?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "afraid"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are you afraid?`",
+                "uk": "тут потрібно `Are` — `Are you afraid?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг махає палицею поруч із людьми. Скажіть повною фразою, що він необережний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг махає палицею поруч із людьми. Скажіть повною фразою, що він необережний",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is careless.",
+          "localizedMeaning": {
+            "ru": "Друг машет палкой рядом с людьми. Скажите полной фразой, что он неосторожен",
+            "uk": "Друг махає палицею поруч із людьми. Скажіть повною фразою, що він необережний"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "careless"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг махає палицею поруч із людьми. Скажіть повною фразою, що він необережний",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is careless.`",
+                "uk": "тут потрібно `is` — `He is careless.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На мосту слизько, і подруга йде повільно, тримаючись за поручні. Коротко скажіть, що вона обережна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i13:audio"
+        ],
+        "accessibilityLabel": "На мосту слизько, і подруга йде повільно, тримаючись за поручні. Коротко скажіть, що вона обережна",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i13:audio",
+            "transcript": "She's cautious."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She's cautious.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга й друг сказали, що їм зовсім не страшно. Повідомте, що вони не бояться",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга й друг сказали, що їм зовсім не страшно. Повідомте, що вони не бояться",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся",
+            "uk": "Подруга й друг сказали, що їм зовсім не страшно. Повідомте, що вони не бояться"
+          },
+          "gappedTargetPhrase": "They ___ not afraid.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-34:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Подруга й друг сказали, що їм зовсім не страшно. Повідомте, що вони не бояться",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга й друг сказали, що їм зовсім не страшно. Повідомте, що вони не бояться",
+              "feedbackByLocale": {
+                "ru": "С `They` нужно `are`.",
+                "uk": "З `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга й друг сказали, що їм зовсім не страшно. Повідомте, що вони не бояться",
+              "feedbackByLocale": {
+                "ru": "Фраза — `They are not afraid`.",
+                "uk": "Фраза — `They are not afraid`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-34:i15:r1",
+            "text": "Who is cautious?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i15:r2",
+            "text": "Who is careless?"
+          },
+          {
+            "responseId": "en:lesson-02:session-34:i15:r3",
+            "text": "Who is afraid?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i15:audio",
+            "transcript": "Who is cautious?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-34:i15:r1",
+              "targetText": "Who is cautious?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i15:r2",
+              "targetText": "Who is careless?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i15:r3",
+              "targetText": "Who is afraid?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-34:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cautious`, а в этом варианте — `careless`.",
+                "uk": "У записі останнє слово — `cautious`, а в цьому варіанті — `careless`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-34:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cautious`, а в этом варианте — `afraid`.",
+                "uk": "У записі останнє слово — `cautious`, а в цьому варіанті — `afraid`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-34:i16:p1",
+              "target": "outdated",
+              "meaningByLocale": {
+                "ru": "устаревший",
+                "uk": "застарілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i16:p2",
+              "target": "unsafe",
+              "meaningByLocale": {
+                "ru": "небезопасный",
+                "uk": "небезпечний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i16:p3",
+              "target": "cautious",
+              "meaningByLocale": {
+                "ru": "осторожный",
+                "uk": "обережний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-34:i16:p4",
+              "target": "careless",
+              "meaningByLocale": {
+                "ru": "неосторожный",
+                "uk": "необережний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "outdated",
+            "unsafe",
+            "cautious",
+            "careless"
+          ],
+          "rightColumn": [
+            "застарілий",
+            "небезпечний",
+            "обережний",
+            "необережний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-34:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг зупинився перед темною стежкою. Запитайте його, чи він боїться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-34:i17:audio"
+        ],
+        "accessibilityLabel": "Друг зупинився перед темною стежкою. Запитайте його, чи він боїться",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-34:i17:audio",
+            "transcript": "Are you afraid?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you afraid?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-34:word:inactive",
+      "correctText": "inactive",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i01",
+      "correctText": "They are inactive.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:word:outdated",
+      "correctText": "outdated",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i02",
+      "correctText": "It is outdated.",
+      "correctResponseId": "en:lesson-02:session-34:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-34:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:word:cautious",
+      "correctText": "cautious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i05",
+      "correctText": "She is cautious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i06",
+      "correctText": "Where is he?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:word:unsafe",
+      "correctText": "unsafe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i07",
+      "correctText": "It's unsafe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-34:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i09",
+      "correctText": "Is it inactive?",
+      "correctResponseId": "en:lesson-02:session-34:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i11",
+      "correctText": "Are you afraid?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i12",
+      "correctText": "He is careless.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i13",
+      "correctText": "She's cautious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-02:session-34:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i15",
+      "correctText": "Who is cautious?",
+      "correctResponseId": "en:lesson-02:session-34:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-34:i17",
+      "correctText": "Are you afraid?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -533,13 +533,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Екскурсовод пів години пояснює, як працює один механізм. Скажіть Маші коротко, що це складно",
+      "prompt": "Екскурсовод пів години пояснює, як працює один механізм. Скажіть подрузі коротко, що це складно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-44:i07:audio"
       ],
-      "accessibilityLabel": "Екскурсовод пів години пояснює, як працює один механізм. Скажіть Маші коротко, що це складно",
+      "accessibilityLabel": "Екскурсовод пів години пояснює, як працює один механізм. Скажіть подрузі коротко, що це складно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -566,7 +566,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+      "prompt": "Друг каже, що його хилить на сон. Назвіть саме бажання спати",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i08:r1",
@@ -583,12 +583,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+      "accessibilityLabel": "Друг каже, що його хилить на сон. Назвіть саме бажання спати",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег говорит, что его клонит в сон. Назовите именно желание спать",
-          "uk": "Олег каже, що його хилить на сон. Назвіть саме бажання спати"
+          "ru": "Друг говорит, что его клонит в сон. Назовите именно желание спать",
+          "uk": "Друг каже, що його хилить на сон. Назвіть саме бажання спати"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -605,12 +605,12 @@
             "text": "weird"
           }
         ],
-        "testedDimension": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+        "testedDimension": "Друг каже, що його хилить на сон. Назвіть саме бажання спати",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+            "testedDimension": "Друг каже, що його хилить на сон. Назвіть саме бажання спати",
             "feedbackByLocale": {
               "ru": "`curious` — «любопытный». Здесь нужно `sleepy`: хочется спать.",
               "uk": "`curious` — «допитливий». Тут потрібно `sleepy`: хочеться спати."
@@ -619,7 +619,7 @@
           {
             "responseId": "en:lesson-01:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Олег каже, що його хилить на сон. Назвіть саме бажання спати",
+            "testedDimension": "Друг каже, що його хилить на сон. Назвіть саме бажання спати",
             "feedbackByLocale": {
               "ru": "`weird` — «странный». Желание спать — `sleepy`.",
               "uk": "`weird` — «дивний». Бажання спати — `sleepy`."
@@ -830,17 +830,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
+      "prompt": "Ви й подруга хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
+      "accessibilityLabel": "Ви й подруга хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are curious.",
         "localizedMeaning": {
-          "ru": "Вы и Маша хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
-          "uk": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох"
+          "ru": "Вы и подруга хотите узнать назначение необычного прибора. Соберите фразу от вас двоих",
+          "uk": "Ви й подруга хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох"
         },
         "orderedTokens": [
           "We",
@@ -854,7 +854,7 @@
           {
             "responseId": "en:lesson-01:session-44:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви й Маша хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
+            "testedDimension": "Ви й подруга хочете дізнатися призначення незвичного приладу. Складіть фразу від вас обох",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `We are curious.`",
               "uk": "тут потрібно `are` — `We are curious.`"
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Маша розпитує екскурсовода про кожен механізм. Зверніться до неї й назвіть її допитливою",
+      "prompt": "Подруга розпитує екскурсовода про кожен механізм. Зверніться до неї й назвіть її допитливою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-44:i13:audio"
       ],
-      "accessibilityLabel": "Маша розпитує екскурсовода про кожен механізм. Зверніться до неї й назвіть її допитливою",
+      "accessibilityLabel": "Подруга розпитує екскурсовода про кожен механізм. Зверніться до неї й назвіть її допитливою",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "953b729aca1025f37c131a51a819c7771d89a6abe6f5f84f1534e1c080210183"
+  "learnerFingerprint": "f9680f5d5c2bd29cfc7cfbd4e419c071d3db7986cf93f768b78b757a9c4429ac"
 }

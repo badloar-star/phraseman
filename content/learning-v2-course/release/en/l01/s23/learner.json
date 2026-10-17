@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+      "prompt": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+      "accessibilityLabel": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is married.",
         "localizedMeaning": {
-          "ru": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
-          "uk": "Анна розповіла, що нещодавно вийшла заміж. Складіть: «Вона заміжня»"
+          "ru": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+          "uk": "Тітка розповіла, що нещодавно вийшла заміж. Складіть: «Вона заміжня»"
         },
         "orderedTokens": [
           "She",
@@ -76,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-23:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
+            "testedDimension": "Тётя рассказала, что недавно вышла замуж. Соберите: «Она замужем»",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is married.`",
               "uk": "тут потрібно `is` — `She is married.`"
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "65ea7c0f4bed30a281f50db3e9507d463500b7b228aa14aeefd8bc0773aaafd1"
+  "learnerFingerprint": "fb7077fa64b765001fe838e82546e8d8cedd36f8fb9927cba9d77a011121c532"
 }

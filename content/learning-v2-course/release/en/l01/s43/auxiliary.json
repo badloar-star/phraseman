@@ -10,8 +10,8 @@
           "uk": "late — «запізнюється», але не пояснює причини. Він стоїть у заторі: stuck."
         },
         "en:lesson-01:session-43:intro1:r3": {
-          "ru": "She's — про женщину. Про Олега — He's.",
-          "uk": "She's — про жінку. Про Олега — He's."
+          "ru": "She's — про женщину. Про друга — He's.",
+          "uk": "She's — про жінку. Про друга — He's."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro2:r2": {
-          "ru": "patient — «терпеливая». Маша вздыхает и стучит ногой: annoyed.",
-          "uk": "patient — «терпляча». Маша зітхає й стукає ногою: annoyed."
+          "ru": "patient — «терпеливая». Подруга вздыхает и стучит ногой: annoyed.",
+          "uk": "patient — «терпляча». Подруга зітхає й стукає ногою: annoyed."
         },
         "en:lesson-01:session-43:intro2:r3": {
           "ru": "В короткой форме нужно 's: She's annoyed.",
@@ -36,11 +36,11 @@
           "uk": "wet — просто «мокрі». Наскрізь — soaked."
         },
         "en:lesson-01:session-43:intro3:r3": {
-          "ru": "They're — про других. О себе и Маше — We're.",
-          "uk": "They're — про інших. Про себе й Машу — We're."
+          "ru": "They're — про других. О себе и подруге — We're.",
+          "uk": "They're — про інших. Про себе й подругу — We're."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e791d8fac88863e0c21e3737a501bd6126b7c98ce42668ff79d846dc4c3d98fa"
+  "auxiliaryFingerprint": "3220249ce6b53df56db1b747441a54d7fd256d10950bd38f020ad1840a40e6fa"
 }

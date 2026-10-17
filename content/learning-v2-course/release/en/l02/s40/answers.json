@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-02:session-40:word:cramped",
+    "correctText": "cramped",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-40:i01",
-    "correctText": "It is active.",
+    "correctText": "It is cramped.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i02",
-    "correctText": "It is unofficial.",
+    "correctText": "It is hot.",
     "correctResponseId": "en:lesson-02:session-40:i02:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-40:word:fluffy",
+    "correctText": "fluffy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-40:i03",
-    "correctText": "Is",
+    "correctText": "Are",
     "correctResponseId": "en:lesson-02:session-40:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-40:i04",
-    "correctText": "en:lesson-02:session-40:i04:p1=active\nen:lesson-02:session-40:i04:p2=inactive\nen:lesson-02:session-40:i04:p3=formal\nen:lesson-02:session-40:i04:p4=informal",
+    "correctText": "en:lesson-02:session-40:i04:p1=cramped\nen:lesson-02:session-40:i04:p2=snug\nen:lesson-02:session-40:i04:p3=fluffy\nen:lesson-02:session-40:i04:p4=hot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:word:snug",
+    "correctText": "snug",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i05",
-    "correctText": "No, it is not.",
+    "correctText": "It is not snug.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i06",
-    "correctText": "What is relevant?",
+    "correctText": "Where is she?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i07",
-    "correctText": "It's inactive.",
+    "correctText": "It's snug.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i08",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-02:session-40:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-40:word:shabby",
+    "correctText": "shabby",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-40:i09",
-    "correctText": "Is it informal?",
+    "correctText": "It is shabby.",
     "correctResponseId": "en:lesson-02:session-40:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-40:i10",
-    "correctText": "en:lesson-02:session-40:i10:p1=official\nen:lesson-02:session-40:i10:p2=unofficial\nen:lesson-02:session-40:i10:p3=relevant\nen:lesson-02:session-40:i10:p4=inactive",
+    "correctText": "en:lesson-02:session-40:i10:p1=shabby\nen:lesson-02:session-40:i10:p2=tasty\nen:lesson-02:session-40:i10:p3=icy\nen:lesson-02:session-40:i10:p4=tender",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i11",
-    "correctText": "They are relevant.",
+    "correctText": "They are not cramped.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i12",
-    "correctText": "It is not official.",
+    "correctText": "What is shabby?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i13",
-    "correctText": "It's informal.",
+    "correctText": "It's shabby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i14",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-40:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-40:i15",
-    "correctText": "It is formal.",
+    "correctText": "Is it snug?",
     "correctResponseId": "en:lesson-02:session-40:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-40:i16",
-    "correctText": "en:lesson-02:session-40:i16:p1=unofficial\nen:lesson-02:session-40:i16:p2=relevant\nen:lesson-02:session-40:i16:p3=active\nen:lesson-02:session-40:i16:p4=formal",
+    "correctText": "en:lesson-02:session-40:i16:p1=cramped\nen:lesson-02:session-40:i16:p2=snug\nen:lesson-02:session-40:i16:p3=fluffy\nen:lesson-02:session-40:i16:p4=shabby",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-40:i17",
-    "correctText": "Is it official?",
+    "correctText": "Is it cramped?",
     "correctResponseId": null
   }
 ]

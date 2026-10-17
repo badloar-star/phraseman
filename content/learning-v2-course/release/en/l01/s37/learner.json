@@ -490,17 +490,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+      "prompt": "Вы с сестрой переехали и скучаете по родному городу. Соберите фразу от вас двоих",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+      "accessibilityLabel": "Вы с сестрой переехали и скучаете по родному городу. Соберите фразу от вас двоих",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are homesick.",
         "localizedMeaning": {
-          "ru": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
-          "uk": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох"
+          "ru": "Вы с сестрой переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+          "uk": "Ви з сестрою переїхали й сумуєте за рідним містом. Складіть фразу від вас двох"
         },
         "orderedTokens": [
           "We",
@@ -514,7 +514,7 @@
           {
             "responseId": "en:lesson-01:session-37:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+            "testedDimension": "Вы с сестрой переехали и скучаете по родному городу. Соберите фразу от вас двоих",
             "feedbackByLocale": {
               "ru": "здесь нужно `We` — `We are homesick.`",
               "uk": "тут потрібно `We` — `We are homesick.`"
@@ -1168,5 +1168,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c81b3d4edcd32134eafa27e5084cd8634a12ab59f8c502ad3ed12c4165dc0f8d"
+  "learnerFingerprint": "c936453f268923c4faebdd270af747095d40e3b212edb6e55ca64a324f5b6deb"
 }

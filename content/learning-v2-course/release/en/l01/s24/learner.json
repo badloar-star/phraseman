@@ -567,7 +567,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с гостями уже вышли из опасного прохода. Скажите за всю вашу группу, что вы в безопасности",
+      "prompt": "Вы с гостями отошли от края сцены. Скажите за всю вашу группу, что вы в безопасности",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-24:i08:r1",
@@ -584,12 +584,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с гостями уже вышли из опасного прохода. Скажите за всю вашу группу, что вы в безопасности",
+      "accessibilityLabel": "Вы с гостями отошли от края сцены. Скажите за всю вашу группу, что вы в безопасности",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с гостями уже вышли из опасного прохода. Скажите за всю вашу группу, что вы в безопасности",
-          "uk": "Ви з гостями вже вийшли з небезпечного проходу. Скажіть за всю вашу групу, що ви в безпеці"
+          "ru": "Вы с гостями отошли от края сцены. Скажите за всю вашу группу, что вы в безопасности",
+          "uk": "Ви з гостями відійшли від краю сцени. Скажіть за всю вашу групу, що ви в безпеці"
         },
         "gappedTargetPhrase": "We ___ safe.",
         "gapOptions": [
@@ -606,12 +606,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вы с гостями уже вышли из опасного прохода. Скажите за всю вашу группу, что вы в безопасности",
+        "testedDimension": "Вы с гостями отошли от края сцены. Скажите за всю вашу группу, что вы в безопасности",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-24:i08:r2",
             "correct": false,
-            "testedDimension": "Вы с гостями уже вышли из опасного прохода. Скажите за всю вашу группу, что вы в безопасности",
+            "testedDimension": "Вы с гостями отошли от края сцены. Скажите за всю вашу группу, что вы в безопасности",
             "feedbackByLocale": {
               "ru": "За вашу группу говорим `We are`.",
               "uk": "За вашу групу кажемо `We are`."
@@ -620,7 +620,7 @@
           {
             "responseId": "en:lesson-01:session-24:i08:r3",
             "correct": false,
-            "testedDimension": "Вы с гостями уже вышли из опасного прохода. Скажите за всю вашу группу, что вы в безопасности",
+            "testedDimension": "Вы с гостями отошли от края сцены. Скажите за всю вашу группу, что вы в безопасности",
             "feedbackByLocale": {
               "ru": "`am` подходит к `I`, а здесь `We are`.",
               "uk": "`am` поєднується з `I`, а тут `We are`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "49267d3668638b38788ffd551c3a0b2aa3219efbec08d0993da0a1cf060cfc44"
+  "learnerFingerprint": "e7449c82616dcb831f8ef021c5aaeaca6ae60dd3b5060a7eff35e6ba1825b03b"
 }

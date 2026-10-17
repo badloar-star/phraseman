@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-39:word:tasty",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tasty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:tasty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tasty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:tasty:audio",
+            "transcript": "tasty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:tasty:r1",
+              "targetText": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный. It is tasty — «Это вкусно». О супе, пироге, обеде, ужине.",
+                "uk": "смачний. It is tasty — «Це смачно». Про суп, пиріг, обід, вечерю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tasty",
+            "definitionByLocale": {
+              "ru": "вкусный. It is tasty — «Это вкусно». О супе, пироге, обеде, ужине.",
+              "uk": "смачний. It is tasty — «Це смачно». Про суп, пиріг, обід, вечерю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Официант забирает тарелку. Скажите ему полной фразой, что суп вкусный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Официант забирает тарелку. Скажите ему полной фразой, что суп вкусный.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is tasty.",
+          "localizedMeaning": {
+            "ru": "Официант забирает тарелку. Скажите ему полной фразой, что суп вкусный.",
+            "uk": "Офіціант забирає тарілку. Скажіть йому повною фразою, що суп смачний."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "tasty"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Официант забирает тарелку. Скажите ему полной фразой, что суп вкусный.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is tasty.`",
+                "uk": "тут потрібно `is` — `It is tasty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что официант говорит о пироге",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i02:r1",
+            "text": "It is fresh."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i02:r2",
+            "text": "It is salty."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i02:r3",
+            "text": "It is sweet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что официант говорит о пироге",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i02:audio",
+            "transcript": "It is fresh."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:i02:r1",
+              "targetText": "It is fresh.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i02:r2",
+              "targetText": "It is salty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i02:r3",
+              "targetText": "It is sweet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что официант говорит о пироге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fresh`, а в этом варианте — `salty`.",
+                "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `salty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что официант говорит о пироге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fresh`, а в этом варианте — `sweet`.",
+                "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `sweet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:word:lumpy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lumpy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:lumpy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lumpy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:lumpy:audio",
+            "transcript": "lumpy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:lumpy:r1",
+              "targetText": "lumpy",
+              "meaningByLocale": {
+                "ru": "комковатый, с комками. Is it lumpy? — «Оно с комками?» О пюре, каше, соусе, подушке.",
+                "uk": "грудкуватий, з грудками. Is it lumpy? — «Воно з грудками?» Про пюре, кашу, соус, подушку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lumpy",
+            "definitionByLocale": {
+              "ru": "комковатый, с комками. Is it lumpy? — «Оно с комками?» О пюре, каше, соусе, подушке.",
+              "uk": "грудкуватий, з грудками. Is it lumpy? — «Воно з грудками?» Про пюре, кашу, соус, подушку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам принесли пюре. Спросите подругу, комковатое ли оно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам принесли пюре. Спросите подругу, комковатое ли оно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам принесли пюре. Спросите подругу, комковатое ли оно",
+            "uk": "Вам принесли пюре. Запитайте подругу, чи воно грудкувате"
+          },
+          "gappedTargetPhrase": "___ it lumpy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-39:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вам принесли пюре. Спросите подругу, комковатое ли оно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Вам принесли пюре. Спросите подругу, комковатое ли оно",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Вам принесли пюре. Спросите подругу, комковатое ли оно",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it lumpy?`.",
+                "uk": "Питання — `Is it lumpy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-39:i04:p1",
+              "target": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный",
+                "uk": "смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i04:p2",
+              "target": "greasy",
+              "meaningByLocale": {
+                "ru": "жирный",
+                "uk": "жирний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i04:p3",
+              "target": "lumpy",
+              "meaningByLocale": {
+                "ru": "комковатый",
+                "uk": "грудкуватий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i04:p4",
+              "target": "salty",
+              "meaningByLocale": {
+                "ru": "солёный",
+                "uk": "солоний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tasty",
+            "greasy",
+            "lumpy",
+            "salty"
+          ],
+          "rightColumn": [
+            "вкусный",
+            "жирный",
+            "комковатый",
+            "солёный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы спросили официанта, жирный ли суп. Послушайте его ответ и соберите его",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Вы спросили официанта, жирный ли суп. Послушайте его ответ и соберите его",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i05:audio",
+            "transcript": "No, it is not."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "No, it is not.",
+          "orderedTokens": [
+            "No,",
+            "it",
+            "is",
+            "not"
+          ],
+          "authoredDistractorTokens": [
+            "Yes,"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы спросили официанта, жирный ли суп. Послушайте его ответ и соберите его",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `No,` — `No, it is not.`",
+                "uk": "тут потрібно `No,` — `No, it is not.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хвалит одно из блюд, но не говорит какое. Спросите её, что вкусное.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хвалит одно из блюд, но не говорит какое. Спросите её, что вкусное.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is tasty?",
+          "localizedMeaning": {
+            "ru": "Подруга хвалит одно из блюд, но не говорит какое. Спросите её, что вкусное.",
+            "uk": "Подруга хвалить одну зі страв, але не каже яку. Запитайте її, що смачне."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "tasty"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хвалит одно из блюд, но не говорит какое. Спросите её, что вкусное.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is tasty?`",
+                "uk": "тут потрібно `What` — `What is tasty?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:word:greasy",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — greasy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:greasy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — greasy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:greasy:audio",
+            "transcript": "greasy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:greasy:r1",
+              "targetText": "greasy",
+              "meaningByLocale": {
+                "ru": "жирный, в масле. They're greasy — «Они жирные». О картошке, пальцах, волосах, тарелке.",
+                "uk": "жирний, в олії. They're greasy — «Вони жирні». Про картоплю, пальці, волосся, тарілку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "greasy",
+            "definitionByLocale": {
+              "ru": "жирный, в масле. They're greasy — «Они жирные». О картошке, пальцах, волосах, тарелке.",
+              "uk": "жирний, в олії. They're greasy — «Вони жирні». Про картоплю, пальці, волосся, тарілку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга берёт картошку и видит масло на пальцах. Скажите коротко, что она жирная.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга берёт картошку и видит масло на пальцах. Скажите коротко, что она жирная.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i07:audio",
+            "transcript": "They're greasy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're greasy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Официант спросил: «Is it tasty?» Блюдо вам не понравилось. Дополните короткое «нет»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Официант спросил: «Is it tasty?» Блюдо вам не понравилось. Дополните короткое «нет»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Официант спросил: «Is it tasty?» Блюдо вам не понравилось. Дополните короткое «нет»",
+            "uk": "Офіціант спитав: «Is it tasty?» Страва вам не сподобалась. Доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, it ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-39:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Официант спросил: «Is it tasty?» Блюдо вам не понравилось. Дополните короткое «нет»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Официант спросил: «Is it tasty?» Блюдо вам не понравилось. Дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Официант спросил: «Is it tasty?» Блюдо вам не понравилось. Дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, it is not`.",
+                "uk": "Відповідь — `No, it is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:word:tender",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tender",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:tender:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tender",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:tender:audio",
+            "transcript": "tender"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:tender:r1",
+              "targetText": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, нежный, о мясе: легко режется и жуётся. It's tender — «Оно мягкое». О жарком, курице, стейке.",
+                "uk": "м’який, ніжний, про м’ясо: легко ріжеться й жується. It's tender — «Воно м’яке». Про печеню, курку, стейк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tender",
+            "definitionByLocale": {
+              "ru": "мягкий, нежный, о мясе: легко режется и жуётся. It's tender — «Оно мягкое». О жарком, курице, стейке.",
+              "uk": "м’який, ніжний, про м’ясо: легко ріжеться й жується. It's tender — «Воно м’яке». Про печеню, курку, стейк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о жарком",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i09:r1",
+            "text": "It is tender."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i09:r2",
+            "text": "It is tasty."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i09:r3",
+            "text": "It is salty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о жарком",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i09:audio",
+            "transcript": "It is tender."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:i09:r1",
+              "targetText": "It is tender.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i09:r2",
+              "targetText": "It is tasty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i09:r3",
+              "targetText": "It is salty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о жарком",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `tasty`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `tasty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о жарком",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `salty`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `salty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-39:i10:p1",
+              "target": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, о мясе",
+                "uk": "м’який, про м’ясо"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i10:p2",
+              "target": "lumpy",
+              "meaningByLocale": {
+                "ru": "комковатый",
+                "uk": "грудкуватий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i10:p3",
+              "target": "fresh",
+              "meaningByLocale": {
+                "ru": "свежий",
+                "uk": "свіжий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i10:p4",
+              "target": "greasy",
+              "meaningByLocale": {
+                "ru": "жирный",
+                "uk": "жирний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tender",
+            "lumpy",
+            "fresh",
+            "greasy"
+          ],
+          "rightColumn": [
+            "мягкий, о мясе",
+            "комковатый",
+            "свежий",
+            "жирный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что подруга говорит о картошке, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о картошке, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i11:audio",
+            "transcript": "They are not salty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not salty.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "salty"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о картошке, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not salty.`",
+                "uk": "тут потрібно `are` — `They are not salty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга говорит, что одно блюдо на столе с комками. Спросите её, что комковатое.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга говорит, что одно блюдо на столе с комками. Спросите её, что комковатое.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is lumpy?",
+          "localizedMeaning": {
+            "ru": "Подруга говорит, что одно блюдо на столе с комками. Спросите её, что комковатое.",
+            "uk": "Подруга каже, що одна страва на столі з грудками. Запитайте її, що грудкувате."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "lumpy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга говорит, что одно блюдо на столе с комками. Спросите её, что комковатое.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is lumpy?`",
+                "uk": "тут потрібно `What` — `What is lumpy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает про мясо. Оно мягкое, режется без усилий. Скажите коротко, что оно мягкое.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про мясо. Оно мягкое, режется без усилий. Скажите коротко, что оно мягкое.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i13:audio",
+            "transcript": "It's tender."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's tender.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга жалуется на масло в супе. В вашей тарелке жира нет. Скажите, что ваш суп не жирный",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга жалуется на масло в супе. В вашей тарелке жира нет. Скажите, что ваш суп не жирный",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга жалуется на масло в супе. В вашей тарелке жира нет. Скажите, что ваш суп не жирный",
+            "uk": "Подруга скаржиться на олію в супі. У вашій тарілці жиру немає. Скажіть, що ваш суп не жирний"
+          },
+          "gappedTargetPhrase": "It ___ not greasy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-39:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга жалуется на масло в супе. В вашей тарелке жира нет. Скажите, что ваш суп не жирный",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга жалуется на масло в супе. В вашей тарелке жира нет. Скажите, что ваш суп не жирный",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга жалуется на масло в супе. В вашей тарелке жира нет. Скажите, что ваш суп не жирный",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not greasy`.",
+                "uk": "Фраза — `It is not greasy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос официанта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i15:r1",
+            "text": "Is it tender?"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i15:r2",
+            "text": "Is it tasty?"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i15:r3",
+            "text": "Is it lumpy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос официанта",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i15:audio",
+            "transcript": "Is it tender?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:i15:r1",
+              "targetText": "Is it tender?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i15:r2",
+              "targetText": "Is it tasty?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i15:r3",
+              "targetText": "Is it lumpy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос официанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `tasty`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `tasty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос официанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `lumpy`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `lumpy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-39:i16:p1",
+              "target": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный",
+                "uk": "смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i16:p2",
+              "target": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, о мясе",
+                "uk": "м’який, про м’ясо"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i16:p3",
+              "target": "sweet",
+              "meaningByLocale": {
+                "ru": "сладкий",
+                "uk": "солодкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i16:p4",
+              "target": "hot",
+              "meaningByLocale": {
+                "ru": "горячий",
+                "uk": "гарячий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tasty",
+            "tender",
+            "sweet",
+            "hot"
+          ],
+          "rightColumn": [
+            "вкусный",
+            "мягкий, о мясе",
+            "сладкий",
+            "горячий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Официант принёс десерт. Спросите подругу, вкусный ли он.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Официант принёс десерт. Спросите подругу, вкусный ли он.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i17:audio",
+            "transcript": "Is it tasty?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it tasty?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-39:word:tasty",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tasty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:tasty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tasty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:tasty:audio",
+            "transcript": "tasty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:tasty:r1",
+              "targetText": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный. It is tasty — «Это вкусно». О супе, пироге, обеде, ужине.",
+                "uk": "смачний. It is tasty — «Це смачно». Про суп, пиріг, обід, вечерю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tasty",
+            "definitionByLocale": {
+              "ru": "вкусный. It is tasty — «Это вкусно». О супе, пироге, обеде, ужине.",
+              "uk": "смачний. It is tasty — «Це смачно». Про суп, пиріг, обід, вечерю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Офіціант забирає тарілку. Скажіть йому повною фразою, що суп смачний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Офіціант забирає тарілку. Скажіть йому повною фразою, що суп смачний.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is tasty.",
+          "localizedMeaning": {
+            "ru": "Официант забирает тарелку. Скажите ему полной фразой, что суп вкусный.",
+            "uk": "Офіціант забирає тарілку. Скажіть йому повною фразою, що суп смачний."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "tasty"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Офіціант забирає тарілку. Скажіть йому повною фразою, що суп смачний.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is tasty.`",
+                "uk": "тут потрібно `is` — `It is tasty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що офіціант каже про пиріг",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i02:r1",
+            "text": "It is fresh."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i02:r2",
+            "text": "It is salty."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i02:r3",
+            "text": "It is sweet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що офіціант каже про пиріг",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i02:audio",
+            "transcript": "It is fresh."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:i02:r1",
+              "targetText": "It is fresh.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i02:r2",
+              "targetText": "It is salty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i02:r3",
+              "targetText": "It is sweet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що офіціант каже про пиріг",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fresh`, а в этом варианте — `salty`.",
+                "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `salty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що офіціант каже про пиріг",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fresh`, а в этом варианте — `sweet`.",
+                "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `sweet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:word:lumpy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lumpy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:lumpy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lumpy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:lumpy:audio",
+            "transcript": "lumpy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:lumpy:r1",
+              "targetText": "lumpy",
+              "meaningByLocale": {
+                "ru": "комковатый, с комками. Is it lumpy? — «Оно с комками?» О пюре, каше, соусе, подушке.",
+                "uk": "грудкуватий, з грудками. Is it lumpy? — «Воно з грудками?» Про пюре, кашу, соус, подушку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lumpy",
+            "definitionByLocale": {
+              "ru": "комковатый, с комками. Is it lumpy? — «Оно с комками?» О пюре, каше, соусе, подушке.",
+              "uk": "грудкуватий, з грудками. Is it lumpy? — «Воно з грудками?» Про пюре, кашу, соус, подушку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам принесли пюре. Запитайте подругу, чи воно грудкувате",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам принесли пюре. Запитайте подругу, чи воно грудкувате",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам принесли пюре. Спросите подругу, комковатое ли оно",
+            "uk": "Вам принесли пюре. Запитайте подругу, чи воно грудкувате"
+          },
+          "gappedTargetPhrase": "___ it lumpy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-39:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вам принесли пюре. Запитайте подругу, чи воно грудкувате",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Вам принесли пюре. Запитайте подругу, чи воно грудкувате",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Вам принесли пюре. Запитайте подругу, чи воно грудкувате",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it lumpy?`.",
+                "uk": "Питання — `Is it lumpy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-39:i04:p1",
+              "target": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный",
+                "uk": "смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i04:p2",
+              "target": "greasy",
+              "meaningByLocale": {
+                "ru": "жирный",
+                "uk": "жирний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i04:p3",
+              "target": "lumpy",
+              "meaningByLocale": {
+                "ru": "комковатый",
+                "uk": "грудкуватий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i04:p4",
+              "target": "salty",
+              "meaningByLocale": {
+                "ru": "солёный",
+                "uk": "солоний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tasty",
+            "greasy",
+            "lumpy",
+            "salty"
+          ],
+          "rightColumn": [
+            "смачний",
+            "жирний",
+            "грудкуватий",
+            "солоний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви спитали офіціанта, чи жирний суп. Послухайте його відповідь і складіть її",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Ви спитали офіціанта, чи жирний суп. Послухайте його відповідь і складіть її",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i05:audio",
+            "transcript": "No, it is not."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "No, it is not.",
+          "orderedTokens": [
+            "No,",
+            "it",
+            "is",
+            "not"
+          ],
+          "authoredDistractorTokens": [
+            "Yes,"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви спитали офіціанта, чи жирний суп. Послухайте його відповідь і складіть її",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `No,` — `No, it is not.`",
+                "uk": "тут потрібно `No,` — `No, it is not.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хвалить одну зі страв, але не каже яку. Запитайте її, що смачне.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хвалить одну зі страв, але не каже яку. Запитайте її, що смачне.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is tasty?",
+          "localizedMeaning": {
+            "ru": "Подруга хвалит одно из блюд, но не говорит какое. Спросите её, что вкусное.",
+            "uk": "Подруга хвалить одну зі страв, але не каже яку. Запитайте її, що смачне."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "tasty"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хвалить одну зі страв, але не каже яку. Запитайте її, що смачне.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is tasty?`",
+                "uk": "тут потрібно `What` — `What is tasty?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:word:greasy",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — greasy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:greasy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — greasy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:greasy:audio",
+            "transcript": "greasy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:greasy:r1",
+              "targetText": "greasy",
+              "meaningByLocale": {
+                "ru": "жирный, в масле. They're greasy — «Они жирные». О картошке, пальцах, волосах, тарелке.",
+                "uk": "жирний, в олії. They're greasy — «Вони жирні». Про картоплю, пальці, волосся, тарілку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "greasy",
+            "definitionByLocale": {
+              "ru": "жирный, в масле. They're greasy — «Они жирные». О картошке, пальцах, волосах, тарелке.",
+              "uk": "жирний, в олії. They're greasy — «Вони жирні». Про картоплю, пальці, волосся, тарілку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга бере картоплю й бачить олію на пальцях. Скажіть коротко, що вона жирна.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга бере картоплю й бачить олію на пальцях. Скажіть коротко, що вона жирна.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i07:audio",
+            "transcript": "They're greasy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're greasy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Офіціант спитав: «Is it tasty?» Страва вам не сподобалась. Доповніть коротке «ні»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Офіціант спитав: «Is it tasty?» Страва вам не сподобалась. Доповніть коротке «ні»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Официант спросил: «Is it tasty?» Блюдо вам не понравилось. Дополните короткое «нет»",
+            "uk": "Офіціант спитав: «Is it tasty?» Страва вам не сподобалась. Доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, it ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-39:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Офіціант спитав: «Is it tasty?» Страва вам не сподобалась. Доповніть коротке «ні»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Офіціант спитав: «Is it tasty?» Страва вам не сподобалась. Доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Офіціант спитав: «Is it tasty?» Страва вам не сподобалась. Доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, it is not`.",
+                "uk": "Відповідь — `No, it is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:word:tender",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tender",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:word:tender:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tender",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:word:tender:audio",
+            "transcript": "tender"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:word:tender:r1",
+              "targetText": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, нежный, о мясе: легко режется и жуётся. It's tender — «Оно мягкое». О жарком, курице, стейке.",
+                "uk": "м’який, ніжний, про м’ясо: легко ріжеться й жується. It's tender — «Воно м’яке». Про печеню, курку, стейк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tender",
+            "definitionByLocale": {
+              "ru": "мягкий, нежный, о мясе: легко режется и жуётся. It's tender — «Оно мягкое». О жарком, курице, стейке.",
+              "uk": "м’який, ніжний, про м’ясо: легко ріжеться й жується. It's tender — «Воно м’яке». Про печеню, курку, стейк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про печеню",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i09:r1",
+            "text": "It is tender."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i09:r2",
+            "text": "It is tasty."
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i09:r3",
+            "text": "It is salty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про печеню",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i09:audio",
+            "transcript": "It is tender."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:i09:r1",
+              "targetText": "It is tender.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i09:r2",
+              "targetText": "It is tasty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i09:r3",
+              "targetText": "It is salty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про печеню",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `tasty`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `tasty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про печеню",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `salty`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `salty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-39:i10:p1",
+              "target": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, о мясе",
+                "uk": "м’який, про м’ясо"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i10:p2",
+              "target": "lumpy",
+              "meaningByLocale": {
+                "ru": "комковатый",
+                "uk": "грудкуватий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i10:p3",
+              "target": "fresh",
+              "meaningByLocale": {
+                "ru": "свежий",
+                "uk": "свіжий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i10:p4",
+              "target": "greasy",
+              "meaningByLocale": {
+                "ru": "жирный",
+                "uk": "жирний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tender",
+            "lumpy",
+            "fresh",
+            "greasy"
+          ],
+          "rightColumn": [
+            "м’який, про м’ясо",
+            "грудкуватий",
+            "свіжий",
+            "жирний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що подруга каже про картоплю, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про картоплю, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i11:audio",
+            "transcript": "They are not salty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not salty.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "salty"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про картоплю, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not salty.`",
+                "uk": "тут потрібно `are` — `They are not salty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга каже, що одна страва на столі з грудками. Запитайте її, що грудкувате.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга каже, що одна страва на столі з грудками. Запитайте її, що грудкувате.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is lumpy?",
+          "localizedMeaning": {
+            "ru": "Подруга говорит, что одно блюдо на столе с комками. Спросите её, что комковатое.",
+            "uk": "Подруга каже, що одна страва на столі з грудками. Запитайте її, що грудкувате."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "lumpy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга каже, що одна страва на столі з грудками. Запитайте її, що грудкувате.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is lumpy?`",
+                "uk": "тут потрібно `What` — `What is lumpy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про м’ясо. Воно м’яке, ріжеться без зусиль. Скажіть коротко, що воно м’яке.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про м’ясо. Воно м’яке, ріжеться без зусиль. Скажіть коротко, що воно м’яке.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i13:audio",
+            "transcript": "It's tender."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's tender.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга скаржиться на олію в супі. У вашій тарілці жиру немає. Скажіть, що ваш суп не жирний",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга скаржиться на олію в супі. У вашій тарілці жиру немає. Скажіть, що ваш суп не жирний",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга жалуется на масло в супе. В вашей тарелке жира нет. Скажите, что ваш суп не жирный",
+            "uk": "Подруга скаржиться на олію в супі. У вашій тарілці жиру немає. Скажіть, що ваш суп не жирний"
+          },
+          "gappedTargetPhrase": "It ___ not greasy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-39:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга скаржиться на олію в супі. У вашій тарілці жиру немає. Скажіть, що ваш суп не жирний",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга скаржиться на олію в супі. У вашій тарілці жиру немає. Скажіть, що ваш суп не жирний",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга скаржиться на олію в супі. У вашій тарілці жиру немає. Скажіть, що ваш суп не жирний",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not greasy`.",
+                "uk": "Фраза — `It is not greasy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання офіціанта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-39:i15:r1",
+            "text": "Is it tender?"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i15:r2",
+            "text": "Is it tasty?"
+          },
+          {
+            "responseId": "en:lesson-02:session-39:i15:r3",
+            "text": "Is it lumpy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання офіціанта",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i15:audio",
+            "transcript": "Is it tender?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-39:i15:r1",
+              "targetText": "Is it tender?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i15:r2",
+              "targetText": "Is it tasty?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i15:r3",
+              "targetText": "Is it lumpy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-39:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання офіціанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `tasty`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `tasty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-39:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання офіціанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tender`, а в этом варианте — `lumpy`.",
+                "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `lumpy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-39:i16:p1",
+              "target": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный",
+                "uk": "смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i16:p2",
+              "target": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, о мясе",
+                "uk": "м’який, про м’ясо"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i16:p3",
+              "target": "sweet",
+              "meaningByLocale": {
+                "ru": "сладкий",
+                "uk": "солодкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-39:i16:p4",
+              "target": "hot",
+              "meaningByLocale": {
+                "ru": "горячий",
+                "uk": "гарячий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tasty",
+            "tender",
+            "sweet",
+            "hot"
+          ],
+          "rightColumn": [
+            "смачний",
+            "м’який, про м’ясо",
+            "солодкий",
+            "гарячий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Офіціант приніс десерт. Запитайте подругу, чи він смачний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Офіціант приніс десерт. Запитайте подругу, чи він смачний.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-39:i17:audio",
+            "transcript": "Is it tasty?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it tasty?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-39:word:tasty",
+      "correctText": "tasty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i01",
+      "correctText": "It is tasty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i02",
+      "correctText": "It is fresh.",
+      "correctResponseId": "en:lesson-02:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:word:lumpy",
+      "correctText": "lumpy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i05",
+      "correctText": "No, it is not.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i06",
+      "correctText": "What is tasty?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:word:greasy",
+      "correctText": "greasy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i07",
+      "correctText": "They're greasy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:word:tender",
+      "correctText": "tender",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i09",
+      "correctText": "It is tender.",
+      "correctResponseId": "en:lesson-02:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i11",
+      "correctText": "They are not salty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i12",
+      "correctText": "What is lumpy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i13",
+      "correctText": "It's tender.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-39:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i15",
+      "correctText": "Is it tender?",
+      "correctResponseId": "en:lesson-02:session-39:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-39:i17",
+      "correctText": "Is it tasty?",
+      "correctResponseId": null
+    }
+  ]
+}

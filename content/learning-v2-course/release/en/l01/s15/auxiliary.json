@@ -10,8 +10,8 @@
           "uk": "У цій фразі між you та friendly потрібне are."
         },
         "en:lesson-01:session-15:intro1:r3": {
-          "ru": "Вы говорите Вике о ней: You are friendly.",
-          "uk": "Ви говорите Віці про неї: You are friendly."
+          "ru": "Вы говорите подруге о ней: You are friendly.",
+          "uk": "Ви говорите подрузі про неї: You are friendly."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "7e2cd0b5c29ff4997798fcf9b7d7669707f1117ae86a9d38d014946a239d77ae"
+  "auxiliaryFingerprint": "ad881e18dc1fbb65d88b6344ca94434c141cb52e5744cd91b63f418d055de7fc"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-38:intro1:r2": {
-          "ru": "Это «официальное». По условию расписание не утверждено.",
-          "uk": "Це «офіційний». За умовою розклад не затверджено."
+          "ru": "С not выходит «Он не течёт». А миска под ним полна воды: It is leaky.",
+          "uk": "З not виходить «Він не тече». А миска під ним повна води: It is leaky."
         },
         "en:lesson-02:session-38:intro1:r3": {
-          "ru": "Между `It` и `unofficial` нужно `is`.",
-          "uk": "Між `It` і `unofficial` потрібно `is`."
+          "ru": "Между It и leaky нужно is: It is leaky.",
+          "uk": "Між It і leaky потрібно is: It is leaky."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-38:intro2:r2": {
-          "ru": "Это отрицает, что расписание неофициальное, а нужно подтвердить.",
-          "uk": "Це заперечує, що розклад неофіційний, а потрібно підтвердити."
+          "ru": "Так звучит утверждение «Она помята». Чтобы спросить, ставим Is вперёд: Is it dented?",
+          "uk": "Так звучить твердження «Вона пом’ята». Щоб запитати, ставимо Is наперед: Is it dented?"
         },
         "en:lesson-02:session-38:intro2:r3": {
-          "ru": "С `it` нужно `is`: `Yes, it is`.",
-          "uk": "З `it` потрібно `is`: `Yes, it is`."
+          "ru": "С it нужно is: Is it dented?",
+          "uk": "З it потрібно is: Is it dented?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-38:intro3:r2": {
-          "ru": "Это «Они слабы», а нужно сообщить о месте.",
-          "uk": "Це «Вони слабкі», а потрібно повідомити про місце."
+          "ru": "С not выходит «Они не скрипят». А слышно каждый шаг: They're creaky.",
+          "uk": "З not виходить «Вони не скриплять». А чути кожен крок: They're creaky."
         },
         "en:lesson-02:session-38:intro3:r3": {
-          "ru": "Здесь речь о нескольких организаторах: `They're`.",
-          "uk": "Тут ідеться про кількох організаторів: `They're`."
+          "ru": "Ступенек несколько, нужно They're: They're creaky.",
+          "uk": "Сходинок кілька, потрібно They're: They're creaky."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f90a44edc94ba58782f13da6f49958d68365af02cd5cbfa5a934fb76dafacd3a"
+  "auxiliaryFingerprint": "39010d261cabd47b3477af59e1f9da24966b50168cf4c881abb08ec4d44ddf2b"
 }

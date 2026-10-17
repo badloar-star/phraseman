@@ -490,13 +490,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ольга угощает вас пирогом. Коротко скажите ей, что она очень радушная",
+        "prompt": "Хозяйка угощает вас пирогом. Коротко скажите ей, что она очень радушная",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-42:i07:audio"
         ],
-        "accessibilityLabel": "Ольга угощает вас пирогом. Коротко скажите ей, что она очень радушная",
+        "accessibilityLabel": "Хозяйка угощает вас пирогом. Коротко скажите ей, что она очень радушная",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1649,13 +1649,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
+        "prompt": "Господиня пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-42:i07:audio"
         ],
-        "accessibilityLabel": "Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
+        "accessibilityLabel": "Господиня пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {

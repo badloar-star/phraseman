@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис Лео й виберіть почуте",
+      "prompt": "Послухайте опис координатора й виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-16:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-16:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте опис Лео й виберіть почуте",
+      "accessibilityLabel": "Послухайте опис координатора й виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-01:session-16:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис Лео й виберіть почуте",
+            "testedDimension": "Послухайте опис координатора й виберіть почуте",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
               "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-01:session-16:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис Лео й виберіть почуте",
+            "testedDimension": "Послухайте опис координатора й виберіть почуте",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `short`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `short`, а в цьому варіанті — `old`."
@@ -129,7 +129,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — Мія привітна",
+      "prompt": "Вставте слово — подруга привітна",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-16:i03:r1",
@@ -146,12 +146,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Мія привітна",
+      "accessibilityLabel": "Вставте слово — подруга привітна",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — Мия дружелюбная",
-          "uk": "Вставте слово — Мія привітна"
+          "ru": "Вставьте слово — подруга дружелюбная",
+          "uk": "Вставте слово — подруга привітна"
         },
         "gappedTargetPhrase": "She ___ friendly.",
         "gapOptions": [
@@ -168,12 +168,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставте слово — Мія привітна",
+        "testedDimension": "Вставте слово — подруга привітна",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-16:i03:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — Мія привітна",
+            "testedDimension": "Вставте слово — подруга привітна",
             "feedbackByLocale": {
               "ru": "После `She` нужно `is`; `am` ставим с `I`.",
               "uk": "Після `She` потрібно `is`; `am` ставимо з `I`."
@@ -182,7 +182,7 @@
           {
             "responseId": "en:lesson-01:session-16:i03:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — Мія привітна",
+            "testedDimension": "Вставте слово — подруга привітна",
             "feedbackByLocale": {
               "ru": "В сочетании `She is` нужна форма `is`.",
               "uk": "У сполученні `She is` потрібна форма `is`."
@@ -481,7 +481,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — Лео розумний",
+      "prompt": "Вставте слово — координатор розумний",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-16:i08:r1",
@@ -498,12 +498,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — Лео розумний",
+      "accessibilityLabel": "Вставте слово — координатор розумний",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — Лео умный",
-          "uk": "Вставте слово — Лео розумний"
+          "ru": "Вставьте слово — координатор умный",
+          "uk": "Вставте слово — координатор розумний"
         },
         "gappedTargetPhrase": "He ___ smart.",
         "gapOptions": [
@@ -520,21 +520,21 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставте слово — Лео розумний",
+        "testedDimension": "Вставте слово — координатор розумний",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-16:i08:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — Лео розумний",
+            "testedDimension": "Вставте слово — координатор розумний",
             "feedbackByLocale": {
-              "ru": "О Лео говорим `He is`, а `am` нужно после `I`.",
-              "uk": "Про Лео кажемо `He is`, а `am` потрібне після `I`."
+              "ru": "О координаторе говорим `He is`, а `am` нужно после `I`.",
+              "uk": "Про координатора кажемо `He is`, а `am` потрібне після `I`."
             }
           },
           {
             "responseId": "en:lesson-01:session-16:i08:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — Лео розумний",
+            "testedDimension": "Вставте слово — координатор розумний",
             "feedbackByLocale": {
               "ru": "Здесь начало `He`, поэтому нужно `is`.",
               "uk": "Тут початок `He`, тому потрібно `is`."
@@ -550,7 +550,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу про Мію",
+      "prompt": "Послухайте й виберіть фразу про подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-16:i09:r1",
@@ -569,7 +569,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-16:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу про Мію",
+      "accessibilityLabel": "Послухайте й виберіть фразу про подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -599,7 +599,7 @@
           {
             "responseId": "en:lesson-01:session-16:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу про Мію",
+            "testedDimension": "Послухайте й виберіть фразу про подругу",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -608,7 +608,7 @@
           {
             "responseId": "en:lesson-01:session-16:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу про Мію",
+            "testedDimension": "Послухайте й виберіть фразу про подругу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `quiet`, а в этом варианте — `calm`.",
               "uk": "У записі останнє слово — `quiet`, а в цьому варіанті — `calm`."
@@ -876,13 +876,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Мія охоче допомагає іншим волонтерам. Скажіть уголос: «Вона охоче допомагає»",
+      "prompt": "Подруга охоче допомагає іншим волонтерам. Скажіть уголос: «Вона охоче допомагає»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-16:i13:audio"
       ],
-      "accessibilityLabel": "Мія охоче допомагає іншим волонтерам. Скажіть уголос: «Вона охоче допомагає»",
+      "accessibilityLabel": "Подруга охоче допомагає іншим волонтерам. Скажіть уголос: «Вона охоче допомагає»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1090,8 +1090,8 @@
             "pairId": "en:lesson-01:session-16:i16:p4",
             "target": "helpful",
             "meaningByLocale": {
-              "ru": "оказывающий полезную помощь",
-              "uk": "той, хто надає корисну допомогу"
+              "ru": "готовый помочь",
+              "uk": "готовий допомогти"
             }
           }
         ],
@@ -1105,7 +1105,7 @@
           "ввічливий",
           "тихий",
           "привітний",
-          "той, хто надає корисну допомогу"
+          "готовий допомогти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -1127,13 +1127,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Наступного дня ви вибираєте шафу для дому. Вибрана шафа велика. Скажіть про неї: «Вона велика»",
+      "prompt": "У коморі стоїть шафа. Скажіть про неї: «Вона велика»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Наступного дня ви вибираєте шафу для дому. Вибрана шафа велика. Скажіть про неї: «Вона велика»",
+      "accessibilityLabel": "У коморі стоїть шафа. Скажіть про неї: «Вона велика»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "85ea2ac2c4be77905a7598d8ea65bb454c7cb1115dd254c149c6efa8817829c8"
+  "learnerFingerprint": "a64a9c2b261866d086875977912a3456b537667868fdf4d44fa455ff71feb84f"
 }

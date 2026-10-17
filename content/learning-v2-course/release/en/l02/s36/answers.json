@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-02:session-36:word:informal",
+    "correctText": "informal",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-36:i01",
-    "correctText": "It is informal.",
+    "correctText": "They are informal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:word:casual",
+    "correctText": "casual",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-36:i02",
-    "correctText": "He is sleepy.",
+    "correctText": "It is casual.",
     "correctResponseId": "en:lesson-02:session-36:i02:r1"
   },
   {
@@ -16,12 +26,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-36:i04",
-    "correctText": "en:lesson-02:session-36:i04:p1=informal\nen:lesson-02:session-36:i04:p2=formal\nen:lesson-02:session-36:i04:p3=sleepy\nen:lesson-02:session-36:i04:p4=flexible",
+    "correctText": "en:lesson-02:session-36:i04:p1=informal\nen:lesson-02:session-36:i04:p2=casual\nen:lesson-02:session-36:i04:p3=vegetarian\nen:lesson-02:session-36:i04:p4=delivered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:word:delivered",
+    "correctText": "delivered",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-36:i05",
-    "correctText": "They are not flexible.",
+    "correctText": "It is delivered.",
     "correctResponseId": null
   },
   {
@@ -30,8 +45,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-36:word:vegetarian",
+    "correctText": "vegetarian",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-36:i07",
-    "correctText": "I'm flexible.",
+    "correctText": "It's vegetarian.",
     "correctResponseId": null
   },
   {
@@ -41,12 +61,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-36:i09",
-    "correctText": "Is she flexible?",
+    "correctText": "Is it delivered?",
     "correctResponseId": "en:lesson-02:session-36:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-36:i10",
-    "correctText": "en:lesson-02:session-36:i10:p1=sleepy\nen:lesson-02:session-36:i10:p2=flexible\nen:lesson-02:session-36:i10:p3=informal\nen:lesson-02:session-36:i10:p4=formal",
+    "correctText": "en:lesson-02:session-36:i10:p1=formal\nen:lesson-02:session-36:i10:p2=informal\nen:lesson-02:session-36:i10:p3=casual\nen:lesson-02:session-36:i10:p4=sleepy",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-36:i13",
-    "correctText": "It's informal.",
+    "correctText": "I'm flexible.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-36:i16",
-    "correctText": "en:lesson-02:session-36:i16:p1=formal\nen:lesson-02:session-36:i16:p2=informal\nen:lesson-02:session-36:i16:p3=flexible\nen:lesson-02:session-36:i16:p4=sleepy",
+    "correctText": "en:lesson-02:session-36:i16:p1=vegetarian\nen:lesson-02:session-36:i16:p2=delivered\nen:lesson-02:session-36:i16:p3=optional\nen:lesson-02:session-36:i16:p4=flexible",
     "correctResponseId": null
   },
   {

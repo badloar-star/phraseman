@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-30",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-30:word:elsewhere",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — elsewhere",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:elsewhere:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — elsewhere",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:elsewhere:audio",
+            "transcript": "elsewhere"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:elsewhere:r1",
+              "targetText": "elsewhere",
+              "meaningByLocale": {
+                "ru": "в другом месте. It is elsewhere — «Она в другом месте». Слово не называет место, а только говорит, что вещи здесь нет.",
+                "uk": "в іншому місці. It is elsewhere — «Вона в іншому місці». Слово не називає місце, а лише каже, що речі тут немає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elsewhere",
+            "definitionByLocale": {
+              "ru": "в другом месте. It is elsewhere — «Она в другом месте». Слово не называет место, а только говорит, что вещи здесь нет.",
+              "uk": "в іншому місці. It is elsewhere — «Вона в іншому місці». Слово не називає місце, а лише каже, що речі тут немає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are elsewhere.",
+          "localizedMeaning": {
+            "ru": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
+            "uk": "Садові рукавички лежать не на цьому столі. Скажіть повною фразою, що вони в іншому місці"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "elsewhere"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are elsewhere.`",
+                "uk": "тут потрібно `are` — `They are elsewhere.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:word:healthy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — healthy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:healthy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — healthy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:healthy:audio",
+            "transcript": "healthy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:healthy:r1",
+              "targetText": "healthy",
+              "meaningByLocale": {
+                "ru": "здоровый, крепкий. It is healthy — «Оно здоровое». О растении, человеке, питании.",
+                "uk": "здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "healthy",
+            "definitionByLocale": {
+              "ru": "здоровый, крепкий. It is healthy — «Оно здоровое». О растении, человеке, питании.",
+              "uk": "здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу о растении",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i02:r1",
+            "text": "It is healthy."
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i02:r2",
+            "text": "It is dead."
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i02:r3",
+            "text": "It is alive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу о растении",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i02:audio",
+            "transcript": "It is healthy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:i02:r1",
+              "targetText": "It is healthy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i02:r2",
+              "targetText": "It is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i02:r3",
+              "targetText": "It is alive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о растении",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `healthy`, а в этом варианте — `dead`.",
+                "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `dead`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о растении",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `healthy`, а в этом варианте — `alive`.",
+                "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `alive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы ищете набор инструментов. Спросите подругу, где он",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете набор инструментов. Спросите подругу, где он",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ищете набор инструментов. Спросите подругу, где он",
+            "uk": "Ви шукаєте набір інструментів. Запитайте подругу, де він"
+          },
+          "gappedTargetPhrase": "Where ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-30:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы ищете набор инструментов. Спросите подругу, где он",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы ищете набор инструментов. Спросите подругу, где он",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы ищете набор инструментов. Спросите подругу, где он",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Where is it?`.",
+                "uk": "Запитання — `Where is it?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-30:i04:p1",
+              "target": "elsewhere",
+              "meaningByLocale": {
+                "ru": "в другом месте",
+                "uk": "в іншому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i04:p2",
+              "target": "healthy",
+              "meaningByLocale": {
+                "ru": "здоровый",
+                "uk": "здоровий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i04:p3",
+              "target": "wilted",
+              "meaningByLocale": {
+                "ru": "увядший",
+                "uk": "зів’ялий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i04:p4",
+              "target": "damp",
+              "meaningByLocale": {
+                "ru": "влажный",
+                "uk": "вологий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "elsewhere",
+            "healthy",
+            "wilted",
+            "damp"
+          ],
+          "rightColumn": [
+            "в другом месте",
+            "здоровый",
+            "увядший",
+            "влажный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:word:damp",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — damp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:damp:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — damp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:damp:audio",
+            "transcript": "damp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:damp:r1",
+              "targetText": "damp",
+              "meaningByLocale": {
+                "ru": "влажный, слегка сырой. It is damp — «Она влажная». О земле, полотенце, стене, одежде.",
+                "uk": "вологий, трохи сирий. It is damp — «Вона волога». Про ґрунт, рушник, стіну, одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "damp",
+            "definitionByLocale": {
+              "ru": "влажный, слегка сырой. It is damp — «Она влажная». О земле, полотенце, стене, одежде.",
+              "uk": "вологий, трохи сирий. It is damp — «Вона волога». Про ґрунт, рушник, стіну, одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i05:audio",
+            "transcript": "It is not damp."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not damp.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "damp"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not damp.`",
+                "uk": "тут потрібно `is` — `It is not damp.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is it?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
+            "uk": "Подруга показує незнайомий садовий інструмент. Запитайте, що це"
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "it"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is it?`",
+                "uk": "тут потрібно `What` — `What is it?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:word:wilted",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wilted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:wilted:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wilted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:wilted:audio",
+            "transcript": "wilted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:wilted:r1",
+              "targetText": "wilted",
+              "meaningByLocale": {
+                "ru": "увядший. It is wilted — «Он увял». О цветке, листе, салате, траве.",
+                "uk": "зів’ялий. It is wilted — «Вона зів’яла». Про квітку, листок, салат, траву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wilted",
+            "definitionByLocale": {
+              "ru": "увядший. It is wilted — «Он увял». О цветке, листе, салате, траве.",
+              "uk": "зів’ялий. It is wilted — «Вона зів’яла». Про квітку, листок, салат, траву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Листья у цветка на подоконнике повисли и пожелтели. Коротко скажите подруге, что он увял",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Листья у цветка на подоконнике повисли и пожелтели. Коротко скажите подруге, что он увял",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i07:audio",
+            "transcript": "It's wilted."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's wilted.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+            "uk": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, it ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-30:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, it is not`.",
+                "uk": "Відповідь — `No, it is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i09:r1",
+            "text": "Is it wilted?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i09:r2",
+            "text": "Is it healthy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i09:r3",
+            "text": "Is it missing?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i09:audio",
+            "transcript": "Is it wilted?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:i09:r1",
+              "targetText": "Is it wilted?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i09:r2",
+              "targetText": "Is it healthy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i09:r3",
+              "targetText": "Is it missing?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `wilted`, а в этом варианте — `healthy`.",
+                "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `healthy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `wilted`, а в этом варианте — `missing`.",
+                "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `missing`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-30:i10:p1",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i10:p2",
+              "target": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый",
+                "uk": "мертвий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i10:p3",
+              "target": "dry",
+              "meaningByLocale": {
+                "ru": "сухой",
+                "uk": "сухий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i10:p4",
+              "target": "damp",
+              "meaningByLocale": {
+                "ru": "влажный",
+                "uk": "вологий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "alive",
+            "dead",
+            "dry",
+            "damp"
+          ],
+          "rightColumn": [
+            "живой",
+            "мёртвый",
+            "сухой",
+            "влажный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i11:audio",
+            "transcript": "They are healthy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are healthy.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "healthy"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are healthy.`",
+                "uk": "тут потрібно `are` — `They are healthy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it complete?",
+          "localizedMeaning": {
+            "ru": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
+            "uk": "Ви хочете дізнатися, чи всі інструменти на місці. Запитайте подругу, чи повний набір"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "complete"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it complete?`",
+                "uk": "тут потрібно `Is` — `Is it complete?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга думает, что цветок погиб, но вы видите на нём новый лист. Коротко скажите, что он не погиб",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга думает, что цветок погиб, но вы видите на нём новый лист. Коротко скажите, что он не погиб",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i13:audio",
+            "transcript": "It's not dead."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's not dead.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+            "uk": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці"
+          },
+          "gappedTargetPhrase": "They ___ elsewhere.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-30:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+              "feedbackByLocale": {
+                "ru": "С `They` нужно `are`.",
+                "uk": "З `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+              "feedbackByLocale": {
+                "ru": "Про два горшка — `They are elsewhere`.",
+                "uk": "Про два горщики — `They are elsewhere`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i15:r1",
+            "text": "Where is it?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i15:r2",
+            "text": "Who is it?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i15:r3",
+            "text": "What is it?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i15:audio",
+            "transcript": "Where is it?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:i15:r1",
+              "targetText": "Where is it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i15:r2",
+              "targetText": "Who is it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i15:r3",
+              "targetText": "What is it?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
+                "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Where`, а в этом варианте — `What`.",
+                "uk": "У записі перше слово — `Where`, а в цьому варіанті — `What`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-30:i16:p1",
+              "target": "healthy",
+              "meaningByLocale": {
+                "ru": "здоровый",
+                "uk": "здоровий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i16:p2",
+              "target": "elsewhere",
+              "meaningByLocale": {
+                "ru": "в другом месте",
+                "uk": "в іншому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i16:p3",
+              "target": "missing",
+              "meaningByLocale": {
+                "ru": "пропавший",
+                "uk": "зниклий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i16:p4",
+              "target": "complete",
+              "meaningByLocale": {
+                "ru": "полный",
+                "uk": "повний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "healthy",
+            "elsewhere",
+            "missing",
+            "complete"
+          ],
+          "rightColumn": [
+            "здоровый",
+            "в другом месте",
+            "пропавший",
+            "полный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Лейки нет на столе. Спросите подругу, в другом ли месте она",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Лейки нет на столе. Спросите подругу, в другом ли месте она",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i17:audio",
+            "transcript": "Is it elsewhere?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it elsewhere?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-30:word:elsewhere",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — elsewhere",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:elsewhere:audio"
+        ],
+        "accessibilityLabel": "Картка слова — elsewhere",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:elsewhere:audio",
+            "transcript": "elsewhere"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:elsewhere:r1",
+              "targetText": "elsewhere",
+              "meaningByLocale": {
+                "ru": "в другом месте. It is elsewhere — «Она в другом месте». Слово не называет место, а только говорит, что вещи здесь нет.",
+                "uk": "в іншому місці. It is elsewhere — «Вона в іншому місці». Слово не називає місце, а лише каже, що речі тут немає."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elsewhere",
+            "definitionByLocale": {
+              "ru": "в другом месте. It is elsewhere — «Она в другом месте». Слово не называет место, а только говорит, что вещи здесь нет.",
+              "uk": "в іншому місці. It is elsewhere — «Вона в іншому місці». Слово не називає місце, а лише каже, що речі тут немає."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Садові рукавички лежать не на цьому столі. Скажіть повною фразою, що вони в іншому місці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Садові рукавички лежать не на цьому столі. Скажіть повною фразою, що вони в іншому місці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are elsewhere.",
+          "localizedMeaning": {
+            "ru": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
+            "uk": "Садові рукавички лежать не на цьому столі. Скажіть повною фразою, що вони в іншому місці"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "elsewhere"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Садові рукавички лежать не на цьому столі. Скажіть повною фразою, що вони в іншому місці",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are elsewhere.`",
+                "uk": "тут потрібно `are` — `They are elsewhere.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:word:healthy",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — healthy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:healthy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — healthy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:healthy:audio",
+            "transcript": "healthy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:healthy:r1",
+              "targetText": "healthy",
+              "meaningByLocale": {
+                "ru": "здоровый, крепкий. It is healthy — «Оно здоровое». О растении, человеке, питании.",
+                "uk": "здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "healthy",
+            "definitionByLocale": {
+              "ru": "здоровый, крепкий. It is healthy — «Оно здоровое». О растении, человеке, питании.",
+              "uk": "здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про рослину",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i02:r1",
+            "text": "It is healthy."
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i02:r2",
+            "text": "It is dead."
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i02:r3",
+            "text": "It is alive."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про рослину",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i02:audio",
+            "transcript": "It is healthy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:i02:r1",
+              "targetText": "It is healthy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i02:r2",
+              "targetText": "It is dead.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i02:r3",
+              "targetText": "It is alive.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про рослину",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `healthy`, а в этом варианте — `dead`.",
+                "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `dead`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про рослину",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `healthy`, а в этом варианте — `alive`.",
+                "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `alive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви шукаєте набір інструментів. Запитайте подругу, де він",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте набір інструментів. Запитайте подругу, де він",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ищете набор инструментов. Спросите подругу, где он",
+            "uk": "Ви шукаєте набір інструментів. Запитайте подругу, де він"
+          },
+          "gappedTargetPhrase": "Where ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-30:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви шукаєте набір інструментів. Запитайте подругу, де він",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви шукаєте набір інструментів. Запитайте подругу, де він",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви шукаєте набір інструментів. Запитайте подругу, де він",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Where is it?`.",
+                "uk": "Запитання — `Where is it?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-30:i04:p1",
+              "target": "elsewhere",
+              "meaningByLocale": {
+                "ru": "в другом месте",
+                "uk": "в іншому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i04:p2",
+              "target": "healthy",
+              "meaningByLocale": {
+                "ru": "здоровый",
+                "uk": "здоровий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i04:p3",
+              "target": "wilted",
+              "meaningByLocale": {
+                "ru": "увядший",
+                "uk": "зів’ялий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i04:p4",
+              "target": "damp",
+              "meaningByLocale": {
+                "ru": "влажный",
+                "uk": "вологий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "elsewhere",
+            "healthy",
+            "wilted",
+            "damp"
+          ],
+          "rightColumn": [
+            "в іншому місці",
+            "здоровий",
+            "зів’ялий",
+            "вологий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:word:damp",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — damp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:damp:audio"
+        ],
+        "accessibilityLabel": "Картка слова — damp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:damp:audio",
+            "transcript": "damp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:damp:r1",
+              "targetText": "damp",
+              "meaningByLocale": {
+                "ru": "влажный, слегка сырой. It is damp — «Она влажная». О земле, полотенце, стене, одежде.",
+                "uk": "вологий, трохи сирий. It is damp — «Вона волога». Про ґрунт, рушник, стіну, одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "damp",
+            "definitionByLocale": {
+              "ru": "влажный, слегка сырой. It is damp — «Она влажная». О земле, полотенце, стене, одежде.",
+              "uk": "вологий, трохи сирий. It is damp — «Вона волога». Про ґрунт, рушник, стіну, одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i05:audio",
+            "transcript": "It is not damp."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not damp.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "damp"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not damp.`",
+                "uk": "тут потрібно `is` — `It is not damp.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує незнайомий садовий інструмент. Запитайте, що це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує незнайомий садовий інструмент. Запитайте, що це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is it?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
+            "uk": "Подруга показує незнайомий садовий інструмент. Запитайте, що це"
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "it"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує незнайомий садовий інструмент. Запитайте, що це",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is it?`",
+                "uk": "тут потрібно `What` — `What is it?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:word:wilted",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wilted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:word:wilted:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wilted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:word:wilted:audio",
+            "transcript": "wilted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:word:wilted:r1",
+              "targetText": "wilted",
+              "meaningByLocale": {
+                "ru": "увядший. It is wilted — «Он увял». О цветке, листе, салате, траве.",
+                "uk": "зів’ялий. It is wilted — «Вона зів’яла». Про квітку, листок, салат, траву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wilted",
+            "definitionByLocale": {
+              "ru": "увядший. It is wilted — «Он увял». О цветке, листе, салате, траве.",
+              "uk": "зів’ялий. It is wilted — «Вона зів’яла». Про квітку, листок, салат, траву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Листки в квітки на підвіконні обвисли й пожовкли. Коротко скажіть подрузі, що вона зів’яла",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i07:audio"
+        ],
+        "accessibilityLabel": "Листки в квітки на підвіконні обвисли й пожовкли. Коротко скажіть подрузі, що вона зів’яла",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i07:audio",
+            "transcript": "It's wilted."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's wilted.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+            "uk": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, it ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-30:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, it is not`.",
+                "uk": "Відповідь — `No, it is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i09:r1",
+            "text": "Is it wilted?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i09:r2",
+            "text": "Is it healthy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i09:r3",
+            "text": "Is it missing?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i09:audio",
+            "transcript": "Is it wilted?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:i09:r1",
+              "targetText": "Is it wilted?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i09:r2",
+              "targetText": "Is it healthy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i09:r3",
+              "targetText": "Is it missing?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `wilted`, а в этом варианте — `healthy`.",
+                "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `healthy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `wilted`, а в этом варианте — `missing`.",
+                "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `missing`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-30:i10:p1",
+              "target": "alive",
+              "meaningByLocale": {
+                "ru": "живой",
+                "uk": "живий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i10:p2",
+              "target": "dead",
+              "meaningByLocale": {
+                "ru": "мёртвый",
+                "uk": "мертвий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i10:p3",
+              "target": "dry",
+              "meaningByLocale": {
+                "ru": "сухой",
+                "uk": "сухий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i10:p4",
+              "target": "damp",
+              "meaningByLocale": {
+                "ru": "влажный",
+                "uk": "вологий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "alive",
+            "dead",
+            "dry",
+            "damp"
+          ],
+          "rightColumn": [
+            "живий",
+            "мертвий",
+            "сухий",
+            "вологий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i11:audio",
+            "transcript": "They are healthy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are healthy.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "healthy"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are healthy.`",
+                "uk": "тут потрібно `are` — `They are healthy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете дізнатися, чи всі інструменти на місці. Запитайте подругу, чи повний набір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете дізнатися, чи всі інструменти на місці. Запитайте подругу, чи повний набір",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it complete?",
+          "localizedMeaning": {
+            "ru": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
+            "uk": "Ви хочете дізнатися, чи всі інструменти на місці. Запитайте подругу, чи повний набір"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "complete"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви хочете дізнатися, чи всі інструменти на місці. Запитайте подругу, чи повний набір",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it complete?`",
+                "uk": "тут потрібно `Is` — `Is it complete?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга думає, що квітка загинула, але ви бачите на ній новий листок. Коротко скажіть, що вона не загинула",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга думає, що квітка загинула, але ви бачите на ній новий листок. Коротко скажіть, що вона не загинула",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i13:audio",
+            "transcript": "It's not dead."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's not dead.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+            "uk": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці"
+          },
+          "gappedTargetPhrase": "They ___ elsewhere.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-30:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i14:r2",
+              "correct": false,
+              "testedDimension": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці",
+              "feedbackByLocale": {
+                "ru": "С `They` нужно `are`.",
+                "uk": "З `They` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i14:r3",
+              "correct": false,
+              "testedDimension": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці",
+              "feedbackByLocale": {
+                "ru": "Про два горшка — `They are elsewhere`.",
+                "uk": "Про два горщики — `They are elsewhere`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-30:i15:r1",
+            "text": "Where is it?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i15:r2",
+            "text": "Who is it?"
+          },
+          {
+            "responseId": "en:lesson-02:session-30:i15:r3",
+            "text": "What is it?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i15:audio",
+            "transcript": "Where is it?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-30:i15:r1",
+              "targetText": "Where is it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i15:r2",
+              "targetText": "Who is it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i15:r3",
+              "targetText": "What is it?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
+                "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-30:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Where`, а в этом варианте — `What`.",
+                "uk": "У записі перше слово — `Where`, а в цьому варіанті — `What`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-30:i16:p1",
+              "target": "healthy",
+              "meaningByLocale": {
+                "ru": "здоровый",
+                "uk": "здоровий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i16:p2",
+              "target": "elsewhere",
+              "meaningByLocale": {
+                "ru": "в другом месте",
+                "uk": "в іншому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i16:p3",
+              "target": "missing",
+              "meaningByLocale": {
+                "ru": "пропавший",
+                "uk": "зниклий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-30:i16:p4",
+              "target": "complete",
+              "meaningByLocale": {
+                "ru": "полный",
+                "uk": "повний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "healthy",
+            "elsewhere",
+            "missing",
+            "complete"
+          ],
+          "rightColumn": [
+            "здоровий",
+            "в іншому місці",
+            "зниклий",
+            "повний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-30:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Лійки немає на столі. Запитайте подругу, чи вона в іншому місці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Лійки немає на столі. Запитайте подругу, чи вона в іншому місці",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i17:audio",
+            "transcript": "Is it elsewhere?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it elsewhere?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-30:word:elsewhere",
+      "correctText": "elsewhere",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i01",
+      "correctText": "They are elsewhere.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:word:healthy",
+      "correctText": "healthy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i02",
+      "correctText": "It is healthy.",
+      "correctResponseId": "en:lesson-02:session-30:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-30:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:word:damp",
+      "correctText": "damp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i05",
+      "correctText": "It is not damp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i06",
+      "correctText": "What is it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:word:wilted",
+      "correctText": "wilted",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i07",
+      "correctText": "It's wilted.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-30:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i09",
+      "correctText": "Is it wilted?",
+      "correctResponseId": "en:lesson-02:session-30:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i11",
+      "correctText": "They are healthy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i12",
+      "correctText": "Is it complete?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i13",
+      "correctText": "It's not dead.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-02:session-30:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i15",
+      "correctText": "Where is it?",
+      "correctResponseId": "en:lesson-02:session-30:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i17",
+      "correctText": "Is it elsewhere?",
+      "correctResponseId": null
+    }
+  ]
+}

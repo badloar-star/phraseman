@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-36:i01",
+      "interactionId": "en:lesson-02:session-36:word:informal",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — informal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:word:informal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — informal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:word:informal:audio",
+          "transcript": "informal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:word:informal:r1",
+            "targetText": "informal",
+            "meaningByLocale": {
+              "ru": "неформальный, непринуждённый. It is informal — «Это неформально». О встрече, разговоре, вечере, стиле.",
+              "uk": "неформальний, невимушений. It is informal — «Це неформально». Про зустріч, розмову, вечір, стиль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "informal",
+          "definitionByLocale": {
+            "ru": "неформальный, непринуждённый. It is informal — «Это неформально». О встрече, разговоре, вечере, стиле.",
+            "uk": "неформальний, невимушений. It is informal — «Це неформально». Про зустріч, розмову, вечір, стиль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Це домашні посиденьки без церемоній. Скажіть повною фразою, що зустріч неформальна",
+      "prompt": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Це домашні посиденьки без церемоній. Скажіть повною фразою, що зустріч неформальна",
+      "accessibilityLabel": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is informal.",
+        "targetPhrase": "They are informal.",
         "localizedMeaning": {
-          "ru": "Это домашние посиделки без церемоний. Скажите полной фразой, что встреча неформальная",
-          "uk": "Це домашні посиденьки без церемоній. Скажіть повною фразою, що зустріч неформальна"
+          "ru": "Встречи у этих друзей всегда проходят без нарядов и речей. Скажите полной фразой, что они неформальные",
+          "uk": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні"
         },
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "informal"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-36:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Це домашні посиденьки без церемоній. Скажіть повною фразою, що зустріч неформальна",
+            "testedDimension": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is informal.`",
-              "uk": "тут потрібно `is` — `It is informal.`"
+              "ru": "здесь нужно `are` — `They are informal.`",
+              "uk": "тут потрібно `are` — `They are informal.`"
             }
           }
         ],
@@ -48,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-36:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-02:session-36:word:casual",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олега",
+      "prompt": "Картка слова — casual",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:word:casual:audio"
+      ],
+      "accessibilityLabel": "Картка слова — casual",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:word:casual:audio",
+          "transcript": "casual"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:word:casual:r1",
+            "targetText": "casual",
+            "meaningByLocale": {
+              "ru": "повседневный, простой по одежде. It is casual — «Это повседневно». Об одежде: джинсы, футболка, кроссовки.",
+              "uk": "повсякденний, простий в одязі. It is casual — «Це повсякденно». Про одяг: джинси, футболка, кросівки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "casual",
+          "definitionByLocale": {
+            "ru": "повседневный, простой по одежде. It is casual — «Это повседневно». Об одежде: джинсы, футболка, кроссовки.",
+            "uk": "повсякденний, простий в одязі. It is casual — «Це повсякденно». Про одяг: джинси, футболка, кросівки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про одяг",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-36:i02:r1",
-          "text": "He is sleepy."
+          "text": "It is casual."
         },
         {
           "responseId": "en:lesson-02:session-36:i02:r2",
-          "text": "He is flexible."
+          "text": "It is formal."
         },
         {
           "responseId": "en:lesson-02:session-36:i02:r3",
-          "text": "He is asleep."
+          "text": "It is optional."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-36:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олега",
+      "accessibilityLabel": "Послухайте фразу про одяг",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-36:i02:audio",
-          "transcript": "He is sleepy."
+          "transcript": "It is casual."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-36:i02:r1",
-            "targetText": "He is sleepy.",
+            "targetText": "It is casual.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-36:i02:r2",
-            "targetText": "He is flexible.",
+            "targetText": "It is formal.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-36:i02:r3",
-            "targetText": "He is asleep.",
+            "targetText": "It is optional.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +188,19 @@
           {
             "responseId": "en:lesson-02:session-36:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте фразу про одяг",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `flexible`.",
-              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `flexible`."
+              "ru": "В записи последнее слово — `casual`, а в этом варианте — `formal`.",
+              "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `formal`."
             }
           },
           {
             "responseId": "en:lesson-02:session-36:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте фразу про одяг",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `asleep`.",
-              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `asleep`."
+              "ru": "В записи последнее слово — `casual`, а в этом варианте — `optional`.",
+              "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `optional`."
             }
           }
         ],
@@ -125,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про формат зустрічі: чи вона неформальна?",
+      "prompt": "Запитайте друга, чи буде зустріч неформальною",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-36:i03:r1",
@@ -146,12 +232,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про формат зустрічі: чи вона неформальна?",
+      "accessibilityLabel": "Запитайте друга, чи буде зустріч неформальною",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о формате встречи: неформальная ли она?",
-          "uk": "Запитайте про формат зустрічі: чи вона неформальна?"
+          "ru": "Спросите друга, неформальная ли будет встреча",
+          "uk": "Запитайте друга, чи буде зустріч неформальною"
         },
         "gappedTargetPhrase": "___ it informal?",
         "gapOptions": [
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Запитайте про формат зустрічі: чи вона неформальна?",
+        "testedDimension": "Запитайте друга, чи буде зустріч неформальною",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-36:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте про формат зустрічі: чи вона неформальна?",
+            "testedDimension": "Запитайте друга, чи буде зустріч неформальною",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,7 +268,7 @@
           {
             "responseId": "en:lesson-02:session-36:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте про формат зустрічі: чи вона неформальна?",
+            "testedDimension": "Запитайте друга, чи буде зустріч неформальною",
             "feedbackByLocale": {
               "ru": "Вопрос — `Is it informal?`.",
               "uk": "Запитання — `Is it informal?`."
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -216,40 +302,40 @@
           },
           {
             "pairId": "en:lesson-02:session-36:i04:p2",
-            "target": "formal",
+            "target": "casual",
             "meaningByLocale": {
-              "ru": "официальный, строгий по стилю",
-              "uk": "офіційний, строгий за стилем"
+              "ru": "повседневный",
+              "uk": "повсякденний"
             }
           },
           {
             "pairId": "en:lesson-02:session-36:i04:p3",
-            "target": "sleepy",
+            "target": "vegetarian",
             "meaningByLocale": {
-              "ru": "сонный",
-              "uk": "сонний"
+              "ru": "вегетарианский",
+              "uk": "вегетаріанський"
             }
           },
           {
             "pairId": "en:lesson-02:session-36:i04:p4",
-            "target": "flexible",
+            "target": "delivered",
             "meaningByLocale": {
-              "ru": "гибкий",
-              "uk": "гнучкий"
+              "ru": "доставленный",
+              "uk": "доставлений"
             }
           }
         ],
         "leftColumn": [
           "informal",
-          "formal",
-          "sleepy",
-          "flexible"
+          "casual",
+          "vegetarian",
+          "delivered"
         ],
         "rightColumn": [
           "неформальний",
-          "офіційний, строгий за стилем",
-          "сонний",
-          "гнучкий"
+          "повсякденний",
+          "вегетаріанський",
+          "доставлений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,9 +352,52 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-36:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-36:word:delivered",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — delivered",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:word:delivered:audio"
+      ],
+      "accessibilityLabel": "Картка слова — delivered",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:word:delivered:audio",
+          "transcript": "delivered"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:word:delivered:r1",
+            "targetText": "delivered",
+            "meaningByLocale": {
+              "ru": "доставленный. It is delivered — «Её доставили». О пицце, посылке, письме, заказе.",
+              "uk": "доставлений. It is delivered — «Її доставили». Про піцу, посилку, лист, замовлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delivered",
+          "definitionByLocale": {
+            "ru": "доставленный. It is delivered — «Её доставили». О пицце, посылке, письме, заказе.",
+            "uk": "доставлений. It is delivered — «Її доставили». Про піцу, посилку, лист, замовлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -282,18 +411,17 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-36:i05:audio",
-          "transcript": "They are not flexible."
+          "transcript": "It is delivered."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not flexible.",
+        "hiddenTargetPhrase": "It is delivered.",
         "orderedTokens": [
-          "They",
-          "are",
-          "not",
-          "flexible"
+          "It",
+          "is",
+          "delivered"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
@@ -301,8 +429,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not flexible.`",
-              "uk": "тут потрібно `are` — `They are not flexible.`"
+              "ru": "здесь нужно `is` — `It is delivered.`",
+              "uk": "тут потрібно `is` — `It is delivered.`"
             }
           }
         ],
@@ -315,21 +443,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна сказала, що один із друзів хоче спати. Запитайте, хто сонний",
+      "prompt": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна сказала, що один із друзів хоче спати. Запитайте, хто сонний",
+      "accessibilityLabel": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Who is sleepy?",
         "localizedMeaning": {
-          "ru": "Анна сказала, что один из друзей хочет спать. Спросите, кто сонный",
-          "uk": "Анна сказала, що один із друзів хоче спати. Запитайте, хто сонний"
+          "ru": "Друг написал, что один из гостей хочет спать. Спросите, кто сонный",
+          "uk": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний"
         },
         "orderedTokens": [
           "Who",
@@ -343,7 +471,7 @@
           {
             "responseId": "en:lesson-02:session-36:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна сказала, що один із друзів хоче спати. Запитайте, хто сонний",
+            "testedDimension": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний",
             "feedbackByLocale": {
               "ru": "здесь нужно `Who` — `Who is sleepy?`",
               "uk": "тут потрібно `Who` — `Who is sleepy?`"
@@ -358,26 +486,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-36:word:vegetarian",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vegetarian",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:word:vegetarian:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vegetarian",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:word:vegetarian:audio",
+          "transcript": "vegetarian"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:word:vegetarian:r1",
+            "targetText": "vegetarian",
+            "meaningByLocale": {
+              "ru": "вегетарианский, без мяса. It is vegetarian — «Она вегетарианская». О пицце, супе, блюде, меню.",
+              "uk": "вегетаріанський, без м’яса. It is vegetarian — «Вона вегетаріанська». Про піцу, суп, страву, меню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vegetarian",
+          "definitionByLocale": {
+            "ru": "вегетарианский, без мяса. It is vegetarian — «Она вегетарианская». О пицце, супе, блюде, меню.",
+            "uk": "вегетаріанський, без м’яса. It is vegetarian — «Вона вегетаріанська». Про піцу, суп, страву, меню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-36:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вам підходять і ранній, і пізній час. Коротко скажіть, що ви готові підлаштуватися",
+      "prompt": "Піца без м’яса, як просила подруга. Коротко скажіть їй, що вона вегетаріанська",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-36:i07:audio"
       ],
-      "accessibilityLabel": "Вам підходять і ранній, і пізній час. Коротко скажіть, що ви готові підлаштуватися",
+      "accessibilityLabel": "Піца без м’яса, як просила подруга. Коротко скажіть їй, що вона вегетаріанська",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-36:i07:audio",
-          "transcript": "I'm flexible."
+          "transcript": "It's vegetarian."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm flexible.",
+        "targetPhrase": "It's vegetarian.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +563,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег розмовляє з вами. На «Is he asleep?» доповніть коротку відповідь «ні»",
+      "prompt": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-36:i08:r1",
@@ -413,12 +584,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег розмовляє з вами. На «Is he asleep?» доповніть коротку відповідь «ні»",
+      "accessibilityLabel": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
-          "uk": "Олег розмовляє з вами. На «Is he asleep?» доповніть коротку відповідь «ні»"
+          "ru": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+          "uk": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»"
         },
         "gappedTargetPhrase": "No, he ___ not.",
         "gapOptions": [
@@ -435,12 +606,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олег розмовляє з вами. На «Is he asleep?» доповніть коротку відповідь «ні»",
+        "testedDimension": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-36:i08:r2",
             "correct": false,
-            "testedDimension": "Олег розмовляє з вами. На «Is he asleep?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "С `he` нужно `is`.",
               "uk": "З `he` потрібно `is`."
@@ -449,7 +620,7 @@
           {
             "responseId": "en:lesson-02:session-36:i08:r3",
             "correct": false,
-            "testedDimension": "Олег розмовляє з вами. На «Is he asleep?» доповніть коротку відповідь «ні»",
+            "testedDimension": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
             "feedbackByLocale": {
               "ru": "Ответ — `No, he is not`.",
               "uk": "Відповідь — `No, he is not`."
@@ -461,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -469,15 +640,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-36:i09:r1",
-          "text": "Is she flexible?"
+          "text": "Is it delivered?"
         },
         {
           "responseId": "en:lesson-02:session-36:i09:r2",
-          "text": "Is she sleepy?"
+          "text": "Is it casual?"
         },
         {
           "responseId": "en:lesson-02:session-36:i09:r3",
-          "text": "Is she formal?"
+          "text": "Is it informal?"
         }
       ],
       "mediaIds": [],
@@ -489,23 +660,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-36:i09:audio",
-          "transcript": "Is she flexible?"
+          "transcript": "Is it delivered?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-36:i09:r1",
-            "targetText": "Is she flexible?",
+            "targetText": "Is it delivered?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-36:i09:r2",
-            "targetText": "Is she sleepy?",
+            "targetText": "Is it casual?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-36:i09:r3",
-            "targetText": "Is she formal?",
+            "targetText": "Is it informal?",
             "meaningByLocale": null
           }
         ],
@@ -516,8 +687,8 @@
             "correct": false,
             "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `flexible`, а в этом варианте — `sleepy`.",
-              "uk": "У записі останнє слово — `flexible`, а в цьому варіанті — `sleepy`."
+              "ru": "В записи последнее слово — `delivered`, а в этом варианте — `casual`.",
+              "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `casual`."
             }
           },
           {
@@ -525,8 +696,8 @@
             "correct": false,
             "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `flexible`, а в этом варианте — `formal`.",
-              "uk": "У записі останнє слово — `flexible`, а в цьому варіанті — `formal`."
+              "ru": "В записи последнее слово — `delivered`, а в этом варианте — `informal`.",
+              "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `informal`."
             }
           }
         ],
@@ -537,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -551,22 +722,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-36:i10:p1",
-            "target": "sleepy",
+            "target": "formal",
             "meaningByLocale": {
-              "ru": "сонный",
-              "uk": "сонний"
+              "ru": "официальный",
+              "uk": "офіційний"
             }
           },
           {
             "pairId": "en:lesson-02:session-36:i10:p2",
-            "target": "flexible",
-            "meaningByLocale": {
-              "ru": "гибкий",
-              "uk": "гнучкий"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-36:i10:p3",
             "target": "informal",
             "meaningByLocale": {
               "ru": "неформальный",
@@ -574,25 +737,33 @@
             }
           },
           {
-            "pairId": "en:lesson-02:session-36:i10:p4",
-            "target": "formal",
+            "pairId": "en:lesson-02:session-36:i10:p3",
+            "target": "casual",
             "meaningByLocale": {
-              "ru": "официальный, строгий по стилю",
-              "uk": "офіційний, строгий за стилем"
+              "ru": "повседневный",
+              "uk": "повсякденний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-36:i10:p4",
+            "target": "sleepy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
             }
           }
         ],
         "leftColumn": [
-          "sleepy",
-          "flexible",
+          "formal",
           "informal",
-          "formal"
+          "casual",
+          "sleepy"
         ],
         "rightColumn": [
-          "сонний",
-          "гнучкий",
+          "офіційний",
           "неформальний",
-          "офіційний, строгий за стилем"
+          "повсякденний",
+          "сонний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -658,21 +829,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег відійшов, і ви не бачите його в кімнаті. Запитайте, де він",
+      "prompt": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег відійшов, і ви не бачите його в кімнаті. Запитайте, де він",
+      "accessibilityLabel": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where is he?",
         "localizedMeaning": {
-          "ru": "Олег отошёл, и вы не видите его в комнате. Спросите, где он",
-          "uk": "Олег відійшов, і ви не бачите його в кімнаті. Запитайте, де він"
+          "ru": "Друг вышел из комнаты, и вы его не видите. Спросите, где он",
+          "uk": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він"
         },
         "orderedTokens": [
           "Where",
@@ -686,7 +857,7 @@
           {
             "responseId": "en:lesson-02:session-36:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Олег відійшов, і ви не бачите його в кімнаті. Запитайте, де він",
+            "testedDimension": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він",
             "feedbackByLocale": {
               "ru": "здесь нужно `Where` — `Where is he?`",
               "uk": "тут потрібно `Where` — `Where is he?`"
@@ -702,25 +873,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви з’ясували, що зустріч неформальна. Коротко повідомте про це Анні",
+      "prompt": "Друг пропонує обрати час: раніше чи пізніше. Вам підходить будь-який. Коротко скажіть, що ви готові підлаштуватися",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-36:i13:audio"
       ],
-      "accessibilityLabel": "Ви з’ясували, що зустріч неформальна. Коротко повідомте про це Анні",
+      "accessibilityLabel": "Друг пропонує обрати час: раніше чи пізніше. Вам підходить будь-який. Коротко скажіть, що ви готові підлаштуватися",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-36:i13:audio",
-          "transcript": "It's informal."
+          "transcript": "I'm flexible."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's informal.",
+        "targetPhrase": "I'm flexible.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,8 +906,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Ви зовсім не хочете спати. Скажіть, що ви не сонні",
@@ -804,7 +975,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -820,7 +991,7 @@
         },
         {
           "responseId": "en:lesson-02:session-36:i15:r3",
-          "text": "Are you asleep?"
+          "text": "Are you hungry?"
         }
       ],
       "mediaIds": [],
@@ -848,7 +1019,7 @@
           },
           {
             "responseId": "en:lesson-02:session-36:i15:r3",
-            "targetText": "Are you asleep?",
+            "targetText": "Are you hungry?",
             "meaningByLocale": null
           }
         ],
@@ -868,8 +1039,8 @@
             "correct": false,
             "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `asleep`.",
-              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `asleep`."
+              "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `hungry`.",
+              "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `hungry`."
             }
           }
         ],
@@ -880,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,48 +1065,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-36:i16:p1",
-            "target": "formal",
+            "target": "vegetarian",
             "meaningByLocale": {
-              "ru": "официальный, строгий по стилю",
-              "uk": "офіційний, строгий за стилем"
+              "ru": "вегетарианский",
+              "uk": "вегетаріанський"
             }
           },
           {
             "pairId": "en:lesson-02:session-36:i16:p2",
-            "target": "informal",
+            "target": "delivered",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "доставленный",
+              "uk": "доставлений"
             }
           },
           {
             "pairId": "en:lesson-02:session-36:i16:p3",
+            "target": "optional",
+            "meaningByLocale": {
+              "ru": "необязательный",
+              "uk": "необов’язковий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-36:i16:p4",
             "target": "flexible",
             "meaningByLocale": {
               "ru": "гибкий",
               "uk": "гнучкий"
             }
-          },
-          {
-            "pairId": "en:lesson-02:session-36:i16:p4",
-            "target": "sleepy",
-            "meaningByLocale": {
-              "ru": "сонный",
-              "uk": "сонний"
-            }
           }
         ],
         "leftColumn": [
-          "formal",
-          "informal",
-          "flexible",
-          "sleepy"
+          "vegetarian",
+          "delivered",
+          "optional",
+          "flexible"
         ],
         "rightColumn": [
-          "офіційний, строгий за стилем",
-          "неформальний",
-          "гнучкий",
-          "сонний"
+          "вегетаріанський",
+          "доставлений",
+          "необов’язковий",
+          "гнучкий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -953,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-36:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви хочете зустрітися раніше. Запитайте Анну, чи готова вона підлаштуватися за часом",
+      "prompt": "Ви хочете приїхати раніше. Запитайте подругу, чи готова вона підлаштуватися за часом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-36:i17:audio"
       ],
-      "accessibilityLabel": "Ви хочете зустрітися раніше. Запитайте Анну, чи готова вона підлаштуватися за часом",
+      "accessibilityLabel": "Ви хочете приїхати раніше. Запитайте подругу, чи готова вона підлаштуватися за часом",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -993,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8a0f7d1cbfd27d11110c72dc7e757cf8aa3912b2b1ea56b62105171b3f7e2f25"
+  "learnerFingerprint": "5b2c39fccceb9c8d19cb07d237a71fdbc33311f7f40c7b443faa475ec822af15"
 }

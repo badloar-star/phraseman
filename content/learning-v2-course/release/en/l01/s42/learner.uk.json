@@ -490,13 +490,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
+      "prompt": "Господиня пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-42:i07:audio"
       ],
-      "accessibilityLabel": "Ольга пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
+      "accessibilityLabel": "Господиня пригощає вас пирогом. Коротко скажіть їй, що вона дуже привітна",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "88c904c97fa36085e84f3ff5037bfce1490853bf1d872dc75ac66b1644429d54"
+  "learnerFingerprint": "6eddc8664afb690b06ee110302d883a0dce9088d80bfbf6b6b6085204144a9a0"
 }

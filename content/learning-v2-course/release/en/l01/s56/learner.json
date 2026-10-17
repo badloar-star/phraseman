@@ -447,13 +447,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Костя уронил телефон у подъезда, и по экрану пошли трещины. Скажите ему коротко, что экран треснул",
+      "prompt": "Брат уронил телефон у подъезда, и по экрану пошли трещины. Скажите ему коротко, что экран треснул",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-56:i07:audio"
       ],
-      "accessibilityLabel": "Костя уронил телефон у подъезда, и по экрану пошли трещины. Скажите ему коротко, что экран треснул",
+      "accessibilityLabel": "Брат уронил телефон у подъезда, и по экрану пошли трещины. Скажите ему коротко, что экран треснул",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -523,7 +523,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен",
+      "prompt": "Кассир разглядывает студенческий билет брата: срок закончился в июне. Скажите брату, что билет просрочен",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i08:r1",
@@ -540,12 +540,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен",
+      "accessibilityLabel": "Кассир разглядывает студенческий билет брата: срок закончился в июне. Скажите брату, что билет просрочен",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен",
-          "uk": "Касирка роздивляється студентський квиток Кості: термін закінчився в червні. Скажіть Кості, що квиток прострочений"
+          "ru": "Кассир разглядывает студенческий билет брата: срок закончился в июне. Скажите брату, что билет просрочен",
+          "uk": "Касирка роздивляється студентський квиток брата: термін закінчився в червні. Скажіть братові, що квиток прострочений"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -562,12 +562,12 @@
             "text": "tight"
           }
         ],
-        "testedDimension": "Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен",
+        "testedDimension": "Кассир разглядывает студенческий билет брата: срок закончился в июне. Скажите брату, что билет просрочен",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-56:i08:r2",
             "correct": false,
-            "testedDimension": "Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен",
+            "testedDimension": "Кассир разглядывает студенческий билет брата: срок закончился в июне. Скажите брату, что билет просрочен",
             "feedbackByLocale": {
               "ru": "`familiar` — «знакомый». А у билета вышел срок: `expired`.",
               "uk": "`familiar` — «знайомий». А в квитка минув термін: `expired`."
@@ -576,7 +576,7 @@
           {
             "responseId": "en:lesson-01:session-56:i08:r3",
             "correct": false,
-            "testedDimension": "Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен",
+            "testedDimension": "Кассир разглядывает студенческий билет брата: срок закончился в июне. Скажите брату, что билет просрочен",
             "feedbackByLocale": {
               "ru": "`tight` — «тесный», это об обуви и одежде. О билете с вышедшим сроком говорит `expired`.",
               "uk": "`tight` — «тісний», це про взуття й одяг. Про квиток, у якого минув термін, каже `expired`."
@@ -592,7 +592,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о тёте Вере",
+      "prompt": "Послушайте фразу о тёте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-56:i09:r1",
@@ -611,7 +611,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-56:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о тёте Вере",
+      "accessibilityLabel": "Послушайте фразу о тёте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -641,7 +641,7 @@
           {
             "responseId": "en:lesson-01:session-56:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о тёте Вере",
+            "testedDimension": "Послушайте фразу о тёте",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `responsible`, а в этом варианте — `independent`.",
               "uk": "У записі останнє слово — `responsible`, а в цьому варіанті — `independent`."
@@ -650,7 +650,7 @@
           {
             "responseId": "en:lesson-01:session-56:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о тёте Вере",
+            "testedDimension": "Послушайте фразу о тёте",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `responsible`, а в этом варианте — `dependent`.",
               "uk": "У записі останнє слово — `responsible`, а в цьому варіанті — `dependent`."
@@ -831,13 +831,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В поезде тётя Вера угощает вас пирожком с вишней. Похвалите его коротко",
+      "prompt": "В поезде тётя угощает вас пирожком с вишней. Похвалите его коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-56:i13:audio"
       ],
-      "accessibilityLabel": "В поезде тётя Вера угощает вас пирожком с вишней. Похвалите его коротко",
+      "accessibilityLabel": "В поезде тётя угощает вас пирожком с вишней. Похвалите его коротко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a18651cf07bad8c21f08ef387d20c110f20ef8e0f28018d766b4a8336d852673"
+  "learnerFingerprint": "2daf428f2da69a66971ba1e866a714a1259881c0d7409440af8775d2ff95db1b"
 }

@@ -1,138 +1,154 @@
-# Английский · Урок 2 · Занятие 41 — Карта для прогулки
+# Английский · Урок 2 · Занятие 41 — Присмотреть за детьми
 
-**Ситуация.** Ваш клуб прогулок готовит маршрут по району. Анна проверила карту на месте, а Олег признался, что часть расстояний записал по памяти. Вы выбираете, каким сведениям можно доверять.
+**Ситуация.** Соседи уехали на вечер и попросили вас с подругой посидеть с детьми и большой собакой. Вы знакомитесь с каждым из них, разговариваете с мамой по телефону и по ходу вечера описываете, кто какой.
 
-**Что вы освоите:** назвать сведения точными и отличить точность от честности
-**Новые слова:** accurate
+**Что вы освоите:** описать характер человека или животного и спросить о нём
+**Новые слова:** stubborn, gentle, selfish, naughty
+**Возвращаются:** kind, polite, tired, hungry, sleepy
 
 ---
 
 ## Интро 1
 
-### Совпадает с действительностью
+### Куртка на морозе
 
-`accurate` — «точный»: сведения правильно передают действительность. Анна проверила карту: улицы и расстояния указаны верно. `It is accurate` — «Она точная». Красивая карта ещё не обязательно точная: нарисованный на ней мост не поможет перейти реку, если моста нет.
+На улице минус пять, а младший брат подруги стоит у двери в одной футболке и повторяет «нет». Куртку он надевать не хочет. stubborn — «упрямый». He is stubborn — «Он упрямый». Про мальчика говорим He.
 
-**Анна проверила карту на месте: улицы и расстояния указаны верно. Скажите полной фразой, что карта точная.**
+**Подруга спрашивает, почему вы так долго не выходите. Скажите полной фразой, что её брат упрямый.**
 
-- ✅ **It is accurate.**
-- ❌ It accurate. — *Между `It` и `accurate` нужно `is`.*
-- ❌ It is not accurate. — *Это отрицает точность. По условию карту проверили, данные верны.*
+- ✅ **He is stubborn.**
+- ❌ She is stubborn. — *Речь о брате, нужно He: He is stubborn.*
+- ❌ He stubborn. — *Между He и stubborn нужно is: He is stubborn.*
 
 ---
 
 ## Интро 2
 
-### Честно — не всегда точно
+### Большая собака
 
-`honest` — «честный». Олег не скрывает, что записал расстояния по памяти: `He is honest`. Но честный человек тоже может ошибиться. О человеке здесь говорим `honest`, а о точности его сведений спрашиваем `Are they accurate?` — «Они точные?»
+Соседский пёс размером с телёнка. Он ходит по комнате осторожно, обходит малыша и тихо кладёт морду вам на колени. gentle — «ласковый, мягкий в обращении». Is he gentle? — «Он ласковый?»
 
-**Олег открыто признал, что не проверял расстояния. Коротко скажите, что он честный.**
+**Вы впервые остаётесь с этой собакой. Позвоните хозяину и спросите, ласковый ли пёс.**
 
-- ✅ **He's honest.**
-- ❌ She's honest. — *Вы говорите об Олеге: `He's`.*
-- ❌ He's active. — *Это «Он активный». Здесь вы отмечаете честность.*
+- ✅ **Is he gentle?**
+- ❌ He is gentle. — *Так звучит утверждение «Он ласковый». Чтобы спросить, ставим Is вперёд: Is he gentle?*
+- ❌ Are he gentle? — *С he нужно is: Is he gentle?*
 
 ---
 
 ## Интро 3
 
-### Клуб продолжает работать
+### Последняя конфета
 
-`active` — «активный, действующий». Клуб регулярно устраивает прогулки: `It is active`. Если вы хотите уточнить, продолжает ли он действовать, спросите `Is it active?`. Короткое `Yes, it is` подтверждает это. Сейчас вам нужно узнать о работе клуба, а не о точности карты.
+Две девочки нашли в вазе одну конфету. Старшая сразу разломила её пополам и отдала младшей половину. selfish — «эгоистичный, думающий только о себе». They're not selfish — «Они не эгоистки».
 
-**Вы нашли старую страницу клуба. Спросите, действует ли клуб сейчас.**
+**Мама девочек по телефону спрашивает, как они себя вели. Скажите коротко, что они не эгоистки.**
 
-- ✅ **Is it active?**
-- ❌ Is it accurate? — *Это вопрос о точности. Вы спрашиваете, действует ли клуб.*
-- ❌ It is active. — *Это утверждение. Вы пока не знаете и хотите спросить.*
+- ✅ **They're not selfish.**
+- ❌ They're selfish. — *Без not это «Они эгоистки». А девочки поделились: They're not selfish.*
+- ❌ She's not selfish. — *Девочек две, нужно They're: They're not selfish.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Проверенная карта верно показывает улицы и расстояния. Скажите полной фразой, что она точная**
+**1 · Карточка слова — stubborn**
+<!-- interaction_id: en:lesson-02:session-41:word:stubborn; family: word_card -->
+> **stubborn** — упрямый, не уступающий, даже если просят. He is stubborn — «Он упрямый». О ребёнке, осле, характере, споре.
+
+**2 · Мама мальчика спрашивает по телефону, почему он не выходит. Скажите ей полной фразой, что он упрямый.**
 <!-- interaction_id: en:lesson-02:session-41:i01; family: phrase_builder -->
-Плитки: `accurate` `is` `It` `are` → **It is accurate.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is accurate.`)*
+Плитки: `stubborn` `is` `He` `are` → **He is stubborn.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is stubborn.`)*
 
-**2 · Послушайте фразу об Олеге**
+**3 · Послушайте, что мама говорит о детях**
 <!-- interaction_id: en:lesson-02:session-41:i02; family: listen_choose -->
-🔊 *He is honest.* → **He is honest.** · He is active. · He is brave.
-- He is active. — *В записи последнее слово — `honest`, а в этом варианте — `active`.*
-- He is brave. — *В записи последнее слово — `honest`, а в этом варианте — `brave`.*
+🔊 *They are tired.* → **They are tired.** · They are hungry. · They are sleepy.
+- They are hungry. — *В записи последнее слово — `tired`, а в этом варианте — `hungry`.*
+- They are sleepy. — *В записи последнее слово — `tired`, а в этом варианте — `sleepy`.*
 
-**3 · Уточните, точные ли эти сведения о расстояниях**
+**4 · Карточка слова — selfish**
+<!-- interaction_id: en:lesson-02:session-41:word:selfish; family: word_card -->
+> **selfish** — эгоистичный, думающий только о себе. They're not selfish — «Они не эгоисты». О человеке, поступке, ребёнке.
+
+**5 · Мама двух девочек рассказывает, что они поссорились из-за конфеты. Спросите её, эгоистичны ли они**
 <!-- interaction_id: en:lesson-02:session-41:i03; family: context_gap_grammar -->
-___ they accurate? → **Are** · Am · Is
+___ they selfish? → **Are** · Am · Is
 - Am — *С `they` нужно `Are`.*
-- Is — *Вопрос — `Are they accurate?`.*
+- Is — *Вопрос — `Are they selfish?`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-41:i04; family: speed_match -->
-accurate — точный · honest — честный · active — действующий · relevant — относящийся к теме
+stubborn — упрямый · gentle — ласковый · selfish — эгоистичный · kind — добрый
 
-**5 · Послушайте и соберите короткий ответ**
+**7 · Карточка слова — gentle**
+<!-- interaction_id: en:lesson-02:session-41:word:gentle; family: word_card -->
+> **gentle** — ласковый, мягкий в обращении. Is he gentle? — «Он ласковый?» О собаке, враче, голосе, прикосновении.
+
+**8 · Послушайте вопрос подруги о собаке и соберите его**
 <!-- interaction_id: en:lesson-02:session-41:i05; family: listen_build_dictation -->
-🔊 *Yes, they are.* Плитки: `are` `they` `Yes,` `No,` → **Yes, they are.**
-*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, they are.`)*
+🔊 *Is he gentle?* Плитки: `gentle` `he` `Is` `Are` → **Is he gentle?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is he gentle?`)*
 
-**6 · В двух описаниях маршрута разные расстояния. Спросите Анну, что является точным**
+**9 · Вы слышали, что соседский мальчик не делится игрушками. Спросите его маму, эгоистичный ли он.**
 <!-- interaction_id: en:lesson-02:session-41:i06; family: phrase_builder -->
-Плитки: `accurate` `is` `What` `Where` → **What is accurate?**
-*(плитка `Where` лишняя: здесь нужно `What` — `What is accurate?`)*
+Плитки: `selfish` `he` `Is` `Are` → **Is he selfish?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is he selfish?`)*
 
-**7 · Анна сверила схему с реальными улицами: всё указано верно. Коротко сообщите, что схема точная**
+**10 · Девочки поделились конфетой и с вами. Скажите коротко, что они не эгоистки.**
 <!-- interaction_id: en:lesson-02:session-41:i07; family: scripted_repeat_compare -->
-🎙 **It's accurate.**
+🎙 **They're not selfish.**
 
-**8 · Клуб продолжает устраивать прогулки. На «Is it active?» дополните короткое «да»**
+**11 · Мама спросила: «Is he stubborn?» Мальчик снова стоит у двери и не идёт. Дополните короткое «да»**
 <!-- interaction_id: en:lesson-02:session-41:i08; family: context_gap_grammar -->
-Yes, it ___. → **is** · am · are
-- am — *С `it` нужно `is`.*
-- are — *Ответ — `Yes, it is`.*
+Yes, he ___. → **is** · am · are
+- am — *С `he` нужно `is`.*
+- are — *Ответ — `Yes, he is`.*
 
-**9 · Послушайте фразу о клубе**
+**12 · Карточка слова — naughty**
+<!-- interaction_id: en:lesson-02:session-41:word:naughty; family: word_card -->
+> **naughty** — непослушный, озорной, о ребёнке или щенке. He is naughty — «Он шалит». О мальчике, щенке, котёнке.
+
+**13 · Послушайте, что мама говорит о собаке**
 <!-- interaction_id: en:lesson-02:session-41:i09; family: listen_choose -->
-🔊 *It is active.* → **It is active.** · It is accurate. · It is relevant.
-- It is accurate. — *В записи последнее слово — `active`, а в этом варианте — `accurate`.*
-- It is relevant. — *В записи последнее слово — `active`, а в этом варианте — `relevant`.*
+🔊 *He is naughty.* → **He is naughty.** · He is gentle. · He is stubborn.
+- He is gentle. — *В записи последнее слово — `naughty`, а в этом варианте — `gentle`.*
+- He is stubborn. — *В записи последнее слово — `naughty`, а в этом варианте — `stubborn`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-41:i10; family: speed_match -->
-honest — честный · relevant — относящийся к теме · accurate — точный · active — действующий
+naughty — непослушный · selfish — эгоистичный · gentle — ласковый · polite — вежливый
 
-**11 · Послушайте и соберите фразу о сведениях**
+**15 · Послушайте, что мама говорит о близнецах, и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-41:i11; family: listen_build_dictation -->
-🔊 *They are not accurate.* Плитки: `accurate` `not` `are` `They` `is` → **They are not accurate.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are not accurate.`)*
+🔊 *They are not stubborn.* Плитки: `stubborn` `not` `are` `They` `is` → **They are not stubborn.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not stubborn.`)*
 
-**12 · Вы ещё не знакомы с Олегом. Спросите Анну, честный ли он**
+**16 · Мама говорит, что в доме сегодня натворили дел: подушка порвана, а шторы стянуты. Спросите её, кто непослушный.**
 <!-- interaction_id: en:lesson-02:session-41:i12; family: phrase_builder -->
-Плитки: `honest` `he` `Is` `Are` → **Is he honest?**
-*(плитка `Are` лишняя: здесь нужно `Is` — `Is he honest?`)*
+Плитки: `naughty` `is` `Who` `Where` → **Who is naughty?**
+*(плитка `Where` лишняя: здесь нужно `Who` — `Who is naughty?`)*
 
-**13 · Клуб регулярно собирается на прогулки. Коротко сообщите, что он действует**
+**17 · Щенок схватил вашу перчатку и убежал. Скажите коротко, что он непослушный.**
 <!-- interaction_id: en:lesson-02:session-41:i13; family: scripted_repeat_compare -->
-🎙 **It's active.**
+🎙 **He's naughty.**
 
-**14 · На старой карте расстояние до парка указано неверно. Скажите, что карта неточная**
+**18 · Мама спрашивает про старшего мальчика. Он отдал вам свой стул. Скажите, что он не эгоист**
 <!-- interaction_id: en:lesson-02:session-41:i14; family: context_gap_grammar -->
-It ___ not accurate. → **is** · am · are
-- am — *С `It` нужно `is`.*
-- are — *Фраза — `It is not accurate`.*
+He ___ not selfish. → **is** · am · are
+- am — *С `He` нужно `is`.*
+- are — *Фраза — `He is not selfish`.*
 
-**15 · Послушайте вопрос**
+**19 · Послушайте вопрос мамы**
 <!-- interaction_id: en:lesson-02:session-41:i15; family: listen_choose -->
-🔊 *Are they accurate?* → **Are they accurate?** · Are they relevant? · Are they official?
-- Are they relevant? — *В записи последнее слово — `accurate`, а в этом варианте — `relevant`.*
-- Are they official? — *В записи последнее слово — `accurate`, а в этом варианте — `official`.*
+🔊 *Are they naughty?* → **Are they naughty?** · Are they gentle? · Are they selfish?
+- Are they gentle? — *В записи последнее слово — `naughty`, а в этом варианте — `gentle`.*
+- Are they selfish? — *В записи последнее слово — `naughty`, а в этом варианте — `selfish`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-41:i16; family: speed_match -->
-active — действующий · accurate — точный · relevant — относящийся к теме · honest — честный
+stubborn — упрямый · naughty — непослушный · selfish — эгоистичный · polite — вежливый
 
-**17 · Олег прислал новую карту маршрута. Спросите, точная ли она**
+**21 · Вы встретили хозяина собаки на лестнице. Спросите его, ласковый ли пёс.**
 <!-- interaction_id: en:lesson-02:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is it accurate?**
-
+🎙 **Is he gentle?**

@@ -928,7 +928,7 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+          "ru": "Новая модель в витрине есть у всех блогеров в видео. Дополните фразу о ней",
           "uk": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї"
         },
         "gappedTargetPhrase": "It ___ trendy.",
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "734d7879a670af40b5bf5c5dfa3cb6413cfbbb45ffaf4913534e67ce02e8cde2"
+  "learnerFingerprint": "035816cf021305d6c6ee22eab14ef2752438f3f096bc6a723ebf5ebef9286416"
 }

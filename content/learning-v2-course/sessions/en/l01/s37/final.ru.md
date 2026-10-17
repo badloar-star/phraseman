@@ -94,7 +94,7 @@ lonely — одиноко · homesick — скучает по дому · messy 
 🔊 *It is cozy.* Плитки: `cozy` `is` `It` `are` → **It is cozy.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is cozy.`)*
 
-**10 · Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих**
+**10 · Вы с сестрой переехали и скучаете по родному городу. Соберите фразу от вас двоих**
 <!-- interaction_id: en:lesson-01:session-37:i06; family: phrase_builder -->
 Плитки: `homesick` `are` `We` `They` → **We are homesick.**
 *(плитка `They` лишняя: здесь нужно `We` — `We are homesick.`)*

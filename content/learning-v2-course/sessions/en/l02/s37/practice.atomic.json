@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-37:word:foggy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — foggy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:foggy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — foggy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:foggy:audio",
+            "transcript": "foggy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:foggy:r1",
+              "targetText": "foggy",
+              "meaningByLocale": {
+                "ru": "туманный. It is foggy — «Стоит туман». О погоде, утре, дороге, береге. Пишется с одной g.",
+                "uk": "туманний. It is foggy — «Стоїть туман». Про погоду, ранок, дорогу, берег. Пишеться з однією g."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foggy",
+            "definitionByLocale": {
+              "ru": "туманный. It is foggy — «Стоит туман». О погоде, утре, дороге, береге. Пишется с одной g.",
+              "uk": "туманний. It is foggy — «Стоїть туман». Про погоду, ранок, дорогу, берег. Пишеться з однією g."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is foggy.",
+          "localizedMeaning": {
+            "ru": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
+            "uk": "Брат їде трасою і чекає від вас відповіді. Напишіть йому повною фразою, що на дорозі туман."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "foggy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is foggy.`",
+                "uk": "тут потрібно `is` — `It is foggy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что диктор говорит о завтрашней погоде",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i02:r1",
+            "text": "It is windy."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i02:r2",
+            "text": "It is cold."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i02:r3",
+            "text": "It is wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что диктор говорит о завтрашней погоде",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i02:audio",
+            "transcript": "It is windy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:i02:r1",
+              "targetText": "It is windy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i02:r2",
+              "targetText": "It is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i02:r3",
+              "targetText": "It is wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что диктор говорит о завтрашней погоде",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `cold`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `cold`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что диктор говорит о завтрашней погоде",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `wet`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `wet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:word:stormy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stormy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:stormy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stormy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:stormy:audio",
+            "transcript": "stormy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:stormy:r1",
+              "targetText": "stormy",
+              "meaningByLocale": {
+                "ru": "штормовой, с грозой и сильным ветром. It's stormy — «Сегодня шторм». О погоде, ночи, море, озере.",
+                "uk": "штормовий, з грозою і сильним вітром. It's stormy — «Сьогодні шторм». Про погоду, ніч, море, озеро."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stormy",
+            "definitionByLocale": {
+              "ru": "штормовой, с грозой и сильным ветром. It's stormy — «Сегодня шторм». О погоде, ночи, море, озере.",
+              "uk": "штормовий, з грозою і сильним вітром. It's stormy — «Сьогодні шторм». Про погоду, ніч, море, озеро."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+            "uk": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз"
+          },
+          "gappedTargetPhrase": "___ it stormy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-37:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it stormy?`.",
+                "uk": "Питання — `Is it stormy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-37:i04:p1",
+              "target": "foggy",
+              "meaningByLocale": {
+                "ru": "туманный",
+                "uk": "туманний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i04:p2",
+              "target": "icy",
+              "meaningByLocale": {
+                "ru": "обледенелый",
+                "uk": "обледенілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i04:p3",
+              "target": "stormy",
+              "meaningByLocale": {
+                "ru": "штормовой",
+                "uk": "штормовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i04:p4",
+              "target": "cold",
+              "meaningByLocale": {
+                "ru": "холодный",
+                "uk": "холодний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "foggy",
+            "icy",
+            "stormy",
+            "cold"
+          ],
+          "rightColumn": [
+            "туманный",
+            "обледенелый",
+            "штормовой",
+            "холодный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:word:icy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — icy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:icy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — icy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:icy:audio",
+            "transcript": "icy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:icy:r1",
+              "targetText": "icy",
+              "meaningByLocale": {
+                "ru": "покрытый льдом, обледенелый. Is it icy? — «Там лёд?» О дорожке, лестнице, крыше, дороге.",
+                "uk": "вкритий кригою, обледенілий. Is it icy? — «Там лід?» Про доріжку, сходи, дах, дорогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "icy",
+            "definitionByLocale": {
+              "ru": "покрытый льдом, обледенелый. Is it icy? — «Там лёд?» О дорожке, лестнице, крыше, дороге.",
+              "uk": "вкритий кригою, обледенілий. Is it icy? — «Там лід?» Про доріжку, сходи, дах, дорогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что сосед говорит о дорожке, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что сосед говорит о дорожке, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i05:audio",
+            "transcript": "It is not icy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not icy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "icy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что сосед говорит о дорожке, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not icy.`",
+                "uk": "тут потрібно `is` — `It is not icy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is he?",
+          "localizedMeaning": {
+            "ru": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
+            "uk": "Сусід пішов чистити доріжку, але ви не знаєте, де він. Запитайте подругу, де він."
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "he"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is he?`",
+                "uk": "тут потрібно `Where` — `Where is he?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, какая погода у озера. Там гроза и сильный ветер. Скажите коротко, что там шторм.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, какая погода у озера. Там гроза и сильный ветер. Скажите коротко, что там шторм.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i07:audio",
+            "transcript": "It's stormy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's stormy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+            "uk": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-37:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что брат говорит о дороге",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i09:r1",
+            "text": "It is icy."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i09:r2",
+            "text": "It is foggy."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i09:r3",
+            "text": "It is stormy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что брат говорит о дороге",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i09:audio",
+            "transcript": "It is icy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:i09:r1",
+              "targetText": "It is icy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i09:r2",
+              "targetText": "It is foggy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i09:r3",
+              "targetText": "It is stormy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о дороге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `icy`, а в этом варианте — `foggy`.",
+                "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `foggy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о дороге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `icy`, а в этом варианте — `stormy`.",
+                "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `stormy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-37:i10:p1",
+              "target": "icy",
+              "meaningByLocale": {
+                "ru": "обледенелый",
+                "uk": "обледенілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i10:p2",
+              "target": "stormy",
+              "meaningByLocale": {
+                "ru": "штормовой",
+                "uk": "штормовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i10:p3",
+              "target": "wet",
+              "meaningByLocale": {
+                "ru": "мокрый",
+                "uk": "мокрий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i10:p4",
+              "target": "cloudy",
+              "meaningByLocale": {
+                "ru": "облачный",
+                "uk": "хмарний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "icy",
+            "stormy",
+            "wet",
+            "cloudy"
+          ],
+          "rightColumn": [
+            "обледенелый",
+            "штормовой",
+            "мокрый",
+            "облачный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что подруга говорит о ботинках, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о ботинках, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i11:audio",
+            "transcript": "They are not wet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not wet.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "wet"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о ботинках, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not wet.`",
+                "uk": "тут потрібно `are` — `They are not wet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:word:gloomy",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gloomy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:gloomy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gloomy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:gloomy:audio",
+            "transcript": "gloomy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:gloomy:r1",
+              "targetText": "gloomy",
+              "meaningByLocale": {
+                "ru": "мрачный, хмурый и безрадостный. It's gloomy — «Тут мрачно». О комнате, дне, погоде, настроении.",
+                "uk": "похмурий, безрадісний. It's gloomy — «Тут похмуро». Про кімнату, день, погоду, настрій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gloomy",
+            "definitionByLocale": {
+              "ru": "мрачный, хмурый и безрадостный. It's gloomy — «Тут мрачно». О комнате, дне, погоде, настроении.",
+              "uk": "похмурий, безрадісний. It's gloomy — «Тут похмуро». Про кімнату, день, погоду, настрій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is gloomy?",
+          "localizedMeaning": {
+            "ru": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
+            "uk": "Брат написав, що один з ваших гостей з ранку похмурий. Запитайте в брата, хто похмурий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "gloomy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is gloomy?`",
+                "uk": "тут потрібно `Who` — `Who is gloomy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, как в комнате. Шторы закрыты, света мало. Скажите коротко, что там мрачно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, как в комнате. Шторы закрыты, света мало. Скажите коротко, что там мрачно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i13:audio",
+            "transcript": "It's gloomy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's gloomy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+            "uk": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла"
+          },
+          "gappedTargetPhrase": "It ___ not icy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-37:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not icy`.",
+                "uk": "Фраза — `It is not icy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i15:r1",
+            "text": "Are they gloomy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i15:r2",
+            "text": "Are they quiet?"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i15:r3",
+            "text": "Are they cold?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i15:audio",
+            "transcript": "Are they gloomy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:i15:r1",
+              "targetText": "Are they gloomy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i15:r2",
+              "targetText": "Are they quiet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i15:r3",
+              "targetText": "Are they cold?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `quiet`.",
+                "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `quiet`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `cold`.",
+                "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `cold`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-37:i16:p1",
+              "target": "gloomy",
+              "meaningByLocale": {
+                "ru": "мрачный",
+                "uk": "похмурий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i16:p2",
+              "target": "foggy",
+              "meaningByLocale": {
+                "ru": "туманный",
+                "uk": "туманний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i16:p3",
+              "target": "quiet",
+              "meaningByLocale": {
+                "ru": "тихий",
+                "uk": "тихий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i16:p4",
+              "target": "dangerous",
+              "meaningByLocale": {
+                "ru": "опасный",
+                "uk": "небезпечний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gloomy",
+            "foggy",
+            "quiet",
+            "dangerous"
+          ],
+          "rightColumn": [
+            "мрачный",
+            "туманный",
+            "тихий",
+            "опасный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы звоните брату, который уже в пути. Спросите, есть ли на трассе туман.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Вы звоните брату, который уже в пути. Спросите, есть ли на трассе туман.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i17:audio",
+            "transcript": "Is it foggy?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it foggy?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-37:word:foggy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — foggy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:foggy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — foggy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:foggy:audio",
+            "transcript": "foggy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:foggy:r1",
+              "targetText": "foggy",
+              "meaningByLocale": {
+                "ru": "туманный. It is foggy — «Стоит туман». О погоде, утре, дороге, береге. Пишется с одной g.",
+                "uk": "туманний. It is foggy — «Стоїть туман». Про погоду, ранок, дорогу, берег. Пишеться з однією g."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foggy",
+            "definitionByLocale": {
+              "ru": "туманный. It is foggy — «Стоит туман». О погоде, утре, дороге, береге. Пишется с одной g.",
+              "uk": "туманний. It is foggy — «Стоїть туман». Про погоду, ранок, дорогу, берег. Пишеться з однією g."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат їде трасою і чекає від вас відповіді. Напишіть йому повною фразою, що на дорозі туман.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат їде трасою і чекає від вас відповіді. Напишіть йому повною фразою, що на дорозі туман.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is foggy.",
+          "localizedMeaning": {
+            "ru": "Брат едет по трассе и ждёт от вас ответа. Напишите ему полной фразой, что на дороге туман.",
+            "uk": "Брат їде трасою і чекає від вас відповіді. Напишіть йому повною фразою, що на дорозі туман."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "foggy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат їде трасою і чекає від вас відповіді. Напишіть йому повною фразою, що на дорозі туман.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is foggy.`",
+                "uk": "тут потрібно `is` — `It is foggy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що диктор каже про завтрашню погоду",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i02:r1",
+            "text": "It is windy."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i02:r2",
+            "text": "It is cold."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i02:r3",
+            "text": "It is wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що диктор каже про завтрашню погоду",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i02:audio",
+            "transcript": "It is windy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:i02:r1",
+              "targetText": "It is windy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i02:r2",
+              "targetText": "It is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i02:r3",
+              "targetText": "It is wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що диктор каже про завтрашню погоду",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `cold`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `cold`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що диктор каже про завтрашню погоду",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `wet`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `wet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:word:stormy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stormy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:stormy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stormy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:stormy:audio",
+            "transcript": "stormy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:stormy:r1",
+              "targetText": "stormy",
+              "meaningByLocale": {
+                "ru": "штормовой, с грозой и сильным ветром. It's stormy — «Сегодня шторм». О погоде, ночи, море, озере.",
+                "uk": "штормовий, з грозою і сильним вітром. It's stormy — «Сьогодні шторм». Про погоду, ніч, море, озеро."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stormy",
+            "definitionByLocale": {
+              "ru": "штормовой, с грозой и сильным ветром. It's stormy — «Сегодня шторм». О погоде, ночи, море, озере.",
+              "uk": "штормовий, з грозою і сильним вітром. It's stormy — «Сьогодні шторм». Про погоду, ніч, море, озеро."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы звоните знакомому, который живёт у озера. Спросите его, штормит ли сейчас",
+            "uk": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз"
+          },
+          "gappedTargetPhrase": "___ it stormy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-37:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви телефонуєте знайомому, який живе біля озера. Запитайте його, чи штормить зараз",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it stormy?`.",
+                "uk": "Питання — `Is it stormy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-37:i04:p1",
+              "target": "foggy",
+              "meaningByLocale": {
+                "ru": "туманный",
+                "uk": "туманний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i04:p2",
+              "target": "icy",
+              "meaningByLocale": {
+                "ru": "обледенелый",
+                "uk": "обледенілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i04:p3",
+              "target": "stormy",
+              "meaningByLocale": {
+                "ru": "штормовой",
+                "uk": "штормовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i04:p4",
+              "target": "cold",
+              "meaningByLocale": {
+                "ru": "холодный",
+                "uk": "холодний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "foggy",
+            "icy",
+            "stormy",
+            "cold"
+          ],
+          "rightColumn": [
+            "туманний",
+            "обледенілий",
+            "штормовий",
+            "холодний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:word:icy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — icy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:icy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — icy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:icy:audio",
+            "transcript": "icy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:icy:r1",
+              "targetText": "icy",
+              "meaningByLocale": {
+                "ru": "покрытый льдом, обледенелый. Is it icy? — «Там лёд?» О дорожке, лестнице, крыше, дороге.",
+                "uk": "вкритий кригою, обледенілий. Is it icy? — «Там лід?» Про доріжку, сходи, дах, дорогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "icy",
+            "definitionByLocale": {
+              "ru": "покрытый льдом, обледенелый. Is it icy? — «Там лёд?» О дорожке, лестнице, крыше, дороге.",
+              "uk": "вкритий кригою, обледенілий. Is it icy? — «Там лід?» Про доріжку, сходи, дах, дорогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що сусід каже про доріжку, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що сусід каже про доріжку, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i05:audio",
+            "transcript": "It is not icy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not icy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "icy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що сусід каже про доріжку, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not icy.`",
+                "uk": "тут потрібно `is` — `It is not icy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід пішов чистити доріжку, але ви не знаєте, де він. Запитайте подругу, де він.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід пішов чистити доріжку, але ви не знаєте, де він. Запитайте подругу, де він.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is he?",
+          "localizedMeaning": {
+            "ru": "Сосед ушёл чистить дорожку, но вы не знаете, где он. Спросите подругу, где он.",
+            "uk": "Сусід пішов чистити доріжку, але ви не знаєте, де він. Запитайте подругу, де він."
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "he"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід пішов чистити доріжку, але ви не знаєте, де він. Запитайте подругу, де він.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is he?`",
+                "uk": "тут потрібно `Where` — `Where is he?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, яка погода біля озера. Там гроза і сильний вітер. Скажіть коротко, що там шторм.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, яка погода біля озера. Там гроза і сильний вітер. Скажіть коротко, що там шторм.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i07:audio",
+            "transcript": "It's stormy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's stormy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спросил: «Is it foggy?» Туман и правда стоит. Дополните короткое «да»",
+            "uk": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-37:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат спитав: «Is it foggy?» Туман і справді стоїть. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що брат каже про дорогу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i09:r1",
+            "text": "It is icy."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i09:r2",
+            "text": "It is foggy."
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i09:r3",
+            "text": "It is stormy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що брат каже про дорогу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i09:audio",
+            "transcript": "It is icy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:i09:r1",
+              "targetText": "It is icy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i09:r2",
+              "targetText": "It is foggy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i09:r3",
+              "targetText": "It is stormy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про дорогу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `icy`, а в этом варианте — `foggy`.",
+                "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `foggy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про дорогу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `icy`, а в этом варианте — `stormy`.",
+                "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `stormy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-37:i10:p1",
+              "target": "icy",
+              "meaningByLocale": {
+                "ru": "обледенелый",
+                "uk": "обледенілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i10:p2",
+              "target": "stormy",
+              "meaningByLocale": {
+                "ru": "штормовой",
+                "uk": "штормовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i10:p3",
+              "target": "wet",
+              "meaningByLocale": {
+                "ru": "мокрый",
+                "uk": "мокрий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i10:p4",
+              "target": "cloudy",
+              "meaningByLocale": {
+                "ru": "облачный",
+                "uk": "хмарний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "icy",
+            "stormy",
+            "wet",
+            "cloudy"
+          ],
+          "rightColumn": [
+            "обледенілий",
+            "штормовий",
+            "мокрий",
+            "хмарний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що подруга каже про черевики, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про черевики, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i11:audio",
+            "transcript": "They are not wet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not wet.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "wet"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про черевики, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not wet.`",
+                "uk": "тут потрібно `are` — `They are not wet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:word:gloomy",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gloomy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:word:gloomy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gloomy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:word:gloomy:audio",
+            "transcript": "gloomy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:word:gloomy:r1",
+              "targetText": "gloomy",
+              "meaningByLocale": {
+                "ru": "мрачный, хмурый и безрадостный. It's gloomy — «Тут мрачно». О комнате, дне, погоде, настроении.",
+                "uk": "похмурий, безрадісний. It's gloomy — «Тут похмуро». Про кімнату, день, погоду, настрій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gloomy",
+            "definitionByLocale": {
+              "ru": "мрачный, хмурый и безрадостный. It's gloomy — «Тут мрачно». О комнате, дне, погоде, настроении.",
+              "uk": "похмурий, безрадісний. It's gloomy — «Тут похмуро». Про кімнату, день, погоду, настрій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат написав, що один з ваших гостей з ранку похмурий. Запитайте в брата, хто похмурий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат написав, що один з ваших гостей з ранку похмурий. Запитайте в брата, хто похмурий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is gloomy?",
+          "localizedMeaning": {
+            "ru": "Брат написал, что один из ваших гостей с утра мрачный. Спросите у брата, кто мрачный.",
+            "uk": "Брат написав, що один з ваших гостей з ранку похмурий. Запитайте в брата, хто похмурий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "gloomy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат написав, що один з ваших гостей з ранку похмурий. Запитайте в брата, хто похмурий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is gloomy?`",
+                "uk": "тут потрібно `Who` — `Who is gloomy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, як у кімнаті. Штори зачинені, світла мало. Скажіть коротко, що там похмуро.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, як у кімнаті. Штори зачинені, світла мало. Скажіть коротко, що там похмуро.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i13:audio",
+            "transcript": "It's gloomy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's gloomy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает про дорожку: её уже посыпали солью. Скажите, что она не обледенелая",
+            "uk": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла"
+          },
+          "gappedTargetPhrase": "It ___ not icy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-37:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про доріжку: її вже посипали сіллю. Скажіть, що вона не обледеніла",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not icy`.",
+                "uk": "Фраза — `It is not icy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-37:i15:r1",
+            "text": "Are they gloomy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i15:r2",
+            "text": "Are they quiet?"
+          },
+          {
+            "responseId": "en:lesson-02:session-37:i15:r3",
+            "text": "Are they cold?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i15:audio",
+            "transcript": "Are they gloomy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-37:i15:r1",
+              "targetText": "Are they gloomy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i15:r2",
+              "targetText": "Are they quiet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i15:r3",
+              "targetText": "Are they cold?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `quiet`.",
+                "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `quiet`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `cold`.",
+                "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `cold`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-37:i16:p1",
+              "target": "gloomy",
+              "meaningByLocale": {
+                "ru": "мрачный",
+                "uk": "похмурий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i16:p2",
+              "target": "foggy",
+              "meaningByLocale": {
+                "ru": "туманный",
+                "uk": "туманний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i16:p3",
+              "target": "quiet",
+              "meaningByLocale": {
+                "ru": "тихий",
+                "uk": "тихий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-37:i16:p4",
+              "target": "dangerous",
+              "meaningByLocale": {
+                "ru": "опасный",
+                "uk": "небезпечний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gloomy",
+            "foggy",
+            "quiet",
+            "dangerous"
+          ],
+          "rightColumn": [
+            "похмурий",
+            "туманний",
+            "тихий",
+            "небезпечний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви телефонуєте братові, який уже в дорозі. Запитайте, чи є на трасі туман.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Ви телефонуєте братові, який уже в дорозі. Запитайте, чи є на трасі туман.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-37:i17:audio",
+            "transcript": "Is it foggy?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it foggy?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-37:word:foggy",
+      "correctText": "foggy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i01",
+      "correctText": "It is foggy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i02",
+      "correctText": "It is windy.",
+      "correctResponseId": "en:lesson-02:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:word:stormy",
+      "correctText": "stormy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:word:icy",
+      "correctText": "icy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i05",
+      "correctText": "It is not icy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i06",
+      "correctText": "Where is he?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i07",
+      "correctText": "It's stormy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i09",
+      "correctText": "It is icy.",
+      "correctResponseId": "en:lesson-02:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i11",
+      "correctText": "They are not wet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:word:gloomy",
+      "correctText": "gloomy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i12",
+      "correctText": "Who is gloomy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i13",
+      "correctText": "It's gloomy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-37:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i15",
+      "correctText": "Are they gloomy?",
+      "correctResponseId": "en:lesson-02:session-37:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:i17",
+      "correctText": "Is it foggy?",
+      "correctResponseId": null
+    }
+  ]
+}

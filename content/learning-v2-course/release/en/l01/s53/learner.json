@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+      "prompt": "Друг показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+      "accessibilityLabel": "Друг показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are ripe.",
         "localizedMeaning": {
-          "ru": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
-          "uk": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі"
+          "ru": "Друг показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+          "uk": "Друг показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі"
         },
         "orderedTokens": [
           "They",
@@ -76,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-53:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+            "testedDimension": "Друг показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `They are ripe.`",
               "uk": "тут потрібно `are` — `They are ripe.`"
@@ -489,17 +489,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+      "prompt": "Друг налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+      "accessibilityLabel": "Друг налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are full.",
         "localizedMeaning": {
-          "ru": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
-          "uk": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні"
+          "ru": "Друг налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+          "uk": "Друг налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні"
         },
         "orderedTokens": [
           "They",
@@ -513,7 +513,7 @@
           {
             "responseId": "en:lesson-01:session-53:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+            "testedDimension": "Друг налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `They are full.`",
               "uk": "тут потрібно `are` — `They are full.`"
@@ -533,13 +533,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы разрезали арбуз, и сок течёт по доске. Скажите Диме коротко, что арбуз сочный",
+      "prompt": "Вы разрезали арбуз, и сок течёт по доске. Скажите другу коротко, что арбуз сочный",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-53:i07:audio"
       ],
-      "accessibilityLabel": "Вы разрезали арбуз, и сок течёт по доске. Скажите Диме коротко, что арбуз сочный",
+      "accessibilityLabel": "Вы разрезали арбуз, и сок течёт по доске. Скажите другу коротко, что арбуз сочный",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -566,7 +566,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+      "prompt": "В корзине три дыни, и друг еле поднимает её. Назовите именно её вес",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-53:i08:r1",
@@ -583,12 +583,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+      "accessibilityLabel": "В корзине три дыни, и друг еле поднимает её. Назовите именно её вес",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
-          "uk": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу"
+          "ru": "В корзине три дыни, и друг еле поднимает её. Назовите именно её вес",
+          "uk": "У кошику три дині, і друг ледве його піднімає. Назвіть саме його вагу"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -605,12 +605,12 @@
             "text": "delicious"
           }
         ],
-        "testedDimension": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+        "testedDimension": "В корзине три дыни, и друг еле поднимает её. Назовите именно её вес",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-53:i08:r2",
             "correct": false,
-            "testedDimension": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+            "testedDimension": "В корзине три дыни, и друг еле поднимает её. Назовите именно её вес",
             "feedbackByLocale": {
               "ru": "`ripe` — «спелая», это о еде. Корзину еле поднять: `heavy`.",
               "uk": "`ripe` — «стиглий», це про їжу. Кошик ледве підняти: `heavy`."
@@ -619,7 +619,7 @@
           {
             "responseId": "en:lesson-01:session-53:i08:r3",
             "correct": false,
-            "testedDimension": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
+            "testedDimension": "В корзине три дыни, и друг еле поднимает её. Назовите именно её вес",
             "feedbackByLocale": {
               "ru": "`delicious` — «очень вкусная». О весе говорит `heavy`.",
               "uk": "`delicious` — «дуже смачний». Про вагу каже `heavy`."
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После пикника корзина пустая, и Дима несёт её одним пальцем. Скажите, что она лёгкая",
+      "prompt": "После пикника корзина пустая, и друг несёт её одним пальцем. Скажите, что она лёгкая",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-53:i13:audio"
       ],
-      "accessibilityLabel": "После пикника корзина пустая, и Дима несёт её одним пальцем. Скажите, что она лёгкая",
+      "accessibilityLabel": "После пикника корзина пустая, и друг несёт её одним пальцем. Скажите, что она лёгкая",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2c482db63e8f624f7c529566f15de00ee9fcace803eba3645774a480ba4b8cc0"
+  "learnerFingerprint": "7d4c7e4433dc2cd110bed8a2d86ebaf3a3f147fb6e9467865d57536fb48e268a"
 }

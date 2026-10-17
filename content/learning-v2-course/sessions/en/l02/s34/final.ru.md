@@ -1,138 +1,154 @@
 # Английский · Урок 2 · Занятие 34 — Клуб пока не работает
 
-**Ситуация.** Вы с Анной ищете клуб для прогулок. Находите старое объявление, но встречи давно не проходят. В соседнем клубе готовят вечерний поход; вы обсуждаете, кому страшно идти в темноте.
+**Ситуация.** Вы с подругой ищете клуб для вечерних прогулок. Находите старое объявление, но оно давно устарело, а встречи не проходят. В соседнем клубе готовят вечерний поход по парку, и вы обсуждаете, безопасна ли тропинка в темноте.
 
-**Что вы освоите:** сообщить, что деятельность не ведётся, и повторить вопросы о состоянии
-**Новые слова:** inactive
+**Что вы освоите:** сообщить, что деятельность не ведётся, и описать, что устарело или опасно
+**Новые слова:** inactive, outdated, unsafe, cautious
+**Возвращаются:** active, afraid, careless, dark
 
 ---
 
 ## Интро 1
 
-### Деятельности сейчас нет
+### Клуб без встреч
 
-`inactive` — «неактивный, бездействующий». У клуба давно нет встреч и мероприятий: `It is inactive`. Объявление ещё висит, но клуб сейчас ничего не проводит. Бумага на стене гулять за участников не пойдёт. `active` и `inactive` говорят о разных состояниях.
+На сайте клуба последняя запись появилась год назад. Встреч и походов там нет. inactive — «неактивный, не работающий сейчас». It is inactive — «Он неактивен».
 
-**Клуб существует, но уже несколько месяцев не проводит встреч. Скажите полной фразой, что он неактивен.**
+**Подруга спрашивает, проходят ли в этом клубе встречи. Скажите полной фразой, что клуб неактивен.**
 
 - ✅ **It is inactive.**
-- ❌ It inactive. — *Между `It` и `inactive` нужно `is`.*
-- ❌ It is active. — *Это значит, что клуб активен. В условии деятельность не ведётся.*
+- ❌ It inactive. — *Между It и inactive нужно is: It is inactive.*
+- ❌ It is active. — *Так вы скажете, что клуб работает. На сайте нет ни одной встречи: It is inactive.*
 
 ---
 
 ## Интро 2
 
-### Не угадываем причину
+### Объявление на остановке
 
-`afraid` — «боится, напуган». `I am afraid` — «Мне страшно». Но слово `inactive` само не говорит, почему человек или клуб не действует. Может быть страшно, может не хватать времени. Узнать про страх можно вопросом `Are you afraid?`.
+На остановке висит объявление клуба: сбор в пятницу, а внизу написан прошлый год. outdated — «устаревший». Is it outdated? — «Оно устарело?»
 
-**Анна не решается идти по тёмной дорожке. Спросите её, боится ли она.**
+**Вы заметили год и хотите проверить свою догадку. Спросите подругу, устарело ли объявление.**
 
-- ✅ **Are you afraid?**
-- ❌ Are you inactive? — *Это вопрос о неактивности, а вы уточняете, страшно ли ей.*
-- ❌ You are afraid. — *Это сообщение. Для вопроса поставьте `Are` перед `you`.*
+- ✅ **Is it outdated?**
+- ❌ It is outdated. — *Так звучит утверждение «Оно устарело». Чтобы спросить, ставим Is вперёд: Is it outdated?*
+- ❌ Are it outdated? — *С it нужно is: Is it outdated?*
 
 ---
 
 ## Интро 3
 
-### Страх и неосторожность
+### Тропинка в темноте
 
-`careless` — «неосторожный, небрежный». Олег размахивает палкой рядом с людьми: `He is careless`. Это описание поведения, не страха. На `Is he careless?` можно ответить `Yes, he is`. А вопрос `Who is careless?` просит назвать человека.
+Соседний клуб готовит вечерний поход по парку. На тропинке нет фонарей, а корни и камни в темноте не видны. unsafe — «небезопасный». It's unsafe — «Здесь небезопасно».
 
-**Анна не видела, кто размахивал палкой рядом с людьми. Как ей спросить, кто неосторожен?**
+**Подруга спрашивает, что вы думаете о тропинке вечером. Скажите коротко, что там небезопасно.**
 
-- ✅ **Who is careless?**
-- ❌ Where is he? — *Это «Где он?», вопрос о месте.*
-- ❌ Who careless? — *После `Who` здесь нужно `is`.*
+- ✅ **It's unsafe.**
+- ❌ It's safe. — *Так вы скажете, что безопасно. Фонарей нет, поэтому: It's unsafe.*
+- ❌ They're unsafe. — *They're — про несколько мест, а тропинка одна: It's unsafe.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Клуб несколько месяцев ничего не проводит. Скажите полной фразой, что он неактивен**
+**1 · Карточка слова — inactive**
+<!-- interaction_id: en:lesson-02:session-34:word:inactive; family: word_card -->
+> **inactive** — неактивный, сейчас не работающий. It is inactive — «Он не работает». О клубе, группе, странице, аккаунте.
+
+**2 · Две группы клуба в соцсети давно ничего не публикуют. Скажите полной фразой, что они неактивны**
 <!-- interaction_id: en:lesson-02:session-34:i01; family: phrase_builder -->
-Плитки: `inactive` `is` `It` `are` → **It is inactive.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is inactive.`)*
+Плитки: `inactive` `are` `They` `is` → **They are inactive.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are inactive.`)*
 
-**2 · Послушайте фразу об Анне**
+**3 · Карточка слова — outdated**
+<!-- interaction_id: en:lesson-02:session-34:word:outdated; family: word_card -->
+> **outdated** — устаревший. It is outdated — «Оно устарело». Об объявлении, карте, расписании, телефоне.
+
+**4 · Послушайте фразу об объявлении**
 <!-- interaction_id: en:lesson-02:session-34:i02; family: listen_choose -->
-🔊 *She is afraid.* → **She is afraid.** · She is careless. · She is active.
-- She is careless. — *В записи последнее слово — `afraid`, а в этом варианте — `careless`.*
-- She is active. — *В записи последнее слово — `afraid`, а в этом варианте — `active`.*
+🔊 *It is outdated.* → **It is outdated.** · It is active. · It is dark.
+- It is active. — *В записи последнее слово — `outdated`, а в этом варианте — `active`.*
+- It is dark. — *В записи последнее слово — `outdated`, а в этом варианте — `dark`.*
 
-**3 · Уточните, неактивен ли клуб сейчас**
+**5 · Спросите подругу, устарела ли карта маршрута**
 <!-- interaction_id: en:lesson-02:session-34:i03; family: context_gap_grammar -->
-___ it inactive? → **Is** · Am · Are
+___ it outdated? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
-- Are — *Вопрос — `Is it inactive?`.*
+- Are — *Вопрос — `Is it outdated?`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-34:i04; family: speed_match -->
-inactive — неактивный · active — активный · afraid — боится, напуган · careless — неосторожный, небрежный
+inactive — неактивный · outdated — устаревший · unsafe — небезопасный · cautious — осторожный
 
-**5 · Послушайте и соберите короткий ответ**
+**7 · Карточка слова — cautious**
+<!-- interaction_id: en:lesson-02:session-34:word:cautious; family: word_card -->
+> **cautious** — осторожный, внимательный. She is cautious — «Она осторожная». О человеке, который смотрит под ноги и не рискует.
+
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-34:i05; family: listen_build_dictation -->
-🔊 *No, she is not.* Плитки: `not` `is` `she` `No,` `Yes,` → **No, she is not.**
-*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, she is not.`)*
+🔊 *She is cautious.* Плитки: `cautious` `is` `She` `are` → **She is cautious.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is cautious.`)*
 
-**6 · Олег вышел поговорить с организатором. Спросите, где он**
+**9 · Друг ушёл вперёд, и вы потеряли его из виду. Спросите подругу, где он**
 <!-- interaction_id: en:lesson-02:session-34:i06; family: phrase_builder -->
 Плитки: `he` `is` `Where` `Who` → **Where is he?**
 *(плитка `Who` лишняя: здесь нужно `Where` — `Where is he?`)*
 
-**7 · Вам страшно идти в темноте. Коротко скажите об этом**
-<!-- interaction_id: en:lesson-02:session-34:i07; family: scripted_repeat_compare -->
-🎙 **I'm afraid.**
+**10 · Карточка слова — unsafe**
+<!-- interaction_id: en:lesson-02:session-34:word:unsafe; family: word_card -->
+> **unsafe** — небезопасный. It is unsafe — «Здесь небезопасно». О тропинке, мосте, лестнице, льде.
 
-**8 · Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»**
+**11 · Подруга показывает на дорожку: на ней тонкий лёд. Коротко скажите, что здесь небезопасно**
+<!-- interaction_id: en:lesson-02:session-34:i07; family: scripted_repeat_compare -->
+🎙 **It's unsafe.**
+
+**12 · Клуб давно не проводит встреч. На «Is it inactive?» дополните короткое «да»**
 <!-- interaction_id: en:lesson-02:session-34:i08; family: context_gap_grammar -->
 Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**9 · Послушайте вопрос**
+**13 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-34:i09; family: listen_choose -->
-🔊 *Who is careless?* → **Who is careless?** · Who is afraid? · Who is active?
-- Who is afraid? — *В записи последнее слово — `careless`, а в этом варианте — `afraid`.*
-- Who is active? — *В записи последнее слово — `careless`, а в этом варианте — `active`.*
+🔊 *Is it inactive?* → **Is it inactive?** · Is it outdated? · Is it dark?
+- Is it outdated? — *В записи последнее слово — `inactive`, а в этом варианте — `outdated`.*
+- Is it dark? — *В записи последнее слово — `inactive`, а в этом варианте — `dark`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-34:i10; family: speed_match -->
-afraid — боится, напуган · inactive — неактивный · careless — неосторожный, небрежный · active — активный
+active — активный · afraid — боится · careless — неосторожный · dark — тёмный
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-02:session-34:i11; family: listen_build_dictation -->
-🔊 *They are not active.* Плитки: `active` `not` `are` `They` `is` → **They are not active.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are not active.`)*
+🔊 *Are you afraid?* Плитки: `afraid` `you` `Are` `Is` → **Are you afraid?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are you afraid?`)*
 
-**12 · Олег размахивает палкой рядом с людьми. Скажите полной фразой, что он неосторожен**
+**16 · Друг машет палкой рядом с людьми. Скажите полной фразой, что он неосторожен**
 <!-- interaction_id: en:lesson-02:session-34:i12; family: phrase_builder -->
 Плитки: `careless` `is` `He` `are` → **He is careless.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is careless.`)*
 
-**13 · В старом клубе нет встреч и мероприятий. Коротко скажите, что он неактивен**
+**17 · На мосту скользко, и подруга идёт медленно, держась за перила. Коротко скажите, что она осторожная**
 <!-- interaction_id: en:lesson-02:session-34:i13; family: scripted_repeat_compare -->
-🎙 **It's inactive.**
+🎙 **She's cautious.**
 
-**14 · Анна и Олег сказали, что им совсем не страшно. Сообщите, что они не боятся**
+**18 · Подруга и друг сказали, что им совсем не страшно. Сообщите, что они не боятся**
 <!-- interaction_id: en:lesson-02:session-34:i14; family: context_gap_grammar -->
 They ___ not afraid. → **are** · am · is
 - am — *С `They` нужно `are`.*
 - is — *Фраза — `They are not afraid`.*
 
-**15 · Послушайте вопрос**
+**19 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-34:i15; family: listen_choose -->
-🔊 *Is he afraid?* → **Is he afraid?** · Is he careless? · Is he inactive?
-- Is he careless? — *В записи последнее слово — `afraid`, а в этом варианте — `careless`.*
-- Is he inactive? — *В записи последнее слово — `afraid`, а в этом варианте — `inactive`.*
+🔊 *Who is cautious?* → **Who is cautious?** · Who is careless? · Who is afraid?
+- Who is careless? — *В записи последнее слово — `cautious`, а в этом варианте — `careless`.*
+- Who is afraid? — *В записи последнее слово — `cautious`, а в этом варианте — `afraid`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-34:i16; family: speed_match -->
-active — активный · careless — неосторожный, небрежный · inactive — неактивный · afraid — боится, напуган
+outdated — устаревший · unsafe — небезопасный · cautious — осторожный · careless — неосторожный
 
-**17 · Олег остановился перед тёмной тропинкой. Спросите его, боится ли он**
+**21 · Друг остановился перед тёмной тропинкой. Спросите его, боится ли он**
 <!-- interaction_id: en:lesson-02:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Are you afraid?**
-

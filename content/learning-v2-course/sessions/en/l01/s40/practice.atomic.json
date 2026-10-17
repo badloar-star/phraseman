@@ -171,7 +171,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Олегу хочется спать. Дополните фразу о нём",
+        "prompt": "Брату хочется спать. Дополните фразу о нём",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-40:i03:r1",
@@ -188,12 +188,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Олегу хочется спать. Дополните фразу о нём",
+        "accessibilityLabel": "Брату хочется спать. Дополните фразу о нём",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Олегу хочется спать. Дополните фразу о нём",
-            "uk": "Олегові хочеться спати. Доповніть фразу про нього"
+            "ru": "Брату хочется спать. Дополните фразу о нём",
+            "uk": "Братові хочеться спати. Доповніть фразу про нього"
           },
           "gappedTargetPhrase": "He ___ sleepy.",
           "gapOptions": [
@@ -210,12 +210,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Олегу хочется спать. Дополните фразу о нём",
+          "testedDimension": "Брату хочется спать. Дополните фразу о нём",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i03:r2",
               "correct": false,
-              "testedDimension": "Олегу хочется спать. Дополните фразу о нём",
+              "testedDimension": "Брату хочется спать. Дополните фразу о нём",
               "feedbackByLocale": {
                 "ru": "После `He` нужно `is`.",
                 "uk": "Після `He` потрібно `is`."
@@ -224,7 +224,7 @@
             {
               "responseId": "en:lesson-01:session-40:i03:r3",
               "correct": false,
-              "testedDimension": "Олегу хочется спать. Дополните фразу о нём",
+              "testedDimension": "Брату хочется спать. Дополните фразу о нём",
               "feedbackByLocale": {
                 "ru": "Здесь `He is sleepy`.",
                 "uk": "Тут `He is sleepy`."
@@ -1125,13 +1125,13 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Подруга с юга рассказывает, что у неё ясно и светит солнце. Передайте Олегу, какая у неё погода",
+        "prompt": "Подруга с юга рассказывает, что у неё ясно и светит солнце. Передайте брату, какая у неё погода",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-40:i17:audio"
         ],
-        "accessibilityLabel": "Подруга с юга рассказывает, что у неё ясно и светит солнце. Передайте Олегу, какая у неё погода",
+        "accessibilityLabel": "Подруга с юга рассказывает, что у неё ясно и светит солнце. Передайте брату, какая у неё погода",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1330,7 +1330,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Олегові хочеться спати. Доповніть фразу про нього",
+        "prompt": "Братові хочеться спати. Доповніть фразу про нього",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-40:i03:r1",
@@ -1347,12 +1347,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Олегові хочеться спати. Доповніть фразу про нього",
+        "accessibilityLabel": "Братові хочеться спати. Доповніть фразу про нього",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Олегу хочется спать. Дополните фразу о нём",
-            "uk": "Олегові хочеться спати. Доповніть фразу про нього"
+            "ru": "Брату хочется спать. Дополните фразу о нём",
+            "uk": "Братові хочеться спати. Доповніть фразу про нього"
           },
           "gappedTargetPhrase": "He ___ sleepy.",
           "gapOptions": [
@@ -1369,12 +1369,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Олегові хочеться спати. Доповніть фразу про нього",
+          "testedDimension": "Братові хочеться спати. Доповніть фразу про нього",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i03:r2",
               "correct": false,
-              "testedDimension": "Олегові хочеться спати. Доповніть фразу про нього",
+              "testedDimension": "Братові хочеться спати. Доповніть фразу про нього",
               "feedbackByLocale": {
                 "ru": "После `He` нужно `is`.",
                 "uk": "Після `He` потрібно `is`."
@@ -1383,7 +1383,7 @@
             {
               "responseId": "en:lesson-01:session-40:i03:r3",
               "correct": false,
-              "testedDimension": "Олегові хочеться спати. Доповніть фразу про нього",
+              "testedDimension": "Братові хочеться спати. Доповніть фразу про нього",
               "feedbackByLocale": {
                 "ru": "Здесь `He is sleepy`.",
                 "uk": "Тут `He is sleepy`."
@@ -2284,13 +2284,13 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте Олегові, яка в неї погода",
+        "prompt": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте братові, яка в неї погода",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-40:i17:audio"
         ],
-        "accessibilityLabel": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте Олегові, яка в неї погода",
+        "accessibilityLabel": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте братові, яка в неї погода",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {

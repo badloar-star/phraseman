@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-46:intro2:r2": {
-          "ru": "We're — это про вас с Костей. Про провода говорим They're.",
-          "uk": "We're — це про вас із Костею. Про дроти кажемо They're."
+          "ru": "We're — это про вас с другом. Про провода говорим They're.",
+          "uk": "We're — це про вас із другом. Про дроти кажемо They're."
         },
         "en:lesson-01:session-46:intro2:r3": {
           "ru": "It's — про одну вещь, а проводов несколько: They're tangled.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "da2ad4ffc986c68e1c880414ab4eb430a101833e2de0acd16b7834fbf9e8fcab"
+  "auxiliaryFingerprint": "792b8674e5e7e7c7d22be9e0a4816ddd936898799325a9ac4f93bdf6bd4952dd"
 }

@@ -533,13 +533,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Знімок бабусі в молодості багато років простояв на сонячному вікні, обличчя ледь видно. Скажіть Ані коротко, що він вицвів",
+      "prompt": "Знімок бабусі в молодості багато років простояв на сонячному вікні, обличчя ледь видно. Скажіть сестрі коротко, що він вицвів",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i07:audio"
       ],
-      "accessibilityLabel": "Знімок бабусі в молодості багато років простояв на сонячному вікні, обличчя ледь видно. Скажіть Ані коротко, що він вицвів",
+      "accessibilityLabel": "Знімок бабусі в молодості багато років простояв на сонячному вікні, обличчя ледь видно. Скажіть сестрі коротко, що він вицвів",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На двох фото місця, де ви гуляли з бабусею. Скажіть Ані, що вони вам знайомі",
+      "prompt": "На двох фото місця, де ви гуляли з бабусею. Скажіть сестрі, що вони вам знайомі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i13:audio"
       ],
-      "accessibilityLabel": "На двох фото місця, де ви гуляли з бабусею. Скажіть Ані, що вони вам знайомі",
+      "accessibilityLabel": "На двох фото місця, де ви гуляли з бабусею. Скажіть сестрі, що вони вам знайомі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "424afd2129b5cdcd4bdf505775b11ba46b0343df9d209b02be394217cf9e6a85"
+  "learnerFingerprint": "6fe5dc9a4d66d0e98023e47e31ddf5554b7f8d6998f4f0782c2a306904d4697b"
 }

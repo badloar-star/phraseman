@@ -866,7 +866,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
+      "prompt": "Вы отошли от края платформы. Скажите за вас обоих: «Мы в безопасности»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-18:i14:r1",
@@ -883,12 +883,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
+      "accessibilityLabel": "Вы отошли от края платформы. Скажите за вас обоих: «Мы в безопасности»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
-          "uk": "Ви вже пішли з небезпечної ділянки платформи. Скажіть за вас обох: «Ми в безпеці»"
+          "ru": "Вы отошли от края платформы. Скажите за вас обоих: «Мы в безопасности»",
+          "uk": "Ви відійшли від краю платформи. Скажіть за вас обох: «Ми в безпеці»"
         },
         "gappedTargetPhrase": "We are ___ .",
         "gapOptions": [
@@ -905,12 +905,12 @@
             "text": "early"
           }
         ],
-        "testedDimension": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
+        "testedDimension": "Вы отошли от края платформы. Скажите за вас обоих: «Мы в безопасности»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-18:i14:r2",
             "correct": false,
-            "testedDimension": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
+            "testedDimension": "Вы отошли от края платформы. Скажите за вас обоих: «Мы в безопасности»",
             "feedbackByLocale": {
               "ru": "`wrong` — «неправ». Отсутствие опасности — `safe`.",
               "uk": "`wrong` — «не має рації». Відсутність небезпеки — `safe`."
@@ -919,7 +919,7 @@
           {
             "responseId": "en:lesson-01:session-18:i14:r3",
             "correct": false,
-            "testedDimension": "Вы уже ушли с опасного участка платформы. Скажите за вас обоих: «Мы в безопасности»",
+            "testedDimension": "Вы отошли от края платформы. Скажите за вас обоих: «Мы в безопасности»",
             "feedbackByLocale": {
               "ru": "`early` — «рано». Сейчас речь о безопасности: `safe`.",
               "uk": "`early` — «рано». Зараз ідеться про безпеку: `safe`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "56f0d0cd9d7643b53e739008f51d584997ce6c3e473cd68016726cd3d533080f"
+  "learnerFingerprint": "86a573143ac6fd54c98ec1aa7cccdcb233c0f84dc80e3ecf7af20b239330f822"
 }

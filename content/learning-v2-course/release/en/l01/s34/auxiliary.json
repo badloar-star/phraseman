@@ -10,8 +10,8 @@
           "uk": "У короткій формі потрібно 'm: I'm afraid."
         },
         "en:lesson-01:session-34:intro1:r3": {
-          "ru": "She's — про Машу. О себе говорим I'm.",
-          "uk": "She's — про Машу. Про себе кажемо I'm."
+          "ru": "She's — про подругу. О себе говорим I'm.",
+          "uk": "She's — про подругу. Про себе кажемо I'm."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-34:intro3:r2": {
-          "ru": "He's — про мужчину. Про Машу — She's.",
-          "uk": "He's — про чоловіка. Про Машу — She's."
+          "ru": "He's — про мужчину. Про подругу — She's.",
+          "uk": "He's — про чоловіка. Про подругу — She's."
         },
         "en:lesson-01:session-34:intro3:r3": {
           "ru": "В короткой форме нужно 's: She's pale.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "04421ebb7fdeef0dbc7bf116d7d5a44b64ad92ae8dd76b721d2ad27831383193"
+  "auxiliaryFingerprint": "833ef74c7645a29ecdbeec7871a791aec00978d60ff9bdd1d45c119a372b3e13"
 }

@@ -147,8 +147,8 @@
             "responseId": "en:lesson-01:session-03:i03:r1",
             "targetText": "cold",
             "meaningByLocale": {
-              "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
-              "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
+              "ru": "«холодно, замёрз». Начальница включила кондиционер слишком сильно.",
+              "uk": "«холодно, змерз». Керівниця ввімкнула кондиціонер надто сильно."
             }
           }
         ],
@@ -158,8 +158,8 @@
         "wordCard": {
           "word": "cold",
           "definitionByLocale": {
-            "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
-            "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
+            "ru": "«холодно, замёрз». Начальница включила кондиционер слишком сильно.",
+            "uk": "«холодно, змерз». Керівниця ввімкнула кондиціонер надто сильно."
           }
         }
       },
@@ -558,7 +558,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
+      "prompt": "Вставьте слово — начальница спросила, устали ли вы. Скажите, что нет",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-03:i12:r1",
@@ -575,12 +575,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
+      "accessibilityLabel": "Вставьте слово — начальница спросила, устали ли вы. Скажите, что нет",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
-          "uk": "Вставте слово — Міра спитала, чи ви втомилися. Скажіть, що ні"
+          "ru": "Вставьте слово — начальница спросила, устали ли вы. Скажите, что нет",
+          "uk": "Вставте слово — керівниця спитала, чи ви втомилися. Скажіть, що ні"
         },
         "gappedTargetPhrase": "I ___ not tired.",
         "gapOptions": [
@@ -597,12 +597,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
+        "testedDimension": "Вставьте слово — начальница спросила, устали ли вы. Скажите, что нет",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-03:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
+            "testedDimension": "Вставьте слово — начальница спросила, устали ли вы. Скажите, что нет",
             "feedbackByLocale": {
               "ru": "С `I` нужно `am`, затем `not`: `I am not tired`.",
               "uk": "З `I` потрібне `am`, потім `not`: `I am not tired`."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-01:session-03:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — Мира спросила, устали ли вы. Скажите, что нет",
+            "testedDimension": "Вставьте слово — начальница спросила, устали ли вы. Скажите, что нет",
             "feedbackByLocale": {
               "ru": "С I нужна форма `am`: `I am not tired`.",
               "uk": "Для `I` потрібна форма `am`: `I am not tired`."
@@ -747,13 +747,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите фразу — Мира предлагает включить обогреватель; скажите, что вам не холодно",
+      "prompt": "Произнесите фразу — начальница предлагает включить обогреватель; скажите, что вам не холодно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-03:i15:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите фразу — Мира предлагает включить обогреватель; скажите, что вам не холодно",
+      "accessibilityLabel": "Произнесите фразу — начальница предлагает включить обогреватель; скажите, что вам не холодно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -897,13 +897,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите фразу — Мира спрашивает, устали ли вы после встречи; скажите, что нет",
+      "prompt": "Произнесите фразу — начальница спрашивает, устали ли вы после встречи; скажите, что нет",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-03:i17:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите фразу — Мира спрашивает, устали ли вы после встречи; скажите, что нет",
+      "accessibilityLabel": "Произнесите фразу — начальница спрашивает, устали ли вы после встречи; скажите, что нет",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1049,13 +1049,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите фразу — коллега уже рядом с вами; сообщите Мире, что вы не один",
+      "prompt": "Произнесите фразу — коллега уже рядом с вами; сообщите начальнице, что вы не один",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-03:i17:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите фразу — коллега уже рядом с вами; сообщите Мире, что вы не один",
+      "accessibilityLabel": "Произнесите фразу — коллега уже рядом с вами; сообщите начальнице, что вы не один",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7e81b17f33af6241141b12fee67b152efb069ecd8737a2d8524e4b68580db58e"
+  "learnerFingerprint": "a232c7e17c261ed673c92709aa172a462335a3cf327a9911173851e3fd367e7a"
 }

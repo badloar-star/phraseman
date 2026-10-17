@@ -91,7 +91,7 @@ locked — запертый · expired — просроченный · tight —
 Плитки: `ready` `am` `I` `is` → **I am ready.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am ready.`)*
 
-**9 · Костя уронил телефон у подъезда, и по экрану пошли трещины. Скажите ему коротко, что экран треснул**
+**9 · Брат уронил телефон у подъезда, и по экрану пошли трещины. Скажите ему коротко, что экран треснул**
 <!-- interaction_id: en:lesson-01:session-56:i07; family: scripted_repeat_compare -->
 🎙 **It's cracked.**
 
@@ -99,13 +99,13 @@ locked — запертый · expired — просроченный · tight —
 <!-- interaction_id: en:lesson-01:session-56:word:expired; family: word_card -->
 > **expired** — просроченный. It's expired — «Он просрочен». О паспорте, билете, йогурте, у которых вышел срок.
 
-**11 · Кассир разглядывает студенческий билет Кости: срок закончился в июне. Скажите Косте, что билет просрочен**
+**11 · Кассир разглядывает студенческий билет брата: срок закончился в июне. Скажите брату, что билет просрочен**
 <!-- interaction_id: en:lesson-01:session-56:i08; family: context_gap_grammar -->
 It is ___ . → **expired** · familiar · tight
 - familiar — *`familiar` — «знакомый». А у билета вышел срок: `expired`.*
 - tight — *`tight` — «тесный», это об обуви и одежде. О билете с вышедшим сроком говорит `expired`.*
 
-**12 · Послушайте фразу о тёте Вере**
+**12 · Послушайте фразу о тёте**
 <!-- interaction_id: en:lesson-01:session-56:i09; family: listen_choose -->
 🔊 *She is responsible.* → **She is responsible.** · She is independent. · She is dependent.
 - She is independent. — *В записи последнее слово — `responsible`, а в этом варианте — `independent`.*
@@ -125,7 +125,7 @@ hungry — голодный · tired — уставший · lost — заблу
 Плитки: `forgetful` `is` `He` `are` → **He is forgetful.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is forgetful.`)*
 
-**16 · В поезде тётя Вера угощает вас пирожком с вишней. Похвалите его коротко**
+**16 · В поезде тётя угощает вас пирожком с вишней. Похвалите его коротко**
 <!-- interaction_id: en:lesson-01:session-56:i13; family: scripted_repeat_compare -->
 🎙 **It's delicious.**
 

@@ -1,138 +1,154 @@
 # Англійська · Урок 2 · Заняття 31 — Чайник із двома носиками
 
-**Ситуація.** Ви з Анною прийшли на виставку кераміки. Розглядаєте незвичайний чайник, порівнюєте чашки й уточнюєте, чи входять дві зали до одного квитка.
+**Ситуація.** Ви з подругою прийшли на виставку кераміки. Розглядаєте чайник із двома носиками, старовинні й розписні чашки та дізнаєтеся, чи підходить ваш квиток для другого залу.
 
-**Що ви опануєте:** сказати, що річ незвичайна, й уточнити схожість і відмінності
-**Нові слова:** unusual
+**Що ви опануєте:** сказати, що річ незвичайна, старовинна чи цінна, і уточнити схожість та відмінності
+**Нові слова:** unusual, antique, painted, valuable
+**Повертаються:** similar, equal, separate, valid
 
 ---
 
 ## Інтро 1
 
-### Не як зазвичай
+### Чайник із двома носиками
 
-`unusual` — «незвичайний». У чайника два носики: `It is unusual`. Це не обов’язково погано чи добре — просто не так, як зазвичай. Головне, наливаючи чай собі, не пригостити заодно рукав сусіда.
+Посеред залу стоїть чайник із двома носиками. Такого ви раніше не бачили. unusual — «незвичайний», не такий, як інші речі. It is unusual — «Він незвичайний».
 
-**Перед вами чайник із двома носиками. Скажіть повною фразою, що він незвичайний.**
+**Подруга питає, що ви думаєте про чайник. Скажіть повною фразою, що він незвичайний.**
 
 - ✅ **It is unusual.**
-- ❌ It unusual. — *Між `It` і `unusual` потрібно `is`.*
-- ❌ It is not unusual. — *Це заперечує незвичайність. За умовою потрібно її відзначити.*
+- ❌ It unusual. — *Між It і unusual потрібно is: It is unusual.*
+- ❌ It is not unusual. — *Із not виходить «Він звичайний». А такий чайник ви бачите вперше: It is unusual.*
 
 ---
 
 ## Інтро 2
 
-### Схожі — не означає рівні
+### Табличка біля вітрини
 
-`similar` — «схожі». Дві чашки зі схожим візерунком: `They are similar`. `equal` — «рівні»: наприклад, дві ціни однакової величини. Схожі чашки можуть коштувати по-різному. Слово обираємо за тим, що порівнюємо.
+На табличці біля вітрини написано: чашку зроблено майже двісті років тому. Ви стоїте збоку й року не бачите. antique — «старовинний». Is it antique? — «Вона старовинна?»
 
-**Дві ціни однакові. Скажіть повною фразою, що вони рівні.**
+**Запитайте подругу, чи старовинна чашка.**
 
-- ✅ **They are equal.**
-- ❌ They are similar. — *Це «Вони схожі». Тут потрібно сказати точніше: ціни рівні.*
-- ❌ They is equal. — *З `They` потрібно `are`.*
+- ✅ **Is it antique?**
+- ❌ It is antique. — *Так звучить твердження «Вона старовинна». Щоб запитати, ставимо Is наперед: Is it antique?*
+- ❌ Are it antique? — *З it потрібно is: Is it antique?*
 
 ---
 
 ## Інтро 3
 
-### Окремо чи разом
+### Вітрина під замком
 
-`separate` — «окремий». Для двох зал потрібні окремі квитки: `They are separate`. `valid` — «дійсний». Показуючи свій квиток, запитайте `Is it valid?`. Це запитання про те, чи дійсний квиток, а не про те, чи схожий він на сусідній.
+Вітрина з цією чашкою замкнена на ключ, а поруч стоїть наглядачка залу. Ви розумієте, що річ дорога й рідкісна. valuable — «цінний». It's valuable — «Вона цінна».
 
-**Касир підтвердив, що квиток дійсний у цій залі. Анна запитує: `Is it valid?` Дайте коротку відповідь «так».**
+**Подруга питає, чому вітрину замкнули на ключ. Скажіть коротко, що чашка цінна.**
 
-- ✅ **Yes, it is.**
-- ❌ No, it is not. — *Так ви скажете, що квиток не діє. Касир підтвердив протилежне.*
-- ❌ Yes, it are. — *З `it` потрібно `is`.*
+- ✅ **It's valuable.**
+- ❌ It's not valuable. — *Із not виходить «Вона не цінна». А вітрина під замком: It's valuable.*
+- ❌ They're valuable. — *They're — про кілька речей, а чашка одна: It's valuable.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви вперше бачите чайник із двома носиками. Скажіть повною фразою, що він незвичайний**
+**1 · Картка слова — antique**
+<!-- interaction_id: en:lesson-02:session-31:word:antique; family: word_card -->
+> **antique** — старовинний. It is antique — «Вона старовинна». Про чашку, годинник, меблі, монету.
+
+**2 · Дві чашки на вітрині зроблено майже двісті років тому. Скажіть повною фразою, що вони старовинні**
 <!-- interaction_id: en:lesson-02:session-31:i01; family: phrase_builder -->
-Плитки: `unusual` `is` `It` `are` → **It is unusual.**
-*(плитка `are` зайва: тут потрібно `is` — `It is unusual.`)*
+Плитки: `antique` `are` `They` `is` → **They are antique.**
+*(плитка `is` зайва: тут потрібно `are` — `They are antique.`)*
 
-**2 · Послухайте фразу**
+**3 · Картка слова — unusual**
+<!-- interaction_id: en:lesson-02:session-31:word:unusual; family: word_card -->
+> **unusual** — незвичайний, не такий, як усі. It is unusual — «Він незвичайний». Про форму, колір, смак, ідею.
+
+**4 · Послухайте фразу про чайник**
 <!-- interaction_id: en:lesson-02:session-31:i02; family: listen_choose -->
-🔊 *They are similar.* → **They are similar.** · They are equal. · They are separate.
-- They are equal. — *У записі останнє слово — `similar`, а в цьому варіанті — `equal`.*
-- They are separate. — *У записі останнє слово — `similar`, а в цьому варіанті — `separate`.*
+🔊 *It is unusual.* → **It is unusual.** · It is valid. · It is separate.
+- It is valid. — *У записі останнє слово — `unusual`, а в цьому варіанті — `valid`.*
+- It is separate. — *У записі останнє слово — `unusual`, а в цьому варіанті — `separate`.*
 
-**3 · Запитайте Анну, чи незвичайний цей чайник**
+**5 · Картка слова — valuable**
+<!-- interaction_id: en:lesson-02:session-31:word:valuable; family: word_card -->
+> **valuable** — цінний, дорогий. It is valuable — «Вона цінна». Про стару річ, картину, документ.
+
+**6 · Запитайте подругу, чи цінна ця чашка**
 <!-- interaction_id: en:lesson-02:session-31:i03; family: context_gap_grammar -->
-___ it unusual? → **Is** · Am · Are
+___ it valuable? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
-- Are — *Запитання — `Is it unusual?`.*
+- Are — *Запитання — `Is it valuable?`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-31:i04; family: speed_match -->
-unusual — незвичайний · equal — рівний · similar — схожий · separate — окремий
+unusual — незвичайний · antique — старовинний · painted — розписний · valuable — цінний
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — painted**
+<!-- interaction_id: en:lesson-02:session-31:word:painted; family: word_card -->
+> **painted** — розписний, розфарбований. It is painted — «Вона розписна». Про чашку, тарілку, двері, стіну.
+
+**9 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-02:session-31:i05; family: listen_build_dictation -->
-🔊 *They are not equal.* Плитки: `equal` `not` `are` `They` `is` → **They are not equal.**
-*(плитка `is` зайва: тут потрібно `are` — `They are not equal.`)*
+🔊 *They are not painted.* Плитки: `painted` `not` `are` `They` `is` → **They are not painted.**
+*(плитка `is` зайва: тут потрібно `are` — `They are not painted.`)*
 
-**6 · Для двох зал видали два окремі квитки. Скажіть повною фразою, що вони окремі**
+**10 · Подруга відійшла до іншої вітрини, і ви її не бачите. Запитайте наглядачку, де вона**
 <!-- interaction_id: en:lesson-02:session-31:i06; family: phrase_builder -->
-Плитки: `separate` `are` `They` `is` → **They are separate.**
-*(плитка `is` зайва: тут потрібно `are` — `They are separate.`)*
+Плитки: `she` `is` `Where` `Who` → **Where is she?**
+*(плитка `Who` зайва: тут потрібно `Where` — `Where is she?`)*
 
-**7 · У чашки ручка у формі величезного вуха. Коротко скажіть, що вона незвичайна**
+**11 · У чашки на вітрині червоні птахи по краю, намальовані вручну. Коротко скажіть подрузі, що вона розписна**
 <!-- interaction_id: en:lesson-02:session-31:i07; family: scripted_repeat_compare -->
-🎙 **It's unusual.**
+🎙 **It's painted.**
 
-**8 · Одна чашка коштує вдвічі дорожче за іншу. На запитання про ціни «Are they equal?» доповніть коротку відповідь «ні»**
+**12 · Одна чашка коштує вдвічі дорожче за іншу. На запитання подруги «Are they equal?» доповніть коротке «ні»**
 <!-- interaction_id: en:lesson-02:session-31:i08; family: context_gap_grammar -->
 No, they ___ not. → **are** · am · is
 - am — *З `they` потрібно `are`.*
 - is — *Відповідь — `No, they are not`.*
 
-**9 · Послухайте запитання**
+**13 · Послухайте запитання**
 <!-- interaction_id: en:lesson-02:session-31:i09; family: listen_choose -->
-🔊 *Is it valid?* → **Is it valid?** · Is it unusual? · Is it separate?
-- Is it unusual? — *У записі останнє слово — `valid`, а в цьому варіанті — `unusual`.*
-- Is it separate? — *У записі останнє слово — `valid`, а в цьому варіанті — `separate`.*
+🔊 *Is it valid?* → **Is it valid?** · Is it valuable? · Is it antique?
+- Is it valuable? — *У записі останнє слово — `valid`, а в цьому варіанті — `valuable`.*
+- Is it antique? — *У записі останнє слово — `valid`, а в цьому варіанті — `antique`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-31:i10; family: speed_match -->
-valid — дійсний · unusual — незвичайний · similar — схожий · equal — рівний
+valid — дійсний · equal — рівний · similar — схожий · separate — окремий
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте й складіть запитання**
 <!-- interaction_id: en:lesson-02:session-31:i11; family: listen_build_dictation -->
-🔊 *Where are they?* Плитки: `they` `are` `Where` `Who` → **Where are they?**
-*(плитка `Who` зайва: тут потрібно `Where` — `Where are they?`)*
+🔊 *Is it unusual?* Плитки: `unusual` `it` `Is` `Are` → **Is it unusual?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is it unusual?`)*
 
-**12 · У вітрині стоїть предмет незрозумілого призначення. Запитайте, що це**
+**16 · У вітрині лежить предмет незрозумілого призначення. Запитайте наглядачку, що це**
 <!-- interaction_id: en:lesson-02:session-31:i12; family: phrase_builder -->
 Плитки: `it` `is` `What` `Where` → **What is it?**
 *(плитка `Where` зайва: тут потрібно `What` — `What is it?`)*
 
-**13 · У двох чашок схожі візерунки. Коротко скажіть, що чашки схожі**
+**17 · У двох чашок майже однакові візерунки. Коротко скажіть подрузі, що вони схожі**
 <!-- interaction_id: en:lesson-02:session-31:i13; family: scripted_repeat_compare -->
 🎙 **They're similar.**
 
-**14 · Квиток був лише на вчорашню виставку. Скажіть, що сьогодні він недійсний**
+**18 · Квиток був лише на вчорашній день. Скажіть касирові, що сьогодні він недійсний**
 <!-- interaction_id: en:lesson-02:session-31:i14; family: context_gap_grammar -->
 It ___ not valid. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not valid`.*
 
-**15 · Послухайте фразу про ціни**
+**19 · Послухайте фразу про чашки**
 <!-- interaction_id: en:lesson-02:session-31:i15; family: listen_choose -->
-🔊 *They are equal.* → **They are equal.** · They are similar. · They are separate.
-- They are similar. — *У записі останнє слово — `equal`, а в цьому варіанті — `similar`.*
-- They are separate. — *У записі останнє слово — `equal`, а в цьому варіанті — `separate`.*
+🔊 *They are valuable.* → **They are valuable.** · They are antique. · They are painted.
+- They are antique. — *У записі останнє слово — `valuable`, а в цьому варіанті — `antique`.*
+- They are painted. — *У записі останнє слово — `valuable`, а в цьому варіанті — `painted`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-31:i16; family: speed_match -->
-separate — окремий · valid — дійсний · equal — рівний · unusual — незвичайний
+valuable — цінний · separate — окремий · unusual — незвичайний · valid — дійсний
 
-**17 · Касир згадав квитки для двох зал. Запитайте, чи вони окремі**
+**21 · Касир видав вам і подрузі по квитку до різних залів. Запитайте касира, чи вони окремі**
 <!-- interaction_id: en:lesson-02:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Are they separate?**
-

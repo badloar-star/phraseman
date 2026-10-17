@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-43:word:anxious",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — anxious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:anxious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — anxious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:anxious:audio",
+            "transcript": "anxious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:anxious:r1",
+              "targetText": "anxious",
+              "meaningByLocale": {
+                "ru": "тревожный, неспокойный. I am anxious — «Мне тревожно». О человеке, голосе, ожидании.",
+                "uk": "тривожний, неспокійний. I am anxious — «Мені тривожно». Про людину, голос, очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "anxious",
+            "definitionByLocale": {
+              "ru": "тревожный, неспокойный. I am anxious — «Мне тревожно». О человеке, голосе, ожидании.",
+              "uk": "тривожний, неспокійний. I am anxious — «Мені тривожно». Про людину, голос, очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am anxious.",
+          "localizedMeaning": {
+            "ru": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
+            "uk": "Сестра питає, що з вами. Скажіть їй повною фразою, що вам тривожно."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "anxious"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am anxious.`",
+                "uk": "тут потрібно `am` — `I am anxious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что сестра говорит о себе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i02:r1",
+            "text": "I am nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i02:r2",
+            "text": "I am calm."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i02:r3",
+            "text": "I am busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что сестра говорит о себе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i02:audio",
+            "transcript": "I am nervous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:i02:r1",
+              "targetText": "I am nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i02:r2",
+              "targetText": "I am calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i02:r3",
+              "targetText": "I am busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что сестра говорит о себе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `calm`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что сестра говорит о себе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `busy`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `busy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:word:jealous",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jealous",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:jealous:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jealous",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:jealous:audio",
+            "transcript": "jealous"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:jealous:r1",
+              "targetText": "jealous",
+              "meaningByLocale": {
+                "ru": "завидующий, которому обидно, что у другого лучше. I'm jealous — «Я завидую». О друге, брате, подруге.",
+                "uk": "заздрісний, якому прикро, що в іншого краще. I'm jealous — «Я заздрю». Про друга, брата, подругу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jealous",
+            "definitionByLocale": {
+              "ru": "завидующий, которому обидно, что у другого лучше. I'm jealous — «Я завидую». О друге, брате, подруге.",
+              "uk": "заздрісний, якому прикро, що в іншого краще. I'm jealous — «Я заздрю». Про друга, брата, подругу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+            "uk": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить"
+          },
+          "gappedTargetPhrase": "___ you jealous?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-43:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Are`.",
+                "uk": "З `you` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Are you jealous?`.",
+                "uk": "Питання — `Are you jealous?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-43:i04:p1",
+              "target": "anxious",
+              "meaningByLocale": {
+                "ru": "тревожный",
+                "uk": "тривожний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i04:p2",
+              "target": "jealous",
+              "meaningByLocale": {
+                "ru": "завидующий",
+                "uk": "заздрісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i04:p3",
+              "target": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый",
+                "uk": "напружений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i04:p4",
+              "target": "nervous",
+              "meaningByLocale": {
+                "ru": "нервный",
+                "uk": "нервовий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "anxious",
+            "jealous",
+            "tense",
+            "nervous"
+          ],
+          "rightColumn": [
+            "тревожный",
+            "завидующий",
+            "напряжённый",
+            "нервный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:word:tense",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tense",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:tense:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tense",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:tense:audio",
+            "transcript": "tense"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:tense:r1",
+              "targetText": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый, зажатый. She is tense — «Она напряжена». О человеке, плечах, разговоре, тишине.",
+                "uk": "напружений, затиснутий. She is tense — «Вона напружена». Про людину, плечі, розмову, тишу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tense",
+            "definitionByLocale": {
+              "ru": "напряжённый, зажатый. She is tense — «Она напряжена». О человеке, плечах, разговоре, тишине.",
+              "uk": "напружений, затиснутий. She is tense — «Вона напружена». Про людину, плечі, розмову, тишу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что мама говорит о сестре, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что мама говорит о сестре, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i05:audio",
+            "transcript": "She is not tense."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is not tense.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "not",
+            "tense"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама говорит о сестре, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is not tense.`",
+                "uk": "тут потрібно `is` — `She is not tense.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is anxious?",
+          "localizedMeaning": {
+            "ru": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
+            "uk": "Мама каже, що одній людині в родині сьогодні особливо тривожно. Запитайте її, хто тривожний."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "anxious"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is anxious?`",
+                "uk": "тут потрібно `Who` — `Who is anxious?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает новые кроссовки. Вам такие тоже хочется. Скажите ей коротко, что вы завидуете.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает новые кроссовки. Вам такие тоже хочется. Скажите ей коротко, что вы завидуете.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i07:audio",
+            "transcript": "I'm jealous."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm jealous.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+            "uk": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-43:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, I am`.",
+                "uk": "Відповідь — `Yes, I am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:word:cheerful",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cheerful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:cheerful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cheerful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:cheerful:audio",
+            "transcript": "cheerful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:cheerful:r1",
+              "targetText": "cheerful",
+              "meaningByLocale": {
+                "ru": "весёлый, бодрый, в хорошем настроении. He is cheerful — «Он весёлый». О человеке, голосе, утре.",
+                "uk": "веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheerful",
+            "definitionByLocale": {
+              "ru": "весёлый, бодрый, в хорошем настроении. He is cheerful — «Он весёлый». О человеке, голосе, утре.",
+              "uk": "веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что сестра говорит о брате",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i09:r1",
+            "text": "He is cheerful."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i09:r2",
+            "text": "He is nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i09:r3",
+            "text": "He is jealous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что сестра говорит о брате",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i09:audio",
+            "transcript": "He is cheerful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:i09:r1",
+              "targetText": "He is cheerful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i09:r2",
+              "targetText": "He is nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i09:r3",
+              "targetText": "He is jealous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что сестра говорит о брате",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `nervous`.",
+                "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `nervous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что сестра говорит о брате",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `jealous`.",
+                "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `jealous`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-43:i10:p1",
+              "target": "cheerful",
+              "meaningByLocale": {
+                "ru": "весёлый, бодрый",
+                "uk": "веселий, бадьорий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i10:p2",
+              "target": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый",
+                "uk": "напружений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i10:p3",
+              "target": "jealous",
+              "meaningByLocale": {
+                "ru": "завидующий",
+                "uk": "заздрісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i10:p4",
+              "target": "tired",
+              "meaningByLocale": {
+                "ru": "уставший",
+                "uk": "втомлений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cheerful",
+            "tense",
+            "jealous",
+            "tired"
+          ],
+          "rightColumn": [
+            "весёлый, бодрый",
+            "напряжённый",
+            "завидующий",
+            "уставший"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что мама говорит о родителях, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что мама говорит о родителях, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i11:audio",
+            "transcript": "They are not anxious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not anxious.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "anxious"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама говорит о родителях, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not anxious.`",
+                "uk": "тут потрібно `are` — `They are not anxious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is cheerful?",
+          "localizedMeaning": {
+            "ru": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
+            "uk": "Сестра каже, що один із гостей з ранку веселий. Запитайте її, хто веселий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "cheerful"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is cheerful?`",
+                "uk": "тут потрібно `Who` — `Who is cheerful?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Утро понедельника: брат уже на ногах и смеётся. Скажите коротко, что он бодрый и весёлый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i13:audio"
+        ],
+        "accessibilityLabel": "Утро понедельника: брат уже на ногах и смеётся. Скажите коротко, что он бодрый и весёлый.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i13:audio",
+            "transcript": "He's cheerful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's cheerful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+            "uk": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно"
+          },
+          "gappedTargetPhrase": "I ___ not anxious.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-43:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+              "feedbackByLocale": {
+                "ru": "Фраза — `I am not anxious`.",
+                "uk": "Фраза — `I am not anxious`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i15:r1",
+            "text": "Are you tense?"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i15:r2",
+            "text": "Are you jealous?"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i15:r3",
+            "text": "Are you cheerful?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i15:audio",
+            "transcript": "Are you tense?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:i15:r1",
+              "targetText": "Are you tense?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i15:r2",
+              "targetText": "Are you jealous?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i15:r3",
+              "targetText": "Are you cheerful?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tense`, а в этом варианте — `jealous`.",
+                "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `jealous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tense`, а в этом варианте — `cheerful`.",
+                "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `cheerful`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-43:i16:p1",
+              "target": "anxious",
+              "meaningByLocale": {
+                "ru": "тревожный",
+                "uk": "тривожний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i16:p2",
+              "target": "cheerful",
+              "meaningByLocale": {
+                "ru": "весёлый, бодрый",
+                "uk": "веселий, бадьорий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i16:p3",
+              "target": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый",
+                "uk": "напружений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i16:p4",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "anxious",
+            "cheerful",
+            "tense",
+            "calm"
+          ],
+          "rightColumn": [
+            "тревожный",
+            "весёлый, бодрый",
+            "напряжённый",
+            "спокойный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра сидит, сжав кулаки, перед звонком. Спросите её, напряжена ли она.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Сестра сидит, сжав кулаки, перед звонком. Спросите её, напряжена ли она.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i17:audio",
+            "transcript": "Are you tense?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you tense?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-43:word:anxious",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — anxious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:anxious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — anxious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:anxious:audio",
+            "transcript": "anxious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:anxious:r1",
+              "targetText": "anxious",
+              "meaningByLocale": {
+                "ru": "тревожный, неспокойный. I am anxious — «Мне тревожно». О человеке, голосе, ожидании.",
+                "uk": "тривожний, неспокійний. I am anxious — «Мені тривожно». Про людину, голос, очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "anxious",
+            "definitionByLocale": {
+              "ru": "тревожный, неспокойный. I am anxious — «Мне тревожно». О человеке, голосе, ожидании.",
+              "uk": "тривожний, неспокійний. I am anxious — «Мені тривожно». Про людину, голос, очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра питає, що з вами. Скажіть їй повною фразою, що вам тривожно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра питає, що з вами. Скажіть їй повною фразою, що вам тривожно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am anxious.",
+          "localizedMeaning": {
+            "ru": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
+            "uk": "Сестра питає, що з вами. Скажіть їй повною фразою, що вам тривожно."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "anxious"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра питає, що з вами. Скажіть їй повною фразою, що вам тривожно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am anxious.`",
+                "uk": "тут потрібно `am` — `I am anxious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що сестра каже про себе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i02:r1",
+            "text": "I am nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i02:r2",
+            "text": "I am calm."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i02:r3",
+            "text": "I am busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що сестра каже про себе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i02:audio",
+            "transcript": "I am nervous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:i02:r1",
+              "targetText": "I am nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i02:r2",
+              "targetText": "I am calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i02:r3",
+              "targetText": "I am busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що сестра каже про себе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `calm`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що сестра каже про себе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `busy`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `busy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:word:jealous",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jealous",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:jealous:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jealous",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:jealous:audio",
+            "transcript": "jealous"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:jealous:r1",
+              "targetText": "jealous",
+              "meaningByLocale": {
+                "ru": "завидующий, которому обидно, что у другого лучше. I'm jealous — «Я завидую». О друге, брате, подруге.",
+                "uk": "заздрісний, якому прикро, що в іншого краще. I'm jealous — «Я заздрю». Про друга, брата, подругу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jealous",
+            "definitionByLocale": {
+              "ru": "завидующий, которому обидно, что у другого лучше. I'm jealous — «Я завидую». О друге, брате, подруге.",
+              "uk": "заздрісний, якому прикро, що в іншого краще. I'm jealous — «Я заздрю». Про друга, брата, подругу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+            "uk": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить"
+          },
+          "gappedTargetPhrase": "___ you jealous?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-43:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить",
+              "feedbackByLocale": {
+                "ru": "С `you` нужно `Are`.",
+                "uk": "З `you` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Are you jealous?`.",
+                "uk": "Питання — `Are you jealous?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-43:i04:p1",
+              "target": "anxious",
+              "meaningByLocale": {
+                "ru": "тревожный",
+                "uk": "тривожний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i04:p2",
+              "target": "jealous",
+              "meaningByLocale": {
+                "ru": "завидующий",
+                "uk": "заздрісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i04:p3",
+              "target": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый",
+                "uk": "напружений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i04:p4",
+              "target": "nervous",
+              "meaningByLocale": {
+                "ru": "нервный",
+                "uk": "нервовий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "anxious",
+            "jealous",
+            "tense",
+            "nervous"
+          ],
+          "rightColumn": [
+            "тривожний",
+            "заздрісний",
+            "напружений",
+            "нервовий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:word:tense",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tense",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:tense:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tense",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:tense:audio",
+            "transcript": "tense"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:tense:r1",
+              "targetText": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый, зажатый. She is tense — «Она напряжена». О человеке, плечах, разговоре, тишине.",
+                "uk": "напружений, затиснутий. She is tense — «Вона напружена». Про людину, плечі, розмову, тишу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tense",
+            "definitionByLocale": {
+              "ru": "напряжённый, зажатый. She is tense — «Она напряжена». О человеке, плечах, разговоре, тишине.",
+              "uk": "напружений, затиснутий. She is tense — «Вона напружена». Про людину, плечі, розмову, тишу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що мама каже про сестру, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що мама каже про сестру, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i05:audio",
+            "transcript": "She is not tense."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is not tense.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "not",
+            "tense"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама каже про сестру, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is not tense.`",
+                "uk": "тут потрібно `is` — `She is not tense.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама каже, що одній людині в родині сьогодні особливо тривожно. Запитайте її, хто тривожний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама каже, що одній людині в родині сьогодні особливо тривожно. Запитайте її, хто тривожний.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is anxious?",
+          "localizedMeaning": {
+            "ru": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
+            "uk": "Мама каже, що одній людині в родині сьогодні особливо тривожно. Запитайте її, хто тривожний."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "anxious"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама каже, що одній людині в родині сьогодні особливо тривожно. Запитайте її, хто тривожний.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is anxious?`",
+                "uk": "тут потрібно `Who` — `Who is anxious?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує нові кросівки. Вам такі теж хочеться. Скажіть їй коротко, що ви заздрите.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга показує нові кросівки. Вам такі теж хочеться. Скажіть їй коротко, що ви заздрите.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i07:audio",
+            "transcript": "I'm jealous."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm jealous.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+            "uk": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-43:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, I am`.",
+                "uk": "Відповідь — `Yes, I am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:word:cheerful",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cheerful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:word:cheerful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cheerful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:word:cheerful:audio",
+            "transcript": "cheerful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:word:cheerful:r1",
+              "targetText": "cheerful",
+              "meaningByLocale": {
+                "ru": "весёлый, бодрый, в хорошем настроении. He is cheerful — «Он весёлый». О человеке, голосе, утре.",
+                "uk": "веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheerful",
+            "definitionByLocale": {
+              "ru": "весёлый, бодрый, в хорошем настроении. He is cheerful — «Он весёлый». О человеке, голосе, утре.",
+              "uk": "веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що сестра каже про брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i09:r1",
+            "text": "He is cheerful."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i09:r2",
+            "text": "He is nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i09:r3",
+            "text": "He is jealous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що сестра каже про брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i09:audio",
+            "transcript": "He is cheerful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:i09:r1",
+              "targetText": "He is cheerful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i09:r2",
+              "targetText": "He is nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i09:r3",
+              "targetText": "He is jealous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що сестра каже про брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `nervous`.",
+                "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `nervous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що сестра каже про брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `jealous`.",
+                "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `jealous`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-43:i10:p1",
+              "target": "cheerful",
+              "meaningByLocale": {
+                "ru": "весёлый, бодрый",
+                "uk": "веселий, бадьорий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i10:p2",
+              "target": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый",
+                "uk": "напружений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i10:p3",
+              "target": "jealous",
+              "meaningByLocale": {
+                "ru": "завидующий",
+                "uk": "заздрісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i10:p4",
+              "target": "tired",
+              "meaningByLocale": {
+                "ru": "уставший",
+                "uk": "втомлений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cheerful",
+            "tense",
+            "jealous",
+            "tired"
+          ],
+          "rightColumn": [
+            "веселий, бадьорий",
+            "напружений",
+            "заздрісний",
+            "втомлений"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що мама каже про батьків, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що мама каже про батьків, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i11:audio",
+            "transcript": "They are not anxious."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not anxious.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "anxious"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама каже про батьків, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not anxious.`",
+                "uk": "тут потрібно `are` — `They are not anxious.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра каже, що один із гостей з ранку веселий. Запитайте її, хто веселий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра каже, що один із гостей з ранку веселий. Запитайте її, хто веселий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is cheerful?",
+          "localizedMeaning": {
+            "ru": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
+            "uk": "Сестра каже, що один із гостей з ранку веселий. Запитайте її, хто веселий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "cheerful"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра каже, що один із гостей з ранку веселий. Запитайте її, хто веселий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is cheerful?`",
+                "uk": "тут потрібно `Who` — `Who is cheerful?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ранок понеділка: брат уже на ногах і сміється. Скажіть коротко, що він бадьорий і веселий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i13:audio"
+        ],
+        "accessibilityLabel": "Ранок понеділка: брат уже на ногах і сміється. Скажіть коротко, що він бадьорий і веселий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i13:audio",
+            "transcript": "He's cheerful."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's cheerful.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+            "uk": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно"
+          },
+          "gappedTargetPhrase": "I ___ not anxious.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-43:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно",
+              "feedbackByLocale": {
+                "ru": "Фраза — `I am not anxious`.",
+                "uk": "Фраза — `I am not anxious`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i15:r1",
+            "text": "Are you tense?"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i15:r2",
+            "text": "Are you jealous?"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i15:r3",
+            "text": "Are you cheerful?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i15:audio",
+            "transcript": "Are you tense?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-43:i15:r1",
+              "targetText": "Are you tense?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i15:r2",
+              "targetText": "Are you jealous?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i15:r3",
+              "targetText": "Are you cheerful?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-43:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tense`, а в этом варианте — `jealous`.",
+                "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `jealous`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-43:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tense`, а в этом варианте — `cheerful`.",
+                "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `cheerful`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-43:i16:p1",
+              "target": "anxious",
+              "meaningByLocale": {
+                "ru": "тревожный",
+                "uk": "тривожний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i16:p2",
+              "target": "cheerful",
+              "meaningByLocale": {
+                "ru": "весёлый, бодрый",
+                "uk": "веселий, бадьорий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i16:p3",
+              "target": "tense",
+              "meaningByLocale": {
+                "ru": "напряжённый",
+                "uk": "напружений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-43:i16:p4",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "anxious",
+            "cheerful",
+            "tense",
+            "calm"
+          ],
+          "rightColumn": [
+            "тривожний",
+            "веселий, бадьорий",
+            "напружений",
+            "спокійний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-43:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра сидить, стиснувши кулаки, перед дзвінком. Запитайте її, чи вона напружена.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Сестра сидить, стиснувши кулаки, перед дзвінком. Запитайте її, чи вона напружена.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-43:i17:audio",
+            "transcript": "Are you tense?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you tense?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-43:word:anxious",
+      "correctText": "anxious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i01",
+      "correctText": "I am anxious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i02",
+      "correctText": "I am nervous.",
+      "correctResponseId": "en:lesson-02:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:word:jealous",
+      "correctText": "jealous",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i03",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-02:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:word:tense",
+      "correctText": "tense",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i05",
+      "correctText": "She is not tense.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i06",
+      "correctText": "Who is anxious?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i07",
+      "correctText": "I'm jealous.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i08",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-02:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:word:cheerful",
+      "correctText": "cheerful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i09",
+      "correctText": "He is cheerful.",
+      "correctResponseId": "en:lesson-02:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i11",
+      "correctText": "They are not anxious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i12",
+      "correctText": "Who is cheerful?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i13",
+      "correctText": "He's cheerful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i14",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-02:session-43:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i15",
+      "correctText": "Are you tense?",
+      "correctResponseId": "en:lesson-02:session-43:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i17",
+      "correctText": "Are you tense?",
+      "correctResponseId": null
+    }
+  ]
+}

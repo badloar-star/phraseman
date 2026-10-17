@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-30:i01",
+      "interactionId": "en:lesson-02:session-30:word:elsewhere",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — elsewhere",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:word:elsewhere:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — elsewhere",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:word:elsewhere:audio",
+          "transcript": "elsewhere"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-30:word:elsewhere:r1",
+            "targetText": "elsewhere",
+            "meaningByLocale": {
+              "ru": "в другом месте. It is elsewhere — «Она в другом месте». Слово не называет место, а только говорит, что вещи здесь нет.",
+              "uk": "в іншому місці. It is elsewhere — «Вона в іншому місці». Слово не називає місце, а лише каже, що речі тут немає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "elsewhere",
+          "definitionByLocale": {
+            "ru": "в другом месте. It is elsewhere — «Она в другом месте». Слово не называет место, а только говорит, что вещи здесь нет.",
+            "uk": "в іншому місці. It is elsewhere — «Вона в іншому місці». Слово не називає місце, а лише каже, що речі тут немає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
+      "prompt": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
+      "accessibilityLabel": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is elsewhere.",
+        "targetPhrase": "They are elsewhere.",
         "localizedMeaning": {
-          "ru": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
-          "uk": "Лійку перенесли зі столу на балкон. Не називайте балкон: скажіть повною фразою, що вона в іншому місці"
+          "ru": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
+          "uk": "Садові рукавички лежать не на цьому столі. Скажіть повною фразою, що вони в іншому місці"
         },
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "elsewhere"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-30:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Лейку перенесли со стола на балкон. Не называйте балкон: скажите полной фразой, что она в другом месте",
+            "testedDimension": "Садовые перчатки лежат не на этом столе. Скажите полной фразой, что они в другом месте",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is elsewhere.`",
-              "uk": "тут потрібно `is` — `It is elsewhere.`"
+              "ru": "здесь нужно `are` — `They are elsewhere.`",
+              "uk": "тут потрібно `are` — `They are elsewhere.`"
             }
           }
         ],
@@ -48,16 +91,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-30:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-02:session-30:word:healthy",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу",
+      "prompt": "Карточка слова — healthy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:word:healthy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — healthy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:word:healthy:audio",
+          "transcript": "healthy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-30:word:healthy:r1",
+            "targetText": "healthy",
+            "meaningByLocale": {
+              "ru": "здоровый, крепкий. It is healthy — «Оно здоровое». О растении, человеке, питании.",
+              "uk": "здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "healthy",
+          "definitionByLocale": {
+            "ru": "здоровый, крепкий. It is healthy — «Оно здоровое». О растении, человеке, питании.",
+            "uk": "здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу о растении",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i02:r1",
-          "text": "It is alive."
+          "text": "It is healthy."
         },
         {
           "responseId": "en:lesson-02:session-30:i02:r2",
@@ -65,25 +151,25 @@
         },
         {
           "responseId": "en:lesson-02:session-30:i02:r3",
-          "text": "It is missing."
+          "text": "It is alive."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-30:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу",
+      "accessibilityLabel": "Послушайте фразу о растении",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-30:i02:audio",
-          "transcript": "It is alive."
+          "transcript": "It is healthy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-30:i02:r1",
-            "targetText": "It is alive.",
+            "targetText": "It is healthy.",
             "meaningByLocale": null
           },
           {
@@ -93,7 +179,7 @@
           },
           {
             "responseId": "en:lesson-02:session-30:i02:r3",
-            "targetText": "It is missing.",
+            "targetText": "It is alive.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +188,19 @@
           {
             "responseId": "en:lesson-02:session-30:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте фразу о растении",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alive`, а в этом варианте — `dead`.",
-              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `dead`."
+              "ru": "В записи последнее слово — `healthy`, а в этом варианте — `dead`.",
+              "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `dead`."
             }
           },
           {
             "responseId": "en:lesson-02:session-30:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу",
+            "testedDimension": "Послушайте фразу о растении",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alive`, а в этом варианте — `missing`.",
-              "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `missing`."
+              "ru": "В записи последнее слово — `healthy`, а в этом варианте — `alive`.",
+              "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `alive`."
             }
           }
         ],
@@ -125,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы ищете набор инструментов. Спросите, где он",
+      "prompt": "Вы ищете набор инструментов. Спросите подругу, где он",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i03:r1",
@@ -146,12 +232,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы ищете набор инструментов. Спросите, где он",
+      "accessibilityLabel": "Вы ищете набор инструментов. Спросите подругу, где он",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы ищете набор инструментов. Спросите, где он",
-          "uk": "Ви шукаєте набір інструментів. Запитайте, де він"
+          "ru": "Вы ищете набор инструментов. Спросите подругу, где он",
+          "uk": "Ви шукаєте набір інструментів. Запитайте подругу, де він"
         },
         "gappedTargetPhrase": "Where ___ it?",
         "gapOptions": [
@@ -168,12 +254,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вы ищете набор инструментов. Спросите, где он",
+        "testedDimension": "Вы ищете набор инструментов. Спросите подругу, где он",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-30:i03:r2",
             "correct": false,
-            "testedDimension": "Вы ищете набор инструментов. Спросите, где он",
+            "testedDimension": "Вы ищете набор инструментов. Спросите подругу, где он",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -182,7 +268,7 @@
           {
             "responseId": "en:lesson-02:session-30:i03:r3",
             "correct": false,
-            "testedDimension": "Вы ищете набор инструментов. Спросите, где он",
+            "testedDimension": "Вы ищете набор инструментов. Спросите подругу, где он",
             "feedbackByLocale": {
               "ru": "Вопрос — `Where is it?`.",
               "uk": "Запитання — `Where is it?`."
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -216,40 +302,40 @@
           },
           {
             "pairId": "en:lesson-02:session-30:i04:p2",
-            "target": "alive",
+            "target": "healthy",
             "meaningByLocale": {
-              "ru": "живой",
-              "uk": "живий"
+              "ru": "здоровый",
+              "uk": "здоровий"
             }
           },
           {
             "pairId": "en:lesson-02:session-30:i04:p3",
-            "target": "dead",
+            "target": "wilted",
             "meaningByLocale": {
-              "ru": "мёртвый, погибший",
-              "uk": "мертвий, загиблий"
+              "ru": "увядший",
+              "uk": "зів’ялий"
             }
           },
           {
             "pairId": "en:lesson-02:session-30:i04:p4",
-            "target": "missing",
+            "target": "damp",
             "meaningByLocale": {
-              "ru": "пропавший, отсутствующий",
-              "uk": "зниклий, відсутній"
+              "ru": "влажный",
+              "uk": "вологий"
             }
           }
         ],
         "leftColumn": [
           "elsewhere",
-          "alive",
-          "dead",
-          "missing"
+          "healthy",
+          "wilted",
+          "damp"
         ],
         "rightColumn": [
           "в другом месте",
-          "живой",
-          "мёртвый, погибший",
-          "пропавший, отсутствующий"
+          "здоровый",
+          "увядший",
+          "влажный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,9 +352,52 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-30:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-30:word:damp",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — damp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:word:damp:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — damp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:word:damp:audio",
+          "transcript": "damp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-30:word:damp:r1",
+            "targetText": "damp",
+            "meaningByLocale": {
+              "ru": "влажный, слегка сырой. It is damp — «Она влажная». О земле, полотенце, стене, одежде.",
+              "uk": "вологий, трохи сирий. It is damp — «Вона волога». Про ґрунт, рушник, стіну, одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "damp",
+          "definitionByLocale": {
+            "ru": "влажный, слегка сырой. It is damp — «Она влажная». О земле, полотенце, стене, одежде.",
+            "uk": "вологий, трохи сирий. It is damp — «Вона волога». Про ґрунт, рушник, стіну, одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -282,15 +411,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-30:i05:audio",
-          "transcript": "It is not complete."
+          "transcript": "It is not damp."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not complete.",
+        "hiddenTargetPhrase": "It is not damp.",
         "orderedTokens": [
           "It",
           "is",
           "not",
-          "complete"
+          "damp"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -301,8 +430,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not complete.`",
-              "uk": "тут потрібно `is` — `It is not complete.`"
+              "ru": "здесь нужно `is` — `It is not damp.`",
+              "uk": "тут потрібно `is` — `It is not damp.`"
             }
           }
         ],
@@ -315,38 +444,38 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Два инструмента лежат в другом месте. Скажите это полной фразой",
+      "prompt": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Два инструмента лежат в другом месте. Скажите это полной фразой",
+      "accessibilityLabel": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are elsewhere.",
+        "targetPhrase": "What is it?",
         "localizedMeaning": {
-          "ru": "Два инструмента лежат в другом месте. Скажите это полной фразой",
-          "uk": "Два інструменти лежать в іншому місці. Скажіть це повною фразою"
+          "ru": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
+          "uk": "Подруга показує незнайомий садовий інструмент. Запитайте, що це"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "elsewhere"
+          "What",
+          "is",
+          "it"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Where"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-30:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Два инструмента лежат в другом месте. Скажите это полной фразой",
+            "testedDimension": "Подруга показывает незнакомый садовый инструмент. Спросите, что это",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are elsewhere.`",
-              "uk": "тут потрібно `are` — `They are elsewhere.`"
+              "ru": "здесь нужно `What` — `What is it?`",
+              "uk": "тут потрібно `What` — `What is it?`"
             }
           }
         ],
@@ -358,26 +487,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-30:word:wilted",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wilted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-30:word:wilted:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wilted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-30:word:wilted:audio",
+          "transcript": "wilted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-30:word:wilted:r1",
+            "targetText": "wilted",
+            "meaningByLocale": {
+              "ru": "увядший. It is wilted — «Он увял». О цветке, листе, салате, траве.",
+              "uk": "зів’ялий. It is wilted — «Вона зів’яла». Про квітку, листок, салат, траву."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wilted",
+          "definitionByLocale": {
+            "ru": "увядший. It is wilted — «Он увял». О цветке, листе, салате, траве.",
+            "uk": "зів’ялий. It is wilted — «Вона зів’яла». Про квітку, листок, салат, траву."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-30:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Одного инструмента нет, и никто не знает, куда он делся. Коротко скажите, что он пропал",
+      "prompt": "Листья у цветка на подоконнике повисли и пожелтели. Коротко скажите подруге, что он увял",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-30:i07:audio"
       ],
-      "accessibilityLabel": "Одного инструмента нет, и никто не знает, куда он делся. Коротко скажите, что он пропал",
+      "accessibilityLabel": "Листья у цветка на подоконнике повисли и пожелтели. Коротко скажите подруге, что он увял",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-30:i07:audio",
-          "transcript": "It's missing."
+          "transcript": "It's wilted."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's missing.",
+        "targetPhrase": "It's wilted.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,11 +564,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Растение растёт. На «Is it alive?» дополните короткое «да»",
+      "prompt": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i08:r1",
@@ -413,14 +585,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Растение растёт. На «Is it alive?» дополните короткое «да»",
+      "accessibilityLabel": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Растение растёт. На «Is it alive?» дополните короткое «да»",
-          "uk": "Рослина росте. На «Is it alive?» доповніть коротку відповідь «так»"
+          "ru": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
+          "uk": "Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»"
         },
-        "gappedTargetPhrase": "Yes, it ___.",
+        "gappedTargetPhrase": "No, it ___ not.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-30:i08:r1",
@@ -435,12 +607,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Растение растёт. На «Is it alive?» дополните короткое «да»",
+        "testedDimension": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Растение растёт. На «Is it alive?» дополните короткое «да»",
+            "testedDimension": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -449,10 +621,10 @@
           {
             "responseId": "en:lesson-02:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Растение растёт. На «Is it alive?» дополните короткое «да»",
+            "testedDimension": "Земля в горшке сухая. На «Is it damp?» дополните короткое «нет»",
             "feedbackByLocale": {
-              "ru": "Ответ — `Yes, it is`.",
-              "uk": "Відповідь — `Yes, it is`."
+              "ru": "Ответ — `No, it is not`.",
+              "uk": "Відповідь — `No, it is not`."
             }
           }
         ]
@@ -461,51 +633,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о наборе",
+      "prompt": "Послушайте вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i09:r1",
-          "text": "It is complete."
+          "text": "Is it wilted?"
         },
         {
           "responseId": "en:lesson-02:session-30:i09:r2",
-          "text": "It is missing."
+          "text": "Is it healthy?"
         },
         {
           "responseId": "en:lesson-02:session-30:i09:r3",
-          "text": "It is elsewhere."
+          "text": "Is it missing?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-30:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о наборе",
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-30:i09:audio",
-          "transcript": "It is complete."
+          "transcript": "Is it wilted?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-30:i09:r1",
-            "targetText": "It is complete.",
+            "targetText": "Is it wilted?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i09:r2",
-            "targetText": "It is missing.",
+            "targetText": "Is it healthy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i09:r3",
-            "targetText": "It is elsewhere.",
+            "targetText": "Is it missing?",
             "meaningByLocale": null
           }
         ],
@@ -514,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-30:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о наборе",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complete`, а в этом варианте — `missing`.",
-              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `missing`."
+              "ru": "В записи последнее слово — `wilted`, а в этом варианте — `healthy`.",
+              "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `healthy`."
             }
           },
           {
             "responseId": "en:lesson-02:session-30:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о наборе",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complete`, а в этом варианте — `elsewhere`.",
-              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `elsewhere`."
+              "ru": "В записи последнее слово — `wilted`, а в этом варианте — `missing`.",
+              "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `missing`."
             }
           }
         ],
@@ -537,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -551,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-30:i10:p1",
-            "target": "complete",
-            "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-30:i10:p2",
-            "target": "elsewhere",
-            "meaningByLocale": {
-              "ru": "в другом месте",
-              "uk": "в іншому місці"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-30:i10:p3",
-            "target": "missing",
-            "meaningByLocale": {
-              "ru": "пропавший, отсутствующий",
-              "uk": "зниклий, відсутній"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-30:i10:p4",
             "target": "alive",
             "meaningByLocale": {
               "ru": "живой",
               "uk": "живий"
             }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i10:p2",
+            "target": "dead",
+            "meaningByLocale": {
+              "ru": "мёртвый",
+              "uk": "мертвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i10:p3",
+            "target": "dry",
+            "meaningByLocale": {
+              "ru": "сухой",
+              "uk": "сухий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i10:p4",
+            "target": "damp",
+            "meaningByLocale": {
+              "ru": "влажный",
+              "uk": "вологий"
+            }
           }
         ],
         "leftColumn": [
-          "complete",
-          "elsewhere",
-          "missing",
-          "alive"
+          "alive",
+          "dead",
+          "dry",
+          "damp"
         ],
         "rightColumn": [
-          "полный, завершённый",
-          "в другом месте",
-          "пропавший, отсутствующий",
-          "живой"
+          "живой",
+          "мёртвый",
+          "сухой",
+          "влажный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -610,8 +782,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -625,14 +797,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-30:i11:audio",
-          "transcript": "They are dead."
+          "transcript": "They are healthy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are dead.",
+        "hiddenTargetPhrase": "They are healthy.",
         "orderedTokens": [
           "They",
           "are",
-          "dead"
+          "healthy"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -643,8 +815,8 @@
             "correct": false,
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are dead.`",
-              "uk": "тут потрібно `are` — `They are dead.`"
+              "ru": "здесь нужно `are` — `They are healthy.`",
+              "uk": "тут потрібно `are` — `They are healthy.`"
             }
           }
         ],
@@ -657,21 +829,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
+      "prompt": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
+      "accessibilityLabel": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Is it complete?",
         "localizedMeaning": {
-          "ru": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
-          "uk": "Запитайте, чи повний набір інструментів, чи все в ньому на місці"
+          "ru": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
+          "uk": "Ви хочете дізнатися, чи всі інструменти на місці. Запитайте подругу, чи повний набір"
         },
         "orderedTokens": [
           "Is",
@@ -685,7 +857,7 @@
           {
             "responseId": "en:lesson-02:session-30:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Спросите, полный ли набор инструментов, всё ли в нём на месте",
+            "testedDimension": "Вы хотите узнать, все ли инструменты на месте. Спросите подругу, полный ли набор",
             "feedbackByLocale": {
               "ru": "здесь нужно `Is` — `Is it complete?`",
               "uk": "тут потрібно `Is` — `Is it complete?`"
@@ -701,17 +873,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна решила, что растение погибло, но вы видите новые листья. Коротко скажите, что оно не погибло",
+      "prompt": "Подруга думает, что цветок погиб, но вы видите на нём новый лист. Коротко скажите, что он не погиб",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-30:i13:audio"
       ],
-      "accessibilityLabel": "Анна решила, что растение погибло, но вы видите новые листья. Коротко скажите, что оно не погибло",
+      "accessibilityLabel": "Подруга думает, что цветок погиб, но вы видите на нём новый лист. Коротко скажите, что он не погиб",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -734,11 +906,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
+      "prompt": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i14:r1",
@@ -755,12 +927,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
+      "accessibilityLabel": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
-          "uk": "Два горщики перенесли зі столу. Повідомте, що вони в іншому місці"
+          "ru": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
+          "uk": "Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці"
         },
         "gappedTargetPhrase": "They ___ elsewhere.",
         "gapOptions": [
@@ -777,12 +949,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
+        "testedDimension": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
+            "testedDimension": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
             "feedbackByLocale": {
               "ru": "С `They` нужно `are`.",
               "uk": "З `They` потрібно `are`."
@@ -791,7 +963,7 @@
           {
             "responseId": "en:lesson-02:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Два горшка перенесли со стола. Сообщите, что они в другом месте",
+            "testedDimension": "Два горшка стояли на столе, а теперь их там нет. Скажите, что они в другом месте",
             "feedbackByLocale": {
               "ru": "Про два горшка — `They are elsewhere`.",
               "uk": "Про два горщики — `They are elsewhere`."
@@ -803,7 +975,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -811,15 +983,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-30:i15:r1",
-          "text": "Is it dead?"
+          "text": "Where is it?"
         },
         {
           "responseId": "en:lesson-02:session-30:i15:r2",
-          "text": "Is it alive?"
+          "text": "Who is it?"
         },
         {
           "responseId": "en:lesson-02:session-30:i15:r3",
-          "text": "Is it complete?"
+          "text": "What is it?"
         }
       ],
       "mediaIds": [],
@@ -831,23 +1003,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-30:i15:audio",
-          "transcript": "Is it dead?"
+          "transcript": "Where is it?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-30:i15:r1",
-            "targetText": "Is it dead?",
+            "targetText": "Where is it?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i15:r2",
-            "targetText": "Is it alive?",
+            "targetText": "Who is it?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-30:i15:r3",
-            "targetText": "Is it complete?",
+            "targetText": "What is it?",
             "meaningByLocale": null
           }
         ],
@@ -858,8 +1030,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dead`, а в этом варианте — `alive`.",
-              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `alive`."
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
             }
           },
           {
@@ -867,8 +1039,8 @@
             "correct": false,
             "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dead`, а в этом варианте — `complete`.",
-              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `complete`."
+              "ru": "В записи первое слово — `Where`, а в этом варианте — `What`.",
+              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `What`."
             }
           }
         ],
@@ -879,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1065,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-30:i16:p1",
-            "target": "dead",
+            "target": "healthy",
             "meaningByLocale": {
-              "ru": "мёртвый, погибший",
-              "uk": "мертвий, загиблий"
+              "ru": "здоровый",
+              "uk": "здоровий"
             }
           },
           {
             "pairId": "en:lesson-02:session-30:i16:p2",
-            "target": "alive",
-            "meaningByLocale": {
-              "ru": "живой",
-              "uk": "живий"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-30:i16:p3",
-            "target": "complete",
-            "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
-            }
-          },
-          {
-            "pairId": "en:lesson-02:session-30:i16:p4",
             "target": "elsewhere",
             "meaningByLocale": {
               "ru": "в другом месте",
               "uk": "в іншому місці"
             }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i16:p3",
+            "target": "missing",
+            "meaningByLocale": {
+              "ru": "пропавший",
+              "uk": "зниклий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-30:i16:p4",
+            "target": "complete",
+            "meaningByLocale": {
+              "ru": "полный",
+              "uk": "повний"
+            }
           }
         ],
         "leftColumn": [
-          "dead",
-          "alive",
-          "complete",
-          "elsewhere"
+          "healthy",
+          "elsewhere",
+          "missing",
+          "complete"
         ],
         "rightColumn": [
-          "мёртвый, погибший",
-          "живой",
-          "полный, завершённый",
-          "в другом месте"
+          "здоровый",
+          "в другом месте",
+          "пропавший",
+          "полный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,17 +1124,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-30:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Набора инструментов на столе нет. Спросите Анну, в другом ли он месте",
+      "prompt": "Лейки нет на столе. Спросите подругу, в другом ли месте она",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Набора инструментов на столе нет. Спросите Анну, в другом ли он месте",
+      "accessibilityLabel": "Лейки нет на столе. Спросите подругу, в другом ли месте она",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f1e87b55b6c5f88720e767d8004a4019c9cac113efb28214a39e7ae4a88cc0cd"
+  "learnerFingerprint": "57b8845805f0f3144f6853f8f993d58cfbc9ccb9a83565fbd6db5215f0fa2dce"
 }

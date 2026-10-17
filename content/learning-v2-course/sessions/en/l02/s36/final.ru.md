@@ -1,138 +1,154 @@
 # Английский · Урок 2 · Занятие 36 — Просто посидим у друзей
 
-**Ситуация.** После рабочей недели друзья зовут вас домой на пиццу. Анна уточняет, как одеться, а сонный Олег просит встретиться немного раньше.
+**Ситуация.** После рабочей недели друзья зовут вас домой на пиццу. Подруга спрашивает, как одеться, а друг заказывает пиццу и просит приехать пораньше.
 
 **Что вы освоите:** сказать о неформальной обстановке и договориться о времени
-**Новые слова:** informal
+**Новые слова:** informal, casual, vegetarian, delivered
+**Возвращаются:** formal, optional, flexible, sleepy
 
 ---
 
 ## Интро 1
 
-### Без церемоний
+### Звонок от друзей
 
-`informal` — «неформальный, непринуждённый». Встреча дома с пиццей и обычной одеждой: `It is informal`. Это не значит, что можно быть невежливым. Просто торжественная речь перед первым куском пиццы не требуется.
+Друзья звонят и зовут вас домой после работы: будет пицца, диван и кино, без гостей и без нарядов. informal — «неформальный, непринуждённый». It is informal — «Это неформально».
 
-**Друзья зовут на обычные домашние посиделки без церемоний. Скажите полной фразой, что встреча неформальная.**
+**Подруга спрашивает, какая будет встреча. Скажите полной фразой, что она неформальная.**
 
 - ✅ **It is informal.**
-- ❌ It informal. — *Между `It` и `informal` нужно `is`.*
-- ❌ It is formal. — *Это официальный формат, а в условии обычная домашняя встреча.*
+- ❌ It informal. — *Между It и informal нужно is: It is informal.*
+- ❌ It is formal. — *Так вы скажете, что встреча официальная. Друзья зовут просто на пиццу: It is informal.*
 
 ---
 
 ## Интро 2
 
-### Лучше спросить
+### Что надеть
 
-`Is it informal?` — «Это неформальная встреча?» Если да, ответьте `Yes, it is`. Слово `informal` описывает формат, но не перечисляет всю одежду, которую можно надеть. Если сомневаетесь, подходит ли ваш наряд, уточните у хозяев.
+Вы стоите перед шкафом. Друг написал, что можно прийти в джинсах и футболке. casual — «повседневный, простой по одежде». Is it casual? — «Можно в повседневной одежде?»
 
-**Анна спрашивает: `Is it informal?` Вы знаете, что это непринуждённые посиделки. Ответьте коротким «да».**
+**Вы хотите убедиться, что в джинсах прийти можно. Спросите друга, повседневный ли стиль у вечера.**
 
-- ✅ **Yes, it is.**
-- ❌ No, it is not. — *Так вы отрицаете неформальный формат. В условии он неформальный.*
-- ❌ Yes, it are. — *С `it` нужно `is`.*
+- ✅ **Is it casual?**
+- ❌ It is casual. — *Так звучит утверждение «Это повседневно». Чтобы спросить, ставим Is вперёд: Is it casual?*
+- ❌ Are it casual? — *С it нужно is: Is it casual?*
 
 ---
 
 ## Интро 3
 
-### Сонный, но ещё не спит
+### Пицца без мяса
 
-`sleepy` — «сонный, хочет спать». Олег зевает, но разговаривает с вами: `He is sleepy`. Это не то же самое, что `asleep` — «спит». `flexible` — «гибкий»: если готовы изменить время, скажите `I am flexible`. Можно встретиться раньше, пока Олег ещё участвует в разговоре.
+Подруга не ест мясо. Друг заказал пиццу с грибами и сыром и подтвердил: мяса там нет. vegetarian — «вегетарианский, без мяса». It's vegetarian — «Она вегетарианская».
 
-**Олег зевает и говорит, что хочет спать. Коротко скажите, что он сонный.**
+**Подруга спрашивает, подойдёт ли ей пицца. Скажите коротко, что пицца вегетарианская.**
 
-- ✅ **He's sleepy.**
-- ❌ He's asleep. — *Это «Он спит». Олег пока разговаривает.*
-- ❌ She's sleepy. — *Речь об Олеге: `He's`.*
+- ✅ **It's vegetarian.**
+- ❌ It's not vegetarian. — *С not выходит «Она не вегетарианская». А мяса в ней нет: It's vegetarian.*
+- ❌ They're vegetarian. — *They're — про несколько блюд, а пицца одна: It's vegetarian.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Это домашние посиделки без церемоний. Скажите полной фразой, что встреча неформальная**
+**1 · Карточка слова — informal**
+<!-- interaction_id: en:lesson-02:session-36:word:informal; family: word_card -->
+> **informal** — неформальный, непринуждённый. It is informal — «Это неформально». О встрече, разговоре, вечере, стиле.
+
+**2 · Встречи у этих друзей всегда проходят без нарядов и речей. Скажите полной фразой, что они неформальные**
 <!-- interaction_id: en:lesson-02:session-36:i01; family: phrase_builder -->
-Плитки: `informal` `is` `It` `are` → **It is informal.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is informal.`)*
+Плитки: `informal` `are` `They` `is` → **They are informal.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are informal.`)*
 
-**2 · Послушайте фразу об Олеге**
+**3 · Карточка слова — casual**
+<!-- interaction_id: en:lesson-02:session-36:word:casual; family: word_card -->
+> **casual** — повседневный, простой по одежде. It is casual — «Это повседневно». Об одежде: джинсы, футболка, кроссовки.
+
+**4 · Послушайте фразу об одежде**
 <!-- interaction_id: en:lesson-02:session-36:i02; family: listen_choose -->
-🔊 *He is sleepy.* → **He is sleepy.** · He is flexible. · He is asleep.
-- He is flexible. — *В записи последнее слово — `sleepy`, а в этом варианте — `flexible`.*
-- He is asleep. — *В записи последнее слово — `sleepy`, а в этом варианте — `asleep`.*
+🔊 *It is casual.* → **It is casual.** · It is formal. · It is optional.
+- It is formal. — *В записи последнее слово — `casual`, а в этом варианте — `formal`.*
+- It is optional. — *В записи последнее слово — `casual`, а в этом варианте — `optional`.*
 
-**3 · Спросите о формате встречи: неформальная ли она?**
+**5 · Спросите друга, неформальная ли будет встреча**
 <!-- interaction_id: en:lesson-02:session-36:i03; family: context_gap_grammar -->
 ___ it informal? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it informal?`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-36:i04; family: speed_match -->
-informal — неформальный · formal — официальный, строгий по стилю · sleepy — сонный · flexible — гибкий
+informal — неформальный · casual — повседневный · vegetarian — вегетарианский · delivered — доставленный
 
-**5 · Послушайте и соберите фразу**
+**7 · Карточка слова — delivered**
+<!-- interaction_id: en:lesson-02:session-36:word:delivered; family: word_card -->
+> **delivered** — доставленный. It is delivered — «Её доставили». О пицце, посылке, письме, заказе.
+
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-36:i05; family: listen_build_dictation -->
-🔊 *They are not flexible.* Плитки: `flexible` `not` `are` `They` `is` → **They are not flexible.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are not flexible.`)*
+🔊 *It is delivered.* Плитки: `delivered` `is` `It` `are` → **It is delivered.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is delivered.`)*
 
-**6 · Анна сказала, что один из друзей хочет спать. Спросите, кто сонный**
+**9 · Друг написал, что один из гостей хочет спать. Спросите, кто сонный**
 <!-- interaction_id: en:lesson-02:session-36:i06; family: phrase_builder -->
 Плитки: `sleepy` `is` `Who` `Where` → **Who is sleepy?**
 *(плитка `Where` лишняя: здесь нужно `Who` — `Who is sleepy?`)*
 
-**7 · Вам подходят и раннее, и позднее время. Коротко скажите, что вы готовы подстроиться**
-<!-- interaction_id: en:lesson-02:session-36:i07; family: scripted_repeat_compare -->
-🎙 **I'm flexible.**
+**10 · Карточка слова — vegetarian**
+<!-- interaction_id: en:lesson-02:session-36:word:vegetarian; family: word_card -->
+> **vegetarian** — вегетарианский, без мяса. It is vegetarian — «Она вегетарианская». О пицце, супе, блюде, меню.
 
-**8 · Олег разговаривает с вами. На «Is he asleep?» дополните короткое «нет»**
+**11 · Пицца без мяса, как просила подруга. Коротко скажите ей, что она вегетарианская**
+<!-- interaction_id: en:lesson-02:session-36:i07; family: scripted_repeat_compare -->
+🎙 **It's vegetarian.**
+
+**12 · Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»**
 <!-- interaction_id: en:lesson-02:session-36:i08; family: context_gap_grammar -->
 No, he ___ not. → **is** · am · are
 - am — *С `he` нужно `is`.*
 - are — *Ответ — `No, he is not`.*
 
-**9 · Послушайте вопрос**
+**13 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-36:i09; family: listen_choose -->
-🔊 *Is she flexible?* → **Is she flexible?** · Is she sleepy? · Is she formal?
-- Is she sleepy? — *В записи последнее слово — `flexible`, а в этом варианте — `sleepy`.*
-- Is she formal? — *В записи последнее слово — `flexible`, а в этом варианте — `formal`.*
+🔊 *Is it delivered?* → **Is it delivered?** · Is it casual? · Is it informal?
+- Is it casual? — *В записи последнее слово — `delivered`, а в этом варианте — `casual`.*
+- Is it informal? — *В записи последнее слово — `delivered`, а в этом варианте — `informal`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-36:i10; family: speed_match -->
-sleepy — сонный · flexible — гибкий · informal — неформальный · formal — официальный, строгий по стилю
+formal — официальный · informal — неформальный · casual — повседневный · sleepy — сонный
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-36:i11; family: listen_build_dictation -->
 🔊 *It is not formal.* Плитки: `formal` `not` `is` `It` `are` → **It is not formal.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is not formal.`)*
 
-**12 · Олег отошёл, и вы не видите его в комнате. Спросите, где он**
+**16 · Друг вышел из комнаты, и вы его не видите. Спросите, где он**
 <!-- interaction_id: en:lesson-02:session-36:i12; family: phrase_builder -->
 Плитки: `he` `is` `Where` `Who` → **Where is he?**
 *(плитка `Who` лишняя: здесь нужно `Where` — `Where is he?`)*
 
-**13 · Вы выяснили, что встреча неформальная. Коротко сообщите об этом Анне**
+**17 · Друг предлагает выбрать время: пораньше или попозже. Вам подходит любое. Коротко скажите, что вы готовы подстроиться**
 <!-- interaction_id: en:lesson-02:session-36:i13; family: scripted_repeat_compare -->
-🎙 **It's informal.**
+🎙 **I'm flexible.**
 
-**14 · Вы совсем не хотите спать. Скажите, что вы не сонные**
+**18 · Вы совсем не хотите спать. Скажите, что вы не сонные**
 <!-- interaction_id: en:lesson-02:session-36:i14; family: context_gap_grammar -->
 I ___ not sleepy. → **am** · is · are
 - is — *С `I` нужно `am`.*
 - are — *Фраза — `I am not sleepy`.*
 
-**15 · Послушайте вопрос**
+**19 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-36:i15; family: listen_choose -->
-🔊 *Are you sleepy?* → **Are you sleepy?** · Are you flexible? · Are you asleep?
+🔊 *Are you sleepy?* → **Are you sleepy?** · Are you flexible? · Are you hungry?
 - Are you flexible? — *В записи последнее слово — `sleepy`, а в этом варианте — `flexible`.*
-- Are you asleep? — *В записи последнее слово — `sleepy`, а в этом варианте — `asleep`.*
+- Are you hungry? — *В записи последнее слово — `sleepy`, а в этом варианте — `hungry`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-36:i16; family: speed_match -->
-formal — официальный, строгий по стилю · informal — неформальный · flexible — гибкий · sleepy — сонный
+vegetarian — вегетарианский · delivered — доставленный · optional — необязательный · flexible — гибкий
 
-**17 · Вы хотите встретиться раньше. Спросите Анну, готова ли она подстроиться по времени**
+**21 · Вы хотите приехать раньше. Спросите подругу, готова ли она подстроиться по времени**
 <!-- interaction_id: en:lesson-02:session-36:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Are you flexible?**
-

@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-02:session-35:word:invited",
+    "correctText": "invited",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-35:i01",
-    "correctText": "It is formal.",
+    "correctText": "They are invited.",
     "correctResponseId": null
   },
   {
@@ -16,12 +21,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-35:i04",
-    "correctText": "en:lesson-02:session-35:i04:p1=formal\nen:lesson-02:session-35:i04:p2=ill\nen:lesson-02:session-35:i04:p3=generous\nen:lesson-02:session-35:i04:p4=absent",
+    "correctText": "en:lesson-02:session-35:i04:p1=invited\nen:lesson-02:session-35:i04:p2=required\nen:lesson-02:session-35:i04:p3=optional\nen:lesson-02:session-35:i04:p4=ironed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-35:word:required",
+    "correctText": "required",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-35:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "It is not required.",
     "correctResponseId": null
   },
   {
@@ -30,8 +40,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-35:word:ironed",
+    "correctText": "ironed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-35:i07",
-    "correctText": "She's generous.",
+    "correctText": "It's ironed.",
     "correctResponseId": null
   },
   {
@@ -40,23 +55,28 @@
     "correctResponseId": "en:lesson-02:session-35:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-35:word:optional",
+    "correctText": "optional",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-35:i09",
-    "correctText": "Is she generous?",
+    "correctText": "Is it optional?",
     "correctResponseId": "en:lesson-02:session-35:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-35:i10",
-    "correctText": "en:lesson-02:session-35:i10:p1=ill\nen:lesson-02:session-35:i10:p2=formal\nen:lesson-02:session-35:i10:p3=absent\nen:lesson-02:session-35:i10:p4=generous",
+    "correctText": "en:lesson-02:session-35:i10:p1=formal\nen:lesson-02:session-35:i10:p2=ill\nen:lesson-02:session-35:i10:p3=generous\nen:lesson-02:session-35:i10:p4=absent",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-35:i11",
-    "correctText": "They are not formal.",
+    "correctText": "Are they invited?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-35:i12",
-    "correctText": "Where is he?",
+    "correctText": "Where are they?",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-35:i15",
-    "correctText": "Who is absent?",
+    "correctText": "Who is invited?",
     "correctResponseId": "en:lesson-02:session-35:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-35:i16",
-    "correctText": "en:lesson-02:session-35:i16:p1=generous\nen:lesson-02:session-35:i16:p2=absent\nen:lesson-02:session-35:i16:p3=formal\nen:lesson-02:session-35:i16:p4=ill",
+    "correctText": "en:lesson-02:session-35:i16:p1=ironed\nen:lesson-02:session-35:i16:p2=optional\nen:lesson-02:session-35:i16:p3=formal\nen:lesson-02:session-35:i16:p4=ill",
     "correctResponseId": null
   },
   {

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-40:intro1:r2": {
-          "ru": "quiet — «тихий». Олега не слышно совсем, микрофон выключен — muted.",
-          "uk": "quiet — «тихий». Олега не чути зовсім, мікрофон вимкнений — muted."
+          "ru": "quiet — «тихий». Брата не слышно совсем, микрофон выключен — muted.",
+          "uk": "quiet — «тихий». Брата не чути зовсім, мікрофон вимкнений — muted."
         },
         "en:lesson-01:session-40:intro1:r3": {
-          "ru": "I'm — про вас. Олегу говорим You're.",
-          "uk": "I'm — про вас. Олегові кажемо You're."
+          "ru": "I'm — про вас. Брату говорим You're.",
+          "uk": "I'm — про вас. Братові кажемо You're."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-40:intro2:r2": {
-          "ru": "asleep — «спит». Маша не спит, у неё зависла картинка — frozen.",
-          "uk": "asleep — «спить». Маша не спить, у неї зависла картинка — frozen."
+          "ru": "asleep — «спит». Подруга не спит, у неё зависла картинка — frozen.",
+          "uk": "asleep — «спить». Подруга не спить, у неї зависла картинка — frozen."
         },
         "en:lesson-01:session-40:intro2:r3": {
-          "ru": "He's — про мужчину. Про Машу говорим She's.",
-          "uk": "He's — про чоловіка. Про Машу кажемо She's."
+          "ru": "He's — про мужчину. Про подругу говорим She's.",
+          "uk": "He's — про чоловіка. Про подругу кажемо She's."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "57fcaef474c3f1315c6fa38694899b3852cf4a3d40b32f0027d9ef07ffd31eef"
+  "auxiliaryFingerprint": "6cbe419ef4e5f41a5742f8115ebdb566c8171d49a1988b39e268abf595b0817e"
 }

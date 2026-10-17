@@ -123,8 +123,8 @@
         "uk": "Стрічка й бант"
       },
       "bodyByLocale": {
-        "ru": "Продавщица аккуратно заворачивает шарф в бумагу с бантом и протягивает коробку. wrapped — «упакован, завёрнут». It is wrapped, коротко It's wrapped — «Он упакован». Друг облегчённо выдыхает: сам он упаковывать подарки не умеет.",
-        "uk": "Продавчиня акуратно загортає шарф у папір із бантом і простягає коробку. wrapped — «запакований, загорнутий». It is wrapped, коротко It's wrapped — «Він запакований». Друг полегшено видихає: сам він пакувати подарунки не вміє."
+        "ru": "Продавщица аккуратно заворачивает шарф в бумагу с бантом и протягивает коробку. wrapped — «упакован, завёрнут». It is wrapped, коротко It's wrapped — «Он упакован».",
+        "uk": "Продавчиня акуратно загортає шарф у папір із бантом і простягає коробку. wrapped — «запакований, загорнутий». It is wrapped, коротко It's wrapped — «Він запакований»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c2ea924bf7d15724570f05be9fe55472e3262de5bbb4229e88899760ef737cf7"
+  "introFingerprint": "ff0e2839f393d62216839dd7f6617da31c8ed7f693424e15bd9eff2a04f52e0b"
 }

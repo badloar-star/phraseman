@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
+      "prompt": "Брат сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
+      "accessibilityLabel": "Брат сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is responsible.",
         "localizedMeaning": {
-          "ru": "Костя сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
-          "uk": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний"
+          "ru": "Брат сам купил билеты и заранее положил их в папку. Скажите, что он ответственный",
+          "uk": "Брат сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний"
         },
         "orderedTokens": [
           "He",
@@ -76,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-55:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Костя сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
+            "testedDimension": "Брат сам купив квитки й заздалегідь поклав їх у теку. Скажіть, що він відповідальний",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `He is responsible.`",
               "uk": "тут потрібно `is` — `He is responsible.`"
@@ -215,7 +215,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+      "prompt": "Брат і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i03:r1",
@@ -232,12 +232,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+      "accessibilityLabel": "Брат і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Костя и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
-          "uk": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними"
+          "ru": "Брат и его друг вдвоём собрали все сумки к поезду. Назовите их ответственными",
+          "uk": "Брат і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними"
         },
         "gappedTargetPhrase": "They ___ responsible.",
         "gapOptions": [
@@ -254,12 +254,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+        "testedDimension": "Брат і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-55:i03:r2",
             "correct": false,
-            "testedDimension": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+            "testedDimension": "Брат і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
             "feedbackByLocale": {
               "ru": "После `They` нужно `are`.",
               "uk": "Після `They` потрібно `are`."
@@ -268,7 +268,7 @@
           {
             "responseId": "en:lesson-01:session-55:i03:r3",
             "correct": false,
-            "testedDimension": "Костя і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
+            "testedDimension": "Брат і його друг удвох зібрали всі сумки до потяга. Назвіть їх відповідальними",
             "feedbackByLocale": {
               "ru": "Их двое, поэтому `They are`.",
               "uk": "Їх двоє, тому `They are`."
@@ -400,13 +400,13 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку фразу про Тимка",
+      "prompt": "Послухайте й складіть коротку фразу про малюка",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку фразу про Тимка",
+      "accessibilityLabel": "Послухайте й складіть коротку фразу про малюка",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -426,7 +426,7 @@
           {
             "responseId": "en:lesson-01:session-55:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку фразу про Тимка",
+            "testedDimension": "Послухайте й складіть коротку фразу про малюка",
             "feedbackByLocale": {
               "ru": "здесь нужно `He's` — `He's dependent.`",
               "uk": "тут потрібно `He's` — `He's dependent.`"
@@ -489,17 +489,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього",
+      "prompt": "Тітка сама знайшла готель і сама до нього дістанеться. Скажіть братові, що вона впорається й без нього",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього",
+      "accessibilityLabel": "Тітка сама знайшла готель і сама до нього дістанеться. Скажіть братові, що вона впорається й без нього",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is independent.",
         "localizedMeaning": {
-          "ru": "Тётя Вера сама нашла гостиницу и сама доберётся до неё. Скажите Косте, что она справится и без него",
-          "uk": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього"
+          "ru": "Тётя сама нашла гостиницу и сама доберётся до неё. Скажите брату, что она справится и без него",
+          "uk": "Тітка сама знайшла готель і сама до нього дістанеться. Скажіть братові, що вона впорається й без нього"
         },
         "orderedTokens": [
           "She",
@@ -513,7 +513,7 @@
           {
             "responseId": "en:lesson-01:session-55:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Тітка Віра сама знайшла готель і сама до нього дістанеться. Скажіть Кості, що вона впорається й без нього",
+            "testedDimension": "Тітка сама знайшла готель і сама до нього дістанеться. Скажіть братові, що вона впорається й без нього",
             "feedbackByLocale": {
               "ru": "здесь нужно `is` — `She is independent.`",
               "uk": "тут потрібно `is` — `She is independent.`"
@@ -566,7 +566,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+      "prompt": "Малюк поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i08:r1",
@@ -583,12 +583,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+      "accessibilityLabel": "Малюк поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Тёма пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
-          "uk": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас"
+          "ru": "Малыш пока не может ни поесть, ни одеться без взрослых. Скажите попутчице, что он зависит от вас",
+          "uk": "Малюк поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -605,24 +605,24 @@
             "text": "forgetful"
           }
         ],
-        "testedDimension": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+        "testedDimension": "Малюк поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-55:i08:r2",
             "correct": false,
-            "testedDimension": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+            "testedDimension": "Малюк поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
             "feedbackByLocale": {
-              "ru": "`independent` — «самостоятельный». А Тёма без взрослых не справляется: `dependent`.",
-              "uk": "`independent` — «самостійний». А Тимко без дорослих не дає собі ради: `dependent`."
+              "ru": "`independent` — «самостоятельный». А малыш без взрослых не справляется: `dependent`.",
+              "uk": "`independent` — «самостійний». А малюк без дорослих не дає собі ради: `dependent`."
             }
           },
           {
             "responseId": "en:lesson-01:session-55:i08:r3",
             "correct": false,
-            "testedDimension": "Тимко поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
+            "testedDimension": "Малюк поки не може ні поїсти, ні одягнутися без дорослих. Скажіть попутниці, що він залежить від вас",
             "feedbackByLocale": {
-              "ru": "`forgetful` — «забывчивый». Тёме нужна помощь во всём: `dependent`.",
-              "uk": "`forgetful` — «забудькуватий». Тимкові потрібна допомога в усьому: `dependent`."
+              "ru": "`forgetful` — «забывчивый». Малышу нужна помощь во всём: `dependent`.",
+              "uk": "`forgetful` — «забудькуватий». Малюкові потрібна допомога в усьому: `dependent`."
             }
           }
         ]
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На табло біля вашого потяга поки немає номера колії. Костя питає, з якої колії відправлення. Скажіть, що колія невідома",
+      "prompt": "На табло біля вашого потяга поки немає номера колії. Брат питає, з якої колії відправлення. Скажіть, що колія невідома",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i13:audio"
       ],
-      "accessibilityLabel": "На табло біля вашого потяга поки немає номера колії. Костя питає, з якої колії відправлення. Скажіть, що колія невідома",
+      "accessibilityLabel": "На табло біля вашого потяга поки немає номера колії. Брат питає, з якої колії відправлення. Скажіть, що колія невідома",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -976,7 +976,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте коротку фразу про тітку Віру й виберіть її",
+      "prompt": "Послухайте коротку фразу про тітку й виберіть її",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i15:r1",
@@ -995,7 +995,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-55:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте коротку фразу про тітку Віру й виберіть її",
+      "accessibilityLabel": "Послухайте коротку фразу про тітку й виберіть її",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1025,7 +1025,7 @@
           {
             "responseId": "en:lesson-01:session-55:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про тітку Віру й виберіть її",
+            "testedDimension": "Послухайте коротку фразу про тітку й виберіть її",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `independent`, а в этом варианте — `dependent`.",
               "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `dependent`."
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-01:session-55:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про тітку Віру й виберіть її",
+            "testedDimension": "Послухайте коротку фразу про тітку й виберіть її",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `independent`, а в этом варианте — `responsible`.",
               "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `responsible`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ab293d50f938e10afa70c782e5325933440d760406e553384f440f395cd31678"
+  "learnerFingerprint": "d789bf770c5ab8835b5063a4b2e84b5a6d477775c84e0ef8d01efbbc0522cc32"
 }

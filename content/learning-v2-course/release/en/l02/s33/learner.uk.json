@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-33:i01",
+      "interactionId": "en:lesson-02:session-33:word:active",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — active",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:word:active:audio"
+      ],
+      "accessibilityLabel": "Картка слова — active",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:word:active:audio",
+          "transcript": "active"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:word:active:r1",
+            "targetText": "active",
+            "meaningByLocale": {
+              "ru": "активный, много двигается. She is active — «Она активная». О человеке, который любит бегать, играть, ходить пешком.",
+              "uk": "активний, багато рухається. She is active — «Вона активна». Про людину, яка любить бігати, грати, ходити пішки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "active",
+          "definitionByLocale": {
+            "ru": "активный, много двигается. She is active — «Она активная». О человеке, который любит бегать, играть, ходить пешком.",
+            "uk": "активний, багато рухається. She is active — «Вона активна». Про людину, яка любить бігати, грати, ходити пішки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна багато рухається й бере участь у всіх іграх. Скажіть повною фразою, що вона активна",
+      "prompt": "Двоє друзів щоранку бігають парком. Скажіть повною фразою, що вони активні",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна багато рухається й бере участь у всіх іграх. Скажіть повною фразою, що вона активна",
+      "accessibilityLabel": "Двоє друзів щоранку бігають парком. Скажіть повною фразою, що вони активні",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is active.",
+        "targetPhrase": "They are active.",
         "localizedMeaning": {
-          "ru": "Анна много двигается и участвует во всех играх. Скажите полной фразой, что она активная",
-          "uk": "Анна багато рухається й бере участь у всіх іграх. Скажіть повною фразою, що вона активна"
+          "ru": "Двое друзей каждое утро бегают по парку. Скажите полной фразой, что они активные",
+          "uk": "Двоє друзів щоранку бігають парком. Скажіть повною фразою, що вони активні"
         },
         "orderedTokens": [
-          "She",
-          "is",
+          "They",
+          "are",
           "active"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-33:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна багато рухається й бере участь у всіх іграх. Скажіть повною фразою, що вона активна",
+            "testedDimension": "Двоє друзів щоранку бігають парком. Скажіть повною фразою, що вони активні",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `She is active.`",
-              "uk": "тут потрібно `is` — `She is active.`"
+              "ru": "здесь нужно `are` — `They are active.`",
+              "uk": "тут потрібно `are` — `They are active.`"
             }
           }
         ],
@@ -48,52 +91,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-33:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-02:session-33:word:fit",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олега",
+      "prompt": "Картка слова — fit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:word:fit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:word:fit:audio",
+          "transcript": "fit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:word:fit:r1",
+            "targetText": "fit",
+            "meaningByLocale": {
+              "ru": "в хорошей физической форме. She is fit — «Она в хорошей форме». О человеке, который регулярно тренируется.",
+              "uk": "у хорошій фізичній формі. She is fit — «Вона у хорошій формі». Про людину, яка регулярно тренується."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fit",
+          "definitionByLocale": {
+            "ru": "в хорошей физической форме. She is fit — «Она в хорошей форме». О человеке, который регулярно тренируется.",
+            "uk": "у хорошій фізичній формі. She is fit — «Вона у хорошій формі». Про людину, яка регулярно тренується."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте фразу про подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i02:r1",
-          "text": "He is absent."
+          "text": "She is fit."
         },
         {
           "responseId": "en:lesson-02:session-33:i02:r2",
-          "text": "He is active."
+          "text": "She is tired."
         },
         {
           "responseId": "en:lesson-02:session-33:i02:r3",
-          "text": "He is okay."
+          "text": "She is awake."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олега",
+      "accessibilityLabel": "Послухайте фразу про подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-33:i02:audio",
-          "transcript": "He is absent."
+          "transcript": "She is fit."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-33:i02:r1",
-            "targetText": "He is absent.",
+            "targetText": "She is fit.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i02:r2",
-            "targetText": "He is active.",
+            "targetText": "She is tired.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i02:r3",
-            "targetText": "He is okay.",
+            "targetText": "She is awake.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +188,19 @@
           {
             "responseId": "en:lesson-02:session-33:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте фразу про подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `absent`, а в этом варианте — `active`.",
-              "uk": "У записі останнє слово — `absent`, а в цьому варіанті — `active`."
+              "ru": "В записи последнее слово — `fit`, а в этом варианте — `tired`.",
+              "uk": "У записі останнє слово — `fit`, а в цьому варіанті — `tired`."
             }
           },
           {
             "responseId": "en:lesson-02:session-33:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте фразу про подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `absent`, а в этом варианте — `okay`.",
-              "uk": "У записі останнє слово — `absent`, а в цьому варіанті — `okay`."
+              "ru": "В записи последнее слово — `fit`, а в этом варианте — `awake`.",
+              "uk": "У записі останнє слово — `fit`, а в цьому варіанті — `awake`."
             }
           }
         ],
@@ -125,11 +211,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте Анну, чи з нею все гаразд",
+      "prompt": "Подруга сіла на траву. Запитайте її, чи все гаразд",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i03:r1",
@@ -146,12 +232,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте Анну, чи з нею все гаразд",
+      "accessibilityLabel": "Подруга сіла на траву. Запитайте її, чи все гаразд",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите Анну, всё ли с ней в порядке",
-          "uk": "Запитайте Анну, чи з нею все гаразд"
+          "ru": "Подруга села на траву. Спросите её, всё ли в порядке",
+          "uk": "Подруга сіла на траву. Запитайте її, чи все гаразд"
         },
         "gappedTargetPhrase": "___ you okay?",
         "gapOptions": [
@@ -168,12 +254,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Запитайте Анну, чи з нею все гаразд",
+        "testedDimension": "Подруга сіла на траву. Запитайте її, чи все гаразд",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-33:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте Анну, чи з нею все гаразд",
+            "testedDimension": "Подруга сіла на траву. Запитайте її, чи все гаразд",
             "feedbackByLocale": {
               "ru": "С `you` нужно `Are`.",
               "uk": "З `you` потрібно `Are`."
@@ -182,7 +268,7 @@
           {
             "responseId": "en:lesson-02:session-33:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте Анну, чи з нею все гаразд",
+            "testedDimension": "Подруга сіла на траву. Запитайте її, чи все гаразд",
             "feedbackByLocale": {
               "ru": "Вопрос — `Are you okay?`.",
               "uk": "Запитання — `Are you okay?`."
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -216,40 +302,40 @@
           },
           {
             "pairId": "en:lesson-02:session-33:i04:p2",
-            "target": "okay",
+            "target": "fit",
             "meaningByLocale": {
-              "ru": "в порядке",
-              "uk": "у порядку"
+              "ru": "в хорошей форме",
+              "uk": "у хорошій формі"
             }
           },
           {
             "pairId": "en:lesson-02:session-33:i04:p3",
-            "target": "absent",
+            "target": "breathless",
             "meaningByLocale": {
-              "ru": "отсутствующий",
-              "uk": "відсутній"
+              "ru": "запыхавшийся",
+              "uk": "захеканий"
             }
           },
           {
             "pairId": "en:lesson-02:session-33:i04:p4",
-            "target": "awake",
+            "target": "energetic",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "энергичный",
+              "uk": "енергійний"
             }
           }
         ],
         "leftColumn": [
           "active",
-          "okay",
-          "absent",
-          "awake"
+          "fit",
+          "breathless",
+          "energetic"
         ],
         "rightColumn": [
           "активний",
-          "у порядку",
-          "відсутній",
-          "не спить"
+          "у хорошій формі",
+          "захеканий",
+          "енергійний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-33:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-33:word:breathless",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — breathless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:word:breathless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — breathless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:word:breathless:audio",
+          "transcript": "breathless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:word:breathless:r1",
+            "targetText": "breathless",
+            "meaningByLocale": {
+              "ru": "запыхавшийся, не может отдышаться. I am breathless — «Я запыхался». О человеке после бега или подъёма по лестнице.",
+              "uk": "захеканий, не може віддихатися. I am breathless — «Я захекався». Про людину після бігу чи підйому сходами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breathless",
+          "definitionByLocale": {
+            "ru": "запыхавшийся, не может отдышаться. I am breathless — «Я запыхался». О человеке после бега или подъёма по лестнице.",
+            "uk": "захеканий, не може віддихатися. I am breathless — «Я захекався». Про людину після бігу чи підйому сходами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Послухайте й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Послухайте й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-33:i05:audio",
-          "transcript": "Yes, she is."
+          "transcript": "I am not breathless."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, she is.",
+        "hiddenTargetPhrase": "I am not breathless.",
         "orderedTokens": [
-          "Yes,",
-          "she",
-          "is"
+          "I",
+          "am",
+          "not",
+          "breathless"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-33:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Послухайте й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, she is.`",
-              "uk": "тут потрібно `Yes,` — `Yes, she is.`"
+              "ru": "здесь нужно `am` — `I am not breathless.`",
+              "uk": "тут потрібно `am` — `I am not breathless.`"
             }
           }
         ],
@@ -314,38 +444,38 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег не прийшов. Запитайте, де він",
+      "prompt": "Ви бачите, що зібралися не всі. Запитайте, хто відсутній",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег не прийшов. Запитайте, де він",
+      "accessibilityLabel": "Ви бачите, що зібралися не всі. Запитайте, хто відсутній",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is he?",
+        "targetPhrase": "Who is absent?",
         "localizedMeaning": {
-          "ru": "Олег не пришёл. Спросите, где он",
-          "uk": "Олег не прийшов. Запитайте, де він"
+          "ru": "Вы видите, что собрались не все. Спросите, кто отсутствует",
+          "uk": "Ви бачите, що зібралися не всі. Запитайте, хто відсутній"
         },
         "orderedTokens": [
-          "Where",
+          "Who",
           "is",
-          "he"
+          "absent"
         ],
         "authoredDistractorTokens": [
-          "Who"
+          "What"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-33:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Олег не прийшов. Запитайте, де він",
+            "testedDimension": "Ви бачите, що зібралися не всі. Запитайте, хто відсутній",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where is he?`",
-              "uk": "тут потрібно `Where` — `Where is he?`"
+              "ru": "здесь нужно `Who` — `Who is absent?`",
+              "uk": "тут потрібно `Who` — `Who is absent?`"
             }
           }
         ],
@@ -357,26 +487,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-33:word:energetic",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — energetic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:word:energetic:audio"
+      ],
+      "accessibilityLabel": "Картка слова — energetic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:word:energetic:audio",
+          "transcript": "energetic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:word:energetic:r1",
+            "targetText": "energetic",
+            "meaningByLocale": {
+              "ru": "энергичный, полный сил. He is energetic — «Он энергичный». О человеке, который полон сил и не устаёт.",
+              "uk": "енергійний, повний сил. He is energetic — «Він енергійний». Про людину, яка повна сил і не втомлюється."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "energetic",
+          "definitionByLocale": {
+            "ru": "энергичный, полный сил. He is energetic — «Он энергичный». О человеке, который полон сил и не устаёт.",
+            "uk": "енергійний, повний сил. He is energetic — «Він енергійний». Про людину, яка повна сил і не втомлюється."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-33:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви просто присіли відпочити, з вами все добре. Коротко скажіть, що ви в порядку",
+      "prompt": "Друг бігає з дітьми й не втомлюється. Коротко скажіть подрузі, що він енергійний",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i07:audio"
       ],
-      "accessibilityLabel": "Ви просто присіли відпочити, з вами все добре. Коротко скажіть, що ви в порядку",
+      "accessibilityLabel": "Друг бігає з дітьми й не втомлюється. Коротко скажіть подрузі, що він енергійний",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-33:i07:audio",
-          "transcript": "I'm okay."
+          "transcript": "He's energetic."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm okay.",
+        "targetPhrase": "He's energetic.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,11 +564,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви шукаєте активного учасника для команди. Запитайте, хто активний",
+      "prompt": "Подруга питає: «Is he okay?» Друг відпочиває на лавці, з ним усе гаразд. Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i08:r1",
@@ -407,19 +580,19 @@
         },
         {
           "responseId": "en:lesson-02:session-33:i08:r3",
-          "text": "it"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви шукаєте активного учасника для команди. Запитайте, хто активний",
+      "accessibilityLabel": "Подруга питає: «Is he okay?» Друг відпочиває на лавці, з ним усе гаразд. Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы ищете активного участника для команды. Спросите, кто активный",
-          "uk": "Ви шукаєте активного учасника для команди. Запитайте, хто активний"
+          "ru": "Подруга спрашивает: «Is he okay?» Друг отдыхает на скамейке, с ним всё хорошо. Дополните короткое «да»",
+          "uk": "Подруга питає: «Is he okay?» Друг відпочиває на лавці, з ним усе гаразд. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "Who ___ active?",
+        "gappedTargetPhrase": "Yes, he ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-33:i08:r1",
@@ -431,27 +604,27 @@
           },
           {
             "responseId": "en:lesson-02:session-33:i08:r3",
-            "text": "it"
+            "text": "are"
           }
         ],
-        "testedDimension": "Ви шукаєте активного учасника для команди. Запитайте, хто активний",
+        "testedDimension": "Подруга питає: «Is he okay?» Друг відпочиває на лавці, з ним усе гаразд. Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-33:i08:r2",
             "correct": false,
-            "testedDimension": "Ви шукаєте активного учасника для команди. Запитайте, хто активний",
+            "testedDimension": "Подруга питає: «Is he okay?» Друг відпочиває на лавці, з ним усе гаразд. Доповніть коротке «так»",
             "feedbackByLocale": {
-              "ru": "Здесь вопрос `Who is active?`.",
-              "uk": "Тут запитання `Who is active?`."
+              "ru": "С `he` нужно `is`.",
+              "uk": "З `he` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-33:i08:r3",
             "correct": false,
-            "testedDimension": "Ви шукаєте активного учасника для команди. Запитайте, хто активний",
+            "testedDimension": "Подруга питає: «Is he okay?» Друг відпочиває на лавці, з ним усе гаразд. Доповніть коротке «так»",
             "feedbackByLocale": {
-              "ru": "После `Who` нужно `is`.",
-              "uk": "Після `Who` потрібно `is`."
+              "ru": "Ответ — `Yes, he is`.",
+              "uk": "Відповідь — `Yes, he is`."
             }
           }
         ]
@@ -460,51 +633,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про двох друзів",
+      "prompt": "Послухайте запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i09:r1",
-          "text": "They are okay."
+          "text": "Are you breathless?"
         },
         {
           "responseId": "en:lesson-02:session-33:i09:r2",
-          "text": "They are active."
+          "text": "Are you energetic?"
         },
         {
           "responseId": "en:lesson-02:session-33:i09:r3",
-          "text": "They are absent."
+          "text": "Are you awake?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про двох друзів",
+      "accessibilityLabel": "Послухайте запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-33:i09:audio",
-          "transcript": "They are okay."
+          "transcript": "Are you breathless?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-33:i09:r1",
-            "targetText": "They are okay.",
+            "targetText": "Are you breathless?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i09:r2",
-            "targetText": "They are active.",
+            "targetText": "Are you energetic?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i09:r3",
-            "targetText": "They are absent.",
+            "targetText": "Are you awake?",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-33:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про двох друзів",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `okay`, а в этом варианте — `active`.",
-              "uk": "У записі останнє слово — `okay`, а в цьому варіанті — `active`."
+              "ru": "В записи последнее слово — `breathless`, а в этом варианте — `energetic`.",
+              "uk": "У записі останнє слово — `breathless`, а в цьому варіанті — `energetic`."
             }
           },
           {
             "responseId": "en:lesson-02:session-33:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про двох друзів",
+            "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `okay`, а в этом варианте — `absent`.",
-              "uk": "У записі останнє слово — `okay`, а в цьому варіанті — `absent`."
+              "ru": "В записи последнее слово — `breathless`, а в этом варианте — `awake`.",
+              "uk": "У записі останнє слово — `breathless`, а в цьому варіанті — `awake`."
             }
           }
         ],
@@ -536,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -550,18 +723,18 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-33:i10:p1",
-            "target": "absent",
+            "target": "okay",
             "meaningByLocale": {
-              "ru": "отсутствующий",
-              "uk": "відсутній"
+              "ru": "в порядке",
+              "uk": "у порядку"
             }
           },
           {
             "pairId": "en:lesson-02:session-33:i10:p2",
-            "target": "active",
+            "target": "absent",
             "meaningByLocale": {
-              "ru": "активный",
-              "uk": "активний"
+              "ru": "отсутствующий",
+              "uk": "відсутній"
             }
           },
           {
@@ -574,24 +747,24 @@
           },
           {
             "pairId": "en:lesson-02:session-33:i10:p4",
-            "target": "okay",
+            "target": "tired",
             "meaningByLocale": {
-              "ru": "в порядке",
-              "uk": "у порядку"
+              "ru": "уставший",
+              "uk": "втомлений"
             }
           }
         ],
         "leftColumn": [
+          "okay",
           "absent",
-          "active",
           "awake",
-          "okay"
+          "tired"
         ],
         "rightColumn": [
+          "у порядку",
           "відсутній",
-          "активний",
           "не спить",
-          "у порядку"
+          "втомлений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,42 +782,41 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-33:i11:audio",
-          "transcript": "They are not active."
+          "transcript": "Is she okay?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not active.",
+        "hiddenTargetPhrase": "Is she okay?",
         "orderedTokens": [
-          "They",
-          "are",
-          "not",
-          "active"
+          "Is",
+          "she",
+          "okay"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-33:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте й складіть запитання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not active.`",
-              "uk": "тут потрібно `are` — `They are not active.`"
+              "ru": "здесь нужно `Is` — `Is she okay?`",
+              "uk": "тут потрібно `Is` — `Is she okay?`"
             }
           }
         ],
@@ -657,21 +829,21 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»",
+      "prompt": "Друг прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»",
+      "accessibilityLabel": "Друг прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "No, he is not.",
         "localizedMeaning": {
-          "ru": "Олег пришёл и стоит рядом. На «Is he absent?» ответьте коротким «нет»",
-          "uk": "Олег прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»"
+          "ru": "Друг пришёл и стоит рядом. На «Is he absent?» ответьте коротким «нет»",
+          "uk": "Друг прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»"
         },
         "orderedTokens": [
           "No,",
@@ -686,7 +858,7 @@
           {
             "responseId": "en:lesson-02:session-33:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Олег прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»",
+            "testedDimension": "Друг прийшов і стоїть поруч. На «Is he absent?» дайте коротку відповідь «ні»",
             "feedbackByLocale": {
               "ru": "здесь нужно `No,` — `No, he is not.`",
               "uk": "тут потрібно `No,` — `No, he is not.`"
@@ -702,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Двоє друзів люблять спорт і багато рухаються. Коротко скажіть, що вони активні",
+      "prompt": "Двоє друзів щодня тренуються. Коротко скажіть, що вони у хорошій формі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i13:audio"
       ],
-      "accessibilityLabel": "Двоє друзів люблять спорт і багато рухаються. Коротко скажіть, що вони активні",
+      "accessibilityLabel": "Двоє друзів щодня тренуються. Коротко скажіть, що вони у хорошій формі",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-33:i13:audio",
-          "transcript": "They're active."
+          "transcript": "They're fit."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're active.",
+        "targetPhrase": "They're fit.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -735,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна на зустрічі, просто відійшла по м’яч. Заперечте, що вона відсутня",
+      "prompt": "Подруга на зустрічі, вона просто відійшла по м’яч. Скажіть, що вона не відсутня",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i14:r1",
@@ -756,12 +928,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна на зустрічі, просто відійшла по м’яч. Заперечте, що вона відсутня",
+      "accessibilityLabel": "Подруга на зустрічі, вона просто відійшла по м’яч. Скажіть, що вона не відсутня",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна на встрече, просто отошла за мячом. Отрицайте, что она отсутствует",
-          "uk": "Анна на зустрічі, просто відійшла по м’яч. Заперечте, що вона відсутня"
+          "ru": "Подруга на встрече, она просто отошла за мячом. Скажите, что она не отсутствует",
+          "uk": "Подруга на зустрічі, вона просто відійшла по м’яч. Скажіть, що вона не відсутня"
         },
         "gappedTargetPhrase": "She ___ not absent.",
         "gapOptions": [
@@ -778,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Анна на зустрічі, просто відійшла по м’яч. Заперечте, що вона відсутня",
+        "testedDimension": "Подруга на зустрічі, вона просто відійшла по м’яч. Скажіть, що вона не відсутня",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-33:i14:r2",
             "correct": false,
-            "testedDimension": "Анна на зустрічі, просто відійшла по м’яч. Заперечте, що вона відсутня",
+            "testedDimension": "Подруга на зустрічі, вона просто відійшла по м’яч. Скажіть, що вона не відсутня",
             "feedbackByLocale": {
               "ru": "С `She` нужно `is`.",
               "uk": "З `She` потрібно `is`."
@@ -792,7 +964,7 @@
           {
             "responseId": "en:lesson-02:session-33:i14:r3",
             "correct": false,
-            "testedDimension": "Анна на зустрічі, просто відійшла по м’яч. Заперечте, що вона відсутня",
+            "testedDimension": "Подруга на зустрічі, вона просто відійшла по м’яч. Скажіть, що вона не відсутня",
             "feedbackByLocale": {
               "ru": "Фраза — `She is not absent`.",
               "uk": "Фраза — `She is not absent`."
@@ -804,7 +976,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -816,11 +988,11 @@
         },
         {
           "responseId": "en:lesson-02:session-33:i15:r2",
-          "text": "Is she absent?"
+          "text": "Is she fit?"
         },
         {
           "responseId": "en:lesson-02:session-33:i15:r3",
-          "text": "Is she okay?"
+          "text": "Is she energetic?"
         }
       ],
       "mediaIds": [],
@@ -843,12 +1015,12 @@
           },
           {
             "responseId": "en:lesson-02:session-33:i15:r2",
-            "targetText": "Is she absent?",
+            "targetText": "Is she fit?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i15:r3",
-            "targetText": "Is she okay?",
+            "targetText": "Is she energetic?",
             "meaningByLocale": null
           }
         ],
@@ -859,8 +1031,8 @@
             "correct": false,
             "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `active`, а в этом варианте — `absent`.",
-              "uk": "У записі останнє слово — `active`, а в цьому варіанті — `absent`."
+              "ru": "В записи последнее слово — `active`, а в этом варианте — `fit`.",
+              "uk": "У записі останнє слово — `active`, а в цьому варіанті — `fit`."
             }
           },
           {
@@ -868,8 +1040,8 @@
             "correct": false,
             "testedDimension": "Послухайте запитання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `active`, а в этом варианте — `okay`.",
-              "uk": "У записі останнє слово — `active`, а в цьому варіанті — `okay`."
+              "ru": "В записи последнее слово — `active`, а в этом варианте — `energetic`.",
+              "uk": "У записі останнє слово — `active`, а в цьому варіанті — `energetic`."
             }
           }
         ],
@@ -880,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,26 +1066,26 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-33:i16:p1",
-            "target": "okay",
+            "target": "fit",
             "meaningByLocale": {
-              "ru": "в порядке",
-              "uk": "у порядку"
+              "ru": "в хорошей форме",
+              "uk": "у хорошій формі"
             }
           },
           {
             "pairId": "en:lesson-02:session-33:i16:p2",
-            "target": "awake",
+            "target": "energetic",
             "meaningByLocale": {
-              "ru": "не спит",
-              "uk": "не спить"
+              "ru": "энергичный",
+              "uk": "енергійний"
             }
           },
           {
             "pairId": "en:lesson-02:session-33:i16:p3",
-            "target": "active",
+            "target": "okay",
             "meaningByLocale": {
-              "ru": "активный",
-              "uk": "активний"
+              "ru": "в порядке",
+              "uk": "у порядку"
             }
           },
           {
@@ -926,15 +1098,15 @@
           }
         ],
         "leftColumn": [
+          "fit",
+          "energetic",
           "okay",
-          "awake",
-          "active",
           "absent"
         ],
         "rightColumn": [
+          "у хорошій формі",
+          "енергійний",
           "у порядку",
-          "не спить",
-          "активний",
           "відсутній"
         ],
         "pairingKey": "pair_id",
@@ -953,17 +1125,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег зупинився після гри. Ви хочете переконатися, що з ним усе добре. Запитайте його про це",
+      "prompt": "Друг зупинився після гри. Ви хочете переконатися, що з ним усе гаразд. Запитайте його про це",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i17:audio"
       ],
-      "accessibilityLabel": "Олег зупинився після гри. Ви хочете переконатися, що з ним усе добре. Запитайте його про це",
+      "accessibilityLabel": "Друг зупинився після гри. Ви хочете переконатися, що з ним усе гаразд. Запитайте його про це",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -993,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d246077613c67bb5628fa7ec23e2d0798232b7b507759cd81f870159837dcc4d"
+  "learnerFingerprint": "ff74e1f10f6443981ecf8bd7ec1bc1cd51322538aa58d30626ffe03d08540606"
 }

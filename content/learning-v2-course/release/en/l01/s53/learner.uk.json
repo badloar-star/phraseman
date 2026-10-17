@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
+      "prompt": "Друг показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
+      "accessibilityLabel": "Друг показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are ripe.",
         "localizedMeaning": {
-          "ru": "Дима показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
-          "uk": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі"
+          "ru": "Друг показывает целую миску тёмно-красной клубники. Скажите, что ягоды спелые",
+          "uk": "Друг показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі"
         },
         "orderedTokens": [
           "They",
@@ -76,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-53:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Дмитро показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
+            "testedDimension": "Друг показує цілу миску темно-червоної полуниці. Скажіть, що ягоди стиглі",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `They are ripe.`",
               "uk": "тут потрібно `are` — `They are ripe.`"
@@ -489,17 +489,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
+      "prompt": "Друг налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
+      "accessibilityLabel": "Друг налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are full.",
         "localizedMeaning": {
-          "ru": "Дима налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
-          "uk": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні"
+          "ru": "Друг налил компот в две бутылки до самого горлышка. Скажите, что бутылки полные",
+          "uk": "Друг налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні"
         },
         "orderedTokens": [
           "They",
@@ -513,7 +513,7 @@
           {
             "responseId": "en:lesson-01:session-53:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Дмитро налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
+            "testedDimension": "Друг налив компот у дві пляшки до самої шийки. Скажіть, що пляшки повні",
             "feedbackByLocale": {
               "ru": "здесь нужно `are` — `They are full.`",
               "uk": "тут потрібно `are` — `They are full.`"
@@ -533,13 +533,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви розрізали кавун, і сік тече по дошці. Скажіть Дмитрові коротко, що кавун соковитий",
+      "prompt": "Ви розрізали кавун, і сік тече по дошці. Скажіть другові коротко, що кавун соковитий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-53:i07:audio"
       ],
-      "accessibilityLabel": "Ви розрізали кавун, і сік тече по дошці. Скажіть Дмитрові коротко, що кавун соковитий",
+      "accessibilityLabel": "Ви розрізали кавун, і сік тече по дошці. Скажіть другові коротко, що кавун соковитий",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -566,7 +566,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+      "prompt": "У кошику три дині, і друг ледве його піднімає. Назвіть саме його вагу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-53:i08:r1",
@@ -583,12 +583,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+      "accessibilityLabel": "У кошику три дині, і друг ледве його піднімає. Назвіть саме його вагу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В корзине три дыни, и Дима еле поднимает её. Назовите именно её вес",
-          "uk": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу"
+          "ru": "В корзине три дыни, и друг еле поднимает её. Назовите именно её вес",
+          "uk": "У кошику три дині, і друг ледве його піднімає. Назвіть саме його вагу"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -605,12 +605,12 @@
             "text": "delicious"
           }
         ],
-        "testedDimension": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+        "testedDimension": "У кошику три дині, і друг ледве його піднімає. Назвіть саме його вагу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-53:i08:r2",
             "correct": false,
-            "testedDimension": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+            "testedDimension": "У кошику три дині, і друг ледве його піднімає. Назвіть саме його вагу",
             "feedbackByLocale": {
               "ru": "`ripe` — «спелая», это о еде. Корзину еле поднять: `heavy`.",
               "uk": "`ripe` — «стиглий», це про їжу. Кошик ледве підняти: `heavy`."
@@ -619,7 +619,7 @@
           {
             "responseId": "en:lesson-01:session-53:i08:r3",
             "correct": false,
-            "testedDimension": "У кошику три дині, і Дмитро ледве його піднімає. Назвіть саме його вагу",
+            "testedDimension": "У кошику три дині, і друг ледве його піднімає. Назвіть саме його вагу",
             "feedbackByLocale": {
               "ru": "`delicious` — «очень вкусная». О весе говорит `heavy`.",
               "uk": "`delicious` — «дуже смачний». Про вагу каже `heavy`."
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Після пікніка кошик порожній, і Дмитро несе його одним пальцем. Скажіть, що він легкий",
+      "prompt": "Після пікніка кошик порожній, і друг несе його одним пальцем. Скажіть, що він легкий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-53:i13:audio"
       ],
-      "accessibilityLabel": "Після пікніка кошик порожній, і Дмитро несе його одним пальцем. Скажіть, що він легкий",
+      "accessibilityLabel": "Після пікніка кошик порожній, і друг несе його одним пальцем. Скажіть, що він легкий",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "085883b93e91597628931bf9e0be6f666c0ad22a6529498bcc5300d64b8c9dc6"
+  "learnerFingerprint": "635eafc678e41da4d347df3b0a5f9fd9c0f04752919da969b188934554f4dcec"
 }

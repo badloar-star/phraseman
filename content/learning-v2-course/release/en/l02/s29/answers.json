@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-02:session-29:word:away",
+    "correctText": "away",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-29:i01",
-    "correctText": "He is away.",
+    "correctText": "They are away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-29:word:fixed",
+    "correctText": "fixed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i02",
-    "correctText": "It is local.",
+    "correctText": "It is fixed.",
     "correctResponseId": "en:lesson-02:session-29:i02:r1"
   },
   {
@@ -16,12 +26,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-29:i04",
-    "correctText": "en:lesson-02:session-29:i04:p1=away\nen:lesson-02:session-29:i04:p2=local\nen:lesson-02:session-29:i04:p3=foreign\nen:lesson-02:session-29:i04:p4=online",
+    "correctText": "en:lesson-02:session-29:i04:p1=away\nen:lesson-02:session-29:i04:p2=fixed\nen:lesson-02:session-29:i04:p3=scratched\nen:lesson-02:session-29:i04:p4=worn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-29:word:scratched",
+    "correctText": "scratched",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i05",
-    "correctText": "They are not online.",
+    "correctText": "It is not scratched.",
     "correctResponseId": null
   },
   {
@@ -30,8 +45,13 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-02:session-29:word:worn",
+    "correctText": "worn",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-29:i07",
-    "correctText": "They're away.",
+    "correctText": "It's worn.",
     "correctResponseId": null
   },
   {
@@ -41,12 +61,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-29:i09",
-    "correctText": "It is foreign.",
+    "correctText": "Is it scratched?",
     "correctResponseId": "en:lesson-02:session-29:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i10",
-    "correctText": "en:lesson-02:session-29:i10:p1=broken\nen:lesson-02:session-29:i10:p2=no\nen:lesson-02:session-29:i10:p3=away\nen:lesson-02:session-29:i10:p4=online",
+    "correctText": "en:lesson-02:session-29:i10:p1=away\nen:lesson-02:session-29:i10:p2=broken\nen:lesson-02:session-29:i10:p3=fixed\nen:lesson-02:session-29:i10:p4=online",
     "correctResponseId": null
   },
   {
@@ -56,12 +76,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-29:i12",
-    "correctText": "They are local.",
+    "correctText": "They are foreign.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-29:i13",
-    "correctText": "It's not broken.",
+    "correctText": "He's online.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-29:i15",
-    "correctText": "Who is online?",
+    "correctText": "Who is away?",
     "correctResponseId": "en:lesson-02:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-29:i16",
-    "correctText": "en:lesson-02:session-29:i16:p1=local\nen:lesson-02:session-29:i16:p2=foreign\nen:lesson-02:session-29:i16:p3=broken\nen:lesson-02:session-29:i16:p4=no",
+    "correctText": "en:lesson-02:session-29:i16:p1=scratched\nen:lesson-02:session-29:i16:p2=worn\nen:lesson-02:session-29:i16:p3=local\nen:lesson-02:session-29:i16:p4=foreign",
     "correctResponseId": null
   },
   {

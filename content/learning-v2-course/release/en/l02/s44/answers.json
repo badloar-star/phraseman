@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-44:word:bumpy",
+    "correctText": "bumpy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-44:i01",
-    "correctText": "It is legal.",
+    "correctText": "It is bumpy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i02",
-    "correctText": "He is curious.",
+    "correctText": "It is long.",
     "correctResponseId": "en:lesson-02:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-44:word:vague",
+    "correctText": "vague",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-44:i04",
-    "correctText": "en:lesson-02:session-44:i04:p1=legal\nen:lesson-02:session-44:i04:p2=curious\nen:lesson-02:session-44:i04:p3=informal\nen:lesson-02:session-44:i04:p4=official",
+    "correctText": "en:lesson-02:session-44:i04:p1=bumpy\nen:lesson-02:session-44:i04:p2=tricky\nen:lesson-02:session-44:i04:p3=vague\nen:lesson-02:session-44:i04:p4=narrow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-44:word:tricky",
+    "correctText": "tricky",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i05",
-    "correctText": "No, it is not.",
+    "correctText": "It is not tricky.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i06",
-    "correctText": "What is legal?",
+    "correctText": "What is tricky?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i07",
-    "correctText": "It's legal.",
+    "correctText": "It's vague.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-44:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-44:word:vivid",
+    "correctText": "vivid",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-44:i09",
-    "correctText": "It is informal.",
+    "correctText": "They are vivid.",
     "correctResponseId": "en:lesson-02:session-44:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-44:i10",
-    "correctText": "en:lesson-02:session-44:i10:p1=informal\nen:lesson-02:session-44:i10:p2=official\nen:lesson-02:session-44:i10:p3=curious\nen:lesson-02:session-44:i10:p4=legal",
+    "correctText": "en:lesson-02:session-44:i10:p1=vivid\nen:lesson-02:session-44:i10:p2=tricky\nen:lesson-02:session-44:i10:p3=bumpy\nen:lesson-02:session-44:i10:p4=steep",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i11",
-    "correctText": "It is not legal.",
+    "correctText": "They are not vague.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i12",
-    "correctText": "Is he curious?",
+    "correctText": "Is it vivid?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i13",
-    "correctText": "It's informal.",
+    "correctText": "They're vivid.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-44:i15",
-    "correctText": "Is it legal?",
+    "correctText": "Is it tricky?",
     "correctResponseId": "en:lesson-02:session-44:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-44:i16",
-    "correctText": "en:lesson-02:session-44:i16:p1=curious\nen:lesson-02:session-44:i16:p2=legal\nen:lesson-02:session-44:i16:p3=official\nen:lesson-02:session-44:i16:p4=informal",
+    "correctText": "en:lesson-02:session-44:i16:p1=bumpy\nen:lesson-02:session-44:i16:p2=tricky\nen:lesson-02:session-44:i16:p3=vague\nen:lesson-02:session-44:i16:p4=vivid",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-44:i17",
-    "correctText": "Is it legal?",
+    "correctText": "Is it tricky?",
     "correctResponseId": null
   }
 ]

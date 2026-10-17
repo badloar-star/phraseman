@@ -907,7 +907,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+      "prompt": "Новая модель в витрине есть у всех блогеров в видео. Дополните фразу о ней",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-52:i14:r1",
@@ -924,11 +924,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+      "accessibilityLabel": "Новая модель в витрине есть у всех блогеров в видео. Дополните фразу о ней",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+          "ru": "Новая модель в витрине есть у всех блогеров в видео. Дополните фразу о ней",
           "uk": "Нова модель у вітрині є в усіх блогерів у відео. Доповніть фразу про неї"
         },
         "gappedTargetPhrase": "It ___ trendy.",
@@ -946,12 +946,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+        "testedDimension": "Новая модель в витрине есть у всех блогеров в видео. Дополните фразу о ней",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-52:i14:r2",
             "correct": false,
-            "testedDimension": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+            "testedDimension": "Новая модель в витрине есть у всех блогеров в видео. Дополните фразу о ней",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`.",
               "uk": "Після `It` потрібно `is`."
@@ -960,7 +960,7 @@
           {
             "responseId": "en:lesson-01:session-52:i14:r3",
             "correct": false,
-            "testedDimension": "Новая модель в витрине стоит у всех блогеров в видео. Дополните фразу о ней",
+            "testedDimension": "Новая модель в витрине есть у всех блогеров в видео. Дополните фразу о ней",
             "feedbackByLocale": {
               "ru": "Модель одна — `It is`.",
               "uk": "Модель одна — `It is`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1717ae09cb4dfb904346308809f6c261781cf91a85342fa4b6ef15d08669b8dd"
+  "learnerFingerprint": "363e4f1568fb169f1dd63590b5990a7003f232fc38bf1d11d9b76605f9a47a84"
 }

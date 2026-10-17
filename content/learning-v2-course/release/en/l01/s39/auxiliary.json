@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-01:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro1:r2": {
-          "ru": "shy — «стеснительный». Олег смешит весь зал — hilarious.",
-          "uk": "shy — «сором’язливий». Олег смішить усю залу — hilarious."
+          "ru": "shy — «стеснительный». Друг смешит весь зал — hilarious.",
+          "uk": "shy — «сором’язливий». Друг смішить усю залу — hilarious."
         },
         "en:lesson-01:session-39:intro1:r3": {
-          "ru": "She's — про женщину. Про Олега говорим He's.",
-          "uk": "She's — про жінку. Про Олега кажемо He's."
+          "ru": "She's — про женщину. Про друга говорим He's.",
+          "uk": "She's — про жінку. Про друга кажемо He's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro2:r2": {
-          "ru": "ashamed — стыдно за плохой поступок. Маше просто неловко — embarrassed.",
-          "uk": "ashamed — соромно за поганий вчинок. Маші просто ніяково — embarrassed."
+          "ru": "ashamed — стыдно за плохой поступок. Подруге просто неловко — embarrassed.",
+          "uk": "ashamed — соромно за поганий вчинок. Подрузі просто ніяково — embarrassed."
         },
         "en:lesson-01:session-39:intro2:r3": {
-          "ru": "He's — про мужчину. Про Машу говорим She's.",
-          "uk": "He's — про чоловіка. Про Машу кажемо She's."
+          "ru": "He's — про мужчину. Про подругу говорим She's.",
+          "uk": "He's — про чоловіка. Про подругу кажемо She's."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "b4908fbdfa08fe19519a20fc6d131824a82767e26b296d035c6dfbac265ca646"
+  "auxiliaryFingerprint": "a52b263c25a2cf0fdf4058ce4bc555c991081f4b90040fbf520bc40f9497ad7a"
 }

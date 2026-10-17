@@ -490,17 +490,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
+      "prompt": "Ви з сестрою переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
+      "accessibilityLabel": "Ви з сестрою переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are homesick.",
         "localizedMeaning": {
-          "ru": "Вы и сестра обе переехали и скучаете по родному городу. Соберите фразу от вас двоих",
-          "uk": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох"
+          "ru": "Вы с сестрой переехали и скучаете по родному городу. Соберите фразу от вас двоих",
+          "uk": "Ви з сестрою переїхали й сумуєте за рідним містом. Складіть фразу від вас двох"
         },
         "orderedTokens": [
           "We",
@@ -514,7 +514,7 @@
           {
             "responseId": "en:lesson-01:session-37:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
+            "testedDimension": "Ви з сестрою переїхали й сумуєте за рідним містом. Складіть фразу від вас двох",
             "feedbackByLocale": {
               "ru": "здесь нужно `We` — `We are homesick.`",
               "uk": "тут потрібно `We` — `We are homesick.`"
@@ -1168,5 +1168,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "454a64f23d78f41cc0f200113cbd62dbf1b629ce0b7f0b61dc1b7dd11d78a380"
+  "learnerFingerprint": "dfaed7e00b2ee282d7d89d006156b4379391ac58dc5a85e79b82ecbe6e1b228c"
 }

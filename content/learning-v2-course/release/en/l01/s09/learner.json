@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Лев высокий; подпишите его портрет",
+      "prompt": "Соберите фразу — брат высокий; подпишите его портрет",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Лев высокий; подпишите его портрет",
+      "accessibilityLabel": "Соберите фразу — брат высокий; подпишите его портрет",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is tall.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Лев высокий; подпишите его портрет",
-          "uk": "Складіть фразу — Лев високий; підпишіть його портрет"
+          "ru": "Соберите фразу — брат высокий; подпишите его портрет",
+          "uk": "Складіть фразу — брат високий; підпишіть його портрет"
         },
         "orderedTokens": [
           "He",
@@ -76,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-09:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Лев высокий; подпишите его портрет",
+            "testedDimension": "Соберите фразу — брат высокий; подпишите его портрет",
             "feedbackByLocale": {
               "ru": "после `He` в этой фразе нужно `is`.",
               "uk": "після `He` у цій фразі потрібно `is`."
@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите значение — Лена подписывает портрет Кати",
+      "prompt": "Послушайте и выберите значение — фотограф подписывает портрет сестры",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-09:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите значение — Лена подписывает портрет Кати",
+      "accessibilityLabel": "Послушайте и выберите значение — фотограф подписывает портрет сестры",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,19 +188,19 @@
           {
             "responseId": "en:lesson-01:session-09:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите значение — Лена подписывает портрет Кати",
+            "testedDimension": "Послушайте и выберите значение — фотограф подписывает портрет сестры",
             "feedbackByLocale": {
-              "ru": "Это описание мужчины; в записи говорится о Кате.",
-              "uk": "Це опис чоловіка; у записі йдеться про Катю."
+              "ru": "Это описание мужчины; в записи говорится о сестре.",
+              "uk": "Це опис чоловіка; у записі йдеться про сестру."
             }
           },
           {
             "responseId": "en:lesson-01:session-09:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите значение — Лена подписывает портрет Кати",
+            "testedDimension": "Послушайте и выберите значение — фотограф подписывает портрет сестры",
             "feedbackByLocale": {
-              "ru": "Это о возрасте, а запись описывает рост Кати.",
-              "uk": "Це про вік, а запис описує зріст Каті."
+              "ru": "Это о возрасте, а запись описывает рост сестры.",
+              "uk": "Це про вік, а запис описує зріст сестри."
             }
           }
         ],
@@ -258,7 +258,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олегу восемь лет; он самый юный участник фотосъёмки",
+      "prompt": "Племяннику восемь лет; он самый юный участник фотосъёмки",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i03:r1",
@@ -275,12 +275,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олегу восемь лет; он самый юный участник фотосъёмки",
+      "accessibilityLabel": "Племяннику восемь лет; он самый юный участник фотосъёмки",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олегу восемь лет; он самый юный участник фотосъёмки",
-          "uk": "Олегу вісім років; він наймолодший учасник фотозйомки"
+          "ru": "Племяннику восемь лет; он самый юный участник фотосъёмки",
+          "uk": "Племінникові вісім років; він наймолодший учасник фотозйомки"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -297,24 +297,24 @@
             "text": "short"
           }
         ],
-        "testedDimension": "Олегу восемь лет; он самый юный участник фотосъёмки",
+        "testedDimension": "Племяннику восемь лет; он самый юный участник фотосъёмки",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Олегу восемь лет; он самый юный участник фотосъёмки",
+            "testedDimension": "Племяннику восемь лет; он самый юный участник фотосъёмки",
             "feedbackByLocale": {
-              "ru": "`tall` описывает рост; здесь важен возраст Олега.",
-              "uk": "`tall` описує зріст; тут важливий вік Олега."
+              "ru": "`tall` описывает рост; здесь важен возраст племянника.",
+              "uk": "`tall` описує зріст; тут важливий вік племінника."
             }
           },
           {
             "responseId": "en:lesson-01:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Олегу восемь лет; он самый юный участник фотосъёмки",
+            "testedDimension": "Племяннику восемь лет; он самый юный участник фотосъёмки",
             "feedbackByLocale": {
-              "ru": "`short` описывает рост; здесь важен возраст Олега.",
-              "uk": "`short` описує зріст; тут важливий вік Олега."
+              "ru": "`short` описывает рост; здесь важен возраст племянника.",
+              "uk": "`short` описує зріст; тут важливий вік племінника."
             }
           }
         ]
@@ -400,13 +400,13 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте запись о Льве и соберите услышанную фразу",
+      "prompt": "Послушайте запись о брате и соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте запись о Льве и соберите услышанную фразу",
+      "accessibilityLabel": "Послушайте запись о брате и соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -427,7 +427,7 @@
           {
             "responseId": "en:lesson-01:session-09:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте запись о Льве и соберите услышанную фразу",
+            "testedDimension": "Послушайте запись о брате и соберите услышанную фразу",
             "feedbackByLocale": {
               "ru": "в записи tall — «высокий», а не young — «молодой».",
               "uk": "у записі tall — «високий», а не young — «молодий»."
@@ -447,17 +447,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Катя невысокая; опишите её рост",
+      "prompt": "Соберите фразу — сестра невысокая; опишите её рост",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Катя невысокая; опишите её рост",
+      "accessibilityLabel": "Соберите фразу — сестра невысокая; опишите её рост",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is short.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Катя невысокая; опишите её рост",
-          "uk": "Складіть фразу — Катя невисока; опишіть її зріст"
+          "ru": "Соберите фразу — сестра невысокая; опишите её рост",
+          "uk": "Складіть фразу — сестра невисока; опишіть її зріст"
         },
         "orderedTokens": [
           "She",
@@ -471,7 +471,7 @@
           {
             "responseId": "en:lesson-01:session-09:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Катя невысокая; опишите её рост",
+            "testedDimension": "Соберите фразу — сестра невысокая; опишите её рост",
             "feedbackByLocale": {
               "ru": "после `She` в этой фразе нужно `is`.",
               "uk": "після `She` у цій фразі потрібно `is`."
@@ -491,13 +491,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Повторите за записью — на карточке восьмилетний Олег",
+      "prompt": "Повторите за записью — на карточке восьмилетний племянник",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i07:audio"
       ],
-      "accessibilityLabel": "Повторите за записью — на карточке восьмилетний Олег",
+      "accessibilityLabel": "Повторите за записью — на карточке восьмилетний племянник",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -524,7 +524,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — Нина собрала камеру и заняла место для портрета",
+      "prompt": "Вставьте слово — тётя причесалась и встала на место для портрета",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i08:r1",
@@ -541,12 +541,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — Нина собрала камеру и заняла место для портрета",
+      "accessibilityLabel": "Вставьте слово — тётя причесалась и встала на место для портрета",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — Нина собрала камеру и заняла место для портрета",
-          "uk": "Вставте слово — Ніна зібрала камеру й стала на місце для портрета"
+          "ru": "Вставьте слово — тётя причесалась и встала на место для портрета",
+          "uk": "Вставте слово — тітка зачесалася й стала на місце для портрета"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -563,24 +563,24 @@
             "text": "happy"
           }
         ],
-        "testedDimension": "Вставьте слово — Нина собрала камеру и заняла место для портрета",
+        "testedDimension": "Вставьте слово — тётя причесалась и встала на место для портрета",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-09:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — Нина собрала камеру и заняла место для портрета",
+            "testedDimension": "Вставьте слово — тётя причесалась и встала на место для портрета",
             "feedbackByLocale": {
-              "ru": "`calm` описывает спокойствие; Нина уже готова к съёмке.",
-              "uk": "`calm` описує спокій; Ніна вже готова до зйомки."
+              "ru": "`calm` описывает спокойствие; тётя уже готова к съёмке.",
+              "uk": "`calm` описує спокій; тітка вже готова до зйомки."
             }
           },
           {
             "responseId": "en:lesson-01:session-09:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — Нина собрала камеру и заняла место для портрета",
+            "testedDimension": "Вставьте слово — тётя причесалась и встала на место для портрета",
             "feedbackByLocale": {
-              "ru": "`happy` описывает настроение; здесь важно, что Нина может начинать.",
-              "uk": "`happy` описує настрій; тут важливо, що Ніна може починати."
+              "ru": "`happy` описывает настроение; здесь важно, что тётя может начинать.",
+              "uk": "`happy` описує настрій; тут важливо, що тітка може починати."
             }
           }
         ]
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте запись о Павле и выберите значение услышанной фразы",
+      "prompt": "Послушайте запись о соседе и выберите значение услышанной фразы",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-09:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте запись о Павле и выберите значение услышанной фразы",
+      "accessibilityLabel": "Послушайте запись о соседе и выберите значение услышанной фразы",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-01:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте запись о Павле и выберите значение услышанной фразы",
+            "testedDimension": "Послушайте запись о соседе и выберите значение услышанной фразы",
             "feedbackByLocale": {
               "ru": "В записи описано раздражение, а не спокойствие.",
               "uk": "У записі описано роздратування, а не спокій."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-01:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте запись о Павле и выберите значение услышанной фразы",
+            "testedDimension": "Послушайте запись о соседе и выберите значение услышанной фразы",
             "feedbackByLocale": {
               "ru": "В записи описана злость, а не страх.",
               "uk": "У записі описано злість, а не страх."
@@ -785,13 +785,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — Лена проверяет самочувствие Ильи после длинной съёмки",
+      "prompt": "Послушайте и соберите — фотограф проверяет самочувствие дедушки после длинной съёмки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — Лена проверяет самочувствие Ильи после длинной съёмки",
+      "accessibilityLabel": "Послушайте и соберите — фотограф проверяет самочувствие дедушки после длинной съёмки",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -812,7 +812,7 @@
           {
             "responseId": "en:lesson-01:session-09:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — Лена проверяет самочувствие Ильи после длинной съёмки",
+            "testedDimension": "Послушайте и соберите — фотограф проверяет самочувствие дедушки после длинной съёмки",
             "feedbackByLocale": {
               "ru": "в записи fine — «в порядке», а не angry — «сердитый».",
               "uk": "у записі fine — «гаразд», а не angry — «сердитий»."
@@ -832,17 +832,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — Лена ищет карточку Нины, а вы показываете на стол рядом",
+      "prompt": "Соберите фразу — фотограф ищет карточку с подписью, а вы показываете на стол рядом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — Лена ищет карточку Нины, а вы показываете на стол рядом",
+      "accessibilityLabel": "Соберите фразу — фотограф ищет карточку с подписью, а вы показываете на стол рядом",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is here.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — Лена ищет карточку Нины, а вы показываете на стол рядом",
-          "uk": "Складіть фразу — Лена шукає картку Ніни, а ви показуєте на стіл поруч"
+          "ru": "Соберите фразу — фотограф ищет карточку с подписью, а вы показываете на стол рядом",
+          "uk": "Складіть фразу — фотографка шукає картку з підписом, а ви показуєте на стіл поруч"
         },
         "orderedTokens": [
           "It",
@@ -856,7 +856,7 @@
           {
             "responseId": "en:lesson-01:session-09:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Лена ищет карточку Нины, а вы показываете на стол рядом",
+            "testedDimension": "Соберите фразу — фотограф ищет карточку с подписью, а вы показываете на стол рядом",
             "feedbackByLocale": {
               "ru": "карточку уже нашли; здесь нужно указать её место.",
               "uk": "картку вже знайдено; тут потрібно вказати її місце."
@@ -876,13 +876,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите фразу вслед за записью — Лев спокойно ждёт своей очереди у окна",
+      "prompt": "Скажите фразу вслед за записью — брат спокойно ждёт своей очереди у окна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i13:audio"
       ],
-      "accessibilityLabel": "Скажите фразу вслед за записью — Лев спокойно ждёт своей очереди у окна",
+      "accessibilityLabel": "Скажите фразу вслед за записью — брат спокойно ждёт своей очереди у окна",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -909,7 +909,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — после удачного портрета Ира улыбается и хлопает в ладоши",
+      "prompt": "Вставьте слово — после удачного портрета бабушка улыбается и хлопает в ладоши",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i14:r1",
@@ -926,12 +926,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — после удачного портрета Ира улыбается и хлопает в ладоши",
+      "accessibilityLabel": "Вставьте слово — после удачного портрета бабушка улыбается и хлопает в ладоши",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — после удачного портрета Ира улыбается и хлопает в ладоши",
-          "uk": "Вставте слово — після вдалого портрета Іра усміхається й плескає в долоні"
+          "ru": "Вставьте слово — после удачного портрета бабушка улыбается и хлопает в ладоши",
+          "uk": "Вставте слово — після вдалого портрета бабуся усміхається й плескає в долоні"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -948,24 +948,24 @@
             "text": "calm"
           }
         ],
-        "testedDimension": "Вставьте слово — после удачного портрета Ира улыбается и хлопает в ладоши",
+        "testedDimension": "Вставьте слово — после удачного портрета бабушка улыбается и хлопает в ладоши",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-09:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — после удачного портрета Ира улыбается и хлопает в ладоши",
+            "testedDimension": "Вставьте слово — после удачного портрета бабушка улыбается и хлопает в ладоши",
             "feedbackByLocale": {
-              "ru": "`ready` значит, что человек готов; Ира радуется удачному портрету.",
-              "uk": "`ready` означає, що людина готова; Іра радіє вдалому портрету."
+              "ru": "`ready` значит, что человек готов; бабушка радуется удачному портрету.",
+              "uk": "`ready` означає, що людина готова; бабуся радіє вдалому портрету."
             }
           },
           {
             "responseId": "en:lesson-01:session-09:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — после удачного портрета Ира улыбается и хлопает в ладоши",
+            "testedDimension": "Вставьте слово — после удачного портрета бабушка улыбается и хлопает в ладоши",
             "feedbackByLocale": {
-              "ru": "`calm` значит «спокойный»; Ира явно радуется.",
-              "uk": "`calm` означає «спокійна»; Іра явно радіє."
+              "ru": "`calm` значит «спокойный»; бабушка явно радуется.",
+              "uk": "`calm` означає «спокійна»; бабуся явно радіє."
             }
           }
         ]
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте запись об Артёме и выберите значение фразы",
+      "prompt": "Послушайте запись о дяде и выберите значение фразы",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-09:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте запись об Артёме и выберите значение фразы",
+      "accessibilityLabel": "Послушайте запись о дяде и выберите значение фразы",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-09:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте запись об Артёме и выберите значение фразы",
+            "testedDimension": "Послушайте запись о дяде и выберите значение фразы",
             "feedbackByLocale": {
               "ru": "В записи scared — «испуган», а не angry — «сердится».",
               "uk": "У записі scared — «наляканий», а не angry — «сердиться»."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-09:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте запись об Артёме и выберите значение фразы",
+            "testedDimension": "Послушайте запись о дяде и выберите значение фразы",
             "feedbackByLocale": {
               "ru": "В записи говорится о страхе, а не о спокойствии.",
               "uk": "У записі йдеться про страх, а не про спокій."
@@ -1054,11 +1054,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями — Мила проверяет карточки у входа в ботанический сад перед приходом посетителей",
+      "prompt": "Соедините слова со значениями — ассистентка проверяет подписи перед открытием выставки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями — Мила проверяет карточки у входа в ботанический сад перед приходом посетителей",
+      "accessibilityLabel": "Соедините слова со значениями — ассистентка проверяет подписи перед открытием выставки",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1127,13 +1127,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — Оля сердится; сообщите Вере о её состоянии",
+      "prompt": "Скажите вслух — соседка сердится; сообщите об этом фотографу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i17:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — Оля сердится; сообщите Вере о её состоянии",
+      "accessibilityLabel": "Скажите вслух — соседка сердится; сообщите об этом фотографу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "af7384d608c8dbc823fd62acb72c84bfc9f90c86abd298d09224cb977e04f648"
+  "learnerFingerprint": "779f379c1d0eac5b16f951b58654587a1a0c4b155b46c6eb202c6edbe3d82061"
 }

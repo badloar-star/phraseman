@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-38:word:leaky",
+    "correctText": "leaky",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-38:i01",
-    "correctText": "It is unofficial.",
+    "correctText": "It is leaky.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i02",
-    "correctText": "She is weak.",
+    "correctText": "It is broken.",
     "correctResponseId": "en:lesson-02:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-38:word:dented",
+    "correctText": "dented",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i03",
@@ -16,12 +26,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-38:i04",
-    "correctText": "en:lesson-02:session-38:i04:p1=unofficial\nen:lesson-02:session-38:i04:p2=official\nen:lesson-02:session-38:i04:p3=weak\nen:lesson-02:session-38:i04:p4=elsewhere",
+    "correctText": "en:lesson-02:session-38:i04:p1=leaky\nen:lesson-02:session-38:i04:p2=dented\nen:lesson-02:session-38:i04:p3=creaky\nen:lesson-02:session-38:i04:p4=broken",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-38:word:creaky",
+    "correctText": "creaky",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i05",
-    "correctText": "No, it is not.",
+    "correctText": "They are not creaky.",
     "correctResponseId": null
   },
   {
@@ -31,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-38:i07",
-    "correctText": "It's unofficial.",
+    "correctText": "They're creaky.",
     "correctResponseId": null
   },
   {
@@ -40,48 +55,53 @@
     "correctResponseId": "en:lesson-02:session-38:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-38:word:wobbly",
+    "correctText": "wobbly",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-38:i09",
-    "correctText": "They are elsewhere.",
+    "correctText": "It is wobbly.",
     "correctResponseId": "en:lesson-02:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i10",
-    "correctText": "en:lesson-02:session-38:i10:p1=elsewhere\nen:lesson-02:session-38:i10:p2=weak\nen:lesson-02:session-38:i10:p3=official\nen:lesson-02:session-38:i10:p4=unofficial",
+    "correctText": "en:lesson-02:session-38:i10:p1=wobbly\nen:lesson-02:session-38:i10:p2=leaky\nen:lesson-02:session-38:i10:p3=dented\nen:lesson-02:session-38:i10:p4=old",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i11",
-    "correctText": "It is not official.",
+    "correctText": "It is not dented.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i12",
-    "correctText": "Who is weak?",
+    "correctText": "What is wobbly?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i13",
-    "correctText": "She's weak.",
+    "correctText": "It's wobbly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i14",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i15",
-    "correctText": "Is it unofficial?",
+    "correctText": "Are they leaky?",
     "correctResponseId": "en:lesson-02:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-38:i16",
-    "correctText": "en:lesson-02:session-38:i16:p1=weak\nen:lesson-02:session-38:i16:p2=unofficial\nen:lesson-02:session-38:i16:p3=elsewhere\nen:lesson-02:session-38:i16:p4=official",
+    "correctText": "en:lesson-02:session-38:i16:p1=creaky\nen:lesson-02:session-38:i16:p2=wobbly\nen:lesson-02:session-38:i16:p3=broken\nen:lesson-02:session-38:i16:p4=old",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-38:i17",
-    "correctText": "Is it unofficial?",
+    "correctText": "Is it leaky?",
     "correctResponseId": null
   }
 ]

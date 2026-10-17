@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-40:word:cramped",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cramped",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:cramped:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cramped",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:cramped:audio",
+            "transcript": "cramped"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:cramped:r1",
+              "targetText": "cramped",
+              "meaningByLocale": {
+                "ru": "тесный, где мало места. It is cramped — «Тут тесно». О комнате, лифте, машине, кухне.",
+                "uk": "тісний, де мало місця. It is cramped — «Тут тісно». Про кімнату, ліфт, машину, кухню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cramped",
+            "definitionByLocale": {
+              "ru": "тесный, где мало места. It is cramped — «Тут тесно». О комнате, лифте, машине, кухне.",
+              "uk": "тісний, де мало місця. It is cramped — «Тут тісно». Про кімнату, ліфт, машину, кухню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабушка спрашивает про комнату. Скажите ей полной фразой, что там тесно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабушка спрашивает про комнату. Скажите ей полной фразой, что там тесно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is cramped.",
+          "localizedMeaning": {
+            "ru": "Бабушка спрашивает про комнату. Скажите ей полной фразой, что там тесно.",
+            "uk": "Бабуся питає про кімнату. Скажіть їй повною фразою, що там тісно."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "cramped"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабушка спрашивает про комнату. Скажите ей полной фразой, что там тесно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is cramped.`",
+                "uk": "тут потрібно `is` — `It is cramped.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что бабушка говорит о чае",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i02:r1",
+            "text": "It is hot."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i02:r2",
+            "text": "It is cozy."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i02:r3",
+            "text": "It is tasty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что бабушка говорит о чае",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i02:audio",
+            "transcript": "It is hot."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:i02:r1",
+              "targetText": "It is hot.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i02:r2",
+              "targetText": "It is cozy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i02:r3",
+              "targetText": "It is tasty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что бабушка говорит о чае",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hot`, а в этом варианте — `cozy`.",
+                "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `cozy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что бабушка говорит о чае",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hot`, а в этом варианте — `tasty`.",
+                "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `tasty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:word:fluffy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fluffy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:fluffy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fluffy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:fluffy:audio",
+            "transcript": "fluffy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:fluffy:r1",
+              "targetText": "fluffy",
+              "meaningByLocale": {
+                "ru": "пушистый. She is fluffy — «Она пушистая». О кошке, полотенце, одеяле, облаке.",
+                "uk": "пухнастий. She is fluffy — «Вона пухнаста». Про кішку, рушник, ковдру, хмару."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fluffy",
+            "definitionByLocale": {
+              "ru": "пушистый. She is fluffy — «Она пушистая». О кошке, полотенце, одеяле, облаке.",
+              "uk": "пухнастий. She is fluffy — «Вона пухнаста». Про кішку, рушник, ковдру, хмару."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабушка показывает двух котят. Спросите её, пушистые ли они",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабушка показывает двух котят. Спросите её, пушистые ли они",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка показывает двух котят. Спросите её, пушистые ли они",
+            "uk": "Бабуся показує двох кошенят. Запитайте її, чи вони пухнасті"
+          },
+          "gappedTargetPhrase": "___ they fluffy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-40:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Бабушка показывает двух котят. Спросите её, пушистые ли они",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Бабушка показывает двух котят. Спросите её, пушистые ли они",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Бабушка показывает двух котят. Спросите её, пушистые ли они",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Are they fluffy?`.",
+                "uk": "Питання — `Are they fluffy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-40:i04:p1",
+              "target": "cramped",
+              "meaningByLocale": {
+                "ru": "тесный",
+                "uk": "тісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i04:p2",
+              "target": "snug",
+              "meaningByLocale": {
+                "ru": "тёплый и уютный",
+                "uk": "теплий і затишний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i04:p3",
+              "target": "fluffy",
+              "meaningByLocale": {
+                "ru": "пушистый",
+                "uk": "пухнастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i04:p4",
+              "target": "hot",
+              "meaningByLocale": {
+                "ru": "горячий",
+                "uk": "гарячий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cramped",
+            "snug",
+            "fluffy",
+            "hot"
+          ],
+          "rightColumn": [
+            "тесный",
+            "тёплый и уютный",
+            "пушистый",
+            "горячий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:word:snug",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:snug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:snug:audio",
+            "transcript": "snug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:snug:r1",
+              "targetText": "snug",
+              "meaningByLocale": {
+                "ru": "тёплый и уютный, когда вас укрыли или обняли. It's snug — «Мне тепло и уютно». О постели, пледе, свитере, углу.",
+                "uk": "теплий і затишний, коли вас вкрили або обійняли. It's snug — «Мені тепло й затишно». Про ліжко, плед, светр, куток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snug",
+            "definitionByLocale": {
+              "ru": "тёплый и уютный, когда вас укрыли или обняли. It's snug — «Мне тепло и уютно». О постели, пледе, свитере, углу.",
+              "uk": "теплий і затишний, коли вас вкрили або обійняли. It's snug — «Мені тепло й затишно». Про ліжко, плед, светр, куток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабушка говорит о запасной кровати. Послушайте её и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Бабушка говорит о запасной кровати. Послушайте её и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i05:audio",
+            "transcript": "It is not snug."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not snug.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "snug"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабушка говорит о запасной кровати. Послушайте её и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not snug.`",
+                "uk": "тут потрібно `is` — `It is not snug.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кошка спряталась, и бабушка её ищет. Спросите бабушку, где кошка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кошка спряталась, и бабушка её ищет. Спросите бабушку, где кошка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is she?",
+          "localizedMeaning": {
+            "ru": "Кошка спряталась, и бабушка её ищет. Спросите бабушку, где кошка.",
+            "uk": "Кішка сховалась, і бабуся її шукає. Запитайте бабусю, де кішка."
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "she"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Кошка спряталась, и бабушка её ищет. Спросите бабушку, где кошка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is she?`",
+                "uk": "тут потрібно `Where` — `Where is she?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабушка укутала вас пледом. Скажите ей коротко, что вам тепло и уютно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Бабушка укутала вас пледом. Скажите ей коротко, что вам тепло и уютно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i07:audio",
+            "transcript": "It's snug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's snug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабушка спросила: «Are they fluffy?» Котята и правда пушистые. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабушка спросила: «Are they fluffy?» Котята и правда пушистые. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка спросила: «Are they fluffy?» Котята и правда пушистые. Дополните короткое «да»",
+            "uk": "Бабуся спитала: «Are they fluffy?» Кошенята і справді пухнасті. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, they ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-40:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Бабушка спросила: «Are they fluffy?» Котята и правда пушистые. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Бабушка спросила: «Are they fluffy?» Котята и правда пушистые. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `are`.",
+                "uk": "З `they` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Бабушка спросила: «Are they fluffy?» Котята и правда пушистые. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, they are`.",
+                "uk": "Відповідь — `Yes, they are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:word:shabby",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shabby",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:shabby:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shabby",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:shabby:audio",
+            "transcript": "shabby"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:shabby:r1",
+              "targetText": "shabby",
+              "meaningByLocale": {
+                "ru": "потрёпанный, старый и вытертый. It's shabby — «Оно потрёпанное». О кресле, куртке, ковре, обложке.",
+                "uk": "потертий, старий і витертий. It's shabby — «Воно потерте». Про крісло, куртку, килим, обкладинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shabby",
+            "definitionByLocale": {
+              "ru": "потрёпанный, старый и вытертый. It's shabby — «Оно потрёпанное». О кресле, куртке, ковре, обложке.",
+              "uk": "потертий, старий і витертий. It's shabby — «Воно потерте». Про крісло, куртку, килим, обкладинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что бабушка говорит о кресле",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i09:r1",
+            "text": "It is shabby."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i09:r2",
+            "text": "It is old."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i09:r3",
+            "text": "It is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что бабушка говорит о кресле",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i09:audio",
+            "transcript": "It is shabby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:i09:r1",
+              "targetText": "It is shabby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i09:r2",
+              "targetText": "It is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i09:r3",
+              "targetText": "It is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что бабушка говорит о кресле",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shabby`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `shabby`, а в цьому варіанті — `old`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что бабушка говорит о кресле",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shabby`, а в этом варианте — `small`.",
+                "uk": "У записі останнє слово — `shabby`, а в цьому варіанті — `small`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-40:i10:p1",
+              "target": "shabby",
+              "meaningByLocale": {
+                "ru": "потрёпанный",
+                "uk": "потертий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i10:p2",
+              "target": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный",
+                "uk": "смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i10:p3",
+              "target": "icy",
+              "meaningByLocale": {
+                "ru": "обледенелый",
+                "uk": "обледенілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i10:p4",
+              "target": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, о мясе",
+                "uk": "м’який, про м’ясо"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shabby",
+            "tasty",
+            "icy",
+            "tender"
+          ],
+          "rightColumn": [
+            "потрёпанный",
+            "вкусный",
+            "обледенелый",
+            "мягкий, о мясе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что бабушка говорит о соседских комнатах, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что бабушка говорит о соседских комнатах, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i11:audio",
+            "transcript": "They are not cramped."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not cramped.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "cramped"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что бабушка говорит о соседских комнатах, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not cramped.`",
+                "uk": "тут потрібно `are` — `They are not cramped.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабушка собирается выбросить одну старую вещь, но не называет какую. Спросите её, что потрёпанное.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабушка собирается выбросить одну старую вещь, но не называет какую. Спросите её, что потрёпанное.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is shabby?",
+          "localizedMeaning": {
+            "ru": "Бабушка собирается выбросить одну старую вещь, но не называет какую. Спросите её, что потрёпанное.",
+            "uk": "Бабуся збирається викинути одну стару річ, але не називає яку. Запитайте її, що потерте."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "shabby"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабушка собирается выбросить одну старую вещь, но не называет какую. Спросите её, что потрёпанное.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is shabby?`",
+                "uk": "тут потрібно `What` — `What is shabby?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат сел в бабушкино кресло, и видно, как вытерта обивка. Скажите коротко, что оно потрёпанное.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i13:audio"
+        ],
+        "accessibilityLabel": "Брат сел в бабушкино кресло, и видно, как вытерта обивка. Скажите коротко, что оно потрёпанное.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i13:audio",
+            "transcript": "It's shabby."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's shabby.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабушка спрашивает про вашу комнату дома. Там много места. Скажите, что она не тесная",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабушка спрашивает про вашу комнату дома. Там много места. Скажите, что она не тесная",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка спрашивает про вашу комнату дома. Там много места. Скажите, что она не тесная",
+            "uk": "Бабуся питає про вашу кімнату вдома. Там багато місця. Скажіть, що вона не тісна"
+          },
+          "gappedTargetPhrase": "It ___ not cramped.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-40:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Бабушка спрашивает про вашу комнату дома. Там много места. Скажите, что она не тесная",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Бабушка спрашивает про вашу комнату дома. Там много места. Скажите, что она не тесная",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Бабушка спрашивает про вашу комнату дома. Там много места. Скажите, что она не тесная",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not cramped`.",
+                "uk": "Фраза — `It is not cramped`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос бабушки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i15:r1",
+            "text": "Is it snug?"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i15:r2",
+            "text": "Is it cramped?"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i15:r3",
+            "text": "Is it shabby?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос бабушки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i15:audio",
+            "transcript": "Is it snug?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:i15:r1",
+              "targetText": "Is it snug?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i15:r2",
+              "targetText": "Is it cramped?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i15:r3",
+              "targetText": "Is it shabby?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос бабушки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `snug`, а в этом варианте — `cramped`.",
+                "uk": "У записі останнє слово — `snug`, а в цьому варіанті — `cramped`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос бабушки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `snug`, а в этом варианте — `shabby`.",
+                "uk": "У записі останнє слово — `snug`, а в цьому варіанті — `shabby`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-40:i16:p1",
+              "target": "cramped",
+              "meaningByLocale": {
+                "ru": "тесный",
+                "uk": "тісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i16:p2",
+              "target": "snug",
+              "meaningByLocale": {
+                "ru": "тёплый и уютный",
+                "uk": "теплий і затишний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i16:p3",
+              "target": "fluffy",
+              "meaningByLocale": {
+                "ru": "пушистый",
+                "uk": "пухнастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i16:p4",
+              "target": "shabby",
+              "meaningByLocale": {
+                "ru": "потрёпанный",
+                "uk": "потертий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cramped",
+            "snug",
+            "fluffy",
+            "shabby"
+          ],
+          "rightColumn": [
+            "тесный",
+            "тёплый и уютный",
+            "пушистый",
+            "потрёпанный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы входите в комнату, где спит брат. Спросите бабушку, тесно ли там.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Вы входите в комнату, где спит брат. Спросите бабушку, тесно ли там.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i17:audio",
+            "transcript": "Is it cramped?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it cramped?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-40:word:cramped",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cramped",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:cramped:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cramped",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:cramped:audio",
+            "transcript": "cramped"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:cramped:r1",
+              "targetText": "cramped",
+              "meaningByLocale": {
+                "ru": "тесный, где мало места. It is cramped — «Тут тесно». О комнате, лифте, машине, кухне.",
+                "uk": "тісний, де мало місця. It is cramped — «Тут тісно». Про кімнату, ліфт, машину, кухню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cramped",
+            "definitionByLocale": {
+              "ru": "тесный, где мало места. It is cramped — «Тут тесно». О комнате, лифте, машине, кухне.",
+              "uk": "тісний, де мало місця. It is cramped — «Тут тісно». Про кімнату, ліфт, машину, кухню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабуся питає про кімнату. Скажіть їй повною фразою, що там тісно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабуся питає про кімнату. Скажіть їй повною фразою, що там тісно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is cramped.",
+          "localizedMeaning": {
+            "ru": "Бабушка спрашивает про комнату. Скажите ей полной фразой, что там тесно.",
+            "uk": "Бабуся питає про кімнату. Скажіть їй повною фразою, що там тісно."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "cramped"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабуся питає про кімнату. Скажіть їй повною фразою, що там тісно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is cramped.`",
+                "uk": "тут потрібно `is` — `It is cramped.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що бабуся каже про чай",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i02:r1",
+            "text": "It is hot."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i02:r2",
+            "text": "It is cozy."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i02:r3",
+            "text": "It is tasty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що бабуся каже про чай",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i02:audio",
+            "transcript": "It is hot."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:i02:r1",
+              "targetText": "It is hot.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i02:r2",
+              "targetText": "It is cozy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i02:r3",
+              "targetText": "It is tasty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що бабуся каже про чай",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hot`, а в этом варианте — `cozy`.",
+                "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `cozy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що бабуся каже про чай",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hot`, а в этом варианте — `tasty`.",
+                "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `tasty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:word:fluffy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fluffy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:fluffy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fluffy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:fluffy:audio",
+            "transcript": "fluffy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:fluffy:r1",
+              "targetText": "fluffy",
+              "meaningByLocale": {
+                "ru": "пушистый. She is fluffy — «Она пушистая». О кошке, полотенце, одеяле, облаке.",
+                "uk": "пухнастий. She is fluffy — «Вона пухнаста». Про кішку, рушник, ковдру, хмару."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fluffy",
+            "definitionByLocale": {
+              "ru": "пушистый. She is fluffy — «Она пушистая». О кошке, полотенце, одеяле, облаке.",
+              "uk": "пухнастий. She is fluffy — «Вона пухнаста». Про кішку, рушник, ковдру, хмару."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабуся показує двох кошенят. Запитайте її, чи вони пухнасті",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабуся показує двох кошенят. Запитайте її, чи вони пухнасті",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка показывает двух котят. Спросите её, пушистые ли они",
+            "uk": "Бабуся показує двох кошенят. Запитайте її, чи вони пухнасті"
+          },
+          "gappedTargetPhrase": "___ they fluffy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-40:i03:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i03:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Бабуся показує двох кошенят. Запитайте її, чи вони пухнасті",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Бабуся показує двох кошенят. Запитайте її, чи вони пухнасті",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `Are`.",
+                "uk": "З `they` потрібно `Are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Бабуся показує двох кошенят. Запитайте її, чи вони пухнасті",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Are they fluffy?`.",
+                "uk": "Питання — `Are they fluffy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-40:i04:p1",
+              "target": "cramped",
+              "meaningByLocale": {
+                "ru": "тесный",
+                "uk": "тісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i04:p2",
+              "target": "snug",
+              "meaningByLocale": {
+                "ru": "тёплый и уютный",
+                "uk": "теплий і затишний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i04:p3",
+              "target": "fluffy",
+              "meaningByLocale": {
+                "ru": "пушистый",
+                "uk": "пухнастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i04:p4",
+              "target": "hot",
+              "meaningByLocale": {
+                "ru": "горячий",
+                "uk": "гарячий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cramped",
+            "snug",
+            "fluffy",
+            "hot"
+          ],
+          "rightColumn": [
+            "тісний",
+            "теплий і затишний",
+            "пухнастий",
+            "гарячий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:word:snug",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:snug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:snug:audio",
+            "transcript": "snug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:snug:r1",
+              "targetText": "snug",
+              "meaningByLocale": {
+                "ru": "тёплый и уютный, когда вас укрыли или обняли. It's snug — «Мне тепло и уютно». О постели, пледе, свитере, углу.",
+                "uk": "теплий і затишний, коли вас вкрили або обійняли. It's snug — «Мені тепло й затишно». Про ліжко, плед, светр, куток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snug",
+            "definitionByLocale": {
+              "ru": "тёплый и уютный, когда вас укрыли или обняли. It's snug — «Мне тепло и уютно». О постели, пледе, свитере, углу.",
+              "uk": "теплий і затишний, коли вас вкрили або обійняли. It's snug — «Мені тепло й затишно». Про ліжко, плед, светр, куток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабуся говорить про запасне ліжко. Послухайте її й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Бабуся говорить про запасне ліжко. Послухайте її й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i05:audio",
+            "transcript": "It is not snug."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not snug.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "snug"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабуся говорить про запасне ліжко. Послухайте її й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not snug.`",
+                "uk": "тут потрібно `is` — `It is not snug.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кішка сховалась, і бабуся її шукає. Запитайте бабусю, де кішка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кішка сховалась, і бабуся її шукає. Запитайте бабусю, де кішка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is she?",
+          "localizedMeaning": {
+            "ru": "Кошка спряталась, и бабушка её ищет. Спросите бабушку, где кошка.",
+            "uk": "Кішка сховалась, і бабуся її шукає. Запитайте бабусю, де кішка."
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "she"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Кішка сховалась, і бабуся її шукає. Запитайте бабусю, де кішка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is she?`",
+                "uk": "тут потрібно `Where` — `Where is she?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабуся вкутала вас пледом. Скажіть їй коротко, що вам тепло й затишно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Бабуся вкутала вас пледом. Скажіть їй коротко, що вам тепло й затишно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i07:audio",
+            "transcript": "It's snug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's snug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабуся спитала: «Are they fluffy?» Кошенята і справді пухнасті. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабуся спитала: «Are they fluffy?» Кошенята і справді пухнасті. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка спросила: «Are they fluffy?» Котята и правда пушистые. Дополните короткое «да»",
+            "uk": "Бабуся спитала: «Are they fluffy?» Кошенята і справді пухнасті. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, they ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-40:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Бабуся спитала: «Are they fluffy?» Кошенята і справді пухнасті. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Бабуся спитала: «Are they fluffy?» Кошенята і справді пухнасті. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `they` нужно `are`.",
+                "uk": "З `they` потрібно `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Бабуся спитала: «Are they fluffy?» Кошенята і справді пухнасті. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, they are`.",
+                "uk": "Відповідь — `Yes, they are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:word:shabby",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shabby",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:word:shabby:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shabby",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:word:shabby:audio",
+            "transcript": "shabby"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:word:shabby:r1",
+              "targetText": "shabby",
+              "meaningByLocale": {
+                "ru": "потрёпанный, старый и вытертый. It's shabby — «Оно потрёпанное». О кресле, куртке, ковре, обложке.",
+                "uk": "потертий, старий і витертий. It's shabby — «Воно потерте». Про крісло, куртку, килим, обкладинку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shabby",
+            "definitionByLocale": {
+              "ru": "потрёпанный, старый и вытертый. It's shabby — «Оно потрёпанное». О кресле, куртке, ковре, обложке.",
+              "uk": "потертий, старий і витертий. It's shabby — «Воно потерте». Про крісло, куртку, килим, обкладинку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що бабуся каже про крісло",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i09:r1",
+            "text": "It is shabby."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i09:r2",
+            "text": "It is old."
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i09:r3",
+            "text": "It is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що бабуся каже про крісло",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i09:audio",
+            "transcript": "It is shabby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:i09:r1",
+              "targetText": "It is shabby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i09:r2",
+              "targetText": "It is old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i09:r3",
+              "targetText": "It is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що бабуся каже про крісло",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shabby`, а в этом варианте — `old`.",
+                "uk": "У записі останнє слово — `shabby`, а в цьому варіанті — `old`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що бабуся каже про крісло",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shabby`, а в этом варианте — `small`.",
+                "uk": "У записі останнє слово — `shabby`, а в цьому варіанті — `small`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-40:i10:p1",
+              "target": "shabby",
+              "meaningByLocale": {
+                "ru": "потрёпанный",
+                "uk": "потертий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i10:p2",
+              "target": "tasty",
+              "meaningByLocale": {
+                "ru": "вкусный",
+                "uk": "смачний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i10:p3",
+              "target": "icy",
+              "meaningByLocale": {
+                "ru": "обледенелый",
+                "uk": "обледенілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i10:p4",
+              "target": "tender",
+              "meaningByLocale": {
+                "ru": "мягкий, о мясе",
+                "uk": "м’який, про м’ясо"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shabby",
+            "tasty",
+            "icy",
+            "tender"
+          ],
+          "rightColumn": [
+            "потертий",
+            "смачний",
+            "обледенілий",
+            "м’який, про м’ясо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що бабуся каже про сусідські кімнати, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що бабуся каже про сусідські кімнати, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i11:audio",
+            "transcript": "They are not cramped."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not cramped.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "cramped"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що бабуся каже про сусідські кімнати, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not cramped.`",
+                "uk": "тут потрібно `are` — `They are not cramped.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабуся збирається викинути одну стару річ, але не називає яку. Запитайте її, що потерте.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабуся збирається викинути одну стару річ, але не називає яку. Запитайте її, що потерте.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is shabby?",
+          "localizedMeaning": {
+            "ru": "Бабушка собирается выбросить одну старую вещь, но не называет какую. Спросите её, что потрёпанное.",
+            "uk": "Бабуся збирається викинути одну стару річ, але не називає яку. Запитайте її, що потерте."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "shabby"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабуся збирається викинути одну стару річ, але не називає яку. Запитайте її, що потерте.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is shabby?`",
+                "uk": "тут потрібно `What` — `What is shabby?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат сів у бабусине крісло, і видно, як витерта оббивка. Скажіть коротко, що воно потерте.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i13:audio"
+        ],
+        "accessibilityLabel": "Брат сів у бабусине крісло, і видно, як витерта оббивка. Скажіть коротко, що воно потерте.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i13:audio",
+            "transcript": "It's shabby."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's shabby.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бабуся питає про вашу кімнату вдома. Там багато місця. Скажіть, що вона не тісна",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабуся питає про вашу кімнату вдома. Там багато місця. Скажіть, що вона не тісна",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бабушка спрашивает про вашу комнату дома. Там много места. Скажите, что она не тесная",
+            "uk": "Бабуся питає про вашу кімнату вдома. Там багато місця. Скажіть, що вона не тісна"
+          },
+          "gappedTargetPhrase": "It ___ not cramped.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-40:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Бабуся питає про вашу кімнату вдома. Там багато місця. Скажіть, що вона не тісна",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Бабуся питає про вашу кімнату вдома. Там багато місця. Скажіть, що вона не тісна",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Бабуся питає про вашу кімнату вдома. Там багато місця. Скажіть, що вона не тісна",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not cramped`.",
+                "uk": "Фраза — `It is not cramped`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання бабусі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-40:i15:r1",
+            "text": "Is it snug?"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i15:r2",
+            "text": "Is it cramped?"
+          },
+          {
+            "responseId": "en:lesson-02:session-40:i15:r3",
+            "text": "Is it shabby?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання бабусі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i15:audio",
+            "transcript": "Is it snug?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-40:i15:r1",
+              "targetText": "Is it snug?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i15:r2",
+              "targetText": "Is it cramped?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i15:r3",
+              "targetText": "Is it shabby?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання бабусі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `snug`, а в этом варианте — `cramped`.",
+                "uk": "У записі останнє слово — `snug`, а в цьому варіанті — `cramped`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання бабусі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `snug`, а в этом варианте — `shabby`.",
+                "uk": "У записі останнє слово — `snug`, а в цьому варіанті — `shabby`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-40:i16:p1",
+              "target": "cramped",
+              "meaningByLocale": {
+                "ru": "тесный",
+                "uk": "тісний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i16:p2",
+              "target": "snug",
+              "meaningByLocale": {
+                "ru": "тёплый и уютный",
+                "uk": "теплий і затишний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i16:p3",
+              "target": "fluffy",
+              "meaningByLocale": {
+                "ru": "пушистый",
+                "uk": "пухнастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-40:i16:p4",
+              "target": "shabby",
+              "meaningByLocale": {
+                "ru": "потрёпанный",
+                "uk": "потертий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cramped",
+            "snug",
+            "fluffy",
+            "shabby"
+          ],
+          "rightColumn": [
+            "тісний",
+            "теплий і затишний",
+            "пухнастий",
+            "потертий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви заходите в кімнату, де спить брат. Запитайте бабусю, чи тісно там.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Ви заходите в кімнату, де спить брат. Запитайте бабусю, чи тісно там.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-40:i17:audio",
+            "transcript": "Is it cramped?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it cramped?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-40:word:cramped",
+      "correctText": "cramped",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i01",
+      "correctText": "It is cramped.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i02",
+      "correctText": "It is hot.",
+      "correctResponseId": "en:lesson-02:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:word:fluffy",
+      "correctText": "fluffy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i03",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-02:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:word:snug",
+      "correctText": "snug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i05",
+      "correctText": "It is not snug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i06",
+      "correctText": "Where is she?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i07",
+      "correctText": "It's snug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-02:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:word:shabby",
+      "correctText": "shabby",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i09",
+      "correctText": "It is shabby.",
+      "correctResponseId": "en:lesson-02:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i11",
+      "correctText": "They are not cramped.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i12",
+      "correctText": "What is shabby?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i13",
+      "correctText": "It's shabby.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-40:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i15",
+      "correctText": "Is it snug?",
+      "correctResponseId": "en:lesson-02:session-40:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:i17",
+      "correctText": "Is it cramped?",
+      "correctResponseId": null
+    }
+  ]
+}

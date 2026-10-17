@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-53:intro1:r2": {
-          "ru": "small — «маленькие». Дима спрашивает, созрели ли ягоды: ripe.",
-          "uk": "small — «маленькі». Дмитро питає, чи достигли ягоди: ripe."
+          "ru": "small — «маленькие». Друг спрашивает, созрели ли ягоды: ripe.",
+          "uk": "small — «маленькі». Друг питає, чи достигли ягоди: ripe."
         },
         "en:lesson-01:session-53:intro1:r3": {
           "ru": "It's — про одну вещь, а ягод целая горсть: They're ripe.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "12b3e74be94ae901a9f8b55a96db62688f3eb884427494673078e4a133693d7b"
+  "auxiliaryFingerprint": "7890984e93c9b80a37926868ee869d28752cb30e59b2b900b3a783f7e7f956a9"
 }

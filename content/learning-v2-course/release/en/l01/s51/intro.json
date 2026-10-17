@@ -15,8 +15,8 @@
         "uk": "Не зачиняється"
       },
       "bodyByLocale": {
-        "ru": "Вы положили в чемодан двенадцать книг, и теперь крышка не опускается, даже если на неё сесть. stuffed — «набит битком». It is stuffed, коротко It's stuffed — «Он набит битком». Места не осталось ни для одного носка.",
-        "uk": "Ви поклали у валізу дванадцять книжок, і тепер кришка не опускається, навіть якщо на неї сісти. stuffed — «напханий ущерть». It is stuffed, коротко It's stuffed — «Вона напхана вщерть». Місця не лишилося для жодної шкарпетки."
+        "ru": "Вы положили в чемодан двенадцать книг, и теперь крышка не опускается, даже если на неё сесть. stuffed — «набит битком». It is stuffed, коротко It's stuffed — «Он набит битком».",
+        "uk": "Ви поклали у валізу дванадцять книжок, і тепер кришка не опускається, навіть якщо на неї сісти. stuffed — «напханий ущерть». It is stuffed, коротко It's stuffed — «Вона напхана вщерть»."
       },
       "question": {
         "interactionId": "en:lesson-01:session-51:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8a99948044ba8e50b51e953f5cb3a4d04d92c9ca4a7321d25a145b0e4a8b74fa"
+  "introFingerprint": "3fc406855e3f4efcf72cee0d7f53b9dbbb279af7c1f7a4cba42c1e73ecead9ad"
 }

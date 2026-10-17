@@ -1,138 +1,154 @@
 # Англійська · Урок 2 · Заняття 30 — Лійка в іншому місці
 
-**Ситуація.** Ви з Анною пересаджуєте кімнатні рослини. Перевіряєте, які рослини живі, й шукаєте лійку та набір інструментів.
+**Ситуація.** Ви з подругою пересаджуєте кімнатні рослини. Одні виглядають здоровими, інші зів’яли. Треба знайти лійку й набір інструментів і перевірити, чи вологий ґрунт у горщиках.
 
-**Що ви опануєте:** сказати, що річ в іншому місці, й відрізнити це від зникнення
-**Нові слова:** elsewhere
+**Що ви опануєте:** сказати, що річ в іншому місці, і описати стан рослини
+**Нові слова:** elsewhere, healthy, wilted, damp
+**Повертаються:** alive, dead, missing, complete, dry
 
 ---
 
 ## Інтро 1
 
-### Не тут, а в іншому місці
+### Лійки немає на столі
 
-`elsewhere` — «в іншому місці». Лійки на столі немає: `It is elsewhere` — «Вона в іншому місці». Саме слово не говорить, де саме. Лійка може бути на балконі. Переставляти горщики на столі вдесяте заради цього не обов’язково.
+Ви зібралися поливати рослини, але лійки на столі немає. Ви пам’ятаєте, що вчора прибрали її з кімнати, а куди саме, не пам’ятаєте. elsewhere — «в іншому місці». Слово не називає місце: воно лише каже, що речі тут немає. It is elsewhere — «Вона в іншому місці».
 
-**Анна перенесла лійку зі столу на балкон. Не називаючи балкона, скажіть повною фразою, що вона в іншому місці.**
+**Подруга питає, де лійка. Скажіть повною фразою, що лійка в іншому місці, не тут.**
 
 - ✅ **It is elsewhere.**
-- ❌ It elsewhere. — *Між `It` і `elsewhere` потрібно `is`.*
-- ❌ It is not elsewhere. — *Це заперечує перебування в іншому місці. Лійку перенесли.*
+- ❌ It elsewhere. — *Між It і elsewhere потрібно is: It is elsewhere.*
+- ❌ It is not elsewhere. — *Із not виходить «Вона не в іншому місці». А тут лійки немає: It is elsewhere.*
 
 ---
 
 ## Інтро 2
 
-### Не на місці — ще не загубилося
+### Нові листки
 
-`missing` — «зниклий, відсутній на своєму місці». Якщо потрібної речі немає й ви не знаєте, куди вона поділася: `It is missing`. А якщо Анна просто віднесла її на балкон, можна сказати `It is elsewhere`. Річ в іншому місці не обов’язково загублена.
+Подруга тримає в руках горщик з рослиною, яку ви ще не бачили. Ви хочете дізнатися, у якому вона стані. healthy — «здоровий, міцний». Is it healthy? — «Воно здорове?»
 
-**Ви знаєте, що лійка на балконі. На запитання `Is it missing?` дайте коротку відповідь «ні»: вона не зникла.**
+**Запитайте подругу, чи здорова рослина.**
 
-- ✅ **No, it is not.**
-- ❌ Yes, it is. — *За умовою ви заперечуєте зникнення: місце відоме.*
-- ❌ No, it are not. — *З `it` потрібно `is`.*
+- ✅ **Is it healthy?**
+- ❌ It is healthy. — *Так звучить твердження «Воно здорове». Щоб запитати, ставимо Is наперед: Is it healthy?*
+- ❌ Are it healthy? — *З it потрібно is: Is it healthy?*
 
 ---
 
 ## Інтро 3
 
-### Живе чи загибле
+### Квітка біля вікна
 
-`alive` — «живий», `dead` — «мертвий, загиблий». Це можна сказати й про рослину: `It is alive`. Якщо вона загинула: `It is dead`. `Is it alive?` — «Вона жива?» Сухий листок сам по собі ще не доводить, що вся рослина загинула.
+На підвіконні стоїть квітка, яку тиждень ніхто не поливав. Листки обвисли й пожовкли. wilted — «зів’ялий». It's wilted — «Вона зів’яла».
 
-**На рослині з’явилися нові листки. Скажіть повною фразою, що вона жива.**
+**Подруга питає, що з квіткою біля вікна. Скажіть коротко, що вона зів’яла.**
 
-- ✅ **It is alive.**
-- ❌ It is dead. — *Це означає, що рослина загинула. Тут вона росте.*
-- ❌ It alive. — *Між `It` і `alive` потрібно `is`.*
+- ✅ **It's wilted.**
+- ❌ It's not wilted. — *Із not виходить «Вона не зів’яла». А листки обвисли: It's wilted.*
+- ❌ They're wilted. — *They're — про кілька квітів, а біля вікна стоїть одна: It's wilted.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Лійку перенесли зі столу на балкон. Не називайте балкон: скажіть повною фразою, що вона в іншому місці**
+**1 · Картка слова — elsewhere**
+<!-- interaction_id: en:lesson-02:session-30:word:elsewhere; family: word_card -->
+> **elsewhere** — в іншому місці. It is elsewhere — «Вона в іншому місці». Слово не називає місце, а лише каже, що речі тут немає.
+
+**2 · Садові рукавички лежать не на цьому столі. Скажіть повною фразою, що вони в іншому місці**
 <!-- interaction_id: en:lesson-02:session-30:i01; family: phrase_builder -->
-Плитки: `elsewhere` `is` `It` `are` → **It is elsewhere.**
-*(плитка `are` зайва: тут потрібно `is` — `It is elsewhere.`)*
+Плитки: `elsewhere` `are` `They` `is` → **They are elsewhere.**
+*(плитка `is` зайва: тут потрібно `are` — `They are elsewhere.`)*
 
-**2 · Послухайте фразу**
+**3 · Картка слова — healthy**
+<!-- interaction_id: en:lesson-02:session-30:word:healthy; family: word_card -->
+> **healthy** — здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування.
+
+**4 · Послухайте фразу про рослину**
 <!-- interaction_id: en:lesson-02:session-30:i02; family: listen_choose -->
-🔊 *It is alive.* → **It is alive.** · It is dead. · It is missing.
-- It is dead. — *У записі останнє слово — `alive`, а в цьому варіанті — `dead`.*
-- It is missing. — *У записі останнє слово — `alive`, а в цьому варіанті — `missing`.*
+🔊 *It is healthy.* → **It is healthy.** · It is dead. · It is alive.
+- It is dead. — *У записі останнє слово — `healthy`, а в цьому варіанті — `dead`.*
+- It is alive. — *У записі останнє слово — `healthy`, а в цьому варіанті — `alive`.*
 
-**3 · Ви шукаєте набір інструментів. Запитайте, де він**
+**5 · Ви шукаєте набір інструментів. Запитайте подругу, де він**
 <!-- interaction_id: en:lesson-02:session-30:i03; family: context_gap_grammar -->
 Where ___ it? → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Запитання — `Where is it?`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-30:i04; family: speed_match -->
-elsewhere — в іншому місці · alive — живий · dead — мертвий, загиблий · missing — зниклий, відсутній
+elsewhere — в іншому місці · healthy — здоровий · wilted — зів’ялий · damp — вологий
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — damp**
+<!-- interaction_id: en:lesson-02:session-30:word:damp; family: word_card -->
+> **damp** — вологий, трохи сирий. It is damp — «Вона волога». Про ґрунт, рушник, стіну, одяг.
+
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-02:session-30:i05; family: listen_build_dictation -->
-🔊 *It is not complete.* Плитки: `complete` `not` `is` `It` `are` → **It is not complete.**
-*(плитка `are` зайва: тут потрібно `is` — `It is not complete.`)*
+🔊 *It is not damp.* Плитки: `damp` `not` `is` `It` `are` → **It is not damp.**
+*(плитка `are` зайва: тут потрібно `is` — `It is not damp.`)*
 
-**6 · Два інструменти лежать в іншому місці. Скажіть це повною фразою**
+**9 · Подруга показує незнайомий садовий інструмент. Запитайте, що це**
 <!-- interaction_id: en:lesson-02:session-30:i06; family: phrase_builder -->
-Плитки: `elsewhere` `are` `They` `is` → **They are elsewhere.**
-*(плитка `is` зайва: тут потрібно `are` — `They are elsewhere.`)*
+Плитки: `it` `is` `What` `Where` → **What is it?**
+*(плитка `Where` зайва: тут потрібно `What` — `What is it?`)*
 
-**7 · Одного інструмента немає, і ніхто не знає, куди він подівся. Коротко скажіть, що він зник**
+**10 · Картка слова — wilted**
+<!-- interaction_id: en:lesson-02:session-30:word:wilted; family: word_card -->
+> **wilted** — зів’ялий. It is wilted — «Вона зів’яла». Про квітку, листок, салат, траву.
+
+**11 · Листки в квітки на підвіконні обвисли й пожовкли. Коротко скажіть подрузі, що вона зів’яла**
 <!-- interaction_id: en:lesson-02:session-30:i07; family: scripted_repeat_compare -->
-🎙 **It's missing.**
+🎙 **It's wilted.**
 
-**8 · Рослина росте. На «Is it alive?» доповніть коротку відповідь «так»**
+**12 · Ґрунт у горщику сухий. На «Is it damp?» доповніть коротке «ні»**
 <!-- interaction_id: en:lesson-02:session-30:i08; family: context_gap_grammar -->
-Yes, it ___. → **is** · am · are
+No, it ___ not. → **is** · am · are
 - am — *З `it` потрібно `is`.*
-- are — *Відповідь — `Yes, it is`.*
+- are — *Відповідь — `No, it is not`.*
 
-**9 · Послухайте фразу про набір**
+**13 · Послухайте запитання**
 <!-- interaction_id: en:lesson-02:session-30:i09; family: listen_choose -->
-🔊 *It is complete.* → **It is complete.** · It is missing. · It is elsewhere.
-- It is missing. — *У записі останнє слово — `complete`, а в цьому варіанті — `missing`.*
-- It is elsewhere. — *У записі останнє слово — `complete`, а в цьому варіанті — `elsewhere`.*
+🔊 *Is it wilted?* → **Is it wilted?** · Is it healthy? · Is it missing?
+- Is it healthy? — *У записі останнє слово — `wilted`, а в цьому варіанті — `healthy`.*
+- Is it missing? — *У записі останнє слово — `wilted`, а в цьому варіанті — `missing`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-30:i10; family: speed_match -->
-complete — повний, завершений · elsewhere — в іншому місці · missing — зниклий, відсутній · alive — живий
+alive — живий · dead — мертвий · dry — сухий · damp — вологий
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-02:session-30:i11; family: listen_build_dictation -->
-🔊 *They are dead.* Плитки: `dead` `are` `They` `is` → **They are dead.**
-*(плитка `is` зайва: тут потрібно `are` — `They are dead.`)*
+🔊 *They are healthy.* Плитки: `healthy` `are` `They` `is` → **They are healthy.**
+*(плитка `is` зайва: тут потрібно `are` — `They are healthy.`)*
 
-**12 · Запитайте, чи повний набір інструментів, чи все в ньому на місці**
+**16 · Ви хочете дізнатися, чи всі інструменти на місці. Запитайте подругу, чи повний набір**
 <!-- interaction_id: en:lesson-02:session-30:i12; family: phrase_builder -->
 Плитки: `complete` `it` `Is` `Who` → **Is it complete?**
 *(плитка `Who` зайва: тут потрібно `Is` — `Is it complete?`)*
 
-**13 · Анна вирішила, що рослина загинула, але ви бачите нові листки. Коротко скажіть, що вона не загинула**
+**17 · Подруга думає, що квітка загинула, але ви бачите на ній новий листок. Коротко скажіть, що вона не загинула**
 <!-- interaction_id: en:lesson-02:session-30:i13; family: scripted_repeat_compare -->
 🎙 **It's not dead.**
 
-**14 · Два горщики перенесли зі столу. Повідомте, що вони в іншому місці**
+**18 · Два горщики стояли на столі, а тепер їх там немає. Скажіть, що вони в іншому місці**
 <!-- interaction_id: en:lesson-02:session-30:i14; family: context_gap_grammar -->
 They ___ elsewhere. → **are** · am · is
 - am — *З `They` потрібно `are`.*
 - is — *Про два горщики — `They are elsewhere`.*
 
-**15 · Послухайте запитання**
+**19 · Послухайте запитання**
 <!-- interaction_id: en:lesson-02:session-30:i15; family: listen_choose -->
-🔊 *Is it dead?* → **Is it dead?** · Is it alive? · Is it complete?
-- Is it alive? — *У записі останнє слово — `dead`, а в цьому варіанті — `alive`.*
-- Is it complete? — *У записі останнє слово — `dead`, а в цьому варіанті — `complete`.*
+🔊 *Where is it?* → **Where is it?** · Who is it? · What is it?
+- Who is it? — *У записі перше слово — `Where`, а в цьому варіанті — `Who`.*
+- What is it? — *У записі перше слово — `Where`, а в цьому варіанті — `What`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-30:i16; family: speed_match -->
-dead — мертвий, загиблий · alive — живий · complete — повний, завершений · elsewhere — в іншому місці
+healthy — здоровий · elsewhere — в іншому місці · missing — зниклий · complete — повний
 
-**17 · Набору інструментів на столі немає. Запитайте Анну, чи він в іншому місці**
+**21 · Лійки немає на столі. Запитайте подругу, чи вона в іншому місці**
 <!-- interaction_id: en:lesson-02:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Is it elsewhere?**
-

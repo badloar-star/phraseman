@@ -94,7 +94,7 @@ lonely — самотньо · homesick — сумує за домом · messy 
 🔊 *It is cozy.* Плитки: `cozy` `is` `It` `are` → **It is cozy.**
 *(плитка `are` зайва: тут потрібно `is` — `It is cozy.`)*
 
-**10 · Ви й сестра обидві переїхали й сумуєте за рідним містом. Складіть фразу від вас двох**
+**10 · Ви з сестрою переїхали й сумуєте за рідним містом. Складіть фразу від вас двох**
 <!-- interaction_id: en:lesson-01:session-37:i06; family: phrase_builder -->
 Плитки: `homesick` `are` `We` `They` → **We are homesick.**
 *(плитка `They` зайва: тут потрібно `We` — `We are homesick.`)*

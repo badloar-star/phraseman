@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-02:intro1:r2": {
-          "ru": "Sad означает «грустный». Здесь Том сообщает, что устал.",
-          "uk": "Sad означає «сумний». Тут Том повідомляє, що втомився."
+          "ru": "Sad означает «грустный». Здесь брат сообщает, что устал.",
+          "uk": "Sad означає «сумний». Тут брат повідомляє, що втомився."
         },
         "en:lesson-01:session-02:intro1:r3": {
           "ru": "В полной фразе перед tired нужно am.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-02:intro2:r2": {
-          "ru": "Happy означает «рад». Том расстроен из-за отмены.",
-          "uk": "Happy означає «радий». Том засмучений через скасування."
+          "ru": "Happy означает «рад». Брат расстроен из-за отмены.",
+          "uk": "Happy означає «радий». Брат засмучений через скасування."
         },
         "en:lesson-01:session-02:intro2:r3": {
           "ru": "Перед sad в этой полной фразе нужно am.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a6bb231b26627c330b3d2939a08ffa5fa37b70140a926c20283c77746c688a69"
+  "auxiliaryFingerprint": "e6bb468931f46b652e8f7fae16e76c0f23c147cda417051e068938ea23282794"
 }

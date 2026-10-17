@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-09:intro2:r2": {
-          "ru": "He — «он», а вы говорите о Кате: she.",
-          "uk": "He — «він», а ви говорите про Катю: she."
+          "ru": "He — «он», а вы говорите о сестре: she.",
+          "uk": "He — «він», а ви говорите про сестру: she."
         },
         "en:lesson-01:session-09:intro2:r3": {
           "ru": "После She здесь нужно is.",
@@ -32,11 +32,15 @@
       "interactionId": "en:lesson-01:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-09:intro3:r2": {
-          "ru": "Между `It` и `here` нужно `is`: `It is here`.",
-          "uk": "Між `It` і `here` потрібно `is`: `It is here`."
+          "ru": "Между It и here нужно is: It is here.",
+          "uk": "Між It і here потрібно is: It is here."
+        },
+        "en:lesson-01:session-09:intro3:r3": {
+          "ru": "She говорят о женщине. Карточка — вещь: It is here.",
+          "uk": "She кажуть про жінку. Картка — річ: It is here."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a1f6aecd2b2182de80fdbf0988cbf78138a4dd80a4df411556054c7c09bbdab6"
+  "auxiliaryFingerprint": "64fd6374be4b3bbc21cab21b1b8446af96a1abf31a233c72d83bfd4fb8d9f381"
 }

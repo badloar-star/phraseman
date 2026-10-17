@@ -4,39 +4,82 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-42:i01",
+      "interactionId": "en:lesson-02:session-42:word:queasy",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — queasy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-42:word:queasy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — queasy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-42:word:queasy:audio",
+          "transcript": "queasy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-42:word:queasy:r1",
+            "targetText": "queasy",
+            "meaningByLocale": {
+              "ru": "чувствующий тошноту, подташнивает. I am queasy — «Меня подташнивает». О человеке в лодке, в машине, после еды.",
+              "uk": "який відчуває нудоту. I am queasy — «Мене нудить». Про людину в човні, в машині, після їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "queasy",
+          "definitionByLocale": {
+            "ru": "чувствующий тошноту, подташнивает. I am queasy — «Меня подташнивает». О человеке в лодке, в машине, после еды.",
+            "uk": "який відчуває нудоту. I am queasy — «Мене нудить». Про людину в човні, в машині, після їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "У записі вказано неправильну адресу. Скажіть повною фразою, що запис неточний",
+      "prompt": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У записі вказано неправильну адресу. Скажіть повною фразою, що запис неточний",
+      "accessibilityLabel": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is inaccurate.",
+        "targetPhrase": "I am queasy.",
         "localizedMeaning": {
-          "ru": "В записи указан неверный адрес. Скажите полной фразой, что запись неточная",
-          "uk": "У записі вказано неправильну адресу. Скажіть повною фразою, що запис неточний"
+          "ru": "Хозяин лодки спрашивает, как вы. Скажите ему полной фразой, что вас подташнивает.",
+          "uk": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить."
         },
         "orderedTokens": [
-          "It",
-          "is",
-          "inaccurate"
+          "I",
+          "am",
+          "queasy"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-42:i01:tile:d1",
             "correct": false,
-            "testedDimension": "У записі вказано неправильну адресу. Скажіть повною фразою, що запис неточний",
+            "testedDimension": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is inaccurate.`",
-              "uk": "тут потрібно `is` — `It is inaccurate.`"
+              "ru": "здесь нужно `am` — `I am queasy.`",
+              "uk": "тут потрібно `am` — `I am queasy.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олега",
+      "prompt": "Послухайте, що господар човна каже про подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-42:i02:r1",
-          "text": "He is polite."
+          "text": "She is pale."
         },
         {
           "responseId": "en:lesson-02:session-42:i02:r2",
-          "text": "He is honest."
+          "text": "She is tired."
         },
         {
           "responseId": "en:lesson-02:session-42:i02:r3",
-          "text": "He is active."
+          "text": "She is calm."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олега",
+      "accessibilityLabel": "Послухайте, що господар човна каже про подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i02:audio",
-          "transcript": "He is polite."
+          "transcript": "She is pale."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-42:i02:r1",
-            "targetText": "He is polite.",
+            "targetText": "She is pale.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-42:i02:r2",
-            "targetText": "He is honest.",
+            "targetText": "She is tired.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-42:i02:r3",
-            "targetText": "He is active.",
+            "targetText": "She is calm.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-42:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте, що господар човна каже про подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `polite`, а в этом варианте — `honest`.",
-              "uk": "У записі останнє слово — `polite`, а в цьому варіанті — `honest`."
+              "ru": "В записи последнее слово — `pale`, а в этом варианте — `tired`.",
+              "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `tired`."
             }
           },
           {
             "responseId": "en:lesson-02:session-42:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте, що господар човна каже про подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `polite`, а в этом варианте — `active`.",
-              "uk": "У записі останнє слово — `polite`, а в цьому варіанті — `active`."
+              "ru": "В записи последнее слово — `pale`, а в этом варианте — `calm`.",
+              "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `calm`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-42:word:swollen",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swollen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-42:word:swollen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swollen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-42:word:swollen:audio",
+          "transcript": "swollen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-42:word:swollen:r1",
+            "targetText": "swollen",
+            "meaningByLocale": {
+              "ru": "опухший, вздувшийся. It's swollen — «Она опухла». О щиколотке, пальце, щеке, глазе.",
+              "uk": "опухлий, роздутий. It's swollen — «Вона опухла». Про кісточку, палець, щоку, око."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swollen",
+          "definitionByLocale": {
+            "ru": "опухший, вздувшийся. It's swollen — «Она опухла». О щиколотке, пальце, щеке, глазе.",
+            "uk": "опухлий, роздутий. It's swollen — «Вона опухла». Про кісточку, палець, щоку, око."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-42:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточніть, чи є неточність у цьому записі",
+      "prompt": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-42:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточніть, чи є неточність у цьому записі",
+      "accessibilityLabel": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, есть ли неточность в этой записи",
-          "uk": "Уточніть, чи є неточність у цьому записі"
+          "ru": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+          "uk": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла"
         },
-        "gappedTargetPhrase": "___ it inaccurate?",
+        "gappedTargetPhrase": "___ it swollen?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-42:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Уточніть, чи є неточність у цьому записі",
+        "testedDimension": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-42:i03:r2",
             "correct": false,
-            "testedDimension": "Уточніть, чи є неточність у цьому записі",
+            "testedDimension": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-42:i03:r3",
             "correct": false,
-            "testedDimension": "Уточніть, чи є неточність у цьому записі",
+            "testedDimension": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it inaccurate?`.",
-              "uk": "Запитання — `Is it inaccurate?`."
+              "ru": "Вопрос — `Is it swollen?`.",
+              "uk": "Питання — `Is it swollen?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-42:i04:p1",
-            "target": "inaccurate",
+            "target": "queasy",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "чувствующий тошноту",
+              "uk": "який відчуває нудоту"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i04:p2",
-            "target": "accurate",
+            "target": "itchy",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "зудящий",
+              "uk": "що свербить"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i04:p3",
-            "target": "polite",
+            "target": "swollen",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "опухший",
+              "uk": "опухлий"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i04:p4",
-            "target": "inactive",
+            "target": "pale",
             "meaningByLocale": {
-              "ru": "не действующий",
-              "uk": "такий, що не діє"
+              "ru": "бледный",
+              "uk": "блідий"
             }
           }
         ],
         "leftColumn": [
-          "inaccurate",
-          "accurate",
-          "polite",
-          "inactive"
+          "queasy",
+          "itchy",
+          "swollen",
+          "pale"
         ],
         "rightColumn": [
-          "неточний",
-          "точний",
-          "ввічливий",
-          "такий, що не діє"
+          "який відчуває нудоту",
+          "що свербить",
+          "опухлий",
+          "блідий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,85 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-42:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-42:word:itchy",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — itchy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-42:word:itchy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — itchy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-42:word:itchy:audio",
+          "transcript": "itchy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-42:word:itchy:r1",
+            "targetText": "itchy",
+            "meaningByLocale": {
+              "ru": "зудящий, чешущийся. Is it itchy? — «Оно чешется?» О коже, укусе, шерстяном свитере, глазах.",
+              "uk": "що свербить. Is it itchy? — «Воно свербить?» Про шкіру, укус, вовняний светр, очі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "itchy",
+          "definitionByLocale": {
+            "ru": "зудящий, чешущийся. Is it itchy? — «Оно чешется?» О коже, укусе, шерстяном свитере, глазах.",
+            "uk": "що свербить. Is it itchy? — «Воно свербить?» Про шкіру, укус, вовняний светр, очі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Послухайте запитання подруги про укус і складіть його",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Послухайте запитання подруги про укус і складіть його",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i05:audio",
-          "transcript": "Yes, it is."
+          "transcript": "Is it itchy?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, it is.",
+        "hiddenTargetPhrase": "Is it itchy?",
         "orderedTokens": [
-          "Yes,",
+          "Is",
           "it",
-          "is"
+          "itchy"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-42:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Послухайте запитання подруги про укус і складіть його",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, it is.`",
-              "uk": "тут потрібно `Yes,` — `Yes, it is.`"
+              "ru": "здесь нужно `Is` — `Is it itchy?`",
+              "uk": "тут потрібно `Is` — `Is it itchy?`"
             }
           }
         ],
@@ -313,39 +442,82 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-42:word:shaky",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shaky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-42:word:shaky:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shaky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-42:word:shaky:audio",
+          "transcript": "shaky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-42:word:shaky:r1",
+            "targetText": "shaky",
+            "meaningByLocale": {
+              "ru": "дрожащий, нетвёрдый. Is he shaky? — «Его трясёт?» О руках, ногах, голосе, лестнице.",
+              "uk": "тремтливий, нетвердий. Is he shaky? — «Його трясе?» Про руки, ноги, голос, драбину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shaky",
+          "definitionByLocale": {
+            "ru": "дрожащий, нетвёрдый. Is he shaky? — «Его трясёт?» О руках, ногах, голосе, лестнице.",
+            "uk": "тремтливий, нетвердий. Is he shaky? — «Його трясе?» Про руки, ноги, голос, драбину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-42:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна знайшла помилку в довіднику, але ви ще не бачили її. Запитайте, що неточно",
+      "prompt": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна знайшла помилку в довіднику, але ви ще не бачили її. Запитайте, що неточно",
+      "accessibilityLabel": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is inaccurate?",
+        "targetPhrase": "Is he shaky?",
         "localizedMeaning": {
-          "ru": "Анна нашла ошибку в справочнике, но вы ещё не видели её. Спросите, что неточно",
-          "uk": "Анна знайшла помилку в довіднику, але ви ще не бачили її. Запитайте, що неточно"
+          "ru": "Брат подруги вышел на причал, и вас беспокоит, что он стоит нетвёрдо. Спросите подругу, дрожит ли он.",
+          "uk": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він."
         },
         "orderedTokens": [
-          "What",
-          "is",
-          "inaccurate"
+          "Is",
+          "he",
+          "shaky"
         ],
         "authoredDistractorTokens": [
-          "Where"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-42:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна знайшла помилку в довіднику, але ви ще не бачили її. Запитайте, що неточно",
+            "testedDimension": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is inaccurate?`",
-              "uk": "тут потрібно `What` — `What is inaccurate?`"
+              "ru": "здесь нужно `Is` — `Is he shaky?`",
+              "uk": "тут потрібно `Is` — `Is he shaky?`"
             }
           }
         ],
@@ -358,25 +530,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Адреса в записі не відповідає справжній. Коротко скажіть, що запис неточний",
+      "prompt": "Ви зійшли з човна, але голова ще паморочиться. Скажіть продавцеві води коротко, що вас нудить.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i07:audio"
       ],
-      "accessibilityLabel": "Адреса в записі не відповідає справжній. Коротко скажіть, що запис неточний",
+      "accessibilityLabel": "Ви зійшли з човна, але голова ще паморочиться. Скажіть продавцеві води коротко, що вас нудить.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i07:audio",
-          "transcript": "It's inaccurate."
+          "transcript": "I'm queasy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's inaccurate.",
+        "targetPhrase": "I'm queasy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,11 +563,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Клуб уже припинив роботу. На «Is it inactive?» доповніть коротку відповідь «так»",
+      "prompt": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-42:i08:r1",
@@ -412,12 +584,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Клуб уже припинив роботу. На «Is it inactive?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Клуб уже прекратил работу. На «Is it inactive?» дополните короткое «да»",
-          "uk": "Клуб уже припинив роботу. На «Is it inactive?» доповніть коротку відповідь «так»"
+          "ru": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+          "uk": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -434,12 +606,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Клуб уже припинив роботу. На «Is it inactive?» доповніть коротку відповідь «так»",
+        "testedDimension": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-42:i08:r2",
             "correct": false,
-            "testedDimension": "Клуб уже припинив роботу. На «Is it inactive?» доповніть коротку відповідь «так»",
+            "testedDimension": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -448,7 +620,7 @@
           {
             "responseId": "en:lesson-02:session-42:i08:r3",
             "correct": false,
-            "testedDimension": "Клуб уже припинив роботу. На «Is it inactive?» доповніть коротку відповідь «так»",
+            "testedDimension": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, it is`.",
               "uk": "Відповідь — `Yes, it is`."
@@ -460,51 +632,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про клуб",
+      "prompt": "Послухайте, що подруга каже про руку",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-42:i09:r1",
-          "text": "It is inactive."
+          "text": "It is itchy."
         },
         {
           "responseId": "en:lesson-02:session-42:i09:r2",
-          "text": "It is inaccurate."
+          "text": "It is swollen."
         },
         {
           "responseId": "en:lesson-02:session-42:i09:r3",
-          "text": "It is active."
+          "text": "It is pale."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про клуб",
+      "accessibilityLabel": "Послухайте, що подруга каже про руку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i09:audio",
-          "transcript": "It is inactive."
+          "transcript": "It is itchy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-42:i09:r1",
-            "targetText": "It is inactive.",
+            "targetText": "It is itchy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-42:i09:r2",
-            "targetText": "It is inaccurate.",
+            "targetText": "It is swollen.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-42:i09:r3",
-            "targetText": "It is active.",
+            "targetText": "It is pale.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +685,19 @@
           {
             "responseId": "en:lesson-02:session-42:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про клуб",
+            "testedDimension": "Послухайте, що подруга каже про руку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inactive`, а в этом варианте — `inaccurate`.",
-              "uk": "У записі останнє слово — `inactive`, а в цьому варіанті — `inaccurate`."
+              "ru": "В записи последнее слово — `itchy`, а в этом варианте — `swollen`.",
+              "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `swollen`."
             }
           },
           {
             "responseId": "en:lesson-02:session-42:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про клуб",
+            "testedDimension": "Послухайте, що подруга каже про руку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inactive`, а в этом варианте — `active`.",
-              "uk": "У записі останнє слово — `inactive`, а в цьому варіанті — `active`."
+              "ru": "В записи последнее слово — `itchy`, а в этом варианте — `pale`.",
+              "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `pale`."
             }
           }
         ],
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -550,48 +722,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-42:i10:p1",
-            "target": "polite",
+            "target": "shaky",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "дрожащий",
+              "uk": "тремтливий"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i10:p2",
-            "target": "inactive",
+            "target": "queasy",
             "meaningByLocale": {
-              "ru": "не действующий",
-              "uk": "такий, що не діє"
+              "ru": "чувствующий тошноту",
+              "uk": "який відчуває нудоту"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i10:p3",
-            "target": "accurate",
+            "target": "calm",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "спокойный",
+              "uk": "спокійний"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i10:p4",
-            "target": "inaccurate",
+            "target": "tired",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "уставший",
+              "uk": "втомлений"
             }
           }
         ],
         "leftColumn": [
-          "polite",
-          "inactive",
-          "accurate",
-          "inaccurate"
+          "shaky",
+          "queasy",
+          "calm",
+          "tired"
         ],
         "rightColumn": [
-          "ввічливий",
-          "такий, що не діє",
-          "точний",
-          "неточний"
+          "тремтливий",
+          "який відчуває нудоту",
+          "спокійний",
+          "втомлений"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,30 +781,30 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу про відомості",
+      "prompt": "Послухайте, що аптекар каже про ваші пальці, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу про відомості",
+      "accessibilityLabel": "Послухайте, що аптекар каже про ваші пальці, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i11:audio",
-          "transcript": "They are not accurate."
+          "transcript": "They are not swollen."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "They are not accurate.",
+        "hiddenTargetPhrase": "They are not swollen.",
         "orderedTokens": [
           "They",
           "are",
           "not",
-          "accurate"
+          "swollen"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -641,10 +813,10 @@
           {
             "responseId": "en:lesson-02:session-42:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу про відомості",
+            "testedDimension": "Послухайте, що аптекар каже про ваші пальці, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are not accurate.`",
-              "uk": "тут потрібно `are` — `They are not accurate.`"
+              "ru": "здесь нужно `are` — `They are not swollen.`",
+              "uk": "тут потрібно `are` — `They are not swollen.`"
             }
           }
         ],
@@ -657,38 +829,38 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви ще не знайомі з Олегом. Запитайте Анну, чи він ввічливий",
+      "prompt": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви ще не знайомі з Олегом. Запитайте Анну, чи він ввічливий",
+      "accessibilityLabel": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is he polite?",
+        "targetPhrase": "Are they itchy?",
         "localizedMeaning": {
-          "ru": "Вы ещё не знакомы с Олегом. Спросите Анну, вежливый ли он",
-          "uk": "Ви ще не знайомі з Олегом. Запитайте Анну, чи він ввічливий"
+          "ru": "У брата подруги на руке несколько комариных укусов. Спросите подругу, чешутся ли они.",
+          "uk": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться."
         },
         "orderedTokens": [
-          "Is",
-          "he",
-          "polite"
+          "Are",
+          "they",
+          "itchy"
         ],
         "authoredDistractorTokens": [
-          "Are"
+          "Is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-42:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви ще не знайомі з Олегом. Запитайте Анну, чи він ввічливий",
+            "testedDimension": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is he polite?`",
-              "uk": "тут потрібно `Is` — `Is he polite?`"
+              "ru": "здесь нужно `Are` — `Are they itchy?`",
+              "uk": "тут потрібно `Are` — `Are they itchy?`"
             }
           }
         ],
@@ -701,25 +873,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Клуб більше не працює. Коротко повідомте, що він не діє",
+      "prompt": "Аптекар питає, що з ногою. Скажіть коротко, що вона опухла.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i13:audio"
       ],
-      "accessibilityLabel": "Клуб більше не працює. Коротко повідомте, що він не діє",
+      "accessibilityLabel": "Аптекар питає, що з ногою. Скажіть коротко, що вона опухла.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i13:audio",
-          "transcript": "It's inactive."
+          "transcript": "It's swollen."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's inactive.",
+        "targetPhrase": "It's swollen.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,19 +906,19 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви перевірили інший запис: в адресі теж помилка. Запереченням скажіть, що запис не точний",
+      "prompt": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-42:i14:r1",
-          "text": "is"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-42:i14:r2",
-          "text": "am"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-42:i14:r3",
@@ -755,46 +927,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви перевірили інший запис: в адресі теж помилка. Запереченням скажіть, що запис не точний",
+      "accessibilityLabel": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы проверили другую запись: в адресе тоже ошибка. Отрицанием скажите, что запись не точная",
-          "uk": "Ви перевірили інший запис: в адресі теж помилка. Запереченням скажіть, що запис не точний"
+          "ru": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+          "uk": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите"
         },
-        "gappedTargetPhrase": "It ___ not accurate.",
+        "gappedTargetPhrase": "I ___ not shaky.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-42:i14:r1",
-            "text": "is"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-42:i14:r2",
-            "text": "am"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-42:i14:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Ви перевірили інший запис: в адресі теж помилка. Запереченням скажіть, що запис не точний",
+        "testedDimension": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-42:i14:r2",
             "correct": false,
-            "testedDimension": "Ви перевірили інший запис: в адресі теж помилка. Запереченням скажіть, що запис не точний",
+            "testedDimension": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
             "feedbackByLocale": {
-              "ru": "С `It` нужно `is`.",
-              "uk": "З `It` потрібно `is`."
+              "ru": "С `I` нужно `am`.",
+              "uk": "З `I` потрібно `am`."
             }
           },
           {
             "responseId": "en:lesson-02:session-42:i14:r3",
             "correct": false,
-            "testedDimension": "Ви перевірили інший запис: в адресі теж помилка. Запереченням скажіть, що запис не точний",
+            "testedDimension": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not accurate`.",
-              "uk": "Фраза — `It is not accurate`."
+              "ru": "Фраза — `I am not shaky`.",
+              "uk": "Фраза — `I am not shaky`."
             }
           }
         ]
@@ -803,51 +975,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте запитання подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-42:i15:r1",
-          "text": "Are they inaccurate?"
+          "text": "Are you queasy?"
         },
         {
           "responseId": "en:lesson-02:session-42:i15:r2",
-          "text": "Are they accurate?"
+          "text": "Are you shaky?"
         },
         {
           "responseId": "en:lesson-02:session-42:i15:r3",
-          "text": "Are they official?"
+          "text": "Are you sleepy?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте запитання подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i15:audio",
-          "transcript": "Are they inaccurate?"
+          "transcript": "Are you queasy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-42:i15:r1",
-            "targetText": "Are they inaccurate?",
+            "targetText": "Are you queasy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-42:i15:r2",
-            "targetText": "Are they accurate?",
+            "targetText": "Are you shaky?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-42:i15:r3",
-            "targetText": "Are they official?",
+            "targetText": "Are you sleepy?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1028,19 @@
           {
             "responseId": "en:lesson-02:session-42:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inaccurate`, а в этом варианте — `accurate`.",
-              "uk": "У записі останнє слово — `inaccurate`, а в цьому варіанті — `accurate`."
+              "ru": "В записи последнее слово — `queasy`, а в этом варианте — `shaky`.",
+              "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `shaky`."
             }
           },
           {
             "responseId": "en:lesson-02:session-42:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inaccurate`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `inaccurate`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `queasy`, а в этом варианте — `sleepy`.",
+              "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `sleepy`."
             }
           }
         ],
@@ -879,7 +1051,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1065,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-42:i16:p1",
-            "target": "inactive",
+            "target": "itchy",
             "meaningByLocale": {
-              "ru": "не действующий",
-              "uk": "такий, що не діє"
+              "ru": "зудящий",
+              "uk": "що свербить"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i16:p2",
-            "target": "inaccurate",
+            "target": "swollen",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "опухший",
+              "uk": "опухлий"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i16:p3",
-            "target": "polite",
+            "target": "pale",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "бледный",
+              "uk": "блідий"
             }
           },
           {
             "pairId": "en:lesson-02:session-42:i16:p4",
-            "target": "accurate",
+            "target": "calm",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "спокойный",
+              "uk": "спокійний"
             }
           }
         ],
         "leftColumn": [
-          "inactive",
-          "inaccurate",
-          "polite",
-          "accurate"
+          "itchy",
+          "swollen",
+          "pale",
+          "calm"
         ],
         "rightColumn": [
-          "такий, що не діє",
-          "неточний",
-          "ввічливий",
-          "точний"
+          "що свербить",
+          "опухлий",
+          "блідий",
+          "спокійний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1124,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-42:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна пропонує перевірити ще один запис. Запитайте, чи він неточний",
+      "prompt": "Ви зустрічаєте подругу на причалі після човна. Запитайте її, чи нудить її.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i17:audio"
       ],
-      "accessibilityLabel": "Анна пропонує перевірити ще один запис. Запитайте, чи він неточний",
+      "accessibilityLabel": "Ви зустрічаєте подругу на причалі після човна. Запитайте її, чи нудить її.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-42:i17:audio",
-          "transcript": "Is it inaccurate?"
+          "transcript": "Are you queasy?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it inaccurate?",
+        "targetPhrase": "Are you queasy?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1164,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3ae10ab476190d6588e90a810603e2751a805eaf170ae17cb94a2eb14d2df8bb"
+  "learnerFingerprint": "19ebcdfd5715182b78dced6e7429eb5bf31bf628f65383a5af23dd8c44c8b90a"
 }

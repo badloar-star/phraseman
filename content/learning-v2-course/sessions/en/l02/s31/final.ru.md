@@ -1,138 +1,154 @@
 # Английский · Урок 2 · Занятие 31 — Чайник с двумя носиками
 
-**Ситуация.** Вы с Анной пришли на выставку керамики. Рассматриваете необычный чайник, сравниваете чашки и уточняете, входят ли два зала в один билет.
+**Ситуация.** Вы с подругой пришли на выставку керамики. Рассматриваете чайник с двумя носиками, старинные и расписные чашки и узнаёте, подходит ли ваш билет для второго зала.
 
-**Что вы освоите:** сказать, что вещь необычная, и уточнить сходство и различия
-**Новые слова:** unusual
+**Что вы освоите:** сказать, что вещь необычная, старинная или ценная, и уточнить сходство и различия
+**Новые слова:** unusual, antique, painted, valuable
+**Возвращаются:** similar, equal, separate, valid
 
 ---
 
 ## Интро 1
 
-### Не как обычно
+### Чайник с двумя носиками
 
-`unusual` — «необычный». У чайника два носика: `It is unusual`. Это не обязательно плохо или хорошо — просто не так, как обычно. Главное, наливая чай себе, не угостить заодно рукав соседа.
+Посреди зала стоит чайник с двумя носиками. Такого вы раньше не видели. unusual — «необычный», не такой, как другие вещи. It is unusual — «Он необычный».
 
-**Перед вами чайник с двумя носиками. Скажите полной фразой, что он необычный.**
+**Подруга спрашивает, что вы думаете о чайнике. Скажите полной фразой, что он необычный.**
 
 - ✅ **It is unusual.**
-- ❌ It unusual. — *Между `It` и `unusual` нужно `is`.*
-- ❌ It is not unusual. — *Это отрицает необычность. В условии нужно её отметить.*
+- ❌ It unusual. — *Между It и unusual нужно is: It is unusual.*
+- ❌ It is not unusual. — *С not выходит «Он обычный». А такой чайник вы видите впервые: It is unusual.*
 
 ---
 
 ## Интро 2
 
-### Похожи — не значит равны
+### Табличка у витрины
 
-`similar` — «похожие». Две чашки с похожим узором: `They are similar`. `equal` — «равные»: например, две цены одинаковой величины. Похожие чашки могут стоить по-разному. Слово выбираем по тому, что сравниваем.
+На табличке у витрины написано: чашка сделана почти двести лет назад. Вы стоите сбоку и год не видите. antique — «старинный». Is it antique? — «Она старинная?»
 
-**Две цены одинаковые. Скажите полной фразой, что они равны.**
+**Спросите подругу, старинная ли чашка.**
 
-- ✅ **They are equal.**
-- ❌ They are similar. — *Это «Они похожи». Здесь нужно сказать точнее: цены равны.*
-- ❌ They is equal. — *С `They` нужно `are`.*
+- ✅ **Is it antique?**
+- ❌ It is antique. — *Так звучит утверждение «Она старинная». Чтобы спросить, ставим Is вперёд: Is it antique?*
+- ❌ Are it antique? — *С it нужно is: Is it antique?*
 
 ---
 
 ## Интро 3
 
-### Отдельно или вместе
+### Витрина под замком
 
-`separate` — «отдельный». Для двух залов нужны отдельные билеты: `They are separate`. `valid` — «действительный». Показывая свой билет, спросите `Is it valid?`. Это вопрос о том, действует ли билет, а не о том, похож ли он на соседний.
+Витрина с этой чашкой закрыта на ключ, а рядом стоит смотрительница зала. Вы понимаете, что вещь дорогая и редкая. valuable — «ценный». It's valuable — «Она ценная».
 
-**Кассир подтвердил, что билет действует в этом зале. Анна спрашивает: `Is it valid?` Ответьте коротким «да».**
+**Подруга спрашивает, почему витрину закрыли на ключ. Скажите коротко, что чашка ценная.**
 
-- ✅ **Yes, it is.**
-- ❌ No, it is not. — *Так вы скажете, что билет не действует. Кассир подтвердил обратное.*
-- ❌ Yes, it are. — *С `it` нужно `is`.*
+- ✅ **It's valuable.**
+- ❌ It's not valuable. — *С not выходит «Она не ценная». А витрина под замком: It's valuable.*
+- ❌ They're valuable. — *They're — про несколько вещей, а чашка одна: It's valuable.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы впервые видите чайник с двумя носиками. Скажите полной фразой, что он необычный**
+**1 · Карточка слова — antique**
+<!-- interaction_id: en:lesson-02:session-31:word:antique; family: word_card -->
+> **antique** — старинный. It is antique — «Она старинная». О чашке, часах, мебели, монете.
+
+**2 · Две чашки на витрине сделаны почти двести лет назад. Скажите полной фразой, что они старинные**
 <!-- interaction_id: en:lesson-02:session-31:i01; family: phrase_builder -->
-Плитки: `unusual` `is` `It` `are` → **It is unusual.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is unusual.`)*
+Плитки: `antique` `are` `They` `is` → **They are antique.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are antique.`)*
 
-**2 · Послушайте фразу**
+**3 · Карточка слова — unusual**
+<!-- interaction_id: en:lesson-02:session-31:word:unusual; family: word_card -->
+> **unusual** — необычный, не такой, как все. It is unusual — «Он необычный». О форме, цвете, вкусе, идее.
+
+**4 · Послушайте фразу о чайнике**
 <!-- interaction_id: en:lesson-02:session-31:i02; family: listen_choose -->
-🔊 *They are similar.* → **They are similar.** · They are equal. · They are separate.
-- They are equal. — *В записи последнее слово — `similar`, а в этом варианте — `equal`.*
-- They are separate. — *В записи последнее слово — `similar`, а в этом варианте — `separate`.*
+🔊 *It is unusual.* → **It is unusual.** · It is valid. · It is separate.
+- It is valid. — *В записи последнее слово — `unusual`, а в этом варианте — `valid`.*
+- It is separate. — *В записи последнее слово — `unusual`, а в этом варианте — `separate`.*
 
-**3 · Спросите Анну, необычный ли этот чайник**
+**5 · Карточка слова — valuable**
+<!-- interaction_id: en:lesson-02:session-31:word:valuable; family: word_card -->
+> **valuable** — ценный, дорогой. It is valuable — «Она ценная». О старой вещи, картине, документе.
+
+**6 · Спросите подругу, ценная ли эта чашка**
 <!-- interaction_id: en:lesson-02:session-31:i03; family: context_gap_grammar -->
-___ it unusual? → **Is** · Am · Are
+___ it valuable? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
-- Are — *Вопрос — `Is it unusual?`.*
+- Are — *Вопрос — `Is it valuable?`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-31:i04; family: speed_match -->
-unusual — необычный · equal — равный · similar — похожий · separate — отдельный
+unusual — необычный · antique — старинный · painted — расписной · valuable — ценный
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — painted**
+<!-- interaction_id: en:lesson-02:session-31:word:painted; family: word_card -->
+> **painted** — расписной, раскрашенный. It is painted — «Она расписная». О чашке, тарелке, двери, стене.
+
+**9 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-31:i05; family: listen_build_dictation -->
-🔊 *They are not equal.* Плитки: `equal` `not` `are` `They` `is` → **They are not equal.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are not equal.`)*
+🔊 *They are not painted.* Плитки: `painted` `not` `are` `They` `is` → **They are not painted.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not painted.`)*
 
-**6 · Для двух залов выдали два отдельных билета. Скажите полной фразой, что они отдельные**
+**10 · Подруга отошла к другой витрине, и вы её не видите. Спросите смотрительницу, где она**
 <!-- interaction_id: en:lesson-02:session-31:i06; family: phrase_builder -->
-Плитки: `separate` `are` `They` `is` → **They are separate.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are separate.`)*
+Плитки: `she` `is` `Where` `Who` → **Where is she?**
+*(плитка `Who` лишняя: здесь нужно `Where` — `Where is she?`)*
 
-**7 · У чашки ручка в форме огромного уха. Коротко скажите, что она необычная**
+**11 · У чашки на витрине красные птицы по краю, нарисованные вручную. Коротко скажите подруге, что она расписная**
 <!-- interaction_id: en:lesson-02:session-31:i07; family: scripted_repeat_compare -->
-🎙 **It's unusual.**
+🎙 **It's painted.**
 
-**8 · Одна чашка стоит вдвое дороже другой. На вопрос о ценах «Are they equal?» дополните короткое «нет»**
+**12 · Одна чашка стоит вдвое дороже другой. На вопрос подруги «Are they equal?» дополните короткое «нет»**
 <!-- interaction_id: en:lesson-02:session-31:i08; family: context_gap_grammar -->
 No, they ___ not. → **are** · am · is
 - am — *С `they` нужно `are`.*
 - is — *Ответ — `No, they are not`.*
 
-**9 · Послушайте вопрос**
+**13 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-31:i09; family: listen_choose -->
-🔊 *Is it valid?* → **Is it valid?** · Is it unusual? · Is it separate?
-- Is it unusual? — *В записи последнее слово — `valid`, а в этом варианте — `unusual`.*
-- Is it separate? — *В записи последнее слово — `valid`, а в этом варианте — `separate`.*
+🔊 *Is it valid?* → **Is it valid?** · Is it valuable? · Is it antique?
+- Is it valuable? — *В записи последнее слово — `valid`, а в этом варианте — `valuable`.*
+- Is it antique? — *В записи последнее слово — `valid`, а в этом варианте — `antique`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-31:i10; family: speed_match -->
-valid — действительный · unusual — необычный · similar — похожий · equal — равный
+valid — действительный · equal — равный · similar — похожий · separate — отдельный
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-02:session-31:i11; family: listen_build_dictation -->
-🔊 *Where are they?* Плитки: `they` `are` `Where` `Who` → **Where are they?**
-*(плитка `Who` лишняя: здесь нужно `Where` — `Where are they?`)*
+🔊 *Is it unusual?* Плитки: `unusual` `it` `Is` `Are` → **Is it unusual?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it unusual?`)*
 
-**12 · В витрине стоит предмет непонятного назначения. Спросите, что это**
+**16 · В витрине лежит предмет непонятного назначения. Спросите смотрительницу, что это**
 <!-- interaction_id: en:lesson-02:session-31:i12; family: phrase_builder -->
 Плитки: `it` `is` `What` `Where` → **What is it?**
 *(плитка `Where` лишняя: здесь нужно `What` — `What is it?`)*
 
-**13 · У двух чашек похожие узоры. Коротко скажите, что чашки похожи**
+**17 · У двух чашек почти одинаковые узоры. Коротко скажите подруге, что они похожи**
 <!-- interaction_id: en:lesson-02:session-31:i13; family: scripted_repeat_compare -->
 🎙 **They're similar.**
 
-**14 · Билет был только на вчерашнюю выставку. Скажите, что сегодня он недействителен**
+**18 · Билет был только на вчерашний день. Скажите кассиру, что сегодня он недействителен**
 <!-- interaction_id: en:lesson-02:session-31:i14; family: context_gap_grammar -->
 It ___ not valid. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is not valid`.*
 
-**15 · Послушайте фразу о ценах**
+**19 · Послушайте фразу о чашках**
 <!-- interaction_id: en:lesson-02:session-31:i15; family: listen_choose -->
-🔊 *They are equal.* → **They are equal.** · They are similar. · They are separate.
-- They are similar. — *В записи последнее слово — `equal`, а в этом варианте — `similar`.*
-- They are separate. — *В записи последнее слово — `equal`, а в этом варианте — `separate`.*
+🔊 *They are valuable.* → **They are valuable.** · They are antique. · They are painted.
+- They are antique. — *В записи последнее слово — `valuable`, а в этом варианте — `antique`.*
+- They are painted. — *В записи последнее слово — `valuable`, а в этом варианте — `painted`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-31:i16; family: speed_match -->
-separate — отдельный · valid — действительный · equal — равный · unusual — необычный
+valuable — ценный · separate — отдельный · unusual — необычный · valid — действительный
 
-**17 · Кассир упомянул билеты для двух залов. Спросите, отдельные ли они**
+**21 · Кассир выдал вам и подруге по билету в разные залы. Спросите кассира, отдельные ли они**
 <!-- interaction_id: en:lesson-02:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Are they separate?**
-

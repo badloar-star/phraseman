@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-36:word:informal",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — informal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:informal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — informal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:informal:audio",
+            "transcript": "informal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:informal:r1",
+              "targetText": "informal",
+              "meaningByLocale": {
+                "ru": "неформальный, непринуждённый. It is informal — «Это неформально». О встрече, разговоре, вечере, стиле.",
+                "uk": "неформальний, невимушений. It is informal — «Це неформально». Про зустріч, розмову, вечір, стиль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "informal",
+            "definitionByLocale": {
+              "ru": "неформальный, непринуждённый. It is informal — «Это неформально». О встрече, разговоре, вечере, стиле.",
+              "uk": "неформальний, невимушений. It is informal — «Це неформально». Про зустріч, розмову, вечір, стиль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Встречи у этих друзей всегда проходят без нарядов и речей. Скажите полной фразой, что они неформальные",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Встречи у этих друзей всегда проходят без нарядов и речей. Скажите полной фразой, что они неформальные",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are informal.",
+          "localizedMeaning": {
+            "ru": "Встречи у этих друзей всегда проходят без нарядов и речей. Скажите полной фразой, что они неформальные",
+            "uk": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "informal"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Встречи у этих друзей всегда проходят без нарядов и речей. Скажите полной фразой, что они неформальные",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are informal.`",
+                "uk": "тут потрібно `are` — `They are informal.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:word:casual",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — casual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:casual:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — casual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:casual:audio",
+            "transcript": "casual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:casual:r1",
+              "targetText": "casual",
+              "meaningByLocale": {
+                "ru": "повседневный, простой по одежде. It is casual — «Это повседневно». Об одежде: джинсы, футболка, кроссовки.",
+                "uk": "повсякденний, простий в одязі. It is casual — «Це повсякденно». Про одяг: джинси, футболка, кросівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "casual",
+            "definitionByLocale": {
+              "ru": "повседневный, простой по одежде. It is casual — «Это повседневно». Об одежде: джинсы, футболка, кроссовки.",
+              "uk": "повсякденний, простий в одязі. It is casual — «Це повсякденно». Про одяг: джинси, футболка, кросівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу об одежде",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i02:r1",
+            "text": "It is casual."
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i02:r2",
+            "text": "It is formal."
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i02:r3",
+            "text": "It is optional."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу об одежде",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i02:audio",
+            "transcript": "It is casual."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:i02:r1",
+              "targetText": "It is casual.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i02:r2",
+              "targetText": "It is formal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i02:r3",
+              "targetText": "It is optional.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об одежде",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `casual`, а в этом варианте — `formal`.",
+                "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `formal`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу об одежде",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `casual`, а в этом варианте — `optional`.",
+                "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `optional`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите друга, неформальная ли будет встреча",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите друга, неформальная ли будет встреча",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите друга, неформальная ли будет встреча",
+            "uk": "Запитайте друга, чи буде зустріч неформальною"
+          },
+          "gappedTargetPhrase": "___ it informal?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-36:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Спросите друга, неформальная ли будет встреча",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите друга, неформальная ли будет встреча",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите друга, неформальная ли будет встреча",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it informal?`.",
+                "uk": "Запитання — `Is it informal?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-36:i04:p1",
+              "target": "informal",
+              "meaningByLocale": {
+                "ru": "неформальный",
+                "uk": "неформальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i04:p2",
+              "target": "casual",
+              "meaningByLocale": {
+                "ru": "повседневный",
+                "uk": "повсякденний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i04:p3",
+              "target": "vegetarian",
+              "meaningByLocale": {
+                "ru": "вегетарианский",
+                "uk": "вегетаріанський"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i04:p4",
+              "target": "delivered",
+              "meaningByLocale": {
+                "ru": "доставленный",
+                "uk": "доставлений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "informal",
+            "casual",
+            "vegetarian",
+            "delivered"
+          ],
+          "rightColumn": [
+            "неформальный",
+            "повседневный",
+            "вегетарианский",
+            "доставленный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:word:delivered",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — delivered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:delivered:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — delivered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:delivered:audio",
+            "transcript": "delivered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:delivered:r1",
+              "targetText": "delivered",
+              "meaningByLocale": {
+                "ru": "доставленный. It is delivered — «Её доставили». О пицце, посылке, письме, заказе.",
+                "uk": "доставлений. It is delivered — «Її доставили». Про піцу, посилку, лист, замовлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "delivered",
+            "definitionByLocale": {
+              "ru": "доставленный. It is delivered — «Её доставили». О пицце, посылке, письме, заказе.",
+              "uk": "доставлений. It is delivered — «Її доставили». Про піцу, посилку, лист, замовлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i05:audio",
+            "transcript": "It is delivered."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is delivered.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "delivered"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is delivered.`",
+                "uk": "тут потрібно `is` — `It is delivered.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг написал, что один из гостей хочет спать. Спросите, кто сонный",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг написал, что один из гостей хочет спать. Спросите, кто сонный",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is sleepy?",
+          "localizedMeaning": {
+            "ru": "Друг написал, что один из гостей хочет спать. Спросите, кто сонный",
+            "uk": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний"
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "sleepy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг написал, что один из гостей хочет спать. Спросите, кто сонный",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is sleepy?`",
+                "uk": "тут потрібно `Who` — `Who is sleepy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:word:vegetarian",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vegetarian",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:vegetarian:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vegetarian",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:vegetarian:audio",
+            "transcript": "vegetarian"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:vegetarian:r1",
+              "targetText": "vegetarian",
+              "meaningByLocale": {
+                "ru": "вегетарианский, без мяса. It is vegetarian — «Она вегетарианская». О пицце, супе, блюде, меню.",
+                "uk": "вегетаріанський, без м’яса. It is vegetarian — «Вона вегетаріанська». Про піцу, суп, страву, меню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vegetarian",
+            "definitionByLocale": {
+              "ru": "вегетарианский, без мяса. It is vegetarian — «Она вегетарианская». О пицце, супе, блюде, меню.",
+              "uk": "вегетаріанський, без м’яса. It is vegetarian — «Вона вегетаріанська». Про піцу, суп, страву, меню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Пицца без мяса, как просила подруга. Коротко скажите ей, что она вегетарианская",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Пицца без мяса, как просила подруга. Коротко скажите ей, что она вегетарианская",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i07:audio",
+            "transcript": "It's vegetarian."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's vegetarian.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+            "uk": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, he ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-36:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, he is not`.",
+                "uk": "Відповідь — `No, he is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i09:r1",
+            "text": "Is it delivered?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i09:r2",
+            "text": "Is it casual?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i09:r3",
+            "text": "Is it informal?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i09:audio",
+            "transcript": "Is it delivered?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:i09:r1",
+              "targetText": "Is it delivered?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i09:r2",
+              "targetText": "Is it casual?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i09:r3",
+              "targetText": "Is it informal?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `delivered`, а в этом варианте — `casual`.",
+                "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `casual`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `delivered`, а в этом варианте — `informal`.",
+                "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `informal`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-36:i10:p1",
+              "target": "formal",
+              "meaningByLocale": {
+                "ru": "официальный",
+                "uk": "офіційний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i10:p2",
+              "target": "informal",
+              "meaningByLocale": {
+                "ru": "неформальный",
+                "uk": "неформальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i10:p3",
+              "target": "casual",
+              "meaningByLocale": {
+                "ru": "повседневный",
+                "uk": "повсякденний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i10:p4",
+              "target": "sleepy",
+              "meaningByLocale": {
+                "ru": "сонный",
+                "uk": "сонний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "formal",
+            "informal",
+            "casual",
+            "sleepy"
+          ],
+          "rightColumn": [
+            "официальный",
+            "неформальный",
+            "повседневный",
+            "сонный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i11:audio",
+            "transcript": "It is not formal."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not formal.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "formal"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not formal.`",
+                "uk": "тут потрібно `is` — `It is not formal.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг вышел из комнаты, и вы его не видите. Спросите, где он",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг вышел из комнаты, и вы его не видите. Спросите, где он",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is he?",
+          "localizedMeaning": {
+            "ru": "Друг вышел из комнаты, и вы его не видите. Спросите, где он",
+            "uk": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "he"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг вышел из комнаты, и вы его не видите. Спросите, где он",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is he?`",
+                "uk": "тут потрібно `Where` — `Where is he?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг предлагает выбрать время: пораньше или попозже. Вам подходит любое. Коротко скажите, что вы готовы подстроиться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Друг предлагает выбрать время: пораньше или попозже. Вам подходит любое. Коротко скажите, что вы готовы подстроиться",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i13:audio",
+            "transcript": "I'm flexible."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm flexible.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы совсем не хотите спать. Скажите, что вы не сонные",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы совсем не хотите спать. Скажите, что вы не сонные",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы совсем не хотите спать. Скажите, что вы не сонные",
+            "uk": "Ви зовсім не хочете спати. Скажіть, що ви не сонні"
+          },
+          "gappedTargetPhrase": "I ___ not sleepy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-36:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы совсем не хотите спать. Скажите, что вы не сонные",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы совсем не хотите спать. Скажите, что вы не сонные",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы совсем не хотите спать. Скажите, что вы не сонные",
+              "feedbackByLocale": {
+                "ru": "Фраза — `I am not sleepy`.",
+                "uk": "Фраза — `I am not sleepy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i15:r1",
+            "text": "Are you sleepy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i15:r2",
+            "text": "Are you flexible?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i15:r3",
+            "text": "Are you hungry?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i15:audio",
+            "transcript": "Are you sleepy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:i15:r1",
+              "targetText": "Are you sleepy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i15:r2",
+              "targetText": "Are you flexible?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i15:r3",
+              "targetText": "Are you hungry?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `flexible`.",
+                "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `flexible`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `hungry`.",
+                "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `hungry`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-36:i16:p1",
+              "target": "vegetarian",
+              "meaningByLocale": {
+                "ru": "вегетарианский",
+                "uk": "вегетаріанський"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i16:p2",
+              "target": "delivered",
+              "meaningByLocale": {
+                "ru": "доставленный",
+                "uk": "доставлений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i16:p3",
+              "target": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный",
+                "uk": "необов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i16:p4",
+              "target": "flexible",
+              "meaningByLocale": {
+                "ru": "гибкий",
+                "uk": "гнучкий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "vegetarian",
+            "delivered",
+            "optional",
+            "flexible"
+          ],
+          "rightColumn": [
+            "вегетарианский",
+            "доставленный",
+            "необязательный",
+            "гибкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы хотите приехать раньше. Спросите подругу, готова ли она подстроиться по времени",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Вы хотите приехать раньше. Спросите подругу, готова ли она подстроиться по времени",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i17:audio",
+            "transcript": "Are you flexible?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you flexible?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-36:word:informal",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — informal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:informal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — informal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:informal:audio",
+            "transcript": "informal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:informal:r1",
+              "targetText": "informal",
+              "meaningByLocale": {
+                "ru": "неформальный, непринуждённый. It is informal — «Это неформально». О встрече, разговоре, вечере, стиле.",
+                "uk": "неформальний, невимушений. It is informal — «Це неформально». Про зустріч, розмову, вечір, стиль."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "informal",
+            "definitionByLocale": {
+              "ru": "неформальный, непринуждённый. It is informal — «Это неформально». О встрече, разговоре, вечере, стиле.",
+              "uk": "неформальний, невимушений. It is informal — «Це неформально». Про зустріч, розмову, вечір, стиль."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are informal.",
+          "localizedMeaning": {
+            "ru": "Встречи у этих друзей всегда проходят без нарядов и речей. Скажите полной фразой, что они неформальные",
+            "uk": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "informal"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Зустрічі в цих друзів завжди проходять без нарядів і промов. Скажіть повною фразою, що вони неформальні",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are informal.`",
+                "uk": "тут потрібно `are` — `They are informal.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:word:casual",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — casual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:casual:audio"
+        ],
+        "accessibilityLabel": "Картка слова — casual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:casual:audio",
+            "transcript": "casual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:casual:r1",
+              "targetText": "casual",
+              "meaningByLocale": {
+                "ru": "повседневный, простой по одежде. It is casual — «Это повседневно». Об одежде: джинсы, футболка, кроссовки.",
+                "uk": "повсякденний, простий в одязі. It is casual — «Це повсякденно». Про одяг: джинси, футболка, кросівки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "casual",
+            "definitionByLocale": {
+              "ru": "повседневный, простой по одежде. It is casual — «Это повседневно». Об одежде: джинсы, футболка, кроссовки.",
+              "uk": "повсякденний, простий в одязі. It is casual — «Це повсякденно». Про одяг: джинси, футболка, кросівки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про одяг",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i02:r1",
+            "text": "It is casual."
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i02:r2",
+            "text": "It is formal."
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i02:r3",
+            "text": "It is optional."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про одяг",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i02:audio",
+            "transcript": "It is casual."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:i02:r1",
+              "targetText": "It is casual.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i02:r2",
+              "targetText": "It is formal.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i02:r3",
+              "targetText": "It is optional.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про одяг",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `casual`, а в этом варианте — `formal`.",
+                "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `formal`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про одяг",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `casual`, а в этом варианте — `optional`.",
+                "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `optional`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитайте друга, чи буде зустріч неформальною",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте друга, чи буде зустріч неформальною",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите друга, неформальная ли будет встреча",
+            "uk": "Запитайте друга, чи буде зустріч неформальною"
+          },
+          "gappedTargetPhrase": "___ it informal?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-36:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Запитайте друга, чи буде зустріч неформальною",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитайте друга, чи буде зустріч неформальною",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитайте друга, чи буде зустріч неформальною",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it informal?`.",
+                "uk": "Запитання — `Is it informal?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-36:i04:p1",
+              "target": "informal",
+              "meaningByLocale": {
+                "ru": "неформальный",
+                "uk": "неформальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i04:p2",
+              "target": "casual",
+              "meaningByLocale": {
+                "ru": "повседневный",
+                "uk": "повсякденний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i04:p3",
+              "target": "vegetarian",
+              "meaningByLocale": {
+                "ru": "вегетарианский",
+                "uk": "вегетаріанський"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i04:p4",
+              "target": "delivered",
+              "meaningByLocale": {
+                "ru": "доставленный",
+                "uk": "доставлений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "informal",
+            "casual",
+            "vegetarian",
+            "delivered"
+          ],
+          "rightColumn": [
+            "неформальний",
+            "повсякденний",
+            "вегетаріанський",
+            "доставлений"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:word:delivered",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — delivered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:delivered:audio"
+        ],
+        "accessibilityLabel": "Картка слова — delivered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:delivered:audio",
+            "transcript": "delivered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:delivered:r1",
+              "targetText": "delivered",
+              "meaningByLocale": {
+                "ru": "доставленный. It is delivered — «Её доставили». О пицце, посылке, письме, заказе.",
+                "uk": "доставлений. It is delivered — «Її доставили». Про піцу, посилку, лист, замовлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "delivered",
+            "definitionByLocale": {
+              "ru": "доставленный. It is delivered — «Её доставили». О пицце, посылке, письме, заказе.",
+              "uk": "доставлений. It is delivered — «Її доставили». Про піцу, посилку, лист, замовлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i05:audio",
+            "transcript": "It is delivered."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is delivered.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "delivered"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is delivered.`",
+                "uk": "тут потрібно `is` — `It is delivered.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is sleepy?",
+          "localizedMeaning": {
+            "ru": "Друг написал, что один из гостей хочет спать. Спросите, кто сонный",
+            "uk": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний"
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "sleepy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг написав, що один із гостей хоче спати. Запитайте, хто сонний",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is sleepy?`",
+                "uk": "тут потрібно `Who` — `Who is sleepy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:word:vegetarian",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vegetarian",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:word:vegetarian:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vegetarian",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:word:vegetarian:audio",
+            "transcript": "vegetarian"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:word:vegetarian:r1",
+              "targetText": "vegetarian",
+              "meaningByLocale": {
+                "ru": "вегетарианский, без мяса. It is vegetarian — «Она вегетарианская». О пицце, супе, блюде, меню.",
+                "uk": "вегетаріанський, без м’яса. It is vegetarian — «Вона вегетаріанська». Про піцу, суп, страву, меню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vegetarian",
+            "definitionByLocale": {
+              "ru": "вегетарианский, без мяса. It is vegetarian — «Она вегетарианская». О пицце, супе, блюде, меню.",
+              "uk": "вегетаріанський, без м’яса. It is vegetarian — «Вона вегетаріанська». Про піцу, суп, страву, меню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Піца без м’яса, як просила подруга. Коротко скажіть їй, що вона вегетаріанська",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i07:audio"
+        ],
+        "accessibilityLabel": "Піца без м’яса, як просила подруга. Коротко скажіть їй, що вона вегетаріанська",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i07:audio",
+            "transcript": "It's vegetarian."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's vegetarian.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг не спит и разговаривает с вами. На «Is he asleep?» дополните короткое «нет»",
+            "uk": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, he ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-36:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг не спить і розмовляє з вами. На «Is he asleep?» доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, he is not`.",
+                "uk": "Відповідь — `No, he is not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i09:r1",
+            "text": "Is it delivered?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i09:r2",
+            "text": "Is it casual?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i09:r3",
+            "text": "Is it informal?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i09:audio",
+            "transcript": "Is it delivered?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:i09:r1",
+              "targetText": "Is it delivered?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i09:r2",
+              "targetText": "Is it casual?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i09:r3",
+              "targetText": "Is it informal?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `delivered`, а в этом варианте — `casual`.",
+                "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `casual`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `delivered`, а в этом варианте — `informal`.",
+                "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `informal`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-36:i10:p1",
+              "target": "formal",
+              "meaningByLocale": {
+                "ru": "официальный",
+                "uk": "офіційний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i10:p2",
+              "target": "informal",
+              "meaningByLocale": {
+                "ru": "неформальный",
+                "uk": "неформальний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i10:p3",
+              "target": "casual",
+              "meaningByLocale": {
+                "ru": "повседневный",
+                "uk": "повсякденний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i10:p4",
+              "target": "sleepy",
+              "meaningByLocale": {
+                "ru": "сонный",
+                "uk": "сонний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "formal",
+            "informal",
+            "casual",
+            "sleepy"
+          ],
+          "rightColumn": [
+            "офіційний",
+            "неформальний",
+            "повсякденний",
+            "сонний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i11:audio",
+            "transcript": "It is not formal."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not formal.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "formal"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not formal.`",
+                "uk": "тут потрібно `is` — `It is not formal.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is he?",
+          "localizedMeaning": {
+            "ru": "Друг вышел из комнаты, и вы его не видите. Спросите, где он",
+            "uk": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "he"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг вийшов із кімнати, і ви його не бачите. Запитайте, де він",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where is he?`",
+                "uk": "тут потрібно `Where` — `Where is he?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг пропонує обрати час: раніше чи пізніше. Вам підходить будь-який. Коротко скажіть, що ви готові підлаштуватися",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Друг пропонує обрати час: раніше чи пізніше. Вам підходить будь-який. Коротко скажіть, що ви готові підлаштуватися",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i13:audio",
+            "transcript": "I'm flexible."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm flexible.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зовсім не хочете спати. Скажіть, що ви не сонні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зовсім не хочете спати. Скажіть, що ви не сонні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы совсем не хотите спать. Скажите, что вы не сонные",
+            "uk": "Ви зовсім не хочете спати. Скажіть, що ви не сонні"
+          },
+          "gappedTargetPhrase": "I ___ not sleepy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-36:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви зовсім не хочете спати. Скажіть, що ви не сонні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви зовсім не хочете спати. Скажіть, що ви не сонні",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви зовсім не хочете спати. Скажіть, що ви не сонні",
+              "feedbackByLocale": {
+                "ru": "Фраза — `I am not sleepy`.",
+                "uk": "Фраза — `I am not sleepy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i15:r1",
+            "text": "Are you sleepy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i15:r2",
+            "text": "Are you flexible?"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i15:r3",
+            "text": "Are you hungry?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i15:audio",
+            "transcript": "Are you sleepy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-36:i15:r1",
+              "targetText": "Are you sleepy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i15:r2",
+              "targetText": "Are you flexible?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i15:r3",
+              "targetText": "Are you hungry?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-36:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `flexible`.",
+                "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `flexible`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-36:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `hungry`.",
+                "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `hungry`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-36:i16:p1",
+              "target": "vegetarian",
+              "meaningByLocale": {
+                "ru": "вегетарианский",
+                "uk": "вегетаріанський"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i16:p2",
+              "target": "delivered",
+              "meaningByLocale": {
+                "ru": "доставленный",
+                "uk": "доставлений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i16:p3",
+              "target": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный",
+                "uk": "необов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-36:i16:p4",
+              "target": "flexible",
+              "meaningByLocale": {
+                "ru": "гибкий",
+                "uk": "гнучкий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "vegetarian",
+            "delivered",
+            "optional",
+            "flexible"
+          ],
+          "rightColumn": [
+            "вегетаріанський",
+            "доставлений",
+            "необов’язковий",
+            "гнучкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви хочете приїхати раніше. Запитайте подругу, чи готова вона підлаштуватися за часом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Ви хочете приїхати раніше. Запитайте подругу, чи готова вона підлаштуватися за часом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-36:i17:audio",
+            "transcript": "Are you flexible?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you flexible?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-36:word:informal",
+      "correctText": "informal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i01",
+      "correctText": "They are informal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:word:casual",
+      "correctText": "casual",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i02",
+      "correctText": "It is casual.",
+      "correctResponseId": "en:lesson-02:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:word:delivered",
+      "correctText": "delivered",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i05",
+      "correctText": "It is delivered.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i06",
+      "correctText": "Who is sleepy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:word:vegetarian",
+      "correctText": "vegetarian",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i07",
+      "correctText": "It's vegetarian.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i09",
+      "correctText": "Is it delivered?",
+      "correctResponseId": "en:lesson-02:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i11",
+      "correctText": "It is not formal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i12",
+      "correctText": "Where is he?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i13",
+      "correctText": "I'm flexible.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i14",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-02:session-36:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i15",
+      "correctText": "Are you sleepy?",
+      "correctResponseId": "en:lesson-02:session-36:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i17",
+      "correctText": "Are you flexible?",
+      "correctResponseId": null
+    }
+  ]
+}

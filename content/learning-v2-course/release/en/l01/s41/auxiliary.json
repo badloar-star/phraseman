@@ -10,8 +10,8 @@
           "uk": "У короткій формі потрібно 'm: I'm clumsy."
         },
         "en:lesson-01:session-41:intro1:r3": {
-          "ru": "She's — про Катю. О себе говорим I'm.",
-          "uk": "She's — про Катю. Про себе кажемо I'm."
+          "ru": "She's — про подругу. О себе говорим I'm.",
+          "uk": "She's — про подругу. Про себе кажемо I'm."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-41:intro2:r2": {
-          "ru": "okay — «всё нормально». Здесь кружка очень дорога Кате: precious.",
-          "uk": "okay — «усе гаразд». Тут горнятко дуже дороге Каті: precious."
+          "ru": "okay — «всё нормально». Здесь кружка очень дорога подруге: precious.",
+          "uk": "okay — «усе гаразд». Тут горнятко дуже дороге подрузі: precious."
         },
         "en:lesson-01:session-41:intro2:r3": {
           "ru": "He's — про человека. Про кружку говорим It's.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-41:intro3:r2": {
-          "ru": "furious — «в ярости». Катя не злится, она расстроена: upset.",
-          "uk": "furious — «у люті». Катя не злиться, вона засмучена: upset."
+          "ru": "furious — «в ярости». Подруга не злится, она расстроена: upset.",
+          "uk": "furious — «у люті». Подруга не злиться, вона засмучена: upset."
         },
         "en:lesson-01:session-41:intro3:r3": {
           "ru": "В короткой форме нужно 's: She's upset.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "62674cb451fafaa3289a838987b8b113b4bf1e33c4a543942e42069f77e15ae5"
+  "auxiliaryFingerprint": "15909add8a8c86f705260011e372c719a95a50ffe053c8d4ce0128cc67463b59"
 }

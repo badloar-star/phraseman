@@ -1,138 +1,154 @@
 # Английский · Урок 2 · Занятие 35 — Нужен ли костюм
 
-**Ситуация.** Вас с Анной пригласили на вечер вручения наград. Вы уточняете формат вечера и выбираете одежду. Олег заболел и остался дома; Анна предлагает помочь ему деньгами.
+**Ситуация.** Вас с подругой пригласили на вечер вручения наград. Вы читаете письмо организатора, выбираете одежду и выясняете, кто придёт, а кто нет.
 
-**Что вы освоите:** уточнить, официальный ли формат, и повторить короткие ответы
-**Новые слова:** formal
+**Что вы освоите:** уточнить, обязательно ли что-то, и повторить короткие ответы
+**Новые слова:** invited, required, optional, ironed
+**Возвращаются:** formal, ill, generous, absent
 
 ---
 
 ## Интро 1
 
-### Более официальный стиль
+### Конверт в почтовом ящике
 
-`formal` — «официальный, строгий по стилю». Про вечер с церемонией и нарядной одеждой можно сказать `It is formal`. Это не обычные посиделки на кухне. Домашние тапочки удобные, но к такому приглашению обычно хочется подобрать другую обувь.
+В почтовом ящике лежит конверт: вас с подругой зовут на вечер вручения наград. Внутри карточка с вашими именами. invited — «приглашённый». We are invited — «Нас пригласили», коротко We're invited.
 
-**Организатор подтвердил: вечер с официальной церемонией и строгой одеждой. Скажите полной фразой, что формат официальный.**
+**Подруга спрашивает, позвали ли вас обоих. Скажите коротко за двоих, что вас пригласили.**
 
-- ✅ **It is formal.**
-- ❌ It formal. — *Между `It` и `formal` нужно `is`.*
-- ❌ It is not formal. — *Это отрицает официальный формат. Организатор подтвердил обратное.*
+- ✅ **We're invited.**
+- ❌ We're not invited. — *С not выходит «Нас не пригласили». А карточка с вашими именами лежит в конверте: We're invited.*
+- ❌ I'm invited. — *I'm — это только вы, а приглашены вы оба: We're invited.*
 
 ---
 
 ## Интро 2
 
-### Сначала уточним
+### Письмо организатора
 
-`Is it formal?` — «Это официальное мероприятие?» или «Это строгий стиль?» Смысл понятен из того, что обсуждают. На вопрос о вечере можно ответить `Yes, it is`. Само слово не называет конкретную одежду: нужен ли галстук, лучше уточнить отдельно.
+Вы читаете письмо организатора. В нём сказано, что на вечере нужен костюм. required — «обязательный, нужный по правилам». Is it required? — «Это обязательно?»
 
-**Вы не знаете формат вечера и решаете, что надеть. Спросите, официальное ли мероприятие.**
+**Вы не уверены, что правило касается всех гостей. Спросите подругу, обязателен ли костюм.**
 
-- ✅ **Is it formal?**
-- ❌ It is formal. — *Это сообщение, а нужно уточнить вопросом.*
-- ❌ Is formal it? — *Вопрос начинается с `Is it`, а `formal` идёт после них.*
+- ✅ **Is it required?**
+- ❌ It is required. — *Так звучит утверждение «Это обязательно». Чтобы спросить, ставим Is вперёд: Is it required?*
+- ❌ Are it required? — *С it нужно is: Is it required?*
 
 ---
 
 ## Интро 3
 
-### Кто не придёт
+### Галстук
 
-`ill` — «болен». Олег заболел: `He is ill`. `generous` — «щедрый». Анна предлагает помочь ему деньгами: `She is generous`. Эти слова говорят о разных вещах. `Who is ill?` спрашивает, кто болен, а `Who is generous?` — кто щедрый.
+Дальше в письме сказано: костюм нужен, а галстук можно не надевать. optional — «необязательный, по желанию». It is optional — «Это по желанию».
 
-**Анна сообщила, что один из друзей заболел. Вы не знаете кто. Спросите, кто болен.**
+**Подруга спрашивает, нужен ли галстук. Скажите полной фразой, что он необязателен.**
 
-- ✅ **Who is ill?**
-- ❌ Who is generous? — *Это вопрос о щедрости, а нужно узнать, кто заболел.*
-- ❌ Who ill? — *После `Who` здесь нужно `is`.*
+- ✅ **It is optional.**
+- ❌ It optional. — *Между It и optional нужно is: It is optional.*
+- ❌ It is required. — *Так вы скажете, что галстук обязателен. В письме написано обратное: It is optional.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вечер проходит с официальной церемонией. Скажите полной фразой, что формат официальный**
+**1 · Карточка слова — invited**
+<!-- interaction_id: en:lesson-02:session-35:word:invited; family: word_card -->
+> **invited** — приглашённый. We are invited — «Мы приглашены». О госте, которого позвали на вечер, свадьбу, встречу.
+
+**2 · Двое знакомых тоже получили приглашение. Скажите полной фразой, что они приглашены**
 <!-- interaction_id: en:lesson-02:session-35:i01; family: phrase_builder -->
-Плитки: `formal` `is` `It` `are` → **It is formal.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is formal.`)*
+Плитки: `invited` `are` `They` `is` → **They are invited.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are invited.`)*
 
-**2 · Послушайте фразу об Олеге**
+**3 · Послушайте фразу о знакомом**
 <!-- interaction_id: en:lesson-02:session-35:i02; family: listen_choose -->
-🔊 *He is ill.* → **He is ill.** · He is generous. · He is absent.
-- He is generous. — *В записи последнее слово — `ill`, а в этом варианте — `generous`.*
+🔊 *He is ill.* → **He is ill.** · He is absent. · He is generous.
 - He is absent. — *В записи последнее слово — `ill`, а в этом варианте — `absent`.*
+- He is generous. — *В записи последнее слово — `ill`, а в этом варианте — `generous`.*
 
-**3 · Спросите, официальный ли формат вечера**
+**4 · Спросите подругу, официальный ли формат вечера**
 <!-- interaction_id: en:lesson-02:session-35:i03; family: context_gap_grammar -->
 ___ it formal? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it formal?`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-35:i04; family: speed_match -->
-formal — официальный, строгий по стилю · ill — болен · generous — щедрый · absent — отсутствующий
+invited — приглашённый · required — обязательный · optional — необязательный · ironed — выглаженный
 
-**5 · Послушайте и соберите короткий ответ**
+**6 · Карточка слова — required**
+<!-- interaction_id: en:lesson-02:session-35:word:required; family: word_card -->
+> **required** — обязательный, нужный по правилам. It is required — «Это обязательно». О костюме, билете, документе, подписи.
+
+**7 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-35:i05; family: listen_build_dictation -->
-🔊 *Yes, it is.* Плитки: `is` `it` `Yes,` `No,` → **Yes, it is.**
-*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, it is.`)*
+🔊 *It is not required.* Плитки: `required` `not` `is` `It` `are` → **It is not required.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not required.`)*
 
-**6 · Анна упомянула заболевшего друга, но не назвала имя. Спросите, кто болен**
+**8 · Подруга сказала, что один из знакомых заболел, но не назвала имя. Спросите, кто болен**
 <!-- interaction_id: en:lesson-02:session-35:i06; family: phrase_builder -->
 Плитки: `ill` `is` `Who` `Where` → **Who is ill?**
 *(плитка `Where` лишняя: здесь нужно `Who` — `Who is ill?`)*
 
-**7 · Анна охотно предлагает Олегу финансовую помощь. Коротко скажите, что она щедрая**
-<!-- interaction_id: en:lesson-02:session-35:i07; family: scripted_repeat_compare -->
-🎙 **She's generous.**
+**9 · Карточка слова — ironed**
+<!-- interaction_id: en:lesson-02:session-35:word:ironed; family: word_card -->
+> **ironed** — выглаженный. It is ironed — «Она выглажена». О рубашке, платье, брюках, скатерти.
 
-**8 · Вы здоровы. На «Are you ill?» дополните короткое «нет»**
+**10 · Вы погладили рубашку перед вечером. Подруга спрашивает о ней. Коротко скажите, что она выглажена**
+<!-- interaction_id: en:lesson-02:session-35:i07; family: scripted_repeat_compare -->
+🎙 **It's ironed.**
+
+**11 · Вы здоровы. На «Are you ill?» дополните короткое «нет»**
 <!-- interaction_id: en:lesson-02:session-35:i08; family: context_gap_grammar -->
 No, I ___ not. → **am** · is · are
 - is — *Отвечаете о себе: `I am`.*
 - are — *Ответ — `No, I am not`.*
 
-**9 · Послушайте вопрос**
+**12 · Карточка слова — optional**
+<!-- interaction_id: en:lesson-02:session-35:word:optional; family: word_card -->
+> **optional** — необязательный, по желанию. It is optional — «Это по желанию». О галстуке, подарке, доплате, уроке.
+
+**13 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-35:i09; family: listen_choose -->
-🔊 *Is she generous?* → **Is she generous?** · Is she ill? · Is she absent?
-- Is she ill? — *В записи последнее слово — `generous`, а в этом варианте — `ill`.*
-- Is she absent? — *В записи последнее слово — `generous`, а в этом варианте — `absent`.*
+🔊 *Is it optional?* → **Is it optional?** · Is it required? · Is it formal?
+- Is it required? — *В записи последнее слово — `optional`, а в этом варианте — `required`.*
+- Is it formal? — *В записи последнее слово — `optional`, а в этом варианте — `formal`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-35:i10; family: speed_match -->
-ill — болен · formal — официальный, строгий по стилю · absent — отсутствующий · generous — щедрый
+formal — официальный · ill — болен · generous — щедрый · absent — отсутствующий
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-02:session-35:i11; family: listen_build_dictation -->
-🔊 *They are not formal.* Плитки: `formal` `not` `are` `They` `is` → **They are not formal.**
-*(плитка `is` лишняя: здесь нужно `are` — `They are not formal.`)*
+🔊 *Are they invited?* Плитки: `invited` `they` `Are` `Is` → **Are they invited?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are they invited?`)*
 
-**12 · Вы знаете, что Олег заболел, но не знаете, где он сейчас. Спросите, где он**
+**16 · Вы пришли на вечер, а двух знакомых не видите. Спросите подругу, где они**
 <!-- interaction_id: en:lesson-02:session-35:i12; family: phrase_builder -->
-Плитки: `he` `is` `Where` `Who` → **Where is he?**
-*(плитка `Who` лишняя: здесь нужно `Where` — `Where is he?`)*
+Плитки: `they` `are` `Where` `Who` → **Where are they?**
+*(плитка `Who` лишняя: здесь нужно `Where` — `Where are they?`)*
 
-**13 · Вы выяснили, что мероприятие официальное. Сообщите это Анне коротко**
+**17 · Организатор подтвердил: вечер официальный. Сообщите это подруге коротко**
 <!-- interaction_id: en:lesson-02:session-35:i13; family: scripted_repeat_compare -->
 🎙 **It's formal.**
 
-**14 · Другой знакомый здоров. Отрицайте, что он болен**
+**18 · Другой знакомый здоров. Скажите, что он не болен**
 <!-- interaction_id: en:lesson-02:session-35:i14; family: context_gap_grammar -->
 He ___ not ill. → **is** · am · are
 - am — *С `He` нужно `is`.*
 - are — *Фраза — `He is not ill`.*
 
-**15 · Послушайте вопрос**
+**19 · Послушайте вопрос**
 <!-- interaction_id: en:lesson-02:session-35:i15; family: listen_choose -->
-🔊 *Who is absent?* → **Who is absent?** · Who is ill? · Who is generous?
-- Who is ill? — *В записи последнее слово — `absent`, а в этом варианте — `ill`.*
-- Who is generous? — *В записи последнее слово — `absent`, а в этом варианте — `generous`.*
+🔊 *Who is invited?* → **Who is invited?** · Who is ill? · Who is absent?
+- Who is ill? — *В записи последнее слово — `invited`, а в этом варианте — `ill`.*
+- Who is absent? — *В записи последнее слово — `invited`, а в этом варианте — `absent`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-35:i16; family: speed_match -->
-generous — щедрый · absent — отсутствующий · formal — официальный, строгий по стилю · ill — болен
+ironed — выглаженный · optional — необязательный · formal — официальный · ill — болен
 
-**17 · Вас пригласили ещё на один вечер. Прежде чем выбрать одежду, спросите, официальное ли мероприятие**
+**21 · Вас пригласили ещё на один вечер. Прежде чем выбрать одежду, спросите подругу, официальное ли мероприятие**
 <!-- interaction_id: en:lesson-02:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Is it formal?**
-

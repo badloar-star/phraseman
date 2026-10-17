@@ -533,13 +533,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Снимок бабушки в молодости много лет простоял на солнечном окне, лица еле видны. Скажите Ане коротко, что он выцвел",
+      "prompt": "Снимок бабушки в молодости много лет простоял на солнечном окне, лица еле видны. Скажите сестре коротко, что он выцвел",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i07:audio"
       ],
-      "accessibilityLabel": "Снимок бабушки в молодости много лет простоял на солнечном окне, лица еле видны. Скажите Ане коротко, что он выцвел",
+      "accessibilityLabel": "Снимок бабушки в молодости много лет простоял на солнечном окне, лица еле видны. Скажите сестре коротко, что он выцвел",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -874,13 +874,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На двух фото места, где вы гуляли с бабушкой. Скажите Ане, что они вам знакомы",
+      "prompt": "На двух фото места, где вы гуляли с бабушкой. Скажите сестре, что они вам знакомы",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i13:audio"
       ],
-      "accessibilityLabel": "На двух фото места, где вы гуляли с бабушкой. Скажите Ане, что они вам знакомы",
+      "accessibilityLabel": "На двух фото места, где вы гуляли с бабушкой. Скажите сестре, что они вам знакомы",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3b1c402780b15a8985320335bc7d6ece9e66146fcc594b66f3a81bb9f4195fad"
+  "learnerFingerprint": "c8bcc7e67cfda1dc398a26eefb5728407f7d9d7edadd42e31577ab66e75cef0d"
 }

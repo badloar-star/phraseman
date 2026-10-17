@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олегові хочеться спати. Доповніть фразу про нього",
+      "prompt": "Братові хочеться спати. Доповніть фразу про нього",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-40:i03:r1",
@@ -188,12 +188,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олегові хочеться спати. Доповніть фразу про нього",
+      "accessibilityLabel": "Братові хочеться спати. Доповніть фразу про нього",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олегу хочется спать. Дополните фразу о нём",
-          "uk": "Олегові хочеться спати. Доповніть фразу про нього"
+          "ru": "Брату хочется спать. Дополните фразу о нём",
+          "uk": "Братові хочеться спати. Доповніть фразу про нього"
         },
         "gappedTargetPhrase": "He ___ sleepy.",
         "gapOptions": [
@@ -210,12 +210,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Олегові хочеться спати. Доповніть фразу про нього",
+        "testedDimension": "Братові хочеться спати. Доповніть фразу про нього",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-40:i03:r2",
             "correct": false,
-            "testedDimension": "Олегові хочеться спати. Доповніть фразу про нього",
+            "testedDimension": "Братові хочеться спати. Доповніть фразу про нього",
             "feedbackByLocale": {
               "ru": "После `He` нужно `is`.",
               "uk": "Після `He` потрібно `is`."
@@ -224,7 +224,7 @@
           {
             "responseId": "en:lesson-01:session-40:i03:r3",
             "correct": false,
-            "testedDimension": "Олегові хочеться спати. Доповніть фразу про нього",
+            "testedDimension": "Братові хочеться спати. Доповніть фразу про нього",
             "feedbackByLocale": {
               "ru": "Здесь `He is sleepy`.",
               "uk": "Тут `He is sleepy`."
@@ -1125,13 +1125,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте Олегові, яка в неї погода",
+      "prompt": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте братові, яка в неї погода",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте Олегові, яка в неї погода",
+      "accessibilityLabel": "Подруга з півдня розповідає, що в неї ясно й світить сонце. Передайте братові, яка в неї погода",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0bafbc231244973fb13cff212339ec05aa09ef467f689d577e12e7f5f03e7490"
+  "learnerFingerprint": "6b193fafd855d198088988a9ba83510ac91c683b7fe6cbb00536ac29363f037e"
 }

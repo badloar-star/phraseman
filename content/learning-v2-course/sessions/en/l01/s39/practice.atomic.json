@@ -215,7 +215,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+        "prompt": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-39:i03:r1",
@@ -232,12 +232,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+        "accessibilityLabel": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
-            "uk": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово"
+            "ru": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
+            "uk": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово"
           },
           "gappedTargetPhrase": "She ___ embarrassed.",
           "gapOptions": [
@@ -254,12 +254,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+          "testedDimension": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-39:i03:r2",
               "correct": false,
-              "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+              "testedDimension": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
               "feedbackByLocale": {
                 "ru": "После `She` нужно `is`.",
                 "uk": "Після `She` потрібно `is`."
@@ -268,7 +268,7 @@
             {
               "responseId": "en:lesson-01:session-39:i03:r3",
               "correct": false,
-              "testedDimension": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
+              "testedDimension": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
               "feedbackByLocale": {
                 "ru": "Здесь `She is embarrassed`.",
                 "uk": "Тут `She is embarrassed`."
@@ -784,13 +784,13 @@
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+        "prompt": "После вечера вы с подругой очень рады, как всё прошло. Послушайте и соберите фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-39:i11:audio"
         ],
-        "accessibilityLabel": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+        "accessibilityLabel": "После вечера вы с подругой очень рады, как всё прошло. Послушайте и соберите фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -811,7 +811,7 @@
             {
               "responseId": "en:lesson-01:session-39:i11:tile:d1",
               "correct": false,
-              "testedDimension": "После вечера вы с Машей обе очень рады, как всё прошло. Послушайте и соберите фразу",
+              "testedDimension": "После вечера вы с подругой очень рады, как всё прошло. Послушайте и соберите фразу",
               "feedbackByLocale": {
                 "ru": "здесь нужно `are` — `We are thrilled.`",
                 "uk": "тут потрібно `are` — `We are thrilled.`"
@@ -908,7 +908,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+        "prompt": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-39:i14:r1",
@@ -925,12 +925,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+        "accessibilityLabel": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
-            "uk": "Ви й подруга подолали страх. Похваліть вас обох за сміливість"
+            "ru": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
+            "uk": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»"
           },
           "gappedTargetPhrase": "We ___ brave.",
           "gapOptions": [
@@ -947,12 +947,12 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+          "testedDimension": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-39:i14:r2",
               "correct": false,
-              "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+              "testedDimension": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
               "feedbackByLocale": {
                 "ru": "После `We` нужно `are`.",
                 "uk": "Після `We` потрібно `are`."
@@ -961,7 +961,7 @@
             {
               "responseId": "en:lesson-01:session-39:i14:r3",
               "correct": false,
-              "testedDimension": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
+              "testedDimension": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
               "feedbackByLocale": {
                 "ru": "Здесь `We are brave`.",
                 "uk": "Тут `We are brave`."
@@ -1375,7 +1375,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+        "prompt": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-39:i03:r1",
@@ -1392,12 +1392,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+        "accessibilityLabel": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Маша уронила листок с текстом, и зал засмеялся. Вставьте слово",
-            "uk": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово"
+            "ru": "Подруга уронила листок с текстом, и зал засмеялся. Вставьте слово",
+            "uk": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово"
           },
           "gappedTargetPhrase": "She ___ embarrassed.",
           "gapOptions": [
@@ -1414,12 +1414,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+          "testedDimension": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-39:i03:r2",
               "correct": false,
-              "testedDimension": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+              "testedDimension": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово",
               "feedbackByLocale": {
                 "ru": "После `She` нужно `is`.",
                 "uk": "Після `She` потрібно `is`."
@@ -1428,7 +1428,7 @@
             {
               "responseId": "en:lesson-01:session-39:i03:r3",
               "correct": false,
-              "testedDimension": "Маша впустила аркуш із текстом, і зала засміялася. Вставте слово",
+              "testedDimension": "Подруга впустила аркуш із текстом, і зала засміялася. Вставте слово",
               "feedbackByLocale": {
                 "ru": "Здесь `She is embarrassed`.",
                 "uk": "Тут `She is embarrassed`."
@@ -1944,13 +1944,13 @@
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Після вечора ви з Машею обидві дуже раді, як усе минуло. Послухайте й складіть фразу",
+        "prompt": "Після вечора ви з подругою дуже раді, як усе минуло. Послухайте й складіть фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-39:i11:audio"
         ],
-        "accessibilityLabel": "Після вечора ви з Машею обидві дуже раді, як усе минуло. Послухайте й складіть фразу",
+        "accessibilityLabel": "Після вечора ви з подругою дуже раді, як усе минуло. Послухайте й складіть фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -1971,7 +1971,7 @@
             {
               "responseId": "en:lesson-01:session-39:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Після вечора ви з Машею обидві дуже раді, як усе минуло. Послухайте й складіть фразу",
+              "testedDimension": "Після вечора ви з подругою дуже раді, як усе минуло. Послухайте й складіть фразу",
               "feedbackByLocale": {
                 "ru": "здесь нужно `are` — `We are thrilled.`",
                 "uk": "тут потрібно `are` — `We are thrilled.`"
@@ -2068,7 +2068,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+        "prompt": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-39:i14:r1",
@@ -2085,12 +2085,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+        "accessibilityLabel": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы и подруга преодолели страх. Похвалите вас обеих за смелость",
-            "uk": "Ви й подруга подолали страх. Похваліть вас обох за сміливість"
+            "ru": "Вы с подругой преодолели страх. Скажите о вас двоих: «Мы смелые»",
+            "uk": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»"
           },
           "gappedTargetPhrase": "We ___ brave.",
           "gapOptions": [
@@ -2107,12 +2107,12 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+          "testedDimension": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-39:i14:r2",
               "correct": false,
-              "testedDimension": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+              "testedDimension": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»",
               "feedbackByLocale": {
                 "ru": "После `We` нужно `are`.",
                 "uk": "Після `We` потрібно `are`."
@@ -2121,7 +2121,7 @@
             {
               "responseId": "en:lesson-01:session-39:i14:r3",
               "correct": false,
-              "testedDimension": "Ви й подруга подолали страх. Похваліть вас обох за сміливість",
+              "testedDimension": "Ви з подругою подолали страх. Скажіть про вас двох: «Ми сміливі»",
               "feedbackByLocale": {
                 "ru": "Здесь `We are brave`.",
                 "uk": "Тут `We are brave`."

@@ -510,8 +510,8 @@
             "responseId": "en:lesson-01:session-21:word:noisy:r1",
             "targetText": "noisy",
             "meaningByLocale": {
-              "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
-              "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+              "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех.",
+              "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх."
             }
           }
         ],
@@ -521,8 +521,8 @@
         "wordCard": {
           "word": "noisy",
           "definitionByLocale": {
-            "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
-            "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+            "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех.",
+            "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх."
           }
         }
       },
@@ -1127,13 +1127,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите человеку рядом о комнате: «Она пустая»",
+      "prompt": "Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите риелтору о комнате: «Она пустая»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-21:i17:audio"
       ],
-      "accessibilityLabel": "Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите человеку рядом о комнате: «Она пустая»",
+      "accessibilityLabel": "Вы осматриваете квартиру. В спальне совсем нет мебели. Скажите риелтору о комнате: «Она пустая»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cf4d9cec5d0a1d5b17ac2595350bf1ef55a27d40df41a78bec2fbc6982fd3afe"
+  "learnerFingerprint": "ece192ef13127b93b766fa8dc2c848947b2791bbb4542b3260dfa9ca6ccaf184"
 }

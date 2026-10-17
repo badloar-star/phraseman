@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-42:word:queasy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — queasy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:queasy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — queasy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:queasy:audio",
+            "transcript": "queasy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:queasy:r1",
+              "targetText": "queasy",
+              "meaningByLocale": {
+                "ru": "чувствующий тошноту, подташнивает. I am queasy — «Меня подташнивает». О человеке в лодке, в машине, после еды.",
+                "uk": "який відчуває нудоту. I am queasy — «Мене нудить». Про людину в човні, в машині, після їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "queasy",
+            "definitionByLocale": {
+              "ru": "чувствующий тошноту, подташнивает. I am queasy — «Меня подташнивает». О человеке в лодке, в машине, после еды.",
+              "uk": "який відчуває нудоту. I am queasy — «Мене нудить». Про людину в човні, в машині, після їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Хозяин лодки спрашивает, как вы. Скажите ему полной фразой, что вас подташнивает.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хозяин лодки спрашивает, как вы. Скажите ему полной фразой, что вас подташнивает.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am queasy.",
+          "localizedMeaning": {
+            "ru": "Хозяин лодки спрашивает, как вы. Скажите ему полной фразой, что вас подташнивает.",
+            "uk": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "queasy"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Хозяин лодки спрашивает, как вы. Скажите ему полной фразой, что вас подташнивает.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am queasy.`",
+                "uk": "тут потрібно `am` — `I am queasy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что хозяин лодки говорит о подруге",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i02:r1",
+            "text": "She is pale."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i02:r2",
+            "text": "She is tired."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i02:r3",
+            "text": "She is calm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что хозяин лодки говорит о подруге",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i02:audio",
+            "transcript": "She is pale."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:i02:r1",
+              "targetText": "She is pale.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i02:r2",
+              "targetText": "She is tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i02:r3",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что хозяин лодки говорит о подруге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pale`, а в этом варианте — `tired`.",
+                "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `tired`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что хозяин лодки говорит о подруге",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pale`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `calm`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:word:swollen",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — swollen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:swollen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — swollen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:swollen:audio",
+            "transcript": "swollen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:swollen:r1",
+              "targetText": "swollen",
+              "meaningByLocale": {
+                "ru": "опухший, вздувшийся. It's swollen — «Она опухла». О щиколотке, пальце, щеке, глазе.",
+                "uk": "опухлий, роздутий. It's swollen — «Вона опухла». Про кісточку, палець, щоку, око."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swollen",
+            "definitionByLocale": {
+              "ru": "опухший, вздувшийся. It's swollen — «Она опухла». О щиколотке, пальце, щеке, глазе.",
+              "uk": "опухлий, роздутий. It's swollen — «Вона опухла». Про кісточку, палець, щоку, око."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+            "uk": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла"
+          },
+          "gappedTargetPhrase": "___ it swollen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-42:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it swollen?`.",
+                "uk": "Питання — `Is it swollen?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-42:i04:p1",
+              "target": "queasy",
+              "meaningByLocale": {
+                "ru": "чувствующий тошноту",
+                "uk": "який відчуває нудоту"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i04:p2",
+              "target": "itchy",
+              "meaningByLocale": {
+                "ru": "зудящий",
+                "uk": "що свербить"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i04:p3",
+              "target": "swollen",
+              "meaningByLocale": {
+                "ru": "опухший",
+                "uk": "опухлий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i04:p4",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "queasy",
+            "itchy",
+            "swollen",
+            "pale"
+          ],
+          "rightColumn": [
+            "чувствующий тошноту",
+            "зудящий",
+            "опухший",
+            "бледный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:word:itchy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — itchy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:itchy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — itchy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:itchy:audio",
+            "transcript": "itchy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:itchy:r1",
+              "targetText": "itchy",
+              "meaningByLocale": {
+                "ru": "зудящий, чешущийся. Is it itchy? — «Оно чешется?» О коже, укусе, шерстяном свитере, глазах.",
+                "uk": "що свербить. Is it itchy? — «Воно свербить?» Про шкіру, укус, вовняний светр, очі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "itchy",
+            "definitionByLocale": {
+              "ru": "зудящий, чешущийся. Is it itchy? — «Оно чешется?» О коже, укусе, шерстяном свитере, глазах.",
+              "uk": "що свербить. Is it itchy? — «Воно свербить?» Про шкіру, укус, вовняний светр, очі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте вопрос подруги об укусе и соберите его",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги об укусе и соберите его",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i05:audio",
+            "transcript": "Is it itchy?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is it itchy?",
+          "orderedTokens": [
+            "Is",
+            "it",
+            "itchy"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги об укусе и соберите его",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it itchy?`",
+                "uk": "тут потрібно `Is` — `Is it itchy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:word:shaky",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shaky",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:shaky:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shaky",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:shaky:audio",
+            "transcript": "shaky"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:shaky:r1",
+              "targetText": "shaky",
+              "meaningByLocale": {
+                "ru": "дрожащий, нетвёрдый. Is he shaky? — «Его трясёт?» О руках, ногах, голосе, лестнице.",
+                "uk": "тремтливий, нетвердий. Is he shaky? — «Його трясе?» Про руки, ноги, голос, драбину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shaky",
+            "definitionByLocale": {
+              "ru": "дрожащий, нетвёрдый. Is he shaky? — «Его трясёт?» О руках, ногах, голосе, лестнице.",
+              "uk": "тремтливий, нетвердий. Is he shaky? — «Його трясе?» Про руки, ноги, голос, драбину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат подруги вышел на причал, и вас беспокоит, что он стоит нетвёрдо. Спросите подругу, дрожит ли он.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат подруги вышел на причал, и вас беспокоит, что он стоит нетвёрдо. Спросите подругу, дрожит ли он.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is he shaky?",
+          "localizedMeaning": {
+            "ru": "Брат подруги вышел на причал, и вас беспокоит, что он стоит нетвёрдо. Спросите подругу, дрожит ли он.",
+            "uk": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він."
+          },
+          "orderedTokens": [
+            "Is",
+            "he",
+            "shaky"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат подруги вышел на причал, и вас беспокоит, что он стоит нетвёрдо. Спросите подругу, дрожит ли он.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is he shaky?`",
+                "uk": "тут потрібно `Is` — `Is he shaky?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы сошли с лодки, но голова ещё кружится. Скажите продавцу воды коротко, что вас подташнивает.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Вы сошли с лодки, но голова ещё кружится. Скажите продавцу воды коротко, что вас подташнивает.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i07:audio",
+            "transcript": "I'm queasy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm queasy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-42:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о руке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i09:r1",
+            "text": "It is itchy."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i09:r2",
+            "text": "It is swollen."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i09:r3",
+            "text": "It is pale."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о руке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i09:audio",
+            "transcript": "It is itchy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:i09:r1",
+              "targetText": "It is itchy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i09:r2",
+              "targetText": "It is swollen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i09:r3",
+              "targetText": "It is pale.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о руке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `itchy`, а в этом варианте — `swollen`.",
+                "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `swollen`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о руке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `itchy`, а в этом варианте — `pale`.",
+                "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `pale`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-42:i10:p1",
+              "target": "shaky",
+              "meaningByLocale": {
+                "ru": "дрожащий",
+                "uk": "тремтливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i10:p2",
+              "target": "queasy",
+              "meaningByLocale": {
+                "ru": "чувствующий тошноту",
+                "uk": "який відчуває нудоту"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i10:p3",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i10:p4",
+              "target": "tired",
+              "meaningByLocale": {
+                "ru": "уставший",
+                "uk": "втомлений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shaky",
+            "queasy",
+            "calm",
+            "tired"
+          ],
+          "rightColumn": [
+            "дрожащий",
+            "чувствующий тошноту",
+            "спокойный",
+            "уставший"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что аптекарь говорит о ваших пальцах, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что аптекарь говорит о ваших пальцах, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i11:audio",
+            "transcript": "They are not swollen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not swollen.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "swollen"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что аптекарь говорит о ваших пальцах, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not swollen.`",
+                "uk": "тут потрібно `are` — `They are not swollen.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У брата подруги на руке несколько комариных укусов. Спросите подругу, чешутся ли они.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У брата подруги на руке несколько комариных укусов. Спросите подругу, чешутся ли они.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they itchy?",
+          "localizedMeaning": {
+            "ru": "У брата подруги на руке несколько комариных укусов. Спросите подругу, чешутся ли они.",
+            "uk": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "itchy"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У брата подруги на руке несколько комариных укусов. Спросите подругу, чешутся ли они.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they itchy?`",
+                "uk": "тут потрібно `Are` — `Are they itchy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Аптекарь спрашивает, что с ногой. Скажите коротко, что она опухла.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Аптекарь спрашивает, что с ногой. Скажите коротко, что она опухла.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i13:audio",
+            "transcript": "It's swollen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's swollen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+            "uk": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите"
+          },
+          "gappedTargetPhrase": "I ___ not shaky.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-42:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+              "feedbackByLocale": {
+                "ru": "Фраза — `I am not shaky`.",
+                "uk": "Фраза — `I am not shaky`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i15:r1",
+            "text": "Are you queasy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i15:r2",
+            "text": "Are you shaky?"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i15:r3",
+            "text": "Are you sleepy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i15:audio",
+            "transcript": "Are you queasy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:i15:r1",
+              "targetText": "Are you queasy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i15:r2",
+              "targetText": "Are you shaky?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i15:r3",
+              "targetText": "Are you sleepy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `queasy`, а в этом варианте — `shaky`.",
+                "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `shaky`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `queasy`, а в этом варианте — `sleepy`.",
+                "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `sleepy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-42:i16:p1",
+              "target": "itchy",
+              "meaningByLocale": {
+                "ru": "зудящий",
+                "uk": "що свербить"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i16:p2",
+              "target": "swollen",
+              "meaningByLocale": {
+                "ru": "опухший",
+                "uk": "опухлий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i16:p3",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i16:p4",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "itchy",
+            "swollen",
+            "pale",
+            "calm"
+          ],
+          "rightColumn": [
+            "зудящий",
+            "опухший",
+            "бледный",
+            "спокойный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы встречаете подругу на причале после лодки. Спросите её, подташнивает ли её.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Вы встречаете подругу на причале после лодки. Спросите её, подташнивает ли её.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i17:audio",
+            "transcript": "Are you queasy?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you queasy?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-42:word:queasy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — queasy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:queasy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — queasy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:queasy:audio",
+            "transcript": "queasy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:queasy:r1",
+              "targetText": "queasy",
+              "meaningByLocale": {
+                "ru": "чувствующий тошноту, подташнивает. I am queasy — «Меня подташнивает». О человеке в лодке, в машине, после еды.",
+                "uk": "який відчуває нудоту. I am queasy — «Мене нудить». Про людину в човні, в машині, після їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "queasy",
+            "definitionByLocale": {
+              "ru": "чувствующий тошноту, подташнивает. I am queasy — «Меня подташнивает». О человеке в лодке, в машине, после еды.",
+              "uk": "який відчуває нудоту. I am queasy — «Мене нудить». Про людину в човні, в машині, після їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am queasy.",
+          "localizedMeaning": {
+            "ru": "Хозяин лодки спрашивает, как вы. Скажите ему полной фразой, что вас подташнивает.",
+            "uk": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "queasy"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Господар човна питає, як ви. Скажіть йому повною фразою, що вас нудить.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `am` — `I am queasy.`",
+                "uk": "тут потрібно `am` — `I am queasy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що господар човна каже про подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i02:r1",
+            "text": "She is pale."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i02:r2",
+            "text": "She is tired."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i02:r3",
+            "text": "She is calm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що господар човна каже про подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i02:audio",
+            "transcript": "She is pale."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:i02:r1",
+              "targetText": "She is pale.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i02:r2",
+              "targetText": "She is tired.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i02:r3",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що господар човна каже про подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pale`, а в этом варианте — `tired`.",
+                "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `tired`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що господар човна каже про подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pale`, а в этом варианте — `calm`.",
+                "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `calm`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:word:swollen",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — swollen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:swollen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — swollen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:swollen:audio",
+            "transcript": "swollen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:swollen:r1",
+              "targetText": "swollen",
+              "meaningByLocale": {
+                "ru": "опухший, вздувшийся. It's swollen — «Она опухла». О щиколотке, пальце, щеке, глазе.",
+                "uk": "опухлий, роздутий. It's swollen — «Вона опухла». Про кісточку, палець, щоку, око."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swollen",
+            "definitionByLocale": {
+              "ru": "опухший, вздувшийся. It's swollen — «Она опухла». О щиколотке, пальце, щеке, глазе.",
+              "uk": "опухлий, роздутий. It's swollen — «Вона опухла». Про кісточку, палець, щоку, око."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы смотрите на щиколотку подруги. Спросите её, опухла ли она",
+            "uk": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла"
+          },
+          "gappedTargetPhrase": "___ it swollen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-42:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви дивитеся на кісточку подруги. Запитайте її, чи вона опухла",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it swollen?`.",
+                "uk": "Питання — `Is it swollen?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-42:i04:p1",
+              "target": "queasy",
+              "meaningByLocale": {
+                "ru": "чувствующий тошноту",
+                "uk": "який відчуває нудоту"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i04:p2",
+              "target": "itchy",
+              "meaningByLocale": {
+                "ru": "зудящий",
+                "uk": "що свербить"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i04:p3",
+              "target": "swollen",
+              "meaningByLocale": {
+                "ru": "опухший",
+                "uk": "опухлий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i04:p4",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "queasy",
+            "itchy",
+            "swollen",
+            "pale"
+          ],
+          "rightColumn": [
+            "який відчуває нудоту",
+            "що свербить",
+            "опухлий",
+            "блідий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:word:itchy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — itchy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:itchy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — itchy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:itchy:audio",
+            "transcript": "itchy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:itchy:r1",
+              "targetText": "itchy",
+              "meaningByLocale": {
+                "ru": "зудящий, чешущийся. Is it itchy? — «Оно чешется?» О коже, укусе, шерстяном свитере, глазах.",
+                "uk": "що свербить. Is it itchy? — «Воно свербить?» Про шкіру, укус, вовняний светр, очі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "itchy",
+            "definitionByLocale": {
+              "ru": "зудящий, чешущийся. Is it itchy? — «Оно чешется?» О коже, укусе, шерстяном свитере, глазах.",
+              "uk": "що свербить. Is it itchy? — «Воно свербить?» Про шкіру, укус, вовняний светр, очі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте запитання подруги про укус і складіть його",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги про укус і складіть його",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i05:audio",
+            "transcript": "Is it itchy?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is it itchy?",
+          "orderedTokens": [
+            "Is",
+            "it",
+            "itchy"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги про укус і складіть його",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it itchy?`",
+                "uk": "тут потрібно `Is` — `Is it itchy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:word:shaky",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shaky",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:word:shaky:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shaky",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:word:shaky:audio",
+            "transcript": "shaky"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:word:shaky:r1",
+              "targetText": "shaky",
+              "meaningByLocale": {
+                "ru": "дрожащий, нетвёрдый. Is he shaky? — «Его трясёт?» О руках, ногах, голосе, лестнице.",
+                "uk": "тремтливий, нетвердий. Is he shaky? — «Його трясе?» Про руки, ноги, голос, драбину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shaky",
+            "definitionByLocale": {
+              "ru": "дрожащий, нетвёрдый. Is he shaky? — «Его трясёт?» О руках, ногах, голосе, лестнице.",
+              "uk": "тремтливий, нетвердий. Is he shaky? — «Його трясе?» Про руки, ноги, голос, драбину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is he shaky?",
+          "localizedMeaning": {
+            "ru": "Брат подруги вышел на причал, и вас беспокоит, что он стоит нетвёрдо. Спросите подругу, дрожит ли он.",
+            "uk": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він."
+          },
+          "orderedTokens": [
+            "Is",
+            "he",
+            "shaky"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат подруги вийшов на причал, і вас турбує, що він стоїть нетвердо. Запитайте подругу, чи тремтить він.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is he shaky?`",
+                "uk": "тут потрібно `Is` — `Is he shaky?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви зійшли з човна, але голова ще паморочиться. Скажіть продавцеві води коротко, що вас нудить.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Ви зійшли з човна, але голова ще паморочиться. Скажіть продавцеві води коротко, що вас нудить.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i07:audio",
+            "transcript": "I'm queasy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm queasy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it swollen?» Щиколотка и правда опухла. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-42:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it swollen?» Кісточка і справді опухла. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про руку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i09:r1",
+            "text": "It is itchy."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i09:r2",
+            "text": "It is swollen."
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i09:r3",
+            "text": "It is pale."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про руку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i09:audio",
+            "transcript": "It is itchy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:i09:r1",
+              "targetText": "It is itchy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i09:r2",
+              "targetText": "It is swollen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i09:r3",
+              "targetText": "It is pale.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про руку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `itchy`, а в этом варианте — `swollen`.",
+                "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `swollen`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про руку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `itchy`, а в этом варианте — `pale`.",
+                "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `pale`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-42:i10:p1",
+              "target": "shaky",
+              "meaningByLocale": {
+                "ru": "дрожащий",
+                "uk": "тремтливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i10:p2",
+              "target": "queasy",
+              "meaningByLocale": {
+                "ru": "чувствующий тошноту",
+                "uk": "який відчуває нудоту"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i10:p3",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i10:p4",
+              "target": "tired",
+              "meaningByLocale": {
+                "ru": "уставший",
+                "uk": "втомлений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shaky",
+            "queasy",
+            "calm",
+            "tired"
+          ],
+          "rightColumn": [
+            "тремтливий",
+            "який відчуває нудоту",
+            "спокійний",
+            "втомлений"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що аптекар каже про ваші пальці, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що аптекар каже про ваші пальці, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i11:audio",
+            "transcript": "They are not swollen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not swollen.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "swollen"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що аптекар каже про ваші пальці, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not swollen.`",
+                "uk": "тут потрібно `are` — `They are not swollen.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are they itchy?",
+          "localizedMeaning": {
+            "ru": "У брата подруги на руке несколько комариных укусов. Спросите подругу, чешутся ли они.",
+            "uk": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться."
+          },
+          "orderedTokens": [
+            "Are",
+            "they",
+            "itchy"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У брата подруги на руці кілька комариних укусів. Запитайте подругу, чи вони свербляться.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they itchy?`",
+                "uk": "тут потрібно `Are` — `Are they itchy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Аптекар питає, що з ногою. Скажіть коротко, що вона опухла.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Аптекар питає, що з ногою. Скажіть коротко, що вона опухла.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i13:audio",
+            "transcript": "It's swollen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's swollen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i14:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Аптекарь спрашивает, дрожит ли у вас голос. Вы совершенно спокойны. Скажите, что вы не дрожите",
+            "uk": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите"
+          },
+          "gappedTargetPhrase": "I ___ not shaky.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-42:i14:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
+              "feedbackByLocale": {
+                "ru": "С `I` нужно `am`.",
+                "uk": "З `I` потрібно `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Аптекар питає, чи тремтить у вас голос. Ви цілком спокійні. Скажіть, що ви не тремтите",
+              "feedbackByLocale": {
+                "ru": "Фраза — `I am not shaky`.",
+                "uk": "Фраза — `I am not shaky`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-42:i15:r1",
+            "text": "Are you queasy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i15:r2",
+            "text": "Are you shaky?"
+          },
+          {
+            "responseId": "en:lesson-02:session-42:i15:r3",
+            "text": "Are you sleepy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i15:audio",
+            "transcript": "Are you queasy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-42:i15:r1",
+              "targetText": "Are you queasy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i15:r2",
+              "targetText": "Are you shaky?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i15:r3",
+              "targetText": "Are you sleepy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `queasy`, а в этом варианте — `shaky`.",
+                "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `shaky`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `queasy`, а в этом варианте — `sleepy`.",
+                "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `sleepy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-42:i16:p1",
+              "target": "itchy",
+              "meaningByLocale": {
+                "ru": "зудящий",
+                "uk": "що свербить"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i16:p2",
+              "target": "swollen",
+              "meaningByLocale": {
+                "ru": "опухший",
+                "uk": "опухлий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i16:p3",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-42:i16:p4",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "itchy",
+            "swollen",
+            "pale",
+            "calm"
+          ],
+          "rightColumn": [
+            "що свербить",
+            "опухлий",
+            "блідий",
+            "спокійний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви зустрічаєте подругу на причалі після човна. Запитайте її, чи нудить її.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Ви зустрічаєте подругу на причалі після човна. Запитайте її, чи нудить її.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-42:i17:audio",
+            "transcript": "Are you queasy?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you queasy?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-42:word:queasy",
+      "correctText": "queasy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i01",
+      "correctText": "I am queasy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i02",
+      "correctText": "She is pale.",
+      "correctResponseId": "en:lesson-02:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:word:swollen",
+      "correctText": "swollen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:word:itchy",
+      "correctText": "itchy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i05",
+      "correctText": "Is it itchy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:word:shaky",
+      "correctText": "shaky",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i06",
+      "correctText": "Is he shaky?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i07",
+      "correctText": "I'm queasy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i09",
+      "correctText": "It is itchy.",
+      "correctResponseId": "en:lesson-02:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i11",
+      "correctText": "They are not swollen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i12",
+      "correctText": "Are they itchy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i13",
+      "correctText": "It's swollen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i14",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-02:session-42:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i15",
+      "correctText": "Are you queasy?",
+      "correctResponseId": "en:lesson-02:session-42:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-42:i17",
+      "correctText": "Are you queasy?",
+      "correctResponseId": null
+    }
+  ]
+}

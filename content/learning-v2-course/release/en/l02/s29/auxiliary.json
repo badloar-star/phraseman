@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-29:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-29:intro1:r2": {
-          "ru": "Между `He` и `away` нужно `is`.",
-          "uk": "Між `He` і `away` потрібно `is`."
+          "ru": "Между He и away нужно is: He is away.",
+          "uk": "Між He і away потрібно is: He is away."
         },
         "en:lesson-02:session-29:intro1:r3": {
-          "ru": "Это отрицает отсутствие. По условию хозяин уехал.",
-          "uk": "Це заперечує відсутність. За умовою господар поїхав."
+          "ru": "С not выходит «Он не в отъезде». А хозяин уехал: He is away.",
+          "uk": "Із not виходить «Він не у від’їзді». А господар поїхав: He is away."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-29:intro2:r2": {
-          "ru": "Это вопрос, в отъезде ли он. Об этом вы уже знаете.",
-          "uk": "Це запитання, чи він у від’їзді. Про це ви вже знаєте."
+          "ru": "Так звучит утверждение «Она починена». Чтобы спросить, ставим Is вперёд: Is it fixed?",
+          "uk": "Так звучить твердження «Вона полагоджена». Щоб запитати, ставимо Is наперед: Is it fixed?"
         },
         "en:lesson-02:session-29:intro2:r3": {
-          "ru": "Это сообщение. Для вопроса поставьте `Is` перед `he`.",
-          "uk": "Це повідомлення. Для запитання поставте `Is` перед `he`."
+          "ru": "С it нужно is: Is it fixed?",
+          "uk": "З it потрібно is: Is it fixed?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-29:intro3:r2": {
-          "ru": "В этом вопросе `are` ставим перед `they`.",
-          "uk": "У цьому запитанні `are` ставимо перед `they`."
+          "ru": "С not выходит «Она не поцарапана». А царапина есть: It's scratched.",
+          "uk": "Із not виходить «Вона не подряпана». А подряпина є: It's scratched."
         },
         "en:lesson-02:session-29:intro3:r3": {
-          "ru": "Это вопрос, в отъезде ли они. Вам нужно узнать место.",
-          "uk": "Це запитання, чи вони у від’їзді. Вам потрібно дізнатися місце."
+          "ru": "They're — про несколько вещей, а лампа одна: It's scratched.",
+          "uk": "They're — про кілька речей, а лампа одна: It's scratched."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2df93b67e8c1ea51fadfe713a6188e2d3d9c30663e40210fbbd4ade77d15b429"
+  "auxiliaryFingerprint": "dccfa2fe9d6808365c5559a191d7fcd1e4dcc4cd7de3a97ab8da454cb9acc3df"
 }

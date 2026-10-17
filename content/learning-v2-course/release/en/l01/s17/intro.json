@@ -15,8 +15,8 @@
         "uk": "Гостеві раді"
       },
       "bodyByLocale": {
-        "ru": "`welcome` — «желанный»: вы рады, что человек пришёл. Скажите другу `You are welcome` — «Тебе здесь рады». `you` значит «ты» или «вы»; после него нужно `are`. Даже если гость один: звать второго ради `are` не нужно.",
-        "uk": "`welcome` — «бажаний»: ви раді, що людина прийшла. Скажіть другові `You are welcome` — «Тобі тут раді». `you` означає «ти» або «ви»; після нього потрібно `are`. Навіть якщо гість один: кликати другого заради `are` не треба."
+        "ru": "`welcome` — «желанный»: вы рады, что человек пришёл. Скажите другу `You are welcome` — «Тебе здесь рады». `you` значит «ты» или «вы»; после него нужно `are`.",
+        "uk": "`welcome` — «бажаний»: ви раді, що людина прийшла. Скажіть другові `You are welcome` — «Тобі тут раді». `you` означає «ти» або «ви»; після нього потрібно `are`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-17:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a027e64628c881d39bc9464501b8579831afe4cdc14d82fdba188f0c246c604f"
+  "introFingerprint": "ec47dcff580f6951665fbe19e775050a896a598997b3e17c22adb13130416ec6"
 }

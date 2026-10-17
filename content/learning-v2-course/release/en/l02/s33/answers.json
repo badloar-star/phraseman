@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-02:session-33:word:active",
+    "correctText": "active",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-33:i01",
-    "correctText": "She is active.",
+    "correctText": "They are active.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:word:fit",
+    "correctText": "fit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i02",
-    "correctText": "He is absent.",
+    "correctText": "She is fit.",
     "correctResponseId": "en:lesson-02:session-33:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-33:i04",
-    "correctText": "en:lesson-02:session-33:i04:p1=active\nen:lesson-02:session-33:i04:p2=okay\nen:lesson-02:session-33:i04:p3=absent\nen:lesson-02:session-33:i04:p4=awake",
+    "correctText": "en:lesson-02:session-33:i04:p1=active\nen:lesson-02:session-33:i04:p2=fit\nen:lesson-02:session-33:i04:p3=breathless\nen:lesson-02:session-33:i04:p4=energetic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:word:breathless",
+    "correctText": "breathless",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i05",
-    "correctText": "Yes, she is.",
+    "correctText": "I am not breathless.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i06",
-    "correctText": "Where is he?",
+    "correctText": "Who is absent?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:word:energetic",
+    "correctText": "energetic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i07",
-    "correctText": "I'm okay.",
+    "correctText": "He's energetic.",
     "correctResponseId": null
   },
   {
@@ -41,17 +61,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-33:i09",
-    "correctText": "They are okay.",
+    "correctText": "Are you breathless?",
     "correctResponseId": "en:lesson-02:session-33:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-33:i10",
-    "correctText": "en:lesson-02:session-33:i10:p1=absent\nen:lesson-02:session-33:i10:p2=active\nen:lesson-02:session-33:i10:p3=awake\nen:lesson-02:session-33:i10:p4=okay",
+    "correctText": "en:lesson-02:session-33:i10:p1=okay\nen:lesson-02:session-33:i10:p2=absent\nen:lesson-02:session-33:i10:p3=awake\nen:lesson-02:session-33:i10:p4=tired",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-33:i11",
-    "correctText": "They are not active.",
+    "correctText": "Is she okay?",
     "correctResponseId": null
   },
   {
@@ -61,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-33:i13",
-    "correctText": "They're active.",
+    "correctText": "They're fit.",
     "correctResponseId": null
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-33:i16",
-    "correctText": "en:lesson-02:session-33:i16:p1=okay\nen:lesson-02:session-33:i16:p2=awake\nen:lesson-02:session-33:i16:p3=active\nen:lesson-02:session-33:i16:p4=absent",
+    "correctText": "en:lesson-02:session-33:i16:p1=fit\nen:lesson-02:session-33:i16:p2=energetic\nen:lesson-02:session-33:i16:p3=okay\nen:lesson-02:session-33:i16:p4=absent",
     "correctResponseId": null
   },
   {

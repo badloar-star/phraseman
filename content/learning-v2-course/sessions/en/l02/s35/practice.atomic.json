@@ -1,0 +1,2437 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-35:word:invited",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — invited",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:invited:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — invited",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:invited:audio",
+            "transcript": "invited"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:invited:r1",
+              "targetText": "invited",
+              "meaningByLocale": {
+                "ru": "приглашённый. We are invited — «Мы приглашены». О госте, которого позвали на вечер, свадьбу, встречу.",
+                "uk": "запрошений. We are invited — «Нас запрошено». Про гостя, якого покликали на вечір, весілля, зустріч."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "invited",
+            "definitionByLocale": {
+              "ru": "приглашённый. We are invited — «Мы приглашены». О госте, которого позвали на вечер, свадьбу, встречу.",
+              "uk": "запрошений. We are invited — «Нас запрошено». Про гостя, якого покликали на вечір, весілля, зустріч."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двое знакомых тоже получили приглашение. Скажите полной фразой, что они приглашены",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое знакомых тоже получили приглашение. Скажите полной фразой, что они приглашены",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are invited.",
+          "localizedMeaning": {
+            "ru": "Двое знакомых тоже получили приглашение. Скажите полной фразой, что они приглашены",
+            "uk": "Двоє знайомих теж отримали запрошення. Скажіть повною фразою, що їх запросили"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "invited"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Двое знакомых тоже получили приглашение. Скажите полной фразой, что они приглашены",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are invited.`",
+                "uk": "тут потрібно `are` — `They are invited.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фразу о знакомом",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i02:r1",
+            "text": "He is ill."
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i02:r2",
+            "text": "He is absent."
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i02:r3",
+            "text": "He is generous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте фразу о знакомом",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i02:audio",
+            "transcript": "He is ill."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i02:r1",
+              "targetText": "He is ill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i02:r2",
+              "targetText": "He is absent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i02:r3",
+              "targetText": "He is generous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о знакомом",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ill`, а в этом варианте — `absent`.",
+                "uk": "У записі останнє слово — `ill`, а в цьому варіанті — `absent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фразу о знакомом",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ill`, а в этом варианте — `generous`.",
+                "uk": "У записі останнє слово — `ill`, а в цьому варіанті — `generous`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите подругу, официальный ли формат вечера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите подругу, официальный ли формат вечера",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу, официальный ли формат вечера",
+            "uk": "Запитайте подругу, чи офіційний формат вечора"
+          },
+          "gappedTargetPhrase": "___ it formal?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-35:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Спросите подругу, официальный ли формат вечера",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите подругу, официальный ли формат вечера",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите подругу, официальный ли формат вечера",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it formal?`.",
+                "uk": "Запитання — `Is it formal?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-35:i04:p1",
+              "target": "invited",
+              "meaningByLocale": {
+                "ru": "приглашённый",
+                "uk": "запрошений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i04:p2",
+              "target": "required",
+              "meaningByLocale": {
+                "ru": "обязательный",
+                "uk": "обов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i04:p3",
+              "target": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный",
+                "uk": "необов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i04:p4",
+              "target": "ironed",
+              "meaningByLocale": {
+                "ru": "выглаженный",
+                "uk": "випрасуваний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "invited",
+            "required",
+            "optional",
+            "ironed"
+          ],
+          "rightColumn": [
+            "приглашённый",
+            "обязательный",
+            "необязательный",
+            "выглаженный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:word:required",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — required",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:required:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — required",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:required:audio",
+            "transcript": "required"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:required:r1",
+              "targetText": "required",
+              "meaningByLocale": {
+                "ru": "обязательный, нужный по правилам. It is required — «Это обязательно». О костюме, билете, документе, подписи.",
+                "uk": "обов’язковий, потрібний за правилами. It is required — «Це обов’язково». Про костюм, квиток, документ, підпис."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "required",
+            "definitionByLocale": {
+              "ru": "обязательный, нужный по правилам. It is required — «Это обязательно». О костюме, билете, документе, подписи.",
+              "uk": "обов’язковий, потрібний за правилами. It is required — «Це обов’язково». Про костюм, квиток, документ, підпис."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i05:audio",
+            "transcript": "It is not required."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not required.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "required"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not required.`",
+                "uk": "тут потрібно `is` — `It is not required.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сказала, что один из знакомых заболел, но не назвала имя. Спросите, кто болен",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сказала, что один из знакомых заболел, но не назвала имя. Спросите, кто болен",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is ill?",
+          "localizedMeaning": {
+            "ru": "Подруга сказала, что один из знакомых заболел, но не назвала имя. Спросите, кто болен",
+            "uk": "Подруга сказала, що один зі знайомих захворів, але не назвала імені. Запитайте, хто хворий"
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "ill"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга сказала, что один из знакомых заболел, но не назвала имя. Спросите, кто болен",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is ill?`",
+                "uk": "тут потрібно `Who` — `Who is ill?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:word:ironed",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ironed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:ironed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ironed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:ironed:audio",
+            "transcript": "ironed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:ironed:r1",
+              "targetText": "ironed",
+              "meaningByLocale": {
+                "ru": "выглаженный. It is ironed — «Она выглажена». О рубашке, платье, брюках, скатерти.",
+                "uk": "випрасуваний. It is ironed — «Вона випрасувана». Про сорочку, сукню, штани, скатертину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ironed",
+            "definitionByLocale": {
+              "ru": "выглаженный. It is ironed — «Она выглажена». О рубашке, платье, брюках, скатерти.",
+              "uk": "випрасуваний. It is ironed — «Вона випрасувана». Про сорочку, сукню, штани, скатертину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы погладили рубашку перед вечером. Подруга спрашивает о ней. Коротко скажите, что она выглажена",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Вы погладили рубашку перед вечером. Подруга спрашивает о ней. Коротко скажите, что она выглажена",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i07:audio",
+            "transcript": "It's ironed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's ironed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы здоровы. На «Are you ill?» дополните короткое «нет»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы здоровы. На «Are you ill?» дополните короткое «нет»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы здоровы. На «Are you ill?» дополните короткое «нет»",
+            "uk": "Ви здорові. На «Are you ill?» доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, I ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-35:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы здоровы. На «Are you ill?» дополните короткое «нет»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы здоровы. На «Are you ill?» дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "Отвечаете о себе: `I am`.",
+                "uk": "Відповідаєте про себе: `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы здоровы. На «Are you ill?» дополните короткое «нет»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, I am not`.",
+                "uk": "Відповідь — `No, I am not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:word:optional",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — optional",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:optional:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — optional",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:optional:audio",
+            "transcript": "optional"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:optional:r1",
+              "targetText": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный, по желанию. It is optional — «Это по желанию». О галстуке, подарке, доплате, уроке.",
+                "uk": "необов’язковий, за бажанням. It is optional — «Це за бажанням». Про краватку, подарунок, доплату, урок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "optional",
+            "definitionByLocale": {
+              "ru": "необязательный, по желанию. It is optional — «Это по желанию». О галстуке, подарке, доплате, уроке.",
+              "uk": "необов’язковий, за бажанням. It is optional — «Це за бажанням». Про краватку, подарунок, доплату, урок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i09:r1",
+            "text": "Is it optional?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i09:r2",
+            "text": "Is it required?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i09:r3",
+            "text": "Is it formal?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i09:audio",
+            "transcript": "Is it optional?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i09:r1",
+              "targetText": "Is it optional?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i09:r2",
+              "targetText": "Is it required?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i09:r3",
+              "targetText": "Is it formal?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `optional`, а в этом варианте — `required`.",
+                "uk": "У записі останнє слово — `optional`, а в цьому варіанті — `required`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `optional`, а в этом варианте — `formal`.",
+                "uk": "У записі останнє слово — `optional`, а в цьому варіанті — `formal`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-35:i10:p1",
+              "target": "formal",
+              "meaningByLocale": {
+                "ru": "официальный",
+                "uk": "офіційний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i10:p2",
+              "target": "ill",
+              "meaningByLocale": {
+                "ru": "болен",
+                "uk": "хворий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i10:p3",
+              "target": "generous",
+              "meaningByLocale": {
+                "ru": "щедрый",
+                "uk": "щедрий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i10:p4",
+              "target": "absent",
+              "meaningByLocale": {
+                "ru": "отсутствующий",
+                "uk": "відсутній"
+              }
+            }
+          ],
+          "leftColumn": [
+            "formal",
+            "ill",
+            "generous",
+            "absent"
+          ],
+          "rightColumn": [
+            "официальный",
+            "болен",
+            "щедрый",
+            "отсутствующий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i11:audio",
+            "transcript": "Are they invited?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they invited?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "invited"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they invited?`",
+                "uk": "тут потрібно `Are` — `Are they invited?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы пришли на вечер, а двух знакомых не видите. Спросите подругу, где они",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы пришли на вечер, а двух знакомых не видите. Спросите подругу, где они",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where are they?",
+          "localizedMeaning": {
+            "ru": "Вы пришли на вечер, а двух знакомых не видите. Спросите подругу, где они",
+            "uk": "Ви прийшли на вечір, а двох знайомих не бачите. Запитайте подругу, де вони"
+          },
+          "orderedTokens": [
+            "Where",
+            "are",
+            "they"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы пришли на вечер, а двух знакомых не видите. Спросите подругу, где они",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where are they?`",
+                "uk": "тут потрібно `Where` — `Where are they?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Организатор подтвердил: вечер официальный. Сообщите это подруге коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Организатор подтвердил: вечер официальный. Сообщите это подруге коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i13:audio",
+            "transcript": "It's formal."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's formal.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Другой знакомый здоров. Скажите, что он не болен",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Другой знакомый здоров. Скажите, что он не болен",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Другой знакомый здоров. Скажите, что он не болен",
+            "uk": "Інший знайомий здоровий. Скажіть, що він не хворий"
+          },
+          "gappedTargetPhrase": "He ___ not ill.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-35:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Другой знакомый здоров. Скажите, что он не болен",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i14:r2",
+              "correct": false,
+              "testedDimension": "Другой знакомый здоров. Скажите, что он не болен",
+              "feedbackByLocale": {
+                "ru": "С `He` нужно `is`.",
+                "uk": "З `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i14:r3",
+              "correct": false,
+              "testedDimension": "Другой знакомый здоров. Скажите, что он не болен",
+              "feedbackByLocale": {
+                "ru": "Фраза — `He is not ill`.",
+                "uk": "Фраза — `He is not ill`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i15:r1",
+            "text": "Who is invited?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r2",
+            "text": "Who is ill?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r3",
+            "text": "Who is absent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i15:audio",
+            "transcript": "Who is invited?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r1",
+              "targetText": "Who is invited?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "targetText": "Who is ill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "targetText": "Who is absent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `invited`, а в этом варианте — `ill`.",
+                "uk": "У записі останнє слово — `invited`, а в цьому варіанті — `ill`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `invited`, а в этом варианте — `absent`.",
+                "uk": "У записі останнє слово — `invited`, а в цьому варіанті — `absent`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-35:i16:p1",
+              "target": "ironed",
+              "meaningByLocale": {
+                "ru": "выглаженный",
+                "uk": "випрасуваний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i16:p2",
+              "target": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный",
+                "uk": "необов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i16:p3",
+              "target": "formal",
+              "meaningByLocale": {
+                "ru": "официальный",
+                "uk": "офіційний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i16:p4",
+              "target": "ill",
+              "meaningByLocale": {
+                "ru": "болен",
+                "uk": "хворий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ironed",
+            "optional",
+            "formal",
+            "ill"
+          ],
+          "rightColumn": [
+            "выглаженный",
+            "необязательный",
+            "официальный",
+            "болен"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вас пригласили ещё на один вечер. Прежде чем выбрать одежду, спросите подругу, официальное ли мероприятие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Вас пригласили ещё на один вечер. Прежде чем выбрать одежду, спросите подругу, официальное ли мероприятие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i17:audio",
+            "transcript": "Is it formal?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it formal?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-35:word:invited",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — invited",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:invited:audio"
+        ],
+        "accessibilityLabel": "Картка слова — invited",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:invited:audio",
+            "transcript": "invited"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:invited:r1",
+              "targetText": "invited",
+              "meaningByLocale": {
+                "ru": "приглашённый. We are invited — «Мы приглашены». О госте, которого позвали на вечер, свадьбу, встречу.",
+                "uk": "запрошений. We are invited — «Нас запрошено». Про гостя, якого покликали на вечір, весілля, зустріч."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "invited",
+            "definitionByLocale": {
+              "ru": "приглашённый. We are invited — «Мы приглашены». О госте, которого позвали на вечер, свадьбу, встречу.",
+              "uk": "запрошений. We are invited — «Нас запрошено». Про гостя, якого покликали на вечір, весілля, зустріч."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоє знайомих теж отримали запрошення. Скажіть повною фразою, що їх запросили",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє знайомих теж отримали запрошення. Скажіть повною фразою, що їх запросили",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are invited.",
+          "localizedMeaning": {
+            "ru": "Двое знакомых тоже получили приглашение. Скажите полной фразой, что они приглашены",
+            "uk": "Двоє знайомих теж отримали запрошення. Скажіть повною фразою, що їх запросили"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "invited"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоє знайомих теж отримали запрошення. Скажіть повною фразою, що їх запросили",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are invited.`",
+                "uk": "тут потрібно `are` — `They are invited.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фразу про знайомого",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i02:r1",
+            "text": "He is ill."
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i02:r2",
+            "text": "He is absent."
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i02:r3",
+            "text": "He is generous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте фразу про знайомого",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i02:audio",
+            "transcript": "He is ill."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i02:r1",
+              "targetText": "He is ill.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i02:r2",
+              "targetText": "He is absent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i02:r3",
+              "targetText": "He is generous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про знайомого",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ill`, а в этом варианте — `absent`.",
+                "uk": "У записі останнє слово — `ill`, а в цьому варіанті — `absent`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фразу про знайомого",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ill`, а в этом варианте — `generous`.",
+                "uk": "У записі останнє слово — `ill`, а в цьому варіанті — `generous`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитайте подругу, чи офіційний формат вечора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте подругу, чи офіційний формат вечора",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите подругу, официальный ли формат вечера",
+            "uk": "Запитайте подругу, чи офіційний формат вечора"
+          },
+          "gappedTargetPhrase": "___ it formal?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-35:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Запитайте подругу, чи офіційний формат вечора",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитайте подругу, чи офіційний формат вечора",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитайте подругу, чи офіційний формат вечора",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it formal?`.",
+                "uk": "Запитання — `Is it formal?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-35:i04:p1",
+              "target": "invited",
+              "meaningByLocale": {
+                "ru": "приглашённый",
+                "uk": "запрошений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i04:p2",
+              "target": "required",
+              "meaningByLocale": {
+                "ru": "обязательный",
+                "uk": "обов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i04:p3",
+              "target": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный",
+                "uk": "необов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i04:p4",
+              "target": "ironed",
+              "meaningByLocale": {
+                "ru": "выглаженный",
+                "uk": "випрасуваний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "invited",
+            "required",
+            "optional",
+            "ironed"
+          ],
+          "rightColumn": [
+            "запрошений",
+            "обов’язковий",
+            "необов’язковий",
+            "випрасуваний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:word:required",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — required",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:required:audio"
+        ],
+        "accessibilityLabel": "Картка слова — required",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:required:audio",
+            "transcript": "required"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:required:r1",
+              "targetText": "required",
+              "meaningByLocale": {
+                "ru": "обязательный, нужный по правилам. It is required — «Это обязательно». О костюме, билете, документе, подписи.",
+                "uk": "обов’язковий, потрібний за правилами. It is required — «Це обов’язково». Про костюм, квиток, документ, підпис."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "required",
+            "definitionByLocale": {
+              "ru": "обязательный, нужный по правилам. It is required — «Это обязательно». О костюме, билете, документе, подписи.",
+              "uk": "обов’язковий, потрібний за правилами. It is required — «Це обов’язково». Про костюм, квиток, документ, підпис."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i05:audio",
+            "transcript": "It is not required."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not required.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "required"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not required.`",
+                "uk": "тут потрібно `is` — `It is not required.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сказала, що один зі знайомих захворів, але не назвала імені. Запитайте, хто хворий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сказала, що один зі знайомих захворів, але не назвала імені. Запитайте, хто хворий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is ill?",
+          "localizedMeaning": {
+            "ru": "Подруга сказала, что один из знакомых заболел, но не назвала имя. Спросите, кто болен",
+            "uk": "Подруга сказала, що один зі знайомих захворів, але не назвала імені. Запитайте, хто хворий"
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "ill"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга сказала, що один зі знайомих захворів, але не назвала імені. Запитайте, хто хворий",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is ill?`",
+                "uk": "тут потрібно `Who` — `Who is ill?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:word:ironed",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ironed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:ironed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ironed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:ironed:audio",
+            "transcript": "ironed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:ironed:r1",
+              "targetText": "ironed",
+              "meaningByLocale": {
+                "ru": "выглаженный. It is ironed — «Она выглажена». О рубашке, платье, брюках, скатерти.",
+                "uk": "випрасуваний. It is ironed — «Вона випрасувана». Про сорочку, сукню, штани, скатертину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ironed",
+            "definitionByLocale": {
+              "ru": "выглаженный. It is ironed — «Она выглажена». О рубашке, платье, брюках, скатерти.",
+              "uk": "випрасуваний. It is ironed — «Вона випрасувана». Про сорочку, сукню, штани, скатертину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви попрасували сорочку перед вечором. Подруга питає про неї. Коротко скажіть, що вона випрасувана",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Ви попрасували сорочку перед вечором. Подруга питає про неї. Коротко скажіть, що вона випрасувана",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i07:audio",
+            "transcript": "It's ironed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's ironed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви здорові. На «Are you ill?» доповніть коротке «ні»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i08:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви здорові. На «Are you ill?» доповніть коротке «ні»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы здоровы. На «Are you ill?» дополните короткое «нет»",
+            "uk": "Ви здорові. На «Are you ill?» доповніть коротке «ні»"
+          },
+          "gappedTargetPhrase": "No, I ___ not.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-35:i08:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви здорові. На «Are you ill?» доповніть коротке «ні»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви здорові. На «Are you ill?» доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "Отвечаете о себе: `I am`.",
+                "uk": "Відповідаєте про себе: `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви здорові. На «Are you ill?» доповніть коротке «ні»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `No, I am not`.",
+                "uk": "Відповідь — `No, I am not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:word:optional",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — optional",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:word:optional:audio"
+        ],
+        "accessibilityLabel": "Картка слова — optional",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:word:optional:audio",
+            "transcript": "optional"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:word:optional:r1",
+              "targetText": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный, по желанию. It is optional — «Это по желанию». О галстуке, подарке, доплате, уроке.",
+                "uk": "необов’язковий, за бажанням. It is optional — «Це за бажанням». Про краватку, подарунок, доплату, урок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "optional",
+            "definitionByLocale": {
+              "ru": "необязательный, по желанию. It is optional — «Это по желанию». О галстуке, подарке, доплате, уроке.",
+              "uk": "необов’язковий, за бажанням. It is optional — «Це за бажанням». Про краватку, подарунок, доплату, урок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i09:r1",
+            "text": "Is it optional?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i09:r2",
+            "text": "Is it required?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i09:r3",
+            "text": "Is it formal?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i09:audio",
+            "transcript": "Is it optional?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i09:r1",
+              "targetText": "Is it optional?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i09:r2",
+              "targetText": "Is it required?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i09:r3",
+              "targetText": "Is it formal?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `optional`, а в этом варианте — `required`.",
+                "uk": "У записі останнє слово — `optional`, а в цьому варіанті — `required`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `optional`, а в этом варианте — `formal`.",
+                "uk": "У записі останнє слово — `optional`, а в цьому варіанті — `formal`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-35:i10:p1",
+              "target": "formal",
+              "meaningByLocale": {
+                "ru": "официальный",
+                "uk": "офіційний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i10:p2",
+              "target": "ill",
+              "meaningByLocale": {
+                "ru": "болен",
+                "uk": "хворий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i10:p3",
+              "target": "generous",
+              "meaningByLocale": {
+                "ru": "щедрый",
+                "uk": "щедрий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i10:p4",
+              "target": "absent",
+              "meaningByLocale": {
+                "ru": "отсутствующий",
+                "uk": "відсутній"
+              }
+            }
+          ],
+          "leftColumn": [
+            "formal",
+            "ill",
+            "generous",
+            "absent"
+          ],
+          "rightColumn": [
+            "офіційний",
+            "хворий",
+            "щедрий",
+            "відсутній"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i11:audio",
+            "transcript": "Are they invited?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are they invited?",
+          "orderedTokens": [
+            "Are",
+            "they",
+            "invited"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are they invited?`",
+                "uk": "тут потрібно `Are` — `Are they invited?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви прийшли на вечір, а двох знайомих не бачите. Запитайте подругу, де вони",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прийшли на вечір, а двох знайомих не бачите. Запитайте подругу, де вони",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where are they?",
+          "localizedMeaning": {
+            "ru": "Вы пришли на вечер, а двух знакомых не видите. Спросите подругу, где они",
+            "uk": "Ви прийшли на вечір, а двох знайомих не бачите. Запитайте подругу, де вони"
+          },
+          "orderedTokens": [
+            "Where",
+            "are",
+            "they"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви прийшли на вечір, а двох знайомих не бачите. Запитайте подругу, де вони",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Where` — `Where are they?`",
+                "uk": "тут потрібно `Where` — `Where are they?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Організатор підтвердив: вечір офіційний. Повідомте це подрузі коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Організатор підтвердив: вечір офіційний. Повідомте це подрузі коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i13:audio",
+            "transcript": "It's formal."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's formal.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Інший знайомий здоровий. Скажіть, що він не хворий",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Інший знайомий здоровий. Скажіть, що він не хворий",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Другой знакомый здоров. Скажите, что он не болен",
+            "uk": "Інший знайомий здоровий. Скажіть, що він не хворий"
+          },
+          "gappedTargetPhrase": "He ___ not ill.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-35:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Інший знайомий здоровий. Скажіть, що він не хворий",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i14:r2",
+              "correct": false,
+              "testedDimension": "Інший знайомий здоровий. Скажіть, що він не хворий",
+              "feedbackByLocale": {
+                "ru": "С `He` нужно `is`.",
+                "uk": "З `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i14:r3",
+              "correct": false,
+              "testedDimension": "Інший знайомий здоровий. Скажіть, що він не хворий",
+              "feedbackByLocale": {
+                "ru": "Фраза — `He is not ill`.",
+                "uk": "Фраза — `He is not ill`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i15:r1",
+            "text": "Who is invited?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r2",
+            "text": "Who is ill?"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r3",
+            "text": "Who is absent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i15:audio",
+            "transcript": "Who is invited?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r1",
+              "targetText": "Who is invited?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "targetText": "Who is ill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "targetText": "Who is absent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `invited`, а в этом варианте — `ill`.",
+                "uk": "У записі останнє слово — `invited`, а в цьому варіанті — `ill`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `invited`, а в этом варианте — `absent`.",
+                "uk": "У записі останнє слово — `invited`, а в цьому варіанті — `absent`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-35:i16:p1",
+              "target": "ironed",
+              "meaningByLocale": {
+                "ru": "выглаженный",
+                "uk": "випрасуваний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i16:p2",
+              "target": "optional",
+              "meaningByLocale": {
+                "ru": "необязательный",
+                "uk": "необов’язковий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i16:p3",
+              "target": "formal",
+              "meaningByLocale": {
+                "ru": "официальный",
+                "uk": "офіційний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-35:i16:p4",
+              "target": "ill",
+              "meaningByLocale": {
+                "ru": "болен",
+                "uk": "хворий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ironed",
+            "optional",
+            "formal",
+            "ill"
+          ],
+          "rightColumn": [
+            "випрасуваний",
+            "необов’язковий",
+            "офіційний",
+            "хворий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вас запросили ще на один вечір. Перш ніж обрати одяг, запитайте подругу, чи офіційний захід",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Вас запросили ще на один вечір. Перш ніж обрати одяг, запитайте подругу, чи офіційний захід",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i17:audio",
+            "transcript": "Is it formal?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it formal?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-35:word:invited",
+      "correctText": "invited",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i01",
+      "correctText": "They are invited.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i02",
+      "correctText": "He is ill.",
+      "correctResponseId": "en:lesson-02:session-35:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-35:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:word:required",
+      "correctText": "required",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i05",
+      "correctText": "It is not required.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i06",
+      "correctText": "Who is ill?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:word:ironed",
+      "correctText": "ironed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i07",
+      "correctText": "It's ironed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i08",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-02:session-35:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:word:optional",
+      "correctText": "optional",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i09",
+      "correctText": "Is it optional?",
+      "correctResponseId": "en:lesson-02:session-35:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i11",
+      "correctText": "Are they invited?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i12",
+      "correctText": "Where are they?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i13",
+      "correctText": "It's formal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-35:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i15",
+      "correctText": "Who is invited?",
+      "correctResponseId": "en:lesson-02:session-35:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:i17",
+      "correctText": "Is it formal?",
+      "correctResponseId": null
+    }
+  ]
+}

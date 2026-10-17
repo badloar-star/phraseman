@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro2:r2": {
-          "ru": "He's — про человека. Про велосипед — It's.",
-          "uk": "He's — про людину. Про велосипед — It's."
+          "ru": "He's — про человека. Про прибор — It's.",
+          "uk": "He's — про людину. Про прилад — It's."
         },
         "en:lesson-01:session-44:intro2:r3": {
           "ru": "В короткой форме нужно 's: It's weird.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d24532aaa126754a633d6fe87b7a3cb7c18534e2bbe8dbf87be10c738f95fd4f"
+  "auxiliaryFingerprint": "9166e056f3f5bf8c3022eaa3f3ea733609a234500010223fb8f116175fd6f6c6"
 }

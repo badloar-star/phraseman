@@ -510,8 +510,8 @@
             "responseId": "en:lesson-01:session-21:word:noisy:r1",
             "targetText": "noisy",
             "meaningByLocale": {
-              "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
-              "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+              "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех.",
+              "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх."
             }
           }
         ],
@@ -521,8 +521,8 @@
         "wordCard": {
           "word": "noisy",
           "definitionByLocale": {
-            "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех. Это не обязательно музыка.",
-            "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх. Це не обов’язково музика."
+            "ru": "шумный. It is noisy — «Там шумно»: в зале все разговаривают, слышен смех.",
+            "uk": "галасливий, шумний. It is noisy — «Там шумно»: у залі всі розмовляють, чути сміх."
           }
         }
       },
@@ -1127,13 +1127,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви оглядаєте квартиру. У спальні зовсім немає меблів. Скажіть людині поруч про кімнату: «Вона порожня»",
+      "prompt": "Ви оглядаєте квартиру. У спальні зовсім немає меблів. Скажіть рієлторові про кімнату: «Вона порожня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-21:i17:audio"
       ],
-      "accessibilityLabel": "Ви оглядаєте квартиру. У спальні зовсім немає меблів. Скажіть людині поруч про кімнату: «Вона порожня»",
+      "accessibilityLabel": "Ви оглядаєте квартиру. У спальні зовсім немає меблів. Скажіть рієлторові про кімнату: «Вона порожня»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "07b9d73aa36258d5af183144f08a1a4eb430741c9d95f62baeb348ff5443a8fc"
+  "learnerFingerprint": "c4be7d5464640b4f5476099e40de7bb0f70b90d7558e114c8ef4d0d6d167f0f0"
 }

@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-43:i01",
+      "interactionId": "en:lesson-02:session-43:word:anxious",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — anxious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:word:anxious:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — anxious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:word:anxious:audio",
+          "transcript": "anxious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-43:word:anxious:r1",
+            "targetText": "anxious",
+            "meaningByLocale": {
+              "ru": "тревожный, неспокойный. I am anxious — «Мне тревожно». О человеке, голосе, ожидании.",
+              "uk": "тривожний, неспокійний. I am anxious — «Мені тривожно». Про людину, голос, очікування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anxious",
+          "definitionByLocale": {
+            "ru": "тревожный, неспокойный. I am anxious — «Мне тревожно». О человеке, голосе, ожидании.",
+            "uk": "тривожний, неспокійний. I am anxious — «Мені тривожно». Про людину, голос, очікування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы пока сомневаетесь в выборе наряда. Скажите полной фразой, что не уверены",
+      "prompt": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы пока сомневаетесь в выборе наряда. Скажите полной фразой, что не уверены",
+      "accessibilityLabel": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am uncertain.",
+        "targetPhrase": "I am anxious.",
         "localizedMeaning": {
-          "ru": "Вы пока сомневаетесь в выборе наряда. Скажите полной фразой, что не уверены",
-          "uk": "Ви поки сумніваєтеся у виборі вбрання. Скажіть повною фразою, що не впевнені"
+          "ru": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
+          "uk": "Сестра питає, що з вами. Скажіть їй повною фразою, що вам тривожно."
         },
         "orderedTokens": [
           "I",
           "am",
-          "uncertain"
+          "anxious"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-43:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы пока сомневаетесь в выборе наряда. Скажите полной фразой, что не уверены",
+            "testedDimension": "Сестра спрашивает, что с вами. Скажите ей полной фразой, что вам тревожно.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am uncertain.`",
-              "uk": "тут потрібно `am` — `I am uncertain.`"
+              "ru": "здесь нужно `am` — `I am anxious.`",
+              "uk": "тут потрібно `am` — `I am anxious.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Послушайте, что сестра говорит о себе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-43:i02:r1",
-          "text": "He is patient."
+          "text": "I am nervous."
         },
         {
           "responseId": "en:lesson-02:session-43:i02:r2",
-          "text": "He is uncertain."
+          "text": "I am calm."
         },
         {
           "responseId": "en:lesson-02:session-43:i02:r3",
-          "text": "He is polite."
+          "text": "I am busy."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Послушайте, что сестра говорит о себе",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i02:audio",
-          "transcript": "He is patient."
+          "transcript": "I am nervous."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-43:i02:r1",
-            "targetText": "He is patient.",
+            "targetText": "I am nervous.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-43:i02:r2",
-            "targetText": "He is uncertain.",
+            "targetText": "I am calm.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-43:i02:r3",
-            "targetText": "He is polite.",
+            "targetText": "I am busy.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-43:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что сестра говорит о себе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `patient`, а в этом варианте — `uncertain`.",
-              "uk": "У записі останнє слово — `patient`, а в цьому варіанті — `uncertain`."
+              "ru": "В записи последнее слово — `nervous`, а в этом варианте — `calm`.",
+              "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `calm`."
             }
           },
           {
             "responseId": "en:lesson-02:session-43:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что сестра говорит о себе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `patient`, а в этом варианте — `polite`.",
-              "uk": "У записі останнє слово — `patient`, а в цьому варіанті — `polite`."
+              "ru": "В записи последнее слово — `nervous`, а в этом варианте — `busy`.",
+              "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `busy`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-43:word:jealous",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — jealous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:word:jealous:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — jealous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:word:jealous:audio",
+          "transcript": "jealous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-43:word:jealous:r1",
+            "targetText": "jealous",
+            "meaningByLocale": {
+              "ru": "завидующий, которому обидно, что у другого лучше. I'm jealous — «Я завидую». О друге, брате, подруге.",
+              "uk": "заздрісний, якому прикро, що в іншого краще. I'm jealous — «Я заздрю». Про друга, брата, подругу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jealous",
+          "definitionByLocale": {
+            "ru": "завидующий, которому обидно, что у другого лучше. I'm jealous — «Я завидую». О друге, брате, подруге.",
+            "uk": "заздрісний, якому прикро, що в іншого краще. I'm jealous — «Я заздрю». Про друга, брата, подругу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-43:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите Анну, не уверена ли она в выборе",
+      "prompt": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-43:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите Анну, не уверена ли она в выборе",
+      "accessibilityLabel": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите Анну, не уверена ли она в выборе",
-          "uk": "Запитайте Анну, чи вона не впевнена у виборі"
+          "ru": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
+          "uk": "Брат хвалиться новим телефоном, а сестра мовчить. Запитайте сестру, чи вона заздрить"
         },
-        "gappedTargetPhrase": "___ you uncertain?",
+        "gappedTargetPhrase": "___ you jealous?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-43:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Спросите Анну, не уверена ли она в выборе",
+        "testedDimension": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-43:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите Анну, не уверена ли она в выборе",
+            "testedDimension": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
             "feedbackByLocale": {
               "ru": "С `you` нужно `Are`.",
               "uk": "З `you` потрібно `Are`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-43:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите Анну, не уверена ли она в выборе",
+            "testedDimension": "Брат хвалится новым телефоном, а сестра молчит. Спросите сестру, завидует ли она",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Are you uncertain?`.",
-              "uk": "Запитання — `Are you uncertain?`."
+              "ru": "Вопрос — `Are you jealous?`.",
+              "uk": "Питання — `Are you jealous?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-43:i04:p1",
-            "target": "uncertain",
+            "target": "anxious",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "тревожный",
+              "uk": "тривожний"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i04:p2",
-            "target": "patient",
+            "target": "jealous",
             "meaningByLocale": {
-              "ru": "терпеливый",
-              "uk": "терплячий"
+              "ru": "завидующий",
+              "uk": "заздрісний"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i04:p3",
-            "target": "formal",
+            "target": "tense",
             "meaningByLocale": {
-              "ru": "строгий, официальный по стилю",
-              "uk": "строгий, офіційний за стилем"
+              "ru": "напряжённый",
+              "uk": "напружений"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i04:p4",
-            "target": "informal",
+            "target": "nervous",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "нервный",
+              "uk": "нервовий"
             }
           }
         ],
         "leftColumn": [
-          "uncertain",
-          "patient",
-          "formal",
-          "informal"
+          "anxious",
+          "jealous",
+          "tense",
+          "nervous"
         ],
         "rightColumn": [
-          "неуверенный",
-          "терпеливый",
-          "строгий, официальный по стилю",
-          "неформальный"
+          "тревожный",
+          "завидующий",
+          "напряжённый",
+          "нервный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-43:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-43:word:tense",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tense",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:word:tense:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tense",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:word:tense:audio",
+          "transcript": "tense"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-43:word:tense:r1",
+            "targetText": "tense",
+            "meaningByLocale": {
+              "ru": "напряжённый, зажатый. She is tense — «Она напряжена». О человеке, плечах, разговоре, тишине.",
+              "uk": "напружений, затиснутий. She is tense — «Вона напружена». Про людину, плечі, розмову, тишу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tense",
+          "definitionByLocale": {
+            "ru": "напряжённый, зажатый. She is tense — «Она напряжена». О человеке, плечах, разговоре, тишине.",
+            "uk": "напружений, затиснутий. She is tense — «Вона напружена». Про людину, плечі, розмову, тишу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Послушайте, что мама говорит о сестре, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Послушайте, что мама говорит о сестре, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i05:audio",
-          "transcript": "Yes, I am."
+          "transcript": "She is not tense."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, I am.",
+        "hiddenTargetPhrase": "She is not tense.",
         "orderedTokens": [
-          "Yes,",
-          "I",
-          "am"
+          "She",
+          "is",
+          "not",
+          "tense"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-43:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Послушайте, что мама говорит о сестре, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, I am.`",
-              "uk": "тут потрібно `Yes,` — `Yes, I am.`"
+              "ru": "здесь нужно `is` — `She is not tense.`",
+              "uk": "тут потрібно `is` — `She is not tense.`"
             }
           }
         ],
@@ -314,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Олег упомянул сомневающегося участника встречи, но не назвал имени. Спросите, кто не уверен",
+      "prompt": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег упомянул сомневающегося участника встречи, но не назвал имени. Спросите, кто не уверен",
+      "accessibilityLabel": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Who is uncertain?",
+        "targetPhrase": "Who is anxious?",
         "localizedMeaning": {
-          "ru": "Олег упомянул сомневающегося участника встречи, но не назвал имени. Спросите, кто не уверен",
-          "uk": "Олег згадав учасника зустрічі, який сумнівається, але не назвав імені. Запитайте, хто не впевнений"
+          "ru": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
+          "uk": "Мама каже, що одній людині в родині сьогодні особливо тривожно. Запитайте її, хто тривожний."
         },
         "orderedTokens": [
           "Who",
           "is",
-          "uncertain"
+          "anxious"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -342,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-43:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Олег упомянул сомневающегося участника встречи, но не назвал имени. Спросите, кто не уверен",
+            "testedDimension": "Мама говорит, что одному человеку в семье сегодня особенно тревожно. Спросите её, кто тревожный.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Who` — `Who is uncertain?`",
-              "uk": "тут потрібно `Who` — `Who is uncertain?`"
+              "ru": "здесь нужно `Who` — `Who is anxious?`",
+              "uk": "тут потрібно `Who` — `Who is anxious?`"
             }
           }
         ],
@@ -358,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ещё не решили, что надеть. Коротко сообщите, что не уверены",
+      "prompt": "Подруга показывает новые кроссовки. Вам такие тоже хочется. Скажите ей коротко, что вы завидуете.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i07:audio"
       ],
-      "accessibilityLabel": "Вы ещё не решили, что надеть. Коротко сообщите, что не уверены",
+      "accessibilityLabel": "Подруга показывает новые кроссовки. Вам такие тоже хочется. Скажите ей коротко, что вы завидуете.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i07:audio",
-          "transcript": "I'm uncertain."
+          "transcript": "I'm jealous."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm uncertain.",
+        "targetPhrase": "I'm jealous.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,19 +521,19 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Олег терпеливо ждёт. На «Is he patient?» дополните короткое «да»",
+      "prompt": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-43:i08:r1",
-          "text": "is"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-43:i08:r2",
-          "text": "am"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-43:i08:r3",
@@ -412,46 +542,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Олег терпеливо ждёт. На «Is he patient?» дополните короткое «да»",
+      "accessibilityLabel": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Олег терпеливо ждёт. На «Is he patient?» дополните короткое «да»",
-          "uk": "Олег терпляче чекає. На «Is he patient?» доповніть коротку відповідь «так»"
+          "ru": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
+          "uk": "Сестра спитала: «Are you anxious?» Вам і справді тривожно. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "Yes, he ___.",
+        "gappedTargetPhrase": "Yes, I ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-43:i08:r1",
-            "text": "is"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-43:i08:r2",
-            "text": "am"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-43:i08:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Олег терпеливо ждёт. На «Is he patient?» дополните короткое «да»",
+        "testedDimension": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-43:i08:r2",
             "correct": false,
-            "testedDimension": "Олег терпеливо ждёт. На «Is he patient?» дополните короткое «да»",
+            "testedDimension": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `he` нужно `is`.",
-              "uk": "З `he` потрібно `is`."
+              "ru": "С `I` нужно `am`.",
+              "uk": "З `I` потрібно `am`."
             }
           },
           {
             "responseId": "en:lesson-02:session-43:i08:r3",
             "correct": false,
-            "testedDimension": "Олег терпеливо ждёт. На «Is he patient?» дополните короткое «да»",
+            "testedDimension": "Сестра спросила: «Are you anxious?» Вам и правда тревожно. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Ответ — `Yes, he is`.",
-              "uk": "Відповідь — `Yes, he is`."
+              "ru": "Ответ — `Yes, I am`.",
+              "uk": "Відповідь — `Yes, I am`."
             }
           }
         ]
@@ -459,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-43:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-43:word:cheerful",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о встрече",
+      "prompt": "Карточка слова — cheerful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:word:cheerful:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cheerful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:word:cheerful:audio",
+          "transcript": "cheerful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-43:word:cheerful:r1",
+            "targetText": "cheerful",
+            "meaningByLocale": {
+              "ru": "весёлый, бодрый, в хорошем настроении. He is cheerful — «Он весёлый». О человеке, голосе, утре.",
+              "uk": "веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheerful",
+          "definitionByLocale": {
+            "ru": "весёлый, бодрый, в хорошем настроении. He is cheerful — «Он весёлый». О человеке, голосе, утре.",
+            "uk": "веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что сестра говорит о брате",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-43:i09:r1",
-          "text": "Is it formal?"
+          "text": "He is cheerful."
         },
         {
           "responseId": "en:lesson-02:session-43:i09:r2",
-          "text": "Is it informal?"
+          "text": "He is nervous."
         },
         {
           "responseId": "en:lesson-02:session-43:i09:r3",
-          "text": "Is it official?"
+          "text": "He is jealous."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о встрече",
+      "accessibilityLabel": "Послушайте, что сестра говорит о брате",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i09:audio",
-          "transcript": "Is it formal?"
+          "transcript": "He is cheerful."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-43:i09:r1",
-            "targetText": "Is it formal?",
+            "targetText": "He is cheerful.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-43:i09:r2",
-            "targetText": "Is it informal?",
+            "targetText": "He is nervous.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-43:i09:r3",
-            "targetText": "Is it official?",
+            "targetText": "He is jealous.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-43:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о встрече",
+            "testedDimension": "Послушайте, что сестра говорит о брате",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `formal`, а в этом варианте — `informal`.",
-              "uk": "У записі останнє слово — `formal`, а в цьому варіанті — `informal`."
+              "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `nervous`.",
+              "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `nervous`."
             }
           },
           {
             "responseId": "en:lesson-02:session-43:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о встрече",
+            "testedDimension": "Послушайте, что сестра говорит о брате",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `formal`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `formal`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `jealous`.",
+              "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `jealous`."
             }
           }
         ],
@@ -536,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -550,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-43:i10:p1",
-            "target": "formal",
+            "target": "cheerful",
             "meaningByLocale": {
-              "ru": "строгий, официальный по стилю",
-              "uk": "строгий, офіційний за стилем"
+              "ru": "весёлый, бодрый",
+              "uk": "веселий, бадьорий"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i10:p2",
-            "target": "informal",
+            "target": "tense",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "напряжённый",
+              "uk": "напружений"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i10:p3",
-            "target": "patient",
+            "target": "jealous",
             "meaningByLocale": {
-              "ru": "терпеливый",
-              "uk": "терплячий"
+              "ru": "завидующий",
+              "uk": "заздрісний"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i10:p4",
-            "target": "uncertain",
+            "target": "tired",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "уставший",
+              "uk": "втомлений"
             }
           }
         ],
         "leftColumn": [
-          "formal",
-          "informal",
-          "patient",
-          "uncertain"
+          "cheerful",
+          "tense",
+          "jealous",
+          "tired"
         ],
         "rightColumn": [
-          "строгий, официальный по стилю",
-          "неформальный",
-          "терпеливый",
-          "неуверенный"
+          "весёлый, бодрый",
+          "напряжённый",
+          "завидующий",
+          "уставший"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,42 +782,42 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу о формате",
+      "prompt": "Послушайте, что мама говорит о родителях, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу о формате",
+      "accessibilityLabel": "Послушайте, что мама говорит о родителях, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i11:audio",
-          "transcript": "It is not formal."
+          "transcript": "They are not anxious."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not formal.",
+        "hiddenTargetPhrase": "They are not anxious.",
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "not",
-          "formal"
+          "anxious"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-43:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу о формате",
+            "testedDimension": "Послушайте, что мама говорит о родителях, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not formal.`",
-              "uk": "тут потрібно `is` — `It is not formal.`"
+              "ru": "здесь нужно `are` — `They are not anxious.`",
+              "uk": "тут потрібно `are` — `They are not anxious.`"
             }
           }
         ],
@@ -657,38 +830,38 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы ещё не знакомы с Олегом. Спросите Анну, терпеливый ли он",
+      "prompt": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы ещё не знакомы с Олегом. Спросите Анну, терпеливый ли он",
+      "accessibilityLabel": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is he patient?",
+        "targetPhrase": "Who is cheerful?",
         "localizedMeaning": {
-          "ru": "Вы ещё не знакомы с Олегом. Спросите Анну, терпеливый ли он",
-          "uk": "Ви ще не знайомі з Олегом. Запитайте Анну, чи він терплячий"
+          "ru": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
+          "uk": "Сестра каже, що один із гостей з ранку веселий. Запитайте її, хто веселий."
         },
         "orderedTokens": [
-          "Is",
-          "he",
-          "patient"
+          "Who",
+          "is",
+          "cheerful"
         ],
         "authoredDistractorTokens": [
-          "Are"
+          "Where"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-43:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы ещё не знакомы с Олегом. Спросите Анну, терпеливый ли он",
+            "testedDimension": "Сестра говорит, что один из гостей с утра весёлый. Спросите её, кто весёлый.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is he patient?`",
-              "uk": "тут потрібно `Is` — `Is he patient?`"
+              "ru": "здесь нужно `Who` — `Who is cheerful?`",
+              "uk": "тут потрібно `Who` — `Who is cheerful?`"
             }
           }
         ],
@@ -701,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Организатор подтвердил: встреча со строгим официальным форматом. Коротко сообщите об этом",
+      "prompt": "Утро понедельника: брат уже на ногах и смеётся. Скажите коротко, что он бодрый и весёлый.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i13:audio"
       ],
-      "accessibilityLabel": "Организатор подтвердил: встреча со строгим официальным форматом. Коротко сообщите об этом",
+      "accessibilityLabel": "Утро понедельника: брат уже на ногах и смеётся. Скажите коротко, что он бодрый и весёлый.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i13:audio",
-          "transcript": "It's formal."
+          "transcript": "He's cheerful."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's formal.",
+        "targetPhrase": "He's cheerful.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,19 +907,19 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна всё ещё сомневается в выборе наряда. Скажите, что она не уверена",
+      "prompt": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-43:i14:r1",
-          "text": "is"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-02:session-43:i14:r2",
-          "text": "am"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-43:i14:r3",
@@ -755,46 +928,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна всё ещё сомневается в выборе наряда. Скажите, что она не уверена",
+      "accessibilityLabel": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна всё ещё сомневается в выборе наряда. Скажите, что она не уверена",
-          "uk": "Анна досі сумнівається у виборі вбрання. Скажіть, що вона не впевнена"
+          "ru": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
+          "uk": "Подруга питає, як ви. Надвечір ви вже заспокоїлися. Скажіть, що вам не тривожно"
         },
-        "gappedTargetPhrase": "She ___ uncertain.",
+        "gappedTargetPhrase": "I ___ not anxious.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-43:i14:r1",
-            "text": "is"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-02:session-43:i14:r2",
-            "text": "am"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-43:i14:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Анна всё ещё сомневается в выборе наряда. Скажите, что она не уверена",
+        "testedDimension": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-43:i14:r2",
             "correct": false,
-            "testedDimension": "Анна всё ещё сомневается в выборе наряда. Скажите, что она не уверена",
+            "testedDimension": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
             "feedbackByLocale": {
-              "ru": "С `She` нужно `is`.",
-              "uk": "З `She` потрібно `is`."
+              "ru": "С `I` нужно `am`.",
+              "uk": "З `I` потрібно `am`."
             }
           },
           {
             "responseId": "en:lesson-02:session-43:i14:r3",
             "correct": false,
-            "testedDimension": "Анна всё ещё сомневается в выборе наряда. Скажите, что она не уверена",
+            "testedDimension": "Подруга спрашивает, как вы. К вечеру вы уже успокоились. Скажите, что вам не тревожно",
             "feedbackByLocale": {
-              "ru": "Фраза — `She is uncertain`.",
-              "uk": "Фраза — `She is uncertain`."
+              "ru": "Фраза — `I am not anxious`.",
+              "uk": "Фраза — `I am not anxious`."
             }
           }
         ]
@@ -803,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-43:i15:r1",
-          "text": "Are they uncertain?"
+          "text": "Are you tense?"
         },
         {
           "responseId": "en:lesson-02:session-43:i15:r2",
-          "text": "Are they patient?"
+          "text": "Are you jealous?"
         },
         {
           "responseId": "en:lesson-02:session-43:i15:r3",
-          "text": "Are they polite?"
+          "text": "Are you cheerful?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i15:audio",
-          "transcript": "Are they uncertain?"
+          "transcript": "Are you tense?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-43:i15:r1",
-            "targetText": "Are they uncertain?",
+            "targetText": "Are you tense?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-43:i15:r2",
-            "targetText": "Are they patient?",
+            "targetText": "Are you jealous?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-43:i15:r3",
-            "targetText": "Are they polite?",
+            "targetText": "Are you cheerful?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-43:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `uncertain`, а в этом варианте — `patient`.",
-              "uk": "У записі останнє слово — `uncertain`, а в цьому варіанті — `patient`."
+              "ru": "В записи последнее слово — `tense`, а в этом варианте — `jealous`.",
+              "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `jealous`."
             }
           },
           {
             "responseId": "en:lesson-02:session-43:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `uncertain`, а в этом варианте — `polite`.",
-              "uk": "У записі останнє слово — `uncertain`, а в цьому варіанті — `polite`."
+              "ru": "В записи последнее слово — `tense`, а в этом варианте — `cheerful`.",
+              "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `cheerful`."
             }
           }
         ],
@@ -879,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-43:i16:p1",
-            "target": "patient",
+            "target": "anxious",
             "meaningByLocale": {
-              "ru": "терпеливый",
-              "uk": "терплячий"
+              "ru": "тревожный",
+              "uk": "тривожний"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i16:p2",
-            "target": "uncertain",
+            "target": "cheerful",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "весёлый, бодрый",
+              "uk": "веселий, бадьорий"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i16:p3",
-            "target": "informal",
+            "target": "tense",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "напряжённый",
+              "uk": "напружений"
             }
           },
           {
             "pairId": "en:lesson-02:session-43:i16:p4",
-            "target": "formal",
+            "target": "calm",
             "meaningByLocale": {
-              "ru": "строгий, официальный по стилю",
-              "uk": "строгий, офіційний за стилем"
+              "ru": "спокойный",
+              "uk": "спокійний"
             }
           }
         ],
         "leftColumn": [
-          "patient",
-          "uncertain",
-          "informal",
-          "formal"
+          "anxious",
+          "cheerful",
+          "tense",
+          "calm"
         ],
         "rightColumn": [
-          "терпеливый",
-          "неуверенный",
-          "неформальный",
-          "строгий, официальный по стилю"
+          "тревожный",
+          "весёлый, бодрый",
+          "напряжённый",
+          "спокойный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-43:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна снова рассматривает два наряда. Спросите её, не уверена ли она в выборе",
+      "prompt": "Сестра сидит, сжав кулаки, перед звонком. Спросите её, напряжена ли она.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i17:audio"
       ],
-      "accessibilityLabel": "Анна снова рассматривает два наряда. Спросите её, не уверена ли она в выборе",
+      "accessibilityLabel": "Сестра сидит, сжав кулаки, перед звонком. Спросите её, напряжена ли она.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-43:i17:audio",
-          "transcript": "Are you uncertain?"
+          "transcript": "Are you tense?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are you uncertain?",
+        "targetPhrase": "Are you tense?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e00f8e00f92d0e6fc715a7d737b3460a3608fd3c9a6fcdc9375c302245930cb3"
+  "learnerFingerprint": "0acb8a40b45ad924531afd0288e111c307d594cdf7d15058f27c145199970580"
 }

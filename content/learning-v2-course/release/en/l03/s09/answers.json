@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-03:session-09:word:armchair",
+    "correctText": "armchair",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-09:i01",
-    "correctText": "The door is open.",
+    "correctText": "It is an armchair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:word:oven",
+    "correctText": "oven",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i02",
-    "correctText": "It is possible.",
+    "correctText": "It is an oven.",
     "correctResponseId": "en:lesson-03:session-09:i02:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-09:word:umbrella",
+    "correctText": "umbrella",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-09:i03",
-    "correctText": "is",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-09:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-09:i04",
-    "correctText": "en:lesson-03:session-09:i04:p1=door\nen:lesson-03:session-09:i04:p2=key\nen:lesson-03:session-09:i04:p3=tall\nen:lesson-03:session-09:i04:p4=short",
+    "correctText": "en:lesson-03:session-09:i04:p1=armchair\nen:lesson-03:session-09:i04:p2=oven\nen:lesson-03:session-09:i04:p3=umbrella\nen:lesson-03:session-09:i04:p4=lamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:word:elevator",
+    "correctText": "elevator",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i05",
-    "correctText": "The key is here.",
+    "correctText": "It is an elevator.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i06",
-    "correctText": "Where is the key?",
+    "correctText": "Is it an oven?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i07",
-    "correctText": "The door is closed.",
+    "correctText": "It's an elevator.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-09:i09",
-    "correctText": "The door is open.",
+    "correctText": "It's an umbrella.",
     "correctResponseId": "en:lesson-03:session-09:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-09:i10",
-    "correctText": "en:lesson-03:session-09:i10:p1=possible\nen:lesson-03:session-09:i10:p2=young\nen:lesson-03:session-09:i10:p3=door\nen:lesson-03:session-09:i10:p4=key",
+    "correctText": "en:lesson-03:session-09:i10:p1=elevator\nen:lesson-03:session-09:i10:p2=oven\nen:lesson-03:session-09:i10:p3=umbrella\nen:lesson-03:session-09:i10:p4=sofa",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i11",
-    "correctText": "The door is not open.",
+    "correctText": "It is not an oven.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i12",
-    "correctText": "Is the door open?",
+    "correctText": "Is it an elevator?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i13",
-    "correctText": "He's short.",
+    "correctText": "It's an armchair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i14",
-    "correctText": "The",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-09:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-09:i15",
-    "correctText": "Is he tall?",
+    "correctText": "Is it an elevator?",
     "correctResponseId": "en:lesson-03:session-09:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-09:i16",
-    "correctText": "en:lesson-03:session-09:i16:p1=door\nen:lesson-03:session-09:i16:p2=young\nen:lesson-03:session-09:i16:p3=possible\nen:lesson-03:session-09:i16:p4=tall",
+    "correctText": "en:lesson-03:session-09:i16:p1=armchair\nen:lesson-03:session-09:i16:p2=elevator\nen:lesson-03:session-09:i16:p3=oven\nen:lesson-03:session-09:i16:p4=umbrella",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-09:i17",
-    "correctText": "Where is the key?",
+    "correctText": "Is it an umbrella?",
     "correctResponseId": null
   }
 ]

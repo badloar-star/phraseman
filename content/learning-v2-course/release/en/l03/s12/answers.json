@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-03:session-12:word:vase",
+    "correctText": "vase",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-12:i01",
-    "correctText": "It is a table.",
+    "correctText": "It is a vase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:word:clock",
+    "correctText": "clock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i02",
-    "correctText": "The table is here.",
+    "correctText": "It is a clock.",
     "correctResponseId": "en:lesson-03:session-12:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-03:session-12:i04",
-    "correctText": "en:lesson-03:session-12:i04:p1=table\nen:lesson-03:session-12:i04:p2=bag\nen:lesson-03:session-12:i04:p3=friendly\nen:lesson-03:session-12:i04:p4=helpful",
+    "correctText": "en:lesson-03:session-12:i04:p1=vase\nen:lesson-03:session-12:i04:p2=clock\nen:lesson-03:session-12:i04:p3=armchair\nen:lesson-03:session-12:i04:p4=umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:word:radio",
+    "correctText": "radio",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i05",
-    "correctText": "Where is the bag?",
+    "correctText": "It's a radio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:word:teapot",
+    "correctText": "teapot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i06",
-    "correctText": "The table is here.",
+    "correctText": "Is it a teapot?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i07",
-    "correctText": "He is helpful.",
+    "correctText": "It's a radio.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-12:i09",
-    "correctText": "He is loud.",
+    "correctText": "Is it a vase?",
     "correctResponseId": "en:lesson-03:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i10",
-    "correctText": "en:lesson-03:session-12:i10:p1=loud\nen:lesson-03:session-12:i10:p2=private\nen:lesson-03:session-12:i10:p3=table\nen:lesson-03:session-12:i10:p4=bag",
+    "correctText": "en:lesson-03:session-12:i10:p1=radio\nen:lesson-03:session-12:i10:p2=teapot\nen:lesson-03:session-12:i10:p3=vase\nen:lesson-03:session-12:i10:p4=clock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i11",
-    "correctText": "The bag is here.",
+    "correctText": "It is not a radio.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i12",
-    "correctText": "Where is the table?",
+    "correctText": "It is an umbrella.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i13",
-    "correctText": "She's friendly.",
+    "correctText": "It's a teapot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i14",
-    "correctText": "The",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-12:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i15",
-    "correctText": "She is friendly.",
+    "correctText": "It's a radio.",
     "correctResponseId": "en:lesson-03:session-12:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-12:i16",
-    "correctText": "en:lesson-03:session-12:i16:p1=loud\nen:lesson-03:session-12:i16:p2=friendly\nen:lesson-03:session-12:i16:p3=helpful\nen:lesson-03:session-12:i16:p4=private",
+    "correctText": "en:lesson-03:session-12:i16:p1=teapot\nen:lesson-03:session-12:i16:p2=radio\nen:lesson-03:session-12:i16:p3=oven\nen:lesson-03:session-12:i16:p4=kettle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-12:i17",
-    "correctText": "Where is the table?",
+    "correctText": "Is it a vase?",
     "correctResponseId": null
   }
 ]

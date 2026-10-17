@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-49:word:wrinkled",
+    "correctText": "wrinkled",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-49:i01",
-    "correctText": "It is unacceptable.",
+    "correctText": "It is wrinkled.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i02",
-    "correctText": "It is cheap.",
+    "correctText": "It is torn.",
     "correctResponseId": "en:lesson-02:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-49:word:frayed",
+    "correctText": "frayed",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i03",
@@ -16,52 +26,62 @@
   },
   {
     "interactionId": "en:lesson-02:session-49:i04",
-    "correctText": "en:lesson-02:session-49:i04:p1=unacceptable\nen:lesson-02:session-49:i04:p2=acceptable\nen:lesson-02:session-49:i04:p3=cheap\nen:lesson-02:session-49:i04:p4=accurate",
+    "correctText": "en:lesson-02:session-49:i04:p1=wrinkled\nen:lesson-02:session-49:i04:p2=stained\nen:lesson-02:session-49:i04:p3=frayed\nen:lesson-02:session-49:i04:p4=torn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-49:word:stained",
+    "correctText": "stained",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "It is not stained.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i06",
-    "correctText": "What is unacceptable?",
+    "correctText": "What is stained?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i07",
-    "correctText": "It's unacceptable.",
+    "correctText": "It's frayed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i08",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-49:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-49:word:smelly",
+    "correctText": "smelly",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-49:i09",
-    "correctText": "Are they accurate?",
+    "correctText": "They are smelly.",
     "correctResponseId": "en:lesson-02:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-49:i10",
-    "correctText": "en:lesson-02:session-49:i10:p1=cheap\nen:lesson-02:session-49:i10:p2=accurate\nen:lesson-02:session-49:i10:p3=acceptable\nen:lesson-02:session-49:i10:p4=unacceptable",
+    "correctText": "en:lesson-02:session-49:i10:p1=smelly\nen:lesson-02:session-49:i10:p2=stained\nen:lesson-02:session-49:i10:p3=wrinkled\nen:lesson-02:session-49:i10:p4=clean",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i11",
-    "correctText": "It is not acceptable.",
+    "correctText": "They are not wrinkled.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i12",
-    "correctText": "Is it cheap?",
+    "correctText": "Is it smelly?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i13",
-    "correctText": "They're accurate.",
+    "correctText": "They're smelly.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-49:i15",
-    "correctText": "Is it unacceptable?",
+    "correctText": "Is it frayed?",
     "correctResponseId": "en:lesson-02:session-49:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-49:i16",
-    "correctText": "en:lesson-02:session-49:i16:p1=accurate\nen:lesson-02:session-49:i16:p2=unacceptable\nen:lesson-02:session-49:i16:p3=cheap\nen:lesson-02:session-49:i16:p4=acceptable",
+    "correctText": "en:lesson-02:session-49:i16:p1=wrinkled\nen:lesson-02:session-49:i16:p2=stained\nen:lesson-02:session-49:i16:p3=frayed\nen:lesson-02:session-49:i16:p4=smelly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-49:i17",
-    "correctText": "Is it unacceptable?",
+    "correctText": "Is it stained?",
     "correctResponseId": null
   }
 ]

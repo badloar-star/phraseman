@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-52:word:legible",
+    "correctText": "legible",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-52:i01",
-    "correctText": "It is fair.",
+    "correctText": "It is legible.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i02",
-    "correctText": "It is light.",
+    "correctText": "It is neat.",
     "correctResponseId": "en:lesson-02:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:word:smudged",
+    "correctText": "smudged",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-52:i04",
-    "correctText": "en:lesson-02:session-52:i04:p1=fair\nen:lesson-02:session-52:i04:p2=light\nen:lesson-02:session-52:i04:p3=legal\nen:lesson-02:session-52:i04:p4=heavy",
+    "correctText": "en:lesson-02:session-52:i04:p1=legible\nen:lesson-02:session-52:i04:p2=smudged\nen:lesson-02:session-52:i04:p3=sloppy\nen:lesson-02:session-52:i04:p4=neat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "It is not legible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:word:sloppy",
+    "correctText": "sloppy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i06",
-    "correctText": "What is fair?",
+    "correctText": "What is sloppy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i07",
-    "correctText": "It's fair.",
+    "correctText": "It's sloppy.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-52:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-52:word:thorough",
+    "correctText": "thorough",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-52:i09",
-    "correctText": "Is it legal?",
+    "correctText": "It is thorough.",
     "correctResponseId": "en:lesson-02:session-52:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-52:i10",
-    "correctText": "en:lesson-02:session-52:i10:p1=legal\nen:lesson-02:session-52:i10:p2=heavy\nen:lesson-02:session-52:i10:p3=fair\nen:lesson-02:session-52:i10:p4=light",
+    "correctText": "en:lesson-02:session-52:i10:p1=thorough\nen:lesson-02:session-52:i10:p2=smudged\nen:lesson-02:session-52:i10:p3=legible\nen:lesson-02:session-52:i10:p4=messy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i11",
-    "correctText": "It is not fair.",
+    "correctText": "It is not sloppy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i12",
-    "correctText": "Is it light?",
+    "correctText": "Is it thorough?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i13",
-    "correctText": "It's legal.",
+    "correctText": "It's legible.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-52:i15",
-    "correctText": "Is it fair?",
+    "correctText": "Is it legible?",
     "correctResponseId": "en:lesson-02:session-52:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-52:i16",
-    "correctText": "en:lesson-02:session-52:i16:p1=light\nen:lesson-02:session-52:i16:p2=fair\nen:lesson-02:session-52:i16:p3=heavy\nen:lesson-02:session-52:i16:p4=legal",
+    "correctText": "en:lesson-02:session-52:i16:p1=legible\nen:lesson-02:session-52:i16:p2=smudged\nen:lesson-02:session-52:i16:p3=sloppy\nen:lesson-02:session-52:i16:p4=thorough",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-52:i17",
-    "correctText": "Is it fair?",
+    "correctText": "Is it legible?",
     "correctResponseId": null
   }
 ]

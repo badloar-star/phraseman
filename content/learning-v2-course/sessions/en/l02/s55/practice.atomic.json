@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-55:word:playful",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — playful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:playful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — playful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:playful:audio",
+            "transcript": "playful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:playful:r1",
+              "targetText": "playful",
+              "meaningByLocale": {
+                "ru": "игривый, любящий играть. He is playful — «Он игривый». О щенке, котёнке, ребёнке, настроении.",
+                "uk": "грайливий, що любить гратися. He is playful — «Він грайливий». Про цуценя, кошеня, дитину, настрій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "playful",
+            "definitionByLocale": {
+              "ru": "игривый, любящий играть. He is playful — «Он игривый». О щенке, котёнке, ребёнке, настроении.",
+              "uk": "грайливий, що любить гратися. He is playful — «Він грайливий». Про цуценя, кошеня, дитину, настрій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Щенок приносит вам мячик. Скажите волонтёру полной фразой, что он игривый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Щенок приносит вам мячик. Скажите волонтёру полной фразой, что он игривый.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is playful.",
+          "localizedMeaning": {
+            "ru": "Щенок приносит вам мячик. Скажите волонтёру полной фразой, что он игривый.",
+            "uk": "Цуценя приносить вам м’ячик. Скажіть волонтеру повною фразою, що воно грайливе."
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "playful"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Щенок приносит вам мячик. Скажите волонтёру полной фразой, что он игривый.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is playful.`",
+                "uk": "тут потрібно `is` — `He is playful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что волонтёр говорит о собаке у соседнего вольера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i02:r1",
+            "text": "She is calm."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i02:r2",
+            "text": "She is lazy."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i02:r3",
+            "text": "She is friendly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что волонтёр говорит о собаке у соседнего вольера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i02:audio",
+            "transcript": "She is calm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:i02:r1",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i02:r2",
+              "targetText": "She is lazy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i02:r3",
+              "targetText": "She is friendly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что волонтёр говорит о собаке у соседнего вольера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `lazy`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `lazy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что волонтёр говорит о собаке у соседнего вольера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `friendly`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `friendly`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:word:timid",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — timid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:timid:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — timid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:timid:audio",
+            "transcript": "timid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:timid:r1",
+              "targetText": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый. Is she timid? — «Она робкая?» О собаке, ребёнке, голосе, улыбке.",
+                "uk": "полохливий, боязкий. Is she timid? — «Вона полохлива?» Про собаку, дитину, голос, усмішку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "timid",
+            "definitionByLocale": {
+              "ru": "робкий, пугливый. Is she timid? — «Она робкая?» О собаке, ребёнке, голосе, улыбке.",
+              "uk": "полохливий, боязкий. Is she timid? — «Вона полохлива?» Про собаку, дитину, голос, усмішку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Собака в вольере прижала уши. Спросите волонтёра, робкая ли она",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Собака в вольере прижала уши. Спросите волонтёра, робкая ли она",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Собака в вольере прижала уши. Спросите волонтёра, робкая ли она",
+            "uk": "Собака у вольєрі притиснула вуха. Запитайте волонтера, чи вона полохлива"
+          },
+          "gappedTargetPhrase": "___ she timid?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-55:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Собака в вольере прижала уши. Спросите волонтёра, робкая ли она",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Собака в вольере прижала уши. Спросите волонтёра, робкая ли она",
+              "feedbackByLocale": {
+                "ru": "С `she` нужно `Is`.",
+                "uk": "З `she` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Собака в вольере прижала уши. Спросите волонтёра, робкая ли она",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is she timid?`.",
+                "uk": "Питання — `Is she timid?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-55:i04:p1",
+              "target": "playful",
+              "meaningByLocale": {
+                "ru": "игривый",
+                "uk": "грайливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i04:p2",
+              "target": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый",
+                "uk": "полохливий, боязкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i04:p3",
+              "target": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный",
+                "uk": "вірний, відданий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i04:p4",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playful",
+            "timid",
+            "loyal",
+            "calm"
+          ],
+          "rightColumn": [
+            "игривый",
+            "робкий, пугливый",
+            "верный, преданный",
+            "спокойный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что волонтёр говорит о собаке в углу, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что волонтёр говорит о собаке в углу, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i05:audio",
+            "transcript": "She is not playful."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is not playful.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "not",
+            "playful"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что волонтёр говорит о собаке в углу, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is not playful.`",
+                "uk": "тут потрібно `is` — `She is not playful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:word:loyal",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — loyal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:loyal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — loyal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:loyal:audio",
+            "transcript": "loyal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:loyal:r1",
+              "targetText": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный. He's loyal — «Он преданный». О псе, друге, клиенте, болельщике.",
+                "uk": "вірний, відданий. He's loyal — «Він відданий». Про пса, друга, клієнта, вболівальника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "loyal",
+            "definitionByLocale": {
+              "ru": "верный, преданный. He's loyal — «Он преданный». О псе, друге, клиенте, болельщике.",
+              "uk": "вірний, відданий. He's loyal — «Він відданий». Про пса, друга, клієнта, вболівальника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Волонтёр говорит, что среди собак есть очень преданная. Спросите его, кто преданный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Волонтёр говорит, что среди собак есть очень преданная. Спросите его, кто преданный.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is loyal?",
+          "localizedMeaning": {
+            "ru": "Волонтёр говорит, что среди собак есть очень преданная. Спросите его, кто преданный.",
+            "uk": "Волонтер каже, що серед собак є дуже віддана. Запитайте його, хто відданий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "loyal"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Волонтёр говорит, что среди собак есть очень преданная. Спросите его, кто преданный.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is loyal?`",
+                "uk": "тут потрібно `Who` — `Who is loyal?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Волонтёр спрашивает, что вы думаете о старом псе. Скажите коротко, что он верный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Волонтёр спрашивает, что вы думаете о старом псе. Скажите коротко, что он верный.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i07:audio",
+            "transcript": "He's loyal."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's loyal.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»",
+            "uk": "Друг спитав: «Is he playful?» Цуценя знову ганяється за м’ячиком. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-55:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, he is`.",
+                "uk": "Відповідь — `Yes, he is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:word:obedient",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — obedient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:obedient:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — obedient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:obedient:audio",
+            "transcript": "obedient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:obedient:r1",
+              "targetText": "obedient",
+              "meaningByLocale": {
+                "ru": "послушный, выполняющий команды. She is obedient — «Она послушная». О собаке, ребёнке, ученике, лошади.",
+                "uk": "слухняний, що виконує команди. She is obedient — «Вона слухняна». Про собаку, дитину, учня, коня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "obedient",
+            "definitionByLocale": {
+              "ru": "послушный, выполняющий команды. She is obedient — «Она послушная». О собаке, ребёнке, ученике, лошади.",
+              "uk": "слухняний, що виконує команди. She is obedient — «Вона слухняна». Про собаку, дитину, учня, коня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что волонтёр говорит о собаке у входа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i09:r1",
+            "text": "She is obedient."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i09:r2",
+            "text": "She is lazy."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i09:r3",
+            "text": "She is kind."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что волонтёр говорит о собаке у входа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i09:audio",
+            "transcript": "She is obedient."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:i09:r1",
+              "targetText": "She is obedient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i09:r2",
+              "targetText": "She is lazy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i09:r3",
+              "targetText": "She is kind.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что волонтёр говорит о собаке у входа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `obedient`, а в этом варианте — `lazy`.",
+                "uk": "У записі останнє слово — `obedient`, а в цьому варіанті — `lazy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что волонтёр говорит о собаке у входа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `obedient`, а в этом варианте — `kind`.",
+                "uk": "У записі останнє слово — `obedient`, а в цьому варіанті — `kind`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-55:i10:p1",
+              "target": "obedient",
+              "meaningByLocale": {
+                "ru": "послушный",
+                "uk": "слухняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i10:p2",
+              "target": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый",
+                "uk": "полохливий, боязкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i10:p3",
+              "target": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный",
+                "uk": "вірний, відданий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i10:p4",
+              "target": "friendly",
+              "meaningByLocale": {
+                "ru": "дружелюбный",
+                "uk": "доброзичливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "obedient",
+            "timid",
+            "loyal",
+            "friendly"
+          ],
+          "rightColumn": [
+            "послушный",
+            "робкий, пугливый",
+            "верный, преданный",
+            "дружелюбный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что друг говорит о щенке, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что друг говорит о щенке, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i11:audio",
+            "transcript": "He is not timid."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not timid.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "timid"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что друг говорит о щенке, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not timid.`",
+                "uk": "тут потрібно `is` — `He is not timid.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы смотрите на собаку у входа. Спросите волонтёра, послушная ли она.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы смотрите на собаку у входа. Спросите волонтёра, послушная ли она.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is she obedient?",
+          "localizedMeaning": {
+            "ru": "Вы смотрите на собаку у входа. Спросите волонтёра, послушная ли она.",
+            "uk": "Ви дивитеся на собаку біля входу. Запитайте волонтера, чи вона слухняна."
+          },
+          "orderedTokens": [
+            "Is",
+            "she",
+            "obedient"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы смотрите на собаку у входа. Спросите волонтёра, послушная ли она.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is she obedient?`",
+                "uk": "тут потрібно `Is` — `Is she obedient?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Собака села, как только волонтёр сказал команду. Скажите коротко, что она послушная.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Собака села, как только волонтёр сказал команду. Скажите коротко, что она послушная.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i13:audio",
+            "transcript": "She's obedient."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She's obedient.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный",
+            "uk": "Старий пес не відходить від волонтера ні на крок. Скажіть, що він відданий"
+          },
+          "gappedTargetPhrase": "He ___ loyal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-55:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный",
+              "feedbackByLocale": {
+                "ru": "С `He` нужно `is`.",
+                "uk": "З `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный",
+              "feedbackByLocale": {
+                "ru": "Фраза — `He is loyal`.",
+                "uk": "Фраза — `He is loyal`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i15:r1",
+            "text": "Is she timid?"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i15:r2",
+            "text": "Is she obedient?"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i15:r3",
+            "text": "Is she playful?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i15:audio",
+            "transcript": "Is she timid?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:i15:r1",
+              "targetText": "Is she timid?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i15:r2",
+              "targetText": "Is she obedient?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i15:r3",
+              "targetText": "Is she playful?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `timid`, а в этом варианте — `obedient`.",
+                "uk": "У записі останнє слово — `timid`, а в цьому варіанті — `obedient`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `timid`, а в этом варианте — `playful`.",
+                "uk": "У записі останнє слово — `timid`, а в цьому варіанті — `playful`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-55:i16:p1",
+              "target": "playful",
+              "meaningByLocale": {
+                "ru": "игривый",
+                "uk": "грайливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i16:p2",
+              "target": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый",
+                "uk": "полохливий, боязкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i16:p3",
+              "target": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный",
+                "uk": "вірний, відданий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i16:p4",
+              "target": "obedient",
+              "meaningByLocale": {
+                "ru": "послушный",
+                "uk": "слухняний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playful",
+            "timid",
+            "loyal",
+            "obedient"
+          ],
+          "rightColumn": [
+            "игривый",
+            "робкий, пугливый",
+            "верный, преданный",
+            "послушный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Волонтёр выводит нового пса. Спросите его, игривый ли он.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Волонтёр выводит нового пса. Спросите его, игривый ли он.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i17:audio",
+            "transcript": "Is he playful?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is he playful?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-55:word:playful",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — playful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:playful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — playful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:playful:audio",
+            "transcript": "playful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:playful:r1",
+              "targetText": "playful",
+              "meaningByLocale": {
+                "ru": "игривый, любящий играть. He is playful — «Он игривый». О щенке, котёнке, ребёнке, настроении.",
+                "uk": "грайливий, що любить гратися. He is playful — «Він грайливий». Про цуценя, кошеня, дитину, настрій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "playful",
+            "definitionByLocale": {
+              "ru": "игривый, любящий играть. He is playful — «Он игривый». О щенке, котёнке, ребёнке, настроении.",
+              "uk": "грайливий, що любить гратися. He is playful — «Він грайливий». Про цуценя, кошеня, дитину, настрій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Цуценя приносить вам м’ячик. Скажіть волонтеру повною фразою, що воно грайливе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цуценя приносить вам м’ячик. Скажіть волонтеру повною фразою, що воно грайливе.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is playful.",
+          "localizedMeaning": {
+            "ru": "Щенок приносит вам мячик. Скажите волонтёру полной фразой, что он игривый.",
+            "uk": "Цуценя приносить вам м’ячик. Скажіть волонтеру повною фразою, що воно грайливе."
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "playful"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Цуценя приносить вам м’ячик. Скажіть волонтеру повною фразою, що воно грайливе.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is playful.`",
+                "uk": "тут потрібно `is` — `He is playful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i02:r1",
+            "text": "She is calm."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i02:r2",
+            "text": "She is lazy."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i02:r3",
+            "text": "She is friendly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i02:audio",
+            "transcript": "She is calm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:i02:r1",
+              "targetText": "She is calm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i02:r2",
+              "targetText": "She is lazy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i02:r3",
+              "targetText": "She is friendly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `lazy`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `lazy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `calm`, а в этом варианте — `friendly`.",
+                "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `friendly`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:word:timid",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — timid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:timid:audio"
+        ],
+        "accessibilityLabel": "Картка слова — timid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:timid:audio",
+            "transcript": "timid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:timid:r1",
+              "targetText": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый. Is she timid? — «Она робкая?» О собаке, ребёнке, голосе, улыбке.",
+                "uk": "полохливий, боязкий. Is she timid? — «Вона полохлива?» Про собаку, дитину, голос, усмішку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "timid",
+            "definitionByLocale": {
+              "ru": "робкий, пугливый. Is she timid? — «Она робкая?» О собаке, ребёнке, голосе, улыбке.",
+              "uk": "полохливий, боязкий. Is she timid? — «Вона полохлива?» Про собаку, дитину, голос, усмішку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Собака у вольєрі притиснула вуха. Запитайте волонтера, чи вона полохлива",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Собака у вольєрі притиснула вуха. Запитайте волонтера, чи вона полохлива",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Собака в вольере прижала уши. Спросите волонтёра, робкая ли она",
+            "uk": "Собака у вольєрі притиснула вуха. Запитайте волонтера, чи вона полохлива"
+          },
+          "gappedTargetPhrase": "___ she timid?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-55:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Собака у вольєрі притиснула вуха. Запитайте волонтера, чи вона полохлива",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Собака у вольєрі притиснула вуха. Запитайте волонтера, чи вона полохлива",
+              "feedbackByLocale": {
+                "ru": "С `she` нужно `Is`.",
+                "uk": "З `she` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Собака у вольєрі притиснула вуха. Запитайте волонтера, чи вона полохлива",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is she timid?`.",
+                "uk": "Питання — `Is she timid?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-55:i04:p1",
+              "target": "playful",
+              "meaningByLocale": {
+                "ru": "игривый",
+                "uk": "грайливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i04:p2",
+              "target": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый",
+                "uk": "полохливий, боязкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i04:p3",
+              "target": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный",
+                "uk": "вірний, відданий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i04:p4",
+              "target": "calm",
+              "meaningByLocale": {
+                "ru": "спокойный",
+                "uk": "спокійний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playful",
+            "timid",
+            "loyal",
+            "calm"
+          ],
+          "rightColumn": [
+            "грайливий",
+            "полохливий, боязкий",
+            "вірний, відданий",
+            "спокійний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що волонтер каже про собаку в кутку, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що волонтер каже про собаку в кутку, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i05:audio",
+            "transcript": "She is not playful."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is not playful.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "not",
+            "playful"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що волонтер каже про собаку в кутку, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `She is not playful.`",
+                "uk": "тут потрібно `is` — `She is not playful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:word:loyal",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — loyal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:loyal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — loyal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:loyal:audio",
+            "transcript": "loyal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:loyal:r1",
+              "targetText": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный. He's loyal — «Он преданный». О псе, друге, клиенте, болельщике.",
+                "uk": "вірний, відданий. He's loyal — «Він відданий». Про пса, друга, клієнта, вболівальника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "loyal",
+            "definitionByLocale": {
+              "ru": "верный, преданный. He's loyal — «Он преданный». О псе, друге, клиенте, болельщике.",
+              "uk": "вірний, відданий. He's loyal — «Він відданий». Про пса, друга, клієнта, вболівальника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Волонтер каже, що серед собак є дуже віддана. Запитайте його, хто відданий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Волонтер каже, що серед собак є дуже віддана. Запитайте його, хто відданий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is loyal?",
+          "localizedMeaning": {
+            "ru": "Волонтёр говорит, что среди собак есть очень преданная. Спросите его, кто преданный.",
+            "uk": "Волонтер каже, що серед собак є дуже віддана. Запитайте його, хто відданий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "loyal"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Волонтер каже, що серед собак є дуже віддана. Запитайте його, хто відданий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is loyal?`",
+                "uk": "тут потрібно `Who` — `Who is loyal?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Волонтер питає, що ви думаєте про старого пса. Скажіть коротко, що він вірний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i07:audio"
+        ],
+        "accessibilityLabel": "Волонтер питає, що ви думаєте про старого пса. Скажіть коротко, що він вірний.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i07:audio",
+            "transcript": "He's loyal."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's loyal.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спитав: «Is he playful?» Цуценя знову ганяється за м’ячиком. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спитав: «Is he playful?» Цуценя знову ганяється за м’ячиком. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»",
+            "uk": "Друг спитав: «Is he playful?» Цуценя знову ганяється за м’ячиком. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-55:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Друг спитав: «Is he playful?» Цуценя знову ганяється за м’ячиком. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг спитав: «Is he playful?» Цуценя знову ганяється за м’ячиком. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг спитав: «Is he playful?» Цуценя знову ганяється за м’ячиком. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, he is`.",
+                "uk": "Відповідь — `Yes, he is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:word:obedient",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — obedient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:word:obedient:audio"
+        ],
+        "accessibilityLabel": "Картка слова — obedient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:word:obedient:audio",
+            "transcript": "obedient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:word:obedient:r1",
+              "targetText": "obedient",
+              "meaningByLocale": {
+                "ru": "послушный, выполняющий команды. She is obedient — «Она послушная». О собаке, ребёнке, ученике, лошади.",
+                "uk": "слухняний, що виконує команди. She is obedient — «Вона слухняна». Про собаку, дитину, учня, коня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "obedient",
+            "definitionByLocale": {
+              "ru": "послушный, выполняющий команды. She is obedient — «Она послушная». О собаке, ребёнке, ученике, лошади.",
+              "uk": "слухняний, що виконує команди. She is obedient — «Вона слухняна». Про собаку, дитину, учня, коня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що волонтер каже про собаку біля входу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i09:r1",
+            "text": "She is obedient."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i09:r2",
+            "text": "She is lazy."
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i09:r3",
+            "text": "She is kind."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що волонтер каже про собаку біля входу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i09:audio",
+            "transcript": "She is obedient."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:i09:r1",
+              "targetText": "She is obedient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i09:r2",
+              "targetText": "She is lazy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i09:r3",
+              "targetText": "She is kind.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що волонтер каже про собаку біля входу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `obedient`, а в этом варианте — `lazy`.",
+                "uk": "У записі останнє слово — `obedient`, а в цьому варіанті — `lazy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що волонтер каже про собаку біля входу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `obedient`, а в этом варианте — `kind`.",
+                "uk": "У записі останнє слово — `obedient`, а в цьому варіанті — `kind`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-55:i10:p1",
+              "target": "obedient",
+              "meaningByLocale": {
+                "ru": "послушный",
+                "uk": "слухняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i10:p2",
+              "target": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый",
+                "uk": "полохливий, боязкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i10:p3",
+              "target": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный",
+                "uk": "вірний, відданий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i10:p4",
+              "target": "friendly",
+              "meaningByLocale": {
+                "ru": "дружелюбный",
+                "uk": "доброзичливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "obedient",
+            "timid",
+            "loyal",
+            "friendly"
+          ],
+          "rightColumn": [
+            "слухняний",
+            "полохливий, боязкий",
+            "вірний, відданий",
+            "доброзичливий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що друг каже про цуценя, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що друг каже про цуценя, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i11:audio",
+            "transcript": "He is not timid."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not timid.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "timid"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що друг каже про цуценя, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not timid.`",
+                "uk": "тут потрібно `is` — `He is not timid.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви дивитеся на собаку біля входу. Запитайте волонтера, чи вона слухняна.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви дивитеся на собаку біля входу. Запитайте волонтера, чи вона слухняна.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is she obedient?",
+          "localizedMeaning": {
+            "ru": "Вы смотрите на собаку у входа. Спросите волонтёра, послушная ли она.",
+            "uk": "Ви дивитеся на собаку біля входу. Запитайте волонтера, чи вона слухняна."
+          },
+          "orderedTokens": [
+            "Is",
+            "she",
+            "obedient"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви дивитеся на собаку біля входу. Запитайте волонтера, чи вона слухняна.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is she obedient?`",
+                "uk": "тут потрібно `Is` — `Is she obedient?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Собака сіла, щойно волонтер сказав команду. Скажіть коротко, що вона слухняна.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Собака сіла, щойно волонтер сказав команду. Скажіть коротко, що вона слухняна.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i13:audio",
+            "transcript": "She's obedient."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She's obedient.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Старий пес не відходить від волонтера ні на крок. Скажіть, що він відданий",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Старий пес не відходить від волонтера ні на крок. Скажіть, що він відданий",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный",
+            "uk": "Старий пес не відходить від волонтера ні на крок. Скажіть, що він відданий"
+          },
+          "gappedTargetPhrase": "He ___ loyal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-55:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Старий пес не відходить від волонтера ні на крок. Скажіть, що він відданий",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Старий пес не відходить від волонтера ні на крок. Скажіть, що він відданий",
+              "feedbackByLocale": {
+                "ru": "С `He` нужно `is`.",
+                "uk": "З `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Старий пес не відходить від волонтера ні на крок. Скажіть, що він відданий",
+              "feedbackByLocale": {
+                "ru": "Фраза — `He is loyal`.",
+                "uk": "Фраза — `He is loyal`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-55:i15:r1",
+            "text": "Is she timid?"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i15:r2",
+            "text": "Is she obedient?"
+          },
+          {
+            "responseId": "en:lesson-02:session-55:i15:r3",
+            "text": "Is she playful?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i15:audio",
+            "transcript": "Is she timid?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-55:i15:r1",
+              "targetText": "Is she timid?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i15:r2",
+              "targetText": "Is she obedient?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i15:r3",
+              "targetText": "Is she playful?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `timid`, а в этом варианте — `obedient`.",
+                "uk": "У записі останнє слово — `timid`, а в цьому варіанті — `obedient`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `timid`, а в этом варианте — `playful`.",
+                "uk": "У записі останнє слово — `timid`, а в цьому варіанті — `playful`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-55:i16:p1",
+              "target": "playful",
+              "meaningByLocale": {
+                "ru": "игривый",
+                "uk": "грайливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i16:p2",
+              "target": "timid",
+              "meaningByLocale": {
+                "ru": "робкий, пугливый",
+                "uk": "полохливий, боязкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i16:p3",
+              "target": "loyal",
+              "meaningByLocale": {
+                "ru": "верный, преданный",
+                "uk": "вірний, відданий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-55:i16:p4",
+              "target": "obedient",
+              "meaningByLocale": {
+                "ru": "послушный",
+                "uk": "слухняний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playful",
+            "timid",
+            "loyal",
+            "obedient"
+          ],
+          "rightColumn": [
+            "грайливий",
+            "полохливий, боязкий",
+            "вірний, відданий",
+            "слухняний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Волонтер виводить нового пса. Запитайте його, чи він грайливий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Волонтер виводить нового пса. Запитайте його, чи він грайливий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i17:audio",
+            "transcript": "Is he playful?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is he playful?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-55:word:playful",
+      "correctText": "playful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i01",
+      "correctText": "He is playful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i02",
+      "correctText": "She is calm.",
+      "correctResponseId": "en:lesson-02:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:word:timid",
+      "correctText": "timid",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i05",
+      "correctText": "She is not playful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:word:loyal",
+      "correctText": "loyal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i06",
+      "correctText": "Who is loyal?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i07",
+      "correctText": "He's loyal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:word:obedient",
+      "correctText": "obedient",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i09",
+      "correctText": "She is obedient.",
+      "correctResponseId": "en:lesson-02:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i11",
+      "correctText": "He is not timid.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i12",
+      "correctText": "Is she obedient?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i13",
+      "correctText": "She's obedient.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-55:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i15",
+      "correctText": "Is she timid?",
+      "correctResponseId": "en:lesson-02:session-55:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i17",
+      "correctText": "Is he playful?",
+      "correctResponseId": null
+    }
+  ]
+}

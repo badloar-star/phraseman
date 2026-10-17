@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-03:session-06:word:basket",
+    "correctText": "basket",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-06:i01",
-    "correctText": "It is a pen.",
+    "correctText": "It is a basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:word:tag",
+    "correctText": "tag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i02",
-    "correctText": "He is nervous.",
+    "correctText": "It is a bag.",
     "correctResponseId": "en:lesson-03:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:word:trolley",
+    "correctText": "trolley",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i03",
@@ -16,22 +31,22 @@
   },
   {
     "interactionId": "en:lesson-03:session-06:i04",
-    "correctText": "en:lesson-03:session-06:i04:p1=pen\nen:lesson-03:session-06:i04:p2=calm\nen:lesson-03:session-06:i04:p3=nervous\nen:lesson-03:session-06:i04:p4=excited",
+    "correctText": "en:lesson-03:session-06:i04:p1=basket\nen:lesson-03:session-06:i04:p2=trolley\nen:lesson-03:session-06:i04:p3=tag\nen:lesson-03:session-06:i04:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i05",
-    "correctText": "It is a pen.",
+    "correctText": "It is a trolley.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i06",
-    "correctText": "Who is reliable?",
+    "correctText": "Is it a tag?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i07",
-    "correctText": "I'm excited.",
+    "correctText": "It's a basket.",
     "correctResponseId": null
   },
   {
@@ -40,48 +55,53 @@
     "correctResponseId": "en:lesson-03:session-06:i08:r1"
   },
   {
+    "interactionId": "en:lesson-03:session-06:word:bag",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-06:i09",
-    "correctText": "Is it fake?",
+    "correctText": "Is it a trolley?",
     "correctResponseId": "en:lesson-03:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-06:i10",
-    "correctText": "en:lesson-03:session-06:i10:p1=fake\nen:lesson-03:session-06:i10:p2=reliable\nen:lesson-03:session-06:i10:p3=pen\nen:lesson-03:session-06:i10:p4=map",
+    "correctText": "en:lesson-03:session-06:i10:p1=bag\nen:lesson-03:session-06:i10:p2=tag\nen:lesson-03:session-06:i10:p3=lamp\nen:lesson-03:session-06:i10:p4=rug",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i11",
-    "correctText": "She is reliable.",
+    "correctText": "It is not a bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i12",
-    "correctText": "Is it a pen?",
+    "correctText": "It is not a bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i13",
-    "correctText": "It's fake.",
+    "correctText": "It's a tag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i14",
-    "correctText": "a",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-03:session-06:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-06:i15",
-    "correctText": "Are you nervous?",
+    "correctText": "It is a tag.",
     "correctResponseId": "en:lesson-03:session-06:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-06:i16",
-    "correctText": "en:lesson-03:session-06:i16:p1=pen\nen:lesson-03:session-06:i16:p2=book\nen:lesson-03:session-06:i16:p3=calm\nen:lesson-03:session-06:i16:p4=reliable",
+    "correctText": "en:lesson-03:session-06:i16:p1=trolley\nen:lesson-03:session-06:i16:p2=basket\nen:lesson-03:session-06:i16:p3=mirror\nen:lesson-03:session-06:i16:p4=picture",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-06:i17",
-    "correctText": "It's a pen.",
+    "correctText": "Is it a trolley?",
     "correctResponseId": null
   }
 ]

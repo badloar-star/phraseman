@@ -4,40 +4,83 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-13:i01",
+      "interactionId": "en:lesson-03:session-13:word:earring",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — earring",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:word:earring:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — earring",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:word:earring:audio",
+          "transcript": "earring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:word:earring:r1",
+            "targetText": "earring",
+            "meaningByLocale": {
+              "ru": "серьга, украшение для уха. It is an earring — «Это серьга». О серьге из золота, серебра, бижутерии.",
+              "uk": "сережка, прикраса для вуха. It is an earring — «Це сережка». Про сережку із золота, срібла, біжутерії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "earring",
+          "definitionByLocale": {
+            "ru": "серьга, украшение для уха. It is an earring — «Это серьга». О серьге из золота, серебра, бижутерии.",
+            "uk": "сережка, прикраса для вуха. It is an earring — «Це сережка». Про сережку із золота, срібла, біжутерії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна указывает на незнакомый элемент плана. Назовите его: «Это окно»",
+      "prompt": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна указывает на незнакомый элемент плана. Назовите его: «Это окно»",
+      "accessibilityLabel": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a window.",
+        "targetPhrase": "It is an earring.",
         "localizedMeaning": {
-          "ru": "Анна указывает на незнакомый элемент плана. Назовите его: «Это окно»",
-          "uk": "Анна вказує на незнайомий елемент плану. Назвіть його: «Це вікно»"
+          "ru": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
+          "uk": "Продавчиня кладе на подушку сережку. Скажіть сестрі повною фразою, що це сережка."
         },
         "orderedTokens": [
           "It",
           "is",
-          "a",
-          "window"
+          "an",
+          "earring"
         ],
         "authoredDistractorTokens": [
-          "an"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна указывает на незнакомый элемент плана. Назовите его: «Это окно»",
+            "testedDimension": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `a` — `It is a window.`",
-              "uk": "тут потрібно `a` — `It is a window.`"
+              "ru": "здесь нужно `an` — `It is an earring.`",
+              "uk": "тут потрібно `an` — `It is an earring.`"
             }
           }
         ],
@@ -49,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-13:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-13:word:necklace",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте описание окна",
+      "prompt": "Карточка слова — necklace",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:word:necklace:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — necklace",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:word:necklace:audio",
+          "transcript": "necklace"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:word:necklace:r1",
+            "targetText": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье, украшение на шею. Is it a necklace? — «Это ожерелье?» О цепочке с камнем или бусами.",
+              "uk": "намисто, прикраса на шию. Is it a necklace? — «Це намисто?» Про ланцюжок із каменем або буси."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "necklace",
+          "definitionByLocale": {
+            "ru": "ожерелье, украшение на шею. Is it a necklace? — «Это ожерелье?» О цепочке с камнем или бусами.",
+            "uk": "намисто, прикраса на шию. Is it a necklace? — «Це намисто?» Про ланцюжок із каменем або буси."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что продавщица говорит о вещи в витрине",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i02:r1",
-          "text": "The window is clean."
+          "text": "It is a necklace."
         },
         {
           "responseId": "en:lesson-03:session-13:i02:r2",
-          "text": "The window is big."
+          "text": "It is an earring."
         },
         {
           "responseId": "en:lesson-03:session-13:i02:r3",
-          "text": "The window is small."
+          "text": "It is a vase."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте описание окна",
+      "accessibilityLabel": "Послушайте, что продавщица говорит о вещи в витрине",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i02:audio",
-          "transcript": "The window is clean."
+          "transcript": "It is a necklace."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-13:i02:r1",
-            "targetText": "The window is clean.",
+            "targetText": "It is a necklace.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-13:i02:r2",
-            "targetText": "The window is big.",
+            "targetText": "It is an earring.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-13:i02:r3",
-            "targetText": "The window is small.",
+            "targetText": "It is a vase.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +189,19 @@
           {
             "responseId": "en:lesson-03:session-13:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте описание окна",
+            "testedDimension": "Послушайте, что продавщица говорит о вещи в витрине",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clean`, а в этом варианте — `big`.",
-              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `big`."
+              "ru": "В записи последнее слово — `necklace`, а в этом варианте — `earring`.",
+              "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `earring`."
             }
           },
           {
             "responseId": "en:lesson-03:session-13:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте описание окна",
+            "testedDimension": "Послушайте, что продавщица говорит о вещи в витрине",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clean`, а в этом варианте — `small`.",
-              "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `small`."
+              "ru": "В записи последнее слово — `necklace`, а в этом варианте — `vase`.",
+              "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `vase`."
             }
           }
         ],
@@ -126,67 +212,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните название элемента плана",
+      "prompt": "Сестра держит серьгу. Дополните фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i03:r1",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-13:i03:r2",
           "text": "an"
         },
         {
+          "responseId": "en:lesson-03:session-13:i03:r2",
+          "text": "a"
+        },
+        {
           "responseId": "en:lesson-03:session-13:i03:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните название элемента плана",
+      "accessibilityLabel": "Сестра держит серьгу. Дополните фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните название элемента плана",
-          "uk": "Доповніть назву елемента плану"
+          "ru": "Сестра держит серьгу. Дополните фразу",
+          "uk": "Сестра тримає сережку. Доповніть фразу"
         },
-        "gappedTargetPhrase": "It is ___ window.",
+        "gappedTargetPhrase": "It is ___ earring.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-13:i03:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-13:i03:r2",
             "text": "an"
           },
           {
+            "responseId": "en:lesson-03:session-13:i03:r2",
+            "text": "a"
+          },
+          {
             "responseId": "en:lesson-03:session-13:i03:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Дополните название элемента плана",
+        "testedDimension": "Сестра держит серьгу. Дополните фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i03:r2",
             "correct": false,
-            "testedDimension": "Дополните название элемента плана",
+            "testedDimension": "Сестра держит серьгу. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Перед `window` нужно `a`: первый звук согласный.",
-              "uk": "Перед `window` потрібно `a`: перший звук приголосний."
+              "ru": "Слово earring начинается с гласного звука, поэтому здесь an.",
+              "uk": "Слово earring починається з голосного звуку, тому тут an."
             }
           },
           {
             "responseId": "en:lesson-03:session-13:i03:r3",
             "correct": false,
-            "testedDimension": "Дополните название элемента плана",
+            "testedDimension": "Сестра держит серьгу. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Здесь нужно название `a window`.",
-              "uk": "Тут потрібна назва `a window`."
+              "ru": "Слово is уже стоит перед пропуском. Перед earring нужно an.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед earring потрібно an."
             }
           }
         ]
@@ -195,7 +281,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +295,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-13:i04:p1",
-            "target": "window",
+            "target": "earring",
             "meaningByLocale": {
-              "ru": "окно",
-              "uk": "вікно"
+              "ru": "серьга",
+              "uk": "сережка"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i04:p2",
-            "target": "map",
+            "target": "necklace",
             "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
+              "ru": "ожерелье",
+              "uk": "намисто"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i04:p3",
-            "target": "big",
+            "target": "vase",
             "meaningByLocale": {
-              "ru": "большой",
-              "uk": "великий"
+              "ru": "ваза",
+              "uk": "ваза"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i04:p4",
-            "target": "small",
+            "target": "clock",
             "meaningByLocale": {
-              "ru": "маленький",
-              "uk": "маленький"
+              "ru": "часы (настенные)",
+              "uk": "годинник (настінний)"
             }
           }
         ],
         "leftColumn": [
-          "window",
-          "map",
-          "big",
-          "small"
+          "earring",
+          "necklace",
+          "vase",
+          "clock"
         ],
         "rightColumn": [
-          "окно",
-          "карта",
-          "большой",
-          "маленький"
+          "серьга",
+          "ожерелье",
+          "ваза",
+          "часы (настенные)"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,43 +353,85 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-13:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-03:session-13:word:bracelet",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bracelet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:word:bracelet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bracelet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:word:bracelet:audio",
+          "transcript": "bracelet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:word:bracelet:r1",
+            "targetText": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет, украшение на запястье. It's a bracelet — «Это браслет». О тонком или широком браслете на руку.",
+              "uk": "браслет, прикраса на зап’ястя. It's a bracelet — «Це браслет». Про тонкий або широкий браслет на руку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bracelet",
+          "definitionByLocale": {
+            "ru": "браслет, украшение на запястье. It's a bracelet — «Это браслет». О тонком или широком браслете на руку.",
+            "uk": "браслет, прикраса на зап’ястя. It's a bracelet — «Це браслет». Про тонкий або широкий браслет на руку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
+      "prompt": "Послушайте продавщицу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте продавщицу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i05:audio",
-          "transcript": "The map is here."
+          "transcript": "It's a bracelet."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The map is here.",
+        "hiddenTargetPhrase": "It's a bracelet.",
         "orderedTokens": [
-          "The",
-          "map",
-          "is",
-          "here"
+          "It's",
+          "a",
+          "bracelet"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте продавщицу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The map is here.`",
-              "uk": "тут потрібно `is` — `The map is here.`"
+              "ru": "здесь нужно `a` — `It's a bracelet.`",
+              "uk": "тут потрібно `a` — `It's a bracelet.`"
             }
           }
         ],
@@ -316,39 +444,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы смотрите на вымытое Олегом окно. Сообщите Анне «Окно чистое»",
+      "prompt": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы смотрите на вымытое Олегом окно. Сообщите Анне «Окно чистое»",
+      "accessibilityLabel": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The window is clean.",
+        "targetPhrase": "Is it a bracelet?",
         "localizedMeaning": {
-          "ru": "Вы смотрите на вымытое Олегом окно. Сообщите Анне «Окно чистое»",
-          "uk": "Ви дивитеся на вимите Олегом вікно. Повідомте Анні «Вікно чисте»"
+          "ru": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
+          "uk": "Сестра показує на тонку річ на подушці. Запитайте продавчиню, чи це браслет."
         },
         "orderedTokens": [
-          "The",
-          "window",
-          "is",
-          "clean"
+          "Is",
+          "it",
+          "a",
+          "bracelet"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы смотрите на вымытое Олегом окно. Сообщите Анне «Окно чистое»",
+            "testedDimension": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The window is clean.`",
-              "uk": "тут потрібно `is` — `The window is clean.`"
+              "ru": "здесь нужно `a` — `Is it a bracelet?`",
+              "uk": "тут потрібно `a` — `Is it a bracelet?`"
             }
           }
         ],
@@ -361,25 +489,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы уже обсуждаете окно. Оно большое. Скажите это с сокращением, начав с «Оно»",
+      "prompt": "Продавщица держит на ладони браслет. Скажите коротко, что это браслет.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Вы уже обсуждаете окно. Оно большое. Скажите это с сокращением, начав с «Оно»",
+      "accessibilityLabel": "Продавщица держит на ладони браслет. Скажите коротко, что это браслет.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i07:audio",
-          "transcript": "It's big."
+          "transcript": "It's a bracelet."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's big.",
+        "targetPhrase": "It's a bracelet.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,68 +521,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-13:word:pearl",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pearl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:word:pearl:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pearl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:word:pearl:audio",
+          "transcript": "pearl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:word:pearl:r1",
+            "targetText": "pearl",
+            "meaningByLocale": {
+              "ru": "жемчужина, круглая белая бусина из раковины. It is a pearl — «Это жемчужина». О настоящей жемчужине и о бусине из ожерелья.",
+              "uk": "перлина, кругла біла намистина з мушлі. It is a pearl — «Це перлина». Про справжню перлину й про намистину з намиста."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pearl",
+          "definitionByLocale": {
+            "ru": "жемчужина, круглая белая бусина из раковины. It is a pearl — «Это жемчужина». О настоящей жемчужине и о бусине из ожерелья.",
+            "uk": "перлина, кругла біла намистина з мушлі. It is a pearl — «Це перлина». Про справжню перлину й про намистину з намиста."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-13:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы обсуждаете встречу, открытую для всех. Дополните сообщение",
+      "prompt": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i08:r1",
-          "text": "is"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-13:i08:r2",
-          "text": "am"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-13:i08:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы обсуждаете встречу, открытую для всех. Дополните сообщение",
+      "accessibilityLabel": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы обсуждаете встречу, открытую для всех. Дополните сообщение",
-          "uk": "Ви обговорюєте зустріч, відкриту для всіх. Доповніть повідомлення"
+          "ru": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+          "uk": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу"
         },
-        "gappedTargetPhrase": "It ___ public.",
+        "gappedTargetPhrase": "It is ___ pearl.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-13:i08:r1",
-            "text": "is"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-13:i08:r2",
-            "text": "am"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-13:i08:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Вы обсуждаете встречу, открытую для всех. Дополните сообщение",
+        "testedDimension": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i08:r2",
             "correct": false,
-            "testedDimension": "Вы обсуждаете встречу, открытую для всех. Дополните сообщение",
+            "testedDimension": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "С `It` нужно `is`.",
-              "uk": "З `It` потрібно `is`."
+              "ru": "Слово pearl начинается с согласного звука, поэтому здесь a.",
+              "uk": "Слово pearl починається з приголосного звуку, тому тут a."
             }
           },
           {
             "responseId": "en:lesson-03:session-13:i08:r3",
             "correct": false,
-            "testedDimension": "Вы обсуждаете встречу, открытую для всех. Дополните сообщение",
+            "testedDimension": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "С `It` нужно `is`.",
-              "uk": "З `It` потрібно `is`."
+              "ru": "Слово is уже стоит перед пропуском. Перед pearl нужно a.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед pearl потрібно a."
             }
           }
         ]
@@ -463,51 +634,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте описание карты",
+      "prompt": "Послушайте вопрос сестры",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i09:r1",
-          "text": "It is small."
+          "text": "Is it an earring?"
         },
         {
           "responseId": "en:lesson-03:session-13:i09:r2",
-          "text": "It is big."
+          "text": "Is it a pearl?"
         },
         {
           "responseId": "en:lesson-03:session-13:i09:r3",
-          "text": "It is clean."
+          "text": "Is it a bracelet?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте описание карты",
+      "accessibilityLabel": "Послушайте вопрос сестры",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i09:audio",
-          "transcript": "It is small."
+          "transcript": "Is it an earring?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-13:i09:r1",
-            "targetText": "It is small.",
+            "targetText": "Is it an earring?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-13:i09:r2",
-            "targetText": "It is big.",
+            "targetText": "Is it a pearl?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-13:i09:r3",
-            "targetText": "It is clean.",
+            "targetText": "Is it a bracelet?",
             "meaningByLocale": null
           }
         ],
@@ -516,19 +687,19 @@
           {
             "responseId": "en:lesson-03:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте описание карты",
+            "testedDimension": "Послушайте вопрос сестры",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
-              "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
+              "ru": "В записи последнее слово — `earring`, а в этом варианте — `pearl`.",
+              "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `pearl`."
             }
           },
           {
             "responseId": "en:lesson-03:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте описание карты",
+            "testedDimension": "Послушайте вопрос сестры",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `small`, а в этом варианте — `clean`.",
-              "uk": "У записі останнє слово — `small`, а в цьому варіанті — `clean`."
+              "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
+              "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
             }
           }
         ],
@@ -539,62 +710,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями в этой сцене",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями в этой сцене",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-13:i10:p1",
-            "target": "clean",
+            "target": "pearl",
             "meaningByLocale": {
-              "ru": "чистый",
-              "uk": "чистий"
+              "ru": "жемчужина",
+              "uk": "перлина"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i10:p2",
-            "target": "public",
+            "target": "bracelet",
             "meaningByLocale": {
-              "ru": "открытый для всех",
-              "uk": "відкритий для всіх"
+              "ru": "браслет",
+              "uk": "браслет"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i10:p3",
-            "target": "window",
+            "target": "necklace",
             "meaningByLocale": {
-              "ru": "окно",
-              "uk": "вікно"
+              "ru": "ожерелье",
+              "uk": "намисто"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i10:p4",
-            "target": "map",
+            "target": "earring",
             "meaningByLocale": {
-              "ru": "карта",
-              "uk": "карта"
+              "ru": "серьга",
+              "uk": "сережка"
             }
           }
         ],
         "leftColumn": [
-          "clean",
-          "public",
-          "window",
-          "map"
+          "pearl",
+          "bracelet",
+          "necklace",
+          "earring"
         ],
         "rightColumn": [
-          "чистый",
-          "открытый для всех",
-          "окно",
-          "карта"
+          "жемчужина",
+          "браслет",
+          "ожерелье",
+          "серьга"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,42 +783,43 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте продавщицу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте продавщицу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i11:audio",
-          "transcript": "Where is the map?"
+          "transcript": "It is not a pearl."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the map?",
+        "hiddenTargetPhrase": "It is not a pearl.",
         "orderedTokens": [
-          "Where",
+          "It",
           "is",
-          "the",
-          "map"
+          "not",
+          "a",
+          "pearl"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "an"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите вопрос",
+            "testedDimension": "Послушайте продавщицу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where is the map?`",
-              "uk": "тут потрібно `Where` — `Where is the map?`"
+              "ru": "здесь нужно `a` — `It is not a pearl.`",
+              "uk": "тут потрібно `a` — `It is not a pearl.`"
             }
           }
         ],
@@ -660,39 +832,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы ещё не видели результат уборки. Анна стоит у знакомого вам обоим окна. Спросите, чистое ли окно",
+      "prompt": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы ещё не видели результат уборки. Анна стоит у знакомого вам обоим окна. Спросите, чистое ли окно",
+      "accessibilityLabel": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is the window clean?",
+        "targetPhrase": "Is it an earring?",
         "localizedMeaning": {
-          "ru": "Вы ещё не видели результат уборки. Анна стоит у знакомого вам обоим окна. Спросите, чистое ли окно",
-          "uk": "Ви ще не бачили результату прибирання. Анна стоїть біля знайомого вам обом вікна. Запитайте, чи вікно чисте"
+          "ru": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
+          "uk": "Сестра тримає сережку. Запитайте продавчиню, чи це сережка."
         },
         "orderedTokens": [
           "Is",
-          "the",
-          "window",
-          "clean"
+          "it",
+          "an",
+          "earring"
         ],
         "authoredDistractorTokens": [
-          "Are"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы ещё не видели результат уборки. Анна стоит у знакомого вам обоим окна. Спросите, чистое ли окно",
+            "testedDimension": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is the window clean?`",
-              "uk": "тут потрібно `Is` — `Is the window clean?`"
+              "ru": "здесь нужно `an` — `Is it an earring?`",
+              "uk": "тут потрібно `an` — `Is it an earring?`"
             }
           }
         ],
@@ -705,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна спрашивает, открыта ли встреча для всех. Подтвердите полной фразой «Она открыта для всех»",
+      "prompt": "Сестра показывает круглую белую бусину. Скажите коротко, что это жемчужина.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i13:audio"
       ],
-      "accessibilityLabel": "Анна спрашивает, открыта ли встреча для всех. Подтвердите полной фразой «Она открыта для всех»",
+      "accessibilityLabel": "Сестра показывает круглую белую бусину. Скажите коротко, что это жемчужина.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i13:audio",
-          "transcript": "It is public."
+          "transcript": "It's a pearl."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is public.",
+        "targetPhrase": "It's a pearl.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -738,67 +910,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы нашли карту, которую только что искали вместе с Анной. Дополните сообщение о ней",
+      "prompt": "Продавщица показывает на часы на стене. Дополните фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i14:r1",
-          "text": "The"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-13:i14:r2",
-          "text": "An"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-13:i14:r3",
-          "text": "Are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы нашли карту, которую только что искали вместе с Анной. Дополните сообщение о ней",
+      "accessibilityLabel": "Продавщица показывает на часы на стене. Дополните фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы нашли карту, которую только что искали вместе с Анной. Дополните сообщение о ней",
-          "uk": "Ви знайшли карту, яку щойно шукали разом з Анною. Доповніть повідомлення про неї"
+          "ru": "Продавщица показывает на часы на стене. Дополните фразу",
+          "uk": "Продавчиня показує на годинник на стіні. Доповніть фразу"
         },
-        "gappedTargetPhrase": "___ map is here.",
+        "gappedTargetPhrase": "It is ___ clock.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-13:i14:r1",
-            "text": "The"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-13:i14:r2",
-            "text": "An"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-13:i14:r3",
-            "text": "Are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Вы нашли карту, которую только что искали вместе с Анной. Дополните сообщение о ней",
+        "testedDimension": "Продавщица показывает на часы на стене. Дополните фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-13:i14:r2",
             "correct": false,
-            "testedDimension": "Вы нашли карту, которую только что искали вместе с Анной. Дополните сообщение о ней",
+            "testedDimension": "Продавщица показывает на часы на стене. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Для известной вам обоим карты здесь `The map`; перед `map` форма `An` также не подходит.",
-              "uk": "Для відомої вам обом карти тут `The map`; перед `map` форма `An` також не підходить."
+              "ru": "Слово clock начинается с согласного звука, поэтому здесь a.",
+              "uk": "Слово clock починається з приголосного звуку, тому тут a."
             }
           },
           {
             "responseId": "en:lesson-03:session-13:i14:r3",
             "correct": false,
-            "testedDimension": "Вы нашли карту, которую только что искали вместе с Анной. Дополните сообщение о ней",
+            "testedDimension": "Продавщица показывает на часы на стене. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Это сообщение `The map is here`.",
-              "uk": "Це повідомлення `The map is here`."
+              "ru": "Слово is уже стоит перед пропуском. Перед clock нужно a.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед clock потрібно a."
             }
           }
         ]
@@ -807,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте ещё одно описание окна",
+      "prompt": "Послушайте, что говорит сестра",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i15:r1",
-          "text": "The window is big."
+          "text": "It's an earring."
         },
         {
           "responseId": "en:lesson-03:session-13:i15:r2",
-          "text": "The window is small."
+          "text": "It's a necklace."
         },
         {
           "responseId": "en:lesson-03:session-13:i15:r3",
-          "text": "The window is clean."
+          "text": "It's a bracelet."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте ещё одно описание окна",
+      "accessibilityLabel": "Послушайте, что говорит сестра",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i15:audio",
-          "transcript": "The window is big."
+          "transcript": "It's an earring."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-13:i15:r1",
-            "targetText": "The window is big.",
+            "targetText": "It's an earring.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-13:i15:r2",
-            "targetText": "The window is small.",
+            "targetText": "It's a necklace.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-13:i15:r3",
-            "targetText": "The window is clean.",
+            "targetText": "It's a bracelet.",
             "meaningByLocale": null
           }
         ],
@@ -860,19 +1032,19 @@
           {
             "responseId": "en:lesson-03:session-13:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте ещё одно описание окна",
+            "testedDimension": "Послушайте, что говорит сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `big`, а в этом варианте — `small`.",
-              "uk": "У записі останнє слово — `big`, а в цьому варіанті — `small`."
+              "ru": "В записи последнее слово — `earring`, а в этом варианте — `necklace`.",
+              "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `necklace`."
             }
           },
           {
             "responseId": "en:lesson-03:session-13:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте ещё одно описание окна",
+            "testedDimension": "Послушайте, что говорит сестра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `big`, а в этом варианте — `clean`.",
-              "uk": "У записі останнє слово — `big`, а в цьому варіанті — `clean`."
+              "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
+              "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
             }
           }
         ],
@@ -883,62 +1055,62 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями в этой сцене",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями в этой сцене",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-13:i16:p1",
-            "target": "small",
+            "target": "bracelet",
             "meaningByLocale": {
-              "ru": "маленький",
-              "uk": "маленький"
+              "ru": "браслет",
+              "uk": "браслет"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i16:p2",
-            "target": "big",
+            "target": "pearl",
             "meaningByLocale": {
-              "ru": "большой",
-              "uk": "великий"
+              "ru": "жемчужина",
+              "uk": "перлина"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i16:p3",
-            "target": "clean",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "чистый",
-              "uk": "чистий"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           },
           {
             "pairId": "en:lesson-03:session-13:i16:p4",
-            "target": "public",
+            "target": "teapot",
             "meaningByLocale": {
-              "ru": "открытый для всех",
-              "uk": "відкритий для всіх"
+              "ru": "заварочный чайник",
+              "uk": "чайник для заварювання"
             }
           }
         ],
         "leftColumn": [
-          "small",
-          "big",
-          "clean",
-          "public"
+          "bracelet",
+          "pearl",
+          "umbrella",
+          "teapot"
         ],
         "rightColumn": [
-          "маленький",
-          "большой",
-          "чистый",
-          "открытый для всех"
+          "браслет",
+          "жемчужина",
+          "зонт",
+          "заварочный чайник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-13:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед следующей встречей Олег закончил уборку. Вы оба знаете, какое окно он мыл. Спросите, чистое ли окно",
+      "prompt": "Продавщица достаёт цепочку с камнем. Спросите её, ожерелье ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i17:audio"
       ],
-      "accessibilityLabel": "Перед следующей встречей Олег закончил уборку. Вы оба знаете, какое окно он мыл. Спросите, чистое ли окно",
+      "accessibilityLabel": "Продавщица достаёт цепочку с камнем. Спросите её, ожерелье ли это.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-13:i17:audio",
-          "transcript": "Is the window clean?"
+          "transcript": "Is it a necklace?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is the window clean?",
+        "targetPhrase": "Is it a necklace?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "659e386cec5c397d1e3d2a56ab7cd07d2cca9aa3f17a4e256c72b167bb1b25c1"
+  "learnerFingerprint": "7bd217e071554a62f00e2d58353df3a9a0b06ebae2f369185a0b5019180e2523"
 }

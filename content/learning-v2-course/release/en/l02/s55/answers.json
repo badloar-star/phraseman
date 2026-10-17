@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-55:word:playful",
+    "correctText": "playful",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-55:i01",
-    "correctText": "He is unreliable.",
+    "correctText": "He is playful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i02",
-    "correctText": "She is responsible.",
+    "correctText": "She is calm.",
     "correctResponseId": "en:lesson-02:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:word:timid",
+    "correctText": "timid",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-55:i04",
-    "correctText": "en:lesson-02:session-55:i04:p1=unreliable\nen:lesson-02:session-55:i04:p2=responsible\nen:lesson-02:session-55:i04:p3=independent\nen:lesson-02:session-55:i04:p4=dependent",
+    "correctText": "en:lesson-02:session-55:i04:p1=playful\nen:lesson-02:session-55:i04:p2=timid\nen:lesson-02:session-55:i04:p3=loyal\nen:lesson-02:session-55:i04:p4=calm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i05",
-    "correctText": "No, he is not.",
+    "correctText": "She is not playful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:word:loyal",
+    "correctText": "loyal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i06",
-    "correctText": "Who is unreliable?",
+    "correctText": "Who is loyal?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i07",
-    "correctText": "He's unreliable.",
+    "correctText": "He's loyal.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-55:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-55:word:obedient",
+    "correctText": "obedient",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-55:i09",
-    "correctText": "Is it acceptable?",
+    "correctText": "She is obedient.",
     "correctResponseId": "en:lesson-02:session-55:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-55:i10",
-    "correctText": "en:lesson-02:session-55:i10:p1=acceptable\nen:lesson-02:session-55:i10:p2=dependent\nen:lesson-02:session-55:i10:p3=unreliable\nen:lesson-02:session-55:i10:p4=responsible",
+    "correctText": "en:lesson-02:session-55:i10:p1=obedient\nen:lesson-02:session-55:i10:p2=timid\nen:lesson-02:session-55:i10:p3=loyal\nen:lesson-02:session-55:i10:p4=friendly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i11",
-    "correctText": "He is not independent.",
+    "correctText": "He is not timid.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i12",
-    "correctText": "Is he dependent?",
+    "correctText": "Is she obedient?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i13",
-    "correctText": "It's acceptable.",
+    "correctText": "She's obedient.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-55:i15",
-    "correctText": "Is he unreliable?",
+    "correctText": "Is she timid?",
     "correctResponseId": "en:lesson-02:session-55:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-55:i16",
-    "correctText": "en:lesson-02:session-55:i16:p1=independent\nen:lesson-02:session-55:i16:p2=acceptable\nen:lesson-02:session-55:i16:p3=dependent\nen:lesson-02:session-55:i16:p4=unreliable",
+    "correctText": "en:lesson-02:session-55:i16:p1=playful\nen:lesson-02:session-55:i16:p2=timid\nen:lesson-02:session-55:i16:p3=loyal\nen:lesson-02:session-55:i16:p4=obedient",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-55:i17",
-    "correctText": "Is he unreliable?",
+    "correctText": "Is he playful?",
     "correctResponseId": null
   }
 ]

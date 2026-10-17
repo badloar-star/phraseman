@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-53:word:sweaty",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sweaty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:sweaty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sweaty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:sweaty:audio",
+            "transcript": "sweaty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:sweaty:r1",
+              "targetText": "sweaty",
+              "meaningByLocale": {
+                "ru": "потный, мокрый от пота. It is sweaty — «Она мокрая от пота». О футболке, ладонях, лбе, спине.",
+                "uk": "спітнілий, мокрий від поту. It is sweaty — «Вона мокра від поту». Про футболку, долоні, чоло, спину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweaty",
+            "definitionByLocale": {
+              "ru": "потный, мокрый от пота. It is sweaty — «Она мокрая от пота». О футболке, ладонях, лбе, спине.",
+              "uk": "спітнілий, мокрий від поту. It is sweaty — «Вона мокра від поту». Про футболку, долоні, чоло, спину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер спрашивает про вашу футболку после бега. Скажите ему полной фразой, что она мокрая от пота.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер спрашивает про вашу футболку после бега. Скажите ему полной фразой, что она мокрая от пота.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is sweaty.",
+          "localizedMeaning": {
+            "ru": "Тренер спрашивает про вашу футболку после бега. Скажите ему полной фразой, что она мокрая от пота.",
+            "uk": "Тренер питає про вашу футболку після бігу. Скажіть йому повною фразою, що вона мокра від поту."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "sweaty"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер спрашивает про вашу футболку после бега. Скажите ему полной фразой, что она мокрая от пота.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is sweaty.`",
+                "uk": "тут потрібно `is` — `It is sweaty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что тренер говорит о погоде в парке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i02:r1",
+            "text": "It is windy."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i02:r2",
+            "text": "It is cold."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i02:r3",
+            "text": "It is hot."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что тренер говорит о погоде в парке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i02:audio",
+            "transcript": "It is windy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:i02:r1",
+              "targetText": "It is windy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i02:r2",
+              "targetText": "It is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i02:r3",
+              "targetText": "It is hot.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что тренер говорит о погоде в парке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `cold`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `cold`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что тренер говорит о погоде в парке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `hot`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `hot`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:word:tough",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:tough:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:tough:audio",
+            "transcript": "tough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:tough:r1",
+              "targetText": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый, требующий сил. Is it tough? — «Это тяжело?» Об упражнении, подъёме, неделе, разговоре.",
+                "uk": "важкий, виснажливий, що вимагає сил. Is it tough? — «Це важко?» Про вправу, підйом, тиждень, розмову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tough",
+            "definitionByLocale": {
+              "ru": "трудный, тяжёлый, требующий сил. Is it tough? — «Это тяжело?» Об упражнении, подъёме, неделе, разговоре.",
+              "uk": "важкий, виснажливий, що вимагає сил. Is it tough? — «Це важко?» Про вправу, підйом, тиждень, розмову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Соседка тяжело дышит после приседаний. Спросите её, тяжело ли это",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка тяжело дышит после приседаний. Спросите её, тяжело ли это",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка тяжело дышит после приседаний. Спросите её, тяжело ли это",
+            "uk": "Сусідка важко дихає після присідань. Запитайте її, чи це важко"
+          },
+          "gappedTargetPhrase": "___ it tough?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-53:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Соседка тяжело дышит после приседаний. Спросите её, тяжело ли это",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Соседка тяжело дышит после приседаний. Спросите её, тяжело ли это",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Соседка тяжело дышит после приседаний. Спросите её, тяжело ли это",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it tough?`.",
+                "uk": "Питання — `Is it tough?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-53:i04:p1",
+              "target": "sweaty",
+              "meaningByLocale": {
+                "ru": "потный",
+                "uk": "спітнілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i04:p2",
+              "target": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый",
+                "uk": "важкий, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i04:p3",
+              "target": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый",
+                "uk": "бадьорий, веселий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i04:p4",
+              "target": "sore",
+              "meaningByLocale": {
+                "ru": "ноющий, болящий",
+                "uk": "що болить"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweaty",
+            "tough",
+            "upbeat",
+            "sore"
+          ],
+          "rightColumn": [
+            "потный",
+            "трудный, тяжёлый",
+            "бодрый, весёлый",
+            "ноющий, болящий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что соседка говорит о разминке, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что соседка говорит о разминке, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i05:audio",
+            "transcript": "It is not tough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not tough.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "tough"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что соседка говорит о разминке, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not tough.`",
+                "uk": "тут потрібно `is` — `It is not tough.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер говорит, что в программе есть очень тяжёлое упражнение. Спросите его, что тяжёлое.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер говорит, что в программе есть очень тяжёлое упражнение. Спросите его, что тяжёлое.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is tough?",
+          "localizedMeaning": {
+            "ru": "Тренер говорит, что в программе есть очень тяжёлое упражнение. Спросите его, что тяжёлое.",
+            "uk": "Тренер каже, що в програмі є дуже важка вправа. Запитайте його, що важке."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "tough"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер говорит, что в программе есть очень тяжёлое упражнение. Спросите его, что тяжёлое.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is tough?`",
+                "uk": "тут потрібно `What` — `What is tough?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:word:upbeat",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — upbeat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:upbeat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — upbeat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:upbeat:audio",
+            "transcript": "upbeat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:upbeat:r1",
+              "targetText": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый, заряжающий. It's upbeat — «Она бодрая». О музыке, песне, настроении, голосе.",
+                "uk": "бадьорий, веселий, що заряджає. It's upbeat — «Вона бадьора». Про музику, пісню, настрій, голос."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "upbeat",
+            "definitionByLocale": {
+              "ru": "бодрый, весёлый, заряжающий. It's upbeat — «Она бодрая». О музыке, песне, настроении, голосе.",
+              "uk": "бадьорий, веселий, що заряджає. It's upbeat — «Вона бадьора». Про музику, пісню, настрій, голос."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер включает музыку и спрашивает, как она вам. Скажите коротко, что музыка бодрая.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Тренер включает музыку и спрашивает, как она вам. Скажите коротко, что музыка бодрая.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i07:audio",
+            "transcript": "It's upbeat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's upbeat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тренер спросил: «Is it sweaty?» Ваша футболка мокрая насквозь. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер спросил: «Is it sweaty?» Ваша футболка мокрая насквозь. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тренер спросил: «Is it sweaty?» Ваша футболка мокрая насквозь. Дополните короткое «да»",
+            "uk": "Тренер спитав: «Is it sweaty?» Ваша футболка мокра наскрізь. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-53:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Тренер спросил: «Is it sweaty?» Ваша футболка мокрая насквозь. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Тренер спросил: «Is it sweaty?» Ваша футболка мокрая насквозь. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Тренер спросил: «Is it sweaty?» Ваша футболка мокрая насквозь. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:word:steady",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — steady",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:steady:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — steady",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:steady:audio",
+            "transcript": "steady"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:steady:r1",
+              "targetText": "steady",
+              "meaningByLocale": {
+                "ru": "ровный, устойчивый, без рывков. It is steady — «Тут ровный темп». О темпе, шаге, дыхании, руке.",
+                "uk": "рівний, стійкий, без ривків. It is steady — «Тут рівний темп». Про темп, крок, дихання, руку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steady",
+            "definitionByLocale": {
+              "ru": "ровный, устойчивый, без рывков. It is steady — «Тут ровный темп». О темпе, шаге, дыхании, руке.",
+              "uk": "рівний, стійкий, без ривків. It is steady — «Тут рівний темп». Про темп, крок, дихання, руку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что тренер говорит о темпе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i09:r1",
+            "text": "It is steady."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i09:r2",
+            "text": "It is fast."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i09:r3",
+            "text": "It is slow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что тренер говорит о темпе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i09:audio",
+            "transcript": "It is steady."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:i09:r1",
+              "targetText": "It is steady.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i09:r2",
+              "targetText": "It is fast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i09:r3",
+              "targetText": "It is slow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что тренер говорит о темпе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `fast`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `fast`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что тренер говорит о темпе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `slow`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `slow`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-53:i10:p1",
+              "target": "steady",
+              "meaningByLocale": {
+                "ru": "ровный, устойчивый",
+                "uk": "рівний, стійкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i10:p2",
+              "target": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый",
+                "uk": "важкий, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i10:p3",
+              "target": "stiff",
+              "meaningByLocale": {
+                "ru": "одеревеневший",
+                "uk": "задерев’янілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i10:p4",
+              "target": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый",
+                "uk": "бадьорий, веселий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "steady",
+            "tough",
+            "stiff",
+            "upbeat"
+          ],
+          "rightColumn": [
+            "ровный, устойчивый",
+            "трудный, тяжёлый",
+            "одеревеневший",
+            "бодрый, весёлый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что тренер говорит о музыке, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что тренер говорит о музыке, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i11:audio",
+            "transcript": "It is not upbeat."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not upbeat.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "upbeat"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что тренер говорит о музыке, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not upbeat.`",
+                "uk": "тут потрібно `is` — `It is not upbeat.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы бежите рядом с соседкой. Спросите её, ровный ли у вас темп.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы бежите рядом с соседкой. Спросите её, ровный ли у вас темп.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it steady?",
+          "localizedMeaning": {
+            "ru": "Вы бежите рядом с соседкой. Спросите её, ровный ли у вас темп.",
+            "uk": "Ви біжите поруч із сусідкою. Запитайте її, чи рівний у вас темп."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "steady"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы бежите рядом с соседкой. Спросите её, ровный ли у вас темп.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it steady?`",
+                "uk": "тут потрібно `Is` — `Is it steady?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы вспотели, и футболка мокрая. Скажите коротко, что она мокрая от пота.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Вы вспотели, и футболка мокрая. Скажите коротко, что она мокрая от пота.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i13:audio",
+            "transcript": "It's sweaty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's sweaty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Последний подход приседаний с прыжками дался вам с трудом. Скажите, что это упражнение тяжёлое",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Последний подход приседаний с прыжками дался вам с трудом. Скажите, что это упражнение тяжёлое",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Последний подход приседаний с прыжками дался вам с трудом. Скажите, что это упражнение тяжёлое",
+            "uk": "Останній підхід присідань зі стрибками дався вам важко. Скажіть, що ця вправа важка"
+          },
+          "gappedTargetPhrase": "It ___ tough.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-53:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Последний подход приседаний с прыжками дался вам с трудом. Скажите, что это упражнение тяжёлое",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Последний подход приседаний с прыжками дался вам с трудом. Скажите, что это упражнение тяжёлое",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Последний подход приседаний с прыжками дался вам с трудом. Скажите, что это упражнение тяжёлое",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is tough`.",
+                "uk": "Фраза — `It is tough`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i15:r1",
+            "text": "Is it steady?"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i15:r2",
+            "text": "Is it tough?"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i15:r3",
+            "text": "Is it upbeat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i15:audio",
+            "transcript": "Is it steady?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:i15:r1",
+              "targetText": "Is it steady?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i15:r2",
+              "targetText": "Is it tough?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i15:r3",
+              "targetText": "Is it upbeat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `tough`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `tough`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `upbeat`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `upbeat`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-53:i16:p1",
+              "target": "sweaty",
+              "meaningByLocale": {
+                "ru": "потный",
+                "uk": "спітнілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i16:p2",
+              "target": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый",
+                "uk": "важкий, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i16:p3",
+              "target": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый",
+                "uk": "бадьорий, веселий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i16:p4",
+              "target": "steady",
+              "meaningByLocale": {
+                "ru": "ровный, устойчивый",
+                "uk": "рівний, стійкий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweaty",
+            "tough",
+            "upbeat",
+            "steady"
+          ],
+          "rightColumn": [
+            "потный",
+            "трудный, тяжёлый",
+            "бодрый, весёлый",
+            "ровный, устойчивый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер показывает новое упражнение. Спросите его, тяжёлое ли оно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Тренер показывает новое упражнение. Спросите его, тяжёлое ли оно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i17:audio",
+            "transcript": "Is it tough?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it tough?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-53:word:sweaty",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sweaty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:sweaty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sweaty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:sweaty:audio",
+            "transcript": "sweaty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:sweaty:r1",
+              "targetText": "sweaty",
+              "meaningByLocale": {
+                "ru": "потный, мокрый от пота. It is sweaty — «Она мокрая от пота». О футболке, ладонях, лбе, спине.",
+                "uk": "спітнілий, мокрий від поту. It is sweaty — «Вона мокра від поту». Про футболку, долоні, чоло, спину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweaty",
+            "definitionByLocale": {
+              "ru": "потный, мокрый от пота. It is sweaty — «Она мокрая от пота». О футболке, ладонях, лбе, спине.",
+              "uk": "спітнілий, мокрий від поту. It is sweaty — «Вона мокра від поту». Про футболку, долоні, чоло, спину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер питає про вашу футболку після бігу. Скажіть йому повною фразою, що вона мокра від поту.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер питає про вашу футболку після бігу. Скажіть йому повною фразою, що вона мокра від поту.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is sweaty.",
+          "localizedMeaning": {
+            "ru": "Тренер спрашивает про вашу футболку после бега. Скажите ему полной фразой, что она мокрая от пота.",
+            "uk": "Тренер питає про вашу футболку після бігу. Скажіть йому повною фразою, що вона мокра від поту."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "sweaty"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер питає про вашу футболку після бігу. Скажіть йому повною фразою, що вона мокра від поту.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is sweaty.`",
+                "uk": "тут потрібно `is` — `It is sweaty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що тренер каже про погоду в парку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i02:r1",
+            "text": "It is windy."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i02:r2",
+            "text": "It is cold."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i02:r3",
+            "text": "It is hot."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що тренер каже про погоду в парку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i02:audio",
+            "transcript": "It is windy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:i02:r1",
+              "targetText": "It is windy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i02:r2",
+              "targetText": "It is cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i02:r3",
+              "targetText": "It is hot.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що тренер каже про погоду в парку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `cold`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `cold`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що тренер каже про погоду в парку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `windy`, а в этом варианте — `hot`.",
+                "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `hot`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:word:tough",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:tough:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:tough:audio",
+            "transcript": "tough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:tough:r1",
+              "targetText": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый, требующий сил. Is it tough? — «Это тяжело?» Об упражнении, подъёме, неделе, разговоре.",
+                "uk": "важкий, виснажливий, що вимагає сил. Is it tough? — «Це важко?» Про вправу, підйом, тиждень, розмову."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tough",
+            "definitionByLocale": {
+              "ru": "трудный, тяжёлый, требующий сил. Is it tough? — «Это тяжело?» Об упражнении, подъёме, неделе, разговоре.",
+              "uk": "важкий, виснажливий, що вимагає сил. Is it tough? — «Це важко?» Про вправу, підйом, тиждень, розмову."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусідка важко дихає після присідань. Запитайте її, чи це важко",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка важко дихає після присідань. Запитайте її, чи це важко",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка тяжело дышит после приседаний. Спросите её, тяжело ли это",
+            "uk": "Сусідка важко дихає після присідань. Запитайте її, чи це важко"
+          },
+          "gappedTargetPhrase": "___ it tough?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-53:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Сусідка важко дихає після присідань. Запитайте її, чи це важко",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Сусідка важко дихає після присідань. Запитайте її, чи це важко",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Сусідка важко дихає після присідань. Запитайте її, чи це важко",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it tough?`.",
+                "uk": "Питання — `Is it tough?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-53:i04:p1",
+              "target": "sweaty",
+              "meaningByLocale": {
+                "ru": "потный",
+                "uk": "спітнілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i04:p2",
+              "target": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый",
+                "uk": "важкий, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i04:p3",
+              "target": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый",
+                "uk": "бадьорий, веселий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i04:p4",
+              "target": "sore",
+              "meaningByLocale": {
+                "ru": "ноющий, болящий",
+                "uk": "що болить"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweaty",
+            "tough",
+            "upbeat",
+            "sore"
+          ],
+          "rightColumn": [
+            "спітнілий",
+            "важкий, виснажливий",
+            "бадьорий, веселий",
+            "що болить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що сусідка каже про розминку, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що сусідка каже про розминку, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i05:audio",
+            "transcript": "It is not tough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not tough.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "tough"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що сусідка каже про розминку, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not tough.`",
+                "uk": "тут потрібно `is` — `It is not tough.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тренер каже, що в програмі є дуже важка вправа. Запитайте його, що важке.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер каже, що в програмі є дуже важка вправа. Запитайте його, що важке.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is tough?",
+          "localizedMeaning": {
+            "ru": "Тренер говорит, что в программе есть очень тяжёлое упражнение. Спросите его, что тяжёлое.",
+            "uk": "Тренер каже, що в програмі є дуже важка вправа. Запитайте його, що важке."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "tough"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Тренер каже, що в програмі є дуже важка вправа. Запитайте його, що важке.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is tough?`",
+                "uk": "тут потрібно `What` — `What is tough?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:word:upbeat",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — upbeat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:upbeat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — upbeat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:upbeat:audio",
+            "transcript": "upbeat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:upbeat:r1",
+              "targetText": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый, заряжающий. It's upbeat — «Она бодрая». О музыке, песне, настроении, голосе.",
+                "uk": "бадьорий, веселий, що заряджає. It's upbeat — «Вона бадьора». Про музику, пісню, настрій, голос."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "upbeat",
+            "definitionByLocale": {
+              "ru": "бодрый, весёлый, заряжающий. It's upbeat — «Она бодрая». О музыке, песне, настроении, голосе.",
+              "uk": "бадьорий, веселий, що заряджає. It's upbeat — «Вона бадьора». Про музику, пісню, настрій, голос."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер вмикає музику й питає, як вона вам. Скажіть коротко, що музика бадьора.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Тренер вмикає музику й питає, як вона вам. Скажіть коротко, що музика бадьора.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i07:audio",
+            "transcript": "It's upbeat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's upbeat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тренер спитав: «Is it sweaty?» Ваша футболка мокра наскрізь. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тренер спитав: «Is it sweaty?» Ваша футболка мокра наскрізь. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тренер спросил: «Is it sweaty?» Ваша футболка мокрая насквозь. Дополните короткое «да»",
+            "uk": "Тренер спитав: «Is it sweaty?» Ваша футболка мокра наскрізь. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-53:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Тренер спитав: «Is it sweaty?» Ваша футболка мокра наскрізь. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i08:r2",
+              "correct": false,
+              "testedDimension": "Тренер спитав: «Is it sweaty?» Ваша футболка мокра наскрізь. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i08:r3",
+              "correct": false,
+              "testedDimension": "Тренер спитав: «Is it sweaty?» Ваша футболка мокра наскрізь. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:word:steady",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — steady",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:word:steady:audio"
+        ],
+        "accessibilityLabel": "Картка слова — steady",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:word:steady:audio",
+            "transcript": "steady"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:word:steady:r1",
+              "targetText": "steady",
+              "meaningByLocale": {
+                "ru": "ровный, устойчивый, без рывков. It is steady — «Тут ровный темп». О темпе, шаге, дыхании, руке.",
+                "uk": "рівний, стійкий, без ривків. It is steady — «Тут рівний темп». Про темп, крок, дихання, руку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "steady",
+            "definitionByLocale": {
+              "ru": "ровный, устойчивый, без рывков. It is steady — «Тут ровный темп». О темпе, шаге, дыхании, руке.",
+              "uk": "рівний, стійкий, без ривків. It is steady — «Тут рівний темп». Про темп, крок, дихання, руку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що тренер каже про темп",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i09:r1",
+            "text": "It is steady."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i09:r2",
+            "text": "It is fast."
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i09:r3",
+            "text": "It is slow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що тренер каже про темп",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i09:audio",
+            "transcript": "It is steady."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:i09:r1",
+              "targetText": "It is steady.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i09:r2",
+              "targetText": "It is fast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i09:r3",
+              "targetText": "It is slow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що тренер каже про темп",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `fast`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `fast`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що тренер каже про темп",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `slow`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `slow`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-53:i10:p1",
+              "target": "steady",
+              "meaningByLocale": {
+                "ru": "ровный, устойчивый",
+                "uk": "рівний, стійкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i10:p2",
+              "target": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый",
+                "uk": "важкий, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i10:p3",
+              "target": "stiff",
+              "meaningByLocale": {
+                "ru": "одеревеневший",
+                "uk": "задерев’янілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i10:p4",
+              "target": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый",
+                "uk": "бадьорий, веселий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "steady",
+            "tough",
+            "stiff",
+            "upbeat"
+          ],
+          "rightColumn": [
+            "рівний, стійкий",
+            "важкий, виснажливий",
+            "задерев’янілий",
+            "бадьорий, веселий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що тренер каже про музику, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що тренер каже про музику, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i11:audio",
+            "transcript": "It is not upbeat."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not upbeat.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "upbeat"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що тренер каже про музику, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not upbeat.`",
+                "uk": "тут потрібно `is` — `It is not upbeat.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви біжите поруч із сусідкою. Запитайте її, чи рівний у вас темп.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви біжите поруч із сусідкою. Запитайте її, чи рівний у вас темп.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it steady?",
+          "localizedMeaning": {
+            "ru": "Вы бежите рядом с соседкой. Спросите её, ровный ли у вас темп.",
+            "uk": "Ви біжите поруч із сусідкою. Запитайте її, чи рівний у вас темп."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "steady"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви біжите поруч із сусідкою. Запитайте її, чи рівний у вас темп.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it steady?`",
+                "uk": "тут потрібно `Is` — `Is it steady?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви спітніли, і футболка мокра. Скажіть коротко, що вона мокра від поту.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Ви спітніли, і футболка мокра. Скажіть коротко, що вона мокра від поту.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i13:audio",
+            "transcript": "It's sweaty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's sweaty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Останній підхід присідань зі стрибками дався вам важко. Скажіть, що ця вправа важка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Останній підхід присідань зі стрибками дався вам важко. Скажіть, що ця вправа важка",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Последний подход приседаний с прыжками дался вам с трудом. Скажите, что это упражнение тяжёлое",
+            "uk": "Останній підхід присідань зі стрибками дався вам важко. Скажіть, що ця вправа важка"
+          },
+          "gappedTargetPhrase": "It ___ tough.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-53:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Останній підхід присідань зі стрибками дався вам важко. Скажіть, що ця вправа важка",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Останній підхід присідань зі стрибками дався вам важко. Скажіть, що ця вправа важка",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Останній підхід присідань зі стрибками дався вам важко. Скажіть, що ця вправа важка",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is tough`.",
+                "uk": "Фраза — `It is tough`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-53:i15:r1",
+            "text": "Is it steady?"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i15:r2",
+            "text": "Is it tough?"
+          },
+          {
+            "responseId": "en:lesson-02:session-53:i15:r3",
+            "text": "Is it upbeat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i15:audio",
+            "transcript": "Is it steady?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-53:i15:r1",
+              "targetText": "Is it steady?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i15:r2",
+              "targetText": "Is it tough?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i15:r3",
+              "targetText": "Is it upbeat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-53:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `tough`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `tough`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-53:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `steady`, а в этом варианте — `upbeat`.",
+                "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `upbeat`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-53:i16:p1",
+              "target": "sweaty",
+              "meaningByLocale": {
+                "ru": "потный",
+                "uk": "спітнілий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i16:p2",
+              "target": "tough",
+              "meaningByLocale": {
+                "ru": "трудный, тяжёлый",
+                "uk": "важкий, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i16:p3",
+              "target": "upbeat",
+              "meaningByLocale": {
+                "ru": "бодрый, весёлый",
+                "uk": "бадьорий, веселий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-53:i16:p4",
+              "target": "steady",
+              "meaningByLocale": {
+                "ru": "ровный, устойчивый",
+                "uk": "рівний, стійкий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweaty",
+            "tough",
+            "upbeat",
+            "steady"
+          ],
+          "rightColumn": [
+            "спітнілий",
+            "важкий, виснажливий",
+            "бадьорий, веселий",
+            "рівний, стійкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-53:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер показує нову вправу. Запитайте його, чи важка вона.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Тренер показує нову вправу. Запитайте його, чи важка вона.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-53:i17:audio",
+            "transcript": "Is it tough?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it tough?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-53:word:sweaty",
+      "correctText": "sweaty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i01",
+      "correctText": "It is sweaty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i02",
+      "correctText": "It is windy.",
+      "correctResponseId": "en:lesson-02:session-53:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:word:tough",
+      "correctText": "tough",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-53:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i05",
+      "correctText": "It is not tough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i06",
+      "correctText": "What is tough?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:word:upbeat",
+      "correctText": "upbeat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i07",
+      "correctText": "It's upbeat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-53:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:word:steady",
+      "correctText": "steady",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i09",
+      "correctText": "It is steady.",
+      "correctResponseId": "en:lesson-02:session-53:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i11",
+      "correctText": "It is not upbeat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i12",
+      "correctText": "Is it steady?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i13",
+      "correctText": "It's sweaty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-53:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i15",
+      "correctText": "Is it steady?",
+      "correctResponseId": "en:lesson-02:session-53:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-53:i17",
+      "correctText": "Is it tough?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-03:session-15:word:candle",
+    "correctText": "candle",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-15:i01",
-    "correctText": "It is a coat.",
+    "correctText": "It is a candle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:word:cushion",
+    "correctText": "cushion",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i02",
-    "correctText": "The coat is here.",
+    "correctText": "It is a cushion.",
     "correctResponseId": "en:lesson-03:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:word:plant",
+    "correctText": "plant",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i03",
@@ -16,72 +31,77 @@
   },
   {
     "interactionId": "en:lesson-03:session-15:i04",
-    "correctText": "en:lesson-03:session-15:i04:p1=coat\nen:lesson-03:session-15:i04:p2=cup\nen:lesson-03:session-15:i04:p3=easy\nen:lesson-03:session-15:i04:p4=difficult",
+    "correctText": "en:lesson-03:session-15:i04:p1=candle\nen:lesson-03:session-15:i04:p2=cushion\nen:lesson-03:session-15:i04:p3=plant\nen:lesson-03:session-15:i04:p4=armchair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:word:lantern",
+    "correctText": "lantern",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i05",
-    "correctText": "The cup is here.",
+    "correctText": "It's a lantern.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i06",
-    "correctText": "Where is the coat?",
+    "correctText": "Is it a cushion?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i07",
-    "correctText": "It is easy.",
+    "correctText": "It's a candle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i08",
-    "correctText": "is",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-15:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-15:i09",
-    "correctText": "It is difficult.",
+    "correctText": "Is it a plant?",
     "correctResponseId": "en:lesson-03:session-15:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-15:i10",
-    "correctText": "en:lesson-03:session-15:i10:p1=important\nen:lesson-03:session-15:i10:p2=silent\nen:lesson-03:session-15:i10:p3=coat\nen:lesson-03:session-15:i10:p4=cup",
+    "correctText": "en:lesson-03:session-15:i10:p1=lantern\nen:lesson-03:session-15:i10:p2=plant\nen:lesson-03:session-15:i10:p3=cushion\nen:lesson-03:session-15:i10:p4=oven",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i11",
-    "correctText": "Where is the cup?",
+    "correctText": "It is not a candle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i12",
-    "correctText": "The coat is here.",
+    "correctText": "Is it a lantern?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i13",
-    "correctText": "It's important.",
+    "correctText": "It's a plant.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i14",
-    "correctText": "The",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-15:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-15:i15",
-    "correctText": "He is silent.",
+    "correctText": "It's a lantern.",
     "correctResponseId": "en:lesson-03:session-15:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-15:i16",
-    "correctText": "en:lesson-03:session-15:i16:p1=easy\nen:lesson-03:session-15:i16:p2=difficult\nen:lesson-03:session-15:i16:p3=important\nen:lesson-03:session-15:i16:p4=silent",
+    "correctText": "en:lesson-03:session-15:i16:p1=cushion\nen:lesson-03:session-15:i16:p2=lantern\nen:lesson-03:session-15:i16:p3=candle\nen:lesson-03:session-15:i16:p4=armchair",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-15:i17",
-    "correctText": "Where is the coat?",
+    "correctText": "Is it a candle?",
     "correctResponseId": null
   }
 ]

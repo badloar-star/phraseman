@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-50:word:sleek",
+    "correctText": "sleek",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-50:i01",
-    "correctText": "It is effective.",
+    "correctText": "It is sleek.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i02",
-    "correctText": "It is expensive.",
+    "correctText": "It is cheap.",
     "correctResponseId": "en:lesson-02:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:word:handy",
+    "correctText": "handy",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i03",
@@ -16,52 +26,62 @@
   },
   {
     "interactionId": "en:lesson-02:session-50:i04",
-    "correctText": "en:lesson-02:session-50:i04:p1=effective\nen:lesson-02:session-50:i04:p2=expensive\nen:lesson-02:session-50:i04:p3=inaccurate\nen:lesson-02:session-50:i04:p4=cheap",
+    "correctText": "en:lesson-02:session-50:i04:p1=sleek\nen:lesson-02:session-50:i04:p2=pricey\nen:lesson-02:session-50:i04:p3=handy\nen:lesson-02:session-50:i04:p4=cheap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:word:pricey",
+    "correctText": "pricey",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "It is not pricey.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i06",
-    "correctText": "What is effective?",
+    "correctText": "What is pricey?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i07",
-    "correctText": "It's effective.",
+    "correctText": "It's handy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i08",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-50:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-50:word:fancy",
+    "correctText": "fancy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-50:i09",
-    "correctText": "They are inaccurate.",
+    "correctText": "They are fancy.",
     "correctResponseId": "en:lesson-02:session-50:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-50:i10",
-    "correctText": "en:lesson-02:session-50:i10:p1=inaccurate\nen:lesson-02:session-50:i10:p2=cheap\nen:lesson-02:session-50:i10:p3=effective\nen:lesson-02:session-50:i10:p4=expensive",
+    "correctText": "en:lesson-02:session-50:i10:p1=fancy\nen:lesson-02:session-50:i10:p2=pricey\nen:lesson-02:session-50:i10:p3=sleek\nen:lesson-02:session-50:i10:p4=shiny",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i11",
-    "correctText": "It is not effective.",
+    "correctText": "They are not pricey.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i12",
-    "correctText": "Is it expensive?",
+    "correctText": "Is it fancy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i13",
-    "correctText": "They're inaccurate.",
+    "correctText": "They're fancy.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-50:i15",
-    "correctText": "Is it effective?",
+    "correctText": "Is it pricey?",
     "correctResponseId": "en:lesson-02:session-50:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-50:i16",
-    "correctText": "en:lesson-02:session-50:i16:p1=expensive\nen:lesson-02:session-50:i16:p2=effective\nen:lesson-02:session-50:i16:p3=cheap\nen:lesson-02:session-50:i16:p4=inaccurate",
+    "correctText": "en:lesson-02:session-50:i16:p1=sleek\nen:lesson-02:session-50:i16:p2=pricey\nen:lesson-02:session-50:i16:p3=handy\nen:lesson-02:session-50:i16:p4=fancy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-50:i17",
-    "correctText": "Is it effective?",
+    "correctText": "Is it pricey?",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-06:word:basket",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — basket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:basket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — basket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:basket:audio",
+            "transcript": "basket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:basket:r1",
+              "targetText": "basket",
+              "meaningByLocale": {
+                "ru": "корзина. It's a basket — «Это корзина». В магазине её носят в руке, дома в ней хранят мелочи.",
+                "uk": "кошик. It's a basket — «Це кошик». У магазині його носять у руці, вдома в ньому зберігають дрібниці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "basket",
+            "definitionByLocale": {
+              "ru": "корзина. It's a basket — «Это корзина». В магазине её носят в руке, дома в ней хранят мелочи.",
+              "uk": "кошик. It's a basket — «Це кошик». У магазині його носять у руці, вдома в ньому зберігають дрібниці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сняла со стопки корзину. Скажите консультанту полной фразой, что это корзина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сняла со стопки корзину. Скажите консультанту полной фразой, что это корзина.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a basket.",
+          "localizedMeaning": {
+            "ru": "Подруга сняла со стопки корзину. Скажите консультанту полной фразой, что это корзина.",
+            "uk": "Подруга зняла зі стосу кошик. Скажіть консультантові повною фразою, що це кошик."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга сняла со стопки корзину. Скажите консультанту полной фразой, что это корзина.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a basket.`",
+                "uk": "тут потрібно `is` — `It is a basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:word:tag",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:tag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:tag:audio",
+            "transcript": "tag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:tag:r1",
+              "targetText": "tag",
+              "meaningByLocale": {
+                "ru": "бирка, ярлык. It is a tag — «Это бирка». На ней цена или название товара.",
+                "uk": "бирка, ярлик. It is a tag — «Це бирка». На ній ціна або назва товару."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tag",
+            "definitionByLocale": {
+              "ru": "бирка, ярлык. It is a tag — «Это бирка». На ней цена или название товара.",
+              "uk": "бирка, ярлик. It is a tag — «Це бирка». На ній ціна або назва товару."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что консультант говорит о товарах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i02:r1",
+            "text": "It is a bag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i02:r2",
+            "text": "It is a tag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i02:r3",
+            "text": "It is a basket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что консультант говорит о товарах",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i02:audio",
+            "transcript": "It is a bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:i02:r1",
+              "targetText": "It is a bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i02:r2",
+              "targetText": "It is a tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i02:r3",
+              "targetText": "It is a basket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что консультант говорит о товарах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `tag`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `tag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что консультант говорит о товарах",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `basket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:word:trolley",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — trolley",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:trolley:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — trolley",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:trolley:audio",
+            "transcript": "trolley"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:trolley:r1",
+              "targetText": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка. Is it a trolley? — «Это тележка?» На ней возят покупки по магазину.",
+                "uk": "візок. Is it a trolley? — «Це візок?» На ньому возять покупки по магазину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trolley",
+            "definitionByLocale": {
+              "ru": "тележка. Is it a trolley? — «Это тележка?» На ней возят покупки по магазину.",
+              "uk": "візок. Is it a trolley? — «Це візок?» На ньому возять покупки по магазину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Консультант показывает на тележку. Дополните: «Это тележка»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Консультант показывает на тележку. Дополните: «Это тележка»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Консультант показывает на тележку. Дополните: «Это тележка»",
+            "uk": "Консультант показує на візок. Доповніть: «Це візок»"
+          },
+          "gappedTargetPhrase": "It is ___ trolley.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-06:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "Консультант показывает на тележку. Дополните: «Это тележка»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Консультант показывает на тележку. Дополните: «Это тележка»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `trolley` нужно `a`.,Слово `is` у цій фразі вже є. Перед `trolley` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Консультант показывает на тележку. Дополните: «Это тележка»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `trolley` нужно `a`.,Слово `It` у цій фразі вже є. Перед `trolley` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-06:i04:p1",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i04:p2",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка",
+                "uk": "візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i04:p3",
+              "target": "tag",
+              "meaningByLocale": {
+                "ru": "ярлык, бирка",
+                "uk": "ярлик, бирка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i04:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "basket",
+            "trolley",
+            "tag",
+            "bag"
+          ],
+          "rightColumn": [
+            "корзина",
+            "тележка",
+            "ярлык, бирка",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что говорит консультант, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит консультант, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i05:audio",
+            "transcript": "It is a trolley."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a trolley.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "trolley"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит консультант, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a trolley.`",
+                "uk": "тут потрібно `is` — `It is a trolley.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга держит бумажку на верёвочке. Спросите её, бирка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга держит бумажку на верёвочке. Спросите её, бирка ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a tag?",
+          "localizedMeaning": {
+            "ru": "Подруга держит бумажку на верёвочке. Спросите её, бирка ли это.",
+            "uk": "Подруга тримає папірець на мотузочці. Запитайте її, чи це бирка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "tag"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга держит бумажку на верёвочке. Спросите её, бирка ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a tag?`",
+                "uk": "тут потрібно `Is` — `Is it a tag?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Консультант спрашивает, что вы взяли у входа. Скажите коротко, что это корзина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Консультант спрашивает, что вы взяли у входа. Скажите коротко, что это корзина.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i07:audio",
+            "transcript": "It's a basket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a basket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спросила: «Is it a bag?» Вы смотрите на тканевую сумку. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спросила: «Is it a bag?» Вы смотрите на тканевую сумку. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it a bag?» Вы смотрите на тканевую сумку. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-06:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спросила: «Is it a bag?» Вы смотрите на тканевую сумку. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it a bag?» Вы смотрите на тканевую сумку. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it a bag?» Вы смотрите на тканевую сумку. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:word:bag",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:bag:audio",
+            "transcript": "bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:bag:r1",
+              "targetText": "bag",
+              "meaningByLocale": {
+                "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
+                "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bag",
+            "definitionByLocale": {
+              "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
+              "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос консультанта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i09:r1",
+            "text": "Is it a trolley?"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i09:r2",
+            "text": "Is it a basket?"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i09:r3",
+            "text": "Is it a bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос консультанта",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i09:audio",
+            "transcript": "Is it a trolley?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:i09:r1",
+              "targetText": "Is it a trolley?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i09:r2",
+              "targetText": "Is it a basket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i09:r3",
+              "targetText": "Is it a bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос консультанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trolley`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `basket`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос консультанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trolley`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `bag`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-06:i10:p1",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i10:p2",
+              "target": "tag",
+              "meaningByLocale": {
+                "ru": "ярлык, бирка",
+                "uk": "ярлик, бирка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i10:p3",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i10:p4",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bag",
+            "tag",
+            "lamp",
+            "rug"
+          ],
+          "rightColumn": [
+            "сумка",
+            "ярлык, бирка",
+            "лампа",
+            "коврик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что подруга говорит о сумке, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о сумке, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i11:audio",
+            "transcript": "It is not a bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a bag.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о сумке, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a bag.`",
+                "uk": "тут потрібно `is` — `It is not a bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга приняла корзину за сумку. Скажите ей полной фразой, что это не сумка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга приняла корзину за сумку. Скажите ей полной фразой, что это не сумка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a bag.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла корзину за сумку. Скажите ей полной фразой, что это не сумка.",
+            "uk": "Подруга сплутала кошик із сумкою. Скажіть їй повною фразою, що це не сумка."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга приняла корзину за сумку. Скажите ей полной фразой, что это не сумка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a bag.`",
+                "uk": "тут потрібно `is` — `It is not a bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы держите бумажку с ценой. Скажите коротко, что это бирка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Вы держите бумажку с ценой. Скажите коротко, что это бирка.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i13:audio",
+            "transcript": "It's a tag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a tag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на тканевую сумку. Спросите её, сумка ли это",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на тканевую сумку. Спросите её, сумка ли это",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на тканевую сумку. Спросите её, сумка ли это",
+            "uk": "Подруга показує на тканинну сумку. Запитайте її, чи це сумка"
+          },
+          "gappedTargetPhrase": "___ it a bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-06:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Подруга показывает на тканевую сумку. Спросите её, сумка ли это",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на тканевую сумку. Спросите её, сумка ли это",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на тканевую сумку. Спросите её, сумка ли это",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a bag?`.",
+                "uk": "Питання — `Is it a bag?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о бирке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i15:r1",
+            "text": "It is a tag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i15:r2",
+            "text": "It is a bag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i15:r3",
+            "text": "It is a trolley."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о бирке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i15:audio",
+            "transcript": "It is a tag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:i15:r1",
+              "targetText": "It is a tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i15:r2",
+              "targetText": "It is a bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i15:r3",
+              "targetText": "It is a trolley.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о бирке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `bag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о бирке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `trolley`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `trolley`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-06:i16:p1",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка",
+                "uk": "візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i16:p2",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i16:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i16:p4",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trolley",
+            "basket",
+            "mirror",
+            "picture"
+          ],
+          "rightColumn": [
+            "тележка",
+            "корзина",
+            "зеркало",
+            "картина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Консультант показывает на ряд тележек. Спросите его, тележка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Консультант показывает на ряд тележек. Спросите его, тележка ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i17:audio",
+            "transcript": "Is it a trolley?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a trolley?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-06:word:basket",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — basket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:basket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — basket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:basket:audio",
+            "transcript": "basket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:basket:r1",
+              "targetText": "basket",
+              "meaningByLocale": {
+                "ru": "корзина. It's a basket — «Это корзина». В магазине её носят в руке, дома в ней хранят мелочи.",
+                "uk": "кошик. It's a basket — «Це кошик». У магазині його носять у руці, вдома в ньому зберігають дрібниці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "basket",
+            "definitionByLocale": {
+              "ru": "корзина. It's a basket — «Это корзина». В магазине её носят в руке, дома в ней хранят мелочи.",
+              "uk": "кошик. It's a basket — «Це кошик». У магазині його носять у руці, вдома в ньому зберігають дрібниці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга зняла зі стосу кошик. Скажіть консультантові повною фразою, що це кошик.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга зняла зі стосу кошик. Скажіть консультантові повною фразою, що це кошик.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a basket.",
+          "localizedMeaning": {
+            "ru": "Подруга сняла со стопки корзину. Скажите консультанту полной фразой, что это корзина.",
+            "uk": "Подруга зняла зі стосу кошик. Скажіть консультантові повною фразою, що це кошик."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга зняла зі стосу кошик. Скажіть консультантові повною фразою, що це кошик.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a basket.`",
+                "uk": "тут потрібно `is` — `It is a basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:word:tag",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:tag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:tag:audio",
+            "transcript": "tag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:tag:r1",
+              "targetText": "tag",
+              "meaningByLocale": {
+                "ru": "бирка, ярлык. It is a tag — «Это бирка». На ней цена или название товара.",
+                "uk": "бирка, ярлик. It is a tag — «Це бирка». На ній ціна або назва товару."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tag",
+            "definitionByLocale": {
+              "ru": "бирка, ярлык. It is a tag — «Это бирка». На ней цена или название товара.",
+              "uk": "бирка, ярлик. It is a tag — «Це бирка». На ній ціна або назва товару."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що консультант каже про товари",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i02:r1",
+            "text": "It is a bag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i02:r2",
+            "text": "It is a tag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i02:r3",
+            "text": "It is a basket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що консультант каже про товари",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i02:audio",
+            "transcript": "It is a bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:i02:r1",
+              "targetText": "It is a bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i02:r2",
+              "targetText": "It is a tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i02:r3",
+              "targetText": "It is a basket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що консультант каже про товари",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `tag`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `tag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що консультант каже про товари",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `basket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:word:trolley",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — trolley",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:trolley:audio"
+        ],
+        "accessibilityLabel": "Картка слова — trolley",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:trolley:audio",
+            "transcript": "trolley"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:trolley:r1",
+              "targetText": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка. Is it a trolley? — «Это тележка?» На ней возят покупки по магазину.",
+                "uk": "візок. Is it a trolley? — «Це візок?» На ньому возять покупки по магазину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trolley",
+            "definitionByLocale": {
+              "ru": "тележка. Is it a trolley? — «Это тележка?» На ней возят покупки по магазину.",
+              "uk": "візок. Is it a trolley? — «Це візок?» На ньому возять покупки по магазину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Консультант показує на візок. Доповніть: «Це візок»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Консультант показує на візок. Доповніть: «Це візок»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Консультант показывает на тележку. Дополните: «Это тележка»",
+            "uk": "Консультант показує на візок. Доповніть: «Це візок»"
+          },
+          "gappedTargetPhrase": "It is ___ trolley.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-06:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "Консультант показує на візок. Доповніть: «Це візок»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Консультант показує на візок. Доповніть: «Це візок»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `trolley` нужно `a`.,Слово `is` у цій фразі вже є. Перед `trolley` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Консультант показує на візок. Доповніть: «Це візок»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `trolley` нужно `a`.,Слово `It` у цій фразі вже є. Перед `trolley` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-06:i04:p1",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i04:p2",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка",
+                "uk": "візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i04:p3",
+              "target": "tag",
+              "meaningByLocale": {
+                "ru": "ярлык, бирка",
+                "uk": "ярлик, бирка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i04:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "basket",
+            "trolley",
+            "tag",
+            "bag"
+          ],
+          "rightColumn": [
+            "кошик",
+            "візок",
+            "ярлик, бирка",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що каже консультант, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже консультант, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i05:audio",
+            "transcript": "It is a trolley."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a trolley.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "trolley"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже консультант, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a trolley.`",
+                "uk": "тут потрібно `is` — `It is a trolley.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга тримає папірець на мотузочці. Запитайте її, чи це бирка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга тримає папірець на мотузочці. Запитайте її, чи це бирка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a tag?",
+          "localizedMeaning": {
+            "ru": "Подруга держит бумажку на верёвочке. Спросите её, бирка ли это.",
+            "uk": "Подруга тримає папірець на мотузочці. Запитайте її, чи це бирка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "tag"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга тримає папірець на мотузочці. Запитайте її, чи це бирка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a tag?`",
+                "uk": "тут потрібно `Is` — `Is it a tag?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Консультант питає, що ви взяли біля входу. Скажіть коротко, що це кошик.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Консультант питає, що ви взяли біля входу. Скажіть коротко, що це кошик.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i07:audio",
+            "transcript": "It's a basket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a basket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it a bag?» Вы смотрите на тканевую сумку. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-06:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it a bag?» Ви дивитеся на тканинну сумку. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:word:bag",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:word:bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:word:bag:audio",
+            "transcript": "bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:word:bag:r1",
+              "targetText": "bag",
+              "meaningByLocale": {
+                "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
+                "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bag",
+            "definitionByLocale": {
+              "ru": "сумка. It is a bag — «Это сумка». Бывает бумажная, тканевая или для покупок.",
+              "uk": "сумка. It is a bag — «Це сумка». Буває паперова, тканинна або для покупок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання консультанта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i09:r1",
+            "text": "Is it a trolley?"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i09:r2",
+            "text": "Is it a basket?"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i09:r3",
+            "text": "Is it a bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання консультанта",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i09:audio",
+            "transcript": "Is it a trolley?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:i09:r1",
+              "targetText": "Is it a trolley?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i09:r2",
+              "targetText": "Is it a basket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i09:r3",
+              "targetText": "Is it a bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання консультанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trolley`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `basket`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання консультанта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trolley`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `bag`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-06:i10:p1",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i10:p2",
+              "target": "tag",
+              "meaningByLocale": {
+                "ru": "ярлык, бирка",
+                "uk": "ярлик, бирка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i10:p3",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i10:p4",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bag",
+            "tag",
+            "lamp",
+            "rug"
+          ],
+          "rightColumn": [
+            "сумка",
+            "ярлик, бирка",
+            "лампа",
+            "килимок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що подруга каже про сумку, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про сумку, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i11:audio",
+            "transcript": "It is not a bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a bag.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про сумку, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a bag.`",
+                "uk": "тут потрібно `is` — `It is not a bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сплутала кошик із сумкою. Скажіть їй повною фразою, що це не сумка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сплутала кошик із сумкою. Скажіть їй повною фразою, що це не сумка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a bag.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла корзину за сумку. Скажите ей полной фразой, что это не сумка.",
+            "uk": "Подруга сплутала кошик із сумкою. Скажіть їй повною фразою, що це не сумка."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга сплутала кошик із сумкою. Скажіть їй повною фразою, що це не сумка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a bag.`",
+                "uk": "тут потрібно `is` — `It is not a bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви тримаєте папірець із ціною. Скажіть коротко, що це бирка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Ви тримаєте папірець із ціною. Скажіть коротко, що це бирка.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i13:audio",
+            "transcript": "It's a tag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a tag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на тканинну сумку. Запитайте її, чи це сумка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на тканинну сумку. Запитайте її, чи це сумка",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на тканевую сумку. Спросите её, сумка ли это",
+            "uk": "Подруга показує на тканинну сумку. Запитайте її, чи це сумка"
+          },
+          "gappedTargetPhrase": "___ it a bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-06:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Подруга показує на тканинну сумку. Запитайте її, чи це сумка",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на тканинну сумку. Запитайте її, чи це сумка",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на тканинну сумку. Запитайте її, чи це сумка",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a bag?`.",
+                "uk": "Питання — `Is it a bag?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про бирку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i15:r1",
+            "text": "It is a tag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i15:r2",
+            "text": "It is a bag."
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i15:r3",
+            "text": "It is a trolley."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про бирку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i15:audio",
+            "transcript": "It is a tag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-06:i15:r1",
+              "targetText": "It is a tag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i15:r2",
+              "targetText": "It is a bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i15:r3",
+              "targetText": "It is a trolley.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про бирку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `bag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про бирку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `trolley`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `trolley`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-06:i16:p1",
+              "target": "trolley",
+              "meaningByLocale": {
+                "ru": "тележка",
+                "uk": "візок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i16:p2",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i16:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-06:i16:p4",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trolley",
+            "basket",
+            "mirror",
+            "picture"
+          ],
+          "rightColumn": [
+            "візок",
+            "кошик",
+            "дзеркало",
+            "картина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Консультант показує на ряд візків. Запитайте його, чи це візок.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Консультант показує на ряд візків. Запитайте його, чи це візок.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-06:i17:audio",
+            "transcript": "Is it a trolley?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a trolley?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-06:word:basket",
+      "correctText": "basket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i01",
+      "correctText": "It is a basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:word:tag",
+      "correctText": "tag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i02",
+      "correctText": "It is a bag.",
+      "correctResponseId": "en:lesson-03:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:word:trolley",
+      "correctText": "trolley",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i05",
+      "correctText": "It is a trolley.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i06",
+      "correctText": "Is it a tag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i07",
+      "correctText": "It's a basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:word:bag",
+      "correctText": "bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i09",
+      "correctText": "Is it a trolley?",
+      "correctResponseId": "en:lesson-03:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i11",
+      "correctText": "It is not a bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i12",
+      "correctText": "It is not a bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i13",
+      "correctText": "It's a tag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i14",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-03:session-06:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i15",
+      "correctText": "It is a tag.",
+      "correctResponseId": "en:lesson-03:session-06:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i17",
+      "correctText": "Is it a trolley?",
+      "correctResponseId": null
+    }
+  ]
+}

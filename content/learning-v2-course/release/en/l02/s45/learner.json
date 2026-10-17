@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-45:i01",
+      "interactionId": "en:lesson-02:session-45:word:blunt",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blunt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-45:word:blunt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blunt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-45:word:blunt:audio",
+          "transcript": "blunt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-45:word:blunt:r1",
+            "targetText": "blunt",
+            "meaningByLocale": {
+              "ru": "тупой, неострый. It is blunt — «Он тупой». О ноже, ножницах, карандаше, топоре.",
+              "uk": "тупий, негострий. It is blunt — «Він тупий». Про ніж, ножиці, олівець, сокиру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blunt",
+          "definitionByLocale": {
+            "ru": "тупой, неострый. It is blunt — «Он тупой». О ноже, ножницах, карандаше, топоре.",
+            "uk": "тупий, негострий. It is blunt — «Він тупий». Про ніж, ножиці, олівець, сокиру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "По условию истории проверенный вариант нарушает закон. Скажите полной фразой, что это незаконно",
+      "prompt": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "По условию истории проверенный вариант нарушает закон. Скажите полной фразой, что это незаконно",
+      "accessibilityLabel": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is illegal.",
+        "targetPhrase": "It is blunt.",
         "localizedMeaning": {
-          "ru": "По условию истории проверенный вариант нарушает закон. Скажите полной фразой, что это незаконно",
-          "uk": "За умовою історії перевірений варіант порушує закон. Скажіть повною фразою, що це незаконно"
+          "ru": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
+          "uk": "Брат простягає вам олівець зі стертим грифелем. Скажіть йому повною фразою, що він тупий."
         },
         "orderedTokens": [
           "It",
           "is",
-          "illegal"
+          "blunt"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-45:i01:tile:d1",
             "correct": false,
-            "testedDimension": "По условию истории проверенный вариант нарушает закон. Скажите полной фразой, что это незаконно",
+            "testedDimension": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is illegal.`",
-              "uk": "тут потрібно `is` — `It is illegal.`"
+              "ru": "здесь нужно `is` — `It is blunt.`",
+              "uk": "тут потрібно `is` — `It is blunt.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о разъяснении",
+      "prompt": "Послушайте, что брат говорит о старом ключе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-45:i02:r1",
-          "text": "It is useful."
+          "text": "It is rusty."
         },
         {
           "responseId": "en:lesson-02:session-45:i02:r2",
-          "text": "It is official."
+          "text": "It is loose."
         },
         {
           "responseId": "en:lesson-02:session-45:i02:r3",
-          "text": "It is legal."
+          "text": "It is heavy."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о разъяснении",
+      "accessibilityLabel": "Послушайте, что брат говорит о старом ключе",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i02:audio",
-          "transcript": "It is useful."
+          "transcript": "It is rusty."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-45:i02:r1",
-            "targetText": "It is useful.",
+            "targetText": "It is rusty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-45:i02:r2",
-            "targetText": "It is official.",
+            "targetText": "It is loose.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-45:i02:r3",
-            "targetText": "It is legal.",
+            "targetText": "It is heavy.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-45:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о разъяснении",
+            "testedDimension": "Послушайте, что брат говорит о старом ключе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useful`, а в этом варианте — `official`.",
-              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `official`."
+              "ru": "В записи последнее слово — `rusty`, а в этом варианте — `loose`.",
+              "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `loose`."
             }
           },
           {
             "responseId": "en:lesson-02:session-45:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о разъяснении",
+            "testedDimension": "Послушайте, что брат говорит о старом ключе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `useful`, а в этом варианте — `legal`.",
-              "uk": "У записі останнє слово — `useful`, а в цьому варіанті — `legal`."
+              "ru": "В записи последнее слово — `rusty`, а в этом варианте — `heavy`.",
+              "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `heavy`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-45:word:cluttered",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cluttered",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-45:word:cluttered:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cluttered",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-45:word:cluttered:audio",
+          "transcript": "cluttered"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-45:word:cluttered:r1",
+            "targetText": "cluttered",
+            "meaningByLocale": {
+              "ru": "захламлённый, забитый вещами. It's cluttered — «Тут завалено». О ящике, столе, комнате, гараже.",
+              "uk": "захаращений, забитий речами. It's cluttered — «Тут завалено». Про скриню, стіл, кімнату, гараж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cluttered",
+          "definitionByLocale": {
+            "ru": "захламлённый, забитый вещами. It's cluttered — «Тут завалено». О ящике, столе, комнате, гараже.",
+            "uk": "захаращений, забитий речами. It's cluttered — «Тут завалено». Про скриню, стіл, кімнату, гараж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-45:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите, незаконен ли другой вариант плана",
+      "prompt": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-45:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, незаконен ли другой вариант плана",
+      "accessibilityLabel": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, незаконен ли другой вариант плана",
-          "uk": "Запитайте, чи інший варіант плану незаконний"
+          "ru": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+          "uk": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона"
         },
-        "gappedTargetPhrase": "___ it illegal?",
+        "gappedTargetPhrase": "___ it cluttered?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-45:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Спросите, незаконен ли другой вариант плана",
+        "testedDimension": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-45:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите, незаконен ли другой вариант плана",
+            "testedDimension": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-45:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите, незаконен ли другой вариант плана",
+            "testedDimension": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it illegal?`.",
-              "uk": "Запитання — `Is it illegal?`."
+              "ru": "Вопрос — `Is it cluttered?`.",
+              "uk": "Питання — `Is it cluttered?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-45:i04:p1",
-            "target": "illegal",
+            "target": "blunt",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "тупой",
+              "uk": "тупий"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i04:p2",
-            "target": "legal",
+            "target": "flimsy",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "хлипкий",
+              "uk": "нетривкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i04:p3",
-            "target": "useful",
+            "target": "cluttered",
             "meaningByLocale": {
-              "ru": "полезный",
-              "uk": "корисний"
+              "ru": "захламлённый",
+              "uk": "захаращений"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i04:p4",
-            "target": "official",
+            "target": "sturdy",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "прочный",
+              "uk": "міцний"
             }
           }
         ],
         "leftColumn": [
-          "illegal",
-          "legal",
-          "useful",
-          "official"
+          "blunt",
+          "flimsy",
+          "cluttered",
+          "sturdy"
         ],
         "rightColumn": [
-          "незаконный",
-          "законный",
-          "полезный",
-          "официальный"
+          "тупой",
+          "хлипкий",
+          "захламлённый",
+          "прочный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-45:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-45:word:flimsy",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flimsy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-45:word:flimsy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flimsy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-45:word:flimsy:audio",
+          "transcript": "flimsy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-45:word:flimsy:r1",
+            "targetText": "flimsy",
+            "meaningByLocale": {
+              "ru": "хлипкий, ненадёжный: тонкий и непрочный. Is it flimsy? — «Она хлипкая?» О полке, стуле, заборе, упаковке.",
+              "uk": "нетривкий, ненадійний: тонкий і неміцний. Is it flimsy? — «Вона нетривка?» Про полицю, стілець, паркан, упаковку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flimsy",
+          "definitionByLocale": {
+            "ru": "хлипкий, ненадёжный: тонкий и непрочный. Is it flimsy? — «Она хлипкая?» О полке, стуле, заборе, упаковке.",
+            "uk": "нетривкий, ненадійний: тонкий і неміцний. Is it flimsy? — «Вона нетривка?» Про полицю, стілець, паркан, упаковку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Брат укрепил полку уголками. Послушайте, что он говорит о ней, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Брат укрепил полку уголками. Послушайте, что он говорит о ней, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i05:audio",
-          "transcript": "Yes, it is."
+          "transcript": "It is not flimsy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, it is.",
+        "hiddenTargetPhrase": "It is not flimsy.",
         "orderedTokens": [
-          "Yes,",
-          "it",
-          "is"
+          "It",
+          "is",
+          "not",
+          "flimsy"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-45:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Брат укрепил полку уголками. Послушайте, что он говорит о ней, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, it is.`",
-              "uk": "тут потрібно `Yes,` — `Yes, it is.`"
+              "ru": "здесь нужно `is` — `It is not flimsy.`",
+              "uk": "тут потрібно `is` — `It is not flimsy.`"
             }
           }
         ],
@@ -314,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Юрист отметил нарушение среди нескольких действий в плане. Спросите, что незаконно",
+      "prompt": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Юрист отметил нарушение среди нескольких действий в плане. Спросите, что незаконно",
+      "accessibilityLabel": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is illegal?",
+        "targetPhrase": "What is flimsy?",
         "localizedMeaning": {
-          "ru": "Юрист отметил нарушение среди нескольких действий в плане. Спросите, что незаконно",
-          "uk": "Юрист відзначив порушення серед кількох дій у плані. Запитайте, що незаконно"
+          "ru": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
+          "uk": "Брат каже, що в гаражі нетривка лише одна річ. Запитайте його, що нетривке."
         },
         "orderedTokens": [
           "What",
           "is",
-          "illegal"
+          "flimsy"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -342,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-45:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Юрист отметил нарушение среди нескольких действий в плане. Спросите, что незаконно",
+            "testedDimension": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is illegal?`",
-              "uk": "тут потрібно `What` — `What is illegal?`"
+              "ru": "здесь нужно `What` — `What is flimsy?`",
+              "uk": "тут потрібно `What` — `What is flimsy?`"
             }
           }
         ],
@@ -358,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В нашей истории этот вариант запрещён законом. Коротко сообщите, что это незаконно",
+      "prompt": "Брат показывает на верстак, заваленный хламом. Скажите коротко, что он захламлён.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i07:audio"
       ],
-      "accessibilityLabel": "В нашей истории этот вариант запрещён законом. Коротко сообщите, что это незаконно",
+      "accessibilityLabel": "Брат показывает на верстак, заваленный хламом. Скажите коротко, что он захламлён.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i07:audio",
-          "transcript": "It's illegal."
+          "transcript": "It's cluttered."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's illegal.",
+        "targetPhrase": "It's cluttered.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,11 +521,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Разъяснение опубликовал уполномоченный орган. На «Is it official?» дополните короткое «да»",
+      "prompt": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-45:i08:r1",
@@ -412,12 +542,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Разъяснение опубликовал уполномоченный орган. На «Is it official?» дополните короткое «да»",
+      "accessibilityLabel": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Разъяснение опубликовал уполномоченный орган. На «Is it official?» дополните короткое «да»",
-          "uk": "Роз’яснення опублікував уповноважений орган. На «Is it official?» доповніть коротку відповідь «так»"
+          "ru": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+          "uk": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -434,12 +564,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Разъяснение опубликовал уполномоченный орган. На «Is it official?» дополните короткое «да»",
+        "testedDimension": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Разъяснение опубликовал уполномоченный орган. На «Is it official?» дополните короткое «да»",
+            "testedDimension": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -448,7 +578,7 @@
           {
             "responseId": "en:lesson-02:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Разъяснение опубликовал уполномоченный орган. На «Is it official?» дополните короткое «да»",
+            "testedDimension": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, it is`.",
               "uk": "Відповідь — `Yes, it is`."
@@ -459,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-45:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-45:word:rough",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Карточка слова — rough",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-45:word:rough:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rough",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-45:word:rough:audio",
+          "transcript": "rough"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-45:word:rough:r1",
+            "targetText": "rough",
+            "meaningByLocale": {
+              "ru": "шершавый, неровный на ощупь. They're rough — «Они шершавые». О досках, коже, руках, камне.",
+              "uk": "шорсткий, нерівний на дотик. They're rough — «Вони шорсткі». Про дошки, шкіру, руки, камінь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rough",
+          "definitionByLocale": {
+            "ru": "шершавый, неровный на ощупь. They're rough — «Они шершавые». О досках, коже, руках, камне.",
+            "uk": "шорсткий, нерівний на дотик. They're rough — «Вони шорсткі». Про дошки, шкіру, руки, камінь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что брат говорит о досках у стены",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-45:i09:r1",
-          "text": "Is it official?"
+          "text": "They are rough."
         },
         {
           "responseId": "en:lesson-02:session-45:i09:r2",
-          "text": "Is it useful?"
+          "text": "They are loose."
         },
         {
           "responseId": "en:lesson-02:session-45:i09:r3",
-          "text": "Is it illegal?"
+          "text": "They are rusty."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте, что брат говорит о досках у стены",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i09:audio",
-          "transcript": "Is it official?"
+          "transcript": "They are rough."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-45:i09:r1",
-            "targetText": "Is it official?",
+            "targetText": "They are rough.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-45:i09:r2",
-            "targetText": "Is it useful?",
+            "targetText": "They are loose.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-45:i09:r3",
-            "targetText": "Is it illegal?",
+            "targetText": "They are rusty.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-45:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте, что брат говорит о досках у стены",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `official`, а в этом варианте — `useful`.",
-              "uk": "У записі останнє слово — `official`, а в цьому варіанті — `useful`."
+              "ru": "В записи последнее слово — `rough`, а в этом варианте — `loose`.",
+              "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `loose`."
             }
           },
           {
             "responseId": "en:lesson-02:session-45:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте, что брат говорит о досках у стены",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `official`, а в этом варианте — `illegal`.",
-              "uk": "У записі останнє слово — `official`, а в цьому варіанті — `illegal`."
+              "ru": "В записи последнее слово — `rough`, а в этом варианте — `rusty`.",
+              "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `rusty`."
             }
           }
         ],
@@ -536,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -550,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-45:i10:p1",
-            "target": "useful",
+            "target": "rough",
             "meaningByLocale": {
-              "ru": "полезный",
-              "uk": "корисний"
+              "ru": "шершавый",
+              "uk": "шорсткий"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i10:p2",
-            "target": "official",
+            "target": "flimsy",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "хлипкий",
+              "uk": "нетривкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i10:p3",
-            "target": "legal",
+            "target": "blunt",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "тупой",
+              "uk": "тупий"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i10:p4",
-            "target": "illegal",
+            "target": "rusty",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "ржавый",
+              "uk": "іржавий"
             }
           }
         ],
         "leftColumn": [
-          "useful",
-          "official",
-          "legal",
-          "illegal"
+          "rough",
+          "flimsy",
+          "blunt",
+          "rusty"
         ],
         "rightColumn": [
-          "полезный",
-          "официальный",
-          "законный",
-          "незаконный"
+          "шершавый",
+          "хлипкий",
+          "тупой",
+          "ржавый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,42 +782,42 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Вы разобрали ящики. Послушайте, что брат говорит о них, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Вы разобрали ящики. Послушайте, что брат говорит о них, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i11:audio",
-          "transcript": "It is not useful."
+          "transcript": "They are not cluttered."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not useful.",
+        "hiddenTargetPhrase": "They are not cluttered.",
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "not",
-          "useful"
+          "cluttered"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-45:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Вы разобрали ящики. Послушайте, что брат говорит о них, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not useful.`",
-              "uk": "тут потрібно `is` — `It is not useful.`"
+              "ru": "здесь нужно `are` — `They are not cluttered.`",
+              "uk": "тут потрібно `are` — `They are not cluttered.`"
             }
           }
         ],
@@ -657,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна нашла ещё одно разъяснение. Спросите, полезное ли оно",
+      "prompt": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна нашла ещё одно разъяснение. Спросите, полезное ли оно",
+      "accessibilityLabel": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is it useful?",
+        "targetPhrase": "Is it rough?",
         "localizedMeaning": {
-          "ru": "Анна нашла ещё одно разъяснение. Спросите, полезное ли оно",
-          "uk": "Анна знайшла ще одне роз’яснення. Запитайте, чи воно корисне"
+          "ru": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
+          "uk": "Ви кладете долоню на дошку біля верстака. Запитайте брата, чи шорстка вона."
         },
         "orderedTokens": [
           "Is",
           "it",
-          "useful"
+          "rough"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -685,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-45:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна нашла ещё одно разъяснение. Спросите, полезное ли оно",
+            "testedDimension": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is it useful?`",
-              "uk": "тут потрібно `Is` — `Is it useful?`"
+              "ru": "здесь нужно `Is` — `Is it rough?`",
+              "uk": "тут потрібно `Is` — `Is it rough?`"
             }
           }
         ],
@@ -701,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Разъяснение опубликовано уполномоченным органом. Коротко сообщите, что оно официальное",
+      "prompt": "Вы провели рукой по двум необструганным доскам. Скажите коротко, что они шершавые.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i13:audio"
       ],
-      "accessibilityLabel": "Разъяснение опубликовано уполномоченным органом. Коротко сообщите, что оно официальное",
+      "accessibilityLabel": "Вы провели рукой по двум необструганным доскам. Скажите коротко, что они шершавые.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i13:audio",
-          "transcript": "It's official."
+          "transcript": "They're rough."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's official.",
+        "targetPhrase": "They're rough.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "По условию истории этот вариант нарушает закон. Отрицанием скажите, что это не законно",
+      "prompt": "Брат наточил топор. Скажите, что он больше не тупой",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-45:i14:r1",
@@ -755,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "По условию истории этот вариант нарушает закон. Отрицанием скажите, что это не законно",
+      "accessibilityLabel": "Брат наточил топор. Скажите, что он больше не тупой",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "По условию истории этот вариант нарушает закон. Отрицанием скажите, что это не законно",
-          "uk": "За умовою історії цей варіант порушує закон. Запереченням скажіть, що це не законно"
+          "ru": "Брат наточил топор. Скажите, что он больше не тупой",
+          "uk": "Брат нагострив сокиру. Скажіть, що вона більше не тупа"
         },
-        "gappedTargetPhrase": "It ___ not legal.",
+        "gappedTargetPhrase": "It ___ not blunt.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-45:i14:r1",
@@ -777,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "По условию истории этот вариант нарушает закон. Отрицанием скажите, что это не законно",
+        "testedDimension": "Брат наточил топор. Скажите, что он больше не тупой",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "По условию истории этот вариант нарушает закон. Отрицанием скажите, что это не законно",
+            "testedDimension": "Брат наточил топор. Скажите, что он больше не тупой",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -791,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "По условию истории этот вариант нарушает закон. Отрицанием скажите, что это не законно",
+            "testedDimension": "Брат наточил топор. Скажите, что он больше не тупой",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not legal`.",
-              "uk": "Фраза — `It is not legal`."
+              "ru": "Фраза — `It is not blunt`.",
+              "uk": "Фраза — `It is not blunt`."
             }
           }
         ]
@@ -803,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-45:i15:r1",
-          "text": "Is it illegal?"
+          "text": "Is it flimsy?"
         },
         {
           "responseId": "en:lesson-02:session-45:i15:r2",
-          "text": "Is it legal?"
+          "text": "Is it cluttered?"
         },
         {
           "responseId": "en:lesson-02:session-45:i15:r3",
-          "text": "Is it useful?"
+          "text": "Is it rough?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i15:audio",
-          "transcript": "Is it illegal?"
+          "transcript": "Is it flimsy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-45:i15:r1",
-            "targetText": "Is it illegal?",
+            "targetText": "Is it flimsy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-45:i15:r2",
-            "targetText": "Is it legal?",
+            "targetText": "Is it cluttered?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-45:i15:r3",
-            "targetText": "Is it useful?",
+            "targetText": "Is it rough?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-45:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `illegal`, а в этом варианте — `legal`.",
-              "uk": "У записі останнє слово — `illegal`, а в цьому варіанті — `legal`."
+              "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `cluttered`.",
+              "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `cluttered`."
             }
           },
           {
             "responseId": "en:lesson-02:session-45:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `illegal`, а в этом варианте — `useful`.",
-              "uk": "У записі останнє слово — `illegal`, а в цьому варіанті — `useful`."
+              "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `rough`.",
+              "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `rough`."
             }
           }
         ],
@@ -879,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-45:i16:p1",
-            "target": "official",
+            "target": "blunt",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "тупой",
+              "uk": "тупий"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i16:p2",
-            "target": "illegal",
+            "target": "flimsy",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "хлипкий",
+              "uk": "нетривкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i16:p3",
-            "target": "useful",
+            "target": "cluttered",
             "meaningByLocale": {
-              "ru": "полезный",
-              "uk": "корисний"
+              "ru": "захламлённый",
+              "uk": "захаращений"
             }
           },
           {
             "pairId": "en:lesson-02:session-45:i16:p4",
-            "target": "legal",
+            "target": "rough",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "шершавый",
+              "uk": "шорсткий"
             }
           }
         ],
         "leftColumn": [
-          "official",
-          "illegal",
-          "useful",
-          "legal"
+          "blunt",
+          "flimsy",
+          "cluttered",
+          "rough"
         ],
         "rightColumn": [
-          "официальный",
-          "незаконный",
-          "полезный",
-          "законный"
+          "тупой",
+          "хлипкий",
+          "захламлённый",
+          "шершавый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-45:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна предложила ещё один вариант, который пока не проверили. Спросите, незаконно ли это",
+      "prompt": "Брат собирает новую полку из тонких реек. Спросите его, не хлипкая ли она.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i17:audio"
       ],
-      "accessibilityLabel": "Анна предложила ещё один вариант, который пока не проверили. Спросите, незаконно ли это",
+      "accessibilityLabel": "Брат собирает новую полку из тонких реек. Спросите его, не хлипкая ли она.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-45:i17:audio",
-          "transcript": "Is it illegal?"
+          "transcript": "Is it flimsy?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it illegal?",
+        "targetPhrase": "Is it flimsy?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "947f41d1f4cdfb06c760ac1bf4b3987d438e8f0e7401ec091cadd9b7a7e544e1"
+  "learnerFingerprint": "eb1b57ef6032e196698e711f285146c58391d4e7b2db29b721f23e9db79356a1"
 }

@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-48:i01",
+      "interactionId": "en:lesson-02:session-48:word:blank",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blank",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-48:word:blank:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blank",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-48:word:blank:audio",
+          "transcript": "blank"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-48:word:blank:r1",
+            "targetText": "blank",
+            "meaningByLocale": {
+              "ru": "пустой, чистый, без записей. It is blank — «Он пустой». О листе, странице, экране, тетради.",
+              "uk": "порожній, чистий, без записів. It is blank — «Він порожній». Про аркуш, сторінку, екран, зошит."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blank",
+          "definitionByLocale": {
+            "ru": "пустой, чистый, без записей. It is blank — «Он пустой». О листе, странице, экране, тетради.",
+            "uk": "порожній, чистий, без записів. It is blank — «Він порожній». Про аркуш, сторінку, екран, зошит."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-48:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви звірили підпис: дату й назву місця вказано правильно. Скажіть повною фразою, що підпис точний",
+      "prompt": "Учителька дає вам новий зошит. Скажіть їй повною фразою, що сторінка порожня.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви звірили підпис: дату й назву місця вказано правильно. Скажіть повною фразою, що підпис точний",
+      "accessibilityLabel": "Учителька дає вам новий зошит. Скажіть їй повною фразою, що сторінка порожня.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is accurate.",
+        "targetPhrase": "It is blank.",
         "localizedMeaning": {
-          "ru": "Вы сверили подпись: дата и название места указаны верно. Скажите полной фразой, что подпись точная",
-          "uk": "Ви звірили підпис: дату й назву місця вказано правильно. Скажіть повною фразою, що підпис точний"
+          "ru": "Учительница даёт вам новую тетрадь. Скажите ей полной фразой, что страница пустая.",
+          "uk": "Учителька дає вам новий зошит. Скажіть їй повною фразою, що сторінка порожня."
         },
         "orderedTokens": [
           "It",
           "is",
-          "accurate"
+          "blank"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-48:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ви звірили підпис: дату й назву місця вказано правильно. Скажіть повною фразою, що підпис точний",
+            "testedDimension": "Учителька дає вам новий зошит. Скажіть їй повною фразою, що сторінка порожня.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is accurate.`",
-              "uk": "тут потрібно `is` — `It is accurate.`"
+              "ru": "здесь нужно `is` — `It is blank.`",
+              "uk": "тут потрібно `is` — `It is blank.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про підпис",
+      "prompt": "Послухайте, що учителька каже про підставку під плакат",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i02:r1",
-          "text": "It is inaccurate."
+          "text": "It is flimsy."
         },
         {
           "responseId": "en:lesson-02:session-48:i02:r2",
-          "text": "It is accurate."
+          "text": "It is blunt."
         },
         {
           "responseId": "en:lesson-02:session-48:i02:r3",
-          "text": "It is acceptable."
+          "text": "It is sour."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про підпис",
+      "accessibilityLabel": "Послухайте, що учителька каже про підставку під плакат",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i02:audio",
-          "transcript": "It is inaccurate."
+          "transcript": "It is flimsy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-48:i02:r1",
-            "targetText": "It is inaccurate.",
+            "targetText": "It is flimsy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-48:i02:r2",
-            "targetText": "It is accurate.",
+            "targetText": "It is blunt.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-48:i02:r3",
-            "targetText": "It is acceptable.",
+            "targetText": "It is sour.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про підпис",
+            "testedDimension": "Послухайте, що учителька каже про підставку під плакат",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inaccurate`, а в этом варианте — `accurate`.",
-              "uk": "У записі останнє слово — `inaccurate`, а в цьому варіанті — `accurate`."
+              "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `blunt`.",
+              "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `blunt`."
             }
           },
           {
             "responseId": "en:lesson-02:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про підпис",
+            "testedDimension": "Послухайте, що учителька каже про підставку під плакат",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inaccurate`, а в этом варианте — `acceptable`.",
-              "uk": "У записі останнє слово — `inaccurate`, а в цьому варіанті — `acceptable`."
+              "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `sour`.",
+              "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `sour`."
             }
           }
         ],
@@ -124,16 +167,59 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-48:word:lopsided",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lopsided",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-48:word:lopsided:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lopsided",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-48:word:lopsided:audio",
+          "transcript": "lopsided"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-48:word:lopsided:r1",
+            "targetText": "lopsided",
+            "meaningByLocale": {
+              "ru": "кособокий, перекошенный: одна сторона выше другой. It's lopsided — «Он кособокий». О торте, рамке, шапке, столе.",
+              "uk": "кособокий, перекошений: один бік вищий за інший. It's lopsided — «Він кособокий». Про торт, рамку, шапку, стіл."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lopsided",
+          "definitionByLocale": {
+            "ru": "кособокий, перекошенный: одна сторона выше другой. It's lopsided — «Он кособокий». О торте, рамке, шапке, столе.",
+            "uk": "кособокий, перекошений: один бік вищий за інший. It's lopsided — «Він кособокий». Про торт, рамку, шапку, стіл."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-48:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте Анну, чи вона не впевнена в даті",
+      "prompt": "Ви поставили торт на стіл. Запитайте вчительку, чи не кособокий він",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i03:r1",
-          "text": "Are"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-02:session-48:i03:r2",
@@ -141,23 +227,23 @@
         },
         {
           "responseId": "en:lesson-02:session-48:i03:r3",
-          "text": "Is"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте Анну, чи вона не впевнена в даті",
+      "accessibilityLabel": "Ви поставили торт на стіл. Запитайте вчительку, чи не кособокий він",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите Анну, не уверена ли она в дате",
-          "uk": "Запитайте Анну, чи вона не впевнена в даті"
+          "ru": "Вы поставили торт на стол. Спросите учительницу, не кособокий ли он",
+          "uk": "Ви поставили торт на стіл. Запитайте вчительку, чи не кособокий він"
         },
-        "gappedTargetPhrase": "___ you uncertain?",
+        "gappedTargetPhrase": "___ it lopsided?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-48:i03:r1",
-            "text": "Are"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-02:session-48:i03:r2",
@@ -165,27 +251,27 @@
           },
           {
             "responseId": "en:lesson-02:session-48:i03:r3",
-            "text": "Is"
+            "text": "Are"
           }
         ],
-        "testedDimension": "Запитайте Анну, чи вона не впевнена в даті",
+        "testedDimension": "Ви поставили торт на стіл. Запитайте вчительку, чи не кособокий він",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте Анну, чи вона не впевнена в даті",
+            "testedDimension": "Ви поставили торт на стіл. Запитайте вчительку, чи не кособокий він",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `Are`.",
-              "uk": "З `you` потрібно `Are`."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-48:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте Анну, чи вона не впевнена в даті",
+            "testedDimension": "Ви поставили торт на стіл. Запитайте вчительку, чи не кособокий він",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Are you uncertain?`.",
-              "uk": "Запитання — `Are you uncertain?`."
+              "ru": "Вопрос — `Is it lopsided?`.",
+              "uk": "Питання — `Is it lopsided?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-48:i04:p1",
-            "target": "accurate",
+            "target": "blank",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "пустой, чистый",
+              "uk": "порожній, чистий"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i04:p2",
-            "target": "inaccurate",
+            "target": "faint",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "слабый, едва заметный",
+              "uk": "слабкий, ледь помітний"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i04:p3",
-            "target": "uncertain",
+            "target": "lopsided",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "кособокий",
+              "uk": "кособокий"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i04:p4",
-            "target": "appropriate",
+            "target": "flimsy",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "хлипкий",
+              "uk": "нетривкий"
             }
           }
         ],
         "leftColumn": [
-          "accurate",
-          "inaccurate",
-          "uncertain",
-          "appropriate"
+          "blank",
+          "faint",
+          "lopsided",
+          "flimsy"
         ],
         "rightColumn": [
-          "точний",
-          "неточний",
-          "невпевнений",
-          "доречний"
+          "порожній, чистий",
+          "слабкий, ледь помітний",
+          "кособокий",
+          "нетривкий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-48:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-48:word:faint",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — faint",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-48:word:faint:audio"
+      ],
+      "accessibilityLabel": "Картка слова — faint",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-48:word:faint:audio",
+          "transcript": "faint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-48:word:faint:r1",
+            "targetText": "faint",
+            "meaningByLocale": {
+              "ru": "слабый, едва заметный: плохо видно, слышно или чувствуется. Is it faint? — «Это еле заметно?» О линии, звуке, запахе, надписи.",
+              "uk": "слабкий, ледь помітний: погано видно, чути або відчувається. Is it faint? — «Це ледь помітно?» Про лінію, звук, запах, напис."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "faint",
+          "definitionByLocale": {
+            "ru": "слабый, едва заметный: плохо видно, слышно или чувствуется. Is it faint? — «Это еле заметно?» О линии, звуке, запахе, надписи.",
+            "uk": "слабкий, ледь помітний: погано видно, чути або відчувається. Is it faint? — «Це ледь помітно?» Про лінію, звук, запах, напис."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-48:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Ви обвели лінію маркером. Послухайте, що учителька каже про неї, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Ви обвели лінію маркером. Послухайте, що учителька каже про неї, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i05:audio",
-          "transcript": "Yes, I am."
+          "transcript": "It is not faint."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, I am.",
+        "hiddenTargetPhrase": "It is not faint.",
         "orderedTokens": [
-          "Yes,",
-          "I",
-          "am"
+          "It",
+          "is",
+          "not",
+          "faint"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Ви обвели лінію маркером. Послухайте, що учителька каже про неї, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, I am.`",
-              "uk": "тут потрібно `Yes,` — `Yes, I am.`"
+              "ru": "здесь нужно `is` — `It is not faint.`",
+              "uk": "тут потрібно `is` — `It is not faint.`"
             }
           }
         ],
@@ -314,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно",
+      "prompt": "Учителька каже, що на плакаті погано видно лише один напис. Запитайте її, що ледь помітне.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно",
+      "accessibilityLabel": "Учителька каже, що на плакаті погано видно лише один напис. Запитайте її, що ледь помітне.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is acceptable?",
+        "targetPhrase": "What is faint?",
         "localizedMeaning": {
-          "ru": "Перед организатором несколько вариантов печати. Спросите, что приемлемо",
-          "uk": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно"
+          "ru": "Учительница говорит, что на плакате плохо видна только одна надпись. Спросите её, что едва заметно.",
+          "uk": "Учителька каже, що на плакаті погано видно лише один напис. Запитайте її, що ледь помітне."
         },
         "orderedTokens": [
           "What",
           "is",
-          "acceptable"
+          "faint"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -342,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-48:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно",
+            "testedDimension": "Учителька каже, що на плакаті погано видно лише один напис. Запитайте її, що ледь помітне.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is acceptable?`",
-              "uk": "тут потрібно `What` — `What is acceptable?`"
+              "ru": "здесь нужно `What` — `What is faint?`",
+              "uk": "тут потрібно `What` — `What is faint?`"
             }
           }
         ],
@@ -358,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви поки не перевірили дату знімка й сумніваєтеся. Коротко скажіть, що не впевнені",
+      "prompt": "Ви показуєте вчительці паперовий ліхтарик, який перекосило під час склеювання. Скажіть коротко, що він кособокий.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i07:audio"
       ],
-      "accessibilityLabel": "Ви поки не перевірили дату знімка й сумніваєтеся. Коротко скажіть, що не впевнені",
+      "accessibilityLabel": "Ви показуєте вчительці паперовий ліхтарик, який перекосило під час склеювання. Скажіть коротко, що він кособокий.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i07:audio",
-          "transcript": "I'm uncertain."
+          "transcript": "It's lopsided."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm uncertain.",
+        "targetPhrase": "It's lopsided.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,11 +521,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "За умовою історії перший спосіб дозволений законом. На «Is it legal?» доповніть коротку відповідь «так»",
+      "prompt": "Учителька спитала: «Is it blank?» Ви дивитеся на вимкнений екран проектора. Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i08:r1",
@@ -412,12 +542,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "За умовою історії перший спосіб дозволений законом. На «Is it legal?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Учителька спитала: «Is it blank?» Ви дивитеся на вимкнений екран проектора. Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "По условию истории первый способ разрешён законом. На «Is it legal?» дополните короткое «да»",
-          "uk": "За умовою історії перший спосіб дозволений законом. На «Is it legal?» доповніть коротку відповідь «так»"
+          "ru": "Учительница спросила: «Is it blank?» Вы смотрите на выключенный экран проектора. Дополните короткое «да»",
+          "uk": "Учителька спитала: «Is it blank?» Ви дивитеся на вимкнений екран проектора. Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -434,12 +564,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "За умовою історії перший спосіб дозволений законом. На «Is it legal?» доповніть коротку відповідь «так»",
+        "testedDimension": "Учителька спитала: «Is it blank?» Ви дивитеся на вимкнений екран проектора. Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i08:r2",
             "correct": false,
-            "testedDimension": "За умовою історії перший спосіб дозволений законом. На «Is it legal?» доповніть коротку відповідь «так»",
+            "testedDimension": "Учителька спитала: «Is it blank?» Ви дивитеся на вимкнений екран проектора. Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -448,7 +578,7 @@
           {
             "responseId": "en:lesson-02:session-48:i08:r3",
             "correct": false,
-            "testedDimension": "За умовою історії перший спосіб дозволений законом. На «Is it legal?» доповніть коротку відповідь «так»",
+            "testedDimension": "Учителька спитала: «Is it blank?» Ви дивитеся на вимкнений екран проектора. Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, it is`.",
               "uk": "Відповідь — `Yes, it is`."
@@ -459,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-48:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-48:word:bare",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про другий спосіб",
+      "prompt": "Картка слова — bare",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-48:word:bare:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bare",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-48:word:bare:audio",
+          "transcript": "bare"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-48:word:bare:r1",
+            "targetText": "bare",
+            "meaningByLocale": {
+              "ru": "голый, пустой: без украшений и покрытия. They're bare — «Они голые». О стенах, ветках, полках, ногах.",
+              "uk": "голий, порожній: без прикрас і покриття. They're bare — «Вони голі». Про стіни, гілки, полиці, ноги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bare",
+          "definitionByLocale": {
+            "ru": "голый, пустой: без украшений и покрытия. They're bare — «Они голые». О стенах, ветках, полках, ногах.",
+            "uk": "голий, порожній: без прикрас і покриття. They're bare — «Вони голі». Про стіни, гілки, полиці, ноги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-48:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що учителька каже про стіни в коридорі",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i09:r1",
-          "text": "It is illegal."
+          "text": "They are bare."
         },
         {
           "responseId": "en:lesson-02:session-48:i09:r2",
-          "text": "It is legal."
+          "text": "They are clean."
         },
         {
           "responseId": "en:lesson-02:session-48:i09:r3",
-          "text": "It is appropriate."
+          "text": "They are dirty."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про другий спосіб",
+      "accessibilityLabel": "Послухайте, що учителька каже про стіни в коридорі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i09:audio",
-          "transcript": "It is illegal."
+          "transcript": "They are bare."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-48:i09:r1",
-            "targetText": "It is illegal.",
+            "targetText": "They are bare.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-48:i09:r2",
-            "targetText": "It is legal.",
+            "targetText": "They are clean.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-48:i09:r3",
-            "targetText": "It is appropriate.",
+            "targetText": "They are dirty.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-48:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про другий спосіб",
+            "testedDimension": "Послухайте, що учителька каже про стіни в коридорі",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `illegal`, а в этом варианте — `legal`.",
-              "uk": "У записі останнє слово — `illegal`, а в цьому варіанті — `legal`."
+              "ru": "В записи последнее слово — `bare`, а в этом варианте — `clean`.",
+              "uk": "У записі останнє слово — `bare`, а в цьому варіанті — `clean`."
             }
           },
           {
             "responseId": "en:lesson-02:session-48:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про другий спосіб",
+            "testedDimension": "Послухайте, що учителька каже про стіни в коридорі",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `illegal`, а в этом варианте — `appropriate`.",
-              "uk": "У записі останнє слово — `illegal`, а в цьому варіанті — `appropriate`."
+              "ru": "В записи последнее слово — `bare`, а в этом варианте — `dirty`.",
+              "uk": "У записі останнє слово — `bare`, а в цьому варіанті — `dirty`."
             }
           }
         ],
@@ -536,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -550,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-48:i10:p1",
-            "target": "legal",
+            "target": "bare",
             "meaningByLocale": {
-              "ru": "законный",
-              "uk": "законний"
+              "ru": "голый, пустой",
+              "uk": "голий, порожній"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i10:p2",
-            "target": "illegal",
+            "target": "faint",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "слабый, едва заметный",
+              "uk": "слабкий, ледь помітний"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i10:p3",
-            "target": "acceptable",
+            "target": "blunt",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "тупой",
+              "uk": "тупий"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i10:p4",
-            "target": "inaccurate",
+            "target": "sour",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "кислый",
+              "uk": "кислий"
             }
           }
         ],
         "leftColumn": [
-          "legal",
-          "illegal",
-          "acceptable",
-          "inaccurate"
+          "bare",
+          "faint",
+          "blunt",
+          "sour"
         ],
         "rightColumn": [
-          "законний",
-          "незаконний",
-          "прийнятний",
-          "неточний"
+          "голий, порожній",
+          "слабкий, ледь помітний",
+          "тупий",
+          "кислий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,42 +782,42 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу про тон привітання",
+      "prompt": "Діти заповнили сторінки малюнками. Послухайте, що каже учителька, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу про тон привітання",
+      "accessibilityLabel": "Діти заповнили сторінки малюнками. Послухайте, що каже учителька, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i11:audio",
-          "transcript": "It is not appropriate."
+          "transcript": "They are not blank."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not appropriate.",
+        "hiddenTargetPhrase": "They are not blank.",
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "not",
-          "appropriate"
+          "blank"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу про тон привітання",
+            "testedDimension": "Діти заповнили сторінки малюнками. Послухайте, що каже учителька, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not appropriate.`",
-              "uk": "тут потрібно `is` — `It is not appropriate.`"
+              "ru": "здесь нужно `are` — `They are not blank.`",
+              "uk": "тут потрібно `are` — `They are not blank.`"
             }
           }
         ],
@@ -657,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна запропонувала новий спосіб використання фотографії. Запитайте, чи це законно",
+      "prompt": "Ви дивитеся на стіну біля входу в клас. Запитайте вчительку, чи гола вона.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна запропонувала новий спосіб використання фотографії. Запитайте, чи це законно",
+      "accessibilityLabel": "Ви дивитеся на стіну біля входу в клас. Запитайте вчительку, чи гола вона.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is it legal?",
+        "targetPhrase": "Is it bare?",
         "localizedMeaning": {
-          "ru": "Анна предложила новый способ использования фотографии. Спросите, законно ли это",
-          "uk": "Анна запропонувала новий спосіб використання фотографії. Запитайте, чи це законно"
+          "ru": "Вы смотрите на стену у входа в класс. Спросите учительницу, голая ли она.",
+          "uk": "Ви дивитеся на стіну біля входу в клас. Запитайте вчительку, чи гола вона."
         },
         "orderedTokens": [
           "Is",
           "it",
-          "legal"
+          "bare"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -685,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-48:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна запропонувала новий спосіб використання фотографії. Запитайте, чи це законно",
+            "testedDimension": "Ви дивитеся на стіну біля входу в клас. Запитайте вчительку, чи гола вона.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is it legal?`",
-              "uk": "тут потрібно `Is` — `Is it legal?`"
+              "ru": "здесь нужно `Is` — `Is it bare?`",
+              "uk": "тут потрібно `Is` — `Is it bare?`"
             }
           }
         ],
@@ -701,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Шанобливий тон підходить привітанню гостей. Коротко скажіть, що він доречний",
+      "prompt": "Ви показуєте на стіни, де поки немає жодної картини. Скажіть коротко, що вони голі.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i13:audio"
       ],
-      "accessibilityLabel": "Шанобливий тон підходить привітанню гостей. Коротко скажіть, що він доречний",
+      "accessibilityLabel": "Ви показуєте на стіни, де поки немає жодної картини. Скажіть коротко, що вони голі.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i13:audio",
-          "transcript": "It's appropriate."
+          "transcript": "They're bare."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's appropriate.",
+        "targetPhrase": "They're bare.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Розмитий відбиток не відповідає вимогам виставки. Скажіть, що він неприйнятний",
+      "prompt": "Торт вирівняли кремом. Скажіть, що він більше не кособокий",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i14:r1",
@@ -755,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розмитий відбиток не відповідає вимогам виставки. Скажіть, що він неприйнятний",
+      "accessibilityLabel": "Торт вирівняли кремом. Скажіть, що він більше не кособокий",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Размытый отпечаток не отвечает требованиям выставки. Скажите, что он неприемлемый",
-          "uk": "Розмитий відбиток не відповідає вимогам виставки. Скажіть, що він неприйнятний"
+          "ru": "Торт выровняли кремом. Скажите, что он больше не кособокий",
+          "uk": "Торт вирівняли кремом. Скажіть, що він більше не кособокий"
         },
-        "gappedTargetPhrase": "It ___ not acceptable.",
+        "gappedTargetPhrase": "It ___ not lopsided.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-48:i14:r1",
@@ -777,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Розмитий відбиток не відповідає вимогам виставки. Скажіть, що він неприйнятний",
+        "testedDimension": "Торт вирівняли кремом. Скажіть, що він більше не кособокий",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i14:r2",
             "correct": false,
-            "testedDimension": "Розмитий відбиток не відповідає вимогам виставки. Скажіть, що він неприйнятний",
+            "testedDimension": "Торт вирівняли кремом. Скажіть, що він більше не кособокий",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -791,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-48:i14:r3",
             "correct": false,
-            "testedDimension": "Розмитий відбиток не відповідає вимогам виставки. Скажіть, що він неприйнятний",
+            "testedDimension": "Торт вирівняли кремом. Скажіть, що він більше не кособокий",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not acceptable`.",
-              "uk": "Фраза — `It is not acceptable`."
+              "ru": "Фраза — `It is not lopsided`.",
+              "uk": "Фраза — `It is not lopsided`."
             }
           }
         ]
@@ -803,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте запитання вчительки",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i15:r1",
-          "text": "Is it accurate?"
+          "text": "Is it faint?"
         },
         {
           "responseId": "en:lesson-02:session-48:i15:r2",
-          "text": "Is it inaccurate?"
+          "text": "Is it blank?"
         },
         {
           "responseId": "en:lesson-02:session-48:i15:r3",
-          "text": "Is it acceptable?"
+          "text": "Is it bare?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте запитання вчительки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i15:audio",
-          "transcript": "Is it accurate?"
+          "transcript": "Is it faint?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-48:i15:r1",
-            "targetText": "Is it accurate?",
+            "targetText": "Is it faint?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-48:i15:r2",
-            "targetText": "Is it inaccurate?",
+            "targetText": "Is it blank?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-48:i15:r3",
-            "targetText": "Is it acceptable?",
+            "targetText": "Is it bare?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-48:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання вчительки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `inaccurate`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `inaccurate`."
+              "ru": "В записи последнее слово — `faint`, а в этом варианте — `blank`.",
+              "uk": "У записі останнє слово — `faint`, а в цьому варіанті — `blank`."
             }
           },
           {
             "responseId": "en:lesson-02:session-48:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання вчительки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `acceptable`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `acceptable`."
+              "ru": "В записи последнее слово — `faint`, а в этом варианте — `bare`.",
+              "uk": "У записі останнє слово — `faint`, а в цьому варіанті — `bare`."
             }
           }
         ],
@@ -879,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-48:i16:p1",
-            "target": "appropriate",
+            "target": "blank",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "пустой, чистый",
+              "uk": "порожній, чистий"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i16:p2",
-            "target": "acceptable",
+            "target": "faint",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "слабый, едва заметный",
+              "uk": "слабкий, ледь помітний"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i16:p3",
-            "target": "uncertain",
+            "target": "lopsided",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "кособокий",
+              "uk": "кособокий"
             }
           },
           {
             "pairId": "en:lesson-02:session-48:i16:p4",
-            "target": "illegal",
+            "target": "bare",
             "meaningByLocale": {
-              "ru": "незаконный",
-              "uk": "незаконний"
+              "ru": "голый, пустой",
+              "uk": "голий, порожній"
             }
           }
         ],
         "leftColumn": [
-          "appropriate",
-          "acceptable",
-          "uncertain",
-          "illegal"
+          "blank",
+          "faint",
+          "lopsided",
+          "bare"
         ],
         "rightColumn": [
-          "доречний",
-          "прийнятний",
-          "невпевнений",
-          "незаконний"
+          "порожній, чистий",
+          "слабкий, ледь помітний",
+          "кособокий",
+          "голий, порожній"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-48:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна принесла останній варіант відбитка. Запитайте організатора, чи прийнятна його якість",
+      "prompt": "Учителька дістає з теки аркуш. Запитайте її, чи порожній він.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i17:audio"
       ],
-      "accessibilityLabel": "Анна принесла останній варіант відбитка. Запитайте організатора, чи прийнятна його якість",
+      "accessibilityLabel": "Учителька дістає з теки аркуш. Запитайте її, чи порожній він.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-48:i17:audio",
-          "transcript": "Is it acceptable?"
+          "transcript": "Is it blank?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it acceptable?",
+        "targetPhrase": "Is it blank?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "657385e83d9b3039bff61e4347739e60d0785daa8dbb4dea077a9081198a6bc7"
+  "learnerFingerprint": "e2fe26cab19bc0d537772f0aea2b44f4cfd69aa1f9d4f7ff89d72b7c6f9260e3"
 }

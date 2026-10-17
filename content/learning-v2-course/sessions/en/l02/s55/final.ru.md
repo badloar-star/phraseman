@@ -1,138 +1,154 @@
-# Английский · Урок 2 · Занятие 55 — Обещания и доставка
+# Английский · Урок 2 · Занятие 55 — Приют для собак
 
-**Ситуация.** Вы с Анной выбираете помощников для доставки костюмов в театр. Олег несколько раз обещал приехать вовремя и не приезжал; вы считаете его ненадёжным. Анна ответственно выполняет работу. Она самостоятельна, а новый помощник пока зависит от её помощи. Вы обсуждаете, приемлем ли предложенный срок доставки.
+**Ситуация.** Вы с другом приехали в приют для собак: хотите взять одну домой. Волонтёр ведёт вас вдоль вольеров и коротко рассказывает про каждую собаку, а вы решаете, кто вам подойдёт.
 
-**Что вы освоите:** описать ненадёжного человека и спросить о самостоятельности
-**Новые слова:** unreliable
+**Что вы освоите:** описать характер собаки и спросить о нём
+**Новые слова:** playful, timid, loyal, obedient
+**Возвращаются:** calm, lazy, friendly, kind
 
 ---
 
 ## Интро 1
 
-### Обещание ещё не доставка
+### Щенок с мячиком
 
-`unreliable` — «ненадёжный»: на человека трудно положиться. Олег часто не выполняет обещания: `He is unreliable`. Его «буду через пять минут» вы слышите уже полчаса. Здесь вы оцениваете повторяющееся поведение, а не объявляете человека ненадёжным за одно опоздание.
+В первом вольере щенок бросается к сетке, хватает вас за штанину, убегает и приносит мячик. Роняет его у ваших ног, виляет хвостом и ждёт, что вы бросите. Вы приседаете, чтобы погладить его, а волонтёр смеётся. playful — «игривый». He is playful — «Он игривый».
 
-**Олег часто не выполняет обещания. Вы считаете его ненадёжным. Скажите это полной фразой.**
+**Волонтёр спрашивает, как вам щенок. Скажите ему полной фразой, что он игривый.**
 
-- ✅ **He is unreliable.**
-- ❌ He unreliable. — *Между `He` и `unreliable` нужно `is`.*
-- ❌ He are unreliable. — *С `He` нужно `is`, не `are`.*
+- ✅ **He is playful.**
+- ❌ He is not playful. — *С not выходит «Он не хочет играть». А он принёс вам мячик: He is playful.*
+- ❌ He playful. — *Между He и playful нужно is: He is playful.*
 
 ---
 
 ## Интро 2
 
-### Ответственность и самостоятельность
+### Собака в углу
 
-`responsible` — «ответственный»: Анна серьёзно относится к делу. `independent` — «самостоятельный»: она справляется без постоянной помощи. `She is independent`. `dependent` — «зависимый»: новый помощник пока зависит от её помощи. Просить помощь не значит быть ненадёжным: это разные признаки.
+У следующего вольера лежит собака, прижав уши. Она забилась в самый угол и не выходит, пока вы рядом, только смотрит из-под лапы. Вы замерли на месте, а волонтёр говорит тихо, чтобы не пугать её. timid — «робкий, пугливый». Is she timid? — «Она робкая?»
 
-**Анна справляется без постоянной помощи. Сообщите полной фразой, что она самостоятельна.**
+**Вы остановились у вольера. Спросите волонтёра, робкая ли эта собака.**
 
-- ✅ **She is independent.**
-- ❌ She is dependent. — *Это «Она зависима». По условию Анна справляется самостоятельно.*
-- ❌ She independent. — *После `She` нужно `is`.*
+- ✅ **Is she timid?**
+- ❌ She is timid. — *Так звучит утверждение «Она робкая». Чтобы спросить, ставим Is вперёд: Is she timid?*
+- ❌ Are she timid? — *С she нужно is: Is she timid?*
 
 ---
 
 ## Интро 3
 
-### Подойдёт ли срок
+### Старый пёс у калитки
 
-`acceptable` — «приемлемый»: предложенный срок вас устраивает. `Is it acceptable?` — «Это приемлемо?» Спрашивайте о конкретном предложении. Надёжность помощника и подходящий срок — отдельные вопросы: хороший срок сам по себе не гарантирует доставку.
+Волонтёр рассказывает про старого пса: хозяин уехал, а пёс неделю ждал у калитки и никого к себе не подпускал. Он и теперь поднимает голову на каждый звук шагов. Волонтёр умолкает и смотрит на вас. loyal — «верный, преданный». He's loyal — «Он преданный».
 
-**Анна предложила срок доставки. Спросите, приемлем ли он.**
+**Волонтёр закончил рассказ и ждёт ответа. Скажите коротко, что пёс верный.**
 
-- ✅ **Is it acceptable?**
-- ❌ It is acceptable. — *Это сообщение, а вы спрашиваете.*
-- ❌ Is he unreliable? — *Это вопрос о ненадёжности мужчины, а сейчас речь о сроке.*
+- ✅ **He's loyal.**
+- ❌ He's not loyal. — *С not выходит «Он забыл хозяина». А он неделю ждал у калитки: He's loyal.*
+- ❌ They're loyal. — *Пёс один, нужно He's: He's loyal.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Олег часто не выполняет обещания. Вы считаете его ненадёжным. Сообщите это полной фразой**
+**1 · Карточка слова — playful**
+<!-- interaction_id: en:lesson-02:session-55:word:playful; family: word_card -->
+> **playful** — игривый, любящий играть. He is playful — «Он игривый». О щенке, котёнке, ребёнке, настроении.
+
+**2 · Щенок приносит вам мячик. Скажите волонтёру полной фразой, что он игривый.**
 <!-- interaction_id: en:lesson-02:session-55:i01; family: phrase_builder -->
-Плитки: `unreliable` `is` `He` `are` → **He is unreliable.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is unreliable.`)*
+Плитки: `playful` `is` `He` `are` → **He is playful.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is playful.`)*
 
-**2 · Послушайте фразу об Анне**
+**3 · Послушайте, что волонтёр говорит о собаке у соседнего вольера**
 <!-- interaction_id: en:lesson-02:session-55:i02; family: listen_choose -->
-🔊 *She is responsible.* → **She is responsible.** · She is independent. · She is dependent.
-- She is independent. — *В записи последнее слово — `responsible`, а в этом варианте — `independent`.*
-- She is dependent. — *В записи последнее слово — `responsible`, а в этом варианте — `dependent`.*
+🔊 *She is calm.* → **She is calm.** · She is lazy. · She is friendly.
+- She is lazy. — *В записи последнее слово — `calm`, а в этом варианте — `lazy`.*
+- She is friendly. — *В записи последнее слово — `calm`, а в этом варианте — `friendly`.*
 
-**3 · Спросите Анну, ненадёжный ли предложенный помощник**
+**4 · Карточка слова — timid**
+<!-- interaction_id: en:lesson-02:session-55:word:timid; family: word_card -->
+> **timid** — робкий, пугливый. Is she timid? — «Она робкая?» О собаке, ребёнке, голосе, улыбке.
+
+**5 · Собака в вольере прижала уши. Спросите волонтёра, робкая ли она**
 <!-- interaction_id: en:lesson-02:session-55:i03; family: context_gap_grammar -->
-___ he unreliable? → **Is** · Am · Are
-- Am — *С `he` нужно `Is`.*
-- Are — *Вопрос — `Is he unreliable?`.*
+___ she timid? → **Is** · Am · Are
+- Am — *С `she` нужно `Is`.*
+- Are — *Вопрос — `Is she timid?`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-55:i04; family: speed_match -->
-unreliable — ненадёжный · responsible — ответственный · independent — самостоятельный · dependent — зависимый
+playful — игривый · timid — робкий, пугливый · loyal — верный, преданный · calm — спокойный
 
-**5 · Послушайте и соберите короткий ответ**
+**7 · Послушайте, что волонтёр говорит о собаке в углу, и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-55:i05; family: listen_build_dictation -->
-🔊 *No, he is not.* Плитки: `not` `is` `he` `No,` `Yes,` → **No, he is not.**
-*(плитка `Yes,` лишняя: здесь нужно `No,` — `No, he is not.`)*
+🔊 *She is not playful.* Плитки: `playful` `not` `is` `She` `are` → **She is not playful.**
+*(плитка `are` лишняя: здесь нужно `is` — `She is not playful.`)*
 
-**6 · Анна говорит, что на одного из помощников нельзя положиться. Спросите, кто ненадёжный**
+**8 · Карточка слова — loyal**
+<!-- interaction_id: en:lesson-02:session-55:word:loyal; family: word_card -->
+> **loyal** — верный, преданный. He's loyal — «Он преданный». О псе, друге, клиенте, болельщике.
+
+**9 · Волонтёр говорит, что среди собак есть очень преданная. Спросите его, кто преданный.**
 <!-- interaction_id: en:lesson-02:session-55:i06; family: phrase_builder -->
-Плитки: `unreliable` `is` `Who` `Where` → **Who is unreliable?**
-*(плитка `Where` лишняя: здесь нужно `Who` — `Who is unreliable?`)*
+Плитки: `loyal` `is` `Who` `Where` → **Who is loyal?**
+*(плитка `Where` лишняя: здесь нужно `Who` — `Who is loyal?`)*
 
-**7 · Скажите «Он ненадёжный» с сокращением: речь об Олеге**
+**10 · Волонтёр спрашивает, что вы думаете о старом псе. Скажите коротко, что он верный.**
 <!-- interaction_id: en:lesson-02:session-55:i07; family: scripted_repeat_compare -->
-🎙 **He's unreliable.**
+🎙 **He's loyal.**
 
-**8 · Анна сама планирует и выполняет доставку, не зависит от других. Дополните описание**
+**11 · Друг спросил: «Is he playful?» Щенок снова гоняется за мячиком. Дополните короткое «да»**
 <!-- interaction_id: en:lesson-02:session-55:i08; family: context_gap_grammar -->
-She ___ independent. → **is** · am · are
-- am — *С `She` нужно `is`.*
-- are — *Фраза — `She is independent`.*
+Yes, he ___. → **is** · am · are
+- am — *С `he` нужно `is`.*
+- are — *Ответ — `Yes, he is`.*
 
-**9 · Послушайте вопрос о сроке**
+**12 · Карточка слова — obedient**
+<!-- interaction_id: en:lesson-02:session-55:word:obedient; family: word_card -->
+> **obedient** — послушный, выполняющий команды. She is obedient — «Она послушная». О собаке, ребёнке, ученике, лошади.
+
+**13 · Послушайте, что волонтёр говорит о собаке у входа**
 <!-- interaction_id: en:lesson-02:session-55:i09; family: listen_choose -->
-🔊 *Is it acceptable?* → **Is it acceptable?** · Is it unreliable? · Is it independent?
-- Is it unreliable? — *В записи последнее слово — `acceptable`, а в этом варианте — `unreliable`.*
-- Is it independent? — *В записи последнее слово — `acceptable`, а в этом варианте — `independent`.*
+🔊 *She is obedient.* → **She is obedient.** · She is lazy. · She is kind.
+- She is lazy. — *В записи последнее слово — `obedient`, а в этом варианте — `lazy`.*
+- She is kind. — *В записи последнее слово — `obedient`, а в этом варианте — `kind`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-55:i10; family: speed_match -->
-acceptable — приемлемый · dependent — зависимый · unreliable — ненадёжный · responsible — ответственный
+obedient — послушный · timid — робкий, пугливый · loyal — верный, преданный · friendly — дружелюбный
 
-**11 · Послушайте и соберите фразу о новом помощнике**
+**15 · Послушайте, что друг говорит о щенке, и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-55:i11; family: listen_build_dictation -->
-🔊 *He is not independent.* Плитки: `independent` `not` `is` `He` `are` → **He is not independent.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is not independent.`)*
+🔊 *He is not timid.* Плитки: `timid` `not` `is` `He` `are` → **He is not timid.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is not timid.`)*
 
-**12 · Вы обсуждаете нового помощника: зависит ли он от Анны? Соберите вопрос о его зависимости**
+**16 · Вы смотрите на собаку у входа. Спросите волонтёра, послушная ли она.**
 <!-- interaction_id: en:lesson-02:session-55:i12; family: phrase_builder -->
-Плитки: `dependent` `he` `Is` `Are` → **Is he dependent?**
-*(плитка `Are` лишняя: здесь нужно `Is` — `Is he dependent?`)*
+Плитки: `obedient` `she` `Is` `Are` → **Is she obedient?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is she obedient?`)*
 
-**13 · Предложенный срок вас устраивает. Скажите «Это приемлемо» с сокращением**
+**17 · Собака села, как только волонтёр сказал команду. Скажите коротко, что она послушная.**
 <!-- interaction_id: en:lesson-02:session-55:i13; family: scripted_repeat_compare -->
-🎙 **It's acceptable.**
+🎙 **She's obedient.**
 
-**14 · Анна серьёзно относится к обязанностям. Сообщите, что она ответственная**
+**18 · Старый пёс не отходит от волонтёра ни на шаг. Скажите, что он преданный**
 <!-- interaction_id: en:lesson-02:session-55:i14; family: context_gap_grammar -->
-She ___ responsible. → **is** · am · are
-- am — *С `She` нужно `is`.*
-- are — *Фраза — `She is responsible`.*
+He ___ loyal. → **is** · am · are
+- am — *С `He` нужно `is`.*
+- are — *Фраза — `He is loyal`.*
 
-**15 · Послушайте вопрос о помощнике**
+**19 · Послушайте вопрос друга**
 <!-- interaction_id: en:lesson-02:session-55:i15; family: listen_choose -->
-🔊 *Is he unreliable?* → **Is he unreliable?** · Is he independent? · Is he responsible?
-- Is he independent? — *В записи последнее слово — `unreliable`, а в этом варианте — `independent`.*
-- Is he responsible? — *В записи последнее слово — `unreliable`, а в этом варианте — `responsible`.*
+🔊 *Is she timid?* → **Is she timid?** · Is she obedient? · Is she playful?
+- Is she obedient? — *В записи последнее слово — `timid`, а в этом варианте — `obedient`.*
+- Is she playful? — *В записи последнее слово — `timid`, а в этом варианте — `playful`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-55:i16; family: speed_match -->
-independent — самостоятельный · acceptable — приемлемый · dependent — зависимый · unreliable — ненадёжный
+playful — игривый · timid — робкий, пугливый · loyal — верный, преданный · obedient — послушный
 
-**17 · Анна сомневается, стоит ли поручать доставку другому мужчине. Спросите, ненадёжный ли он**
+**21 · Волонтёр выводит нового пса. Спросите его, игривый ли он.**
 <!-- interaction_id: en:lesson-02:session-55:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is he unreliable?**
-
+🎙 **Is he playful?**

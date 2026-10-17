@@ -1,37 +1,52 @@
 [
   {
+    "interactionId": "en:lesson-03:session-02:word:sofa",
+    "correctText": "sofa",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-02:i01",
-    "correctText": "It is an apple.",
+    "correctText": "It is a sofa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-02:word:bed",
+    "correctText": "bed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i02",
-    "correctText": "He is tired.",
+    "correctText": "It is a bed.",
     "correctResponseId": "en:lesson-03:session-02:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-02:i03",
-    "correctText": "an",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-02:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-02:i04",
-    "correctText": "en:lesson-03:session-02:i04:p1=apple\nen:lesson-03:session-02:i04:p2=sad\nen:lesson-03:session-02:i04:p3=tired\nen:lesson-03:session-02:i04:p4=confident",
+    "correctText": "en:lesson-03:session-02:i04:p1=sofa\nen:lesson-03:session-02:i04:p2=bed\nen:lesson-03:session-02:i04:p3=desk\nen:lesson-03:session-02:i04:p4=table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-02:word:desk",
+    "correctText": "desk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i05",
-    "correctText": "It is an apple.",
+    "correctText": "It is a desk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i06",
-    "correctText": "What is it?",
+    "correctText": "Is it a bed?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i07",
-    "correctText": "I'm satisfied.",
+    "correctText": "It's a sofa.",
     "correctResponseId": null
   },
   {
@@ -41,47 +56,52 @@
   },
   {
     "interactionId": "en:lesson-03:session-02:i09",
-    "correctText": "Are you confident?",
+    "correctText": "Is it a sofa?",
     "correctResponseId": "en:lesson-03:session-02:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-02:i10",
-    "correctText": "en:lesson-03:session-02:i10:p1=relaxed\nen:lesson-03:session-02:i10:p2=satisfied\nen:lesson-03:session-02:i10:p3=effective\nen:lesson-03:session-02:i10:p4=apple",
+    "correctText": "en:lesson-03:session-02:i10:p1=pillow\nen:lesson-03:session-02:i10:p2=sofa\nen:lesson-03:session-02:i10:p3=bed\nen:lesson-03:session-02:i10:p4=chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-02:word:pillow",
+    "correctText": "pillow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i11",
-    "correctText": "She is sad.",
+    "correctText": "It is not a pillow.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i12",
-    "correctText": "Is it an apple?",
+    "correctText": "It is not a bed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i13",
-    "correctText": "It's effective.",
+    "correctText": "It's a pillow.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i14",
-    "correctText": "an",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-03:session-02:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-02:i15",
-    "correctText": "Are you satisfied?",
+    "correctText": "It is a pillow.",
     "correctResponseId": "en:lesson-03:session-02:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-02:i16",
-    "correctText": "en:lesson-03:session-02:i16:p1=apple\nen:lesson-03:session-02:i16:p2=key\nen:lesson-03:session-02:i16:p3=tired\nen:lesson-03:session-02:i16:p4=relaxed",
+    "correctText": "en:lesson-03:session-02:i16:p1=desk\nen:lesson-03:session-02:i16:p2=pillow\nen:lesson-03:session-02:i16:p3=lamp\nen:lesson-03:session-02:i16:p4=open",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-02:i17",
-    "correctText": "It's an apple.",
+    "correctText": "Is it a desk?",
     "correctResponseId": null
   }
 ]

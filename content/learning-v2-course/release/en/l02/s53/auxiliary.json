@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-53:intro1:r2": {
-          "ru": "После `It` нужно `is`.",
-          "uk": "Після `It` потрібно `is`."
+          "ru": "С not выходит «Она сухая». А футболка прилипла к спине: It is sweaty.",
+          "uk": "З not виходить «Вона суха». А футболка прилипла до спини: It is sweaty."
         },
         "en:lesson-02:session-53:intro1:r3": {
-          "ru": "Это «справедливо», а вы оцениваете решение наоборот.",
-          "uk": "Це «справедливо», а ви оцінюєте рішення навпаки."
+          "ru": "Между It и sweaty нужно is: It is sweaty.",
+          "uk": "Між It і sweaty потрібно is: It is sweaty."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-53:intro2:r2": {
-          "ru": "Это ваша оценка, а нужен вопрос.",
-          "uk": "Це ваша оцінка, а потрібне запитання."
+          "ru": "Так звучит утверждение «Это тяжело». Чтобы спросить, ставим Is вперёд: Is it tough?",
+          "uk": "Так звучить твердження «Це важко». Щоб запитати, ставимо Is наперед: Is it tough?"
         },
         "en:lesson-02:session-53:intro2:r3": {
-          "ru": "Это «Это справедливо?» В задании вопрос именно о несправедливости.",
-          "uk": "Це «Це справедливо?» У завданні запитання саме про несправедливість."
+          "ru": "С it нужно is: Is it tough?",
+          "uk": "З it потрібно is: Is it tough?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-53:intro3:r2": {
-          "ru": "Это оценка справедливости, а речь о занятых местах.",
-          "uk": "Це оцінка справедливості, а йдеться про зайняті місця."
+          "ru": "С not выходит «Музыка вялая». А вся группа прибавила шаг: It's upbeat.",
+          "uk": "З not виходить «Музика млява». А вся група додала кроку: It's upbeat."
         },
         "en:lesson-02:session-53:intro3:r3": {
-          "ru": "Это «незаконно», а вы сообщаете, что зал полон.",
-          "uk": "Це «незаконно», а ви повідомляєте, що зал повний."
+          "ru": "Музыка одна, нужно It's: It's upbeat.",
+          "uk": "Музика одна, потрібно It's: It's upbeat."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6fb04e524fc0d799c0eb89ebcfd99a25376e32695c862e86938df0580121e638"
+  "auxiliaryFingerprint": "5662f8c49290c2efbfe0006abaef58384e2492646de7ecc84d1216e673904099"
 }

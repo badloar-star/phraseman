@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 16 — Всё на своих местах
+# Английский · Урок 3 · Занятие 16 — Проверка перед оплатой
 
-**Ситуация.** Встреча в мастерской закончилась. Вы с Анной помогаете Олегу убрать комнату: проверяете окно и дверь, находите картинку и пальто. Нужно понять, о каком предмете говорят, и задать точный вопрос.
+**Ситуация.** Вы с сестрой стоите у кассы мебельного магазина. Кассир сверяет корзину и бумаги, а вы проверяете, всё ли верно. Каждую бумагу и каждую строчку вы называете сами, выбирая a или an.
 
-**Что вы освоите:** повторить названия предметов, a/an/the и вопросы о месте
-**Новые слова:** —
+**Что вы освоите:** различать a и an при проверке бумаг и строчек перед оплатой
+**Новые слова:** invoice, discount, warranty, address
+**Возвращаются:** vase, candle, lantern, plant, oven
 
 ---
 
 ## Интро 1
 
-### Назвать или указать на знакомое
+### Длинная бумага из принтера
 
-Повторим `door` — «дверь», `lock` — «замок», `room` — «комната», `table` — «стол». `It is a lock` — «Это замок»: называем предмет. `The lock is old` — «Замок старый»: говорим о понятном собеседнику замке. Выбор между `a` и `an` зависит от первого звука следующего слова; перед `lock` нужен `a`.
+Кассир печатает длинную бумагу со списком покупок: кресло, духовка, чайник, а внизу сумма. Сестра берёт её и спрашивает, как называется такая бумага. invoice — «счёт» со списком покупок и ценой. Слово начинается с гласного звука, поэтому an: It is an invoice — «Это счёт».
 
-**Олег показывает вам отдельный предмет, который вы ещё не обсуждали. Назовите его: «Это замок».**
+**Сестра спрашивает, что это за бумага. Скажите полной фразой, что это счёт.**
 
-- ✅ **It is a lock.**
-- ❌ It is an lock. — *Перед `lock` нужно `a`, потому что первый звук согласный.*
-- ❌ It is lock. — *В этой фразе перед названием одного замка нужно `a`.*
+- ✅ **It is an invoice.**
+- ❌ It is a invoice. — *Перед invoice нужно an: слово начинается с гласного звука.*
+- ❌ It an invoice. — *Между It и an нужно is: It is an invoice.*
 
 ---
 
 ## Интро 2
 
-### Нужна именно эта вещь
+### Строчка на экране
 
-`window` — «окно», `picture` — «картинка», `coat` — «пальто». `Where is the coat?` — «Где пальто?» Собеседник знает, какое пальто вы ищете. Олег помахал пальто на спинке стула, приняв его за гостя. Гость оказался очень молчаливым, зато пальто наконец нашлось.
+Кассир вводит ваш талон в кассу, и на экране появляется новая строчка: минус десять процентов от суммы. Сестра не расслышала, что сказал кассир, и просит вас уточнить. discount — «скидка». Слово начинается с согласного звука: Is it a discount? — «Это скидка?»
 
-**Вы с Анной уже говорили об оставленном пальто. Теперь вы его не видите. Спросите, где пальто.**
+**Вы показываете на строчку на экране. Спросите кассира, скидка ли это.**
 
-- ✅ **Where is the coat?**
-- ❌ What is the coat? — *Нужно узнать место: `Where`, а не `What`.*
-- ❌ Where are the coat? — *С одним пальто здесь нужно `is`.*
+- ✅ **Is it a discount?**
+- ❌ It is a discount. — *Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it a discount?*
+- ❌ Is it an discount? — *Перед discount нужно a: слово начинается с согласного звука.*
 
 ---
 
 ## Интро 3
 
-### Проверить перед уходом
+### Лист с печатью в пакете
 
-`Is the window closed?` — «Окно закрыто?» Вопрос начинается с `Is`, затем идёт `the window`. Вы оба знаете, какое окно проверяете. Для двери можно сообщить `The door is closed` — «Дверь закрыта». Название предмета с `the` остаётся вместе и в сообщении, и в вопросе.
+Кассир вкладывает в пакет с духовкой лист с печатью и сроком: два года. Брат достаёт его из пакета, читает и спрашивает, что это за лист. warranty — «гарантия», бумага о бесплатном ремонте. Слово начинается с согласного звука: It's a warranty — «Это гарантия».
 
-**Перед уходом Анна проверяет знакомое вам обоим окно мастерской. Спросите, закрыто ли окно.**
+**Брат спрашивает, что за лист. Скажите коротко, что это гарантия.**
 
-- ✅ **Is the window closed?**
-- ❌ Are the window closed? — *С одним окном здесь нужен вопрос с `Is`.*
-- ❌ The window is closed. — *Это сообщение. Чтобы спросить, начните с `Is the window`.*
+- ✅ **It's a warranty.**
+- ❌ It's an warranty. — *Перед warranty нужно a: слово начинается с согласного звука.*
+- ❌ It's warranty. — *Перед warranty нужно a: It's a warranty.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · На плане Олег показывает незнакомый Анне предмет. Назовите его: «Это стол»**
+**1 · Карточка слова — invoice**
+<!-- interaction_id: en:lesson-03:session-16:word:invoice; family: word_card -->
+> **invoice** — счёт со списком покупок и ценой. It is an invoice — «Это счёт». О бумаге, которую выдают магазин или фирма.
+
+**2 · Кассир печатает бумагу со списком покупок. Скажите сестре полной фразой, что это счёт.**
 <!-- interaction_id: en:lesson-03:session-16:i01; family: phrase_builder -->
-Плитки: `table` `a` `is` `It` `an` → **It is a table.**
-*(плитка `an` лишняя: здесь нужно `a` — `It is a table.`)*
+Плитки: `invoice` `is` `an` `It` `a` → **It is an invoice.**
+*(плитка `a` лишняя: здесь нужно `an` — `It is an invoice.`)*
 
-**2 · Послушайте сообщение о двери мастерской**
+**3 · Карточка слова — discount**
+<!-- interaction_id: en:lesson-03:session-16:word:discount; family: word_card -->
+> **discount** — скидка, снижение цены. Is it a discount? — «Это скидка?» О скидке в магазине, по талону, для постоянных клиентов.
+
+**4 · Послушайте, что кассир говорит о строчке на экране**
 <!-- interaction_id: en:lesson-03:session-16:i02; family: listen_choose -->
-🔊 *The door is closed.* → **The door is closed.** · The door is open. · The door is dirty.
-- The door is open. — *В записи последнее слово — `closed`, а в этом варианте — `open`.*
-- The door is dirty. — *В записи последнее слово — `closed`, а в этом варианте — `dirty`.*
+🔊 *It is a discount.* → **It is a discount.** · It is an invoice. · It is a vase.
+- It is an invoice. — *В записи последнее слово — `discount`, а в этом варианте — `invoice`.*
+- It is a vase. — *В записи последнее слово — `discount`, а в этом варианте — `vase`.*
 
-**3 · Анна указывает на помещение на плане. Назовите его: «Это комната»**
+**5 · Карточка слова — warranty**
+<!-- interaction_id: en:lesson-03:session-16:word:warranty; family: word_card -->
+> **warranty** — гарантия, бумага о бесплатном ремонте. It's a warranty — «Это гарантия». О гарантии на технику, мебель, часы.
+
+**6 · Кассир вкладывает в пакет лист с печатью. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-16:i03; family: context_gap_grammar -->
-It is ___ room. → **a** · an · are
-- an — *Перед `room` нужно `a`: первый звук согласный.*
-- are — *Здесь нужно название `a room`.*
+It is ___ warranty. → **a** · an · is
+- an — *Слово warranty начинается с согласного звука, поэтому здесь a.*
+- is — *Слово is уже стоит перед пропуском. Перед warranty нужно a.*
 
-**4 · Соедините знакомые слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-16:i04; family: speed_match -->
-door — дверь · lock — замок · room — комната · table — стол
+invoice — счёт-фактура · discount — скидка · warranty — гарантия · candle — свеча
 
-**5 · Послушайте и соберите сообщение**
+**8 · Карточка слова — address**
+<!-- interaction_id: en:lesson-03:session-16:word:address; family: word_card -->
+> **address** — адрес: улица, дом и город. It's an address — «Это адрес». Об адресе доставки, дома, магазина.
+
+**9 · Послушайте кассира и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-16:i05; family: listen_build_dictation -->
-🔊 *The picture is here.* Плитки: `here` `is` `picture` `The` `are` → **The picture is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The picture is here.`)*
+🔊 *It's an address.* Плитки: `address` `an` `a` `It's` → **It's an address.**
+*(плитка `a` лишняя: здесь нужно `an` — `It's an address.`)*
 
-**6 · Вы с Олегом ищете пальто, о котором только что говорили. Спросите, где пальто**
+**10 · На бланке доставки написаны улица и номер дома. Спросите кассира, адрес ли это.**
 <!-- interaction_id: en:lesson-03:session-16:i06; family: phrase_builder -->
-Плитки: `coat` `the` `is` `Where` `What` → **Where is the coat?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where is the coat?`)*
+Плитки: `address` `it` `Is` `an` `a` → **Is it an address?**
+*(плитка `a` лишняя: здесь нужно `an` — `Is it an address?`)*
 
-**7 · Вы с Анной осматриваете замок мастерской. Скажите «Замок старый»**
+**11 · Кассир показывает строчку со скидкой. Скажите коротко, что это скидка.**
 <!-- interaction_id: en:lesson-03:session-16:i07; family: scripted_repeat_compare -->
-🎙 **The lock is old.**
+🎙 **It's a discount.**
 
-**8 · Вы показываете вымытое окно мастерской. Дополните «Окно чистое»**
+**12 · Сестра спрашивает, гарантия ли это. Нет, это счёт. Дополните ответ**
 <!-- interaction_id: en:lesson-03:session-16:i08; family: context_gap_grammar -->
-The window ___ clean. → **is** · am · are
-- am — *С одним окном здесь нужно `is`.*
-- are — *`The window` — один предмет, поэтому здесь `is`.*
+No, it ___ not a warranty. → **is** · am · are
+- am — *С it нужно is: No, it is not a warranty.*
+- are — *С it нужно is: No, it is not a warranty.*
 
-**9 · Послушайте описание комнаты после встречи**
+**13 · Послушайте вопрос сестры**
 <!-- interaction_id: en:lesson-03:session-16:i09; family: listen_choose -->
-🔊 *The room is quiet.* → **The room is quiet.** · The room is cold. · The room is warm.
-- The room is cold. — *В записи последнее слово — `quiet`, а в этом варианте — `cold`.*
-- The room is warm. — *В записи последнее слово — `quiet`, а в этом варианте — `warm`.*
+🔊 *Is it a warranty?* → **Is it a warranty?** · Is it an address? · Is it a discount?
+- Is it an address? — *В записи последнее слово — `warranty`, а в этом варианте — `address`.*
+- Is it a discount? — *В записи последнее слово — `warranty`, а в этом варианте — `discount`.*
 
-**10 · Соедините знакомые слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-16:i10; family: speed_match -->
-window — окно · picture — картинка · coat — пальто · door — дверь
+address — адрес · warranty — гарантия · lantern — фонарь · plant — растение
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте кассира и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-16:i11; family: listen_build_dictation -->
-🔊 *Where is the table?* Плитки: `table` `the` `is` `Where` `What` → **Where is the table?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where is the table?`)*
+🔊 *It is not an address.* Плитки: `address` `not` `is` `It` `an` `a` → **It is not an address.**
+*(плитка `a` лишняя: здесь нужно `an` — `It is not an address.`)*
 
-**12 · Анна стоит у известного вам обоим окна мастерской. Спросите, закрыто ли окно**
+**16 · Кассир показывает строчку на экране. Спросите его, скидка ли это.**
 <!-- interaction_id: en:lesson-03:session-16:i12; family: phrase_builder -->
-Плитки: `closed` `window` `the` `Is` `Are` → **Is the window closed?**
-*(плитка `Are` лишняя: здесь нужно `Is` — `Is the window closed?`)*
+Плитки: `discount` `it` `Is` `a` `an` → **Is it a discount?**
+*(плитка `an` лишняя: здесь нужно `a` — `Is it a discount?`)*
 
-**13 · Вы собираете работы после выставки. Анна знает, какая картинка вам нужна. Спросите, где картинка**
+**17 · Кассир протягивает бумагу со списком покупок. Скажите коротко, что это счёт.**
 <!-- interaction_id: en:lesson-03:session-16:i13; family: scripted_repeat_compare -->
-🎙 **Where is the picture?**
+🎙 **It's an invoice.**
 
-**14 · Вы нашли пальто, которое только что искали вместе с Олегом. Дополните сообщение**
+**18 · На бланке написаны улица и номер дома. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-16:i14; family: context_gap_grammar -->
-___ coat is here. → **The** · An · Are
-- An — *Для известного вам обоим пальто здесь `The coat`; перед `coat` форма `An` также не подходит.*
-- Are — *Это сообщение `The coat is here`.*
+It is ___ address. → **an** · a · is
+- a — *Слово address начинается с гласного звука, поэтому здесь an.*
+- is — *Слово is уже стоит перед пропуском. Перед address нужно an.*
 
-**15 · Послушайте описание замка**
+**19 · Послушайте, что говорит кассир**
 <!-- interaction_id: en:lesson-03:session-16:i15; family: listen_choose -->
-🔊 *The lock is old.* → **The lock is old.** · The lock is new. · The lock is open.
-- The lock is new. — *В записи последнее слово — `old`, а в этом варианте — `new`.*
-- The lock is open. — *В записи последнее слово — `old`, а в этом варианте — `open`.*
+🔊 *It's an address.* → **It's an address.** · It's a warranty. · It's a discount.
+- It's a warranty. — *В записи последнее слово — `address`, а в этом варианте — `warranty`.*
+- It's a discount. — *В записи последнее слово — `address`, а в этом варианте — `discount`.*
 
-**16 · Соедините знакомые слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-16:i16; family: speed_match -->
-table — стол · window — окно · picture — картинка · coat — пальто
+discount — скидка · address — адрес · invoice — счёт-фактура · oven — духовка
 
-**17 · Вы собираетесь уходить из мастерской. Олег стоит у окна, о котором вы оба говорили. Спросите, закрыто ли окно**
+**21 · Вы сверяете бумаги перед оплатой. Спросите кассира, счёт ли это.**
 <!-- interaction_id: en:lesson-03:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is the window closed?**
-
+🎙 **Is it an invoice?**

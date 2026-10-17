@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-56",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-56:word:hectic",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hectic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:hectic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hectic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:hectic:audio",
+            "transcript": "hectic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:hectic:r1",
+              "targetText": "hectic",
+              "meaningByLocale": {
+                "ru": "суматошный, беспокойный: всё быстро и вперемешку. It is hectic — «Тут суматоха». О зале, дне, неделе, утре.",
+                "uk": "метушливий, неспокійний: усе швидко й упереміш. It is hectic — «Тут метушня». Про залу, день, тиждень, ранок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hectic",
+            "definitionByLocale": {
+              "ru": "суматошный, беспокойный: всё быстро и вперемешку. It is hectic — «Тут суматоха». О зале, дне, неделе, утре.",
+              "uk": "метушливий, неспокійний: усе швидко й упереміш. It is hectic — «Тут метушня». Про залу, день, тиждень, ранок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, как вам у стойки регистрации. Скажите ей полной фразой, что там суматошно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, как вам у стойки регистрации. Скажите ей полной фразой, что там суматошно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is hectic.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, как вам у стойки регистрации. Скажите ей полной фразой, что там суматошно.",
+            "uk": "Подруга питає, як вам біля стійки реєстрації. Скажіть їй повною фразою, що там метушливо."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "hectic"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, как вам у стойки регистрации. Скажите ей полной фразой, что там суматошно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is hectic.`",
+                "uk": "тут потрібно `is` — `It is hectic.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о зале",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i02:r1",
+            "text": "It is crowded."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i02:r2",
+            "text": "It is noisy."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i02:r3",
+            "text": "It is quiet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о зале",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i02:audio",
+            "transcript": "It is crowded."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:i02:r1",
+              "targetText": "It is crowded.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i02:r2",
+              "targetText": "It is noisy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i02:r3",
+              "targetText": "It is quiet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о зале",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `crowded`, а в этом варианте — `noisy`.",
+                "uk": "У записі останнє слово — `crowded`, а в цьому варіанті — `noisy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о зале",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `crowded`, а в этом варианте — `quiet`.",
+                "uk": "У записі останнє слово — `crowded`, а в цьому варіанті — `quiet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:word:restless",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — restless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:restless:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — restless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:restless:audio",
+            "transcript": "restless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:restless:r1",
+              "targetText": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, непоседливый: не сидится на месте. Is he restless? — «Ему не сидится?» О малыше, собаке, ночи, ожидании.",
+                "uk": "неспокійний, непосидючий: не сидиться на місці. Is he restless? — «Йому не сидиться?» Про малюка, собаку, ніч, очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "restless",
+            "definitionByLocale": {
+              "ru": "беспокойный, непоседливый: не сидится на месте. Is he restless? — «Ему не сидится?» О малыше, собаке, ночи, ожидании.",
+              "uk": "неспокійний, непосидючий: не сидиться на місці. Is he restless? — «Йому не сидиться?» Про малюка, собаку, ніч, очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Малыш уже в третий раз слез со скамейки. Спросите его маму, беспокойный ли он",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Малыш уже в третий раз слез со скамейки. Спросите его маму, беспокойный ли он",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Малыш уже в третий раз слез со скамейки. Спросите его маму, беспокойный ли он",
+            "uk": "Малюк уже втретє злізає з лавки. Запитайте його маму, чи він неспокійний"
+          },
+          "gappedTargetPhrase": "___ he restless?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-56:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Малыш уже в третий раз слез со скамейки. Спросите его маму, беспокойный ли он",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Малыш уже в третий раз слез со скамейки. Спросите его маму, беспокойный ли он",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `Is`.",
+                "uk": "З `he` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Малыш уже в третий раз слез со скамейки. Спросите его маму, беспокойный ли он",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is he restless?`.",
+                "uk": "Питання — `Is he restless?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-56:i04:p1",
+              "target": "hectic",
+              "meaningByLocale": {
+                "ru": "суматошный",
+                "uk": "метушливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i04:p2",
+              "target": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, неусидчивый",
+                "uk": "неспокійний, непосидючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i04:p3",
+              "target": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный",
+                "uk": "дратівливий, вередливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i04:p4",
+              "target": "crowded",
+              "meaningByLocale": {
+                "ru": "людный, переполненный",
+                "uk": "людний, переповнений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hectic",
+            "restless",
+            "cranky",
+            "crowded"
+          ],
+          "rightColumn": [
+            "суматошный",
+            "беспокойный, неусидчивый",
+            "раздражительный, капризный",
+            "людный, переполненный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:word:cranky",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cranky",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:cranky:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cranky",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:cranky:audio",
+            "transcript": "cranky"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:cranky:r1",
+              "targetText": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный, обычно от усталости. He's cranky — «Он на взводе». О малыше, пассажире, соседе, утре.",
+                "uk": "дратівливий, вередливий, зазвичай від втоми. He's cranky — «Він на взводі». Про малюка, пасажира, сусіда, ранок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cranky",
+            "definitionByLocale": {
+              "ru": "раздражительный, капризный, обычно от усталости. He's cranky — «Он на взводе». О малыше, пассажире, соседе, утре.",
+              "uk": "дратівливий, вередливий, зазвичай від втоми. He's cranky — «Він на взводі». Про малюка, пасажира, сусіда, ранок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что подруга говорит о мужчине у стойки, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о мужчине у стойки, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i05:audio",
+            "transcript": "He is not cranky."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not cranky.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "cranky"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о мужчине у стойки, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not cranky.`",
+                "uk": "тут потрібно `is` — `He is not cranky.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга говорит, что в очереди есть человек, которому не сидится. Спросите её, кто беспокойный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга говорит, что в очереди есть человек, которому не сидится. Спросите её, кто беспокойный.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is restless?",
+          "localizedMeaning": {
+            "ru": "Подруга говорит, что в очереди есть человек, которому не сидится. Спросите её, кто беспокойный.",
+            "uk": "Подруга каже, що в черзі є людина, якій не сидиться. Запитайте її, хто неспокійний."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "restless"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга говорит, что в очереди есть человек, которому не сидится. Спросите её, кто беспокойный.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is restless?`",
+                "uk": "тут потрібно `Who` — `Who is restless?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Табло снова поменяло выходы, и все побежали. Скажите коротко, что тут суматошно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Табло снова поменяло выходы, и все побежали. Скажите коротко, что тут суматошно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i07:audio",
+            "transcript": "It's hectic."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's hectic.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спросила: «Is he cranky?» Пассажир с ночного рейса опять огрызнулся на сотрудника. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спросила: «Is he cranky?» Пассажир с ночного рейса опять огрызнулся на сотрудника. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is he cranky?» Пассажир с ночного рейса опять огрызнулся на сотрудника. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is he cranky?» Пасажир з нічного рейсу знову огризнувся на працівника. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-56:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спросила: «Is he cranky?» Пассажир с ночного рейса опять огрызнулся на сотрудника. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is he cranky?» Пассажир с ночного рейса опять огрызнулся на сотрудника. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is he cranky?» Пассажир с ночного рейса опять огрызнулся на сотрудника. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, he is`.",
+                "uk": "Відповідь — `Yes, he is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:word:tedious",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tedious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:tedious:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tedious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:tedious:audio",
+            "transcript": "tedious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:tedious:r1",
+              "targetText": "tedious",
+              "meaningByLocale": {
+                "ru": "нудный, утомительно скучный. It is tedious — «Это нудно». Об очереди, проверке, ожидании, перелёте.",
+                "uk": "нудний, виснажливо нецікавий. It is tedious — «Це нудно». Про чергу, перевірку, очікування, переліт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tedious",
+            "definitionByLocale": {
+              "ru": "нудный, утомительно скучный. It is tedious — «Это нудно». Об очереди, проверке, ожидании, перелёте.",
+              "uk": "нудний, виснажливо нецікавий. It is tedious — «Це нудно». Про чергу, перевірку, очікування, переліт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит об очереди",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i09:r1",
+            "text": "It is tedious."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i09:r2",
+            "text": "It is fast."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i09:r3",
+            "text": "It is slow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит об очереди",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i09:audio",
+            "transcript": "It is tedious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:i09:r1",
+              "targetText": "It is tedious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i09:r2",
+              "targetText": "It is fast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i09:r3",
+              "targetText": "It is slow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит об очереди",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tedious`, а в этом варианте — `fast`.",
+                "uk": "У записі останнє слово — `tedious`, а в цьому варіанті — `fast`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит об очереди",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tedious`, а в этом варианте — `slow`.",
+                "uk": "У записі останнє слово — `tedious`, а в цьому варіанті — `slow`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-56:i10:p1",
+              "target": "tedious",
+              "meaningByLocale": {
+                "ru": "нудный, утомительный",
+                "uk": "нудний, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i10:p2",
+              "target": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный",
+                "uk": "дратівливий, вередливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i10:p3",
+              "target": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, неусидчивый",
+                "uk": "неспокійний, непосидючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i10:p4",
+              "target": "patient",
+              "meaningByLocale": {
+                "ru": "терпеливый",
+                "uk": "терплячий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tedious",
+            "cranky",
+            "restless",
+            "patient"
+          ],
+          "rightColumn": [
+            "нудный, утомительный",
+            "раздражительный, капризный",
+            "беспокойный, неусидчивый",
+            "терпеливый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что мама малыша говорит о сыне, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что мама малыша говорит о сыне, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i11:audio",
+            "transcript": "He is not restless."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not restless.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "restless"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама малыша говорит о сыне, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not restless.`",
+                "uk": "тут потрібно `is` — `He is not restless.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Очередь на паспортный контроль почти не двигается. Спросите подругу, нудно ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Очередь на паспортный контроль почти не двигается. Спросите подругу, нудно ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it tedious?",
+          "localizedMeaning": {
+            "ru": "Очередь на паспортный контроль почти не двигается. Спросите подругу, нудно ли это.",
+            "uk": "Черга на паспортний контроль майже не рухається. Запитайте подругу, чи це нудно."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "tedious"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Очередь на паспортный контроль почти не двигается. Спросите подругу, нудно ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it tedious?`",
+                "uk": "тут потрібно `Is` — `Is it tedious?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шепчет, что пассажир с ночного рейса снова недоволен. Скажите ей коротко, что он раздражительный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга шепчет, что пассажир с ночного рейса снова недоволен. Скажите ей коротко, что он раздражительный.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i13:audio",
+            "transcript": "He's cranky."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's cranky.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы ждёте посадку уже три часа, и это скучно. Скажите, что ожидание нудное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ждёте посадку уже три часа, и это скучно. Скажите, что ожидание нудное",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ждёте посадку уже три часа, и это скучно. Скажите, что ожидание нудное",
+            "uk": "Ви чекаєте на посадку вже три години, і це нудно. Скажіть, що очікування нудне"
+          },
+          "gappedTargetPhrase": "It ___ tedious.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-56:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы ждёте посадку уже три часа, и это скучно. Скажите, что ожидание нудное",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы ждёте посадку уже три часа, и это скучно. Скажите, что ожидание нудное",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы ждёте посадку уже три часа, и это скучно. Скажите, что ожидание нудное",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is tedious`.",
+                "uk": "Фраза — `It is tedious`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i15:r1",
+            "text": "Is it hectic?"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i15:r2",
+            "text": "Is it tedious?"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i15:r3",
+            "text": "Is he restless?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i15:audio",
+            "transcript": "Is it hectic?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:i15:r1",
+              "targetText": "Is it hectic?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i15:r2",
+              "targetText": "Is it tedious?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i15:r3",
+              "targetText": "Is he restless?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hectic`, а в этом варианте — `tedious`.",
+                "uk": "У записі останнє слово — `hectic`, а в цьому варіанті — `tedious`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hectic`, а в этом варианте — `restless`.",
+                "uk": "У записі останнє слово — `hectic`, а в цьому варіанті — `restless`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-56:i16:p1",
+              "target": "hectic",
+              "meaningByLocale": {
+                "ru": "суматошный",
+                "uk": "метушливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i16:p2",
+              "target": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, неусидчивый",
+                "uk": "неспокійний, непосидючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i16:p3",
+              "target": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный",
+                "uk": "дратівливий, вередливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i16:p4",
+              "target": "tedious",
+              "meaningByLocale": {
+                "ru": "нудный, утомительный",
+                "uk": "нудний, виснажливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hectic",
+            "restless",
+            "cranky",
+            "tedious"
+          ],
+          "rightColumn": [
+            "суматошный",
+            "беспокойный, неусидчивый",
+            "раздражительный, капризный",
+            "нудный, утомительный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на другой зал. Спросите её, суматошно ли там.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на другой зал. Спросите её, суматошно ли там.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i17:audio",
+            "transcript": "Is it hectic?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it hectic?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-56:word:hectic",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hectic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:hectic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hectic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:hectic:audio",
+            "transcript": "hectic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:hectic:r1",
+              "targetText": "hectic",
+              "meaningByLocale": {
+                "ru": "суматошный, беспокойный: всё быстро и вперемешку. It is hectic — «Тут суматоха». О зале, дне, неделе, утре.",
+                "uk": "метушливий, неспокійний: усе швидко й упереміш. It is hectic — «Тут метушня». Про залу, день, тиждень, ранок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hectic",
+            "definitionByLocale": {
+              "ru": "суматошный, беспокойный: всё быстро и вперемешку. It is hectic — «Тут суматоха». О зале, дне, неделе, утре.",
+              "uk": "метушливий, неспокійний: усе швидко й упереміш. It is hectic — «Тут метушня». Про залу, день, тиждень, ранок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, як вам біля стійки реєстрації. Скажіть їй повною фразою, що там метушливо.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, як вам біля стійки реєстрації. Скажіть їй повною фразою, що там метушливо.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is hectic.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, как вам у стойки регистрации. Скажите ей полной фразой, что там суматошно.",
+            "uk": "Подруга питає, як вам біля стійки реєстрації. Скажіть їй повною фразою, що там метушливо."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "hectic"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, як вам біля стійки реєстрації. Скажіть їй повною фразою, що там метушливо.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is hectic.`",
+                "uk": "тут потрібно `is` — `It is hectic.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про залу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i02:r1",
+            "text": "It is crowded."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i02:r2",
+            "text": "It is noisy."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i02:r3",
+            "text": "It is quiet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про залу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i02:audio",
+            "transcript": "It is crowded."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:i02:r1",
+              "targetText": "It is crowded.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i02:r2",
+              "targetText": "It is noisy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i02:r3",
+              "targetText": "It is quiet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про залу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `crowded`, а в этом варианте — `noisy`.",
+                "uk": "У записі останнє слово — `crowded`, а в цьому варіанті — `noisy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про залу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `crowded`, а в этом варианте — `quiet`.",
+                "uk": "У записі останнє слово — `crowded`, а в цьому варіанті — `quiet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:word:restless",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — restless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:restless:audio"
+        ],
+        "accessibilityLabel": "Картка слова — restless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:restless:audio",
+            "transcript": "restless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:restless:r1",
+              "targetText": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, непоседливый: не сидится на месте. Is he restless? — «Ему не сидится?» О малыше, собаке, ночи, ожидании.",
+                "uk": "неспокійний, непосидючий: не сидиться на місці. Is he restless? — «Йому не сидиться?» Про малюка, собаку, ніч, очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "restless",
+            "definitionByLocale": {
+              "ru": "беспокойный, непоседливый: не сидится на месте. Is he restless? — «Ему не сидится?» О малыше, собаке, ночи, ожидании.",
+              "uk": "неспокійний, непосидючий: не сидиться на місці. Is he restless? — «Йому не сидиться?» Про малюка, собаку, ніч, очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Малюк уже втретє злізає з лавки. Запитайте його маму, чи він неспокійний",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Малюк уже втретє злізає з лавки. Запитайте його маму, чи він неспокійний",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Малыш уже в третий раз слез со скамейки. Спросите его маму, беспокойный ли он",
+            "uk": "Малюк уже втретє злізає з лавки. Запитайте його маму, чи він неспокійний"
+          },
+          "gappedTargetPhrase": "___ he restless?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-56:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Малюк уже втретє злізає з лавки. Запитайте його маму, чи він неспокійний",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Малюк уже втретє злізає з лавки. Запитайте його маму, чи він неспокійний",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `Is`.",
+                "uk": "З `he` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Малюк уже втретє злізає з лавки. Запитайте його маму, чи він неспокійний",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is he restless?`.",
+                "uk": "Питання — `Is he restless?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-56:i04:p1",
+              "target": "hectic",
+              "meaningByLocale": {
+                "ru": "суматошный",
+                "uk": "метушливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i04:p2",
+              "target": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, неусидчивый",
+                "uk": "неспокійний, непосидючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i04:p3",
+              "target": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный",
+                "uk": "дратівливий, вередливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i04:p4",
+              "target": "crowded",
+              "meaningByLocale": {
+                "ru": "людный, переполненный",
+                "uk": "людний, переповнений"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hectic",
+            "restless",
+            "cranky",
+            "crowded"
+          ],
+          "rightColumn": [
+            "метушливий",
+            "неспокійний, непосидючий",
+            "дратівливий, вередливий",
+            "людний, переповнений"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:word:cranky",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cranky",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:cranky:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cranky",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:cranky:audio",
+            "transcript": "cranky"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:cranky:r1",
+              "targetText": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный, обычно от усталости. He's cranky — «Он на взводе». О малыше, пассажире, соседе, утре.",
+                "uk": "дратівливий, вередливий, зазвичай від втоми. He's cranky — «Він на взводі». Про малюка, пасажира, сусіда, ранок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cranky",
+            "definitionByLocale": {
+              "ru": "раздражительный, капризный, обычно от усталости. He's cranky — «Он на взводе». О малыше, пассажире, соседе, утре.",
+              "uk": "дратівливий, вередливий, зазвичай від втоми. He's cranky — «Він на взводі». Про малюка, пасажира, сусіда, ранок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що подруга каже про чоловіка біля стійки, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про чоловіка біля стійки, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i05:audio",
+            "transcript": "He is not cranky."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not cranky.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "cranky"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про чоловіка біля стійки, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not cranky.`",
+                "uk": "тут потрібно `is` — `He is not cranky.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга каже, що в черзі є людина, якій не сидиться. Запитайте її, хто неспокійний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга каже, що в черзі є людина, якій не сидиться. Запитайте її, хто неспокійний.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is restless?",
+          "localizedMeaning": {
+            "ru": "Подруга говорит, что в очереди есть человек, которому не сидится. Спросите её, кто беспокойный.",
+            "uk": "Подруга каже, що в черзі є людина, якій не сидиться. Запитайте її, хто неспокійний."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "restless"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга каже, що в черзі є людина, якій не сидиться. Запитайте її, хто неспокійний.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is restless?`",
+                "uk": "тут потрібно `Who` — `Who is restless?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Табло знову змінило виходи, і всі побігли. Скажіть коротко, що тут метушливо.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Табло знову змінило виходи, і всі побігли. Скажіть коротко, що тут метушливо.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i07:audio",
+            "transcript": "It's hectic."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's hectic.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спитала: «Is he cranky?» Пасажир з нічного рейсу знову огризнувся на працівника. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спитала: «Is he cranky?» Пасажир з нічного рейсу знову огризнувся на працівника. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is he cranky?» Пассажир с ночного рейса опять огрызнулся на сотрудника. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is he cranky?» Пасажир з нічного рейсу знову огризнувся на працівника. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-56:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спитала: «Is he cranky?» Пасажир з нічного рейсу знову огризнувся на працівника. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is he cranky?» Пасажир з нічного рейсу знову огризнувся на працівника. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is he cranky?» Пасажир з нічного рейсу знову огризнувся на працівника. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, he is`.",
+                "uk": "Відповідь — `Yes, he is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:word:tedious",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tedious",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:word:tedious:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tedious",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:word:tedious:audio",
+            "transcript": "tedious"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:word:tedious:r1",
+              "targetText": "tedious",
+              "meaningByLocale": {
+                "ru": "нудный, утомительно скучный. It is tedious — «Это нудно». Об очереди, проверке, ожидании, перелёте.",
+                "uk": "нудний, виснажливо нецікавий. It is tedious — «Це нудно». Про чергу, перевірку, очікування, переліт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tedious",
+            "definitionByLocale": {
+              "ru": "нудный, утомительно скучный. It is tedious — «Это нудно». Об очереди, проверке, ожидании, перелёте.",
+              "uk": "нудний, виснажливо нецікавий. It is tedious — «Це нудно». Про чергу, перевірку, очікування, переліт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про чергу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i09:r1",
+            "text": "It is tedious."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i09:r2",
+            "text": "It is fast."
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i09:r3",
+            "text": "It is slow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про чергу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i09:audio",
+            "transcript": "It is tedious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:i09:r1",
+              "targetText": "It is tedious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i09:r2",
+              "targetText": "It is fast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i09:r3",
+              "targetText": "It is slow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про чергу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tedious`, а в этом варианте — `fast`.",
+                "uk": "У записі останнє слово — `tedious`, а в цьому варіанті — `fast`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про чергу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `tedious`, а в этом варианте — `slow`.",
+                "uk": "У записі останнє слово — `tedious`, а в цьому варіанті — `slow`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-56:i10:p1",
+              "target": "tedious",
+              "meaningByLocale": {
+                "ru": "нудный, утомительный",
+                "uk": "нудний, виснажливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i10:p2",
+              "target": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный",
+                "uk": "дратівливий, вередливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i10:p3",
+              "target": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, неусидчивый",
+                "uk": "неспокійний, непосидючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i10:p4",
+              "target": "patient",
+              "meaningByLocale": {
+                "ru": "терпеливый",
+                "uk": "терплячий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tedious",
+            "cranky",
+            "restless",
+            "patient"
+          ],
+          "rightColumn": [
+            "нудний, виснажливий",
+            "дратівливий, вередливий",
+            "неспокійний, непосидючий",
+            "терплячий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що мама малюка каже про сина, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що мама малюка каже про сина, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i11:audio",
+            "transcript": "He is not restless."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not restless.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "restless"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама малюка каже про сина, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not restless.`",
+                "uk": "тут потрібно `is` — `He is not restless.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Черга на паспортний контроль майже не рухається. Запитайте подругу, чи це нудно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Черга на паспортний контроль майже не рухається. Запитайте подругу, чи це нудно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it tedious?",
+          "localizedMeaning": {
+            "ru": "Очередь на паспортный контроль почти не двигается. Спросите подругу, нудно ли это.",
+            "uk": "Черга на паспортний контроль майже не рухається. Запитайте подругу, чи це нудно."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "tedious"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Черга на паспортний контроль майже не рухається. Запитайте подругу, чи це нудно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it tedious?`",
+                "uk": "тут потрібно `Is` — `Is it tedious?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шепоче, що пасажир з нічного рейсу знову невдоволений. Скажіть їй коротко, що він дратівливий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга шепоче, що пасажир з нічного рейсу знову невдоволений. Скажіть їй коротко, що він дратівливий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i13:audio",
+            "transcript": "He's cranky."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's cranky.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви чекаєте на посадку вже три години, і це нудно. Скажіть, що очікування нудне",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви чекаєте на посадку вже три години, і це нудно. Скажіть, що очікування нудне",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ждёте посадку уже три часа, и это скучно. Скажите, что ожидание нудное",
+            "uk": "Ви чекаєте на посадку вже три години, і це нудно. Скажіть, що очікування нудне"
+          },
+          "gappedTargetPhrase": "It ___ tedious.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-56:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви чекаєте на посадку вже три години, і це нудно. Скажіть, що очікування нудне",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви чекаєте на посадку вже три години, і це нудно. Скажіть, що очікування нудне",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви чекаєте на посадку вже три години, і це нудно. Скажіть, що очікування нудне",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is tedious`.",
+                "uk": "Фраза — `It is tedious`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-56:i15:r1",
+            "text": "Is it hectic?"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i15:r2",
+            "text": "Is it tedious?"
+          },
+          {
+            "responseId": "en:lesson-02:session-56:i15:r3",
+            "text": "Is he restless?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i15:audio",
+            "transcript": "Is it hectic?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-56:i15:r1",
+              "targetText": "Is it hectic?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i15:r2",
+              "targetText": "Is it tedious?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i15:r3",
+              "targetText": "Is he restless?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hectic`, а в этом варианте — `tedious`.",
+                "uk": "У записі останнє слово — `hectic`, а в цьому варіанті — `tedious`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `hectic`, а в этом варианте — `restless`.",
+                "uk": "У записі останнє слово — `hectic`, а в цьому варіанті — `restless`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-56:i16:p1",
+              "target": "hectic",
+              "meaningByLocale": {
+                "ru": "суматошный",
+                "uk": "метушливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i16:p2",
+              "target": "restless",
+              "meaningByLocale": {
+                "ru": "беспокойный, неусидчивый",
+                "uk": "неспокійний, непосидючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i16:p3",
+              "target": "cranky",
+              "meaningByLocale": {
+                "ru": "раздражительный, капризный",
+                "uk": "дратівливий, вередливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-56:i16:p4",
+              "target": "tedious",
+              "meaningByLocale": {
+                "ru": "нудный, утомительный",
+                "uk": "нудний, виснажливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hectic",
+            "restless",
+            "cranky",
+            "tedious"
+          ],
+          "rightColumn": [
+            "метушливий",
+            "неспокійний, непосидючий",
+            "дратівливий, вередливий",
+            "нудний, виснажливий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на іншу залу. Запитайте її, чи метушливо там.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на іншу залу. Запитайте її, чи метушливо там.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-56:i17:audio",
+            "transcript": "Is it hectic?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it hectic?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-56:word:hectic",
+      "correctText": "hectic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i01",
+      "correctText": "It is hectic.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i02",
+      "correctText": "It is crowded.",
+      "correctResponseId": "en:lesson-02:session-56:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:word:restless",
+      "correctText": "restless",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-56:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:word:cranky",
+      "correctText": "cranky",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i05",
+      "correctText": "He is not cranky.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i06",
+      "correctText": "Who is restless?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i07",
+      "correctText": "It's hectic.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-56:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:word:tedious",
+      "correctText": "tedious",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i09",
+      "correctText": "It is tedious.",
+      "correctResponseId": "en:lesson-02:session-56:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i11",
+      "correctText": "He is not restless.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i12",
+      "correctText": "Is it tedious?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i13",
+      "correctText": "He's cranky.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-56:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i15",
+      "correctText": "Is it hectic?",
+      "correctResponseId": "en:lesson-02:session-56:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i17",
+      "correctText": "Is it hectic?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-46:intro1:r2": {
-          "ru": "Между `It` и `appropriate` нужно `is`.",
-          "uk": "Між `It` і `appropriate` потрібно `is`."
+          "ru": "Это «сладкий». А подруга морщится от кислоты: It is sour.",
+          "uk": "Це «солодкий». А подруга морщиться від кислоти: It is sour."
         },
         "en:lesson-02:session-46:intro1:r3": {
-          "ru": "Это отрицает уместность. По условию тон подходит.",
-          "uk": "Це заперечує доречність. За умовою тон підходить."
+          "ru": "Между It и sour нужно is: It is sour.",
+          "uk": "Між It і sour потрібно is: It is sour."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-46:intro2:r2": {
-          "ru": "Это утверждение. Вы пока спрашиваете.",
-          "uk": "Це твердження. Ви поки запитуєте."
+          "ru": "Так звучит утверждение «Он пресный». Чтобы спросить, ставим Is вперёд: Is it bland?",
+          "uk": "Так звучить твердження «Він прісний». Щоб запитати, ставимо Is наперед: Is it bland?"
         },
         "en:lesson-02:session-46:intro2:r3": {
-          "ru": "Это вопрос об официальном статусе, а не об уместности шутки.",
-          "uk": "Це запитання про офіційний статус, а не про доречність жарту."
+          "ru": "С it нужно is: Is it bland?",
+          "uk": "З it потрібно is: Is it bland?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-46:intro3:r2": {
-          "ru": "Это о статусе. Сейчас нужно сказать об отсутствии пользы.",
-          "uk": "Це про статус. Зараз потрібно сказати про відсутність користі."
+          "ru": "С not выходит «Она не разваренная». А ложка тонет в серой каше: It's mushy.",
+          "uk": "З not виходить «Вона не розварена». А ложка тоне в сірій каші: It's mushy."
         },
         "en:lesson-02:session-46:intro3:r3": {
-          "ru": "Это «полезный», а список в этой задаче не помогает.",
-          "uk": "Це «корисний», а список у цьому завданні не допомагає."
+          "ru": "Каша одна, нужно It's: It's mushy.",
+          "uk": "Каша одна, потрібно It's: It's mushy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "66b40a2e496f9ca4bc867a079dc118b1b1dcb0ac0414b8b330c189553550a7ad"
+  "auxiliaryFingerprint": "83ab8cb625f21fd7983bf7f403c78e61a3f27af188490d83ef213f740e1f5060"
 }

@@ -1,138 +1,154 @@
-# Английский · Урок 2 · Занятие 54 — Кому доверить ключи
+# Английский · Урок 2 · Занятие 54 — Школьный концерт
 
-**Ситуация.** Вы с Анной готовите открытие фотоклуба. Олег всегда выполняет обещания и приходит вовремя; вы можете на него положиться. Нужно доверить ему ключи. Вы также выбираете музыку: одна мелодия вам знакома, другую вы слышите впервые, имя её автора неизвестно. Спокойная музыка уместна для встречи.
+**Ситуация.** Вы пришли с мамой на школьный концерт: там выступает ваша младшая сестра. Рядом в ряду сидит соседка по подъезду, ведущий объявляет номера, и вы шёпотом обсуждаете каждого, кто выходит на сцену.
 
-**Что вы освоите:** описать надёжного человека и отличить надёжность от знакомства
-**Новые слова:** reliable
+**Что вы освоите:** описать выступающих и номера и спросить о них
+**Новые слова:** talented, graceful, stunning, dramatic
+**Возвращаются:** shy, nervous, brave, proud, loud
 
 ---
 
 ## Интро 1
 
-### Обещал — сделал
+### Мальчик со скрипкой
 
-`reliable` — «надёжный»: на человека можно положиться. Олег выполняет обещания и не забывает о договорённостях: `He is reliable`. Ключи он принесёт к открытию, а не вместе с извинениями к закрытию. Так можно описать и вещь, которая стабильно работает как нужно.
+На сцену вышел мальчик со скрипкой. Ему лет девять, но сложную пьесу он играет без единой ошибки, с закрытыми глазами. Зал замер, и даже сзади никто не кашляет, а мама сжимает программку. talented — «талантливый, одарённый». He is talented — «Он талантливый».
 
-**Олег выполняет договорённости, вы можете на него положиться. Скажите полной фразой, что он надёжный.**
+**Мама шёпотом спрашивает, что вы думаете о скрипаче. Скажите ей полной фразой, что он талантливый.**
 
-- ✅ **He is reliable.**
-- ❌ He reliable. — *Между `He` и `reliable` нужно `is`.*
-- ❌ He are reliable. — *С `He` нужно `is`, не `are`.*
+- ✅ **He is talented.**
+- ❌ He is not talented. — *С not выходит «Он играет плохо». А он не сделал ни одной ошибки: He is talented.*
+- ❌ He talented. — *Между He и talented нужно is: He is talented.*
 
 ---
 
 ## Интро 2
 
-### Знакомый не значит надёжный
+### Танцор в чёрном
 
-`familiar` — «знакомый»: вы уже видели или слышали это. Мелодия вам знакома: `It is familiar`. `unfamiliar` — «незнакомый»: эту мелодию вы слышите впервые. Но знакомый человек не обязательно надёжен. `Is he reliable?` спрашивает, можно ли на него положиться.
+Следом вышел танцор в чёрном костюме. Каждый шаг у него плавный, руки двигаются легко, и кажется, что его держит воздух. Соседка по ряду подалась вперёд и не отрывает от сцены глаз. graceful — «грациозный». Is he graceful? — «Он грациозный?»
 
-**Анна предлагает доверить ключи другому мужчине. Спросите, надёжный ли он.**
+**Вы хотите услышать её мнение. Спросите соседку, грациозный ли танцор.**
 
-- ✅ **Is he reliable?**
-- ❌ He is reliable. — *Это сообщение, а вы пока спрашиваете.*
-- ❌ Is it familiar? — *Это вопрос о том, знакомо ли что-то. Вы спрашиваете о надёжности мужчины.*
+- ✅ **Is he graceful?**
+- ❌ He is graceful. — *Так звучит утверждение «Он грациозный». Чтобы спросить, ставим Is вперёд: Is he graceful?*
+- ❌ Are he graceful? — *С he нужно is: Is he graceful?*
 
 ---
 
 ## Интро 3
 
-### Чего мы не знаем
+### Хор в красных костюмах
 
-`unknown` — «неизвестный». Имя автора не удалось установить: `It is unknown`. А `appropriate` — «уместный»: спокойная музыка подходит для вашей встречи. Неизвестное имя не мешает оценить музыку. Для `Is it appropriate?` важно, подходит ли она здесь, а не известен ли автор.
+Занавес раскрылся, и на сцене стоит весь хор в красных костюмах. Вспыхнули огни, грянул первый аккорд, и зал разом ахнул. Мама прижимает ладонь к груди и поворачивается к вам. stunning — «потрясающий, захватывающий». It's stunning — «Это потрясающе».
 
-**Имя автора не удалось установить. Коротко сообщите, что оно неизвестно.**
+**Мама ждёт вашей реакции. Скажите ей коротко, что номер потрясающий.**
 
-- ✅ **It's unknown.**
-- ❌ It's familiar. — *Это «знакомо», а имя автора не установлено.*
-- ❌ It's appropriate. — *Это «уместно», а вы говорите, что имя неизвестно.*
+- ✅ **It's stunning.**
+- ❌ It's not stunning. — *С not выходит «Это ничем не удивляет». А зал разом ахнул: It's stunning.*
+- ❌ They're stunning. — *Номер один, нужно It's: It's stunning.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · На Олега можно положиться: он выполняет обещания. Сообщите полной фразой, что он надёжный**
+**1 · Карточка слова — talented**
+<!-- interaction_id: en:lesson-02:session-54:word:talented; family: word_card -->
+> **talented** — талантливый, одарённый. He is talented — «Он талантливый». О скрипаче, художнике, девочке, поваре.
+
+**2 · Мама спрашивает про мальчика со скрипкой. Скажите ей полной фразой, что он талантливый.**
 <!-- interaction_id: en:lesson-02:session-54:i01; family: phrase_builder -->
-Плитки: `reliable` `is` `He` `are` → **He is reliable.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is reliable.`)*
+Плитки: `talented` `is` `He` `are` → **He is talented.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is talented.`)*
 
-**2 · Послушайте фразу о мелодии**
+**3 · Послушайте, что соседка говорит о мальчике перед выходом**
 <!-- interaction_id: en:lesson-02:session-54:i02; family: listen_choose -->
-🔊 *It is familiar.* → **It is familiar.** · It is unfamiliar. · It is unknown.
-- It is unfamiliar. — *В записи последнее слово — `familiar`, а в этом варианте — `unfamiliar`.*
-- It is unknown. — *В записи последнее слово — `familiar`, а в этом варианте — `unknown`.*
+🔊 *He is nervous.* → **He is nervous.** · He is shy. · He is brave.
+- He is shy. — *В записи последнее слово — `nervous`, а в этом варианте — `shy`.*
+- He is brave. — *В записи последнее слово — `nervous`, а в этом варианте — `brave`.*
 
-**3 · Спросите Анну, надёжный ли новый помощник**
+**4 · Карточка слова — graceful**
+<!-- interaction_id: en:lesson-02:session-54:word:graceful; family: word_card -->
+> **graceful** — грациозный, плавный в движениях. Is he graceful? — «Он грациозный?» О танцоре, кошке, жесте, походке.
+
+**5 · Танцор двигается очень плавно. Спросите соседку, грациозный ли он**
 <!-- interaction_id: en:lesson-02:session-54:i03; family: context_gap_grammar -->
-___ he reliable? → **Is** · Am · Are
+___ he graceful? → **Is** · Am · Are
 - Am — *С `he` нужно `Is`.*
-- Are — *Вопрос — `Is he reliable?`.*
+- Are — *Вопрос — `Is he graceful?`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-54:i04; family: speed_match -->
-reliable — надёжный · familiar — знакомый · unfamiliar — незнакомый · unknown — неизвестный
+talented — талантливый · graceful — грациозный · stunning — потрясающий · shy — стеснительный
 
-**5 · Послушайте и соберите короткий ответ**
+**7 · Послушайте, что соседка говорит о танцоре, и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-54:i05; family: listen_build_dictation -->
-🔊 *Yes, he is.* Плитки: `is` `he` `Yes,` `No,` → **Yes, he is.**
-*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, he is.`)*
+🔊 *He is not graceful.* Плитки: `graceful` `not` `is` `He` `are` → **He is not graceful.**
+*(плитка `are` лишняя: здесь нужно `is` — `He is not graceful.`)*
 
-**6 · Вы выбираете помощника из нескольких людей. Спросите Анну, кто надёжный**
+**8 · Ведущий обещает в конце концерта лучшего исполнителя. Спросите соседку, кто талантливый.**
 <!-- interaction_id: en:lesson-02:session-54:i06; family: phrase_builder -->
-Плитки: `reliable` `is` `Who` `Where` → **Who is reliable?**
-*(плитка `Where` лишняя: здесь нужно `Who` — `Who is reliable?`)*
+Плитки: `talented` `is` `Who` `Where` → **Who is talented?**
+*(плитка `Where` лишняя: здесь нужно `Who` — `Who is talented?`)*
 
-**7 · Вы уверены, что на Олега можно положиться. Скажите «Он надёжный» с сокращением**
+**9 · Мама говорит, что скрипач играет прекрасно. Скажите коротко, что он талантливый.**
 <!-- interaction_id: en:lesson-02:session-54:i07; family: scripted_repeat_compare -->
-🎙 **He's reliable.**
+🎙 **He's talented.**
 
-**8 · Эту мелодию вы слышите впервые. Сообщите, что она незнакома**
+**10 · Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»**
 <!-- interaction_id: en:lesson-02:session-54:i08; family: context_gap_grammar -->
-It ___ unfamiliar. → **is** · am · are
-- am — *С `It` нужно `is`.*
-- are — *Фраза — `It is unfamiliar`.*
+Yes, he ___. → **is** · am · are
+- am — *С `he` нужно `is`.*
+- are — *Ответ — `Yes, he is`.*
 
-**9 · Послушайте вопрос о музыке для встречи**
+**11 · Карточка слова — stunning**
+<!-- interaction_id: en:lesson-02:session-54:word:stunning; family: word_card -->
+> **stunning** — потрясающий, захватывающий дух. It's stunning — «Это потрясающе». О номере, виде, платье, голосе.
+
+**12 · Послушайте, что ведущий говорит о последнем номере**
 <!-- interaction_id: en:lesson-02:session-54:i09; family: listen_choose -->
-🔊 *Is it appropriate?* → **Is it appropriate?** · Is it unfamiliar? · Is it reliable?
-- Is it unfamiliar? — *В записи последнее слово — `appropriate`, а в этом варианте — `unfamiliar`.*
-- Is it reliable? — *В записи последнее слово — `appropriate`, а в этом варианте — `reliable`.*
+🔊 *It is dramatic.* → **It is dramatic.** · It is loud. · It is stunning.
+- It is loud. — *В записи последнее слово — `dramatic`, а в этом варианте — `loud`.*
+- It is stunning. — *В записи последнее слово — `dramatic`, а в этом варианте — `stunning`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-54:i10; family: speed_match -->
-appropriate — уместный · unknown — неизвестный · reliable — надёжный · familiar — знакомый
+dramatic — драматичный, эффектный · graceful — грациозный · proud — гордый · talented — талантливый
 
-**11 · Послушайте и соберите фразу о другом помощнике**
+**14 · Послушайте, что мама говорит о хоре, и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-54:i11; family: listen_build_dictation -->
-🔊 *He is not reliable.* Плитки: `reliable` `not` `is` `He` `are` → **He is not reliable.**
-*(плитка `are` лишняя: здесь нужно `is` — `He is not reliable.`)*
+🔊 *It is not stunning.* Плитки: `stunning` `not` `is` `It` `are` → **It is not stunning.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not stunning.`)*
 
-**12 · Анна слушает новую для вас мелодию. Спросите, незнакома ли она и ей**
+**15 · Карточка слова — dramatic**
+<!-- interaction_id: en:lesson-02:session-54:word:dramatic; family: word_card -->
+> **dramatic** — драматичный, эффектный, с сильными чувствами. It is dramatic — «Тут всё очень эффектно». О сцене, голосе, паузе, концовке.
+
+**16 · На сцене погоня и громкая музыка. Спросите соседку, эффектный ли это номер.**
 <!-- interaction_id: en:lesson-02:session-54:i12; family: phrase_builder -->
-Плитки: `unfamiliar` `it` `Is` `Are` → **Is it unfamiliar?**
-*(плитка `Are` лишняя: здесь нужно `Is` — `Is it unfamiliar?`)*
+Плитки: `dramatic` `it` `Is` `Are` → **Is it dramatic?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it dramatic?`)*
 
-**13 · Спокойная музыка подходит для встречи. Скажите «Это уместно» с сокращением**
+**17 · Занавес закрылся, зал аплодирует. Скажите коротко, что номер потрясающий.**
 <!-- interaction_id: en:lesson-02:session-54:i13; family: scripted_repeat_compare -->
-🎙 **It's appropriate.**
+🎙 **It's stunning.**
 
-**14 · Имя автора мелодии не удалось установить. Сообщите, что оно неизвестно**
+**18 · Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный**
 <!-- interaction_id: en:lesson-02:session-54:i14; family: context_gap_grammar -->
-It ___ unknown. → **is** · am · are
-- am — *С `It` нужно `is`.*
-- are — *Фраза — `It is unknown`.*
+He ___ not shy. → **is** · am · are
+- am — *С `He` нужно `is`.*
+- are — *Фраза — `He is not shy`.*
 
-**15 · Послушайте вопрос о помощнике**
+**19 · Послушайте вопрос мамы**
 <!-- interaction_id: en:lesson-02:session-54:i15; family: listen_choose -->
-🔊 *Is he reliable?* → **Is he reliable?** · Is he familiar? · Is he unknown?
-- Is he familiar? — *В записи последнее слово — `reliable`, а в этом варианте — `familiar`.*
-- Is he unknown? — *В записи последнее слово — `reliable`, а в этом варианте — `unknown`.*
+🔊 *Is he talented?* → **Is he talented?** · Is he graceful? · Is he shy?
+- Is he graceful? — *В записи последнее слово — `talented`, а в этом варианте — `graceful`.*
+- Is he shy? — *В записи последнее слово — `talented`, а в этом варианте — `shy`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-54:i16; family: speed_match -->
-unfamiliar — незнакомый · appropriate — уместный · familiar — знакомый · reliable — надёжный
+talented — талантливый · graceful — грациозный · stunning — потрясающий · dramatic — драматичный, эффектный
 
-**17 · Анна предлагает ещё одного мужчину в помощники. Спросите, надёжный ли он**
+**21 · Выходит новый солист. Спросите соседку, талантлив ли он.**
 <!-- interaction_id: en:lesson-02:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is he reliable?**
-
+🎙 **Is he talented?**

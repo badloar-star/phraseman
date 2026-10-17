@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-03:intro1:r2": {
-          "ru": "Перед `book` в этой фразе нужно `a`.",
-          "uk": "Перед `book` у цій фразі потрібно `a`."
+          "ru": "Перед stool нужно a: It is a stool.",
+          "uk": "Перед stool потрібне a: It is a stool."
         },
         "en:lesson-03:session-03:intro1:r3": {
-          "ru": "Первый звук в `book` согласный, поэтому `a`, не `an`.",
-          "uk": "Перший звук у `book` приголосний, тому `a`, не `an`."
+          "ru": "С It нужно is: It is a stool.",
+          "uk": "З It потрібне is: It is a stool."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-03:intro2:r2": {
-          "ru": "В названии `a book` пропало `a`.",
-          "uk": "У назві `a book` зникло `a`."
+          "ru": "Так звучит ответ «Это зеркало». Чтобы спросить, ставим Is вперёд: Is it a mirror?",
+          "uk": "Так звучить відповідь «Це дзеркало». Щоб запитати, ставимо Is наперед: Is it a mirror?"
         },
         "en:lesson-03:session-03:intro2:r3": {
-          "ru": "Это сообщение. Для вопроса начните с `Is it`.",
-          "uk": "Це повідомлення. Для запитання почніть з `Is it`."
+          "ru": "Перед mirror нужно a: Is it a mirror?",
+          "uk": "Перед mirror потрібне a: Is it a mirror?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-03:intro3:r2": {
-          "ru": "Это вопрос о месте предмета, а вы ищете свободного человека.",
-          "uk": "Це запитання про місце предмета, а ви шукаєте вільну людину."
+          "ru": "Перед rug нужно a: It's a rug.",
+          "uk": "Перед rug потрібне a: It's a rug."
         },
         "en:lesson-03:session-03:intro3:r3": {
-          "ru": "Между `Who` и `free` нужно `is`.",
-          "uk": "Між `Who` і `free` потрібно `is`."
+          "ru": "С not выходит «Это не коврик». А он раскатался по полу: It's a rug.",
+          "uk": "З not виходить «Це не килимок». А він розкотився по підлозі: It's a rug."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6e07ac1313da1db783e04dc38f7e1ae2d653cd3d74b40bbd8e9350b9cb3175c8"
+  "auxiliaryFingerprint": "a3a4d457aa2bda09ec866401e0014d90592739996108fa2f925cac683d1f05dd"
 }

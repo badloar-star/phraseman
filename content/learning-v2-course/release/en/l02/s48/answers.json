@@ -1,37 +1,52 @@
 [
   {
+    "interactionId": "en:lesson-02:session-48:word:blank",
+    "correctText": "blank",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-48:i01",
-    "correctText": "It is accurate.",
+    "correctText": "It is blank.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i02",
-    "correctText": "It is inaccurate.",
+    "correctText": "It is flimsy.",
     "correctResponseId": "en:lesson-02:session-48:i02:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-48:word:lopsided",
+    "correctText": "lopsided",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-48:i03",
-    "correctText": "Are",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-02:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i04",
-    "correctText": "en:lesson-02:session-48:i04:p1=accurate\nen:lesson-02:session-48:i04:p2=inaccurate\nen:lesson-02:session-48:i04:p3=uncertain\nen:lesson-02:session-48:i04:p4=appropriate",
+    "correctText": "en:lesson-02:session-48:i04:p1=blank\nen:lesson-02:session-48:i04:p2=faint\nen:lesson-02:session-48:i04:p3=lopsided\nen:lesson-02:session-48:i04:p4=flimsy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:word:faint",
+    "correctText": "faint",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i05",
-    "correctText": "Yes, I am.",
+    "correctText": "It is not faint.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i06",
-    "correctText": "What is acceptable?",
+    "correctText": "What is faint?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i07",
-    "correctText": "I'm uncertain.",
+    "correctText": "It's lopsided.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-48:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-48:word:bare",
+    "correctText": "bare",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-48:i09",
-    "correctText": "It is illegal.",
+    "correctText": "They are bare.",
     "correctResponseId": "en:lesson-02:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i10",
-    "correctText": "en:lesson-02:session-48:i10:p1=legal\nen:lesson-02:session-48:i10:p2=illegal\nen:lesson-02:session-48:i10:p3=acceptable\nen:lesson-02:session-48:i10:p4=inaccurate",
+    "correctText": "en:lesson-02:session-48:i10:p1=bare\nen:lesson-02:session-48:i10:p2=faint\nen:lesson-02:session-48:i10:p3=blunt\nen:lesson-02:session-48:i10:p4=sour",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i11",
-    "correctText": "It is not appropriate.",
+    "correctText": "They are not blank.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i12",
-    "correctText": "Is it legal?",
+    "correctText": "Is it bare?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i13",
-    "correctText": "It's appropriate.",
+    "correctText": "They're bare.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-48:i15",
-    "correctText": "Is it accurate?",
+    "correctText": "Is it faint?",
     "correctResponseId": "en:lesson-02:session-48:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-48:i16",
-    "correctText": "en:lesson-02:session-48:i16:p1=appropriate\nen:lesson-02:session-48:i16:p2=acceptable\nen:lesson-02:session-48:i16:p3=uncertain\nen:lesson-02:session-48:i16:p4=illegal",
+    "correctText": "en:lesson-02:session-48:i16:p1=blank\nen:lesson-02:session-48:i16:p2=faint\nen:lesson-02:session-48:i16:p3=lopsided\nen:lesson-02:session-48:i16:p4=bare",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-48:i17",
-    "correctText": "Is it acceptable?",
+    "correctText": "Is it blank?",
     "correctResponseId": null
   }
 ]

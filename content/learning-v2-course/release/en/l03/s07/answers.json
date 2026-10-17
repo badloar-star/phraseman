@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-03:session-07:word:drawer",
+    "correctText": "drawer",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-07:i01",
-    "correctText": "It is a cup.",
+    "correctText": "It is a drawer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:word:cupboard",
+    "correctText": "cupboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i02",
-    "correctText": "He is angry.",
+    "correctText": "It is a wardrobe.",
     "correctResponseId": "en:lesson-03:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:word:wardrobe",
+    "correctText": "wardrobe",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i03",
@@ -16,22 +31,27 @@
   },
   {
     "interactionId": "en:lesson-03:session-07:i04",
-    "correctText": "en:lesson-03:session-07:i04:p1=cup\nen:lesson-03:session-07:i04:p2=angry\nen:lesson-03:session-07:i04:p3=scared\nen:lesson-03:session-07:i04:p4=necessary",
+    "correctText": "en:lesson-03:session-07:i04:p1=drawer\nen:lesson-03:session-07:i04:p2=cupboard\nen:lesson-03:session-07:i04:p3=wardrobe\nen:lesson-03:session-07:i04:p4=hanger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i05",
-    "correctText": "It is a cup.",
+    "correctText": "It is a cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-07:word:hanger",
+    "correctText": "hanger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i06",
-    "correctText": "What is it?",
+    "correctText": "Is it a hanger?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i07",
-    "correctText": "It's unreliable.",
+    "correctText": "It's a hanger.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-07:i09",
-    "correctText": "Is he scared?",
+    "correctText": "Is it a wardrobe?",
     "correctResponseId": "en:lesson-03:session-07:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-07:i10",
-    "correctText": "en:lesson-03:session-07:i10:p1=unreliable\nen:lesson-03:session-07:i10:p2=cup\nen:lesson-03:session-07:i10:p3=pen\nen:lesson-03:session-07:i10:p4=scared",
+    "correctText": "en:lesson-03:session-07:i10:p1=hanger\nen:lesson-03:session-07:i10:p2=drawer\nen:lesson-03:session-07:i10:p3=desk\nen:lesson-03:session-07:i10:p4=sofa",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i11",
-    "correctText": "It is not necessary.",
+    "correctText": "It is not a drawer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i12",
-    "correctText": "Is it a cup?",
+    "correctText": "It is not a wardrobe.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i13",
-    "correctText": "He's angry.",
+    "correctText": "It's a cupboard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i14",
-    "correctText": "a",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-03:session-07:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-07:i15",
-    "correctText": "Is it unreliable?",
+    "correctText": "It is a hanger.",
     "correctResponseId": "en:lesson-03:session-07:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-07:i16",
-    "correctText": "en:lesson-03:session-07:i16:p1=cup\nen:lesson-03:session-07:i16:p2=book\nen:lesson-03:session-07:i16:p3=necessary\nen:lesson-03:session-07:i16:p4=unreliable",
+    "correctText": "en:lesson-03:session-07:i16:p1=wardrobe\nen:lesson-03:session-07:i16:p2=cupboard\nen:lesson-03:session-07:i16:p3=bed\nen:lesson-03:session-07:i16:p4=pillow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-07:i17",
-    "correctText": "It's a cup.",
+    "correctText": "Is it a drawer?",
     "correctResponseId": null
   }
 ]

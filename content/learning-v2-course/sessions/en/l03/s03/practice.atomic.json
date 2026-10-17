@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-03",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-03:word:stool",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stool",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:stool:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stool",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:stool:audio",
+            "transcript": "stool"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:stool:r1",
+              "targetText": "stool",
+              "meaningByLocale": {
+                "ru": "табурет. It is a stool — «Это табурет». Сиденье без спинки на трёх или четырёх ножках.",
+                "uk": "табурет. It is a stool — «Це табурет». Сидіння без спинки на трьох або чотирьох ніжках."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stool",
+            "definitionByLocale": {
+              "ru": "табурет. It is a stool — «Это табурет». Сиденье без спинки на трёх или четырёх ножках.",
+              "uk": "табурет. It is a stool — «Це табурет». Сидіння без спинки на трьох або чотирьох ніжках."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a stool.",
+          "localizedMeaning": {
+            "ru": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
+            "uk": "Подруга просила принести з комори будь-який табурет. Ви принесли. Скажіть їй повною фразою, що це табурет."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "stool"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a stool.`",
+                "uk": "тут потрібно `is` — `It is a stool.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:word:mirror",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mirror",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:mirror:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mirror",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:mirror:audio",
+            "transcript": "mirror"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:mirror:r1",
+              "targetText": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало. Is it a mirror? — «Это зеркало?» Карманное, настенное, в рост — всё это a mirror.",
+                "uk": "дзеркало. Is it a mirror? — «Це дзеркало?» Кишенькове, настінне, на зріст — усе це a mirror."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mirror",
+            "definitionByLocale": {
+              "ru": "зеркало. Is it a mirror? — «Это зеркало?» Карманное, настенное, в рост — всё это a mirror.",
+              "uk": "дзеркало. Is it a mirror? — «Це дзеркало?» Кишенькове, настінне, на зріст — усе це a mirror."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о вещи у двери",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i02:r1",
+            "text": "It is a rug."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i02:r2",
+            "text": "It is a mirror."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i02:r3",
+            "text": "It is a stool."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о вещи у двери",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i02:audio",
+            "transcript": "It is a rug."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:i02:r1",
+              "targetText": "It is a rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i02:r2",
+              "targetText": "It is a mirror.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i02:r3",
+              "targetText": "It is a stool.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о вещи у двери",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rug`, а в этом варианте — `mirror`.",
+                "uk": "У записі останнє слово — `rug`, а в цьому варіанті — `mirror`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о вещи у двери",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rug`, а в этом варианте — `stool`.",
+                "uk": "У записі останнє слово — `rug`, а в цьому варіанті — `stool`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+            "uk": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»"
+          },
+          "gappedTargetPhrase": "It is ___ mirror.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-03:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `mirror` нужно `a`.,Слово `is` у цій фразі вже є. Перед `mirror` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `mirror` нужно `a`.,Слово `It` у цій фразі вже є. Перед `mirror` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-03:i04:p1",
+              "target": "stool",
+              "meaningByLocale": {
+                "ru": "табурет",
+                "uk": "табурет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i04:p2",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i04:p3",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i04:p4",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stool",
+            "mirror",
+            "rug",
+            "picture"
+          ],
+          "rightColumn": [
+            "табурет",
+            "зеркало",
+            "коврик",
+            "картина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что говорит подруга, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i05:audio",
+            "transcript": "It is a mirror."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a mirror.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "mirror"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a mirror.`",
+                "uk": "тут потрібно `is` — `It is a mirror.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:word:picture",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — picture",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:picture:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — picture",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:picture:audio",
+            "transcript": "picture"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:picture:r1",
+              "targetText": "picture",
+              "meaningByLocale": {
+                "ru": "картина. It is a picture — «Это картина». Висит на стене в раме, а ещё это рисунок или фото.",
+                "uk": "картина. It is a picture — «Це картина». Висить на стіні в рамі, а ще це малюнок або фото."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "picture",
+            "definitionByLocale": {
+              "ru": "картина. It is a picture — «Это картина». Висит на стене в раме, а ещё это рисунок или фото.",
+              "uk": "картина. It is a picture — «Це картина». Висить на стіні в рамі, а ще це малюнок або фото."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a picture?",
+          "localizedMeaning": {
+            "ru": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
+            "uk": "Подруга дістає річ із рулону паперу. Запитайте її, чи це картина."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a picture?`",
+                "uk": "тут потрібно `Is` — `Is it a picture?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:word:rug",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:rug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:rug:audio",
+            "transcript": "rug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:rug:r1",
+              "targetText": "rug",
+              "meaningByLocale": {
+                "ru": "коврик. It's a rug — «Это коврик». Лежит на полу у двери, у кровати или под столом.",
+                "uk": "килимок. It's a rug — «Це килимок». Лежить на підлозі біля дверей, біля ліжка або під столом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rug",
+            "definitionByLocale": {
+              "ru": "коврик. It's a rug — «Это коврик». Лежит на полу у двери, у кровати или под столом.",
+              "uk": "килимок. It's a rug — «Це килимок». Лежить на підлозі біля дверей, біля ліжка або під столом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, что лежит у двери. Скажите коротко, что это коврик.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, что лежит у двери. Скажите коротко, что это коврик.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i07:audio",
+            "transcript": "It's a rug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a rug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-03:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i09:r1",
+            "text": "Is it a picture?"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i09:r2",
+            "text": "Is it a mirror?"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i09:r3",
+            "text": "Is it a rug?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i09:audio",
+            "transcript": "Is it a picture?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:i09:r1",
+              "targetText": "Is it a picture?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i09:r2",
+              "targetText": "Is it a mirror?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i09:r3",
+              "targetText": "Is it a rug?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `mirror`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `mirror`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-03:i10:p1",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i10:p2",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i10:p3",
+              "target": "stool",
+              "meaningByLocale": {
+                "ru": "табурет",
+                "uk": "табурет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i10:p4",
+              "target": "closed",
+              "meaningByLocale": {
+                "ru": "закрытый",
+                "uk": "закритий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "picture",
+            "rug",
+            "stool",
+            "closed"
+          ],
+          "rightColumn": [
+            "картина",
+            "коврик",
+            "табурет",
+            "закрытый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что подруга говорит о табурете, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о табурете, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i11:audio",
+            "transcript": "It is not a stool."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a stool.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "stool"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о табурете, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a stool.`",
+                "uk": "тут потрібно `is` — `It is not a stool.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a mirror.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
+            "uk": "Подруга сплутала картину з дзеркалом. Скажіть їй повною фразою, що це не дзеркало."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "mirror"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a mirror.`",
+                "uk": "тут потрібно `is` — `It is not a mirror.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы держите картину в руках. Скажите коротко, что это картина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i13:audio"
+        ],
+        "accessibilityLabel": "Вы держите картину в руках. Скажите коротко, что это картина.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i13:audio",
+            "transcript": "It's a picture."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a picture.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+            "uk": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок"
+          },
+          "gappedTargetPhrase": "___ it a rug?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-03:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a rug?`.",
+                "uk": "Питання — `Is it a rug?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о картине",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i15:r1",
+            "text": "It is a picture."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i15:r2",
+            "text": "It is a rug."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i15:r3",
+            "text": "It is a stool."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о картине",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i15:audio",
+            "transcript": "It is a picture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:i15:r1",
+              "targetText": "It is a picture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i15:r2",
+              "targetText": "It is a rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i15:r3",
+              "targetText": "It is a stool.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о картине",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о картине",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `stool`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `stool`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-03:i16:p1",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i16:p2",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i16:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i16:p4",
+              "target": "bed",
+              "meaningByLocale": {
+                "ru": "кровать",
+                "uk": "ліжко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mirror",
+            "picture",
+            "desk",
+            "bed"
+          ],
+          "rightColumn": [
+            "зеркало",
+            "картина",
+            "письменный стол",
+            "кровать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на вещь у стены. Спросите её, зеркало ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на вещь у стены. Спросите её, зеркало ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i17:audio",
+            "transcript": "Is it a mirror?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a mirror?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-03:word:stool",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stool",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:stool:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stool",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:stool:audio",
+            "transcript": "stool"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:stool:r1",
+              "targetText": "stool",
+              "meaningByLocale": {
+                "ru": "табурет. It is a stool — «Это табурет». Сиденье без спинки на трёх или четырёх ножках.",
+                "uk": "табурет. It is a stool — «Це табурет». Сидіння без спинки на трьох або чотирьох ніжках."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stool",
+            "definitionByLocale": {
+              "ru": "табурет. It is a stool — «Это табурет». Сиденье без спинки на трёх или четырёх ножках.",
+              "uk": "табурет. It is a stool — «Це табурет». Сидіння без спинки на трьох або чотирьох ніжках."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга просила принести з комори будь-який табурет. Ви принесли. Скажіть їй повною фразою, що це табурет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга просила принести з комори будь-який табурет. Ви принесли. Скажіть їй повною фразою, що це табурет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a stool.",
+          "localizedMeaning": {
+            "ru": "Подруга просила принести из кладовки любой табурет. Вы принесли. Скажите ей полной фразой, что это табурет.",
+            "uk": "Подруга просила принести з комори будь-який табурет. Ви принесли. Скажіть їй повною фразою, що це табурет."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "stool"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга просила принести з комори будь-який табурет. Ви принесли. Скажіть їй повною фразою, що це табурет.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a stool.`",
+                "uk": "тут потрібно `is` — `It is a stool.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:word:mirror",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mirror",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:mirror:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mirror",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:mirror:audio",
+            "transcript": "mirror"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:mirror:r1",
+              "targetText": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало. Is it a mirror? — «Это зеркало?» Карманное, настенное, в рост — всё это a mirror.",
+                "uk": "дзеркало. Is it a mirror? — «Це дзеркало?» Кишенькове, настінне, на зріст — усе це a mirror."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mirror",
+            "definitionByLocale": {
+              "ru": "зеркало. Is it a mirror? — «Это зеркало?» Карманное, настенное, в рост — всё это a mirror.",
+              "uk": "дзеркало. Is it a mirror? — «Це дзеркало?» Кишенькове, настінне, на зріст — усе це a mirror."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про річ біля дверей",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i02:r1",
+            "text": "It is a rug."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i02:r2",
+            "text": "It is a mirror."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i02:r3",
+            "text": "It is a stool."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про річ біля дверей",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i02:audio",
+            "transcript": "It is a rug."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:i02:r1",
+              "targetText": "It is a rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i02:r2",
+              "targetText": "It is a mirror.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i02:r3",
+              "targetText": "It is a stool.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про річ біля дверей",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rug`, а в этом варианте — `mirror`.",
+                "uk": "У записі останнє слово — `rug`, а в цьому варіанті — `mirror`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про річ біля дверей",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rug`, а в этом варианте — `stool`.",
+                "uk": "У записі останнє слово — `rug`, а в цьому варіанті — `stool`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На стене висит одно из зеркал. Дополните: «Это зеркало»",
+            "uk": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»"
+          },
+          "gappedTargetPhrase": "It is ___ mirror.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-03:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `mirror` нужно `a`.,Слово `is` у цій фразі вже є. Перед `mirror` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `mirror` нужно `a`.,Слово `It` у цій фразі вже є. Перед `mirror` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-03:i04:p1",
+              "target": "stool",
+              "meaningByLocale": {
+                "ru": "табурет",
+                "uk": "табурет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i04:p2",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i04:p3",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i04:p4",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stool",
+            "mirror",
+            "rug",
+            "picture"
+          ],
+          "rightColumn": [
+            "табурет",
+            "дзеркало",
+            "килимок",
+            "картина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що каже подруга, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i05:audio",
+            "transcript": "It is a mirror."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a mirror.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "mirror"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a mirror.`",
+                "uk": "тут потрібно `is` — `It is a mirror.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:word:picture",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — picture",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:picture:audio"
+        ],
+        "accessibilityLabel": "Картка слова — picture",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:picture:audio",
+            "transcript": "picture"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:picture:r1",
+              "targetText": "picture",
+              "meaningByLocale": {
+                "ru": "картина. It is a picture — «Это картина». Висит на стене в раме, а ещё это рисунок или фото.",
+                "uk": "картина. It is a picture — «Це картина». Висить на стіні в рамі, а ще це малюнок або фото."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "picture",
+            "definitionByLocale": {
+              "ru": "картина. It is a picture — «Это картина». Висит на стене в раме, а ещё это рисунок или фото.",
+              "uk": "картина. It is a picture — «Це картина». Висить на стіні в рамі, а ще це малюнок або фото."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга дістає річ із рулону паперу. Запитайте її, чи це картина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга дістає річ із рулону паперу. Запитайте її, чи це картина.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a picture?",
+          "localizedMeaning": {
+            "ru": "Подруга достаёт вещь из рулона бумаги. Спросите её, картина ли это.",
+            "uk": "Подруга дістає річ із рулону паперу. Запитайте її, чи це картина."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга дістає річ із рулону паперу. Запитайте її, чи це картина.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a picture?`",
+                "uk": "тут потрібно `Is` — `Is it a picture?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:word:rug",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:word:rug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:word:rug:audio",
+            "transcript": "rug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:word:rug:r1",
+              "targetText": "rug",
+              "meaningByLocale": {
+                "ru": "коврик. It's a rug — «Это коврик». Лежит на полу у двери, у кровати или под столом.",
+                "uk": "килимок. It's a rug — «Це килимок». Лежить на підлозі біля дверей, біля ліжка або під столом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rug",
+            "definitionByLocale": {
+              "ru": "коврик. It's a rug — «Это коврик». Лежит на полу у двери, у кровати или под столом.",
+              "uk": "килимок. It's a rug — «Це килимок». Лежить на підлозі біля дверей, біля ліжка або під столом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, що лежить біля дверей. Скажіть коротко, що це килимок.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, що лежить біля дверей. Скажіть коротко, що це килимок.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i07:audio",
+            "transcript": "It's a rug."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a rug.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it a stool?» Вы смотрите на табурет. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-03:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it a stool?» Ви дивитеся на табурет. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i09:r1",
+            "text": "Is it a picture?"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i09:r2",
+            "text": "Is it a mirror?"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i09:r3",
+            "text": "Is it a rug?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i09:audio",
+            "transcript": "Is it a picture?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:i09:r1",
+              "targetText": "Is it a picture?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i09:r2",
+              "targetText": "Is it a mirror?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i09:r3",
+              "targetText": "Is it a rug?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `mirror`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `mirror`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-03:i10:p1",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i10:p2",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i10:p3",
+              "target": "stool",
+              "meaningByLocale": {
+                "ru": "табурет",
+                "uk": "табурет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i10:p4",
+              "target": "closed",
+              "meaningByLocale": {
+                "ru": "закрытый",
+                "uk": "закритий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "picture",
+            "rug",
+            "stool",
+            "closed"
+          ],
+          "rightColumn": [
+            "картина",
+            "килимок",
+            "табурет",
+            "закритий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що подруга каже про табурет, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про табурет, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i11:audio",
+            "transcript": "It is not a stool."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a stool.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "stool"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про табурет, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a stool.`",
+                "uk": "тут потрібно `is` — `It is not a stool.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сплутала картину з дзеркалом. Скажіть їй повною фразою, що це не дзеркало.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сплутала картину з дзеркалом. Скажіть їй повною фразою, що це не дзеркало.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a mirror.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла картину за зеркало. Скажите ей полной фразой, что это не зеркало.",
+            "uk": "Подруга сплутала картину з дзеркалом. Скажіть їй повною фразою, що це не дзеркало."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "mirror"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга сплутала картину з дзеркалом. Скажіть їй повною фразою, що це не дзеркало.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a mirror.`",
+                "uk": "тут потрібно `is` — `It is not a mirror.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви тримаєте картину в руках. Скажіть коротко, що це картина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i13:audio"
+        ],
+        "accessibilityLabel": "Ви тримаєте картину в руках. Скажіть коротко, що це картина.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i13:audio",
+            "transcript": "It's a picture."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a picture.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на коврик у двери. Спросите её, коврик ли это",
+            "uk": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок"
+          },
+          "gappedTargetPhrase": "___ it a rug?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-03:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на килимок біля дверей. Запитайте її, чи це килимок",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a rug?`.",
+                "uk": "Питання — `Is it a rug?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про картину",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i15:r1",
+            "text": "It is a picture."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i15:r2",
+            "text": "It is a rug."
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i15:r3",
+            "text": "It is a stool."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про картину",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i15:audio",
+            "transcript": "It is a picture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-03:i15:r1",
+              "targetText": "It is a picture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i15:r2",
+              "targetText": "It is a rug.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i15:r3",
+              "targetText": "It is a stool.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-03:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про картину",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-03:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про картину",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `picture`, а в этом варианте — `stool`.",
+                "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `stool`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-03:i16:p1",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i16:p2",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i16:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-03:i16:p4",
+              "target": "bed",
+              "meaningByLocale": {
+                "ru": "кровать",
+                "uk": "ліжко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mirror",
+            "picture",
+            "desk",
+            "bed"
+          ],
+          "rightColumn": [
+            "дзеркало",
+            "картина",
+            "письмовий стіл",
+            "ліжко"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на річ біля стіни. Запитайте її, чи це дзеркало.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на річ біля стіни. Запитайте її, чи це дзеркало.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-03:i17:audio",
+            "transcript": "Is it a mirror?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a mirror?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-03:word:stool",
+      "correctText": "stool",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i01",
+      "correctText": "It is a stool.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:word:mirror",
+      "correctText": "mirror",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i02",
+      "correctText": "It is a rug.",
+      "correctResponseId": "en:lesson-03:session-03:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-03:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i05",
+      "correctText": "It is a mirror.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:word:picture",
+      "correctText": "picture",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i06",
+      "correctText": "Is it a picture?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:word:rug",
+      "correctText": "rug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i07",
+      "correctText": "It's a rug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-03:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i09",
+      "correctText": "Is it a picture?",
+      "correctResponseId": "en:lesson-03:session-03:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i11",
+      "correctText": "It is not a stool.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i12",
+      "correctText": "It is not a mirror.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i13",
+      "correctText": "It's a picture.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i14",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-03:session-03:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i15",
+      "correctText": "It is a picture.",
+      "correctResponseId": "en:lesson-03:session-03:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i17",
+      "correctText": "Is it a mirror?",
+      "correctResponseId": null
+    }
+  ]
+}

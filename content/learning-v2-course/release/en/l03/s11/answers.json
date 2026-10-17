@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-03:session-11:word:hour",
+    "correctText": "hour",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-11:i01",
-    "correctText": "It is a room.",
+    "correctText": "It is an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:word:uniform",
+    "correctText": "uniform",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i02",
-    "correctText": "The room is quiet.",
+    "correctText": "It is a uniform.",
     "correctResponseId": "en:lesson-03:session-11:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i03",
-    "correctText": "a",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-11:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i04",
-    "correctText": "en:lesson-03:session-11:i04:p1=room\nen:lesson-03:session-11:i04:p2=book\nen:lesson-03:session-11:i04:p3=quiet\nen:lesson-03:session-11:i04:p4=smart",
+    "correctText": "en:lesson-03:session-11:i04:p1=hour\nen:lesson-03:session-11:i04:p2=uniform\nen:lesson-03:session-11:i04:p3=armchair\nen:lesson-03:session-11:i04:p4=oven",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:word:euro",
+    "correctText": "euro",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i05",
-    "correctText": "Where is the book?",
+    "correctText": "It's a euro.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i06",
-    "correctText": "The room is quiet.",
+    "correctText": "Is it a uniform?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i07",
-    "correctText": "He is strong.",
+    "correctText": "It's an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:word:utensil",
+    "correctText": "utensil",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i08",
-    "correctText": "is",
+    "correctText": "a",
     "correctResponseId": "en:lesson-03:session-11:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i09",
-    "correctText": "It is urgent.",
+    "correctText": "Is it a euro?",
     "correctResponseId": "en:lesson-03:session-11:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i10",
-    "correctText": "en:lesson-03:session-11:i10:p1=strong\nen:lesson-03:session-11:i10:p2=urgent\nen:lesson-03:session-11:i10:p3=room\nen:lesson-03:session-11:i10:p4=book",
+    "correctText": "en:lesson-03:session-11:i10:p1=euro\nen:lesson-03:session-11:i10:p2=kettle\nen:lesson-03:session-11:i10:p3=utensil\nen:lesson-03:session-11:i10:p4=uniform",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i11",
-    "correctText": "The book is here.",
+    "correctText": "It is not a uniform.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i12",
-    "correctText": "Where is the room?",
+    "correctText": "It is a utensil.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i13",
-    "correctText": "She's smart.",
+    "correctText": "It's a euro.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i14",
-    "correctText": "The",
+    "correctText": "is",
     "correctResponseId": "en:lesson-03:session-11:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i15",
-    "correctText": "She is smart.",
+    "correctText": "It is an hour.",
     "correctResponseId": "en:lesson-03:session-11:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-11:i16",
-    "correctText": "en:lesson-03:session-11:i16:p1=smart\nen:lesson-03:session-11:i16:p2=strong\nen:lesson-03:session-11:i16:p3=quiet\nen:lesson-03:session-11:i16:p4=urgent",
+    "correctText": "en:lesson-03:session-11:i16:p1=uniform\nen:lesson-03:session-11:i16:p2=utensil\nen:lesson-03:session-11:i16:p3=hour\nen:lesson-03:session-11:i16:p4=euro",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-11:i17",
-    "correctText": "Where is the room?",
+    "correctText": "Is it a utensil?",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-14:word:sandwich",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sandwich",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:sandwich:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sandwich",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:sandwich:audio",
+            "transcript": "sandwich"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:sandwich:r1",
+              "targetText": "sandwich",
+              "meaningByLocale": {
+                "ru": "сэндвич, два куска хлеба с начинкой. It is a sandwich — «Это сэндвич». О сэндвиче с сыром, ветчиной, овощами.",
+                "uk": "сендвіч, два шматки хліба з начинкою. It is a sandwich — «Це сендвіч». Про сендвіч із сиром, шинкою, овочами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandwich",
+            "definitionByLocale": {
+              "ru": "сэндвич, два куска хлеба с начинкой. It is a sandwich — «Это сэндвич». О сэндвиче с сыром, ветчиной, овощами.",
+              "uk": "сендвіч, два шматки хліба з начинкою. It is a sandwich — «Це сендвіч». Про сендвіч із сиром, шинкою, овочами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Официантка принесла тарелку с сэндвичем. Скажите сестре полной фразой, что это сэндвич.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Официантка принесла тарелку с сэндвичем. Скажите сестре полной фразой, что это сэндвич.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a sandwich.",
+          "localizedMeaning": {
+            "ru": "Официантка принесла тарелку с сэндвичем. Скажите сестре полной фразой, что это сэндвич.",
+            "uk": "Офіціантка принесла тарілку із сендвічем. Скажіть сестрі повною фразою, що це сендвіч."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "sandwich"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Официантка принесла тарелку с сэндвичем. Скажите сестре полной фразой, что это сэндвич.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a sandwich.`",
+                "uk": "тут потрібно `a` — `It is a sandwich.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:word:salad",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — salad",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:salad:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — salad",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:salad:audio",
+            "transcript": "salad"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:salad:r1",
+              "targetText": "salad",
+              "meaningByLocale": {
+                "ru": "салат, блюдо из нарезанных овощей или других продуктов. Is it a salad? — «Это салат?» О салате из овощей, с курицей, с сыром.",
+                "uk": "салат, страва з нарізаних овочів або інших продуктів. Is it a salad? — «Це салат?» Про салат з овочів, з куркою, із сиром."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "salad",
+            "definitionByLocale": {
+              "ru": "салат, блюдо из нарезанных овощей или других продуктов. Is it a salad? — «Это салат?» О салате из овощей, с курицей, с сыром.",
+              "uk": "салат, страва з нарізаних овочів або інших продуктів. Is it a salad? — «Це салат?» Про салат з овочів, з куркою, із сиром."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что официантка говорит о блюде в меню",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i02:r1",
+            "text": "It is a salad."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i02:r2",
+            "text": "It is a sandwich."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i02:r3",
+            "text": "It is a teapot."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что официантка говорит о блюде в меню",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i02:audio",
+            "transcript": "It is a salad."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:i02:r1",
+              "targetText": "It is a salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i02:r2",
+              "targetText": "It is a sandwich.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i02:r3",
+              "targetText": "It is a teapot.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что официантка говорит о блюде в меню",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `salad`, а в этом варианте — `sandwich`.",
+                "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `sandwich`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что официантка говорит о блюде в меню",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `salad`, а в этом варианте — `teapot`.",
+                "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `teapot`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Официантка ставит на стол сэндвич. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Официантка ставит на стол сэндвич. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Официантка ставит на стол сэндвич. Дополните фразу",
+            "uk": "Офіціантка ставить на стіл сендвіч. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ sandwich.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-14:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Официантка ставит на стол сэндвич. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Официантка ставит на стол сэндвич. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово sandwich начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово sandwich починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Официантка ставит на стол сэндвич. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед sandwich нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед sandwich потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-14:i04:p1",
+              "target": "sandwich",
+              "meaningByLocale": {
+                "ru": "сэндвич",
+                "uk": "сендвіч"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i04:p2",
+              "target": "salad",
+              "meaningByLocale": {
+                "ru": "салат",
+                "uk": "салат"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i04:p3",
+              "target": "teapot",
+              "meaningByLocale": {
+                "ru": "заварочный чайник",
+                "uk": "чайник для заварювання"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i04:p4",
+              "target": "vase",
+              "meaningByLocale": {
+                "ru": "ваза",
+                "uk": "ваза"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sandwich",
+            "salad",
+            "teapot",
+            "vase"
+          ],
+          "rightColumn": [
+            "сэндвич",
+            "салат",
+            "заварочный чайник",
+            "ваза"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:word:egg",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — egg",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:egg:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — egg",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:egg:audio",
+            "transcript": "egg"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:egg:r1",
+              "targetText": "egg",
+              "meaningByLocale": {
+                "ru": "яйцо. It's an egg — «Это яйцо». О варёном яйце, о яйце в корзинке, на кухне.",
+                "uk": "яйце. It's an egg — «Це яйце». Про варене яйце, про яйце в кошику, на кухні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "egg",
+            "definitionByLocale": {
+              "ru": "яйцо. It's an egg — «Это яйцо». О варёном яйце, о яйце в корзинке, на кухне.",
+              "uk": "яйце. It's an egg — «Це яйце». Про варене яйце, про яйце в кошику, на кухні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i05:audio",
+            "transcript": "It's an egg."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's an egg.",
+          "orderedTokens": [
+            "It's",
+            "an",
+            "egg"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It's an egg.`",
+                "uk": "тут потрібно `an` — `It's an egg.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:word:omelette",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — omelette",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:omelette:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — omelette",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:omelette:audio",
+            "transcript": "omelette"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:omelette:r1",
+              "targetText": "omelette",
+              "meaningByLocale": {
+                "ru": "омлет, блюдо из взбитых и обжаренных яиц. Is it an omelette? — «Это омлет?» Об омлете с сыром, с грибами, с овощами.",
+                "uk": "омлет, страва зі збитих і засмажених яєць. Is it an omelette? — «Це омлет?» Про омлет із сиром, з грибами, з овочами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "omelette",
+            "definitionByLocale": {
+              "ru": "омлет, блюдо из взбитых и обжаренных яиц. Is it an omelette? — «Это омлет?» Об омлете с сыром, с грибами, с овощами.",
+              "uk": "омлет, страва зі збитих і засмажених яєць. Is it an omelette? — «Це омлет?» Про омлет із сиром, з грибами, з овочами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В меню строчка с яйцами и сыром. Спросите официантку, омлет ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В меню строчка с яйцами и сыром. Спросите официантку, омлет ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an omelette?",
+          "localizedMeaning": {
+            "ru": "В меню строчка с яйцами и сыром. Спросите официантку, омлет ли это.",
+            "uk": "У меню рядок із яйцями та сиром. Запитайте офіціантку, чи це омлет."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "omelette"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "В меню строчка с яйцами и сыром. Спросите официантку, омлет ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an omelette?`",
+                "uk": "тут потрібно `an` — `Is it an omelette?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Официантка принесла яйцо в корзинке. Скажите коротко, что это яйцо.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Официантка принесла яйцо в корзинке. Скажите коротко, что это яйцо.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i07:audio",
+            "transcript": "It's an egg."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an egg.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра спрашивает, сэндвич ли это на тарелке. Нет, это салат. Дополните ответ",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра спрашивает, сэндвич ли это на тарелке. Нет, это салат. Дополните ответ",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра спрашивает, сэндвич ли это на тарелке. Нет, это салат. Дополните ответ",
+            "uk": "Сестра питає, чи це сендвіч на тарілці. Ні, це салат. Доповніть відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___ not a sandwich.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-14:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сестра спрашивает, сэндвич ли это на тарелке. Нет, это салат. Дополните ответ",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Сестра спрашивает, сэндвич ли это на тарелке. Нет, это салат. Дополните ответ",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: No, it is not a sandwich.",
+                "uk": "З it потрібно is: No, it is not a sandwich."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Сестра спрашивает, сэндвич ли это на тарелке. Нет, это салат. Дополните ответ",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: No, it is not a sandwich.",
+                "uk": "З it потрібно is: No, it is not a sandwich."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос сестры",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i09:r1",
+            "text": "Is it an omelette?"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i09:r2",
+            "text": "Is it a salad?"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i09:r3",
+            "text": "Is it a sandwich?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос сестры",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i09:audio",
+            "transcript": "Is it an omelette?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:i09:r1",
+              "targetText": "Is it an omelette?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i09:r2",
+              "targetText": "Is it a salad?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i09:r3",
+              "targetText": "Is it a sandwich?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос сестры",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `salad`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `salad`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос сестры",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `sandwich`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `sandwich`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-14:i10:p1",
+              "target": "egg",
+              "meaningByLocale": {
+                "ru": "яйцо",
+                "uk": "яйце"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i10:p2",
+              "target": "omelette",
+              "meaningByLocale": {
+                "ru": "омлет",
+                "uk": "омлет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i10:p3",
+              "target": "salad",
+              "meaningByLocale": {
+                "ru": "салат",
+                "uk": "салат"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i10:p4",
+              "target": "sandwich",
+              "meaningByLocale": {
+                "ru": "сэндвич",
+                "uk": "сендвіч"
+              }
+            }
+          ],
+          "leftColumn": [
+            "egg",
+            "omelette",
+            "salad",
+            "sandwich"
+          ],
+          "rightColumn": [
+            "яйцо",
+            "омлет",
+            "салат",
+            "сэндвич"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте официантку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте официантку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i11:audio",
+            "transcript": "It is not an egg."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not an egg.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "an",
+            "egg"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте официантку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is not an egg.`",
+                "uk": "тут потрібно `an` — `It is not an egg.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Официантка ставит на стол миску. Скажите сестре, что это салат.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Официантка ставит на стол миску. Скажите сестре, что это салат.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a salad.",
+          "localizedMeaning": {
+            "ru": "Официантка ставит на стол миску. Скажите сестре, что это салат.",
+            "uk": "Офіціантка ставить на стіл миску. Скажіть сестрі, що це салат."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "salad"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Официантка ставит на стол миску. Скажите сестре, что это салат.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a salad.`",
+                "uk": "тут потрібно `a` — `It is a salad.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра показывает на омлет в меню. Скажите коротко, что это омлет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра показывает на омлет в меню. Скажите коротко, что это омлет.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i13:audio",
+            "transcript": "It's an omelette."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an omelette.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Официантка кладёт на тарелку яйцо. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i14:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i14:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Официантка кладёт на тарелку яйцо. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Официантка кладёт на тарелку яйцо. Дополните фразу",
+            "uk": "Офіціантка кладе на тарілку яйце. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ egg.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-14:i14:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i14:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Официантка кладёт на тарелку яйцо. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i14:r2",
+              "correct": false,
+              "testedDimension": "Официантка кладёт на тарелку яйцо. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово egg начинается с гласного звука, поэтому здесь an.",
+                "uk": "Слово egg починається з голосного звуку, тому тут an."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i14:r3",
+              "correct": false,
+              "testedDimension": "Официантка кладёт на тарелку яйцо. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед egg нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед egg потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит официантка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i15:r1",
+            "text": "It's an omelette."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i15:r2",
+            "text": "It's an egg."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i15:r3",
+            "text": "It's a salad."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит официантка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i15:audio",
+            "transcript": "It's an omelette."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:i15:r1",
+              "targetText": "It's an omelette.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i15:r2",
+              "targetText": "It's an egg.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i15:r3",
+              "targetText": "It's a salad.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит официантка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `egg`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `egg`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит официантка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `salad`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `salad`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-14:i16:p1",
+              "target": "salad",
+              "meaningByLocale": {
+                "ru": "салат",
+                "uk": "салат"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i16:p2",
+              "target": "omelette",
+              "meaningByLocale": {
+                "ru": "омлет",
+                "uk": "омлет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i16:p3",
+              "target": "egg",
+              "meaningByLocale": {
+                "ru": "яйцо",
+                "uk": "яйце"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i16:p4",
+              "target": "teapot",
+              "meaningByLocale": {
+                "ru": "заварочный чайник",
+                "uk": "чайник для заварювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "salad",
+            "omelette",
+            "egg",
+            "teapot"
+          ],
+          "rightColumn": [
+            "салат",
+            "омлет",
+            "яйцо",
+            "заварочный чайник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы хотите заказать лёгкий обед. Спросите официантку, сэндвич ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Вы хотите заказать лёгкий обед. Спросите официантку, сэндвич ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i17:audio",
+            "transcript": "Is it a sandwich?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a sandwich?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-14:word:sandwich",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sandwich",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:sandwich:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sandwich",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:sandwich:audio",
+            "transcript": "sandwich"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:sandwich:r1",
+              "targetText": "sandwich",
+              "meaningByLocale": {
+                "ru": "сэндвич, два куска хлеба с начинкой. It is a sandwich — «Это сэндвич». О сэндвиче с сыром, ветчиной, овощами.",
+                "uk": "сендвіч, два шматки хліба з начинкою. It is a sandwich — «Це сендвіч». Про сендвіч із сиром, шинкою, овочами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandwich",
+            "definitionByLocale": {
+              "ru": "сэндвич, два куска хлеба с начинкой. It is a sandwich — «Это сэндвич». О сэндвиче с сыром, ветчиной, овощами.",
+              "uk": "сендвіч, два шматки хліба з начинкою. It is a sandwich — «Це сендвіч». Про сендвіч із сиром, шинкою, овочами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Офіціантка принесла тарілку із сендвічем. Скажіть сестрі повною фразою, що це сендвіч.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Офіціантка принесла тарілку із сендвічем. Скажіть сестрі повною фразою, що це сендвіч.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a sandwich.",
+          "localizedMeaning": {
+            "ru": "Официантка принесла тарелку с сэндвичем. Скажите сестре полной фразой, что это сэндвич.",
+            "uk": "Офіціантка принесла тарілку із сендвічем. Скажіть сестрі повною фразою, що це сендвіч."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "sandwich"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Офіціантка принесла тарілку із сендвічем. Скажіть сестрі повною фразою, що це сендвіч.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a sandwich.`",
+                "uk": "тут потрібно `a` — `It is a sandwich.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:word:salad",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — salad",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:salad:audio"
+        ],
+        "accessibilityLabel": "Картка слова — salad",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:salad:audio",
+            "transcript": "salad"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:salad:r1",
+              "targetText": "salad",
+              "meaningByLocale": {
+                "ru": "салат, блюдо из нарезанных овощей или других продуктов. Is it a salad? — «Это салат?» О салате из овощей, с курицей, с сыром.",
+                "uk": "салат, страва з нарізаних овочів або інших продуктів. Is it a salad? — «Це салат?» Про салат з овочів, з куркою, із сиром."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "salad",
+            "definitionByLocale": {
+              "ru": "салат, блюдо из нарезанных овощей или других продуктов. Is it a salad? — «Это салат?» О салате из овощей, с курицей, с сыром.",
+              "uk": "салат, страва з нарізаних овочів або інших продуктів. Is it a salad? — «Це салат?» Про салат з овочів, з куркою, із сиром."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що офіціантка каже про страву в меню",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i02:r1",
+            "text": "It is a salad."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i02:r2",
+            "text": "It is a sandwich."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i02:r3",
+            "text": "It is a teapot."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що офіціантка каже про страву в меню",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i02:audio",
+            "transcript": "It is a salad."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:i02:r1",
+              "targetText": "It is a salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i02:r2",
+              "targetText": "It is a sandwich.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i02:r3",
+              "targetText": "It is a teapot.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що офіціантка каже про страву в меню",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `salad`, а в этом варианте — `sandwich`.",
+                "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `sandwich`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що офіціантка каже про страву в меню",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `salad`, а в этом варианте — `teapot`.",
+                "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `teapot`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Офіціантка ставить на стіл сендвіч. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Офіціантка ставить на стіл сендвіч. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Официантка ставит на стол сэндвич. Дополните фразу",
+            "uk": "Офіціантка ставить на стіл сендвіч. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ sandwich.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-14:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Офіціантка ставить на стіл сендвіч. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Офіціантка ставить на стіл сендвіч. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово sandwich начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово sandwich починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Офіціантка ставить на стіл сендвіч. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед sandwich нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед sandwich потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-14:i04:p1",
+              "target": "sandwich",
+              "meaningByLocale": {
+                "ru": "сэндвич",
+                "uk": "сендвіч"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i04:p2",
+              "target": "salad",
+              "meaningByLocale": {
+                "ru": "салат",
+                "uk": "салат"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i04:p3",
+              "target": "teapot",
+              "meaningByLocale": {
+                "ru": "заварочный чайник",
+                "uk": "чайник для заварювання"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i04:p4",
+              "target": "vase",
+              "meaningByLocale": {
+                "ru": "ваза",
+                "uk": "ваза"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sandwich",
+            "salad",
+            "teapot",
+            "vase"
+          ],
+          "rightColumn": [
+            "сендвіч",
+            "салат",
+            "чайник для заварювання",
+            "ваза"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:word:egg",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — egg",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:egg:audio"
+        ],
+        "accessibilityLabel": "Картка слова — egg",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:egg:audio",
+            "transcript": "egg"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:egg:r1",
+              "targetText": "egg",
+              "meaningByLocale": {
+                "ru": "яйцо. It's an egg — «Это яйцо». О варёном яйце, о яйце в корзинке, на кухне.",
+                "uk": "яйце. It's an egg — «Це яйце». Про варене яйце, про яйце в кошику, на кухні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "egg",
+            "definitionByLocale": {
+              "ru": "яйцо. It's an egg — «Это яйцо». О варёном яйце, о яйце в корзинке, на кухне.",
+              "uk": "яйце. It's an egg — «Це яйце». Про варене яйце, про яйце в кошику, на кухні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i05:audio",
+            "transcript": "It's an egg."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's an egg.",
+          "orderedTokens": [
+            "It's",
+            "an",
+            "egg"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It's an egg.`",
+                "uk": "тут потрібно `an` — `It's an egg.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:word:omelette",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — omelette",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:word:omelette:audio"
+        ],
+        "accessibilityLabel": "Картка слова — omelette",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:word:omelette:audio",
+            "transcript": "omelette"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:word:omelette:r1",
+              "targetText": "omelette",
+              "meaningByLocale": {
+                "ru": "омлет, блюдо из взбитых и обжаренных яиц. Is it an omelette? — «Это омлет?» Об омлете с сыром, с грибами, с овощами.",
+                "uk": "омлет, страва зі збитих і засмажених яєць. Is it an omelette? — «Це омлет?» Про омлет із сиром, з грибами, з овочами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "omelette",
+            "definitionByLocale": {
+              "ru": "омлет, блюдо из взбитых и обжаренных яиц. Is it an omelette? — «Это омлет?» Об омлете с сыром, с грибами, с овощами.",
+              "uk": "омлет, страва зі збитих і засмажених яєць. Is it an omelette? — «Це омлет?» Про омлет із сиром, з грибами, з овочами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У меню рядок із яйцями та сиром. Запитайте офіціантку, чи це омлет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У меню рядок із яйцями та сиром. Запитайте офіціантку, чи це омлет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an omelette?",
+          "localizedMeaning": {
+            "ru": "В меню строчка с яйцами и сыром. Спросите официантку, омлет ли это.",
+            "uk": "У меню рядок із яйцями та сиром. Запитайте офіціантку, чи це омлет."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "omelette"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "У меню рядок із яйцями та сиром. Запитайте офіціантку, чи це омлет.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an omelette?`",
+                "uk": "тут потрібно `an` — `Is it an omelette?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Офіціантка принесла яйце в кошику. Скажіть коротко, що це яйце.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Офіціантка принесла яйце в кошику. Скажіть коротко, що це яйце.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i07:audio",
+            "transcript": "It's an egg."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an egg.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра питає, чи це сендвіч на тарілці. Ні, це салат. Доповніть відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра питає, чи це сендвіч на тарілці. Ні, це салат. Доповніть відповідь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра спрашивает, сэндвич ли это на тарелке. Нет, это салат. Дополните ответ",
+            "uk": "Сестра питає, чи це сендвіч на тарілці. Ні, це салат. Доповніть відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___ not a sandwich.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-14:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сестра питає, чи це сендвіч на тарілці. Ні, це салат. Доповніть відповідь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Сестра питає, чи це сендвіч на тарілці. Ні, це салат. Доповніть відповідь",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: No, it is not a sandwich.",
+                "uk": "З it потрібно is: No, it is not a sandwich."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Сестра питає, чи це сендвіч на тарілці. Ні, це салат. Доповніть відповідь",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: No, it is not a sandwich.",
+                "uk": "З it потрібно is: No, it is not a sandwich."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання сестри",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i09:r1",
+            "text": "Is it an omelette?"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i09:r2",
+            "text": "Is it a salad?"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i09:r3",
+            "text": "Is it a sandwich?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання сестри",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i09:audio",
+            "transcript": "Is it an omelette?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:i09:r1",
+              "targetText": "Is it an omelette?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i09:r2",
+              "targetText": "Is it a salad?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i09:r3",
+              "targetText": "Is it a sandwich?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сестри",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `salad`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `salad`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сестри",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `sandwich`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `sandwich`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-14:i10:p1",
+              "target": "egg",
+              "meaningByLocale": {
+                "ru": "яйцо",
+                "uk": "яйце"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i10:p2",
+              "target": "omelette",
+              "meaningByLocale": {
+                "ru": "омлет",
+                "uk": "омлет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i10:p3",
+              "target": "salad",
+              "meaningByLocale": {
+                "ru": "салат",
+                "uk": "салат"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i10:p4",
+              "target": "sandwich",
+              "meaningByLocale": {
+                "ru": "сэндвич",
+                "uk": "сендвіч"
+              }
+            }
+          ],
+          "leftColumn": [
+            "egg",
+            "omelette",
+            "salad",
+            "sandwich"
+          ],
+          "rightColumn": [
+            "яйце",
+            "омлет",
+            "салат",
+            "сендвіч"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте офіціантку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте офіціантку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i11:audio",
+            "transcript": "It is not an egg."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not an egg.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "an",
+            "egg"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте офіціантку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is not an egg.`",
+                "uk": "тут потрібно `an` — `It is not an egg.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Офіціантка ставить на стіл миску. Скажіть сестрі, що це салат.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Офіціантка ставить на стіл миску. Скажіть сестрі, що це салат.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a salad.",
+          "localizedMeaning": {
+            "ru": "Официантка ставит на стол миску. Скажите сестре, что это салат.",
+            "uk": "Офіціантка ставить на стіл миску. Скажіть сестрі, що це салат."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "salad"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Офіціантка ставить на стіл миску. Скажіть сестрі, що це салат.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a salad.`",
+                "uk": "тут потрібно `a` — `It is a salad.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра показує на омлет у меню. Скажіть коротко, що це омлет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра показує на омлет у меню. Скажіть коротко, що це омлет.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i13:audio",
+            "transcript": "It's an omelette."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an omelette.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Офіціантка кладе на тарілку яйце. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i14:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i14:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Офіціантка кладе на тарілку яйце. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Официантка кладёт на тарелку яйцо. Дополните фразу",
+            "uk": "Офіціантка кладе на тарілку яйце. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ egg.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-14:i14:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i14:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Офіціантка кладе на тарілку яйце. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i14:r2",
+              "correct": false,
+              "testedDimension": "Офіціантка кладе на тарілку яйце. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово egg начинается с гласного звука, поэтому здесь an.",
+                "uk": "Слово egg починається з голосного звуку, тому тут an."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i14:r3",
+              "correct": false,
+              "testedDimension": "Офіціантка кладе на тарілку яйце. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед egg нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед egg потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже офіціантка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i15:r1",
+            "text": "It's an omelette."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i15:r2",
+            "text": "It's an egg."
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i15:r3",
+            "text": "It's a salad."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже офіціантка",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i15:audio",
+            "transcript": "It's an omelette."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-14:i15:r1",
+              "targetText": "It's an omelette.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i15:r2",
+              "targetText": "It's an egg.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i15:r3",
+              "targetText": "It's a salad.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже офіціантка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `egg`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `egg`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже офіціантка",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `omelette`, а в этом варианте — `salad`.",
+                "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `salad`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-14:i16:p1",
+              "target": "salad",
+              "meaningByLocale": {
+                "ru": "салат",
+                "uk": "салат"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i16:p2",
+              "target": "omelette",
+              "meaningByLocale": {
+                "ru": "омлет",
+                "uk": "омлет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i16:p3",
+              "target": "egg",
+              "meaningByLocale": {
+                "ru": "яйцо",
+                "uk": "яйце"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-14:i16:p4",
+              "target": "teapot",
+              "meaningByLocale": {
+                "ru": "заварочный чайник",
+                "uk": "чайник для заварювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "salad",
+            "omelette",
+            "egg",
+            "teapot"
+          ],
+          "rightColumn": [
+            "салат",
+            "омлет",
+            "яйце",
+            "чайник для заварювання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви хочете замовити легкий обід. Запитайте офіціантку, чи це сендвіч.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Ви хочете замовити легкий обід. Запитайте офіціантку, чи це сендвіч.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-14:i17:audio",
+            "transcript": "Is it a sandwich?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a sandwich?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-14:word:sandwich",
+      "correctText": "sandwich",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i01",
+      "correctText": "It is a sandwich.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:word:salad",
+      "correctText": "salad",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i02",
+      "correctText": "It is a salad.",
+      "correctResponseId": "en:lesson-03:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:word:egg",
+      "correctText": "egg",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i05",
+      "correctText": "It's an egg.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:word:omelette",
+      "correctText": "omelette",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i06",
+      "correctText": "Is it an omelette?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i07",
+      "correctText": "It's an egg.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i09",
+      "correctText": "Is it an omelette?",
+      "correctResponseId": "en:lesson-03:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i11",
+      "correctText": "It is not an egg.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i12",
+      "correctText": "It is a salad.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i13",
+      "correctText": "It's an omelette.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i14",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-03:session-14:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i15",
+      "correctText": "It's an omelette.",
+      "correctResponseId": "en:lesson-03:session-14:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i17",
+      "correctText": "Is it a sandwich?",
+      "correctResponseId": null
+    }
+  ]
+}

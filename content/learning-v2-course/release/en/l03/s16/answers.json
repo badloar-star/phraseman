@@ -1,13 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-03:session-16:word:invoice",
+    "correctText": "invoice",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-16:i01",
-    "correctText": "It is a table.",
+    "correctText": "It is an invoice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-16:word:discount",
+    "correctText": "discount",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i02",
-    "correctText": "The door is closed.",
+    "correctText": "It is a discount.",
     "correctResponseId": "en:lesson-03:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-16:word:warranty",
+    "correctText": "warranty",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i03",
@@ -16,22 +31,27 @@
   },
   {
     "interactionId": "en:lesson-03:session-16:i04",
-    "correctText": "en:lesson-03:session-16:i04:p1=door\nen:lesson-03:session-16:i04:p2=lock\nen:lesson-03:session-16:i04:p3=room\nen:lesson-03:session-16:i04:p4=table",
+    "correctText": "en:lesson-03:session-16:i04:p1=invoice\nen:lesson-03:session-16:i04:p2=discount\nen:lesson-03:session-16:i04:p3=warranty\nen:lesson-03:session-16:i04:p4=candle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-16:word:address",
+    "correctText": "address",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i05",
-    "correctText": "The picture is here.",
+    "correctText": "It's an address.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i06",
-    "correctText": "Where is the coat?",
+    "correctText": "Is it an address?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i07",
-    "correctText": "The lock is old.",
+    "correctText": "It's a discount.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-16:i09",
-    "correctText": "The room is quiet.",
+    "correctText": "Is it a warranty?",
     "correctResponseId": "en:lesson-03:session-16:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-16:i10",
-    "correctText": "en:lesson-03:session-16:i10:p1=window\nen:lesson-03:session-16:i10:p2=picture\nen:lesson-03:session-16:i10:p3=coat\nen:lesson-03:session-16:i10:p4=door",
+    "correctText": "en:lesson-03:session-16:i10:p1=address\nen:lesson-03:session-16:i10:p2=warranty\nen:lesson-03:session-16:i10:p3=lantern\nen:lesson-03:session-16:i10:p4=plant",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i11",
-    "correctText": "Where is the table?",
+    "correctText": "It is not an address.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i12",
-    "correctText": "Is the window closed?",
+    "correctText": "Is it a discount?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i13",
-    "correctText": "Where is the picture?",
+    "correctText": "It's an invoice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i14",
-    "correctText": "The",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-16:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-16:i15",
-    "correctText": "The lock is old.",
+    "correctText": "It's an address.",
     "correctResponseId": "en:lesson-03:session-16:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-16:i16",
-    "correctText": "en:lesson-03:session-16:i16:p1=table\nen:lesson-03:session-16:i16:p2=window\nen:lesson-03:session-16:i16:p3=picture\nen:lesson-03:session-16:i16:p4=coat",
+    "correctText": "en:lesson-03:session-16:i16:p1=discount\nen:lesson-03:session-16:i16:p2=address\nen:lesson-03:session-16:i16:p3=invoice\nen:lesson-03:session-16:i16:p4=oven",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i17",
-    "correctText": "Is the window closed?",
+    "correctText": "Is it an invoice?",
     "correctResponseId": null
   }
 ]

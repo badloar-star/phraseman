@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-04:word:key",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — key",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:key:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — key",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:key:audio",
+            "transcript": "key"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:key:r1",
+              "targetText": "key",
+              "meaningByLocale": {
+                "ru": "ключ. It is a key — «Это ключ». От двери, от шкафа, от почтового ящика.",
+                "uk": "ключ. It is a key — «Це ключ». Від дверей, від шафи, від поштової скриньки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "key",
+            "definitionByLocale": {
+              "ru": "ключ. It is a key — «Это ключ». От двери, от шкафа, от почтового ящика.",
+              "uk": "ключ. It is a key — «Це ключ». Від дверей, від шафи, від поштової скриньки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Хозяин отдал вам связку и сказал быстро. Скажите ему полной фразой, что это ключ.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хозяин отдал вам связку и сказал быстро. Скажите ему полной фразой, что это ключ.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a key.",
+          "localizedMeaning": {
+            "ru": "Хозяин отдал вам связку и сказал быстро. Скажите ему полной фразой, что это ключ.",
+            "uk": "Господар віддав вам зв'язку й сказав швидко. Скажіть йому повною фразою, що це ключ."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "key"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Хозяин отдал вам связку и сказал быстро. Скажите ему полной фразой, что это ключ.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a key.`",
+                "uk": "тут потрібно `is` — `It is a key.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:word:door",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:door:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:door:audio",
+            "transcript": "door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:door:r1",
+              "targetText": "door",
+              "meaningByLocale": {
+                "ru": "дверь. Is it a door? — «Это дверь?» Входная, комнатная, шкафная — всё это a door.",
+                "uk": "двері. Is it a door? — «Це двері?» Вхідні, кімнатні, шафові — усе це a door."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "door",
+            "definitionByLocale": {
+              "ru": "дверь. Is it a door? — «Это дверь?» Входная, комнатная, шкафная — всё это a door.",
+              "uk": "двері. Is it a door? — «Це двері?» Вхідні, кімнатні, шафові — усе це a door."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что хозяин говорит в коридоре",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i02:r1",
+            "text": "It is a door."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i02:r2",
+            "text": "It is a window."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i02:r3",
+            "text": "It is a key."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что хозяин говорит в коридоре",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i02:audio",
+            "transcript": "It is a door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:i02:r1",
+              "targetText": "It is a door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i02:r2",
+              "targetText": "It is a window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i02:r3",
+              "targetText": "It is a key.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что хозяин говорит в коридоре",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
+                "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что хозяин говорит в коридоре",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `door`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `door`, а в цьому варіанті — `key`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:word:window",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — window",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:window:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — window",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:window:audio",
+            "transcript": "window"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:window:r1",
+              "targetText": "window",
+              "meaningByLocale": {
+                "ru": "окно. It is not a window — «Это не окно». Через окно в комнату попадает свет.",
+                "uk": "вікно. It is not a window — «Це не вікно». Через вікно в кімнату потрапляє світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "window",
+            "definitionByLocale": {
+              "ru": "окно. It is not a window — «Это не окно». Через окно в комнату попадает свет.",
+              "uk": "вікно. It is not a window — «Це не вікно». Через вікно в кімнату потрапляє світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Хозяин показывает на окно в комнате. Дополните: «Это окно»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хозяин показывает на окно в комнате. Дополните: «Это окно»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин показывает на окно в комнате. Дополните: «Это окно»",
+            "uk": "Господар показує на вікно в кімнаті. Доповніть: «Це вікно»"
+          },
+          "gappedTargetPhrase": "It is ___ window.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-04:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "Хозяин показывает на окно в комнате. Дополните: «Это окно»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Хозяин показывает на окно в комнате. Дополните: «Это окно»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `window` нужно `a`.,Слово `is` у цій фразі вже є. Перед `window` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Хозяин показывает на окно в комнате. Дополните: «Это окно»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `window` нужно `a`.,Слово `It` у цій фразі вже є. Перед `window` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-04:i04:p1",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i04:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i04:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i04:p4",
+              "target": "lock",
+              "meaningByLocale": {
+                "ru": "замок",
+                "uk": "замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "key",
+            "door",
+            "window",
+            "lock"
+          ],
+          "rightColumn": [
+            "ключ",
+            "дверь",
+            "окно",
+            "замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:word:lock",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:lock:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:lock:audio",
+            "transcript": "lock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:lock:r1",
+              "targetText": "lock",
+              "meaningByLocale": {
+                "ru": "замок. It's a lock — «Это замок». В него вставляют ключ, чтобы запереть дверь.",
+                "uk": "замок. It's a lock — «Це замок». У нього вставляють ключ, щоб замкнути двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lock",
+            "definitionByLocale": {
+              "ru": "замок. It's a lock — «Это замок». В него вставляют ключ, чтобы запереть дверь.",
+              "uk": "замок. It's a lock — «Це замок». У нього вставляють ключ, щоб замкнути двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что говорит хозяин, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит хозяин, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i05:audio",
+            "transcript": "It is a lock."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a lock.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "lock"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит хозяин, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a lock.`",
+                "uk": "тут потрібно `is` — `It is a lock.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у двери без ручки. Спросите хозяина, дверь ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у двери без ручки. Спросите хозяина, дверь ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a door?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у двери без ручки. Спросите хозяина, дверь ли это.",
+            "uk": "Ви стоїте біля дверей без ручки. Запитайте господаря, чи це двері."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите у двери без ручки. Спросите хозяина, дверь ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a door?`",
+                "uk": "тут потрібно `Is` — `Is it a door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Хозяин спрашивает, что у вас в руке. Скажите коротко, что это ключ.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Хозяин спрашивает, что у вас в руке. Скажите коротко, что это ключ.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i07:audio",
+            "transcript": "It's a key."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a key.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Хозяин спросил: «Is it a window?» Вы смотрите на окно. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хозяин спросил: «Is it a window?» Вы смотрите на окно. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин спросил: «Is it a window?» Вы смотрите на окно. Дополните короткое «да»",
+            "uk": "Господар спитав: «Is it a window?» Ви дивитеся на вікно. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-04:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Хозяин спросил: «Is it a window?» Вы смотрите на окно. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Хозяин спросил: «Is it a window?» Вы смотрите на окно. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Хозяин спросил: «Is it a window?» Вы смотрите на окно. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос хозяина",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i09:r1",
+            "text": "Is it a lock?"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i09:r2",
+            "text": "It is a lock."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i09:r3",
+            "text": "Is it a key?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос хозяина",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i09:audio",
+            "transcript": "Is it a lock?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:i09:r1",
+              "targetText": "Is it a lock?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i09:r2",
+              "targetText": "It is a lock.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i09:r3",
+              "targetText": "Is it a key?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос хозяина",
+              "feedbackByLocale": {
+                "ru": "В записи сначала звучит `Is`: это вопрос. А в этом варианте стоит утверждение `It is`.",
+                "uk": "У записі спочатку звучить `Is`: це запитання. А в цьому варіанті стоїть твердження `It is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос хозяина",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lock`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `key`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-04:i10:p1",
+              "target": "lock",
+              "meaningByLocale": {
+                "ru": "замок",
+                "uk": "замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i10:p4",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lock",
+            "door",
+            "window",
+            "mirror"
+          ],
+          "rightColumn": [
+            "замок",
+            "дверь",
+            "окно",
+            "зеркало"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что хозяин говорит о двери, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что хозяин говорит о двери, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i11:audio",
+            "transcript": "It is not a door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a door.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что хозяин говорит о двери, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a door.`",
+                "uk": "тут потрібно `is` — `It is not a door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга приняла замок за ключ. Скажите ей полной фразой, что это не ключ.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга приняла замок за ключ. Скажите ей полной фразой, что это не ключ.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a key.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла замок за ключ. Скажите ей полной фразой, что это не ключ.",
+            "uk": "Подруга сплутала замок із ключем. Скажіть їй повною фразою, що це не ключ."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "key"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга приняла замок за ключ. Скажите ей полной фразой, что это не ключ.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a key.`",
+                "uk": "тут потрібно `is` — `It is not a key.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы показываете на замок на двери. Скажите коротко, что это замок.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "Вы показываете на замок на двери. Скажите коротко, что это замок.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i13:audio",
+            "transcript": "It's a lock."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a lock.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Хозяин показывает на дверь в конце коридора. Спросите его, дверь ли это",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хозяин показывает на дверь в конце коридора. Спросите его, дверь ли это",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин показывает на дверь в конце коридора. Спросите его, дверь ли это",
+            "uk": "Господар показує на двері наприкінці коридору. Запитайте його, чи це двері"
+          },
+          "gappedTargetPhrase": "___ it a door?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-04:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Хозяин показывает на дверь в конце коридора. Спросите его, дверь ли это",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "Хозяин показывает на дверь в конце коридора. Спросите его, дверь ли это",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "Хозяин показывает на дверь в конце коридора. Спросите его, дверь ли это",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a door?`.",
+                "uk": "Питання — `Is it a door?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что хозяин говорит о замке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i15:r1",
+            "text": "It is a lock."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i15:r2",
+            "text": "It is a key."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i15:r3",
+            "text": "It is a door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что хозяин говорит о замке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i15:audio",
+            "transcript": "It is a lock."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:i15:r1",
+              "targetText": "It is a lock.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i15:r2",
+              "targetText": "It is a key.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i15:r3",
+              "targetText": "It is a door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что хозяин говорит о замке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lock`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `key`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что хозяин говорит о замке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lock`, а в этом варианте — `door`.",
+                "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `door`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-04:i16:p1",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i16:p2",
+              "target": "lock",
+              "meaningByLocale": {
+                "ru": "замок",
+                "uk": "замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i16:p3",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i16:p4",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "key",
+            "lock",
+            "door",
+            "rug"
+          ],
+          "rightColumn": [
+            "ключ",
+            "замок",
+            "дверь",
+            "коврик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Хозяин показывает на окно на кухне. Спросите его, окно ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Хозяин показывает на окно на кухне. Спросите его, окно ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i17:audio",
+            "transcript": "Is it a window?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a window?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-04:word:key",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — key",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:key:audio"
+        ],
+        "accessibilityLabel": "Картка слова — key",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:key:audio",
+            "transcript": "key"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:key:r1",
+              "targetText": "key",
+              "meaningByLocale": {
+                "ru": "ключ. It is a key — «Это ключ». От двери, от шкафа, от почтового ящика.",
+                "uk": "ключ. It is a key — «Це ключ». Від дверей, від шафи, від поштової скриньки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "key",
+            "definitionByLocale": {
+              "ru": "ключ. It is a key — «Это ключ». От двери, от шкафа, от почтового ящика.",
+              "uk": "ключ. It is a key — «Це ключ». Від дверей, від шафи, від поштової скриньки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Господар віддав вам зв'язку й сказав швидко. Скажіть йому повною фразою, що це ключ.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Господар віддав вам зв'язку й сказав швидко. Скажіть йому повною фразою, що це ключ.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a key.",
+          "localizedMeaning": {
+            "ru": "Хозяин отдал вам связку и сказал быстро. Скажите ему полной фразой, что это ключ.",
+            "uk": "Господар віддав вам зв'язку й сказав швидко. Скажіть йому повною фразою, що це ключ."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "key"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Господар віддав вам зв'язку й сказав швидко. Скажіть йому повною фразою, що це ключ.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a key.`",
+                "uk": "тут потрібно `is` — `It is a key.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:word:door",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:door:audio"
+        ],
+        "accessibilityLabel": "Картка слова — door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:door:audio",
+            "transcript": "door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:door:r1",
+              "targetText": "door",
+              "meaningByLocale": {
+                "ru": "дверь. Is it a door? — «Это дверь?» Входная, комнатная, шкафная — всё это a door.",
+                "uk": "двері. Is it a door? — «Це двері?» Вхідні, кімнатні, шафові — усе це a door."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "door",
+            "definitionByLocale": {
+              "ru": "дверь. Is it a door? — «Это дверь?» Входная, комнатная, шкафная — всё это a door.",
+              "uk": "двері. Is it a door? — «Це двері?» Вхідні, кімнатні, шафові — усе це a door."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що господар каже в коридорі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i02:r1",
+            "text": "It is a door."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i02:r2",
+            "text": "It is a window."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i02:r3",
+            "text": "It is a key."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що господар каже в коридорі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i02:audio",
+            "transcript": "It is a door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:i02:r1",
+              "targetText": "It is a door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i02:r2",
+              "targetText": "It is a window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i02:r3",
+              "targetText": "It is a key.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що господар каже в коридорі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
+                "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що господар каже в коридорі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `door`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `door`, а в цьому варіанті — `key`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:word:window",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — window",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:window:audio"
+        ],
+        "accessibilityLabel": "Картка слова — window",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:window:audio",
+            "transcript": "window"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:window:r1",
+              "targetText": "window",
+              "meaningByLocale": {
+                "ru": "окно. It is not a window — «Это не окно». Через окно в комнату попадает свет.",
+                "uk": "вікно. It is not a window — «Це не вікно». Через вікно в кімнату потрапляє світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "window",
+            "definitionByLocale": {
+              "ru": "окно. It is not a window — «Это не окно». Через окно в комнату попадает свет.",
+              "uk": "вікно. It is not a window — «Це не вікно». Через вікно в кімнату потрапляє світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Господар показує на вікно в кімнаті. Доповніть: «Це вікно»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Господар показує на вікно в кімнаті. Доповніть: «Це вікно»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин показывает на окно в комнате. Дополните: «Это окно»",
+            "uk": "Господар показує на вікно в кімнаті. Доповніть: «Це вікно»"
+          },
+          "gappedTargetPhrase": "It is ___ window.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-04:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "Господар показує на вікно в кімнаті. Доповніть: «Це вікно»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Господар показує на вікно в кімнаті. Доповніть: «Це вікно»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `window` нужно `a`.,Слово `is` у цій фразі вже є. Перед `window` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Господар показує на вікно в кімнаті. Доповніть: «Це вікно»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `window` нужно `a`.,Слово `It` у цій фразі вже є. Перед `window` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-04:i04:p1",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i04:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i04:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i04:p4",
+              "target": "lock",
+              "meaningByLocale": {
+                "ru": "замок",
+                "uk": "замок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "key",
+            "door",
+            "window",
+            "lock"
+          ],
+          "rightColumn": [
+            "ключ",
+            "двері",
+            "вікно",
+            "замок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:word:lock",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:word:lock:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:word:lock:audio",
+            "transcript": "lock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:word:lock:r1",
+              "targetText": "lock",
+              "meaningByLocale": {
+                "ru": "замок. It's a lock — «Это замок». В него вставляют ключ, чтобы запереть дверь.",
+                "uk": "замок. It's a lock — «Це замок». У нього вставляють ключ, щоб замкнути двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lock",
+            "definitionByLocale": {
+              "ru": "замок. It's a lock — «Это замок». В него вставляют ключ, чтобы запереть дверь.",
+              "uk": "замок. It's a lock — «Це замок». У нього вставляють ключ, щоб замкнути двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що каже господар, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже господар, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i05:audio",
+            "transcript": "It is a lock."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a lock.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "lock"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже господар, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a lock.`",
+                "uk": "тут потрібно `is` — `It is a lock.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля дверей без ручки. Запитайте господаря, чи це двері.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля дверей без ручки. Запитайте господаря, чи це двері.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a door?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у двери без ручки. Спросите хозяина, дверь ли это.",
+            "uk": "Ви стоїте біля дверей без ручки. Запитайте господаря, чи це двері."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля дверей без ручки. Запитайте господаря, чи це двері.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a door?`",
+                "uk": "тут потрібно `Is` — `Is it a door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Господар питає, що у вас у руці. Скажіть коротко, що це ключ.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Господар питає, що у вас у руці. Скажіть коротко, що це ключ.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i07:audio",
+            "transcript": "It's a key."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a key.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Господар спитав: «Is it a window?» Ви дивитеся на вікно. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Господар спитав: «Is it a window?» Ви дивитеся на вікно. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин спросил: «Is it a window?» Вы смотрите на окно. Дополните короткое «да»",
+            "uk": "Господар спитав: «Is it a window?» Ви дивитеся на вікно. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-04:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Господар спитав: «Is it a window?» Ви дивитеся на вікно. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Господар спитав: «Is it a window?» Ви дивитеся на вікно. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Господар спитав: «Is it a window?» Ви дивитеся на вікно. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання господаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i09:r1",
+            "text": "Is it a lock?"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i09:r2",
+            "text": "It is a lock."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i09:r3",
+            "text": "Is it a key?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання господаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i09:audio",
+            "transcript": "Is it a lock?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:i09:r1",
+              "targetText": "Is it a lock?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i09:r2",
+              "targetText": "It is a lock.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i09:r3",
+              "targetText": "Is it a key?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання господаря",
+              "feedbackByLocale": {
+                "ru": "В записи сначала звучит `Is`: это вопрос. А в этом варианте стоит утверждение `It is`.",
+                "uk": "У записі спочатку звучить `Is`: це запитання. А в цьому варіанті стоїть твердження `It is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання господаря",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lock`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `key`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-04:i10:p1",
+              "target": "lock",
+              "meaningByLocale": {
+                "ru": "замок",
+                "uk": "замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i10:p2",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i10:p3",
+              "target": "window",
+              "meaningByLocale": {
+                "ru": "окно",
+                "uk": "вікно"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i10:p4",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lock",
+            "door",
+            "window",
+            "mirror"
+          ],
+          "rightColumn": [
+            "замок",
+            "двері",
+            "вікно",
+            "дзеркало"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що господар каже про двері, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що господар каже про двері, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i11:audio",
+            "transcript": "It is not a door."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a door.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що господар каже про двері, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a door.`",
+                "uk": "тут потрібно `is` — `It is not a door.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сплутала замок із ключем. Скажіть їй повною фразою, що це не ключ.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сплутала замок із ключем. Скажіть їй повною фразою, що це не ключ.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a key.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла замок за ключ. Скажите ей полной фразой, что это не ключ.",
+            "uk": "Подруга сплутала замок із ключем. Скажіть їй повною фразою, що це не ключ."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "key"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга сплутала замок із ключем. Скажіть їй повною фразою, що це не ключ.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a key.`",
+                "uk": "тут потрібно `is` — `It is not a key.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви показуєте на замок на дверях. Скажіть коротко, що це замок.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "Ви показуєте на замок на дверях. Скажіть коротко, що це замок.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i13:audio",
+            "transcript": "It's a lock."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a lock.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Господар показує на двері наприкінці коридору. Запитайте його, чи це двері",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Господар показує на двері наприкінці коридору. Запитайте його, чи це двері",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин показывает на дверь в конце коридора. Спросите его, дверь ли это",
+            "uk": "Господар показує на двері наприкінці коридору. Запитайте його, чи це двері"
+          },
+          "gappedTargetPhrase": "___ it a door?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-04:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Господар показує на двері наприкінці коридору. Запитайте його, чи це двері",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "Господар показує на двері наприкінці коридору. Запитайте його, чи це двері",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "Господар показує на двері наприкінці коридору. Запитайте його, чи це двері",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a door?`.",
+                "uk": "Питання — `Is it a door?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що господар каже про замок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-04:i15:r1",
+            "text": "It is a lock."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i15:r2",
+            "text": "It is a key."
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i15:r3",
+            "text": "It is a door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що господар каже про замок",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i15:audio",
+            "transcript": "It is a lock."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-04:i15:r1",
+              "targetText": "It is a lock.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i15:r2",
+              "targetText": "It is a key.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i15:r3",
+              "targetText": "It is a door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що господар каже про замок",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lock`, а в этом варианте — `key`.",
+                "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `key`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що господар каже про замок",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lock`, а в этом варианте — `door`.",
+                "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `door`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-04:i16:p1",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i16:p2",
+              "target": "lock",
+              "meaningByLocale": {
+                "ru": "замок",
+                "uk": "замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i16:p3",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-04:i16:p4",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "key",
+            "lock",
+            "door",
+            "rug"
+          ],
+          "rightColumn": [
+            "ключ",
+            "замок",
+            "двері",
+            "килимок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Господар показує на вікно на кухні. Запитайте його, чи це вікно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Господар показує на вікно на кухні. Запитайте його, чи це вікно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-04:i17:audio",
+            "transcript": "Is it a window?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a window?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-04:word:key",
+      "correctText": "key",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i01",
+      "correctText": "It is a key.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:word:door",
+      "correctText": "door",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i02",
+      "correctText": "It is a door.",
+      "correctResponseId": "en:lesson-03:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:word:window",
+      "correctText": "window",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:word:lock",
+      "correctText": "lock",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i05",
+      "correctText": "It is a lock.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i06",
+      "correctText": "Is it a door?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i07",
+      "correctText": "It's a key.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i09",
+      "correctText": "Is it a lock?",
+      "correctResponseId": "en:lesson-03:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i11",
+      "correctText": "It is not a door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i12",
+      "correctText": "It is not a key.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i13",
+      "correctText": "It's a lock.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i14",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-03:session-04:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i15",
+      "correctText": "It is a lock.",
+      "correctResponseId": "en:lesson-03:session-04:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i17",
+      "correctText": "Is it a window?",
+      "correctResponseId": null
+    }
+  ]
+}

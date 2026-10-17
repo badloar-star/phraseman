@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 7 — Расписать чашку
+# Английский · Урок 3 · Занятие 07 — Шкафы и ящики
 
-**Ситуация.** Вы с Анной пришли расписывать керамику. Вы выбрали чашку. Олег сердится из-за пятна на рукаве, а собака хозяйки испугалась грома. Фартук нужен, чтобы защитить одежду. Старый таймер постоянно сбивается, на него нельзя положиться.
+**Ситуация.** Вы с подругой собираете последнюю мебель: комод, кухонный шкафчик и высокий шкаф для одежды. Подруга держит детали, а вы называете их и спрашиваете, что это.
 
-**Что вы освоите:** назвать чашку, спросить о предмете и описать знакомые состояния
-**Новые слова:** cup
+**Что вы освоите:** назвать шкафы и ящики без подсказок
+**Новые слова:** drawer, cupboard, wardrobe, hanger
+**Возвращаются:** bed, desk, sofa, pillow
 
 ---
 
 ## Интро 1
 
-### Чашка ждёт рисунка
+### Ящик в комоде
 
-`cup` — «чашка», из неё пьют чай или кофе. `It is a cup` — «Это чашка». Первый звук в `cup` согласный, поэтому `a cup`. Олег нарисовал на чашке печенье. К чаю оно, к сожалению, не подойдёт. Рисунок меняет вид чашки, но не её название: `a cup`.
+Вы собираете комод, и подруга пробует выдвинуть нижний ящик. Сначала он идёт туго, потом легко, и вдруг вылетает целиком ей в руки. Она едва успевает подхватить его, пока он не упал на ногу. drawer — «выдвижной ящик». It is a drawer — «Это ящик».
 
-**Вы выбрали чашку для росписи. Назовите предмет полной фразой.**
+**Подруга держит ящик на весу. Скажите ей полной фразой, что это ящик.**
 
-- ✅ **It is a cup.**
-- ❌ It is cup. — *Перед `cup` в этом названии нужно `a`.*
-- ❌ It is an cup. — *Перед согласным звуком в `cup` нужно `a`, не `an`.*
+- ✅ **It is a drawer.**
+- ❌ It is drawer. — *Перед drawer нужно a: It is a drawer.*
+- ❌ It a drawer. — *Между It и a нужно is: It is a drawer.*
 
 ---
 
 ## Интро 2
 
-### Что она выбрала
+### Низкий шкафчик на кухне
 
-`What is it?` — «Что это?» Вы не знаете, какой предмет выбрала Анна. Если уже предполагаете чашку, спросите `Is it a cup?` — «Это чашка?» В ответе-отрицании `It is not a cup` сохраняем название `a cup`: `not` стоит перед ним, а не вместо `a`.
+На кухне у стены стоит низкий шкафчик с двумя дверцами. Подруга осторожно открывает его и заглядывает внутрь: пусто, пахнет свежей краской. Вы стоите в коридоре и ничего не видите. cupboard — «шкафчик для посуды». Is it a cupboard? — «Это шкафчик?»
 
-**Анна держит небольшой предмет, его закрывает упаковка. Спросите, чашка ли это.**
+**Подруга зовёт вас из кухни. Спросите её, шкафчик ли это.**
 
-- ✅ **Is it a cup?**
-- ❌ Is it cup? — *В названии `a cup` пропало `a`.*
-- ❌ It is a cup. — *Это сообщение. Для вопроса начните с `Is it`.*
+- ✅ **Is it a cupboard?**
+- ❌ It is a cupboard. — *Так звучит ответ «Это шкафчик». Чтобы спросить, ставим Is вперёд: Is it a cupboard?*
+- ❌ Is it cupboard? — *Перед cupboard нужно a: Is it a cupboard?*
 
 ---
 
 ## Интро 3
 
-### Пятно, гром и таймер
+### Шкаф до потолка
 
-`angry` — «сердитый»: Олег сердится из-за пятна. `scared` — «испуганный»: собака испугалась грома. `necessary` — «необходимый»: фартук нужен для защиты одежды. `unreliable` — «ненадёжный»: старый таймер часто сбивается. В `It is necessary` описываем необходимость предмета; перед отдельным `necessary` не ставим `a`.
+В спальне у стены стоит высокий шкаф почти до потолка, пока без дверей. Подруга уже прикидывает, куда повесить платья, и замеряет высоту шагами. wardrobe — «платяной шкаф». It's a wardrobe — «Это платяной шкаф». Он займёт всю стену и закроет розетку.
 
-**Фартук нужен для защиты одежды от краски. Скажите полной фразой, что он необходим.**
+**Подруга замеряет высоту шагами. Скажите ей коротко, что это платяной шкаф.**
 
-- ✅ **It is necessary.**
-- ❌ It is a necessary. — *Перед отдельным `necessary` здесь не нужно `a`.*
-- ❌ It are necessary. — *С `It` нужно `is`.*
+- ✅ **It's a wardrobe.**
+- ❌ It's wardrobe. — *Перед wardrobe нужно a: It's a wardrobe.*
+- ❌ It's not a wardrobe. — *С not выходит «Это не платяной шкаф». А он стоит у стены: It's a wardrobe.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы показываете выбранную чашку. Назовите предмет полной фразой**
+**1 · Карточка слова — drawer**
+<!-- interaction_id: en:lesson-03:session-07:word:drawer; family: word_card -->
+> **drawer** — выдвижной ящик. It is a drawer — «Это ящик». В комоде, в столе, в тумбочке.
+
+**2 · Подруга вытащила ящик из комода. Скажите ей полной фразой, что это ящик.**
 <!-- interaction_id: en:lesson-03:session-07:i01; family: phrase_builder -->
-Плитки: `cup` `a` `is` `It` `are` → **It is a cup.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is a cup.`)*
+Плитки: `drawer` `a` `is` `It` `are` → **It is a drawer.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is a drawer.`)*
 
-**2 · Послушайте фразу об Олеге**
+**3 · Карточка слова — cupboard**
+<!-- interaction_id: en:lesson-03:session-07:word:cupboard; family: word_card -->
+> **cupboard** — шкафчик для посуды. Is it a cupboard? — «Это шкафчик?» Обычно на кухне.
+
+**4 · Послушайте, что подруга говорит о мебели**
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
-🔊 *He is angry.* → **He is angry.** · He is scared. · He is calm.
-- He is scared. — *В записи последнее слово — `angry`, а в этом варианте — `scared`.*
-- He is calm. — *В записи последнее слово — `angry`, а в этом варианте — `calm`.*
+🔊 *It is a wardrobe.* → **It is a wardrobe.** · It is a cupboard. · It is a drawer.
+- It is a cupboard. — *В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.*
+- It is a drawer. — *В записи последнее слово — `wardrobe`, а в этом варианте — `drawer`.*
 
-**3 · Дополните название чашки**
+**5 · Карточка слова — wardrobe**
+<!-- interaction_id: en:lesson-03:session-07:word:wardrobe; family: word_card -->
+> **wardrobe** — платяной шкаф. It's a wardrobe — «Это платяной шкаф». В нём хранят одежду.
+
+**6 · Подруга показывает на высокий шкаф. Дополните: «Это платяной шкаф»**
 <!-- interaction_id: en:lesson-03:session-07:i03; family: context_gap_grammar -->
-It is ___ cup. → **a** · an · is
-- an — *Перед согласным звуком в `cup` нужно `a`.*
-- is — *`is` уже есть; перед `cup` нужно `a`.*
+It is ___ wardrobe. → **a** · is · it
+- is — *is*
+- it — *it*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-07:i04; family: speed_match -->
-cup — чашка · angry — сердитый · scared — испуганный · necessary — необходимый
+drawer — ящик стола · cupboard — шкафчик, буфет · wardrobe — платяной шкаф · hanger — вешалка-плечики
 
-**5 · Послушайте и соберите фразу**
+**8 · Послушайте, что говорит подруга, и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-07:i05; family: listen_build_dictation -->
-🔊 *It is a cup.* Плитки: `cup` `a` `is` `It` `are` → **It is a cup.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is a cup.`)*
+🔊 *It is a cupboard.* Плитки: `cupboard` `a` `is` `It` `are` → **It is a cupboard.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is a cupboard.`)*
 
-**6 · Анна достала выбранный предмет, но вам его не видно. Спросите, что это**
+**9 · Карточка слова — hanger**
+<!-- interaction_id: en:lesson-03:session-07:word:hanger; family: word_card -->
+> **hanger** — плечики, вешалка для одежды. It is a hanger — «Это вешалка». На ней висит рубашка.
+
+**10 · Подруга держит проволочную вещицу, на которой висит рубашка. Спросите её, вешалка ли это.**
 <!-- interaction_id: en:lesson-03:session-07:i06; family: phrase_builder -->
-Плитки: `it` `is` `What` `Where` → **What is it?**
-*(плитка `Where` лишняя: здесь нужно `What` — `What is it?`)*
+Плитки: `hanger` `a` `it` `Is` `Are` → **Is it a hanger?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it a hanger?`)*
 
-**7 · Таймер постоянно сбивается, на него нельзя положиться. Скажите «Он ненадёжный» с сокращением**
+**11 · Подруга спрашивает, что висит в шкафу. Скажите коротко, что это вешалка.**
 <!-- interaction_id: en:lesson-03:session-07:i07; family: scripted_repeat_compare -->
-🎙 **It's unreliable.**
+🎙 **It's a hanger.**
 
-**8 · Фартук нужен, чтобы не испачкать одежду. Сообщите, что он необходим**
+**12 · Подруга спросила: «Is it a drawer?» Вы смотрите на ящик комода. Дополните короткое «да»**
 <!-- interaction_id: en:lesson-03:session-07:i08; family: context_gap_grammar -->
-It ___ necessary. → **is** · is a · are
-- is a — *Перед отдельным `necessary` здесь не нужно `a`.*
-- are — *С `It` нужно `is`.*
+Yes, it ___. → **is** · am · are
+- am — *С `it` нужно `is`.*
+- are — *Ответ — `Yes, it is`.*
 
-**9 · Послушайте вопрос о псе хозяйки**
+**13 · Послушайте вопрос подруги**
 <!-- interaction_id: en:lesson-03:session-07:i09; family: listen_choose -->
-🔊 *Is he scared?* → **Is he scared?** · Is he angry? · Is he calm?
-- Is he angry? — *В записи последнее слово — `scared`, а в этом варианте — `angry`.*
-- Is he calm? — *В записи последнее слово — `scared`, а в этом варианте — `calm`.*
+🔊 *Is it a wardrobe?* → **Is it a wardrobe?** · Is it a cupboard? · Is it a hanger?
+- Is it a cupboard? — *В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.*
+- Is it a hanger? — *В записи последнее слово — `wardrobe`, а в этом варианте — `hanger`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-07:i10; family: speed_match -->
-unreliable — ненадёжный · cup — чашка · pen — ручка · scared — испуганный
+hanger — вешалка-плечики · drawer — ящик стола · desk — письменный стол · sofa — диван
 
-**11 · Послушайте и соберите фразу о дополнительном фартуке**
+**15 · Послушайте, что подруга говорит о ящике, и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-07:i11; family: listen_build_dictation -->
-🔊 *It is not necessary.* Плитки: `necessary` `not` `is` `It` `are` → **It is not necessary.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is not necessary.`)*
+🔊 *It is not a drawer.* Плитки: `drawer` `a` `not` `is` `It` `are` → **It is not a drawer.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not a drawer.`)*
 
-**12 · В коробке виден край керамического предмета. Спросите, чашка ли это**
+**16 · Подруга приняла шкафчик за платяной шкаф. Скажите ей полной фразой, что это не платяной шкаф.**
 <!-- interaction_id: en:lesson-03:session-07:i12; family: phrase_builder -->
-Плитки: `cup` `a` `it` `Is` `Are` → **Is it a cup?**
-*(плитка `Are` лишняя: здесь нужно `Is` — `Is it a cup?`)*
+Плитки: `wardrobe` `a` `not` `is` `It` `are` → **It is not a wardrobe.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not a wardrobe.`)*
 
-**13 · Олег сердится из-за пятна на рукаве. Сообщите это с сокращением**
+**17 · Вы показываете на низкий шкафчик на кухне. Скажите коротко, что это шкафчик.**
 <!-- interaction_id: en:lesson-03:session-07:i13; family: scripted_repeat_compare -->
-🎙 **He's angry.**
+🎙 **It's a cupboard.**
 
-**14 · Анна приняла маленькую вазу за чашку. Дополните «Это не чашка»**
+**18 · Подруга держит плечики. Спросите её, вешалка ли это**
 <!-- interaction_id: en:lesson-03:session-07:i14; family: context_gap_grammar -->
-It is not ___ cup. → **a** · an · is
-- an — *После `not` сохраняем `a cup`.*
-- is — *Перед `cup` нужно `a`; `is` уже есть.*
+___ it a hanger? → **Is** · Am · Are
+- Am — *С `it` нужно `Is`.*
+- Are — *Вопрос — `Is it a hanger?`.*
 
-**15 · Послушайте вопрос о таймере**
+**19 · Послушайте, что подруга говорит о вешалке**
 <!-- interaction_id: en:lesson-03:session-07:i15; family: listen_choose -->
-🔊 *Is it unreliable?* → **Is it unreliable?** · Is it necessary? · Is it reliable?
-- Is it necessary? — *В записи последнее слово — `unreliable`, а в этом варианте — `necessary`.*
-- Is it reliable? — *В записи последнее слово — `unreliable`, а в этом варианте — `reliable`.*
+🔊 *It is a hanger.* → **It is a hanger.** · It is a drawer. · It is a cupboard.
+- It is a drawer. — *В записи последнее слово — `hanger`, а в этом варианте — `drawer`.*
+- It is a cupboard. — *В записи последнее слово — `hanger`, а в этом варианте — `cupboard`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-07:i16; family: speed_match -->
-cup — чашка · book — книга · necessary — необходимый · unreliable — ненадёжный
+wardrobe — платяной шкаф · cupboard — шкафчик, буфет · bed — кровать · pillow — подушка
 
-**17 · Позже вы показываете другу фотографию расписанной чашки. Назовите предмет: «Это чашка», с сокращением**
+**21 · Подруга стоит у комода. Спросите её, ящик ли это.**
 <!-- interaction_id: en:lesson-03:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **It's a cup.**
-
+🎙 **Is it a drawer?**

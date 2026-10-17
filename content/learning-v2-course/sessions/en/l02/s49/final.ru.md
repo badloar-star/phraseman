@@ -1,138 +1,154 @@
-# Английский · Урок 2 · Занятие 49 — Заказ с ошибкой
+# Английский · Урок 2 · Занятие 49 — Сборы в поездку
 
-**Ситуация.** Вы с Анной получили напечатанные приглашения. Цена была низкой, но в первой партии неверно указаны дата и адрес. Для рассылки гостям такой результат не подходит. Вы проверяете исправленный вариант.
+**Ситуация.** Вы с мамой собираете вещи в поездку к родным. Вы разбираете шкаф и корзину с бельём, решаете, что взять, что постирать и что выбросить.
 
-**Что вы освоите:** сказать, что результат неприемлем, и уточнить оценку
-**Новые слова:** unacceptable
+**Что вы освоите:** описать одежду, скатерть, ремень и носки и спросить о них
+**Новые слова:** wrinkled, stained, frayed, smelly
+**Возвращаются:** torn, worn, damp, dirty, clean
 
 ---
 
 ## Интро 1
 
-### Так принять нельзя
+### Рубашка из шкафа
 
-`unacceptable` — «неприемлемый»: результат нельзя принять по нужным требованиям. На приглашениях неверные дата и адрес: `It is unacceptable`. Здесь оцениваем качество заказа. Низкая цена не поможет гостям найти праздник, если приглашение отправляет их в другой конец города.
+Мама достаёт из шкафа рубашку, которая всю зиму пролежала в тесной стопке. Она вся в мелких глубоких складках, как будто её долго мяли в кулаке. wrinkled — «мятый, в складках». It is wrinkled — «Она мятая». О рубашке, платье, бумаге говорим с It is.
 
-**В приглашениях неверны дата и адрес. Такой результат нельзя принять для рассылки. Скажите полной фразой, что он неприемлемый.**
+**Мама держит рубашку на вытянутых руках и ждёт вашего слова. Скажите ей полной фразой, что рубашка мятая.**
 
-- ✅ **It is unacceptable.**
-- ❌ It is acceptable. — *Это «приемлемый». По условию результат принять нельзя.*
-- ❌ It unacceptable. — *Между `It` и `unacceptable` нужно `is`.*
+- ✅ **It is wrinkled.**
+- ❌ It is ironed. — *Это «поглаженная». А рубашка вся в складках: It is wrinkled.*
+- ❌ It wrinkled. — *Между It и wrinkled нужно is: It is wrinkled.*
 
 ---
 
 ## Интро 2
 
-### Проверить оценку
+### Скатерть для обеда
 
-`Is it unacceptable?` — «Это неприемлемо?» Ответ `Yes, it is` подтверждает, что вариант нельзя принять. `No, it is not` отрицает это. Слово `unacceptable` сильнее простого «мне не очень нравится»: вы говорите, что результат не отвечает необходимым требованиям.
+К родным вы везёте белую скатерть для большого обеда. Мама разворачивает её у окна и подносит к свету, чтобы рассмотреть получше. Прошлой осенью на ней разлили красное вино, и пятно могло остаться. stained — «в пятнах». Is it stained? — «Она в пятнах?»
 
-**Анна спрашивает «Is it unacceptable?» о партии с неверными датой и адресом. Подтвердите коротким «да».**
+**Мама держит скатерть у окна и щурится. Спросите её, есть ли на скатерти пятна.**
 
-- ✅ **Yes, it is.**
-- ❌ No, it is not. — *Это отрицает неприемлемость. По условию результат нельзя принять.*
-- ❌ Yes, it are. — *С `it` нужно `is`.*
+- ✅ **Is it stained?**
+- ❌ It is stained. — *Так звучит утверждение «Она в пятнах». Чтобы спросить, ставим Is вперёд: Is it stained?*
+- ❌ Are it stained? — *С it нужно is: Is it stained?*
 
 ---
 
 ## Интро 3
 
-### Цена и точность
+### Ремень сумки
 
-`cheap` — «дешёвый, недорогой»: печать стоила мало, `It is cheap`. `accurate` — «точный»: дата и адрес совпадают с верными данными, `They are accurate`. Цена и точность — разные признаки. Недорогой заказ может быть точным; в нашем первом варианте ошибка действительно есть.
+Мама проверяет дорожную сумку, с которой ездила много лет. Ремень она держит осторожно: по краю торчат нитки, и ткань расползается на тонкие полоски. Если не заменить, он порвётся в дороге. frayed — «истрёпанный». It's frayed — «Тут всё в нитках».
 
-**Вы сверили дату и адрес в исправленном варианте: оба указаны верно. Коротко скажите, что они точные.**
+**Мама показывает вам край ремня. Скажите коротко, что он истрёпанный.**
 
-- ✅ **They're accurate.**
-- ❌ They're cheap. — *Это о цене. Вы проверили точность сведений.*
-- ❌ It's accurate. — *Здесь говорим сразу о дате и адресе: `They're`.*
+- ✅ **It's frayed.**
+- ❌ It's not frayed. — *С not выходит «Он целый». А нитки торчат по всему краю: It's frayed.*
+- ❌ They're frayed. — *Ремень один, нужно It's: It's frayed.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · В заказе неверные дата и адрес. Такой результат принять нельзя. Скажите полной фразой, что он неприемлемый**
+**1 · Карточка слова — wrinkled**
+<!-- interaction_id: en:lesson-02:session-49:word:wrinkled; family: word_card -->
+> **wrinkled** — мятый, в складках. It is wrinkled — «Она мятая». О рубашке, платье, скатерти, бумаге.
+
+**2 · Мама достаёт блузку из чемодана и ждёт вашего слова. Скажите ей полной фразой, что она мятая.**
 <!-- interaction_id: en:lesson-02:session-49:i01; family: phrase_builder -->
-Плитки: `unacceptable` `is` `It` `are` → **It is unacceptable.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is unacceptable.`)*
+Плитки: `wrinkled` `is` `It` `are` → **It is wrinkled.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is wrinkled.`)*
 
-**2 · Послушайте фразу о заказе**
+**3 · Послушайте, что мама говорит о рукаве**
 <!-- interaction_id: en:lesson-02:session-49:i02; family: listen_choose -->
-🔊 *It is cheap.* → **It is cheap.** · It is accurate. · It is acceptable.
-- It is accurate. — *В записи последнее слово — `cheap`, а в этом варианте — `accurate`.*
-- It is acceptable. — *В записи последнее слово — `cheap`, а в этом варианте — `acceptable`.*
+🔊 *It is torn.* → **It is torn.** · It is worn. · It is damp.
+- It is worn. — *В записи последнее слово — `torn`, а в этом варианте — `worn`.*
+- It is damp. — *В записи последнее слово — `torn`, а в этом варианте — `damp`.*
 
-**3 · Уточните, неприемлем ли этот результат**
+**4 · Карточка слова — frayed**
+<!-- interaction_id: en:lesson-02:session-49:word:frayed; family: word_card -->
+> **frayed** — истрёпанный: нитки торчат по краю. It's frayed — «Тут всё в нитках». О ремне, шнурке, рукаве, ковре.
+
+**5 · Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он**
 <!-- interaction_id: en:lesson-02:session-49:i03; family: context_gap_grammar -->
-___ it unacceptable? → **Is** · Am · Are
+___ it frayed? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
-- Are — *Вопрос — `Is it unacceptable?`.*
+- Are — *Вопрос — `Is it frayed?`.*
 
-**4 · Соедините слова со значениями**
+**6 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-49:i04; family: speed_match -->
-unacceptable — неприемлемый · acceptable — приемлемый · cheap — дешёвый · accurate — точный
+wrinkled — мятый · stained — в пятнах · frayed — истрёпанный · torn — порванный
 
-**5 · Послушайте и соберите короткий ответ**
+**7 · Карточка слова — stained**
+<!-- interaction_id: en:lesson-02:session-49:word:stained; family: word_card -->
+> **stained** — в пятнах, с пятном. Is it stained? — «Она в пятнах?» О скатерти, рубашке, ковре, зубах.
+
+**8 · Мама выстирала скатерть. Послушайте, что она говорит о ней, и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-49:i05; family: listen_build_dictation -->
-🔊 *Yes, it is.* Плитки: `is` `it` `Yes,` `No,` → **Yes, it is.**
-*(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, it is.`)*
+🔊 *It is not stained.* Плитки: `stained` `not` `is` `It` `are` → **It is not stained.**
+*(плитка `are` лишняя: здесь нужно `is` — `It is not stained.`)*
 
-**6 · Анна осмотрела несколько образцов и отказалась принять часть работы. Спросите, что неприемлемо**
+**9 · Мама говорит, что в стопке одно полотенце с пятном. Спросите её, что в пятнах.**
 <!-- interaction_id: en:lesson-02:session-49:i06; family: phrase_builder -->
-Плитки: `unacceptable` `is` `What` `Where` → **What is unacceptable?**
-*(плитка `Where` лишняя: здесь нужно `What` — `What is unacceptable?`)*
+Плитки: `stained` `is` `What` `Where` → **What is stained?**
+*(плитка `Where` лишняя: здесь нужно `What` — `What is stained?`)*
 
-**7 · В приглашениях неверный адрес. Коротко сообщите, что такой результат неприемлем**
+**10 · Мама показывает старый ремень от сумки с торчащими нитками. Скажите коротко, что он истрёпанный.**
 <!-- interaction_id: en:lesson-02:session-49:i07; family: scripted_repeat_compare -->
-🎙 **It's unacceptable.**
+🎙 **It's frayed.**
 
-**8 · В исправленном варианте дата и адрес точные. На «Are they accurate?» дополните короткое «да»**
+**11 · Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»**
 <!-- interaction_id: en:lesson-02:session-49:i08; family: context_gap_grammar -->
-Yes, they ___. → **are** · am · is
-- am — *С `they` нужно `are`.*
-- is — *Ответ — `Yes, they are`.*
+Yes, it ___. → **is** · am · are
+- am — *С `it` нужно `is`.*
+- are — *Ответ — `Yes, it is`.*
 
-**9 · Послушайте вопрос**
+**12 · Карточка слова — smelly**
+<!-- interaction_id: en:lesson-02:session-49:word:smelly; family: word_card -->
+> **smelly** — вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.
+
+**13 · Послушайте, что мама говорит о кроссовках после дождя**
 <!-- interaction_id: en:lesson-02:session-49:i09; family: listen_choose -->
-🔊 *Are they accurate?* → **Are they accurate?** · Are they cheap? · Are they acceptable?
-- Are they cheap? — *В записи последнее слово — `accurate`, а в этом варианте — `cheap`.*
-- Are they acceptable? — *В записи последнее слово — `accurate`, а в этом варианте — `acceptable`.*
+🔊 *They are smelly.* → **They are smelly.** · They are dirty. · They are damp.
+- They are dirty. — *В записи последнее слово — `smelly`, а в этом варианте — `dirty`.*
+- They are damp. — *В записи последнее слово — `smelly`, а в этом варианте — `damp`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-49:i10; family: speed_match -->
-cheap — дешёвый · accurate — точный · acceptable — приемлемый · unacceptable — неприемлемый
+smelly — вонючий · stained — в пятнах · wrinkled — мятый · clean — чистый
 
-**11 · Послушайте и соберите фразу**
+**15 · Вы погладили две рубашки. Послушайте, что говорит мама, и соберите фразу**
 <!-- interaction_id: en:lesson-02:session-49:i11; family: listen_build_dictation -->
-🔊 *It is not acceptable.* Плитки: `acceptable` `not` `is` `It` `are` → **It is not acceptable.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is not acceptable.`)*
+🔊 *They are not wrinkled.* Плитки: `wrinkled` `not` `are` `They` `is` → **They are not wrinkled.**
+*(плитка `is` лишняя: здесь нужно `are` — `They are not wrinkled.`)*
 
-**12 · Анна узнала цену новой печати. Спросите, недорогая ли она**
+**16 · Вы подняли крышку корзины с грязным бельём. Спросите маму, неприятно ли там пахнет.**
 <!-- interaction_id: en:lesson-02:session-49:i12; family: phrase_builder -->
-Плитки: `cheap` `it` `Is` `Are` → **Is it cheap?**
-*(плитка `Are` лишняя: здесь нужно `Is` — `Is it cheap?`)*
+Плитки: `smelly` `it` `Is` `Are` → **Is it smelly?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is it smelly?`)*
 
-**13 · Вы сверили исправленные дату и адрес. Коротко сообщите, что они точные**
+**17 · Вы достали из рюкзака носки после похода. Скажите коротко, что они плохо пахнут.**
 <!-- interaction_id: en:lesson-02:session-49:i13; family: scripted_repeat_compare -->
-🎙 **They're accurate.**
+🎙 **They're smelly.**
 
-**14 · В старом варианте неправильно указан адрес. Скажите, что он не точный**
+**18 · Скатерть отстирали. Скажите, что она больше не в пятнах**
 <!-- interaction_id: en:lesson-02:session-49:i14; family: context_gap_grammar -->
-It ___ not accurate. → **is** · am · are
+It ___ not stained. → **is** · am · are
 - am — *С `It` нужно `is`.*
-- are — *Фраза — `It is not accurate`.*
+- are — *Фраза — `It is not stained`.*
 
-**15 · Послушайте вопрос**
+**19 · Послушайте вопрос мамы**
 <!-- interaction_id: en:lesson-02:session-49:i15; family: listen_choose -->
-🔊 *Is it unacceptable?* → **Is it unacceptable?** · Is it acceptable? · Is it accurate?
-- Is it acceptable? — *В записи последнее слово — `unacceptable`, а в этом варианте — `acceptable`.*
-- Is it accurate? — *В записи последнее слово — `unacceptable`, а в этом варианте — `accurate`.*
+🔊 *Is it frayed?* → **Is it frayed?** · Is it stained? · Is it wrinkled?
+- Is it stained? — *В записи последнее слово — `frayed`, а в этом варианте — `stained`.*
+- Is it wrinkled? — *В записи последнее слово — `frayed`, а в этом варианте — `wrinkled`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-49:i16; family: speed_match -->
-accurate — точный · unacceptable — неприемлемый · cheap — дешёвый · acceptable — приемлемый
+wrinkled — мятый · stained — в пятнах · frayed — истрёпанный · smelly — вонючий
 
-**17 · В другом образце Анна заметила дефект. Спросите, неприемлем ли этот результат**
+**21 · Мама достаёт белую блузку из шкафа. Спросите её, есть ли на ней пятна.**
 <!-- interaction_id: en:lesson-02:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is it unacceptable?**
-
+🎙 **Is it stained?**

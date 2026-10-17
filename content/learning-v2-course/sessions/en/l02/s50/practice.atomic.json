@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-50:word:sleek",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sleek",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:sleek:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sleek",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:sleek:audio",
+            "transcript": "sleek"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:sleek:r1",
+              "targetText": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный, с чистыми линиями. It is sleek — «Он стильный». О телефоне, машине, ноутбуке, дизайне.",
+                "uk": "гладкий, стильний, з чистими лініями. It is sleek — «Він стильний». Про телефон, машину, ноутбук, дизайн."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleek",
+            "definitionByLocale": {
+              "ru": "гладкий, стильный, с чистыми линиями. It is sleek — «Он стильный». О телефоне, машине, ноутбуке, дизайне.",
+              "uk": "гладкий, стильний, з чистими лініями. It is sleek — «Він стильний». Про телефон, машину, ноутбук, дизайн."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is sleek.",
+          "localizedMeaning": {
+            "ru": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
+            "uk": "Подруга відкриває тонкий ноутбук і чекає вашої оцінки. Скажіть їй повною фразою, що він стильний."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "sleek"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is sleek.`",
+                "uk": "тут потрібно `is` — `It is sleek.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о чехле",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i02:r1",
+            "text": "It is cheap."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i02:r2",
+            "text": "It is expensive."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i02:r3",
+            "text": "It is shiny."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о чехле",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i02:audio",
+            "transcript": "It is cheap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:i02:r1",
+              "targetText": "It is cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i02:r2",
+              "targetText": "It is expensive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i02:r3",
+              "targetText": "It is shiny.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о чехле",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheap`, а в этом варианте — `expensive`.",
+                "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `expensive`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о чехле",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheap`, а в этом варианте — `shiny`.",
+                "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `shiny`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:word:handy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — handy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:handy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — handy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:handy:audio",
+            "transcript": "handy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:handy:r1",
+              "targetText": "handy",
+              "meaningByLocale": {
+                "ru": "удобный, очень кстати под рукой. It's handy — «Очень кстати». Об инструменте, сумке, приложении, совете.",
+                "uk": "зручний, дуже до речі під рукою. It's handy — «Дуже до речі». Про інструмент, сумку, застосунок, пораду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handy",
+            "definitionByLocale": {
+              "ru": "удобный, очень кстати под рукой. It's handy — «Очень кстати». Об инструменте, сумке, приложении, совете.",
+              "uk": "зручний, дуже до речі під рукою. It's handy — «Дуже до речі». Про інструмент, сумку, застосунок, пораду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+            "uk": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ"
+          },
+          "gappedTargetPhrase": "___ it handy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it handy?`.",
+                "uk": "Питання — `Is it handy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-50:i04:p1",
+              "target": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный",
+                "uk": "гладкий, стильний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i04:p2",
+              "target": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый",
+                "uk": "дороговатий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i04:p3",
+              "target": "handy",
+              "meaningByLocale": {
+                "ru": "удобный, кстати",
+                "uk": "зручний, до речі"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i04:p4",
+              "target": "cheap",
+              "meaningByLocale": {
+                "ru": "дешёвый",
+                "uk": "дешевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sleek",
+            "pricey",
+            "handy",
+            "cheap"
+          ],
+          "rightColumn": [
+            "гладкий, стильный",
+            "дороговатый",
+            "удобный, кстати",
+            "дешёвый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:word:pricey",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pricey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:pricey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pricey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:pricey:audio",
+            "transcript": "pricey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:pricey:r1",
+              "targetText": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый, кусается по цене. Is it pricey? — «Это дороговато?» О кофемашине, билете, ужине, часах.",
+                "uk": "дороговатий, кусається за ціною. Is it pricey? — «Це дороговато?» Про кавомашину, квиток, вечерю, годинник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pricey",
+            "definitionByLocale": {
+              "ru": "дороговатый, кусается по цене. Is it pricey? — «Это дороговато?» О кофемашине, билете, ужине, часах.",
+              "uk": "дороговатий, кусається за ціною. Is it pricey? — «Це дороговато?» Про кавомашину, квиток, вечерю, годинник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец снизил цену. Послушайте, что говорит подруга, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Продавец снизил цену. Послушайте, что говорит подруга, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i05:audio",
+            "transcript": "It is not pricey."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not pricey.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "pricey"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец снизил цену. Послушайте, что говорит подруга, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not pricey.`",
+                "uk": "тут потрібно `is` — `It is not pricey.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is pricey?",
+          "localizedMeaning": {
+            "ru": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
+            "uk": "Подруга каже, що в кошику дорого коштує лише одна річ. Запитайте її, що дороговато."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "pricey"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is pricey?`",
+                "uk": "тут потрібно `What` — `What is pricey?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга протягивает вам отвёртку из сумки, и вы закрутили ею винт. Скажите коротко, что она удобная.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга протягивает вам отвёртку из сумки, и вы закрутили ею винт. Скажите коротко, что она удобная.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i07:audio",
+            "transcript": "It's handy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's handy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:word:fancy",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fancy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:fancy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fancy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:fancy:audio",
+            "transcript": "fancy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:fancy:r1",
+              "targetText": "fancy",
+              "meaningByLocale": {
+                "ru": "нарядный, шикарный, с украшениями. They're fancy — «Они нарядные». О коробках, платьях, лентах, ресторанах.",
+                "uk": "нарядний, шикарний, з прикрасами. They're fancy — «Вони нарядні». Про коробки, сукні, стрічки, ресторани."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fancy",
+            "definitionByLocale": {
+              "ru": "нарядный, шикарный, с украшениями. They're fancy — «Они нарядные». О коробках, платьях, лентах, ресторанах.",
+              "uk": "нарядний, шикарний, з прикрасами. They're fancy — «Вони нарядні». Про коробки, сукні, стрічки, ресторани."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о подарочных коробках",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i09:r1",
+            "text": "They are fancy."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i09:r2",
+            "text": "They are shiny."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i09:r3",
+            "text": "They are cheap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о подарочных коробках",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i09:audio",
+            "transcript": "They are fancy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:i09:r1",
+              "targetText": "They are fancy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i09:r2",
+              "targetText": "They are shiny.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i09:r3",
+              "targetText": "They are cheap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о подарочных коробках",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fancy`, а в этом варианте — `shiny`.",
+                "uk": "У записі останнє слово — `fancy`, а в цьому варіанті — `shiny`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о подарочных коробках",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fancy`, а в этом варианте — `cheap`.",
+                "uk": "У записі останнє слово — `fancy`, а в цьому варіанті — `cheap`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-50:i10:p1",
+              "target": "fancy",
+              "meaningByLocale": {
+                "ru": "нарядный, шикарный",
+                "uk": "нарядний, шикарний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i10:p2",
+              "target": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый",
+                "uk": "дороговатий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i10:p3",
+              "target": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный",
+                "uk": "гладкий, стильний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i10:p4",
+              "target": "shiny",
+              "meaningByLocale": {
+                "ru": "блестящий",
+                "uk": "блискучий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fancy",
+            "pricey",
+            "sleek",
+            "shiny"
+          ],
+          "rightColumn": [
+            "нарядный, шикарный",
+            "дороговатый",
+            "гладкий, стильный",
+            "блестящий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец показывает чехлы со скидкой. Послушайте, что он говорит, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает чехлы со скидкой. Послушайте, что он говорит, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i11:audio",
+            "transcript": "They are not pricey."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not pricey.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "pricey"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец показывает чехлы со скидкой. Послушайте, что он говорит, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not pricey.`",
+                "uk": "тут потрібно `are` — `They are not pricey.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it fancy?",
+          "localizedMeaning": {
+            "ru": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
+            "uk": "Ви обираєте коробку для подарунка. Запитайте подругу, чи досить нарядна вона."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "fancy"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it fancy?`",
+                "uk": "тут потрібно `Is` — `Is it fancy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы смотрите на коробки с золотыми лентами. Скажите коротко, что они нарядные.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Вы смотрите на коробки с золотыми лентами. Скажите коротко, что они нарядные.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i13:audio",
+            "transcript": "They're fancy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're fancy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+            "uk": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий"
+          },
+          "gappedTargetPhrase": "It ___ not pricey.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not pricey`.",
+                "uk": "Фраза — `It is not pricey`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i15:r1",
+            "text": "Is it pricey?"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i15:r2",
+            "text": "Is it sleek?"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i15:r3",
+            "text": "Is it handy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i15:audio",
+            "transcript": "Is it pricey?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:i15:r1",
+              "targetText": "Is it pricey?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i15:r2",
+              "targetText": "Is it sleek?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i15:r3",
+              "targetText": "Is it handy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pricey`, а в этом варианте — `sleek`.",
+                "uk": "У записі останнє слово — `pricey`, а в цьому варіанті — `sleek`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pricey`, а в этом варианте — `handy`.",
+                "uk": "У записі останнє слово — `pricey`, а в цьому варіанті — `handy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-50:i16:p1",
+              "target": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный",
+                "uk": "гладкий, стильний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i16:p2",
+              "target": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый",
+                "uk": "дороговатий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i16:p3",
+              "target": "handy",
+              "meaningByLocale": {
+                "ru": "удобный, кстати",
+                "uk": "зручний, до речі"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i16:p4",
+              "target": "fancy",
+              "meaningByLocale": {
+                "ru": "нарядный, шикарный",
+                "uk": "нарядний, шикарний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sleek",
+            "pricey",
+            "handy",
+            "fancy"
+          ],
+          "rightColumn": [
+            "гладкий, стильный",
+            "дороговатый",
+            "удобный, кстати",
+            "нарядный, шикарный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга берёт с полки новую колонку. Спросите её, не дороговата ли она.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга берёт с полки новую колонку. Спросите её, не дороговата ли она.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i17:audio",
+            "transcript": "Is it pricey?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it pricey?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-50:word:sleek",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sleek",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:sleek:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sleek",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:sleek:audio",
+            "transcript": "sleek"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:sleek:r1",
+              "targetText": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный, с чистыми линиями. It is sleek — «Он стильный». О телефоне, машине, ноутбуке, дизайне.",
+                "uk": "гладкий, стильний, з чистими лініями. It is sleek — «Він стильний». Про телефон, машину, ноутбук, дизайн."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleek",
+            "definitionByLocale": {
+              "ru": "гладкий, стильный, с чистыми линиями. It is sleek — «Он стильный». О телефоне, машине, ноутбуке, дизайне.",
+              "uk": "гладкий, стильний, з чистими лініями. It is sleek — «Він стильний». Про телефон, машину, ноутбук, дизайн."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга відкриває тонкий ноутбук і чекає вашої оцінки. Скажіть їй повною фразою, що він стильний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга відкриває тонкий ноутбук і чекає вашої оцінки. Скажіть їй повною фразою, що він стильний.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is sleek.",
+          "localizedMeaning": {
+            "ru": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
+            "uk": "Подруга відкриває тонкий ноутбук і чекає вашої оцінки. Скажіть їй повною фразою, що він стильний."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "sleek"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга відкриває тонкий ноутбук і чекає вашої оцінки. Скажіть їй повною фразою, що він стильний.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is sleek.`",
+                "uk": "тут потрібно `is` — `It is sleek.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про чохол",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i02:r1",
+            "text": "It is cheap."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i02:r2",
+            "text": "It is expensive."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i02:r3",
+            "text": "It is shiny."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про чохол",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i02:audio",
+            "transcript": "It is cheap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:i02:r1",
+              "targetText": "It is cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i02:r2",
+              "targetText": "It is expensive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i02:r3",
+              "targetText": "It is shiny.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про чохол",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheap`, а в этом варианте — `expensive`.",
+                "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `expensive`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про чохол",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cheap`, а в этом варианте — `shiny`.",
+                "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `shiny`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:word:handy",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — handy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:handy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — handy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:handy:audio",
+            "transcript": "handy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:handy:r1",
+              "targetText": "handy",
+              "meaningByLocale": {
+                "ru": "удобный, очень кстати под рукой. It's handy — «Очень кстати». Об инструменте, сумке, приложении, совете.",
+                "uk": "зручний, дуже до речі під рукою. It's handy — «Дуже до речі». Про інструмент, сумку, застосунок, пораду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handy",
+            "definitionByLocale": {
+              "ru": "удобный, очень кстати под рукой. It's handy — «Очень кстати». Об инструменте, сумке, приложении, совете.",
+              "uk": "зручний, дуже до речі під рукою. It's handy — «Дуже до речі». Про інструмент, сумку, застосунок, пораду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+            "uk": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ"
+          },
+          "gappedTargetPhrase": "___ it handy?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it handy?`.",
+                "uk": "Питання — `Is it handy?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-50:i04:p1",
+              "target": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный",
+                "uk": "гладкий, стильний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i04:p2",
+              "target": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый",
+                "uk": "дороговатий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i04:p3",
+              "target": "handy",
+              "meaningByLocale": {
+                "ru": "удобный, кстати",
+                "uk": "зручний, до речі"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i04:p4",
+              "target": "cheap",
+              "meaningByLocale": {
+                "ru": "дешёвый",
+                "uk": "дешевий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sleek",
+            "pricey",
+            "handy",
+            "cheap"
+          ],
+          "rightColumn": [
+            "гладкий, стильний",
+            "дороговатий",
+            "зручний, до речі",
+            "дешевий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:word:pricey",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pricey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:pricey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pricey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:pricey:audio",
+            "transcript": "pricey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:pricey:r1",
+              "targetText": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый, кусается по цене. Is it pricey? — «Это дороговато?» О кофемашине, билете, ужине, часах.",
+                "uk": "дороговатий, кусається за ціною. Is it pricey? — «Це дороговато?» Про кавомашину, квиток, вечерю, годинник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pricey",
+            "definitionByLocale": {
+              "ru": "дороговатый, кусается по цене. Is it pricey? — «Это дороговато?» О кофемашине, билете, ужине, часах.",
+              "uk": "дороговатий, кусається за ціною. Is it pricey? — «Це дороговато?» Про кавомашину, квиток, вечерю, годинник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець знизив ціну. Послухайте, що каже подруга, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Продавець знизив ціну. Послухайте, що каже подруга, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i05:audio",
+            "transcript": "It is not pricey."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not pricey.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "pricey"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець знизив ціну. Послухайте, що каже подруга, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not pricey.`",
+                "uk": "тут потрібно `is` — `It is not pricey.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга каже, що в кошику дорого коштує лише одна річ. Запитайте її, що дороговато.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга каже, що в кошику дорого коштує лише одна річ. Запитайте її, що дороговато.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is pricey?",
+          "localizedMeaning": {
+            "ru": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
+            "uk": "Подруга каже, що в кошику дорого коштує лише одна річ. Запитайте її, що дороговато."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "pricey"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга каже, що в кошику дорого коштує лише одна річ. Запитайте її, що дороговато.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is pricey?`",
+                "uk": "тут потрібно `What` — `What is pricey?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга простягає вам викрутку з сумки, і ви закрутили нею гвинт. Скажіть коротко, що вона зручна.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга простягає вам викрутку з сумки, і ви закрутили нею гвинт. Скажіть коротко, що вона зручна.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i07:audio",
+            "transcript": "It's handy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's handy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:word:fancy",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fancy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:word:fancy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fancy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:word:fancy:audio",
+            "transcript": "fancy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:word:fancy:r1",
+              "targetText": "fancy",
+              "meaningByLocale": {
+                "ru": "нарядный, шикарный, с украшениями. They're fancy — «Они нарядные». О коробках, платьях, лентах, ресторанах.",
+                "uk": "нарядний, шикарний, з прикрасами. They're fancy — «Вони нарядні». Про коробки, сукні, стрічки, ресторани."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fancy",
+            "definitionByLocale": {
+              "ru": "нарядный, шикарный, с украшениями. They're fancy — «Они нарядные». О коробках, платьях, лентах, ресторанах.",
+              "uk": "нарядний, шикарний, з прикрасами. They're fancy — «Вони нарядні». Про коробки, сукні, стрічки, ресторани."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про подарункові коробки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i09:r1",
+            "text": "They are fancy."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i09:r2",
+            "text": "They are shiny."
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i09:r3",
+            "text": "They are cheap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про подарункові коробки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i09:audio",
+            "transcript": "They are fancy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:i09:r1",
+              "targetText": "They are fancy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i09:r2",
+              "targetText": "They are shiny.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i09:r3",
+              "targetText": "They are cheap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про подарункові коробки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fancy`, а в этом варианте — `shiny`.",
+                "uk": "У записі останнє слово — `fancy`, а в цьому варіанті — `shiny`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про подарункові коробки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fancy`, а в этом варианте — `cheap`.",
+                "uk": "У записі останнє слово — `fancy`, а в цьому варіанті — `cheap`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-50:i10:p1",
+              "target": "fancy",
+              "meaningByLocale": {
+                "ru": "нарядный, шикарный",
+                "uk": "нарядний, шикарний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i10:p2",
+              "target": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый",
+                "uk": "дороговатий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i10:p3",
+              "target": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный",
+                "uk": "гладкий, стильний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i10:p4",
+              "target": "shiny",
+              "meaningByLocale": {
+                "ru": "блестящий",
+                "uk": "блискучий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fancy",
+            "pricey",
+            "sleek",
+            "shiny"
+          ],
+          "rightColumn": [
+            "нарядний, шикарний",
+            "дороговатий",
+            "гладкий, стильний",
+            "блискучий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець показує чохли зі знижкою. Послухайте, що він каже, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Продавець показує чохли зі знижкою. Послухайте, що він каже, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i11:audio",
+            "transcript": "They are not pricey."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not pricey.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "pricey"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець показує чохли зі знижкою. Послухайте, що він каже, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not pricey.`",
+                "uk": "тут потрібно `are` — `They are not pricey.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви обираєте коробку для подарунка. Запитайте подругу, чи досить нарядна вона.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обираєте коробку для подарунка. Запитайте подругу, чи досить нарядна вона.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it fancy?",
+          "localizedMeaning": {
+            "ru": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
+            "uk": "Ви обираєте коробку для подарунка. Запитайте подругу, чи досить нарядна вона."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "fancy"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви обираєте коробку для подарунка. Запитайте подругу, чи досить нарядна вона.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it fancy?`",
+                "uk": "тут потрібно `Is` — `Is it fancy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви дивитеся на коробки із золотими стрічками. Скажіть коротко, що вони нарядні.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Ви дивитеся на коробки із золотими стрічками. Скажіть коротко, що вони нарядні.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i13:audio",
+            "transcript": "They're fancy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're fancy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+            "uk": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий"
+          },
+          "gappedTargetPhrase": "It ___ not pricey.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not pricey`.",
+                "uk": "Фраза — `It is not pricey`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i15:r1",
+            "text": "Is it pricey?"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i15:r2",
+            "text": "Is it sleek?"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i15:r3",
+            "text": "Is it handy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i15:audio",
+            "transcript": "Is it pricey?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-50:i15:r1",
+              "targetText": "Is it pricey?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i15:r2",
+              "targetText": "Is it sleek?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i15:r3",
+              "targetText": "Is it handy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pricey`, а в этом варианте — `sleek`.",
+                "uk": "У записі останнє слово — `pricey`, а в цьому варіанті — `sleek`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pricey`, а в этом варианте — `handy`.",
+                "uk": "У записі останнє слово — `pricey`, а в цьому варіанті — `handy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-50:i16:p1",
+              "target": "sleek",
+              "meaningByLocale": {
+                "ru": "гладкий, стильный",
+                "uk": "гладкий, стильний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i16:p2",
+              "target": "pricey",
+              "meaningByLocale": {
+                "ru": "дороговатый",
+                "uk": "дороговатий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i16:p3",
+              "target": "handy",
+              "meaningByLocale": {
+                "ru": "удобный, кстати",
+                "uk": "зручний, до речі"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-50:i16:p4",
+              "target": "fancy",
+              "meaningByLocale": {
+                "ru": "нарядный, шикарный",
+                "uk": "нарядний, шикарний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sleek",
+            "pricey",
+            "handy",
+            "fancy"
+          ],
+          "rightColumn": [
+            "гладкий, стильний",
+            "дороговатий",
+            "зручний, до речі",
+            "нарядний, шикарний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга бере з полиці нову колонку. Запитайте її, чи не дороговата вона.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга бере з полиці нову колонку. Запитайте її, чи не дороговата вона.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-50:i17:audio",
+            "transcript": "Is it pricey?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it pricey?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-50:word:sleek",
+      "correctText": "sleek",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i01",
+      "correctText": "It is sleek.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i02",
+      "correctText": "It is cheap.",
+      "correctResponseId": "en:lesson-02:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:word:handy",
+      "correctText": "handy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:word:pricey",
+      "correctText": "pricey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i05",
+      "correctText": "It is not pricey.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i06",
+      "correctText": "What is pricey?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i07",
+      "correctText": "It's handy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:word:fancy",
+      "correctText": "fancy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i09",
+      "correctText": "They are fancy.",
+      "correctResponseId": "en:lesson-02:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i11",
+      "correctText": "They are not pricey.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i12",
+      "correctText": "Is it fancy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i13",
+      "correctText": "They're fancy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-50:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i15",
+      "correctText": "Is it pricey?",
+      "correctResponseId": "en:lesson-02:session-50:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i17",
+      "correctText": "Is it pricey?",
+      "correctResponseId": null
+    }
+  ]
+}

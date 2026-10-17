@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-47:i01",
+      "interactionId": "en:lesson-02:session-47:word:shallow",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shallow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-47:word:shallow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shallow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:word:shallow:audio",
+          "transcript": "shallow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-47:word:shallow:r1",
+            "targetText": "shallow",
+            "meaningByLocale": {
+              "ru": "мелкий, неглубокий. It is shallow — «Тут мелко». О пруде, реке, тарелке, дне.",
+              "uk": "мілкий, неглибокий. It is shallow — «Тут мілко». Про ставок, річку, тарілку, дно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shallow",
+          "definitionByLocale": {
+            "ru": "мелкий, неглубокий. It is shallow — «Тут мелко». О пруде, реке, тарелке, дне.",
+            "uk": "мілкий, неглибокий. It is shallow — «Тут мілко». Про ставок, річку, тарілку, дно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Відбиток відповідає вимогам, хоча не ідеальний. Скажіть повною фразою, що він прийнятний",
+      "prompt": "Сусідка хоче пустити собаку в інший ставок і питає, який він. Скажіть їй повною фразою, що він мілкий.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Відбиток відповідає вимогам, хоча не ідеальний. Скажіть повною фразою, що він прийнятний",
+      "accessibilityLabel": "Сусідка хоче пустити собаку в інший ставок і питає, який він. Скажіть їй повною фразою, що він мілкий.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is acceptable.",
+        "targetPhrase": "It is shallow.",
         "localizedMeaning": {
-          "ru": "Отпечаток отвечает требованиям, хотя не идеален. Скажите полной фразой, что он приемлемый",
-          "uk": "Відбиток відповідає вимогам, хоча не ідеальний. Скажіть повною фразою, що він прийнятний"
+          "ru": "Соседка хочет пустить собаку в другой пруд и спрашивает, какой он. Скажите ей полной фразой, что он мелкий.",
+          "uk": "Сусідка хоче пустити собаку в інший ставок і питає, який він. Скажіть їй повною фразою, що він мілкий."
         },
         "orderedTokens": [
           "It",
           "is",
-          "acceptable"
+          "shallow"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-47:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Відбиток відповідає вимогам, хоча не ідеальний. Скажіть повною фразою, що він прийнятний",
+            "testedDimension": "Сусідка хоче пустити собаку в інший ставок і питає, який він. Скажіть їй повною фразою, що він мілкий.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is acceptable.`",
-              "uk": "тут потрібно `is` — `It is acceptable.`"
+              "ru": "здесь нужно `is` — `It is shallow.`",
+              "uk": "тут потрібно `is` — `It is shallow.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про підставку",
+      "prompt": "Послухайте, що сусідка каже про річку за мостом",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i02:r1",
-          "text": "It is dangerous."
+          "text": "It is deep."
         },
         {
           "responseId": "en:lesson-02:session-47:i02:r2",
-          "text": "It is relevant."
+          "text": "It is narrow."
         },
         {
           "responseId": "en:lesson-02:session-47:i02:r3",
-          "text": "It is acceptable."
+          "text": "It is wide."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про підставку",
+      "accessibilityLabel": "Послухайте, що сусідка каже про річку за мостом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i02:audio",
-          "transcript": "It is dangerous."
+          "transcript": "It is deep."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-47:i02:r1",
-            "targetText": "It is dangerous.",
+            "targetText": "It is deep.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i02:r2",
-            "targetText": "It is relevant.",
+            "targetText": "It is narrow.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i02:r3",
-            "targetText": "It is acceptable.",
+            "targetText": "It is wide.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про підставку",
+            "testedDimension": "Послухайте, що сусідка каже про річку за мостом",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `relevant`.",
-              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `relevant`."
+              "ru": "В записи последнее слово — `deep`, а в этом варианте — `narrow`.",
+              "uk": "У записі останнє слово — `deep`, а в цьому варіанті — `narrow`."
             }
           },
           {
             "responseId": "en:lesson-02:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про підставку",
+            "testedDimension": "Послухайте, що сусідка каже про річку за мостом",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `acceptable`.",
-              "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `acceptable`."
+              "ru": "В записи последнее слово — `deep`, а в этом варианте — `wide`.",
+              "uk": "У записі останнє слово — `deep`, а в цьому варіанті — `wide`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-47:word:overgrown",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overgrown",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-47:word:overgrown:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overgrown",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:word:overgrown:audio",
+          "transcript": "overgrown"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-47:word:overgrown:r1",
+            "targetText": "overgrown",
+            "meaningByLocale": {
+              "ru": "заросший: везде трава, кусты, крапива. It's overgrown — «Всё заросло». О тропинке, саде, дворе, заборе.",
+              "uk": "зарослий: скрізь трава, кущі, кропива. It's overgrown — «Усе заросло». Про стежку, сад, двір, паркан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overgrown",
+          "definitionByLocale": {
+            "ru": "заросший: везде трава, кусты, крапива. It's overgrown — «Всё заросло». О тропинке, саде, дворе, заборе.",
+            "uk": "зарослий: скрізь трава, кущі, кропива. It's overgrown — «Усе заросло». Про стежку, сад, двір, паркан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-47:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточніть, чи прийнятна якість нового відбитка",
+      "prompt": "Ви звернули на іншу стежку. Запитайте сусідку, чи не заросла вона",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточніть, чи прийнятна якість нового відбитка",
+      "accessibilityLabel": "Ви звернули на іншу стежку. Запитайте сусідку, чи не заросла вона",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, приемлемо ли качество нового отпечатка",
-          "uk": "Уточніть, чи прийнятна якість нового відбитка"
+          "ru": "Вы свернули на другую тропинку. Спросите соседку, не заросла ли она",
+          "uk": "Ви звернули на іншу стежку. Запитайте сусідку, чи не заросла вона"
         },
-        "gappedTargetPhrase": "___ it acceptable?",
+        "gappedTargetPhrase": "___ it overgrown?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-47:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Уточніть, чи прийнятна якість нового відбитка",
+        "testedDimension": "Ви звернули на іншу стежку. Запитайте сусідку, чи не заросла вона",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i03:r2",
             "correct": false,
-            "testedDimension": "Уточніть, чи прийнятна якість нового відбитка",
+            "testedDimension": "Ви звернули на іншу стежку. Запитайте сусідку, чи не заросла вона",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-47:i03:r3",
             "correct": false,
-            "testedDimension": "Уточніть, чи прийнятна якість нового відбитка",
+            "testedDimension": "Ви звернули на іншу стежку. Запитайте сусідку, чи не заросла вона",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it acceptable?`.",
-              "uk": "Запитання — `Is it acceptable?`."
+              "ru": "Вопрос — `Is it overgrown?`.",
+              "uk": "Питання — `Is it overgrown?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-47:i04:p1",
-            "target": "acceptable",
+            "target": "shallow",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "мелкий",
+              "uk": "мілкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i04:p2",
-            "target": "dangerous",
+            "target": "peaceful",
             "meaningByLocale": {
-              "ru": "опасный",
-              "uk": "небезпечний"
+              "ru": "спокойный, тихий",
+              "uk": "спокійний, тихий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i04:p3",
-            "target": "relevant",
+            "target": "overgrown",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "такий, що стосується теми"
+              "ru": "заросший",
+              "uk": "зарослий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i04:p4",
-            "target": "appropriate",
+            "target": "narrow",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "узкий",
+              "uk": "вузький"
             }
           }
         ],
         "leftColumn": [
-          "acceptable",
-          "dangerous",
-          "relevant",
-          "appropriate"
+          "shallow",
+          "peaceful",
+          "overgrown",
+          "narrow"
         ],
         "rightColumn": [
-          "прийнятний",
-          "небезпечний",
-          "такий, що стосується теми",
-          "доречний"
+          "мілкий",
+          "спокійний, тихий",
+          "зарослий",
+          "вузький"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,42 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-47:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-47:word:peaceful",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — peaceful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-47:word:peaceful:audio"
+      ],
+      "accessibilityLabel": "Картка слова — peaceful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:word:peaceful:audio",
+          "transcript": "peaceful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-47:word:peaceful:r1",
+            "targetText": "peaceful",
+            "meaningByLocale": {
+              "ru": "тихий, спокойный, умиротворённый. Is it peaceful? — «Тут спокойно?» О парке, месте, вечере, сне.",
+              "uk": "тихий, спокійний, умиротворений. Is it peaceful? — «Тут спокійно?» Про парк, місце, вечір, сон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peaceful",
+          "definitionByLocale": {
+            "ru": "тихий, спокойный, умиротворённый. Is it peaceful? — «Тут спокойно?» О парке, месте, вечере, сне.",
+            "uk": "тихий, спокійний, умиротворений. Is it peaceful? — «Тут спокійно?» Про парк, місце, вечір, сон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть коротку відповідь",
+      "prompt": "Поруч почали будувати, і шум не стихає. Послухайте, що сусідка каже про парк, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть коротку відповідь",
+      "accessibilityLabel": "Поруч почали будувати, і шум не стихає. Послухайте, що сусідка каже про парк, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i05:audio",
-          "transcript": "Yes, it is."
+          "transcript": "It is not peaceful."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, it is.",
+        "hiddenTargetPhrase": "It is not peaceful.",
         "orderedTokens": [
-          "Yes,",
-          "it",
-          "is"
+          "It",
+          "is",
+          "not",
+          "peaceful"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть коротку відповідь",
+            "testedDimension": "Поруч почали будувати, і шум не стихає. Послухайте, що сусідка каже про парк, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, it is.`",
-              "uk": "тут потрібно `Yes,` — `Yes, it is.`"
+              "ru": "здесь нужно `is` — `It is not peaceful.`",
+              "uk": "тут потрібно `is` — `It is not peaceful.`"
             }
           }
         ],
@@ -314,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно",
+      "prompt": "Сусідка каже, що в парку спокійно лише в одному місці. Запитайте її, що тихе й спокійне.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно",
+      "accessibilityLabel": "Сусідка каже, що в парку спокійно лише в одному місці. Запитайте її, що тихе й спокійне.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is acceptable?",
+        "targetPhrase": "What is peaceful?",
         "localizedMeaning": {
-          "ru": "Перед организатором несколько вариантов печати. Спросите, что приемлемо",
-          "uk": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно"
+          "ru": "Соседка говорит, что в парке спокойно только в одном месте. Спросите её, что тихое и спокойное.",
+          "uk": "Сусідка каже, що в парку спокійно лише в одному місці. Запитайте її, що тихе й спокійне."
         },
         "orderedTokens": [
           "What",
           "is",
-          "acceptable"
+          "peaceful"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -342,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-47:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Перед організатором кілька варіантів друку. Запитайте, що прийнятно",
+            "testedDimension": "Сусідка каже, що в парку спокійно лише в одному місці. Запитайте її, що тихе й спокійне.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is acceptable?`",
-              "uk": "тут потрібно `What` — `What is acceptable?`"
+              "ru": "здесь нужно `What` — `What is peaceful?`",
+              "uk": "тут потрібно `What` — `What is peaceful?`"
             }
           }
         ],
@@ -358,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Організатор згоден прийняти відбиток за якістю. Коротко скажіть, що він прийнятний",
+      "prompt": "Сусідка показує на клумбу, за якою давно ніхто не доглядає. Скажіть коротко, що вона заросла.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i07:audio"
       ],
-      "accessibilityLabel": "Організатор згоден прийняти відбиток за якістю. Коротко скажіть, що він прийнятний",
+      "accessibilityLabel": "Сусідка показує на клумбу, за якою давно ніхто не доглядає. Скажіть коротко, що вона заросла.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i07:audio",
-          "transcript": "It's acceptable."
+          "transcript": "It's overgrown."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's acceptable.",
+        "targetPhrase": "It's overgrown.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,11 +521,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»",
+      "prompt": "Сусідка спитала: «Is it shallow?» Ви бачите дно біля самого берега. Доповніть коротке «так»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i08:r1",
@@ -412,12 +542,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»",
+      "accessibilityLabel": "Сусідка спитала: «Is it shallow?» Ви бачите дно біля самого берега. Доповніть коротке «так»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Снимок показывает историю района, которой посвящена выставка. На «Is it relevant?» дополните короткое «да»",
-          "uk": "Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»"
+          "ru": "Соседка спросила: «Is it shallow?» Вы видите дно у самого берега. Дополните короткое «да»",
+          "uk": "Сусідка спитала: «Is it shallow?» Ви бачите дно біля самого берега. Доповніть коротке «так»"
         },
         "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
@@ -434,12 +564,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»",
+        "testedDimension": "Сусідка спитала: «Is it shallow?» Ви бачите дно біля самого берега. Доповніть коротке «так»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»",
+            "testedDimension": "Сусідка спитала: «Is it shallow?» Ви бачите дно біля самого берега. Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "С `it` нужно `is`.",
               "uk": "З `it` потрібно `is`."
@@ -448,7 +578,7 @@
           {
             "responseId": "en:lesson-02:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Знімок показує історію району, якій присвячена виставка. На «Is it relevant?» доповніть коротку відповідь «так»",
+            "testedDimension": "Сусідка спитала: «Is it shallow?» Ви бачите дно біля самого берега. Доповніть коротке «так»",
             "feedbackByLocale": {
               "ru": "Ответ — `Yes, it is`.",
               "uk": "Відповідь — `Yes, it is`."
@@ -459,52 +589,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-47:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-47:word:cuddly",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Картка слова — cuddly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-47:word:cuddly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cuddly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-47:word:cuddly:audio",
+          "transcript": "cuddly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-47:word:cuddly:r1",
+            "targetText": "cuddly",
+            "meaningByLocale": {
+              "ru": "милый, мягкий: хочется обнять. They're cuddly — «Они такие милые, что хочется обнять». О мишке, щенке, котёнке, игрушке.",
+              "uk": "милий, м’який: хочеться обійняти. They're cuddly — «Вони такі милі, що хочеться обійняти». Про ведмедика, щеня, кошеня, іграшку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cuddly",
+          "definitionByLocale": {
+            "ru": "милый, мягкий: хочется обнять. They're cuddly — «Они такие милые, что хочется обнять». О мишке, щенке, котёнке, игрушке.",
+            "uk": "милий, м’який: хочеться обійняти. They're cuddly — «Вони такі милі, що хочеться обійняти». Про ведмедика, щеня, кошеня, іграшку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-47:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, що продавець каже про ведмедиків у кіоску",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i09:r1",
-          "text": "Is it relevant?"
+          "text": "They are cuddly."
         },
         {
           "responseId": "en:lesson-02:session-47:i09:r2",
-          "text": "Is it dangerous?"
+          "text": "They are soft."
         },
         {
           "responseId": "en:lesson-02:session-47:i09:r3",
-          "text": "Is it appropriate?"
+          "text": "They are cute."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте, що продавець каже про ведмедиків у кіоску",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i09:audio",
-          "transcript": "Is it relevant?"
+          "transcript": "They are cuddly."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-47:i09:r1",
-            "targetText": "Is it relevant?",
+            "targetText": "They are cuddly.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i09:r2",
-            "targetText": "Is it dangerous?",
+            "targetText": "They are soft.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i09:r3",
-            "targetText": "Is it appropriate?",
+            "targetText": "They are cute.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-47:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте, що продавець каже про ведмедиків у кіоску",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `relevant`, а в этом варианте — `dangerous`.",
-              "uk": "У записі останнє слово — `relevant`, а в цьому варіанті — `dangerous`."
+              "ru": "В записи последнее слово — `cuddly`, а в этом варианте — `soft`.",
+              "uk": "У записі останнє слово — `cuddly`, а в цьому варіанті — `soft`."
             }
           },
           {
             "responseId": "en:lesson-02:session-47:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте, що продавець каже про ведмедиків у кіоску",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `relevant`, а в этом варианте — `appropriate`.",
-              "uk": "У записі останнє слово — `relevant`, а в цьому варіанті — `appropriate`."
+              "ru": "В записи последнее слово — `cuddly`, а в этом варианте — `cute`.",
+              "uk": "У записі останнє слово — `cuddly`, а в цьому варіанті — `cute`."
             }
           }
         ],
@@ -536,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -550,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-47:i10:p1",
-            "target": "relevant",
+            "target": "cuddly",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "такий, що стосується теми"
+              "ru": "милый, мягкий",
+              "uk": "милий, м’який"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i10:p2",
-            "target": "appropriate",
+            "target": "shallow",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "мелкий",
+              "uk": "мілкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i10:p3",
-            "target": "dangerous",
+            "target": "peaceful",
             "meaningByLocale": {
-              "ru": "опасный",
-              "uk": "небезпечний"
+              "ru": "спокойный, тихий",
+              "uk": "спокійний, тихий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i10:p4",
-            "target": "acceptable",
+            "target": "wide",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "широкий",
+              "uk": "широкий"
             }
           }
         ],
         "leftColumn": [
-          "relevant",
-          "appropriate",
-          "dangerous",
-          "acceptable"
+          "cuddly",
+          "shallow",
+          "peaceful",
+          "wide"
         ],
         "rightColumn": [
-          "такий, що стосується теми",
-          "доречний",
-          "небезпечний",
-          "прийнятний"
+          "милий, м’який",
+          "мілкий",
+          "спокійний, тихий",
+          "широкий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,42 +782,42 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Садівник підстриг кущі вздовж доріжки. Послухайте, що каже сусідка, і складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Садівник підстриг кущі вздовж доріжки. Послухайте, що каже сусідка, і складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i11:audio",
-          "transcript": "It is not acceptable."
+          "transcript": "They are not overgrown."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not acceptable.",
+        "hiddenTargetPhrase": "They are not overgrown.",
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "not",
-          "acceptable"
+          "overgrown"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Садівник підстриг кущі вздовж доріжки. Послухайте, що каже сусідка, і складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not acceptable.`",
-              "uk": "тут потрібно `is` — `It is not acceptable.`"
+              "ru": "здесь нужно `are` — `They are not overgrown.`",
+              "uk": "тут потрібно `are` — `They are not overgrown.`"
             }
           }
         ],
@@ -657,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви помітили пошкодження іншої підставки. Запитайте Анну, чи вона небезпечна",
+      "prompt": "У кіоску ви тягнетеся до плюшевого зайця. Запитайте продавця, чи такий він, що хочеться обійняти.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви помітили пошкодження іншої підставки. Запитайте Анну, чи вона небезпечна",
+      "accessibilityLabel": "У кіоску ви тягнетеся до плюшевого зайця. Запитайте продавця, чи такий він, що хочеться обійняти.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is it dangerous?",
+        "targetPhrase": "Is it cuddly?",
         "localizedMeaning": {
-          "ru": "Вы заметили повреждение другой подставки. Спросите Анну, опасна ли она",
-          "uk": "Ви помітили пошкодження іншої підставки. Запитайте Анну, чи вона небезпечна"
+          "ru": "В киоске вы тянетесь к плюшевому зайцу. Спросите продавца, такой ли он, что хочется обнять.",
+          "uk": "У кіоску ви тягнетеся до плюшевого зайця. Запитайте продавця, чи такий він, що хочеться обійняти."
         },
         "orderedTokens": [
           "Is",
           "it",
-          "dangerous"
+          "cuddly"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -685,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-47:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви помітили пошкодження іншої підставки. Запитайте Анну, чи вона небезпечна",
+            "testedDimension": "У кіоску ви тягнетеся до плюшевого зайця. Запитайте продавця, чи такий він, що хочеться обійняти.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is it dangerous?`",
-              "uk": "тут потрібно `Is` — `Is it dangerous?`"
+              "ru": "здесь нужно `Is` — `Is it cuddly?`",
+              "uk": "тут потрібно `Is` — `Is it cuddly?`"
             }
           }
         ],
@@ -701,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Знімок старої площі стосується теми виставки про історію району. Коротко повідомте про цей зв’язок",
+      "prompt": "Перед вами цілий ряд плюшевих ведмедиків. Скажіть продавцю коротко, що їх хочеться обійняти.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i13:audio"
       ],
-      "accessibilityLabel": "Знімок старої площі стосується теми виставки про історію району. Коротко повідомте про цей зв’язок",
+      "accessibilityLabel": "Перед вами цілий ряд плюшевих ведмедиків. Скажіть продавцю коротко, що їх хочеться обійняти.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i13:audio",
-          "transcript": "It's relevant."
+          "transcript": "They're cuddly."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's relevant.",
+        "targetPhrase": "They're cuddly.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний",
+      "prompt": "Біля греблі на іншому березі вода темна й небезпечна. Скажіть, що там не мілко",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i14:r1",
@@ -755,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний",
+      "accessibilityLabel": "Біля греблі на іншому березі вода темна й небезпечна. Скажіть, що там не мілко",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Другой отпечаток сильно размыт и не отвечает требованиям. Скажите, что он неприемлемый",
-          "uk": "Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний"
+          "ru": "У плотины на другом берегу вода тёмная и опасная. Скажите, что там не мелко",
+          "uk": "Біля греблі на іншому березі вода темна й небезпечна. Скажіть, що там не мілко"
         },
-        "gappedTargetPhrase": "It ___ not acceptable.",
+        "gappedTargetPhrase": "It ___ not shallow.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-47:i14:r1",
@@ -777,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний",
+        "testedDimension": "Біля греблі на іншому березі вода темна й небезпечна. Скажіть, що там не мілко",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i14:r2",
             "correct": false,
-            "testedDimension": "Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний",
+            "testedDimension": "Біля греблі на іншому березі вода темна й небезпечна. Скажіть, що там не мілко",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -791,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-47:i14:r3",
             "correct": false,
-            "testedDimension": "Інший відбиток дуже розмитий і не відповідає вимогам. Скажіть, що він неприйнятний",
+            "testedDimension": "Біля греблі на іншому березі вода темна й небезпечна. Скажіть, що там не мілко",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not acceptable`.",
-              "uk": "Фраза — `It is not acceptable`."
+              "ru": "Фраза — `It is not shallow`.",
+              "uk": "Фраза — `It is not shallow`."
             }
           }
         ]
@@ -803,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте запитання сусідки",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-47:i15:r1",
-          "text": "Is it acceptable?"
+          "text": "Is it peaceful?"
         },
         {
           "responseId": "en:lesson-02:session-47:i15:r2",
-          "text": "Is it relevant?"
+          "text": "Is it overgrown?"
         },
         {
           "responseId": "en:lesson-02:session-47:i15:r3",
-          "text": "Is it dangerous?"
+          "text": "Is it shallow?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте запитання сусідки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i15:audio",
-          "transcript": "Is it acceptable?"
+          "transcript": "Is it peaceful?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-47:i15:r1",
-            "targetText": "Is it acceptable?",
+            "targetText": "Is it peaceful?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i15:r2",
-            "targetText": "Is it relevant?",
+            "targetText": "Is it overgrown?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-47:i15:r3",
-            "targetText": "Is it dangerous?",
+            "targetText": "Is it shallow?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-47:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання сусідки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `acceptable`, а в этом варианте — `relevant`.",
-              "uk": "У записі останнє слово — `acceptable`, а в цьому варіанті — `relevant`."
+              "ru": "В записи последнее слово — `peaceful`, а в этом варианте — `overgrown`.",
+              "uk": "У записі останнє слово — `peaceful`, а в цьому варіанті — `overgrown`."
             }
           },
           {
             "responseId": "en:lesson-02:session-47:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання сусідки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `acceptable`, а в этом варианте — `dangerous`.",
-              "uk": "У записі останнє слово — `acceptable`, а в цьому варіанті — `dangerous`."
+              "ru": "В записи последнее слово — `peaceful`, а в этом варианте — `shallow`.",
+              "uk": "У записі останнє слово — `peaceful`, а в цьому варіанті — `shallow`."
             }
           }
         ],
@@ -879,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-47:i16:p1",
-            "target": "dangerous",
+            "target": "shallow",
             "meaningByLocale": {
-              "ru": "опасный",
-              "uk": "небезпечний"
+              "ru": "мелкий",
+              "uk": "мілкий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i16:p2",
-            "target": "acceptable",
+            "target": "peaceful",
             "meaningByLocale": {
-              "ru": "приемлемый",
-              "uk": "прийнятний"
+              "ru": "спокойный, тихий",
+              "uk": "спокійний, тихий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i16:p3",
-            "target": "appropriate",
+            "target": "overgrown",
             "meaningByLocale": {
-              "ru": "уместный",
-              "uk": "доречний"
+              "ru": "заросший",
+              "uk": "зарослий"
             }
           },
           {
             "pairId": "en:lesson-02:session-47:i16:p4",
-            "target": "relevant",
+            "target": "cuddly",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "такий, що стосується теми"
+              "ru": "милый, мягкий",
+              "uk": "милий, м’який"
             }
           }
         ],
         "leftColumn": [
-          "dangerous",
-          "acceptable",
-          "appropriate",
-          "relevant"
+          "shallow",
+          "peaceful",
+          "overgrown",
+          "cuddly"
         ],
         "rightColumn": [
-          "небезпечний",
-          "прийнятний",
-          "доречний",
-          "такий, що стосується теми"
+          "мілкий",
+          "спокійний, тихий",
+          "зарослий",
+          "милий, м’який"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-47:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви принесли новий відбиток. Запитайте організатора, чи прийнятна його якість",
+      "prompt": "Ви підходите до лави біля далекого ставка. Запитайте сусідку, чи спокійно тут.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i17:audio"
       ],
-      "accessibilityLabel": "Ви принесли новий відбиток. Запитайте організатора, чи прийнятна його якість",
+      "accessibilityLabel": "Ви підходите до лави біля далекого ставка. Запитайте сусідку, чи спокійно тут.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-47:i17:audio",
-          "transcript": "Is it acceptable?"
+          "transcript": "Is it peaceful?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it acceptable?",
+        "targetPhrase": "Is it peaceful?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ef19b22beb4e0fa014692c351900965cd10c5682688d85dc1b6cc5d2b758c067"
+  "learnerFingerprint": "7fa18fb7ce0de990a7d86ccf324d2780bd76e9a68a46a93ccc9eaba94f5386a2"
 }

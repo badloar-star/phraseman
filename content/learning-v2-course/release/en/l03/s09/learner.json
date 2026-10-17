@@ -4,40 +4,83 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-09:i01",
+      "interactionId": "en:lesson-03:session-09:word:armchair",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — armchair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-09:word:armchair:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — armchair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-09:word:armchair:audio",
+          "transcript": "armchair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-09:word:armchair:r1",
+            "targetText": "armchair",
+            "meaningByLocale": {
+              "ru": "кресло. It is an armchair — «Это кресло». О мягком кресле в гостиной, в углу, у окна.",
+              "uk": "крісло. It is an armchair — «Це крісло». Про м’яке крісло у вітальні, в кутку, біля вікна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "armchair",
+          "definitionByLocale": {
+            "ru": "кресло. It is an armchair — «Это кресло». О мягком кресле в гостиной, в углу, у окна.",
+            "uk": "крісло. It is an armchair — «Це крісло». Про м’яке крісло у вітальні, в кутку, біля вікна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы оба смотрите на дверь мастерской. Она открыта. Сообщите об этой двери",
+      "prompt": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы оба смотрите на дверь мастерской. Она открыта. Сообщите об этой двери",
+      "accessibilityLabel": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The door is open.",
+        "targetPhrase": "It is an armchair.",
         "localizedMeaning": {
-          "ru": "Вы оба смотрите на дверь мастерской. Она открыта. Сообщите об этой двери",
-          "uk": "Ви обоє дивитеся на двері майстерні. Вони відчинені. Повідомте про ці двері"
+          "ru": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
+          "uk": "Сестра сіла в крісло біля входу. Продавець питає, що це. Дайте відповідь повною фразою."
         },
         "orderedTokens": [
-          "The",
-          "door",
+          "It",
           "is",
-          "open"
+          "an",
+          "armchair"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы оба смотрите на дверь мастерской. Она открыта. Сообщите об этой двери",
+            "testedDimension": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The door is open.`",
-              "uk": "тут потрібно `is` — `The door is open.`"
+              "ru": "здесь нужно `an` — `It is an armchair.`",
+              "uk": "тут потрібно `an` — `It is an armchair.`"
             }
           }
         ],
@@ -49,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-09:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-09:word:oven",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте ответ о более раннем начале встречи",
+      "prompt": "Карточка слова — oven",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-09:word:oven:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — oven",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-09:word:oven:audio",
+          "transcript": "oven"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-09:word:oven:r1",
+            "targetText": "oven",
+            "meaningByLocale": {
+              "ru": "духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.",
+              "uk": "духовка, піч для запікання. Is it an oven? — «Це духовка?» Про кухонну техніку, в якій запікають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oven",
+          "definitionByLocale": {
+            "ru": "духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.",
+            "uk": "духовка, піч для запікання. Is it an oven? — «Це духовка?» Про кухонну техніку, в якій запікають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что продавец говорит о технике в кухонном зале",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i02:r1",
-          "text": "It is possible."
+          "text": "It is an oven."
         },
         {
           "responseId": "en:lesson-03:session-09:i02:r2",
-          "text": "It is necessary."
+          "text": "It is an armchair."
         },
         {
           "responseId": "en:lesson-03:session-09:i02:r3",
-          "text": "It is unfair."
+          "text": "It is a lamp."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте ответ о более раннем начале встречи",
+      "accessibilityLabel": "Послушайте, что продавец говорит о технике в кухонном зале",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i02:audio",
-          "transcript": "It is possible."
+          "transcript": "It is an oven."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-09:i02:r1",
-            "targetText": "It is possible.",
+            "targetText": "It is an oven.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-09:i02:r2",
-            "targetText": "It is necessary.",
+            "targetText": "It is an armchair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-09:i02:r3",
-            "targetText": "It is unfair.",
+            "targetText": "It is a lamp.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +189,19 @@
           {
             "responseId": "en:lesson-03:session-09:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте ответ о более раннем начале встречи",
+            "testedDimension": "Послушайте, что продавец говорит о технике в кухонном зале",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `possible`, а в этом варианте — `necessary`.",
-              "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `necessary`."
+              "ru": "В записи последнее слово — `oven`, а в этом варианте — `armchair`.",
+              "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `armchair`."
             }
           },
           {
             "responseId": "en:lesson-03:session-09:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте ответ о более раннем начале встречи",
+            "testedDimension": "Послушайте, что продавец говорит о технике в кухонном зале",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `possible`, а в этом варианте — `unfair`.",
-              "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `unfair`."
+              "ru": "В записи последнее слово — `oven`, а в этом варианте — `lamp`.",
+              "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `lamp`."
             }
           }
         ],
@@ -125,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-09:word:umbrella",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — umbrella",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-09:word:umbrella:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — umbrella",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-09:word:umbrella:audio",
+          "transcript": "umbrella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-09:word:umbrella:r1",
+            "targetText": "umbrella",
+            "meaningByLocale": {
+              "ru": "зонт. It's an umbrella — «Это зонт». О зонте от дождя, от солнца, садовом зонте.",
+              "uk": "парасолька. It's an umbrella — «Це парасолька». Про парасольку від дощу, від сонця, садову парасольку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "umbrella",
+          "definitionByLocale": {
+            "ru": "зонт. It's an umbrella — «Это зонт». О зонте от дождя, от солнца, садовом зонте.",
+            "uk": "парасолька. It's an umbrella — «Це парасолька». Про парасольку від дощу, від сонця, садову парасольку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-09:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните сообщение об открытой двери мастерской",
+      "prompt": "Вы показываете сестре на зонт у кассы. Дополните фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i03:r1",
-          "text": "is"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-09:i03:r2",
-          "text": "am"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-09:i03:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните сообщение об открытой двери мастерской",
+      "accessibilityLabel": "Вы показываете сестре на зонт у кассы. Дополните фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните сообщение об открытой двери мастерской",
-          "uk": "Доповніть повідомлення про відчинені двері майстерні"
+          "ru": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+          "uk": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу"
         },
-        "gappedTargetPhrase": "The door ___ open.",
+        "gappedTargetPhrase": "It is ___ umbrella.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-09:i03:r1",
-            "text": "is"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-09:i03:r2",
-            "text": "am"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-09:i03:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Дополните сообщение об открытой двери мастерской",
+        "testedDimension": "Вы показываете сестре на зонт у кассы. Дополните фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Дополните сообщение об открытой двери мастерской",
+            "testedDimension": "Вы показываете сестре на зонт у кассы. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "С `The door` нужно `is`.",
-              "uk": "З `The door` потрібно `is`."
+              "ru": "Перед umbrella нужно an: слово начинается с гласного звука.",
+              "uk": "Перед umbrella потрібно an: слово починається з голосного звуку."
             }
           },
           {
             "responseId": "en:lesson-03:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Дополните сообщение об открытой двери мастерской",
+            "testedDimension": "Вы показываете сестре на зонт у кассы. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Один предмет `door`: `The door is open`.",
-              "uk": "Один предмет `door`: `The door is open`."
+              "ru": "Слово is уже стоит перед пропуском. Перед umbrella нужно an.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед umbrella потрібно an."
             }
           }
         ]
@@ -195,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-09:i04:p1",
-            "target": "door",
+            "target": "armchair",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "кресло",
+              "uk": "крісло"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i04:p2",
-            "target": "key",
+            "target": "oven",
             "meaningByLocale": {
-              "ru": "ключ",
-              "uk": "ключ"
+              "ru": "духовка",
+              "uk": "духовка"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i04:p3",
-            "target": "tall",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "высокий",
-              "uk": "високий"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i04:p4",
-            "target": "short",
+            "target": "lamp",
             "meaningByLocale": {
-              "ru": "невысокий",
-              "uk": "невисокий"
+              "ru": "лампа",
+              "uk": "лампа"
             }
           }
         ],
         "leftColumn": [
-          "door",
-          "key",
-          "tall",
-          "short"
+          "armchair",
+          "oven",
+          "umbrella",
+          "lamp"
         ],
         "rightColumn": [
-          "дверь",
-          "ключ",
-          "высокий",
-          "невысокий"
+          "кресло",
+          "духовка",
+          "зонт",
+          "лампа"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,43 +396,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-09:word:elevator",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — elevator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-09:word:elevator:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — elevator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-09:word:elevator:audio",
+          "transcript": "elevator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-09:word:elevator:r1",
+            "targetText": "elevator",
+            "meaningByLocale": {
+              "ru": "лифт. It is an elevator — «Это лифт». О лифте в доме, в магазине, в гостинице.",
+              "uk": "ліфт. It is an elevator — «Це ліфт». Про ліфт у будинку, в магазині, в готелі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "elevator",
+          "definitionByLocale": {
+            "ru": "лифт. It is an elevator — «Это лифт». О лифте в доме, в магазине, в гостинице.",
+            "uk": "ліфт. It is an elevator — «Це ліфт». Про ліфт у будинку, в магазині, в готелі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-09:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение о ключе",
+      "prompt": "Послушайте продавца у входа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение о ключе",
+      "accessibilityLabel": "Послушайте продавца у входа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i05:audio",
-          "transcript": "The key is here."
+          "transcript": "It is an elevator."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The key is here.",
+        "hiddenTargetPhrase": "It is an elevator.",
         "orderedTokens": [
-          "The",
-          "key",
+          "It",
           "is",
-          "here"
+          "an",
+          "elevator"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение о ключе",
+            "testedDimension": "Послушайте продавца у входа и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The key is here.`",
-              "uk": "тут потрібно `is` — `The key is here.`"
+              "ru": "здесь нужно `an` — `It is an elevator.`",
+              "uk": "тут потрібно `an` — `It is an elevator.`"
             }
           }
         ],
@@ -316,39 +488,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы с Анной ищете нужный ключ от мастерской. Спросите, где ключ",
+      "prompt": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с Анной ищете нужный ключ от мастерской. Спросите, где ключ",
+      "accessibilityLabel": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the key?",
+        "targetPhrase": "Is it an oven?",
         "localizedMeaning": {
-          "ru": "Вы с Анной ищете нужный ключ от мастерской. Спросите, где ключ",
-          "uk": "Ви з Анною шукаєте потрібний ключ від майстерні. Запитайте, де ключ"
+          "ru": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
+          "uk": "Брат стоїть біля великої кухонної техніки. Запитайте продавця, чи це духовка."
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "key"
+          "Is",
+          "it",
+          "an",
+          "oven"
         ],
         "authoredDistractorTokens": [
-          "What"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы с Анной ищете нужный ключ от мастерской. Спросите, где ключ",
+            "testedDimension": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Where` — `Where is the key?`",
-              "uk": "тут потрібно `Where` — `Where is the key?`"
+              "ru": "здесь нужно `an` — `Is it an oven?`",
+              "uk": "тут потрібно `an` — `Is it an oven?`"
             }
           }
         ],
@@ -361,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы оба знаете, о какой двери мастерской речь. Теперь она закрыта. Сообщите «Дверь закрыта»",
+      "prompt": "Продавец показывает на лифт. Скажите коротко, что это лифт.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i07:audio"
       ],
-      "accessibilityLabel": "Вы оба знаете, о какой двери мастерской речь. Теперь она закрыта. Сообщите «Дверь закрыта»",
+      "accessibilityLabel": "Продавец показывает на лифт. Скажите коротко, что это лифт.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i07:audio",
-          "transcript": "The door is closed."
+          "transcript": "It's an elevator."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The door is closed.",
+        "targetPhrase": "It's an elevator.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -394,11 +566,11 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Помощник Олега молодой. Сообщите это",
+      "prompt": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i08:r1",
@@ -406,7 +578,7 @@
         },
         {
           "responseId": "en:lesson-03:session-09:i08:r2",
-          "text": "is the"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-03:session-09:i08:r3",
@@ -415,14 +587,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Помощник Олега молодой. Сообщите это",
+      "accessibilityLabel": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Помощник Олега молодой. Сообщите это",
-          "uk": "Помічник Олега молодий. Повідомте це"
+          "ru": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+          "uk": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "He ___ young.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-09:i08:r1",
@@ -430,31 +602,31 @@
           },
           {
             "responseId": "en:lesson-03:session-09:i08:r2",
-            "text": "is the"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-03:session-09:i08:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Помощник Олега молодой. Сообщите это",
+        "testedDimension": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i08:r2",
             "correct": false,
-            "testedDimension": "Помощник Олега молодой. Сообщите это",
+            "testedDimension": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Перед отдельным `young` в этой фразе не нужно `the`.",
-              "uk": "Перед окремим `young` у цій фразі не потрібно `the`."
+              "ru": "С it нужно is: Yes, it is.",
+              "uk": "З it потрібно is: Yes, it is."
             }
           },
           {
             "responseId": "en:lesson-03:session-09:i08:r3",
             "correct": false,
-            "testedDimension": "Помощник Олега молодой. Сообщите это",
+            "testedDimension": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `He` нужно `is`.",
-              "uk": "З `He` потрібно `is`."
+              "ru": "С it нужно is: Yes, it is.",
+              "uk": "З it потрібно is: Yes, it is."
             }
           }
         ]
@@ -463,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сообщение о двери",
+      "prompt": "Послушайте, что сестра говорит о вещи у выхода",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i09:r1",
-          "text": "The door is open."
+          "text": "It's an umbrella."
         },
         {
           "responseId": "en:lesson-03:session-09:i09:r2",
-          "text": "The door is closed."
+          "text": "It's an armchair."
         },
         {
           "responseId": "en:lesson-03:session-09:i09:r3",
-          "text": "The door is tall."
+          "text": "It's an oven."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте сообщение о двери",
+      "accessibilityLabel": "Послушайте, что сестра говорит о вещи у выхода",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i09:audio",
-          "transcript": "The door is open."
+          "transcript": "It's an umbrella."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-09:i09:r1",
-            "targetText": "The door is open.",
+            "targetText": "It's an umbrella.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-09:i09:r2",
-            "targetText": "The door is closed.",
+            "targetText": "It's an armchair.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-09:i09:r3",
-            "targetText": "The door is tall.",
+            "targetText": "It's an oven.",
             "meaningByLocale": null
           }
         ],
@@ -516,19 +688,19 @@
           {
             "responseId": "en:lesson-03:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о двери",
+            "testedDimension": "Послушайте, что сестра говорит о вещи у выхода",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
-              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
+              "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `armchair`.",
+              "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `armchair`."
             }
           },
           {
             "responseId": "en:lesson-03:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте сообщение о двери",
+            "testedDimension": "Послушайте, что сестра говорит о вещи у выхода",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `open`, а в этом варианте — `tall`.",
-              "uk": "У записі останнє слово — `open`, а в цьому варіанті — `tall`."
+              "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `oven`.",
+              "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `oven`."
             }
           }
         ],
@@ -539,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -553,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-09:i10:p1",
-            "target": "possible",
+            "target": "elevator",
             "meaningByLocale": {
-              "ru": "возможный",
-              "uk": "можливий"
+              "ru": "лифт",
+              "uk": "ліфт"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i10:p2",
-            "target": "young",
+            "target": "oven",
             "meaningByLocale": {
-              "ru": "молодой",
-              "uk": "молодий"
+              "ru": "духовка",
+              "uk": "духовка"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i10:p3",
-            "target": "door",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i10:p4",
-            "target": "key",
+            "target": "sofa",
             "meaningByLocale": {
-              "ru": "ключ",
-              "uk": "ключ"
+              "ru": "диван",
+              "uk": "диван"
             }
           }
         ],
         "leftColumn": [
-          "possible",
-          "young",
-          "door",
-          "key"
+          "elevator",
+          "oven",
+          "umbrella",
+          "sofa"
         ],
         "rightColumn": [
-          "возможный",
-          "молодой",
-          "дверь",
-          "ключ"
+          "лифт",
+          "духовка",
+          "зонт",
+          "диван"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,43 +784,43 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
+      "prompt": "Послушайте, что продавец говорит о технике, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте, что продавец говорит о технике, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i11:audio",
-          "transcript": "The door is not open."
+          "transcript": "It is not an oven."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The door is not open.",
+        "hiddenTargetPhrase": "It is not an oven.",
         "orderedTokens": [
-          "The",
-          "door",
+          "It",
           "is",
           "not",
-          "open"
+          "an",
+          "oven"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте, что продавец говорит о технике, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The door is not open.`",
-              "uk": "тут потрібно `is` — `The door is not open.`"
+              "ru": "здесь нужно `an` — `It is not an oven.`",
+              "uk": "тут потрібно `an` — `It is not an oven.`"
             }
           }
         ],
@@ -661,39 +833,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна стоит у двери мастерской, о которой вы уже говорили. Спросите, открыта ли дверь",
+      "prompt": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна стоит у двери мастерской, о которой вы уже говорили. Спросите, открыта ли дверь",
+      "accessibilityLabel": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is the door open?",
+        "targetPhrase": "Is it an elevator?",
         "localizedMeaning": {
-          "ru": "Анна стоит у двери мастерской, о которой вы уже говорили. Спросите, открыта ли дверь",
-          "uk": "Анна стоїть біля дверей майстерні, про які ви вже говорили. Запитайте, чи двері відчинені"
+          "ru": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
+          "uk": "Ви стоїте біля дверей із кнопкою виклику. Запитайте продавця, чи це ліфт."
         },
         "orderedTokens": [
           "Is",
-          "the",
-          "door",
-          "open"
+          "it",
+          "an",
+          "elevator"
         ],
         "authoredDistractorTokens": [
-          "Are"
+          "a"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна стоит у двери мастерской, о которой вы уже говорили. Спросите, открыта ли дверь",
+            "testedDimension": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is the door open?`",
-              "uk": "тут потрібно `Is` — `Is the door open?`"
+              "ru": "здесь нужно `an` — `Is it an elevator?`",
+              "uk": "тут потрібно `an` — `Is it an elevator?`"
             }
           }
         ],
@@ -706,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Помощник Олега невысокий. Сообщите это с сокращением",
+      "prompt": "Сестра показывает на кресло в углу. Скажите коротко, что это кресло.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i13:audio"
       ],
-      "accessibilityLabel": "Помощник Олега невысокий. Сообщите это с сокращением",
+      "accessibilityLabel": "Сестра показывает на кресло в углу. Скажите коротко, что это кресло.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i13:audio",
-          "transcript": "He's short."
+          "transcript": "It's an armchair."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's short.",
+        "targetPhrase": "It's an armchair.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -739,67 +911,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы говорите именно о нужном ключе, который оба только что искали. Дополните «Ключ здесь»",
+      "prompt": "Продавец показывает на лампу у стены. Дополните фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i14:r1",
-          "text": "The"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-03:session-09:i14:r2",
-          "text": "A"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-03:session-09:i14:r3",
-          "text": "An"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы говорите именно о нужном ключе, который оба только что искали. Дополните «Ключ здесь»",
+      "accessibilityLabel": "Продавец показывает на лампу у стены. Дополните фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорите именно о нужном ключе, который оба только что искали. Дополните «Ключ здесь»",
-          "uk": "Ви говорите саме про потрібний ключ, який обоє щойно шукали. Доповніть «Ключ тут»"
+          "ru": "Продавец показывает на лампу у стены. Дополните фразу",
+          "uk": "Продавець показує на лампу біля стіни. Доповніть фразу"
         },
-        "gappedTargetPhrase": "___ key is here.",
+        "gappedTargetPhrase": "It is ___ lamp.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-09:i14:r1",
-            "text": "The"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-03:session-09:i14:r2",
-            "text": "A"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-03:session-09:i14:r3",
-            "text": "An"
+            "text": "is"
           }
         ],
-        "testedDimension": "Вы говорите именно о нужном ключе, который оба только что искали. Дополните «Ключ здесь»",
+        "testedDimension": "Продавец показывает на лампу у стены. Дополните фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i14:r2",
             "correct": false,
-            "testedDimension": "Вы говорите именно о нужном ключе, который оба только что искали. Дополните «Ключ здесь»",
+            "testedDimension": "Продавец показывает на лампу у стены. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "`A key` сообщает о каком-то ключе. Здесь нужен известный вам обоим ключ: `The key`.",
-              "uk": "`A key` повідомляє про якийсь ключ. Тут потрібен відомий вам обом ключ: `The key`."
+              "ru": "Слово lamp начинается с согласного звука, поэтому здесь a: It is a lamp.",
+              "uk": "Слово lamp починається з приголосного звуку, тому тут a: It is a lamp."
             }
           },
           {
             "responseId": "en:lesson-03:session-09:i14:r3",
             "correct": false,
-            "testedDimension": "Вы говорите именно о нужном ключе, который оба только что искали. Дополните «Ключ здесь»",
+            "testedDimension": "Продавец показывает на лампу у стены. Дополните фразу",
             "feedbackByLocale": {
-              "ru": "Перед `key` форма `an` не подходит; для нужного вам обоим ключа здесь `The`.",
-              "uk": "Перед `key` форма `an` не підходить; для потрібного вам обом ключа тут `The`."
+              "ru": "Слово is уже стоит перед пропуском. Перед lamp нужно a.",
+              "uk": "Слово is уже стоїть перед пропуском. Перед lamp потрібно a."
             }
           }
         ]
@@ -808,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос об Олеге",
+      "prompt": "Послушайте вопрос сестры",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i15:r1",
-          "text": "Is he tall?"
+          "text": "Is it an elevator?"
         },
         {
           "responseId": "en:lesson-03:session-09:i15:r2",
-          "text": "Is he short?"
+          "text": "Is it an oven?"
         },
         {
           "responseId": "en:lesson-03:session-09:i15:r3",
-          "text": "Is he young?"
+          "text": "Is it an umbrella?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос об Олеге",
+      "accessibilityLabel": "Послушайте вопрос сестры",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i15:audio",
-          "transcript": "Is he tall?"
+          "transcript": "Is it an elevator?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-09:i15:r1",
-            "targetText": "Is he tall?",
+            "targetText": "Is it an elevator?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-09:i15:r2",
-            "targetText": "Is he short?",
+            "targetText": "Is it an oven?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-09:i15:r3",
-            "targetText": "Is he young?",
+            "targetText": "Is it an umbrella?",
             "meaningByLocale": null
           }
         ],
@@ -861,19 +1033,19 @@
           {
             "responseId": "en:lesson-03:session-09:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об Олеге",
+            "testedDimension": "Послушайте вопрос сестры",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `tall`, а в этом варианте — `short`.",
-              "uk": "У записі останнє слово — `tall`, а в цьому варіанті — `short`."
+              "ru": "В записи последнее слово — `elevator`, а в этом варианте — `oven`.",
+              "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `oven`."
             }
           },
           {
             "responseId": "en:lesson-03:session-09:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос об Олеге",
+            "testedDimension": "Послушайте вопрос сестры",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `tall`, а в этом варианте — `young`.",
-              "uk": "У записі останнє слово — `tall`, а в цьому варіанті — `young`."
+              "ru": "В записи последнее слово — `elevator`, а в этом варианте — `umbrella`.",
+              "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `umbrella`."
             }
           }
         ],
@@ -884,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -898,48 +1070,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-09:i16:p1",
-            "target": "door",
+            "target": "armchair",
             "meaningByLocale": {
-              "ru": "дверь",
-              "uk": "двері"
+              "ru": "кресло",
+              "uk": "крісло"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i16:p2",
-            "target": "young",
+            "target": "elevator",
             "meaningByLocale": {
-              "ru": "молодой",
-              "uk": "молодий"
+              "ru": "лифт",
+              "uk": "ліфт"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i16:p3",
-            "target": "possible",
+            "target": "oven",
             "meaningByLocale": {
-              "ru": "возможный",
-              "uk": "можливий"
+              "ru": "духовка",
+              "uk": "духовка"
             }
           },
           {
             "pairId": "en:lesson-03:session-09:i16:p4",
-            "target": "tall",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "высокий",
-              "uk": "високий"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           }
         ],
         "leftColumn": [
-          "door",
-          "young",
-          "possible",
-          "tall"
+          "armchair",
+          "elevator",
+          "oven",
+          "umbrella"
         ],
         "rightColumn": [
-          "дверь",
-          "молодой",
-          "возможный",
-          "высокий"
+          "кресло",
+          "лифт",
+          "духовка",
+          "зонт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -957,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-09:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "После встречи вы с Анной собираетесь закрыть мастерскую. Вы оба знаете, какой ключ нужен. Спросите, где ключ",
+      "prompt": "Выходя из магазина, вы видите зонт у кассы. Спросите сестру, зонт ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i17:audio"
       ],
-      "accessibilityLabel": "После встречи вы с Анной собираетесь закрыть мастерскую. Вы оба знаете, какой ключ нужен. Спросите, где ключ",
+      "accessibilityLabel": "Выходя из магазина, вы видите зонт у кассы. Спросите сестру, зонт ли это.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-09:i17:audio",
-          "transcript": "Where is the key?"
+          "transcript": "Is it an umbrella?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the key?",
+        "targetPhrase": "Is it an umbrella?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -997,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d61caa5bbc1e01af862871bc95bb3894d559e833c34c177fd29aa0b6a360367e"
+  "learnerFingerprint": "38081921866b8987a7542a72fae111c337aa6e7c7bf5043b081114153b2afb19"
 }

@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-09:word:armchair",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — armchair",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:armchair:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — armchair",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:armchair:audio",
+            "transcript": "armchair"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:armchair:r1",
+              "targetText": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло. It is an armchair — «Это кресло». О мягком кресле в гостиной, в углу, у окна.",
+                "uk": "крісло. It is an armchair — «Це крісло». Про м’яке крісло у вітальні, в кутку, біля вікна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "armchair",
+            "definitionByLocale": {
+              "ru": "кресло. It is an armchair — «Это кресло». О мягком кресле в гостиной, в углу, у окна.",
+              "uk": "крісло. It is an armchair — «Це крісло». Про м’яке крісло у вітальні, в кутку, біля вікна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is an armchair.",
+          "localizedMeaning": {
+            "ru": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
+            "uk": "Сестра сіла в крісло біля входу. Продавець питає, що це. Дайте відповідь повною фразою."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "an",
+            "armchair"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is an armchair.`",
+                "uk": "тут потрібно `an` — `It is an armchair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:word:oven",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — oven",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:oven:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — oven",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:oven:audio",
+            "transcript": "oven"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:oven:r1",
+              "targetText": "oven",
+              "meaningByLocale": {
+                "ru": "духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.",
+                "uk": "духовка, піч для запікання. Is it an oven? — «Це духовка?» Про кухонну техніку, в якій запікають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oven",
+            "definitionByLocale": {
+              "ru": "духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.",
+              "uk": "духовка, піч для запікання. Is it an oven? — «Це духовка?» Про кухонну техніку, в якій запікають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о технике в кухонном зале",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i02:r1",
+            "text": "It is an oven."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i02:r2",
+            "text": "It is an armchair."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i02:r3",
+            "text": "It is a lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о технике в кухонном зале",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i02:audio",
+            "transcript": "It is an oven."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:i02:r1",
+              "targetText": "It is an oven.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i02:r2",
+              "targetText": "It is an armchair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i02:r3",
+              "targetText": "It is a lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о технике в кухонном зале",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `oven`, а в этом варианте — `armchair`.",
+                "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `armchair`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о технике в кухонном зале",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `oven`, а в этом варианте — `lamp`.",
+                "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `lamp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:word:umbrella",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — umbrella",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:umbrella:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — umbrella",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:umbrella:audio",
+            "transcript": "umbrella"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:umbrella:r1",
+              "targetText": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт. It's an umbrella — «Это зонт». О зонте от дождя, от солнца, садовом зонте.",
+                "uk": "парасолька. It's an umbrella — «Це парасолька». Про парасольку від дощу, від сонця, садову парасольку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "umbrella",
+            "definitionByLocale": {
+              "ru": "зонт. It's an umbrella — «Это зонт». О зонте от дождя, от солнца, садовом зонте.",
+              "uk": "парасолька. It's an umbrella — «Це парасолька». Про парасольку від дощу, від сонця, садову парасольку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+            "uk": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ umbrella.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-09:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Перед umbrella нужно an: слово начинается с гласного звука.",
+                "uk": "Перед umbrella потрібно an: слово починається з голосного звуку."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед umbrella нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед umbrella потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-09:i04:p1",
+              "target": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i04:p2",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i04:p3",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i04:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "armchair",
+            "oven",
+            "umbrella",
+            "lamp"
+          ],
+          "rightColumn": [
+            "кресло",
+            "духовка",
+            "зонт",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:word:elevator",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — elevator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:elevator:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — elevator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:elevator:audio",
+            "transcript": "elevator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:elevator:r1",
+              "targetText": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт. It is an elevator — «Это лифт». О лифте в доме, в магазине, в гостинице.",
+                "uk": "ліфт. It is an elevator — «Це ліфт». Про ліфт у будинку, в магазині, в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elevator",
+            "definitionByLocale": {
+              "ru": "лифт. It is an elevator — «Это лифт». О лифте в доме, в магазине, в гостинице.",
+              "uk": "ліфт. It is an elevator — «Це ліфт». Про ліфт у будинку, в магазині, в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца у входа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца у входа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i05:audio",
+            "transcript": "It is an elevator."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is an elevator.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "an",
+            "elevator"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца у входа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is an elevator.`",
+                "uk": "тут потрібно `an` — `It is an elevator.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an oven?",
+          "localizedMeaning": {
+            "ru": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
+            "uk": "Брат стоїть біля великої кухонної техніки. Запитайте продавця, чи це духовка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an oven?`",
+                "uk": "тут потрібно `an` — `Is it an oven?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец показывает на лифт. Скажите коротко, что это лифт.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i07:audio"
+        ],
+        "accessibilityLabel": "Продавец показывает на лифт. Скажите коротко, что это лифт.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i07:audio",
+            "transcript": "It's an elevator."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an elevator.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+            "uk": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-09:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что сестра говорит о вещи у выхода",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i09:r1",
+            "text": "It's an umbrella."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i09:r2",
+            "text": "It's an armchair."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i09:r3",
+            "text": "It's an oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что сестра говорит о вещи у выхода",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i09:audio",
+            "transcript": "It's an umbrella."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:i09:r1",
+              "targetText": "It's an umbrella.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i09:r2",
+              "targetText": "It's an armchair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i09:r3",
+              "targetText": "It's an oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что сестра говорит о вещи у выхода",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `armchair`.",
+                "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `armchair`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что сестра говорит о вещи у выхода",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-09:i10:p1",
+              "target": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i10:p2",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i10:p3",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i10:p4",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            }
+          ],
+          "leftColumn": [
+            "elevator",
+            "oven",
+            "umbrella",
+            "sofa"
+          ],
+          "rightColumn": [
+            "лифт",
+            "духовка",
+            "зонт",
+            "диван"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что продавец говорит о технике, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о технике, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i11:audio",
+            "transcript": "It is not an oven."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not an oven.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "an",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о технике, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is not an oven.`",
+                "uk": "тут потрібно `an` — `It is not an oven.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an elevator?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
+            "uk": "Ви стоїте біля дверей із кнопкою виклику. Запитайте продавця, чи це ліфт."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "elevator"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an elevator?`",
+                "uk": "тут потрібно `an` — `Is it an elevator?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра показывает на кресло в углу. Скажите коротко, что это кресло.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра показывает на кресло в углу. Скажите коротко, что это кресло.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i13:audio",
+            "transcript": "It's an armchair."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an armchair.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец показывает на лампу у стены. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i14:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i14:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает на лампу у стены. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает на лампу у стены. Дополните фразу",
+            "uk": "Продавець показує на лампу біля стіни. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-09:i14:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i14:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавец показывает на лампу у стены. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавец показывает на лампу у стены. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово lamp начинается с согласного звука, поэтому здесь a: It is a lamp.",
+                "uk": "Слово lamp починається з приголосного звуку, тому тут a: It is a lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавец показывает на лампу у стены. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед lamp нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед lamp потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос сестры",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i15:r1",
+            "text": "Is it an elevator?"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i15:r2",
+            "text": "Is it an oven?"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i15:r3",
+            "text": "Is it an umbrella?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос сестры",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i15:audio",
+            "transcript": "Is it an elevator?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:i15:r1",
+              "targetText": "Is it an elevator?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i15:r2",
+              "targetText": "Is it an oven?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i15:r3",
+              "targetText": "Is it an umbrella?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос сестры",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `elevator`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `oven`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос сестры",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `elevator`, а в этом варианте — `umbrella`.",
+                "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `umbrella`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-09:i16:p1",
+              "target": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i16:p2",
+              "target": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i16:p3",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i16:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "armchair",
+            "elevator",
+            "oven",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "кресло",
+            "лифт",
+            "духовка",
+            "зонт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Выходя из магазина, вы видите зонт у кассы. Спросите сестру, зонт ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Выходя из магазина, вы видите зонт у кассы. Спросите сестру, зонт ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i17:audio",
+            "transcript": "Is it an umbrella?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it an umbrella?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-09:word:armchair",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — armchair",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:armchair:audio"
+        ],
+        "accessibilityLabel": "Картка слова — armchair",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:armchair:audio",
+            "transcript": "armchair"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:armchair:r1",
+              "targetText": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло. It is an armchair — «Это кресло». О мягком кресле в гостиной, в углу, у окна.",
+                "uk": "крісло. It is an armchair — «Це крісло». Про м’яке крісло у вітальні, в кутку, біля вікна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "armchair",
+            "definitionByLocale": {
+              "ru": "кресло. It is an armchair — «Это кресло». О мягком кресле в гостиной, в углу, у окна.",
+              "uk": "крісло. It is an armchair — «Це крісло». Про м’яке крісло у вітальні, в кутку, біля вікна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра сіла в крісло біля входу. Продавець питає, що це. Дайте відповідь повною фразою.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра сіла в крісло біля входу. Продавець питає, що це. Дайте відповідь повною фразою.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is an armchair.",
+          "localizedMeaning": {
+            "ru": "Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.",
+            "uk": "Сестра сіла в крісло біля входу. Продавець питає, що це. Дайте відповідь повною фразою."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "an",
+            "armchair"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра сіла в крісло біля входу. Продавець питає, що це. Дайте відповідь повною фразою.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is an armchair.`",
+                "uk": "тут потрібно `an` — `It is an armchair.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:word:oven",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — oven",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:oven:audio"
+        ],
+        "accessibilityLabel": "Картка слова — oven",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:oven:audio",
+            "transcript": "oven"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:oven:r1",
+              "targetText": "oven",
+              "meaningByLocale": {
+                "ru": "духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.",
+                "uk": "духовка, піч для запікання. Is it an oven? — «Це духовка?» Про кухонну техніку, в якій запікають."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oven",
+            "definitionByLocale": {
+              "ru": "духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.",
+              "uk": "духовка, піч для запікання. Is it an oven? — «Це духовка?» Про кухонну техніку, в якій запікають."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про техніку в кухонному залі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i02:r1",
+            "text": "It is an oven."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i02:r2",
+            "text": "It is an armchair."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i02:r3",
+            "text": "It is a lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про техніку в кухонному залі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i02:audio",
+            "transcript": "It is an oven."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:i02:r1",
+              "targetText": "It is an oven.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i02:r2",
+              "targetText": "It is an armchair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i02:r3",
+              "targetText": "It is a lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про техніку в кухонному залі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `oven`, а в этом варианте — `armchair`.",
+                "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `armchair`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про техніку в кухонному залі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `oven`, а в этом варианте — `lamp`.",
+                "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `lamp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:word:umbrella",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — umbrella",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:umbrella:audio"
+        ],
+        "accessibilityLabel": "Картка слова — umbrella",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:umbrella:audio",
+            "transcript": "umbrella"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:umbrella:r1",
+              "targetText": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт. It's an umbrella — «Это зонт». О зонте от дождя, от солнца, садовом зонте.",
+                "uk": "парасолька. It's an umbrella — «Це парасолька». Про парасольку від дощу, від сонця, садову парасольку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "umbrella",
+            "definitionByLocale": {
+              "ru": "зонт. It's an umbrella — «Это зонт». О зонте от дождя, от солнца, садовом зонте.",
+              "uk": "парасолька. It's an umbrella — «Це парасолька». Про парасольку від дощу, від сонця, садову парасольку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете сестре на зонт у кассы. Дополните фразу",
+            "uk": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ umbrella.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-09:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Перед umbrella нужно an: слово начинается с гласного звука.",
+                "uk": "Перед umbrella потрібно an: слово починається з голосного звуку."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви показуєте сестрі на парасольку біля каси. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед umbrella нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед umbrella потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-09:i04:p1",
+              "target": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i04:p2",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i04:p3",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i04:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            }
+          ],
+          "leftColumn": [
+            "armchair",
+            "oven",
+            "umbrella",
+            "lamp"
+          ],
+          "rightColumn": [
+            "крісло",
+            "духовка",
+            "парасолька",
+            "лампа"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:word:elevator",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — elevator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:word:elevator:audio"
+        ],
+        "accessibilityLabel": "Картка слова — elevator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:word:elevator:audio",
+            "transcript": "elevator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:word:elevator:r1",
+              "targetText": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт. It is an elevator — «Это лифт». О лифте в доме, в магазине, в гостинице.",
+                "uk": "ліфт. It is an elevator — «Це ліфт». Про ліфт у будинку, в магазині, в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elevator",
+            "definitionByLocale": {
+              "ru": "лифт. It is an elevator — «Это лифт». О лифте в доме, в магазине, в гостинице.",
+              "uk": "ліфт. It is an elevator — «Це ліфт». Про ліфт у будинку, в магазині, в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця біля входу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця біля входу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i05:audio",
+            "transcript": "It is an elevator."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is an elevator.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "an",
+            "elevator"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця біля входу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is an elevator.`",
+                "uk": "тут потрібно `an` — `It is an elevator.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат стоїть біля великої кухонної техніки. Запитайте продавця, чи це духовка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат стоїть біля великої кухонної техніки. Запитайте продавця, чи це духовка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an oven?",
+          "localizedMeaning": {
+            "ru": "Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.",
+            "uk": "Брат стоїть біля великої кухонної техніки. Запитайте продавця, чи це духовка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат стоїть біля великої кухонної техніки. Запитайте продавця, чи це духовка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an oven?`",
+                "uk": "тут потрібно `an` — `Is it an oven?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець показує на ліфт. Скажіть коротко, що це ліфт.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i07:audio"
+        ],
+        "accessibilityLabel": "Продавець показує на ліфт. Скажіть коротко, що це ліфт.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i07:audio",
+            "transcript": "It's an elevator."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an elevator.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»",
+            "uk": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-09:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавець питає: «Is it an armchair?» Так, це крісло. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що сестра каже про річ біля виходу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i09:r1",
+            "text": "It's an umbrella."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i09:r2",
+            "text": "It's an armchair."
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i09:r3",
+            "text": "It's an oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що сестра каже про річ біля виходу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i09:audio",
+            "transcript": "It's an umbrella."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:i09:r1",
+              "targetText": "It's an umbrella.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i09:r2",
+              "targetText": "It's an armchair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i09:r3",
+              "targetText": "It's an oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що сестра каже про річ біля виходу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `armchair`.",
+                "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `armchair`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що сестра каже про річ біля виходу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-09:i10:p1",
+              "target": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i10:p2",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i10:p3",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i10:p4",
+              "target": "sofa",
+              "meaningByLocale": {
+                "ru": "диван",
+                "uk": "диван"
+              }
+            }
+          ],
+          "leftColumn": [
+            "elevator",
+            "oven",
+            "umbrella",
+            "sofa"
+          ],
+          "rightColumn": [
+            "ліфт",
+            "духовка",
+            "парасолька",
+            "диван"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що продавець каже про техніку, й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про техніку, й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i11:audio",
+            "transcript": "It is not an oven."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not an oven.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "an",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про техніку, й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is not an oven.`",
+                "uk": "тут потрібно `an` — `It is not an oven.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля дверей із кнопкою виклику. Запитайте продавця, чи це ліфт.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля дверей із кнопкою виклику. Запитайте продавця, чи це ліфт.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an elevator?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.",
+            "uk": "Ви стоїте біля дверей із кнопкою виклику. Запитайте продавця, чи це ліфт."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "elevator"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля дверей із кнопкою виклику. Запитайте продавця, чи це ліфт.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an elevator?`",
+                "uk": "тут потрібно `an` — `Is it an elevator?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра показує на крісло в кутку. Скажіть коротко, що це крісло.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра показує на крісло в кутку. Скажіть коротко, що це крісло.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i13:audio",
+            "transcript": "It's an armchair."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's an armchair.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець показує на лампу біля стіни. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i14:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i14:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує на лампу біля стіни. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает на лампу у стены. Дополните фразу",
+            "uk": "Продавець показує на лампу біля стіни. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-09:i14:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i14:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавець показує на лампу біля стіни. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавець показує на лампу біля стіни. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово lamp начинается с согласного звука, поэтому здесь a: It is a lamp.",
+                "uk": "Слово lamp починається з приголосного звуку, тому тут a: It is a lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавець показує на лампу біля стіни. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед lamp нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед lamp потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання сестри",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-09:i15:r1",
+            "text": "Is it an elevator?"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i15:r2",
+            "text": "Is it an oven?"
+          },
+          {
+            "responseId": "en:lesson-03:session-09:i15:r3",
+            "text": "Is it an umbrella?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання сестри",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i15:audio",
+            "transcript": "Is it an elevator?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-09:i15:r1",
+              "targetText": "Is it an elevator?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i15:r2",
+              "targetText": "Is it an oven?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i15:r3",
+              "targetText": "Is it an umbrella?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-09:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сестри",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `elevator`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `oven`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-09:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сестри",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `elevator`, а в этом варианте — `umbrella`.",
+                "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `umbrella`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-09:i16:p1",
+              "target": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i16:p2",
+              "target": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i16:p3",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-09:i16:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "armchair",
+            "elevator",
+            "oven",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "крісло",
+            "ліфт",
+            "духовка",
+            "парасолька"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-09:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Виходячи з магазину, ви бачите парасольку біля каси. Запитайте сестру, чи це парасолька.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Виходячи з магазину, ви бачите парасольку біля каси. Запитайте сестру, чи це парасолька.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i17:audio",
+            "transcript": "Is it an umbrella?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it an umbrella?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-09:word:armchair",
+      "correctText": "armchair",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i01",
+      "correctText": "It is an armchair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:word:oven",
+      "correctText": "oven",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i02",
+      "correctText": "It is an oven.",
+      "correctResponseId": "en:lesson-03:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:word:umbrella",
+      "correctText": "umbrella",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i03",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-03:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:word:elevator",
+      "correctText": "elevator",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i05",
+      "correctText": "It is an elevator.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i06",
+      "correctText": "Is it an oven?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i07",
+      "correctText": "It's an elevator.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i09",
+      "correctText": "It's an umbrella.",
+      "correctResponseId": "en:lesson-03:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i11",
+      "correctText": "It is not an oven.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i12",
+      "correctText": "Is it an elevator?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i13",
+      "correctText": "It's an armchair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i14",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-09:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i15",
+      "correctText": "Is it an elevator?",
+      "correctResponseId": "en:lesson-03:session-09:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:i17",
+      "correctText": "Is it an umbrella?",
+      "correctResponseId": null
+    }
+  ]
+}

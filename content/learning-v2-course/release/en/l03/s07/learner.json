@@ -4,28 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-03:session-07:i01",
+      "interactionId": "en:lesson-03:session-07:word:drawer",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drawer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-07:word:drawer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drawer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-07:word:drawer:audio",
+          "transcript": "drawer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-07:word:drawer:r1",
+            "targetText": "drawer",
+            "meaningByLocale": {
+              "ru": "выдвижной ящик. It is a drawer — «Это ящик». В комоде, в столе, в тумбочке.",
+              "uk": "висувна шухляда. It is a drawer — «Це шухляда». У комоді, у столі, у тумбочці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drawer",
+          "definitionByLocale": {
+            "ru": "выдвижной ящик. It is a drawer — «Это ящик». В комоде, в столе, в тумбочке.",
+            "uk": "висувна шухляда. It is a drawer — «Це шухляда». У комоді, у столі, у тумбочці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-07:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы показываете выбранную чашку. Назовите предмет полной фразой",
+      "prompt": "Подруга вытащила ящик из комода. Скажите ей полной фразой, что это ящик.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете выбранную чашку. Назовите предмет полной фразой",
+      "accessibilityLabel": "Подруга вытащила ящик из комода. Скажите ей полной фразой, что это ящик.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a cup.",
+        "targetPhrase": "It is a drawer.",
         "localizedMeaning": {
-          "ru": "Вы показываете выбранную чашку. Назовите предмет полной фразой",
-          "uk": "Ви показуєте обрану чашку. Назвіть предмет повною фразою"
+          "ru": "Подруга вытащила ящик из комода. Скажите ей полной фразой, что это ящик.",
+          "uk": "Подруга витягла шухляду з комода. Скажіть їй повною фразою, що це шухляда."
         },
         "orderedTokens": [
           "It",
           "is",
           "a",
-          "cup"
+          "drawer"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -34,10 +77,10 @@
           {
             "responseId": "en:lesson-03:session-07:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы показываете выбранную чашку. Назовите предмет полной фразой",
+            "testedDimension": "Подруга вытащила ящик из комода. Скажите ей полной фразой, что это ящик.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is a cup.`",
-              "uk": "тут потрібно `is` — `It is a cup.`"
+              "ru": "здесь нужно `is` — `It is a drawer.`",
+              "uk": "тут потрібно `is` — `It is a drawer.`"
             }
           }
         ],
@@ -49,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-07:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-03:session-07:word:cupboard",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу об Олеге",
+      "prompt": "Карточка слова — cupboard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-07:word:cupboard:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cupboard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-07:word:cupboard:audio",
+          "transcript": "cupboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-07:word:cupboard:r1",
+            "targetText": "cupboard",
+            "meaningByLocale": {
+              "ru": "шкафчик для посуды. Is it a cupboard? — «Это шкафчик?» Обычно на кухне.",
+              "uk": "шафка для посуду. Is it a cupboard? — «Це шафка?» Зазвичай на кухні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cupboard",
+          "definitionByLocale": {
+            "ru": "шкафчик для посуды. Is it a cupboard? — «Это шкафчик?» Обычно на кухне.",
+            "uk": "шафка для посуду. Is it a cupboard? — «Це шафка?» Зазвичай на кухні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-07:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что подруга говорит о мебели",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i02:r1",
-          "text": "He is angry."
+          "text": "It is a wardrobe."
         },
         {
           "responseId": "en:lesson-03:session-07:i02:r2",
-          "text": "He is scared."
+          "text": "It is a cupboard."
         },
         {
           "responseId": "en:lesson-03:session-07:i02:r3",
-          "text": "He is calm."
+          "text": "It is a drawer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу об Олеге",
+      "accessibilityLabel": "Послушайте, что подруга говорит о мебели",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i02:audio",
-          "transcript": "He is angry."
+          "transcript": "It is a wardrobe."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-07:i02:r1",
-            "targetText": "He is angry.",
+            "targetText": "It is a wardrobe.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i02:r2",
-            "targetText": "He is scared.",
+            "targetText": "It is a cupboard.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i02:r3",
-            "targetText": "He is calm.",
+            "targetText": "It is a drawer.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +189,19 @@
           {
             "responseId": "en:lesson-03:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что подруга говорит о мебели",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `angry`, а в этом варианте — `scared`.",
-              "uk": "У записі останнє слово — `angry`, а в цьому варіанті — `scared`."
+              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.",
+              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `cupboard`."
             }
           },
           {
             "responseId": "en:lesson-03:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу об Олеге",
+            "testedDimension": "Послушайте, что подруга говорит о мебели",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `angry`, а в этом варианте — `calm`.",
-              "uk": "У записі останнє слово — `angry`, а в цьому варіанті — `calm`."
+              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `drawer`.",
+              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `drawer`."
             }
           }
         ],
@@ -125,12 +211,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-07:word:wardrobe",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wardrobe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-07:word:wardrobe:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wardrobe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-07:word:wardrobe:audio",
+          "transcript": "wardrobe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-07:word:wardrobe:r1",
+            "targetText": "wardrobe",
+            "meaningByLocale": {
+              "ru": "платяной шкаф. It's a wardrobe — «Это платяной шкаф». В нём хранят одежду.",
+              "uk": "шафа для одягу. It's a wardrobe — «Це шафа для одягу». У ній зберігають одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wardrobe",
+          "definitionByLocale": {
+            "ru": "платяной шкаф. It's a wardrobe — «Это платяной шкаф». В нём хранят одежду.",
+            "uk": "шафа для одягу. It's a wardrobe — «Це шафа для одягу». У ній зберігають одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-07:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните название чашки",
+      "prompt": "Подруга показывает на высокий шкаф. Дополните: «Это платяной шкаф»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i03:r1",
@@ -138,23 +267,23 @@
         },
         {
           "responseId": "en:lesson-03:session-07:i03:r2",
-          "text": "an"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-03:session-07:i03:r3",
-          "text": "is"
+          "text": "it"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните название чашки",
+      "accessibilityLabel": "Подруга показывает на высокий шкаф. Дополните: «Это платяной шкаф»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните название чашки",
-          "uk": "Доповніть назву чашки"
+          "ru": "Подруга показывает на высокий шкаф. Дополните: «Это платяной шкаф»",
+          "uk": "Подруга показує на високу шафу. Доповніть: «Це шафа для одягу»"
         },
-        "gappedTargetPhrase": "It is ___ cup.",
+        "gappedTargetPhrase": "It is ___ wardrobe.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-07:i03:r1",
@@ -162,31 +291,31 @@
           },
           {
             "responseId": "en:lesson-03:session-07:i03:r2",
-            "text": "an"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-03:session-07:i03:r3",
-            "text": "is"
+            "text": "it"
           }
         ],
-        "testedDimension": "Дополните название чашки",
+        "testedDimension": "Подруга показывает на высокий шкаф. Дополните: «Это платяной шкаф»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-07:i03:r2",
             "correct": false,
-            "testedDimension": "Дополните название чашки",
+            "testedDimension": "Подруга показывает на высокий шкаф. Дополните: «Это платяной шкаф»",
             "feedbackByLocale": {
-              "ru": "Перед согласным звуком в `cup` нужно `a`.",
-              "uk": "Перед приголосним звуком у `cup` потрібно `a`."
+              "ru": "is",
+              "uk": "Слово `is` в этой фразе уже есть. Перед `wardrobe` нужно `a`.,Слово `is` у цій фразі вже є. Перед `wardrobe` потрібне `a`."
             }
           },
           {
             "responseId": "en:lesson-03:session-07:i03:r3",
             "correct": false,
-            "testedDimension": "Дополните название чашки",
+            "testedDimension": "Подруга показывает на высокий шкаф. Дополните: «Это платяной шкаф»",
             "feedbackByLocale": {
-              "ru": "`is` уже есть; перед `cup` нужно `a`.",
-              "uk": "`is` уже є; перед `cup` потрібно `a`."
+              "ru": "it",
+              "uk": "Слово `It` в этой фразе уже есть. Перед `wardrobe` нужно `a`.,Слово `It` у цій фразі вже є. Перед `wardrobe` потрібне `a`."
             }
           }
         ]
@@ -195,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-07:i04:p1",
-            "target": "cup",
+            "target": "drawer",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "ящик стола",
+              "uk": "шухляда"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i04:p2",
-            "target": "angry",
+            "target": "cupboard",
             "meaningByLocale": {
-              "ru": "сердитый",
-              "uk": "сердитий"
+              "ru": "шкафчик, буфет",
+              "uk": "шафка, буфет"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i04:p3",
-            "target": "scared",
+            "target": "wardrobe",
             "meaningByLocale": {
-              "ru": "испуганный",
-              "uk": "наляканий"
+              "ru": "платяной шкаф",
+              "uk": "шафа для одягу"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i04:p4",
-            "target": "necessary",
+            "target": "hanger",
             "meaningByLocale": {
-              "ru": "необходимый",
-              "uk": "необхідний"
+              "ru": "вешалка-плечики",
+              "uk": "вішак-плечики"
             }
           }
         ],
         "leftColumn": [
-          "cup",
-          "angry",
-          "scared",
-          "necessary"
+          "drawer",
+          "cupboard",
+          "wardrobe",
+          "hanger"
         ],
         "rightColumn": [
-          "чашка",
-          "сердитый",
-          "испуганный",
-          "необходимый"
+          "ящик стола",
+          "шкафчик, буфет",
+          "платяной шкаф",
+          "вешалка-плечики"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -268,30 +397,30 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте, что говорит подруга, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте, что говорит подруга, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i05:audio",
-          "transcript": "It is a cup."
+          "transcript": "It is a cupboard."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is a cup.",
+        "hiddenTargetPhrase": "It is a cupboard.",
         "orderedTokens": [
           "It",
           "is",
           "a",
-          "cup"
+          "cupboard"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -300,10 +429,10 @@
           {
             "responseId": "en:lesson-03:session-07:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте, что говорит подруга, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is a cup.`",
-              "uk": "тут потрібно `is` — `It is a cup.`"
+              "ru": "здесь нужно `is` — `It is a cupboard.`",
+              "uk": "тут потрібно `is` — `It is a cupboard.`"
             }
           }
         ],
@@ -315,39 +444,83 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-07:word:hanger",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hanger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-07:word:hanger:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hanger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-07:word:hanger:audio",
+          "transcript": "hanger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-07:word:hanger:r1",
+            "targetText": "hanger",
+            "meaningByLocale": {
+              "ru": "плечики, вешалка для одежды. It is a hanger — «Это вешалка». На ней висит рубашка.",
+              "uk": "плечики, вішак для одягу. It is a hanger — «Це вішак». На ньому висить сорочка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hanger",
+          "definitionByLocale": {
+            "ru": "плечики, вешалка для одежды. It is a hanger — «Это вешалка». На ней висит рубашка.",
+            "uk": "плечики, вішак для одягу. It is a hanger — «Це вішак». На ньому висить сорочка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-07:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна достала выбранный предмет, но вам его не видно. Спросите, что это",
+      "prompt": "Подруга держит проволочную вещицу, на которой висит рубашка. Спросите её, вешалка ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна достала выбранный предмет, но вам его не видно. Спросите, что это",
+      "accessibilityLabel": "Подруга держит проволочную вещицу, на которой висит рубашка. Спросите её, вешалка ли это.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is it?",
+        "targetPhrase": "Is it a hanger?",
         "localizedMeaning": {
-          "ru": "Анна достала выбранный предмет, но вам его не видно. Спросите, что это",
-          "uk": "Анна дістала обраний предмет, але вам його не видно. Запитайте, що це"
+          "ru": "Подруга держит проволочную вещицу, на которой висит рубашка. Спросите её, вешалка ли это.",
+          "uk": "Подруга тримає дротяну річ, на якій висить сорочка. Запитайте її, чи це вішак."
         },
         "orderedTokens": [
-          "What",
-          "is",
-          "it"
+          "Is",
+          "it",
+          "a",
+          "hanger"
         ],
         "authoredDistractorTokens": [
-          "Where"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-07:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Анна достала выбранный предмет, но вам его не видно. Спросите, что это",
+            "testedDimension": "Подруга держит проволочную вещицу, на которой висит рубашка. Спросите её, вешалка ли это.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is it?`",
-              "uk": "тут потрібно `What` — `What is it?`"
+              "ru": "здесь нужно `Is` — `Is it a hanger?`",
+              "uk": "тут потрібно `Is` — `Is it a hanger?`"
             }
           }
         ],
@@ -360,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Таймер постоянно сбивается, на него нельзя положиться. Скажите «Он ненадёжный» с сокращением",
+      "prompt": "Подруга спрашивает, что висит в шкафу. Скажите коротко, что это вешалка.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i07:audio"
       ],
-      "accessibilityLabel": "Таймер постоянно сбивается, на него нельзя положиться. Скажите «Он ненадёжный» с сокращением",
+      "accessibilityLabel": "Подруга спрашивает, что висит в шкафу. Скажите коротко, что это вешалка.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i07:audio",
-          "transcript": "It's unreliable."
+          "transcript": "It's a hanger."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unreliable.",
+        "targetPhrase": "It's a hanger.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,11 +566,11 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Фартук нужен, чтобы не испачкать одежду. Сообщите, что он необходим",
+      "prompt": "Подруга спросила: «Is it a drawer?» Вы смотрите на ящик комода. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i08:r1",
@@ -405,7 +578,7 @@
         },
         {
           "responseId": "en:lesson-03:session-07:i08:r2",
-          "text": "is a"
+          "text": "am"
         },
         {
           "responseId": "en:lesson-03:session-07:i08:r3",
@@ -414,14 +587,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Фартук нужен, чтобы не испачкать одежду. Сообщите, что он необходим",
+      "accessibilityLabel": "Подруга спросила: «Is it a drawer?» Вы смотрите на ящик комода. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Фартук нужен, чтобы не испачкать одежду. Сообщите, что он необходим",
-          "uk": "Фартух потрібен, щоб не забруднити одяг. Повідомте, що він необхідний"
+          "ru": "Подруга спросила: «Is it a drawer?» Вы смотрите на ящик комода. Дополните короткое «да»",
+          "uk": "Подруга спитала: «Is it a drawer?» Ви дивитеся на шухляду комода. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "It ___ necessary.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-07:i08:r1",
@@ -429,31 +602,31 @@
           },
           {
             "responseId": "en:lesson-03:session-07:i08:r2",
-            "text": "is a"
+            "text": "am"
           },
           {
             "responseId": "en:lesson-03:session-07:i08:r3",
             "text": "are"
           }
         ],
-        "testedDimension": "Фартук нужен, чтобы не испачкать одежду. Сообщите, что он необходим",
+        "testedDimension": "Подруга спросила: «Is it a drawer?» Вы смотрите на ящик комода. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Фартук нужен, чтобы не испачкать одежду. Сообщите, что он необходим",
+            "testedDimension": "Подруга спросила: «Is it a drawer?» Вы смотрите на ящик комода. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Перед отдельным `necessary` здесь не нужно `a`.",
-              "uk": "Перед окремим `necessary` тут не потрібно `a`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-03:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Фартук нужен, чтобы не испачкать одежду. Сообщите, что он необходим",
+            "testedDimension": "Подруга спросила: «Is it a drawer?» Вы смотрите на ящик комода. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `It` нужно `is`.",
-              "uk": "З `It` потрібно `is`."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -462,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о псе хозяйки",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i09:r1",
-          "text": "Is he scared?"
+          "text": "Is it a wardrobe?"
         },
         {
           "responseId": "en:lesson-03:session-07:i09:r2",
-          "text": "Is he angry?"
+          "text": "Is it a cupboard?"
         },
         {
           "responseId": "en:lesson-03:session-07:i09:r3",
-          "text": "Is he calm?"
+          "text": "Is it a hanger?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о псе хозяйки",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i09:audio",
-          "transcript": "Is he scared?"
+          "transcript": "Is it a wardrobe?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-07:i09:r1",
-            "targetText": "Is he scared?",
+            "targetText": "Is it a wardrobe?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i09:r2",
-            "targetText": "Is he angry?",
+            "targetText": "Is it a cupboard?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i09:r3",
-            "targetText": "Is he calm?",
+            "targetText": "Is it a hanger?",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +688,19 @@
           {
             "responseId": "en:lesson-03:session-07:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о псе хозяйки",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `scared`, а в этом варианте — `angry`.",
-              "uk": "У записі останнє слово — `scared`, а в цьому варіанті — `angry`."
+              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.",
+              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `cupboard`."
             }
           },
           {
             "responseId": "en:lesson-03:session-07:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о псе хозяйки",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `scared`, а в этом варианте — `calm`.",
-              "uk": "У записі останнє слово — `scared`, а в цьому варіанті — `calm`."
+              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `hanger`.",
+              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `hanger`."
             }
           }
         ],
@@ -538,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -552,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-07:i10:p1",
-            "target": "unreliable",
+            "target": "hanger",
             "meaningByLocale": {
-              "ru": "ненадёжный",
-              "uk": "ненадійний"
+              "ru": "вешалка-плечики",
+              "uk": "вішак-плечики"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i10:p2",
-            "target": "cup",
+            "target": "drawer",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "ящик стола",
+              "uk": "шухляда"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i10:p3",
-            "target": "pen",
+            "target": "desk",
             "meaningByLocale": {
-              "ru": "ручка",
-              "uk": "ручка"
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i10:p4",
-            "target": "scared",
+            "target": "sofa",
             "meaningByLocale": {
-              "ru": "испуганный",
-              "uk": "наляканий"
+              "ru": "диван",
+              "uk": "диван"
             }
           }
         ],
         "leftColumn": [
-          "unreliable",
-          "cup",
-          "pen",
-          "scared"
+          "hanger",
+          "drawer",
+          "desk",
+          "sofa"
         ],
         "rightColumn": [
-          "ненадёжный",
-          "чашка",
-          "ручка",
-          "испуганный"
+          "вешалка-плечики",
+          "ящик стола",
+          "письменный стол",
+          "диван"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,30 +784,31 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу о дополнительном фартуке",
+      "prompt": "Послушайте, что подруга говорит о ящике, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу о дополнительном фартуке",
+      "accessibilityLabel": "Послушайте, что подруга говорит о ящике, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i11:audio",
-          "transcript": "It is not necessary."
+          "transcript": "It is not a drawer."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not necessary.",
+        "hiddenTargetPhrase": "It is not a drawer.",
         "orderedTokens": [
           "It",
           "is",
           "not",
-          "necessary"
+          "a",
+          "drawer"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -643,10 +817,10 @@
           {
             "responseId": "en:lesson-03:session-07:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу о дополнительном фартуке",
+            "testedDimension": "Послушайте, что подруга говорит о ящике, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not necessary.`",
-              "uk": "тут потрібно `is` — `It is not necessary.`"
+              "ru": "здесь нужно `is` — `It is not a drawer.`",
+              "uk": "тут потрібно `is` — `It is not a drawer.`"
             }
           }
         ],
@@ -659,39 +833,40 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "В коробке виден край керамического предмета. Спросите, чашка ли это",
+      "prompt": "Подруга приняла шкафчик за платяной шкаф. Скажите ей полной фразой, что это не платяной шкаф.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В коробке виден край керамического предмета. Спросите, чашка ли это",
+      "accessibilityLabel": "Подруга приняла шкафчик за платяной шкаф. Скажите ей полной фразой, что это не платяной шкаф.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is it a cup?",
+        "targetPhrase": "It is not a wardrobe.",
         "localizedMeaning": {
-          "ru": "В коробке виден край керамического предмета. Спросите, чашка ли это",
-          "uk": "У коробці видно край керамічного предмета. Запитайте, чи це чашка"
+          "ru": "Подруга приняла шкафчик за платяной шкаф. Скажите ей полной фразой, что это не платяной шкаф.",
+          "uk": "Подруга сплутала шафку із шафою для одягу. Скажіть їй повною фразою, що це не шафа для одягу."
         },
         "orderedTokens": [
-          "Is",
-          "it",
+          "It",
+          "is",
+          "not",
           "a",
-          "cup"
+          "wardrobe"
         ],
         "authoredDistractorTokens": [
-          "Are"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-07:i12:tile:d1",
             "correct": false,
-            "testedDimension": "В коробке виден край керамического предмета. Спросите, чашка ли это",
+            "testedDimension": "Подруга приняла шкафчик за платяной шкаф. Скажите ей полной фразой, что это не платяной шкаф.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is it a cup?`",
-              "uk": "тут потрібно `Is` — `Is it a cup?`"
+              "ru": "здесь нужно `is` — `It is not a wardrobe.`",
+              "uk": "тут потрібно `is` — `It is not a wardrobe.`"
             }
           }
         ],
@@ -704,25 +879,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Олег сердится из-за пятна на рукаве. Сообщите это с сокращением",
+      "prompt": "Вы показываете на низкий шкафчик на кухне. Скажите коротко, что это шкафчик.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i13:audio"
       ],
-      "accessibilityLabel": "Олег сердится из-за пятна на рукаве. Сообщите это с сокращением",
+      "accessibilityLabel": "Вы показываете на низкий шкафчик на кухне. Скажите коротко, что это шкафчик.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i13:audio",
-          "transcript": "He's angry."
+          "transcript": "It's a cupboard."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's angry.",
+        "targetPhrase": "It's a cupboard.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -737,67 +912,67 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна приняла маленькую вазу за чашку. Дополните «Это не чашка»",
+      "prompt": "Подруга держит плечики. Спросите её, вешалка ли это",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i14:r1",
-          "text": "a"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-03:session-07:i14:r2",
-          "text": "an"
+          "text": "Am"
         },
         {
           "responseId": "en:lesson-03:session-07:i14:r3",
-          "text": "is"
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна приняла маленькую вазу за чашку. Дополните «Это не чашка»",
+      "accessibilityLabel": "Подруга держит плечики. Спросите её, вешалка ли это",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна приняла маленькую вазу за чашку. Дополните «Это не чашка»",
-          "uk": "Анна прийняла маленьку вазу за чашку. Доповніть «Це не чашка»"
+          "ru": "Подруга держит плечики. Спросите её, вешалка ли это",
+          "uk": "Подруга тримає плечики. Запитайте її, чи це вішак"
         },
-        "gappedTargetPhrase": "It is not ___ cup.",
+        "gappedTargetPhrase": "___ it a hanger?",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-07:i14:r1",
-            "text": "a"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-03:session-07:i14:r2",
-            "text": "an"
+            "text": "Am"
           },
           {
             "responseId": "en:lesson-03:session-07:i14:r3",
-            "text": "is"
+            "text": "Are"
           }
         ],
-        "testedDimension": "Анна приняла маленькую вазу за чашку. Дополните «Это не чашка»",
+        "testedDimension": "Подруга держит плечики. Спросите её, вешалка ли это",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-07:i14:r2",
             "correct": false,
-            "testedDimension": "Анна приняла маленькую вазу за чашку. Дополните «Это не чашка»",
+            "testedDimension": "Подруга держит плечики. Спросите её, вешалка ли это",
             "feedbackByLocale": {
-              "ru": "После `not` сохраняем `a cup`.",
-              "uk": "Після `not` зберігаємо `a cup`."
+              "ru": "С `it` нужно `Is`.",
+              "uk": "З `it` потрібно `Is`."
             }
           },
           {
             "responseId": "en:lesson-03:session-07:i14:r3",
             "correct": false,
-            "testedDimension": "Анна приняла маленькую вазу за чашку. Дополните «Это не чашка»",
+            "testedDimension": "Подруга держит плечики. Спросите её, вешалка ли это",
             "feedbackByLocale": {
-              "ru": "Перед `cup` нужно `a`; `is` уже есть.",
-              "uk": "Перед `cup` потрібно `a`; `is` уже є."
+              "ru": "Вопрос — `Is it a hanger?`.",
+              "uk": "Питання — `Is it a hanger?`."
             }
           }
         ]
@@ -806,51 +981,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о таймере",
+      "prompt": "Послушайте, что подруга говорит о вешалке",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i15:r1",
-          "text": "Is it unreliable?"
+          "text": "It is a hanger."
         },
         {
           "responseId": "en:lesson-03:session-07:i15:r2",
-          "text": "Is it necessary?"
+          "text": "It is a drawer."
         },
         {
           "responseId": "en:lesson-03:session-07:i15:r3",
-          "text": "Is it reliable?"
+          "text": "It is a cupboard."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о таймере",
+      "accessibilityLabel": "Послушайте, что подруга говорит о вешалке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i15:audio",
-          "transcript": "Is it unreliable?"
+          "transcript": "It is a hanger."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-07:i15:r1",
-            "targetText": "Is it unreliable?",
+            "targetText": "It is a hanger.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i15:r2",
-            "targetText": "Is it necessary?",
+            "targetText": "It is a drawer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i15:r3",
-            "targetText": "Is it reliable?",
+            "targetText": "It is a cupboard.",
             "meaningByLocale": null
           }
         ],
@@ -859,19 +1034,19 @@
           {
             "responseId": "en:lesson-03:session-07:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о таймере",
+            "testedDimension": "Послушайте, что подруга говорит о вешалке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unreliable`, а в этом варианте — `necessary`.",
-              "uk": "У записі останнє слово — `unreliable`, а в цьому варіанті — `necessary`."
+              "ru": "В записи последнее слово — `hanger`, а в этом варианте — `drawer`.",
+              "uk": "У записі останнє слово — `hanger`, а в цьому варіанті — `drawer`."
             }
           },
           {
             "responseId": "en:lesson-03:session-07:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о таймере",
+            "testedDimension": "Послушайте, что подруга говорит о вешалке",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unreliable`, а в этом варианте — `reliable`.",
-              "uk": "У записі останнє слово — `unreliable`, а в цьому варіанті — `reliable`."
+              "ru": "В записи последнее слово — `hanger`, а в этом варианте — `cupboard`.",
+              "uk": "У записі останнє слово — `hanger`, а в цьому варіанті — `cupboard`."
             }
           }
         ],
@@ -882,7 +1057,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -896,48 +1071,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-07:i16:p1",
-            "target": "cup",
+            "target": "wardrobe",
             "meaningByLocale": {
-              "ru": "чашка",
-              "uk": "чашка"
+              "ru": "платяной шкаф",
+              "uk": "шафа для одягу"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i16:p2",
-            "target": "book",
+            "target": "cupboard",
             "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книжка"
+              "ru": "шкафчик, буфет",
+              "uk": "шафка, буфет"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i16:p3",
-            "target": "necessary",
+            "target": "bed",
             "meaningByLocale": {
-              "ru": "необходимый",
-              "uk": "необхідний"
+              "ru": "кровать",
+              "uk": "ліжко"
             }
           },
           {
             "pairId": "en:lesson-03:session-07:i16:p4",
-            "target": "unreliable",
+            "target": "pillow",
             "meaningByLocale": {
-              "ru": "ненадёжный",
-              "uk": "ненадійний"
+              "ru": "подушка",
+              "uk": "подушка"
             }
           }
         ],
         "leftColumn": [
-          "cup",
-          "book",
-          "necessary",
-          "unreliable"
+          "wardrobe",
+          "cupboard",
+          "bed",
+          "pillow"
         ],
         "rightColumn": [
-          "чашка",
-          "книга",
-          "необходимый",
-          "ненадёжный"
+          "платяной шкаф",
+          "шкафчик, буфет",
+          "кровать",
+          "подушка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -955,25 +1130,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-07:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Позже вы показываете другу фотографию расписанной чашки. Назовите предмет: «Это чашка», с сокращением",
+      "prompt": "Подруга стоит у комода. Спросите её, ящик ли это.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i17:audio"
       ],
-      "accessibilityLabel": "Позже вы показываете другу фотографию расписанной чашки. Назовите предмет: «Это чашка», с сокращением",
+      "accessibilityLabel": "Подруга стоит у комода. Спросите её, ящик ли это.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i17:audio",
-          "transcript": "It's a cup."
+          "transcript": "Is it a drawer?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's a cup.",
+        "targetPhrase": "Is it a drawer?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -995,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bf08da27fe4b5d75d6aceb1a0a3fdc6e2a8fac60e540ea8013e08899ff39fa9b"
+  "learnerFingerprint": "461771d006698efef59234c53335a415aea18bb7a3b01a195e85f053625c2c9f"
 }

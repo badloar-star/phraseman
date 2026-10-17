@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-07:intro1:r2": {
-          "ru": "Перед `cup` в этом названии нужно `a`.",
-          "uk": "Перед `cup` у цій назві потрібно `a`."
+          "ru": "Перед drawer нужно a: It is a drawer.",
+          "uk": "Перед drawer потрібне a: It is a drawer."
         },
         "en:lesson-03:session-07:intro1:r3": {
-          "ru": "Перед согласным звуком в `cup` нужно `a`, не `an`.",
-          "uk": "Перед приголосним звуком у `cup` потрібно `a`, не `an`."
+          "ru": "Между It и a нужно is: It is a drawer.",
+          "uk": "Між It і a потрібне is: It is a drawer."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-07:intro2:r2": {
-          "ru": "В названии `a cup` пропало `a`.",
-          "uk": "У назві `a cup` зникло `a`."
+          "ru": "Так звучит ответ «Это шкафчик». Чтобы спросить, ставим Is вперёд: Is it a cupboard?",
+          "uk": "Так звучить відповідь «Це шафка». Щоб запитати, ставимо Is наперед: Is it a cupboard?"
         },
         "en:lesson-03:session-07:intro2:r3": {
-          "ru": "Это сообщение. Для вопроса начните с `Is it`.",
-          "uk": "Це повідомлення. Для запитання почніть з `Is it`."
+          "ru": "Перед cupboard нужно a: Is it a cupboard?",
+          "uk": "Перед cupboard потрібне a: Is it a cupboard?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-07:intro3:r2": {
-          "ru": "Перед отдельным `necessary` здесь не нужно `a`.",
-          "uk": "Перед окремим `necessary` тут не потрібно `a`."
+          "ru": "Перед wardrobe нужно a: It's a wardrobe.",
+          "uk": "Перед wardrobe потрібне a: It's a wardrobe."
         },
         "en:lesson-03:session-07:intro3:r3": {
-          "ru": "С `It` нужно `is`.",
-          "uk": "З `It` потрібно `is`."
+          "ru": "С not выходит «Это не платяной шкаф». А он стоит у стены: It's a wardrobe.",
+          "uk": "З not виходить «Це не шафа для одягу». А вона стоїть біля стіни: It's a wardrobe."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "65e7dfc49ba326d7ef09bd1dfad97c99a0123a46b71e8b0bf67bc218092e65d5"
+  "auxiliaryFingerprint": "b333b0f7d86f24cec2474a0e086a6c222009125624a40f8752a778809c10603e"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-13:intro1:r2": {
-          "ru": "Перед `window` нужно `a`: первый звук согласный.",
-          "uk": "Перед `window` потрібно `a`: перший звук приголосний."
+          "ru": "Перед earring нужно an: слово начинается с гласного звука.",
+          "uk": "Перед earring потрібно an: слово починається з голосного звуку."
         },
         "en:lesson-03:session-13:intro1:r3": {
-          "ru": "В этой фразе перед названием одного окна нужно `a`.",
-          "uk": "У цій фразі перед назвою одного вікна потрібно `a`."
+          "ru": "Между It и an нужно is: It is an earring.",
+          "uk": "Між It і an потрібно is: It is an earring."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-13:intro2:r2": {
-          "ru": "С одним окном здесь нужно `is`.",
-          "uk": "З одним вікном тут потрібно `is`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it a necklace?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it a necklace?"
         },
         "en:lesson-03:session-13:intro2:r3": {
-          "ru": "После `The window` нужно `is`.",
-          "uk": "Після `The window` потрібно `is`."
+          "ru": "Перед necklace нужно a: слово начинается с согласного звука.",
+          "uk": "Перед necklace потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-13:intro3:r2": {
-          "ru": "О месте спрашиваем `Where`, а не `What`.",
-          "uk": "Про місце запитуємо `Where`, а не `What`."
+          "ru": "Перед bracelet нужно a: слово начинается с согласного звука.",
+          "uk": "Перед bracelet потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-13:intro3:r3": {
-          "ru": "С одной картой здесь нужно `is`.",
-          "uk": "З однією картою тут потрібно `is`."
+          "ru": "Перед bracelet нужно a: It's a bracelet.",
+          "uk": "Перед bracelet потрібно a: It's a bracelet."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "69699214365e2a32e58342a88c1395797cda2ddccf875c9564b3e017fbd279eb"
+  "auxiliaryFingerprint": "9ed07731c664c74296bf5b90878ee3f570378f2a4bec8b593f5791bda1239257"
 }

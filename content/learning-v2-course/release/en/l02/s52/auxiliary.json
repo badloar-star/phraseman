@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-52:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-52:intro1:r2": {
-          "ru": "Между `It` и `fair` нужно `is`.",
-          "uk": "Між `It` і `fair` потрібно `is`."
+          "ru": "С not выходит «Это не прочесть». А каждая цифра стоит отдельно и ровно: It is legible.",
+          "uk": "З not виходить «Це не прочитати». А кожна цифра стоїть окремо й рівно: It is legible."
         },
         "en:lesson-02:session-52:intro1:r3": {
-          "ru": "Это отрицает справедливость, а в условии её признают все.",
-          "uk": "Це заперечує справедливість, а за умовою її визнають усі."
+          "ru": "Между It и legible нужно is: It is legible.",
+          "uk": "Між It і legible потрібно is: It is legible."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-52:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-52:intro2:r2": {
-          "ru": "Это вопрос о законности. Вы хотите узнать оценку справедливости.",
-          "uk": "Це запитання про законність. Ви хочете дізнатися оцінку справедливості."
+          "ru": "Так звучит утверждение «Тут размазано». Чтобы спросить, ставим Is вперёд: Is it smudged?",
+          "uk": "Так звучить твердження «Тут розмазано». Щоб запитати, ставимо Is наперед: Is it smudged?"
         },
         "en:lesson-02:session-52:intro2:r3": {
-          "ru": "Это утверждение, а вы пока спрашиваете мнение.",
-          "uk": "Це твердження, а ви поки запитуєте думку."
+          "ru": "С it нужно is: Is it smudged?",
+          "uk": "З it потрібно is: Is it smudged?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-52:intro3:r2": {
-          "ru": "Это «тяжёлая». По условию коробка мало весит.",
-          "uk": "Це «важка». За умовою коробка мало важить."
+          "ru": "С not выходит «Тут аккуратно». А строчки наползают друг на друга: It's sloppy.",
+          "uk": "З not виходить «Тут охайно». А рядки наповзають один на одного: It's sloppy."
         },
         "en:lesson-02:session-52:intro3:r3": {
-          "ru": "Это «справедливо». Здесь речь о весе.",
-          "uk": "Це «справедливо». Тут ідеться про вагу."
+          "ru": "Страница одна, нужно It's: It's sloppy.",
+          "uk": "Сторінка одна, потрібно It's: It's sloppy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d0d4833d3e00c3b138475c8bb2da640f29548d312fbb39f7e653a9c2dee479e7"
+  "auxiliaryFingerprint": "c580a8dd39769963d846783fb26cbb85105fee41567529b9b297411a7c3ea004"
 }

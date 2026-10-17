@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-02:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-47:intro1:r2": {
-          "ru": "Между `It` и `acceptable` нужно `is`.",
-          "uk": "Між `It` і `acceptable` потрібно `is`."
+          "ru": "Это «глубокий». Но соседка стоит по щиколотку: It is shallow.",
+          "uk": "Це «глибокий». Але сусідка стоїть по щиколотку: It is shallow."
         },
         "en:lesson-02:session-47:intro1:r3": {
-          "ru": "Это отрицает приемлемость. По условию отпечаток можно принять.",
-          "uk": "Це заперечує прийнятність. За умовою відбиток можна прийняти."
+          "ru": "Между It и shallow нужно is: It is shallow.",
+          "uk": "Між It і shallow потрібно is: It is shallow."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-02:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-02:session-47:intro2:r2": {
-          "ru": "Это утверждение. Вы ещё ждёте оценки.",
-          "uk": "Це твердження. Ви ще чекаєте на оцінку."
+          "ru": "Так звучит утверждение «Тут спокойно». Чтобы спросить, ставим Is вперёд: Is it peaceful?",
+          "uk": "Так звучить твердження «Тут спокійно». Щоб запитати, ставимо Is наперед: Is it peaceful?"
         },
         "en:lesson-02:session-47:intro2:r3": {
-          "ru": "Это вопрос о связи с темой, а сейчас вы уточняете приемлемость качества.",
-          "uk": "Це запитання про зв’язок із темою, а зараз ви уточнюєте прийнятність якості."
+          "ru": "С it нужно is: Is it peaceful?",
+          "uk": "З it потрібно is: Is it peaceful?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-02:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-47:intro3:r2": {
-          "ru": "Это о связи с темой. Здесь нужно назвать опасность.",
-          "uk": "Це про зв’язок із темою. Тут потрібно назвати небезпеку."
+          "ru": "С not выходит «Тут расчищено». А крапива по пояс: It's overgrown.",
+          "uk": "З not виходить «Тут розчищено». А кропива по пояс: It's overgrown."
         },
         "en:lesson-02:session-47:intro3:r3": {
-          "ru": "Это «приемлемая». В условии подставка опасна.",
-          "uk": "Це «прийнятна». За умовою підставка небезпечна."
+          "ru": "Тропинка одна, нужно It's: It's overgrown.",
+          "uk": "Стежка одна, потрібно It's: It's overgrown."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "309fde5ea76d293fbaf7f5d60b06f0bf0c7d07453d6ee291a4e86dff2f7165d4"
+  "auxiliaryFingerprint": "c299d46f412e407df8d6cef625760407fabc2be75bacf670ca32ebe51a2e7ec3"
 }

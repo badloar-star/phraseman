@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-45:word:blunt",
+    "correctText": "blunt",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-45:i01",
-    "correctText": "It is illegal.",
+    "correctText": "It is blunt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i02",
-    "correctText": "It is useful.",
+    "correctText": "It is rusty.",
     "correctResponseId": "en:lesson-02:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-45:word:cluttered",
+    "correctText": "cluttered",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-45:i04",
-    "correctText": "en:lesson-02:session-45:i04:p1=illegal\nen:lesson-02:session-45:i04:p2=legal\nen:lesson-02:session-45:i04:p3=useful\nen:lesson-02:session-45:i04:p4=official",
+    "correctText": "en:lesson-02:session-45:i04:p1=blunt\nen:lesson-02:session-45:i04:p2=flimsy\nen:lesson-02:session-45:i04:p3=cluttered\nen:lesson-02:session-45:i04:p4=sturdy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-45:word:flimsy",
+    "correctText": "flimsy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "It is not flimsy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i06",
-    "correctText": "What is illegal?",
+    "correctText": "What is flimsy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i07",
-    "correctText": "It's illegal.",
+    "correctText": "It's cluttered.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-45:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-45:word:rough",
+    "correctText": "rough",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-45:i09",
-    "correctText": "Is it official?",
+    "correctText": "They are rough.",
     "correctResponseId": "en:lesson-02:session-45:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-45:i10",
-    "correctText": "en:lesson-02:session-45:i10:p1=useful\nen:lesson-02:session-45:i10:p2=official\nen:lesson-02:session-45:i10:p3=legal\nen:lesson-02:session-45:i10:p4=illegal",
+    "correctText": "en:lesson-02:session-45:i10:p1=rough\nen:lesson-02:session-45:i10:p2=flimsy\nen:lesson-02:session-45:i10:p3=blunt\nen:lesson-02:session-45:i10:p4=rusty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i11",
-    "correctText": "It is not useful.",
+    "correctText": "They are not cluttered.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i12",
-    "correctText": "Is it useful?",
+    "correctText": "Is it rough?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i13",
-    "correctText": "It's official.",
+    "correctText": "They're rough.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-45:i15",
-    "correctText": "Is it illegal?",
+    "correctText": "Is it flimsy?",
     "correctResponseId": "en:lesson-02:session-45:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-45:i16",
-    "correctText": "en:lesson-02:session-45:i16:p1=official\nen:lesson-02:session-45:i16:p2=illegal\nen:lesson-02:session-45:i16:p3=useful\nen:lesson-02:session-45:i16:p4=legal",
+    "correctText": "en:lesson-02:session-45:i16:p1=blunt\nen:lesson-02:session-45:i16:p2=flimsy\nen:lesson-02:session-45:i16:p3=cluttered\nen:lesson-02:session-45:i16:p4=rough",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-45:i17",
-    "correctText": "Is it illegal?",
+    "correctText": "Is it flimsy?",
     "correctResponseId": null
   }
 ]

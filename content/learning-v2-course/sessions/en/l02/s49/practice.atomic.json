@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-49:word:wrinkled",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wrinkled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:wrinkled:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wrinkled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:wrinkled:audio",
+            "transcript": "wrinkled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:wrinkled:r1",
+              "targetText": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый, в складках. It is wrinkled — «Она мятая». О рубашке, платье, скатерти, бумаге.",
+                "uk": "пом’ятий, у складках. It is wrinkled — «Вона пом’ята». Про сорочку, сукню, скатертину, папір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wrinkled",
+            "definitionByLocale": {
+              "ru": "мятый, в складках. It is wrinkled — «Она мятая». О рубашке, платье, скатерти, бумаге.",
+              "uk": "пом’ятий, у складках. It is wrinkled — «Вона пом’ята». Про сорочку, сукню, скатертину, папір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама достаёт блузку из чемодана и ждёт вашего слова. Скажите ей полной фразой, что она мятая.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама достаёт блузку из чемодана и ждёт вашего слова. Скажите ей полной фразой, что она мятая.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is wrinkled.",
+          "localizedMeaning": {
+            "ru": "Мама достаёт блузку из чемодана и ждёт вашего слова. Скажите ей полной фразой, что она мятая.",
+            "uk": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "wrinkled"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама достаёт блузку из чемодана и ждёт вашего слова. Скажите ей полной фразой, что она мятая.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is wrinkled.`",
+                "uk": "тут потрібно `is` — `It is wrinkled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что мама говорит о рукаве",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i02:r1",
+            "text": "It is torn."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i02:r2",
+            "text": "It is worn."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i02:r3",
+            "text": "It is damp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что мама говорит о рукаве",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i02:audio",
+            "transcript": "It is torn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:i02:r1",
+              "targetText": "It is torn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i02:r2",
+              "targetText": "It is worn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i02:r3",
+              "targetText": "It is damp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама говорит о рукаве",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `torn`, а в этом варианте — `worn`.",
+                "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `worn`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама говорит о рукаве",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `torn`, а в этом варианте — `damp`.",
+                "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `damp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:word:frayed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — frayed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:frayed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — frayed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:frayed:audio",
+            "transcript": "frayed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:frayed:r1",
+              "targetText": "frayed",
+              "meaningByLocale": {
+                "ru": "истрёпанный: нитки торчат по краю. It's frayed — «Тут всё в нитках». О ремне, шнурке, рукаве, ковре.",
+                "uk": "пошарпаний: нитки стирчать по краю. It's frayed — «Тут усе в нитках». Про ремінь, шнурок, рукав, килим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frayed",
+            "definitionByLocale": {
+              "ru": "истрёпанный: нитки торчат по краю. It's frayed — «Тут всё в нитках». О ремне, шнурке, рукаве, ковре.",
+              "uk": "пошарпаний: нитки стирчать по краю. It's frayed — «Тут усе в нитках». Про ремінь, шнурок, рукав, килим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+            "uk": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він"
+          },
+          "gappedTargetPhrase": "___ it frayed?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-49:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it frayed?`.",
+                "uk": "Питання — `Is it frayed?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-49:i04:p1",
+              "target": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый",
+                "uk": "пом’ятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i04:p2",
+              "target": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах",
+                "uk": "у плямах"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i04:p3",
+              "target": "frayed",
+              "meaningByLocale": {
+                "ru": "истрёпанный",
+                "uk": "пошарпаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i04:p4",
+              "target": "torn",
+              "meaningByLocale": {
+                "ru": "порванный",
+                "uk": "порваний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wrinkled",
+            "stained",
+            "frayed",
+            "torn"
+          ],
+          "rightColumn": [
+            "мятый",
+            "в пятнах",
+            "истрёпанный",
+            "порванный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:word:stained",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stained",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:stained:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stained",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:stained:audio",
+            "transcript": "stained"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:stained:r1",
+              "targetText": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах, с пятном. Is it stained? — «Она в пятнах?» О скатерти, рубашке, ковре, зубах.",
+                "uk": "у плямах, з плямою. Is it stained? — «Вона в плямах?» Про скатертину, сорочку, килим, зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stained",
+            "definitionByLocale": {
+              "ru": "в пятнах, с пятном. Is it stained? — «Она в пятнах?» О скатерти, рубашке, ковре, зубах.",
+              "uk": "у плямах, з плямою. Is it stained? — «Вона в плямах?» Про скатертину, сорочку, килим, зуби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама выстирала скатерть. Послушайте, что она говорит о ней, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Мама выстирала скатерть. Послушайте, что она говорит о ней, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i05:audio",
+            "transcript": "It is not stained."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not stained.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "stained"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама выстирала скатерть. Послушайте, что она говорит о ней, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not stained.`",
+                "uk": "тут потрібно `is` — `It is not stained.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама говорит, что в стопке одно полотенце с пятном. Спросите её, что в пятнах.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама говорит, что в стопке одно полотенце с пятном. Спросите её, что в пятнах.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is stained?",
+          "localizedMeaning": {
+            "ru": "Мама говорит, что в стопке одно полотенце с пятном. Спросите её, что в пятнах.",
+            "uk": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "stained"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама говорит, что в стопке одно полотенце с пятном. Спросите её, что в пятнах.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is stained?`",
+                "uk": "тут потрібно `What` — `What is stained?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама показывает старый ремень от сумки с торчащими нитками. Скажите коротко, что он истрёпанный.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i07:audio"
+        ],
+        "accessibilityLabel": "Мама показывает старый ремень от сумки с торчащими нитками. Скажите коротко, что он истрёпанный.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i07:audio",
+            "transcript": "It's frayed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's frayed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+            "uk": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-49:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:word:smelly",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — smelly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:smelly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — smelly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:smelly:audio",
+            "transcript": "smelly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:smelly:r1",
+              "targetText": "smelly",
+              "meaningByLocale": {
+                "ru": "вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.",
+                "uk": "смердючий, той, що погано пахне. They're smelly — «Вони погано пахнуть». Про шкарпетки, взуття, сміття, білизну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smelly",
+            "definitionByLocale": {
+              "ru": "вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.",
+              "uk": "смердючий, той, що погано пахне. They're smelly — «Вони погано пахнуть». Про шкарпетки, взуття, сміття, білизну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что мама говорит о кроссовках после дождя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i09:r1",
+            "text": "They are smelly."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i09:r2",
+            "text": "They are dirty."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i09:r3",
+            "text": "They are damp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что мама говорит о кроссовках после дождя",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i09:audio",
+            "transcript": "They are smelly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:i09:r1",
+              "targetText": "They are smelly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i09:r2",
+              "targetText": "They are dirty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i09:r3",
+              "targetText": "They are damp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама говорит о кроссовках после дождя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `smelly`, а в этом варианте — `dirty`.",
+                "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `dirty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама говорит о кроссовках после дождя",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `smelly`, а в этом варианте — `damp`.",
+                "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `damp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-49:i10:p1",
+              "target": "smelly",
+              "meaningByLocale": {
+                "ru": "вонючий",
+                "uk": "смердючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i10:p2",
+              "target": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах",
+                "uk": "у плямах"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i10:p3",
+              "target": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый",
+                "uk": "пом’ятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i10:p4",
+              "target": "clean",
+              "meaningByLocale": {
+                "ru": "чистый",
+                "uk": "чистий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "smelly",
+            "stained",
+            "wrinkled",
+            "clean"
+          ],
+          "rightColumn": [
+            "вонючий",
+            "в пятнах",
+            "мятый",
+            "чистый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы погладили две рубашки. Послушайте, что говорит мама, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Вы погладили две рубашки. Послушайте, что говорит мама, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i11:audio",
+            "transcript": "They are not wrinkled."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not wrinkled.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "wrinkled"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы погладили две рубашки. Послушайте, что говорит мама, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not wrinkled.`",
+                "uk": "тут потрібно `are` — `They are not wrinkled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы подняли крышку корзины с грязным бельём. Спросите маму, неприятно ли там пахнет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы подняли крышку корзины с грязным бельём. Спросите маму, неприятно ли там пахнет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it smelly?",
+          "localizedMeaning": {
+            "ru": "Вы подняли крышку корзины с грязным бельём. Спросите маму, неприятно ли там пахнет.",
+            "uk": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "smelly"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы подняли крышку корзины с грязным бельём. Спросите маму, неприятно ли там пахнет.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it smelly?`",
+                "uk": "тут потрібно `Is` — `Is it smelly?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы достали из рюкзака носки после похода. Скажите коротко, что они плохо пахнут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i13:audio"
+        ],
+        "accessibilityLabel": "Вы достали из рюкзака носки после похода. Скажите коротко, что они плохо пахнут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i13:audio",
+            "transcript": "They're smelly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're smelly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+            "uk": "Скатертину відпрали. Скажіть, що вона більше не в плямах"
+          },
+          "gappedTargetPhrase": "It ___ not stained.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-49:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i14:r2",
+              "correct": false,
+              "testedDimension": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i14:r3",
+              "correct": false,
+              "testedDimension": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not stained`.",
+                "uk": "Фраза — `It is not stained`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос мамы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i15:r1",
+            "text": "Is it frayed?"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i15:r2",
+            "text": "Is it stained?"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i15:r3",
+            "text": "Is it wrinkled?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос мамы",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i15:audio",
+            "transcript": "Is it frayed?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:i15:r1",
+              "targetText": "Is it frayed?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i15:r2",
+              "targetText": "Is it stained?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i15:r3",
+              "targetText": "Is it wrinkled?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос мамы",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `frayed`, а в этом варианте — `stained`.",
+                "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `stained`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос мамы",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `frayed`, а в этом варианте — `wrinkled`.",
+                "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `wrinkled`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-49:i16:p1",
+              "target": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый",
+                "uk": "пом’ятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i16:p2",
+              "target": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах",
+                "uk": "у плямах"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i16:p3",
+              "target": "frayed",
+              "meaningByLocale": {
+                "ru": "истрёпанный",
+                "uk": "пошарпаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i16:p4",
+              "target": "smelly",
+              "meaningByLocale": {
+                "ru": "вонючий",
+                "uk": "смердючий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wrinkled",
+            "stained",
+            "frayed",
+            "smelly"
+          ],
+          "rightColumn": [
+            "мятый",
+            "в пятнах",
+            "истрёпанный",
+            "вонючий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама достаёт белую блузку из шкафа. Спросите её, есть ли на ней пятна.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Мама достаёт белую блузку из шкафа. Спросите её, есть ли на ней пятна.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i17:audio",
+            "transcript": "Is it stained?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it stained?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-49:word:wrinkled",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wrinkled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:wrinkled:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wrinkled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:wrinkled:audio",
+            "transcript": "wrinkled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:wrinkled:r1",
+              "targetText": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый, в складках. It is wrinkled — «Она мятая». О рубашке, платье, скатерти, бумаге.",
+                "uk": "пом’ятий, у складках. It is wrinkled — «Вона пом’ята». Про сорочку, сукню, скатертину, папір."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wrinkled",
+            "definitionByLocale": {
+              "ru": "мятый, в складках. It is wrinkled — «Она мятая». О рубашке, платье, скатерти, бумаге.",
+              "uk": "пом’ятий, у складках. It is wrinkled — «Вона пом’ята». Про сорочку, сукню, скатертину, папір."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is wrinkled.",
+          "localizedMeaning": {
+            "ru": "Мама достаёт блузку из чемодана и ждёт вашего слова. Скажите ей полной фразой, что она мятая.",
+            "uk": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "wrinkled"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама дістає блузку з валізи й чекає вашого слова. Скажіть їй повною фразою, що вона пом’ята.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is wrinkled.`",
+                "uk": "тут потрібно `is` — `It is wrinkled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що мама каже про рукав",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i02:r1",
+            "text": "It is torn."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i02:r2",
+            "text": "It is worn."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i02:r3",
+            "text": "It is damp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що мама каже про рукав",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i02:audio",
+            "transcript": "It is torn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:i02:r1",
+              "targetText": "It is torn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i02:r2",
+              "targetText": "It is worn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i02:r3",
+              "targetText": "It is damp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама каже про рукав",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `torn`, а в этом варианте — `worn`.",
+                "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `worn`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама каже про рукав",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `torn`, а в этом варианте — `damp`.",
+                "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `damp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:word:frayed",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — frayed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:frayed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — frayed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:frayed:audio",
+            "transcript": "frayed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:frayed:r1",
+              "targetText": "frayed",
+              "meaningByLocale": {
+                "ru": "истрёпанный: нитки торчат по краю. It's frayed — «Тут всё в нитках». О ремне, шнурке, рукаве, ковре.",
+                "uk": "пошарпаний: нитки стирчать по краю. It's frayed — «Тут усе в нитках». Про ремінь, шнурок, рукав, килим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frayed",
+            "definitionByLocale": {
+              "ru": "истрёпанный: нитки торчат по краю. It's frayed — «Тут всё в нитках». О ремне, шнурке, рукаве, ковре.",
+              "uk": "пошарпаний: нитки стирчать по краю. It's frayed — «Тут усе в нитках». Про ремінь, шнурок, рукав, килим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы проверяете шнурок куртки. Спросите маму, не истрёпан ли он",
+            "uk": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він"
+          },
+          "gappedTargetPhrase": "___ it frayed?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-49:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви перевіряєте шнурок куртки. Запитайте маму, чи не пошарпаний він",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it frayed?`.",
+                "uk": "Питання — `Is it frayed?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-49:i04:p1",
+              "target": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый",
+                "uk": "пом’ятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i04:p2",
+              "target": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах",
+                "uk": "у плямах"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i04:p3",
+              "target": "frayed",
+              "meaningByLocale": {
+                "ru": "истрёпанный",
+                "uk": "пошарпаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i04:p4",
+              "target": "torn",
+              "meaningByLocale": {
+                "ru": "порванный",
+                "uk": "порваний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wrinkled",
+            "stained",
+            "frayed",
+            "torn"
+          ],
+          "rightColumn": [
+            "пом’ятий",
+            "у плямах",
+            "пошарпаний",
+            "порваний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:word:stained",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stained",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:stained:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stained",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:stained:audio",
+            "transcript": "stained"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:stained:r1",
+              "targetText": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах, с пятном. Is it stained? — «Она в пятнах?» О скатерти, рубашке, ковре, зубах.",
+                "uk": "у плямах, з плямою. Is it stained? — «Вона в плямах?» Про скатертину, сорочку, килим, зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stained",
+            "definitionByLocale": {
+              "ru": "в пятнах, с пятном. Is it stained? — «Она в пятнах?» О скатерти, рубашке, ковре, зубах.",
+              "uk": "у плямах, з плямою. Is it stained? — «Вона в плямах?» Про скатертину, сорочку, килим, зуби."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама випрала скатертину. Послухайте, що вона каже про неї, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Мама випрала скатертину. Послухайте, що вона каже про неї, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i05:audio",
+            "transcript": "It is not stained."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not stained.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "stained"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама випрала скатертину. Послухайте, що вона каже про неї, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not stained.`",
+                "uk": "тут потрібно `is` — `It is not stained.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is stained?",
+          "localizedMeaning": {
+            "ru": "Мама говорит, что в стопке одно полотенце с пятном. Спросите её, что в пятнах.",
+            "uk": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "stained"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама каже, що в стосі один рушник із плямою. Запитайте її, що в плямах.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is stained?`",
+                "uk": "тут потрібно `What` — `What is stained?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама показує старий ремінь від сумки зі стирчачими нитками. Скажіть коротко, що він пошарпаний.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i07:audio"
+        ],
+        "accessibilityLabel": "Мама показує старий ремінь від сумки зі стирчачими нитками. Скажіть коротко, що він пошарпаний.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i07:audio",
+            "transcript": "It's frayed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's frayed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мама спросила: «Is it wrinkled?» Вы достали рубашку из тугого комка в сумке. Дополните короткое «да»",
+            "uk": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-49:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Мама спитала: «Is it wrinkled?» Ви дістали сорочку з тугого клубка в сумці. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:word:smelly",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — smelly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:word:smelly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — smelly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:word:smelly:audio",
+            "transcript": "smelly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:word:smelly:r1",
+              "targetText": "smelly",
+              "meaningByLocale": {
+                "ru": "вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.",
+                "uk": "смердючий, той, що погано пахне. They're smelly — «Вони погано пахнуть». Про шкарпетки, взуття, сміття, білизну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smelly",
+            "definitionByLocale": {
+              "ru": "вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.",
+              "uk": "смердючий, той, що погано пахне. They're smelly — «Вони погано пахнуть». Про шкарпетки, взуття, сміття, білизну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що мама каже про кросівки після дощу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i09:r1",
+            "text": "They are smelly."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i09:r2",
+            "text": "They are dirty."
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i09:r3",
+            "text": "They are damp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що мама каже про кросівки після дощу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i09:audio",
+            "transcript": "They are smelly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:i09:r1",
+              "targetText": "They are smelly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i09:r2",
+              "targetText": "They are dirty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i09:r3",
+              "targetText": "They are damp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама каже про кросівки після дощу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `smelly`, а в этом варианте — `dirty`.",
+                "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `dirty`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама каже про кросівки після дощу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `smelly`, а в этом варианте — `damp`.",
+                "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `damp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-49:i10:p1",
+              "target": "smelly",
+              "meaningByLocale": {
+                "ru": "вонючий",
+                "uk": "смердючий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i10:p2",
+              "target": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах",
+                "uk": "у плямах"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i10:p3",
+              "target": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый",
+                "uk": "пом’ятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i10:p4",
+              "target": "clean",
+              "meaningByLocale": {
+                "ru": "чистый",
+                "uk": "чистий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "smelly",
+            "stained",
+            "wrinkled",
+            "clean"
+          ],
+          "rightColumn": [
+            "смердючий",
+            "у плямах",
+            "пом’ятий",
+            "чистий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви попрасували дві сорочки. Послухайте, що каже мама, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Ви попрасували дві сорочки. Послухайте, що каже мама, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i11:audio",
+            "transcript": "They are not wrinkled."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not wrinkled.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "wrinkled"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви попрасували дві сорочки. Послухайте, що каже мама, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not wrinkled.`",
+                "uk": "тут потрібно `are` — `They are not wrinkled.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it smelly?",
+          "localizedMeaning": {
+            "ru": "Вы подняли крышку корзины с грязным бельём. Спросите маму, неприятно ли там пахнет.",
+            "uk": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "smelly"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви підняли кришку кошика з брудною білизною. Запитайте маму, чи неприємно там пахне.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it smelly?`",
+                "uk": "тут потрібно `Is` — `Is it smelly?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви дістали з рюкзака шкарпетки після походу. Скажіть коротко, що вони погано пахнуть.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i13:audio"
+        ],
+        "accessibilityLabel": "Ви дістали з рюкзака шкарпетки після походу. Скажіть коротко, що вони погано пахнуть.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i13:audio",
+            "transcript": "They're smelly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're smelly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скатерть отстирали. Скажите, что она больше не в пятнах",
+            "uk": "Скатертину відпрали. Скажіть, що вона більше не в плямах"
+          },
+          "gappedTargetPhrase": "It ___ not stained.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-49:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i14:r2",
+              "correct": false,
+              "testedDimension": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i14:r3",
+              "correct": false,
+              "testedDimension": "Скатертину відпрали. Скажіть, що вона більше не в плямах",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not stained`.",
+                "uk": "Фраза — `It is not stained`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання мами",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-49:i15:r1",
+            "text": "Is it frayed?"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i15:r2",
+            "text": "Is it stained?"
+          },
+          {
+            "responseId": "en:lesson-02:session-49:i15:r3",
+            "text": "Is it wrinkled?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання мами",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i15:audio",
+            "transcript": "Is it frayed?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-49:i15:r1",
+              "targetText": "Is it frayed?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i15:r2",
+              "targetText": "Is it stained?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i15:r3",
+              "targetText": "Is it wrinkled?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-49:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання мами",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `frayed`, а в этом варианте — `stained`.",
+                "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `stained`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-49:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання мами",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `frayed`, а в этом варианте — `wrinkled`.",
+                "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `wrinkled`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-49:i16:p1",
+              "target": "wrinkled",
+              "meaningByLocale": {
+                "ru": "мятый",
+                "uk": "пом’ятий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i16:p2",
+              "target": "stained",
+              "meaningByLocale": {
+                "ru": "в пятнах",
+                "uk": "у плямах"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i16:p3",
+              "target": "frayed",
+              "meaningByLocale": {
+                "ru": "истрёпанный",
+                "uk": "пошарпаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-49:i16:p4",
+              "target": "smelly",
+              "meaningByLocale": {
+                "ru": "вонючий",
+                "uk": "смердючий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wrinkled",
+            "stained",
+            "frayed",
+            "smelly"
+          ],
+          "rightColumn": [
+            "пом’ятий",
+            "у плямах",
+            "пошарпаний",
+            "смердючий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама дістає білу блузку з шафи. Запитайте її, чи є на ній плями.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Мама дістає білу блузку з шафи. Запитайте її, чи є на ній плями.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i17:audio",
+            "transcript": "Is it stained?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it stained?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-49:word:wrinkled",
+      "correctText": "wrinkled",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i01",
+      "correctText": "It is wrinkled.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i02",
+      "correctText": "It is torn.",
+      "correctResponseId": "en:lesson-02:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:word:frayed",
+      "correctText": "frayed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:word:stained",
+      "correctText": "stained",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i05",
+      "correctText": "It is not stained.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i06",
+      "correctText": "What is stained?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i07",
+      "correctText": "It's frayed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:word:smelly",
+      "correctText": "smelly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i09",
+      "correctText": "They are smelly.",
+      "correctResponseId": "en:lesson-02:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i11",
+      "correctText": "They are not wrinkled.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i12",
+      "correctText": "Is it smelly?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i13",
+      "correctText": "They're smelly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-49:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i15",
+      "correctText": "Is it frayed?",
+      "correctResponseId": "en:lesson-02:session-49:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:i17",
+      "correctText": "Is it stained?",
+      "correctResponseId": null
+    }
+  ]
+}

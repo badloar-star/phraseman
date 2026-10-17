@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-45:word:blunt",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blunt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:blunt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blunt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:blunt:audio",
+            "transcript": "blunt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:blunt:r1",
+              "targetText": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой, неострый. It is blunt — «Он тупой». О ноже, ножницах, карандаше, топоре.",
+                "uk": "тупий, негострий. It is blunt — «Він тупий». Про ніж, ножиці, олівець, сокиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blunt",
+            "definitionByLocale": {
+              "ru": "тупой, неострый. It is blunt — «Он тупой». О ноже, ножницах, карандаше, топоре.",
+              "uk": "тупий, негострий. It is blunt — «Він тупий». Про ніж, ножиці, олівець, сокиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is blunt.",
+          "localizedMeaning": {
+            "ru": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
+            "uk": "Брат простягає вам олівець зі стертим грифелем. Скажіть йому повною фразою, що він тупий."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "blunt"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is blunt.`",
+                "uk": "тут потрібно `is` — `It is blunt.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что брат говорит о старом ключе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i02:r1",
+            "text": "It is rusty."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i02:r2",
+            "text": "It is loose."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i02:r3",
+            "text": "It is heavy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что брат говорит о старом ключе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i02:audio",
+            "transcript": "It is rusty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:i02:r1",
+              "targetText": "It is rusty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i02:r2",
+              "targetText": "It is loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i02:r3",
+              "targetText": "It is heavy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о старом ключе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rusty`, а в этом варианте — `loose`.",
+                "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `loose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о старом ключе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rusty`, а в этом варианте — `heavy`.",
+                "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `heavy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:word:cluttered",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cluttered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:cluttered:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cluttered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:cluttered:audio",
+            "transcript": "cluttered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:cluttered:r1",
+              "targetText": "cluttered",
+              "meaningByLocale": {
+                "ru": "захламлённый, забитый вещами. It's cluttered — «Тут завалено». О ящике, столе, комнате, гараже.",
+                "uk": "захаращений, забитий речами. It's cluttered — «Тут завалено». Про скриню, стіл, кімнату, гараж."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cluttered",
+            "definitionByLocale": {
+              "ru": "захламлённый, забитый вещами. It's cluttered — «Тут завалено». О ящике, столе, комнате, гараже.",
+              "uk": "захаращений, забитий речами. It's cluttered — «Тут завалено». Про скриню, стіл, кімнату, гараж."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+            "uk": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона"
+          },
+          "gappedTargetPhrase": "___ it cluttered?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-45:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it cluttered?`.",
+                "uk": "Питання — `Is it cluttered?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-45:i04:p1",
+              "target": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой",
+                "uk": "тупий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i04:p2",
+              "target": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий",
+                "uk": "нетривкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i04:p3",
+              "target": "cluttered",
+              "meaningByLocale": {
+                "ru": "захламлённый",
+                "uk": "захаращений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i04:p4",
+              "target": "sturdy",
+              "meaningByLocale": {
+                "ru": "прочный",
+                "uk": "міцний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blunt",
+            "flimsy",
+            "cluttered",
+            "sturdy"
+          ],
+          "rightColumn": [
+            "тупой",
+            "хлипкий",
+            "захламлённый",
+            "прочный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:word:flimsy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flimsy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:flimsy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flimsy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:flimsy:audio",
+            "transcript": "flimsy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:flimsy:r1",
+              "targetText": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий, ненадёжный: тонкий и непрочный. Is it flimsy? — «Она хлипкая?» О полке, стуле, заборе, упаковке.",
+                "uk": "нетривкий, ненадійний: тонкий і неміцний. Is it flimsy? — «Вона нетривка?» Про полицю, стілець, паркан, упаковку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flimsy",
+            "definitionByLocale": {
+              "ru": "хлипкий, ненадёжный: тонкий и непрочный. Is it flimsy? — «Она хлипкая?» О полке, стуле, заборе, упаковке.",
+              "uk": "нетривкий, ненадійний: тонкий і неміцний. Is it flimsy? — «Вона нетривка?» Про полицю, стілець, паркан, упаковку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат укрепил полку уголками. Послушайте, что он говорит о ней, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Брат укрепил полку уголками. Послушайте, что он говорит о ней, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i05:audio",
+            "transcript": "It is not flimsy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not flimsy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "flimsy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат укрепил полку уголками. Послушайте, что он говорит о ней, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not flimsy.`",
+                "uk": "тут потрібно `is` — `It is not flimsy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is flimsy?",
+          "localizedMeaning": {
+            "ru": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
+            "uk": "Брат каже, що в гаражі нетривка лише одна річ. Запитайте його, що нетривке."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "flimsy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is flimsy?`",
+                "uk": "тут потрібно `What` — `What is flimsy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показывает на верстак, заваленный хламом. Скажите коротко, что он захламлён.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Брат показывает на верстак, заваленный хламом. Скажите коротко, что он захламлён.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i07:audio",
+            "transcript": "It's cluttered."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's cluttered.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+            "uk": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-45:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:word:rough",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:rough:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:rough:audio",
+            "transcript": "rough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:rough:r1",
+              "targetText": "rough",
+              "meaningByLocale": {
+                "ru": "шершавый, неровный на ощупь. They're rough — «Они шершавые». О досках, коже, руках, камне.",
+                "uk": "шорсткий, нерівний на дотик. They're rough — «Вони шорсткі». Про дошки, шкіру, руки, камінь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rough",
+            "definitionByLocale": {
+              "ru": "шершавый, неровный на ощупь. They're rough — «Они шершавые». О досках, коже, руках, камне.",
+              "uk": "шорсткий, нерівний на дотик. They're rough — «Вони шорсткі». Про дошки, шкіру, руки, камінь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что брат говорит о досках у стены",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i09:r1",
+            "text": "They are rough."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i09:r2",
+            "text": "They are loose."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i09:r3",
+            "text": "They are rusty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что брат говорит о досках у стены",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i09:audio",
+            "transcript": "They are rough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:i09:r1",
+              "targetText": "They are rough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i09:r2",
+              "targetText": "They are loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i09:r3",
+              "targetText": "They are rusty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о досках у стены",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rough`, а в этом варианте — `loose`.",
+                "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `loose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о досках у стены",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rough`, а в этом варианте — `rusty`.",
+                "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `rusty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-45:i10:p1",
+              "target": "rough",
+              "meaningByLocale": {
+                "ru": "шершавый",
+                "uk": "шорсткий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i10:p2",
+              "target": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий",
+                "uk": "нетривкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i10:p3",
+              "target": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой",
+                "uk": "тупий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i10:p4",
+              "target": "rusty",
+              "meaningByLocale": {
+                "ru": "ржавый",
+                "uk": "іржавий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rough",
+            "flimsy",
+            "blunt",
+            "rusty"
+          ],
+          "rightColumn": [
+            "шершавый",
+            "хлипкий",
+            "тупой",
+            "ржавый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы разобрали ящики. Послушайте, что брат говорит о них, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Вы разобрали ящики. Послушайте, что брат говорит о них, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i11:audio",
+            "transcript": "They are not cluttered."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not cluttered.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "cluttered"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы разобрали ящики. Послушайте, что брат говорит о них, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not cluttered.`",
+                "uk": "тут потрібно `are` — `They are not cluttered.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it rough?",
+          "localizedMeaning": {
+            "ru": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
+            "uk": "Ви кладете долоню на дошку біля верстака. Запитайте брата, чи шорстка вона."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "rough"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it rough?`",
+                "uk": "тут потрібно `Is` — `Is it rough?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы провели рукой по двум необструганным доскам. Скажите коротко, что они шершавые.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Вы провели рукой по двум необструганным доскам. Скажите коротко, что они шершавые.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i13:audio",
+            "transcript": "They're rough."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're rough.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат наточил топор. Скажите, что он больше не тупой",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат наточил топор. Скажите, что он больше не тупой",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат наточил топор. Скажите, что он больше не тупой",
+            "uk": "Брат нагострив сокиру. Скажіть, що вона більше не тупа"
+          },
+          "gappedTargetPhrase": "It ___ not blunt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-45:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат наточил топор. Скажите, что он больше не тупой",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат наточил топор. Скажите, что он больше не тупой",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат наточил топор. Скажите, что он больше не тупой",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not blunt`.",
+                "uk": "Фраза — `It is not blunt`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i15:r1",
+            "text": "Is it flimsy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i15:r2",
+            "text": "Is it cluttered?"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i15:r3",
+            "text": "Is it rough?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i15:audio",
+            "transcript": "Is it flimsy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:i15:r1",
+              "targetText": "Is it flimsy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i15:r2",
+              "targetText": "Is it cluttered?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i15:r3",
+              "targetText": "Is it rough?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `cluttered`.",
+                "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `cluttered`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `rough`.",
+                "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `rough`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-45:i16:p1",
+              "target": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой",
+                "uk": "тупий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i16:p2",
+              "target": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий",
+                "uk": "нетривкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i16:p3",
+              "target": "cluttered",
+              "meaningByLocale": {
+                "ru": "захламлённый",
+                "uk": "захаращений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i16:p4",
+              "target": "rough",
+              "meaningByLocale": {
+                "ru": "шершавый",
+                "uk": "шорсткий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blunt",
+            "flimsy",
+            "cluttered",
+            "rough"
+          ],
+          "rightColumn": [
+            "тупой",
+            "хлипкий",
+            "захламлённый",
+            "шершавый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат собирает новую полку из тонких реек. Спросите его, не хлипкая ли она.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Брат собирает новую полку из тонких реек. Спросите его, не хлипкая ли она.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i17:audio",
+            "transcript": "Is it flimsy?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it flimsy?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-45:word:blunt",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blunt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:blunt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blunt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:blunt:audio",
+            "transcript": "blunt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:blunt:r1",
+              "targetText": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой, неострый. It is blunt — «Он тупой». О ноже, ножницах, карандаше, топоре.",
+                "uk": "тупий, негострий. It is blunt — «Він тупий». Про ніж, ножиці, олівець, сокиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blunt",
+            "definitionByLocale": {
+              "ru": "тупой, неострый. It is blunt — «Он тупой». О ноже, ножницах, карандаше, топоре.",
+              "uk": "тупий, негострий. It is blunt — «Він тупий». Про ніж, ножиці, олівець, сокиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат простягає вам олівець зі стертим грифелем. Скажіть йому повною фразою, що він тупий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат простягає вам олівець зі стертим грифелем. Скажіть йому повною фразою, що він тупий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is blunt.",
+          "localizedMeaning": {
+            "ru": "Брат протягивает вам карандаш с затупившимся грифелем. Скажите ему полной фразой, что он тупой.",
+            "uk": "Брат простягає вам олівець зі стертим грифелем. Скажіть йому повною фразою, що він тупий."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "blunt"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат простягає вам олівець зі стертим грифелем. Скажіть йому повною фразою, що він тупий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is blunt.`",
+                "uk": "тут потрібно `is` — `It is blunt.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що брат каже про старий ключ",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i02:r1",
+            "text": "It is rusty."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i02:r2",
+            "text": "It is loose."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i02:r3",
+            "text": "It is heavy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що брат каже про старий ключ",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i02:audio",
+            "transcript": "It is rusty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:i02:r1",
+              "targetText": "It is rusty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i02:r2",
+              "targetText": "It is loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i02:r3",
+              "targetText": "It is heavy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про старий ключ",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rusty`, а в этом варианте — `loose`.",
+                "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `loose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про старий ключ",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rusty`, а в этом варианте — `heavy`.",
+                "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `heavy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:word:cluttered",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cluttered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:cluttered:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cluttered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:cluttered:audio",
+            "transcript": "cluttered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:cluttered:r1",
+              "targetText": "cluttered",
+              "meaningByLocale": {
+                "ru": "захламлённый, забитый вещами. It's cluttered — «Тут завалено». О ящике, столе, комнате, гараже.",
+                "uk": "захаращений, забитий речами. It's cluttered — «Тут завалено». Про скриню, стіл, кімнату, гараж."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cluttered",
+            "definitionByLocale": {
+              "ru": "захламлённый, забитый вещами. It's cluttered — «Тут завалено». О ящике, столе, комнате, гараже.",
+              "uk": "захаращений, забитий речами. It's cluttered — «Тут завалено». Про скриню, стіл, кімнату, гараж."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заглядываете в ящик с болтами. Спросите брата, не захламлён ли он",
+            "uk": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона"
+          },
+          "gappedTargetPhrase": "___ it cluttered?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-45:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви заглядаєте в скриню з болтами. Запитайте брата, чи не захаращена вона",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it cluttered?`.",
+                "uk": "Питання — `Is it cluttered?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-45:i04:p1",
+              "target": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой",
+                "uk": "тупий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i04:p2",
+              "target": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий",
+                "uk": "нетривкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i04:p3",
+              "target": "cluttered",
+              "meaningByLocale": {
+                "ru": "захламлённый",
+                "uk": "захаращений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i04:p4",
+              "target": "sturdy",
+              "meaningByLocale": {
+                "ru": "прочный",
+                "uk": "міцний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blunt",
+            "flimsy",
+            "cluttered",
+            "sturdy"
+          ],
+          "rightColumn": [
+            "тупий",
+            "нетривкий",
+            "захаращений",
+            "міцний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:word:flimsy",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flimsy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:flimsy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flimsy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:flimsy:audio",
+            "transcript": "flimsy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:flimsy:r1",
+              "targetText": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий, ненадёжный: тонкий и непрочный. Is it flimsy? — «Она хлипкая?» О полке, стуле, заборе, упаковке.",
+                "uk": "нетривкий, ненадійний: тонкий і неміцний. Is it flimsy? — «Вона нетривка?» Про полицю, стілець, паркан, упаковку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flimsy",
+            "definitionByLocale": {
+              "ru": "хлипкий, ненадёжный: тонкий и непрочный. Is it flimsy? — «Она хлипкая?» О полке, стуле, заборе, упаковке.",
+              "uk": "нетривкий, ненадійний: тонкий і неміцний. Is it flimsy? — «Вона нетривка?» Про полицю, стілець, паркан, упаковку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат зміцнив полицю куточками. Послухайте, що він каже про неї, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Брат зміцнив полицю куточками. Послухайте, що він каже про неї, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i05:audio",
+            "transcript": "It is not flimsy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not flimsy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "flimsy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат зміцнив полицю куточками. Послухайте, що він каже про неї, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not flimsy.`",
+                "uk": "тут потрібно `is` — `It is not flimsy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат каже, що в гаражі нетривка лише одна річ. Запитайте його, що нетривке.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат каже, що в гаражі нетривка лише одна річ. Запитайте його, що нетривке.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is flimsy?",
+          "localizedMeaning": {
+            "ru": "Брат говорит, что в гараже хлипкая только одна вещь. Спросите его, что хлипкое.",
+            "uk": "Брат каже, що в гаражі нетривка лише одна річ. Запитайте його, що нетривке."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "flimsy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат каже, що в гаражі нетривка лише одна річ. Запитайте його, що нетривке.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is flimsy?`",
+                "uk": "тут потрібно `What` — `What is flimsy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат показує на верстак, заваляний мотлохом. Скажіть коротко, що він захаращений.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Брат показує на верстак, заваляний мотлохом. Скажіть коротко, що він захаращений.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i07:audio",
+            "transcript": "It's cluttered."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's cluttered.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат спросил: «Is it blunt?» Вы пробуете топор на полене, но он только подпрыгивает. Дополните короткое «да»",
+            "uk": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-45:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат спитав: «Is it blunt?» Ви пробуєте сокиру на поліні, але вона лише підстрибує. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:word:rough",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:word:rough:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:word:rough:audio",
+            "transcript": "rough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:word:rough:r1",
+              "targetText": "rough",
+              "meaningByLocale": {
+                "ru": "шершавый, неровный на ощупь. They're rough — «Они шершавые». О досках, коже, руках, камне.",
+                "uk": "шорсткий, нерівний на дотик. They're rough — «Вони шорсткі». Про дошки, шкіру, руки, камінь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rough",
+            "definitionByLocale": {
+              "ru": "шершавый, неровный на ощупь. They're rough — «Они шершавые». О досках, коже, руках, камне.",
+              "uk": "шорсткий, нерівний на дотик. They're rough — «Вони шорсткі». Про дошки, шкіру, руки, камінь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що брат каже про дошки біля стіни",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i09:r1",
+            "text": "They are rough."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i09:r2",
+            "text": "They are loose."
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i09:r3",
+            "text": "They are rusty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що брат каже про дошки біля стіни",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i09:audio",
+            "transcript": "They are rough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:i09:r1",
+              "targetText": "They are rough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i09:r2",
+              "targetText": "They are loose.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i09:r3",
+              "targetText": "They are rusty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про дошки біля стіни",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rough`, а в этом варианте — `loose`.",
+                "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `loose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про дошки біля стіни",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rough`, а в этом варианте — `rusty`.",
+                "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `rusty`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-45:i10:p1",
+              "target": "rough",
+              "meaningByLocale": {
+                "ru": "шершавый",
+                "uk": "шорсткий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i10:p2",
+              "target": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий",
+                "uk": "нетривкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i10:p3",
+              "target": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой",
+                "uk": "тупий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i10:p4",
+              "target": "rusty",
+              "meaningByLocale": {
+                "ru": "ржавый",
+                "uk": "іржавий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "rough",
+            "flimsy",
+            "blunt",
+            "rusty"
+          ],
+          "rightColumn": [
+            "шорсткий",
+            "нетривкий",
+            "тупий",
+            "іржавий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви розібрали скрині. Послухайте, що брат каже про них, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Ви розібрали скрині. Послухайте, що брат каже про них, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i11:audio",
+            "transcript": "They are not cluttered."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They are not cluttered.",
+          "orderedTokens": [
+            "They",
+            "are",
+            "not",
+            "cluttered"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви розібрали скрині. Послухайте, що брат каже про них, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `They are not cluttered.`",
+                "uk": "тут потрібно `are` — `They are not cluttered.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви кладете долоню на дошку біля верстака. Запитайте брата, чи шорстка вона.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви кладете долоню на дошку біля верстака. Запитайте брата, чи шорстка вона.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it rough?",
+          "localizedMeaning": {
+            "ru": "Вы кладёте ладонь на доску у верстака. Спросите брата, шершавая ли она.",
+            "uk": "Ви кладете долоню на дошку біля верстака. Запитайте брата, чи шорстка вона."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "rough"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви кладете долоню на дошку біля верстака. Запитайте брата, чи шорстка вона.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it rough?`",
+                "uk": "тут потрібно `Is` — `Is it rough?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви провели рукою по двох неструганих дошках. Скажіть коротко, що вони шорсткі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Ви провели рукою по двох неструганих дошках. Скажіть коротко, що вони шорсткі.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i13:audio",
+            "transcript": "They're rough."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They're rough.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат нагострив сокиру. Скажіть, що вона більше не тупа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат нагострив сокиру. Скажіть, що вона більше не тупа",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат наточил топор. Скажите, что он больше не тупой",
+            "uk": "Брат нагострив сокиру. Скажіть, що вона більше не тупа"
+          },
+          "gappedTargetPhrase": "It ___ not blunt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-45:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Брат нагострив сокиру. Скажіть, що вона більше не тупа",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Брат нагострив сокиру. Скажіть, що вона більше не тупа",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Брат нагострив сокиру. Скажіть, що вона більше не тупа",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is not blunt`.",
+                "uk": "Фраза — `It is not blunt`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-45:i15:r1",
+            "text": "Is it flimsy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i15:r2",
+            "text": "Is it cluttered?"
+          },
+          {
+            "responseId": "en:lesson-02:session-45:i15:r3",
+            "text": "Is it rough?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i15:audio",
+            "transcript": "Is it flimsy?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-45:i15:r1",
+              "targetText": "Is it flimsy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i15:r2",
+              "targetText": "Is it cluttered?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i15:r3",
+              "targetText": "Is it rough?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `cluttered`.",
+                "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `cluttered`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `rough`.",
+                "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `rough`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-45:i16:p1",
+              "target": "blunt",
+              "meaningByLocale": {
+                "ru": "тупой",
+                "uk": "тупий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i16:p2",
+              "target": "flimsy",
+              "meaningByLocale": {
+                "ru": "хлипкий",
+                "uk": "нетривкий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i16:p3",
+              "target": "cluttered",
+              "meaningByLocale": {
+                "ru": "захламлённый",
+                "uk": "захаращений"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-45:i16:p4",
+              "target": "rough",
+              "meaningByLocale": {
+                "ru": "шершавый",
+                "uk": "шорсткий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blunt",
+            "flimsy",
+            "cluttered",
+            "rough"
+          ],
+          "rightColumn": [
+            "тупий",
+            "нетривкий",
+            "захаращений",
+            "шорсткий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат збирає нову полицю з тонких рейок. Запитайте його, чи не нетривка вона.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Брат збирає нову полицю з тонких рейок. Запитайте його, чи не нетривка вона.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-45:i17:audio",
+            "transcript": "Is it flimsy?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it flimsy?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-45:word:blunt",
+      "correctText": "blunt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i01",
+      "correctText": "It is blunt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i02",
+      "correctText": "It is rusty.",
+      "correctResponseId": "en:lesson-02:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:word:cluttered",
+      "correctText": "cluttered",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:word:flimsy",
+      "correctText": "flimsy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i05",
+      "correctText": "It is not flimsy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i06",
+      "correctText": "What is flimsy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i07",
+      "correctText": "It's cluttered.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:word:rough",
+      "correctText": "rough",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i09",
+      "correctText": "They are rough.",
+      "correctResponseId": "en:lesson-02:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i11",
+      "correctText": "They are not cluttered.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i12",
+      "correctText": "Is it rough?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i13",
+      "correctText": "They're rough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-45:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i15",
+      "correctText": "Is it flimsy?",
+      "correctResponseId": "en:lesson-02:session-45:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-45:i17",
+      "correctText": "Is it flimsy?",
+      "correctResponseId": null
+    }
+  ]
+}

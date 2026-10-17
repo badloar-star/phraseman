@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-02:session-50:i01",
+      "interactionId": "en:lesson-02:session-50:word:sleek",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sleek",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:word:sleek:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sleek",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:word:sleek:audio",
+          "transcript": "sleek"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:word:sleek:r1",
+            "targetText": "sleek",
+            "meaningByLocale": {
+              "ru": "гладкий, стильный, с чистыми линиями. It is sleek — «Он стильный». О телефоне, машине, ноутбуке, дизайне.",
+              "uk": "гладкий, стильний, з чистими лініями. It is sleek — «Він стильний». Про телефон, машину, ноутбук, дизайн."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleek",
+          "definitionByLocale": {
+            "ru": "гладкий, стильный, с чистыми линиями. It is sleek — «Он стильный». О телефоне, машине, ноутбуке, дизайне.",
+            "uk": "гладкий, стильний, з чистими лініями. It is sleek — «Він стильний». Про телефон, машину, ноутбук, дизайн."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Короткое напоминание помогло получить подтверждения участия. Скажите полной фразой, что способ эффективный",
+      "prompt": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Короткое напоминание помогло получить подтверждения участия. Скажите полной фразой, что способ эффективный",
+      "accessibilityLabel": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is effective.",
+        "targetPhrase": "It is sleek.",
         "localizedMeaning": {
-          "ru": "Короткое напоминание помогло получить подтверждения участия. Скажите полной фразой, что способ эффективный",
-          "uk": "Коротке нагадування допомогло отримати підтвердження участі. Скажіть повною фразою, що спосіб ефективний"
+          "ru": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
+          "uk": "Подруга відкриває тонкий ноутбук і чекає вашої оцінки. Скажіть їй повною фразою, що він стильний."
         },
         "orderedTokens": [
           "It",
           "is",
-          "effective"
+          "sleek"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -33,10 +76,10 @@
           {
             "responseId": "en:lesson-02:session-50:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Короткое напоминание помогло получить подтверждения участия. Скажите полной фразой, что способ эффективный",
+            "testedDimension": "Подруга открывает тонкий ноутбук и ждёт вашей оценки. Скажите ей полной фразой, что он стильный.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is effective.`",
-              "uk": "тут потрібно `is` — `It is effective.`"
+              "ru": "здесь нужно `is` — `It is sleek.`",
+              "uk": "тут потрібно `is` — `It is sleek.`"
             }
           }
         ],
@@ -49,51 +92,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о рассылке",
+      "prompt": "Послушайте, что продавец говорит о чехле",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-50:i02:r1",
-          "text": "It is expensive."
+          "text": "It is cheap."
         },
         {
           "responseId": "en:lesson-02:session-50:i02:r2",
-          "text": "It is effective."
+          "text": "It is expensive."
         },
         {
           "responseId": "en:lesson-02:session-50:i02:r3",
-          "text": "It is inaccurate."
+          "text": "It is shiny."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о рассылке",
+      "accessibilityLabel": "Послушайте, что продавец говорит о чехле",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i02:audio",
-          "transcript": "It is expensive."
+          "transcript": "It is cheap."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-50:i02:r1",
-            "targetText": "It is expensive.",
+            "targetText": "It is cheap.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-50:i02:r2",
-            "targetText": "It is effective.",
+            "targetText": "It is expensive.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-50:i02:r3",
-            "targetText": "It is inaccurate.",
+            "targetText": "It is shiny.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +145,19 @@
           {
             "responseId": "en:lesson-02:session-50:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о рассылке",
+            "testedDimension": "Послушайте, что продавец говорит о чехле",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `effective`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `effective`."
+              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `expensive`.",
+              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `expensive`."
             }
           },
           {
             "responseId": "en:lesson-02:session-50:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о рассылке",
+            "testedDimension": "Послушайте, что продавец говорит о чехле",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `expensive`, а в этом варианте — `inaccurate`.",
-              "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `inaccurate`."
+              "ru": "В записи последнее слово — `cheap`, а в этом варианте — `shiny`.",
+              "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `shiny`."
             }
           }
         ],
@@ -124,12 +167,55 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-50:word:handy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — handy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:word:handy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — handy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:word:handy:audio",
+          "transcript": "handy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:word:handy:r1",
+            "targetText": "handy",
+            "meaningByLocale": {
+              "ru": "удобный, очень кстати под рукой. It's handy — «Очень кстати». Об инструменте, сумке, приложении, совете.",
+              "uk": "зручний, дуже до речі під рукою. It's handy — «Дуже до речі». Про інструмент, сумку, застосунок, пораду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handy",
+          "definitionByLocale": {
+            "ru": "удобный, очень кстати под рукой. It's handy — «Очень кстати». Об инструменте, сумке, приложении, совете.",
+            "uk": "зручний, дуже до речі під рукою. It's handy — «Дуже до речі». Про інструмент, сумку, застосунок, пораду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-50:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните, эффективен ли другой способ напоминания",
+      "prompt": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-50:i03:r1",
@@ -146,14 +232,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните, эффективен ли другой способ напоминания",
+      "accessibilityLabel": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните, эффективен ли другой способ напоминания",
-          "uk": "Уточніть, чи ефективний інший спосіб нагадування"
+          "ru": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
+          "uk": "Ви дивитеся на маленький ліхтарик на брелоку. Запитайте подругу, чи зручна це річ"
         },
-        "gappedTargetPhrase": "___ it effective?",
+        "gappedTargetPhrase": "___ it handy?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-50:i03:r1",
@@ -168,12 +254,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Уточните, эффективен ли другой способ напоминания",
+        "testedDimension": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-50:i03:r2",
             "correct": false,
-            "testedDimension": "Уточните, эффективен ли другой способ напоминания",
+            "testedDimension": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
             "feedbackByLocale": {
               "ru": "С `it` нужно `Is`.",
               "uk": "З `it` потрібно `Is`."
@@ -182,10 +268,10 @@
           {
             "responseId": "en:lesson-02:session-50:i03:r3",
             "correct": false,
-            "testedDimension": "Уточните, эффективен ли другой способ напоминания",
+            "testedDimension": "Вы смотрите на маленький фонарик на брелоке. Спросите подругу, удобная ли это вещь",
             "feedbackByLocale": {
-              "ru": "Вопрос — `Is it effective?`.",
-              "uk": "Запитання — `Is it effective?`."
+              "ru": "Вопрос — `Is it handy?`.",
+              "uk": "Питання — `Is it handy?`."
             }
           }
         ]
@@ -194,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,26 +294,26 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-50:i04:p1",
-            "target": "effective",
+            "target": "sleek",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "гладкий, стильный",
+              "uk": "гладкий, стильний"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i04:p2",
-            "target": "expensive",
+            "target": "pricey",
             "meaningByLocale": {
-              "ru": "дорогой",
-              "uk": "дорогий"
+              "ru": "дороговатый",
+              "uk": "дороговатий"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i04:p3",
-            "target": "inaccurate",
+            "target": "handy",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "удобный, кстати",
+              "uk": "зручний, до речі"
             }
           },
           {
@@ -240,15 +326,15 @@
           }
         ],
         "leftColumn": [
-          "effective",
-          "expensive",
-          "inaccurate",
+          "sleek",
+          "pricey",
+          "handy",
           "cheap"
         ],
         "rightColumn": [
-          "эффективный",
-          "дорогой",
-          "неточный",
+          "гладкий, стильный",
+          "дороговатый",
+          "удобный, кстати",
           "дешёвый"
         ],
         "pairingKey": "pair_id",
@@ -266,42 +352,86 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-50:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-02:session-50:word:pricey",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pricey",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:word:pricey:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pricey",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:word:pricey:audio",
+          "transcript": "pricey"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:word:pricey:r1",
+            "targetText": "pricey",
+            "meaningByLocale": {
+              "ru": "дороговатый, кусается по цене. Is it pricey? — «Это дороговато?» О кофемашине, билете, ужине, часах.",
+              "uk": "дороговатий, кусається за ціною. Is it pricey? — «Це дороговато?» Про кавомашину, квиток, вечерю, годинник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pricey",
+          "definitionByLocale": {
+            "ru": "дороговатый, кусается по цене. Is it pricey? — «Это дороговато?» О кофемашине, билете, ужине, часах.",
+            "uk": "дороговатий, кусається за ціною. Is it pricey? — «Це дороговато?» Про кавомашину, квиток, вечерю, годинник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите короткий ответ",
+      "prompt": "Продавец снизил цену. Послушайте, что говорит подруга, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите короткий ответ",
+      "accessibilityLabel": "Продавец снизил цену. Послушайте, что говорит подруга, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i05:audio",
-          "transcript": "Yes, it is."
+          "transcript": "It is not pricey."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Yes, it is.",
+        "hiddenTargetPhrase": "It is not pricey.",
         "orderedTokens": [
-          "Yes,",
-          "it",
-          "is"
+          "It",
+          "is",
+          "not",
+          "pricey"
         ],
         "authoredDistractorTokens": [
-          "No,"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-50:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите короткий ответ",
+            "testedDimension": "Продавец снизил цену. Послушайте, что говорит подруга, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Yes,` — `Yes, it is.`",
-              "uk": "тут потрібно `Yes,` — `Yes, it is.`"
+              "ru": "здесь нужно `is` — `It is not pricey.`",
+              "uk": "тут потрібно `is` — `It is not pricey.`"
             }
           }
         ],
@@ -314,26 +444,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы сравниваете несколько способов получить ответы участников. Спросите Анну, что эффективно",
+      "prompt": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сравниваете несколько способов получить ответы участников. Спросите Анну, что эффективно",
+      "accessibilityLabel": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "What is effective?",
+        "targetPhrase": "What is pricey?",
         "localizedMeaning": {
-          "ru": "Вы сравниваете несколько способов получить ответы участников. Спросите Анну, что эффективно",
-          "uk": "Ви порівнюєте кілька способів отримати відповіді учасників. Запитайте Анну, що ефективно"
+          "ru": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
+          "uk": "Подруга каже, що в кошику дорого коштує лише одна річ. Запитайте її, що дороговато."
         },
         "orderedTokens": [
           "What",
           "is",
-          "effective"
+          "pricey"
         ],
         "authoredDistractorTokens": [
           "Where"
@@ -342,10 +472,10 @@
           {
             "responseId": "en:lesson-02:session-50:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Вы сравниваете несколько способов получить ответы участников. Спросите Анну, что эффективно",
+            "testedDimension": "Подруга говорит, что в корзине дорого стоит только одна вещь. Спросите её, что дороговато.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `What` — `What is effective?`",
-              "uk": "тут потрібно `What` — `What is effective?`"
+              "ru": "здесь нужно `What` — `What is pricey?`",
+              "uk": "тут потрібно `What` — `What is pricey?`"
             }
           }
         ],
@@ -358,25 +488,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Напоминание дало нужные подтверждения участия. Коротко сообщите, что способ эффективный",
+      "prompt": "Подруга протягивает вам отвёртку из сумки, и вы закрутили ею винт. Скажите коротко, что она удобная.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i07:audio"
       ],
-      "accessibilityLabel": "Напоминание дало нужные подтверждения участия. Коротко сообщите, что способ эффективный",
+      "accessibilityLabel": "Подруга протягивает вам отвёртку из сумки, и вы закрутили ею винт. Скажите коротко, что она удобная.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i07:audio",
-          "transcript": "It's effective."
+          "transcript": "It's handy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's effective.",
+        "targetPhrase": "It's handy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -391,15 +521,15 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В старом списке номера записаны с ошибками. На «Are they inaccurate?» дополните короткое «да»",
+      "prompt": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-50:i08:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-02:session-50:i08:r2",
@@ -407,23 +537,23 @@
         },
         {
           "responseId": "en:lesson-02:session-50:i08:r3",
-          "text": "is"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В старом списке номера записаны с ошибками. На «Are they inaccurate?» дополните короткое «да»",
+      "accessibilityLabel": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В старом списке номера записаны с ошибками. На «Are they inaccurate?» дополните короткое «да»",
-          "uk": "У старому списку номери записані з помилками. На «Are they inaccurate?» доповніть коротку відповідь «так»"
+          "ru": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
+          "uk": "Подруга спитала: «Is it sleek?» Ви дивитеся на тонкий блискучий телефон. Доповніть коротке «так»"
         },
-        "gappedTargetPhrase": "Yes, they ___.",
+        "gappedTargetPhrase": "Yes, it ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-50:i08:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-02:session-50:i08:r2",
@@ -431,27 +561,27 @@
           },
           {
             "responseId": "en:lesson-02:session-50:i08:r3",
-            "text": "is"
+            "text": "are"
           }
         ],
-        "testedDimension": "В старом списке номера записаны с ошибками. На «Are they inaccurate?» дополните короткое «да»",
+        "testedDimension": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-50:i08:r2",
             "correct": false,
-            "testedDimension": "В старом списке номера записаны с ошибками. На «Are they inaccurate?» дополните короткое «да»",
+            "testedDimension": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "С `they` нужно `are`.",
-              "uk": "З `they` потрібно `are`."
+              "ru": "С `it` нужно `is`.",
+              "uk": "З `it` потрібно `is`."
             }
           },
           {
             "responseId": "en:lesson-02:session-50:i08:r3",
             "correct": false,
-            "testedDimension": "В старом списке номера записаны с ошибками. На «Are they inaccurate?» дополните короткое «да»",
+            "testedDimension": "Подруга спросила: «Is it sleek?» Вы смотрите на тонкий блестящий телефон. Дополните короткое «да»",
             "feedbackByLocale": {
-              "ru": "Ответ — `Yes, they are`.",
-              "uk": "Відповідь — `Yes, they are`."
+              "ru": "Ответ — `Yes, it is`.",
+              "uk": "Відповідь — `Yes, it is`."
             }
           }
         ]
@@ -459,20 +589,63 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-50:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-02:session-50:word:fancy",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о номерах",
+      "prompt": "Карточка слова — fancy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:word:fancy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fancy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:word:fancy:audio",
+          "transcript": "fancy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:word:fancy:r1",
+            "targetText": "fancy",
+            "meaningByLocale": {
+              "ru": "нарядный, шикарный, с украшениями. They're fancy — «Они нарядные». О коробках, платьях, лентах, ресторанах.",
+              "uk": "нарядний, шикарний, з прикрасами. They're fancy — «Вони нарядні». Про коробки, сукні, стрічки, ресторани."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fancy",
+          "definitionByLocale": {
+            "ru": "нарядный, шикарный, с украшениями. They're fancy — «Они нарядные». О коробках, платьях, лентах, ресторанах.",
+            "uk": "нарядний, шикарний, з прикрасами. They're fancy — «Вони нарядні». Про коробки, сукні, стрічки, ресторани."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, что продавец говорит о подарочных коробках",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-50:i09:r1",
-          "text": "They are inaccurate."
+          "text": "They are fancy."
         },
         {
           "responseId": "en:lesson-02:session-50:i09:r2",
-          "text": "They are expensive."
+          "text": "They are shiny."
         },
         {
           "responseId": "en:lesson-02:session-50:i09:r3",
@@ -483,23 +656,23 @@
       "audioTargetIds": [
         "en:lesson-02:session-50:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о номерах",
+      "accessibilityLabel": "Послушайте, что продавец говорит о подарочных коробках",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i09:audio",
-          "transcript": "They are inaccurate."
+          "transcript": "They are fancy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-50:i09:r1",
-            "targetText": "They are inaccurate.",
+            "targetText": "They are fancy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-50:i09:r2",
-            "targetText": "They are expensive.",
+            "targetText": "They are shiny.",
             "meaningByLocale": null
           },
           {
@@ -513,19 +686,19 @@
           {
             "responseId": "en:lesson-02:session-50:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о номерах",
+            "testedDimension": "Послушайте, что продавец говорит о подарочных коробках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inaccurate`, а в этом варианте — `expensive`.",
-              "uk": "У записі останнє слово — `inaccurate`, а в цьому варіанті — `expensive`."
+              "ru": "В записи последнее слово — `fancy`, а в этом варианте — `shiny`.",
+              "uk": "У записі останнє слово — `fancy`, а в цьому варіанті — `shiny`."
             }
           },
           {
             "responseId": "en:lesson-02:session-50:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о номерах",
+            "testedDimension": "Послушайте, что продавец говорит о подарочных коробках",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `inaccurate`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `inaccurate`, а в цьому варіанті — `cheap`."
+              "ru": "В записи последнее слово — `fancy`, а в этом варианте — `cheap`.",
+              "uk": "У записі останнє слово — `fancy`, а в цьому варіанті — `cheap`."
             }
           }
         ],
@@ -536,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -550,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-50:i10:p1",
-            "target": "inaccurate",
+            "target": "fancy",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "нарядный, шикарный",
+              "uk": "нарядний, шикарний"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i10:p2",
-            "target": "cheap",
+            "target": "pricey",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "дороговатый",
+              "uk": "дороговатий"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i10:p3",
-            "target": "effective",
+            "target": "sleek",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "гладкий, стильный",
+              "uk": "гладкий, стильний"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i10:p4",
-            "target": "expensive",
+            "target": "shiny",
             "meaningByLocale": {
-              "ru": "дорогой",
-              "uk": "дорогий"
+              "ru": "блестящий",
+              "uk": "блискучий"
             }
           }
         ],
         "leftColumn": [
-          "inaccurate",
-          "cheap",
-          "effective",
-          "expensive"
+          "fancy",
+          "pricey",
+          "sleek",
+          "shiny"
         ],
         "rightColumn": [
-          "неточный",
-          "дешёвый",
-          "эффективный",
-          "дорогой"
+          "нарядный, шикарный",
+          "дороговатый",
+          "гладкий, стильный",
+          "блестящий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -609,42 +782,42 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Продавец показывает чехлы со скидкой. Послушайте, что он говорит, и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Продавец показывает чехлы со скидкой. Послушайте, что он говорит, и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i11:audio",
-          "transcript": "It is not effective."
+          "transcript": "They are not pricey."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is not effective.",
+        "hiddenTargetPhrase": "They are not pricey.",
         "orderedTokens": [
-          "It",
-          "is",
+          "They",
+          "are",
           "not",
-          "effective"
+          "pricey"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-02:session-50:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Продавец показывает чехлы со скидкой. Послушайте, что он говорит, и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is not effective.`",
-              "uk": "тут потрібно `is` — `It is not effective.`"
+              "ru": "здесь нужно `are` — `They are not pricey.`",
+              "uk": "тут потрібно `are` — `They are not pricey.`"
             }
           }
         ],
@@ -657,26 +830,26 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна нашла другую платную рассылку. Спросите, дорогая ли она",
+      "prompt": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна нашла другую платную рассылку. Спросите, дорогая ли она",
+      "accessibilityLabel": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Is it expensive?",
+        "targetPhrase": "Is it fancy?",
         "localizedMeaning": {
-          "ru": "Анна нашла другую платную рассылку. Спросите, дорогая ли она",
-          "uk": "Анна знайшла іншу платну розсилку. Запитайте, чи вона дорога"
+          "ru": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
+          "uk": "Ви обираєте коробку для подарунка. Запитайте подругу, чи досить нарядна вона."
         },
         "orderedTokens": [
           "Is",
           "it",
-          "expensive"
+          "fancy"
         ],
         "authoredDistractorTokens": [
           "Are"
@@ -685,10 +858,10 @@
           {
             "responseId": "en:lesson-02:session-50:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Анна нашла другую платную рассылку. Спросите, дорогая ли она",
+            "testedDimension": "Вы выбираете коробку для подарка. Спросите подругу, достаточно ли она нарядная.",
             "feedbackByLocale": {
-              "ru": "здесь нужно `Is` — `Is it expensive?`",
-              "uk": "тут потрібно `Is` — `Is it expensive?`"
+              "ru": "здесь нужно `Is` — `Is it fancy?`",
+              "uk": "тут потрібно `Is` — `Is it fancy?`"
             }
           }
         ],
@@ -701,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы проверили старые номера и обнаружили ошибки. Коротко сообщите, что они неточные",
+      "prompt": "Вы смотрите на коробки с золотыми лентами. Скажите коротко, что они нарядные.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i13:audio"
       ],
-      "accessibilityLabel": "Вы проверили старые номера и обнаружили ошибки. Коротко сообщите, что они неточные",
+      "accessibilityLabel": "Вы смотрите на коробки с золотыми лентами. Скажите коротко, что они нарядные.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i13:audio",
-          "transcript": "They're inaccurate."
+          "transcript": "They're fancy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They're inaccurate.",
+        "targetPhrase": "They're fancy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -734,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Другой способ проверили несколько раз: он не помогает получать ответы. Скажите, что он неэффективный",
+      "prompt": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-50:i14:r1",
@@ -755,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Другой способ проверили несколько раз: он не помогает получать ответы. Скажите, что он неэффективный",
+      "accessibilityLabel": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Другой способ проверили несколько раз: он не помогает получать ответы. Скажите, что он неэффективный",
-          "uk": "Інший спосіб перевірили кілька разів: він не допомагає отримувати відповіді. Скажіть, що він неефективний"
+          "ru": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
+          "uk": "Подруга показує простий телефон зі знижкою. Скажіть, що він не дороговатий"
         },
-        "gappedTargetPhrase": "It ___ not effective.",
+        "gappedTargetPhrase": "It ___ not pricey.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-50:i14:r1",
@@ -777,12 +950,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Другой способ проверили несколько раз: он не помогает получать ответы. Скажите, что он неэффективный",
+        "testedDimension": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-50:i14:r2",
             "correct": false,
-            "testedDimension": "Другой способ проверили несколько раз: он не помогает получать ответы. Скажите, что он неэффективный",
+            "testedDimension": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
             "feedbackByLocale": {
               "ru": "С `It` нужно `is`.",
               "uk": "З `It` потрібно `is`."
@@ -791,10 +964,10 @@
           {
             "responseId": "en:lesson-02:session-50:i14:r3",
             "correct": false,
-            "testedDimension": "Другой способ проверили несколько раз: он не помогает получать ответы. Скажите, что он неэффективный",
+            "testedDimension": "Подруга показывает простой телефон по скидке. Скажите, что он не дороговат",
             "feedbackByLocale": {
-              "ru": "Фраза — `It is not effective`.",
-              "uk": "Фраза — `It is not effective`."
+              "ru": "Фраза — `It is not pricey`.",
+              "uk": "Фраза — `It is not pricey`."
             }
           }
         ]
@@ -803,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос подруги",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-50:i15:r1",
-          "text": "Is it effective?"
+          "text": "Is it pricey?"
         },
         {
           "responseId": "en:lesson-02:session-50:i15:r2",
-          "text": "Is it expensive?"
+          "text": "Is it sleek?"
         },
         {
           "responseId": "en:lesson-02:session-50:i15:r3",
-          "text": "Is it cheap?"
+          "text": "Is it handy?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i15:audio",
-          "transcript": "Is it effective?"
+          "transcript": "Is it pricey?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-50:i15:r1",
-            "targetText": "Is it effective?",
+            "targetText": "Is it pricey?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-50:i15:r2",
-            "targetText": "Is it expensive?",
+            "targetText": "Is it sleek?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-50:i15:r3",
-            "targetText": "Is it cheap?",
+            "targetText": "Is it handy?",
             "meaningByLocale": null
           }
         ],
@@ -856,19 +1029,19 @@
           {
             "responseId": "en:lesson-02:session-50:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `effective`, а в этом варианте — `expensive`.",
-              "uk": "У записі останнє слово — `effective`, а в цьому варіанті — `expensive`."
+              "ru": "В записи последнее слово — `pricey`, а в этом варианте — `sleek`.",
+              "uk": "У записі останнє слово — `pricey`, а в цьому варіанті — `sleek`."
             }
           },
           {
             "responseId": "en:lesson-02:session-50:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `effective`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `effective`, а в цьому варіанті — `cheap`."
+              "ru": "В записи последнее слово — `pricey`, а в этом варианте — `handy`.",
+              "uk": "У записі останнє слово — `pricey`, а в цьому варіанті — `handy`."
             }
           }
         ],
@@ -879,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-02:session-50:i16:p1",
-            "target": "expensive",
+            "target": "sleek",
             "meaningByLocale": {
-              "ru": "дорогой",
-              "uk": "дорогий"
+              "ru": "гладкий, стильный",
+              "uk": "гладкий, стильний"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i16:p2",
-            "target": "effective",
+            "target": "pricey",
             "meaningByLocale": {
-              "ru": "эффективный",
-              "uk": "ефективний"
+              "ru": "дороговатый",
+              "uk": "дороговатий"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i16:p3",
-            "target": "cheap",
+            "target": "handy",
             "meaningByLocale": {
-              "ru": "дешёвый",
-              "uk": "дешевий"
+              "ru": "удобный, кстати",
+              "uk": "зручний, до речі"
             }
           },
           {
             "pairId": "en:lesson-02:session-50:i16:p4",
-            "target": "inaccurate",
+            "target": "fancy",
             "meaningByLocale": {
-              "ru": "неточный",
-              "uk": "неточний"
+              "ru": "нарядный, шикарный",
+              "uk": "нарядний, шикарний"
             }
           }
         ],
         "leftColumn": [
-          "expensive",
-          "effective",
-          "cheap",
-          "inaccurate"
+          "sleek",
+          "pricey",
+          "handy",
+          "fancy"
         ],
         "rightColumn": [
-          "дорогой",
-          "эффективный",
-          "дешёвый",
-          "неточный"
+          "гладкий, стильный",
+          "дороговатый",
+          "удобный, кстати",
+          "нарядный, шикарный"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -952,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна предлагает ещё один способ напомнить о встрече. Спросите, эффективен ли он",
+      "prompt": "Подруга берёт с полки новую колонку. Спросите её, не дороговата ли она.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i17:audio"
       ],
-      "accessibilityLabel": "Анна предлагает ещё один способ напомнить о встрече. Спросите, эффективен ли он",
+      "accessibilityLabel": "Подруга берёт с полки новую колонку. Спросите её, не дороговата ли она.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-50:i17:audio",
-          "transcript": "Is it effective?"
+          "transcript": "Is it pricey?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it effective?",
+        "targetPhrase": "Is it pricey?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -992,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a4fffb21ca06812c02f089538192bc7155b8d1c8e8f6da0c48ee5d6a1fa0e2c9"
+  "learnerFingerprint": "fb8817fffe4e8a99c2c55f267975cf652ebbffc6cc075926a259a8640d005f90"
 }

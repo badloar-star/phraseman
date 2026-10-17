@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-08:word:shelf",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shelf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:shelf:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shelf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:shelf:audio",
+            "transcript": "shelf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:shelf:r1",
+              "targetText": "shelf",
+              "meaningByLocale": {
+                "ru": "полка. It is a shelf — «Это полка». На неё ставят книги, чашки и лампы.",
+                "uk": "полиця. It is a shelf — «Це полиця». На неї ставлять книжки, чашки й лампи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shelf",
+            "definitionByLocale": {
+              "ru": "полка. It is a shelf — «Это полка». На неё ставят книги, чашки и лампы.",
+              "uk": "полиця. It is a shelf — «Це полиця». На неї ставлять книжки, чашки й лампи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a shelf.",
+          "localizedMeaning": {
+            "ru": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
+            "uk": "Подруга прикладає дошку до стіни над столом. Скажіть їй повною фразою, що це полиця."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a shelf.`",
+                "uk": "тут потрібно `is` — `It is a shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:word:hammer",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hammer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:hammer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hammer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:hammer:audio",
+            "transcript": "hammer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:hammer:r1",
+              "targetText": "hammer",
+              "meaningByLocale": {
+                "ru": "молоток. It's a hammer — «Это молоток». Им вбивают гвозди.",
+                "uk": "молоток. It's a hammer — «Це молоток». Ним забивають цвяхи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hammer",
+            "definitionByLocale": {
+              "ru": "молоток. It's a hammer — «Это молоток». Им вбивают гвозди.",
+              "uk": "молоток. It's a hammer — «Це молоток». Ним забивають цвяхи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о вещах в коридоре",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i02:r1",
+            "text": "It is a bucket."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i02:r2",
+            "text": "It is a ladder."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i02:r3",
+            "text": "It is a hammer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о вещах в коридоре",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i02:audio",
+            "transcript": "It is a bucket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:i02:r1",
+              "targetText": "It is a bucket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i02:r2",
+              "targetText": "It is a ladder.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i02:r3",
+              "targetText": "It is a hammer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:word:bucket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bucket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:bucket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bucket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:bucket:audio",
+            "transcript": "bucket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:bucket:r1",
+              "targetText": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро. It is a bucket — «Это ведро». В него наливают воду или краску.",
+                "uk": "відро. It is a bucket — «Це відро». У нього наливають воду або фарбу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bucket",
+            "definitionByLocale": {
+              "ru": "ведро. It is a bucket — «Это ведро». В него наливают воду или краску.",
+              "uk": "відро. It is a bucket — «Це відро». У нього наливають воду або фарбу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+            "uk": "Подруга показує на відро з фарбою. Доповніть: «Це відро»"
+          },
+          "gappedTargetPhrase": "It is ___ bucket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-08:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `bucket` нужно `a`.,Слово `is` у цій фразі вже є. Перед `bucket` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `bucket` нужно `a`.,Слово `It` у цій фразі вже є. Перед `bucket` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-08:i04:p1",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i04:p2",
+              "target": "hammer",
+              "meaningByLocale": {
+                "ru": "молоток",
+                "uk": "молоток"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i04:p3",
+              "target": "ladder",
+              "meaningByLocale": {
+                "ru": "лестница-стремянка",
+                "uk": "драбина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i04:p4",
+              "target": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро",
+                "uk": "відро"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shelf",
+            "hammer",
+            "ladder",
+            "bucket"
+          ],
+          "rightColumn": [
+            "полка",
+            "молоток",
+            "лестница-стремянка",
+            "ведро"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:word:ladder",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ladder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:ladder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ladder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:ladder:audio",
+            "transcript": "ladder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:ladder:r1",
+              "targetText": "ladder",
+              "meaningByLocale": {
+                "ru": "стремянка, лестница. Is it a ladder? — «Это стремянка?» По ней залезают наверх.",
+                "uk": "драбина. Is it a ladder? — «Це драбина?» По ній лізуть угору."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ladder",
+            "definitionByLocale": {
+              "ru": "стремянка, лестница. Is it a ladder? — «Это стремянка?» По ней залезают наверх.",
+              "uk": "драбина. Is it a ladder? — «Це драбина?» По ній лізуть угору."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что говорит подруга, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит подруга, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i05:audio",
+            "transcript": "It is a ladder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a ladder.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "ladder"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит подруга, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a ladder.`",
+                "uk": "тут потрібно `is` — `It is a ladder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a picture?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
+            "uk": "Подруга показує на малюнок на стіні. Запитайте її, чи це картина."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a picture?`",
+                "uk": "тут потрібно `Is` — `Is it a picture?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга поставила доску на два ящика. Скажите коротко, что это полка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга поставила доску на два ящика. Скажите коротко, что это полка.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i07:audio",
+            "transcript": "It's a shelf."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a shelf.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-08:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i09:r1",
+            "text": "Is it a bucket?"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i09:r2",
+            "text": "Is it a ladder?"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i09:r3",
+            "text": "Is it a hammer?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i09:audio",
+            "transcript": "Is it a bucket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:i09:r1",
+              "targetText": "Is it a bucket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i09:r2",
+              "targetText": "Is it a ladder?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i09:r3",
+              "targetText": "Is it a hammer?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-08:i10:p1",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i10:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i10:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i10:p4",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shelf",
+            "lamp",
+            "mirror",
+            "door"
+          ],
+          "rightColumn": [
+            "полка",
+            "лампа",
+            "зеркало",
+            "дверь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что подруга говорит о стремянке, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о стремянке, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i11:audio",
+            "transcript": "It is not a ladder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a ladder.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "ladder"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о стремянке, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a ladder.`",
+                "uk": "тут потрібно `is` — `It is not a ladder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a basket.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
+            "uk": "Подруга сплутала відро з кошиком. Скажіть їй повною фразою, що це не кошик."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a basket.`",
+                "uk": "тут потрібно `is` — `It is not a basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы держите молоток в руке. Скажите коротко, что это молоток.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "Вы держите молоток в руке. Скажите коротко, что это молоток.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i13:audio",
+            "transcript": "It's a hammer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a hammer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+            "uk": "Подруга показує на складану драбину. Запитайте її, чи це драбина"
+          },
+          "gappedTargetPhrase": "___ it a ladder?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-08:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a ladder?`.",
+                "uk": "Питання — `Is it a ladder?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что подруга говорит о полке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i15:r1",
+            "text": "It is a shelf."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i15:r2",
+            "text": "It is a hammer."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i15:r3",
+            "text": "It is a bucket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что подруга говорит о полке",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i15:audio",
+            "transcript": "It is a shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:i15:r1",
+              "targetText": "It is a shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i15:r2",
+              "targetText": "It is a hammer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i15:r3",
+              "targetText": "It is a bucket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о полке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shelf`, а в этом варианте — `hammer`.",
+                "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `hammer`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что подруга говорит о полке",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shelf`, а в этом варианте — `bucket`.",
+                "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `bucket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-08:i16:p1",
+              "target": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро",
+                "uk": "відро"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i16:p2",
+              "target": "ladder",
+              "meaningByLocale": {
+                "ru": "лестница-стремянка",
+                "uk": "драбина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i16:p3",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i16:p4",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bucket",
+            "ladder",
+            "picture",
+            "door"
+          ],
+          "rightColumn": [
+            "ведро",
+            "лестница-стремянка",
+            "картина",
+            "дверь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на ведро с краской. Спросите её, ведро ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на ведро с краской. Спросите её, ведро ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i17:audio",
+            "transcript": "Is it a bucket?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a bucket?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-08:word:shelf",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shelf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:shelf:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shelf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:shelf:audio",
+            "transcript": "shelf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:shelf:r1",
+              "targetText": "shelf",
+              "meaningByLocale": {
+                "ru": "полка. It is a shelf — «Это полка». На неё ставят книги, чашки и лампы.",
+                "uk": "полиця. It is a shelf — «Це полиця». На неї ставлять книжки, чашки й лампи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shelf",
+            "definitionByLocale": {
+              "ru": "полка. It is a shelf — «Это полка». На неё ставят книги, чашки и лампы.",
+              "uk": "полиця. It is a shelf — «Це полиця». На неї ставлять книжки, чашки й лампи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга прикладає дошку до стіни над столом. Скажіть їй повною фразою, що це полиця.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга прикладає дошку до стіни над столом. Скажіть їй повною фразою, що це полиця.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a shelf.",
+          "localizedMeaning": {
+            "ru": "Подруга прикладывает доску к стене над столом. Скажите ей полной фразой, что это полка.",
+            "uk": "Подруга прикладає дошку до стіни над столом. Скажіть їй повною фразою, що це полиця."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга прикладає дошку до стіни над столом. Скажіть їй повною фразою, що це полиця.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a shelf.`",
+                "uk": "тут потрібно `is` — `It is a shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:word:hammer",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hammer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:hammer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hammer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:hammer:audio",
+            "transcript": "hammer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:hammer:r1",
+              "targetText": "hammer",
+              "meaningByLocale": {
+                "ru": "молоток. It's a hammer — «Это молоток». Им вбивают гвозди.",
+                "uk": "молоток. It's a hammer — «Це молоток». Ним забивають цвяхи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hammer",
+            "definitionByLocale": {
+              "ru": "молоток. It's a hammer — «Это молоток». Им вбивают гвозди.",
+              "uk": "молоток. It's a hammer — «Це молоток». Ним забивають цвяхи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про речі в коридорі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i02:r1",
+            "text": "It is a bucket."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i02:r2",
+            "text": "It is a ladder."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i02:r3",
+            "text": "It is a hammer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про речі в коридорі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i02:audio",
+            "transcript": "It is a bucket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:i02:r1",
+              "targetText": "It is a bucket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i02:r2",
+              "targetText": "It is a ladder.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i02:r3",
+              "targetText": "It is a hammer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про речі в коридорі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про речі в коридорі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:word:bucket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bucket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:bucket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bucket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:bucket:audio",
+            "transcript": "bucket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:bucket:r1",
+              "targetText": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро. It is a bucket — «Это ведро». В него наливают воду или краску.",
+                "uk": "відро. It is a bucket — «Це відро». У нього наливають воду або фарбу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bucket",
+            "definitionByLocale": {
+              "ru": "ведро. It is a bucket — «Это ведро». В него наливают воду или краску.",
+              "uk": "відро. It is a bucket — «Це відро». У нього наливають воду або фарбу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на відро з фарбою. Доповніть: «Це відро»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i03:r3",
+            "text": "it"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на відро з фарбою. Доповніть: «Це відро»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на ведро с краской. Дополните: «Это ведро»",
+            "uk": "Подруга показує на відро з фарбою. Доповніть: «Це відро»"
+          },
+          "gappedTargetPhrase": "It is ___ bucket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-08:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i03:r3",
+              "text": "it"
+            }
+          ],
+          "testedDimension": "Подруга показує на відро з фарбою. Доповніть: «Це відро»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на відро з фарбою. Доповніть: «Це відро»",
+              "feedbackByLocale": {
+                "ru": "is",
+                "uk": "Слово `is` в этой фразе уже есть. Перед `bucket` нужно `a`.,Слово `is` у цій фразі вже є. Перед `bucket` потрібне `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на відро з фарбою. Доповніть: «Це відро»",
+              "feedbackByLocale": {
+                "ru": "it",
+                "uk": "Слово `It` в этой фразе уже есть. Перед `bucket` нужно `a`.,Слово `It` у цій фразі вже є. Перед `bucket` потрібне `a`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-08:i04:p1",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i04:p2",
+              "target": "hammer",
+              "meaningByLocale": {
+                "ru": "молоток",
+                "uk": "молоток"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i04:p3",
+              "target": "ladder",
+              "meaningByLocale": {
+                "ru": "лестница-стремянка",
+                "uk": "драбина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i04:p4",
+              "target": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро",
+                "uk": "відро"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shelf",
+            "hammer",
+            "ladder",
+            "bucket"
+          ],
+          "rightColumn": [
+            "полиця",
+            "молоток",
+            "драбина",
+            "відро"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:word:ladder",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ladder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:word:ladder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ladder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:word:ladder:audio",
+            "transcript": "ladder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:word:ladder:r1",
+              "targetText": "ladder",
+              "meaningByLocale": {
+                "ru": "стремянка, лестница. Is it a ladder? — «Это стремянка?» По ней залезают наверх.",
+                "uk": "драбина. Is it a ladder? — «Це драбина?» По ній лізуть угору."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ladder",
+            "definitionByLocale": {
+              "ru": "стремянка, лестница. Is it a ladder? — «Это стремянка?» По ней залезают наверх.",
+              "uk": "драбина. Is it a ladder? — «Це драбина?» По ній лізуть угору."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що каже подруга, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже подруга, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i05:audio",
+            "transcript": "It is a ladder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a ladder.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "ladder"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже подруга, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is a ladder.`",
+                "uk": "тут потрібно `is` — `It is a ladder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на малюнок на стіні. Запитайте її, чи це картина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на малюнок на стіні. Запитайте її, чи це картина.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a picture?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на рисунок на стене. Спросите её, картина ли это.",
+            "uk": "Подруга показує на малюнок на стіні. Запитайте її, чи це картина."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на малюнок на стіні. Запитайте її, чи це картина.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it a picture?`",
+                "uk": "тут потрібно `Is` — `Is it a picture?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга поставила дошку на дві шухляди. Скажіть коротко, що це полиця.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга поставила дошку на дві шухляди. Скажіть коротко, що це полиця.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i07:audio",
+            "transcript": "It's a shelf."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a shelf.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спросила: «Is it a hammer?» Вы смотрите на инструмент в её руке. Дополните короткое «да»",
+            "uk": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-08:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спитала: «Is it a hammer?» Ви дивитеся на інструмент у її руці. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання подруги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i09:r1",
+            "text": "Is it a bucket?"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i09:r2",
+            "text": "Is it a ladder?"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i09:r3",
+            "text": "Is it a hammer?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання подруги",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i09:audio",
+            "transcript": "Is it a bucket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:i09:r1",
+              "targetText": "Is it a bucket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i09:r2",
+              "targetText": "Is it a ladder?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i09:r3",
+              "targetText": "Is it a hammer?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання подруги",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
+                "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-08:i10:p1",
+              "target": "shelf",
+              "meaningByLocale": {
+                "ru": "полка",
+                "uk": "полиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i10:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i10:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i10:p4",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shelf",
+            "lamp",
+            "mirror",
+            "door"
+          ],
+          "rightColumn": [
+            "полиця",
+            "лампа",
+            "дзеркало",
+            "двері"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що подруга каже про драбину, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про драбину, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i11:audio",
+            "transcript": "It is not a ladder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a ladder.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "ladder"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про драбину, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a ladder.`",
+                "uk": "тут потрібно `is` — `It is not a ladder.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сплутала відро з кошиком. Скажіть їй повною фразою, що це не кошик.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сплутала відро з кошиком. Скажіть їй повною фразою, що це не кошик.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not a basket.",
+          "localizedMeaning": {
+            "ru": "Подруга приняла ведро за корзину. Скажите ей полной фразой, что это не корзина.",
+            "uk": "Подруга сплутала відро з кошиком. Скажіть їй повною фразою, що це не кошик."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "basket"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга сплутала відро з кошиком. Скажіть їй повною фразою, що це не кошик.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not a basket.`",
+                "uk": "тут потрібно `is` — `It is not a basket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви тримаєте молоток у руці. Скажіть коротко, що це молоток.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "Ви тримаєте молоток у руці. Скажіть коротко, що це молоток.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i13:audio",
+            "transcript": "It's a hammer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a hammer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга показує на складану драбину. Запитайте її, чи це драбина",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i14:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i14:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на складану драбину. Запитайте її, чи це драбина",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга показывает на складную лестницу. Спросите её, стремянка ли это",
+            "uk": "Подруга показує на складану драбину. Запитайте її, чи це драбина"
+          },
+          "gappedTargetPhrase": "___ it a ladder?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-08:i14:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i14:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i14:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Подруга показує на складану драбину. Запитайте її, чи це драбина",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга показує на складану драбину. Запитайте її, чи це драбина",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга показує на складану драбину. Запитайте її, чи це драбина",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it a ladder?`.",
+                "uk": "Питання — `Is it a ladder?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що подруга каже про полицю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-08:i15:r1",
+            "text": "It is a shelf."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i15:r2",
+            "text": "It is a hammer."
+          },
+          {
+            "responseId": "en:lesson-03:session-08:i15:r3",
+            "text": "It is a bucket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що подруга каже про полицю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i15:audio",
+            "transcript": "It is a shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-08:i15:r1",
+              "targetText": "It is a shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i15:r2",
+              "targetText": "It is a hammer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i15:r3",
+              "targetText": "It is a bucket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-08:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про полицю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shelf`, а в этом варианте — `hammer`.",
+                "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `hammer`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-08:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що подруга каже про полицю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `shelf`, а в этом варианте — `bucket`.",
+                "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `bucket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-08:i16:p1",
+              "target": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро",
+                "uk": "відро"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i16:p2",
+              "target": "ladder",
+              "meaningByLocale": {
+                "ru": "лестница-стремянка",
+                "uk": "драбина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i16:p3",
+              "target": "picture",
+              "meaningByLocale": {
+                "ru": "картина",
+                "uk": "картина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-08:i16:p4",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bucket",
+            "ladder",
+            "picture",
+            "door"
+          ],
+          "rightColumn": [
+            "відро",
+            "драбина",
+            "картина",
+            "двері"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на відро з фарбою. Запитайте її, чи це відро.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на відро з фарбою. Запитайте її, чи це відро.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-08:i17:audio",
+            "transcript": "Is it a bucket?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a bucket?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-08:word:shelf",
+      "correctText": "shelf",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i01",
+      "correctText": "It is a shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:word:hammer",
+      "correctText": "hammer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i02",
+      "correctText": "It is a bucket.",
+      "correctResponseId": "en:lesson-03:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:word:bucket",
+      "correctText": "bucket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:word:ladder",
+      "correctText": "ladder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i05",
+      "correctText": "It is a ladder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i06",
+      "correctText": "Is it a picture?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i07",
+      "correctText": "It's a shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i09",
+      "correctText": "Is it a bucket?",
+      "correctResponseId": "en:lesson-03:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i11",
+      "correctText": "It is not a ladder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i12",
+      "correctText": "It is not a basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i13",
+      "correctText": "It's a hammer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i14",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-03:session-08:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i15",
+      "correctText": "It is a shelf.",
+      "correctResponseId": "en:lesson-03:session-08:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:i17",
+      "correctText": "Is it a bucket?",
+      "correctResponseId": null
+    }
+  ]
+}

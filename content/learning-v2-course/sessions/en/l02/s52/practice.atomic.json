@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-52:word:legible",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — legible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:legible:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — legible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:legible:audio",
+            "transcript": "legible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:legible:r1",
+              "targetText": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый, понятный для чтения. It is legible — «Это можно прочесть». О почерке, надписи, записке, шрифте.",
+                "uk": "розбірливий, зрозумілий для читання. It is legible — «Це можна прочитати». Про почерк, напис, записку, шрифт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "legible",
+            "definitionByLocale": {
+              "ru": "разборчивый, понятный для чтения. It is legible — «Это можно прочесть». О почерке, надписи, записке, шрифте.",
+              "uk": "розбірливий, зрозумілий для читання. It is legible — «Це можна прочитати». Про почерк, напис, записку, шрифт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учительница просит оценить почерк брата. Скажите ей полной фразой, что он разборчивый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница просит оценить почерк брата. Скажите ей полной фразой, что он разборчивый.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is legible.",
+          "localizedMeaning": {
+            "ru": "Учительница просит оценить почерк брата. Скажите ей полной фразой, что он разборчивый.",
+            "uk": "Вчителька просить оцінити почерк брата. Скажіть їй повною фразою, що він розбірливий."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "legible"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Учительница просит оценить почерк брата. Скажите ей полной фразой, что он разборчивый.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is legible.`",
+                "uk": "тут потрібно `is` — `It is legible.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что брат говорит о странице",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i02:r1",
+            "text": "It is neat."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i02:r2",
+            "text": "It is messy."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i02:r3",
+            "text": "It is torn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что брат говорит о странице",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i02:audio",
+            "transcript": "It is neat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:i02:r1",
+              "targetText": "It is neat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i02:r2",
+              "targetText": "It is messy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i02:r3",
+              "targetText": "It is torn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о странице",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `neat`, а в этом варианте — `messy`.",
+                "uk": "У записі останнє слово — `neat`, а в цьому варіанті — `messy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о странице",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `neat`, а в этом варианте — `torn`.",
+                "uk": "У записі останнє слово — `neat`, а в цьому варіанті — `torn`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:word:smudged",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — smudged",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:smudged:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — smudged",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:smudged:audio",
+            "transcript": "smudged"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:smudged:r1",
+              "targetText": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный, расплывшийся. Is it smudged? — «Тут размазано?» О чернилах, записи, краске, помаде.",
+                "uk": "розмазаний, розпливчастий. Is it smudged? — «Тут розмазано?» Про чорнило, запис, фарбу, помаду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smudged",
+            "definitionByLocale": {
+              "ru": "размазанный, расплывшийся. Is it smudged? — «Тут размазано?» О чернилах, записи, краске, помаде.",
+              "uk": "розмазаний, розпливчастий. Is it smudged? — «Тут розмазано?» Про чорнило, запис, фарбу, помаду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы заметили на странице пятно. Спросите брата, размазана ли запись",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заметили на странице пятно. Спросите брата, размазана ли запись",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заметили на странице пятно. Спросите брата, размазана ли запись",
+            "uk": "Ви помітили на сторінці пляму. Запитайте брата, чи розмазаний запис"
+          },
+          "gappedTargetPhrase": "___ it smudged?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-52:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Вы заметили на странице пятно. Спросите брата, размазана ли запись",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы заметили на странице пятно. Спросите брата, размазана ли запись",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы заметили на странице пятно. Спросите брата, размазана ли запись",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it smudged?`.",
+                "uk": "Питання — `Is it smudged?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-52:i04:p1",
+              "target": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый",
+                "uk": "розбірливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i04:p2",
+              "target": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный",
+                "uk": "розмазаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i04:p3",
+              "target": "sloppy",
+              "meaningByLocale": {
+                "ru": "небрежный",
+                "uk": "недбалий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i04:p4",
+              "target": "neat",
+              "meaningByLocale": {
+                "ru": "аккуратный",
+                "uk": "охайний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "legible",
+            "smudged",
+            "sloppy",
+            "neat"
+          ],
+          "rightColumn": [
+            "разборчивый",
+            "размазанный",
+            "небрежный",
+            "аккуратный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что учительница говорит о записи, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что учительница говорит о записи, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i05:audio",
+            "transcript": "It is not legible."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not legible.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "legible"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что учительница говорит о записи, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not legible.`",
+                "uk": "тут потрібно `is` — `It is not legible.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:word:sloppy",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sloppy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:sloppy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sloppy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:sloppy:audio",
+            "transcript": "sloppy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:sloppy:r1",
+              "targetText": "sloppy",
+              "meaningByLocale": {
+                "ru": "небрежный, неаккуратный. It's sloppy — «Тут небрежно». О работе, записи, почерке, уборке.",
+                "uk": "недбалий, неохайний. It's sloppy — «Тут недбало». Про роботу, запис, почерк, прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sloppy",
+            "definitionByLocale": {
+              "ru": "небрежный, неаккуратный. It's sloppy — «Тут небрежно». О работе, записи, почерке, уборке.",
+              "uk": "недбалий, неохайний. It's sloppy — «Тут недбало». Про роботу, запис, почерк, прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учительница говорит, что в тетради есть небрежное место. Спросите её, что именно небрежное.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница говорит, что в тетради есть небрежное место. Спросите её, что именно небрежное.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is sloppy?",
+          "localizedMeaning": {
+            "ru": "Учительница говорит, что в тетради есть небрежное место. Спросите её, что именно небрежное.",
+            "uk": "Вчителька каже, що в зошиті є недбале місце. Запитайте її, що саме недбале."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "sloppy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Учительница говорит, что в тетради есть небрежное место. Спросите её, что именно небрежное.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is sloppy?`",
+                "uk": "тут потрібно `What` — `What is sloppy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница листает тетрадь и просит оценить страницу. Скажите коротко, что она небрежная.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Учительница листает тетрадь и просит оценить страницу. Скажите коротко, что она небрежная.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i07:audio",
+            "transcript": "It's sloppy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's sloppy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учительница спросила: «Is it smudged?» Вы видите на странице синее пятно. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница спросила: «Is it smudged?» Вы видите на странице синее пятно. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница спросила: «Is it smudged?» Вы видите на странице синее пятно. Дополните короткое «да»",
+            "uk": "Вчителька спитала: «Is it smudged?» Ви бачите на сторінці синю пляму. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-52:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учительница спросила: «Is it smudged?» Вы видите на странице синее пятно. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Учительница спросила: «Is it smudged?» Вы видите на странице синее пятно. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Учительница спросила: «Is it smudged?» Вы видите на странице синее пятно. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:word:thorough",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thorough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:thorough:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thorough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:thorough:audio",
+            "transcript": "thorough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:thorough:r1",
+              "targetText": "thorough",
+              "meaningByLocale": {
+                "ru": "тщательный, подробный: ничего не пропущено. It is thorough — «Тут всё сделано тщательно». О работе, проверке, ответе, уборке.",
+                "uk": "ретельний, докладний: нічого не пропущено. It is thorough — «Тут усе зроблено ретельно». Про роботу, перевірку, відповідь, прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thorough",
+            "definitionByLocale": {
+              "ru": "тщательный, подробный: ничего не пропущено. It is thorough — «Тут всё сделано тщательно». О работе, проверке, ответе, уборке.",
+              "uk": "ретельний, докладний: нічого не пропущено. It is thorough — «Тут усе зроблено ретельно». Про роботу, перевірку, відповідь, прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что учительница говорит о домашней работе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i09:r1",
+            "text": "It is thorough."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i09:r2",
+            "text": "It is sloppy."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i09:r3",
+            "text": "It is legible."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что учительница говорит о домашней работе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i09:audio",
+            "transcript": "It is thorough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:i09:r1",
+              "targetText": "It is thorough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i09:r2",
+              "targetText": "It is sloppy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i09:r3",
+              "targetText": "It is legible.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что учительница говорит о домашней работе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `thorough`, а в этом варианте — `sloppy`.",
+                "uk": "У записі останнє слово — `thorough`, а в цьому варіанті — `sloppy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что учительница говорит о домашней работе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `thorough`, а в этом варианте — `legible`.",
+                "uk": "У записі останнє слово — `thorough`, а в цьому варіанті — `legible`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-52:i10:p1",
+              "target": "thorough",
+              "meaningByLocale": {
+                "ru": "тщательный, подробный",
+                "uk": "ретельний, докладний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i10:p2",
+              "target": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный",
+                "uk": "розмазаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i10:p3",
+              "target": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый",
+                "uk": "розбірливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i10:p4",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "неряшливый, в беспорядке",
+                "uk": "неохайний, у безладі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thorough",
+            "smudged",
+            "legible",
+            "messy"
+          ],
+          "rightColumn": [
+            "тщательный, подробный",
+            "размазанный",
+            "разборчивый",
+            "неряшливый, в беспорядке"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что брат говорит о своём решении, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что брат говорит о своём решении, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i11:audio",
+            "transcript": "It is not sloppy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not sloppy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "sloppy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что брат говорит о своём решении, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not sloppy.`",
+                "uk": "тут потрібно `is` — `It is not sloppy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы смотрите на задание брата. Спросите учительницу, подробное ли оно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы смотрите на задание брата. Спросите учительницу, подробное ли оно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it thorough?",
+          "localizedMeaning": {
+            "ru": "Вы смотрите на задание брата. Спросите учительницу, подробное ли оно.",
+            "uk": "Ви дивитеся на завдання брата. Запитайте вчительку, чи докладне воно."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "thorough"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы смотрите на задание брата. Спросите учительницу, подробное ли оно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it thorough?`",
+                "uk": "тут потрібно `Is` — `Is it thorough?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат переписал страницу, и теперь всё читается. Скажите коротко, что запись разборчивая.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Брат переписал страницу, и теперь всё читается. Скажите коротко, что запись разборчивая.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i13:audio",
+            "transcript": "It's legible."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's legible.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учительница читает ответ брата: в нём всё расписано по шагам. Скажите, что ответ подробный",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница читает ответ брата: в нём всё расписано по шагам. Скажите, что ответ подробный",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница читает ответ брата: в нём всё расписано по шагам. Скажите, что ответ подробный",
+            "uk": "Вчителька читає відповідь брата: у ній усе розписано по кроках. Скажіть, що відповідь докладна"
+          },
+          "gappedTargetPhrase": "It ___ thorough.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-52:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учительница читает ответ брата: в нём всё расписано по шагам. Скажите, что ответ подробный",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i14:r2",
+              "correct": false,
+              "testedDimension": "Учительница читает ответ брата: в нём всё расписано по шагам. Скажите, что ответ подробный",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i14:r3",
+              "correct": false,
+              "testedDimension": "Учительница читает ответ брата: в нём всё расписано по шагам. Скажите, что ответ подробный",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is thorough`.",
+                "uk": "Фраза — `It is thorough`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос учительницы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i15:r1",
+            "text": "Is it legible?"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i15:r2",
+            "text": "Is it smudged?"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i15:r3",
+            "text": "Is it sloppy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос учительницы",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i15:audio",
+            "transcript": "Is it legible?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:i15:r1",
+              "targetText": "Is it legible?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i15:r2",
+              "targetText": "Is it smudged?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i15:r3",
+              "targetText": "Is it sloppy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос учительницы",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `legible`, а в этом варианте — `smudged`.",
+                "uk": "У записі останнє слово — `legible`, а в цьому варіанті — `smudged`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос учительницы",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `legible`, а в этом варианте — `sloppy`.",
+                "uk": "У записі останнє слово — `legible`, а в цьому варіанті — `sloppy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-52:i16:p1",
+              "target": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый",
+                "uk": "розбірливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i16:p2",
+              "target": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный",
+                "uk": "розмазаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i16:p3",
+              "target": "sloppy",
+              "meaningByLocale": {
+                "ru": "небрежный",
+                "uk": "недбалий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i16:p4",
+              "target": "thorough",
+              "meaningByLocale": {
+                "ru": "тщательный, подробный",
+                "uk": "ретельний, докладний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "legible",
+            "smudged",
+            "sloppy",
+            "thorough"
+          ],
+          "rightColumn": [
+            "разборчивый",
+            "размазанный",
+            "небрежный",
+            "тщательный, подробный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат принёс новую страницу. Спросите учительницу, разборчива ли она.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Брат принёс новую страницу. Спросите учительницу, разборчива ли она.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i17:audio",
+            "transcript": "Is it legible?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it legible?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-52:word:legible",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — legible",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:legible:audio"
+        ],
+        "accessibilityLabel": "Картка слова — legible",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:legible:audio",
+            "transcript": "legible"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:legible:r1",
+              "targetText": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый, понятный для чтения. It is legible — «Это можно прочесть». О почерке, надписи, записке, шрифте.",
+                "uk": "розбірливий, зрозумілий для читання. It is legible — «Це можна прочитати». Про почерк, напис, записку, шрифт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "legible",
+            "definitionByLocale": {
+              "ru": "разборчивый, понятный для чтения. It is legible — «Это можно прочесть». О почерке, надписи, записке, шрифте.",
+              "uk": "розбірливий, зрозумілий для читання. It is legible — «Це можна прочитати». Про почерк, напис, записку, шрифт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вчителька просить оцінити почерк брата. Скажіть їй повною фразою, що він розбірливий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька просить оцінити почерк брата. Скажіть їй повною фразою, що він розбірливий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is legible.",
+          "localizedMeaning": {
+            "ru": "Учительница просит оценить почерк брата. Скажите ей полной фразой, что он разборчивый.",
+            "uk": "Вчителька просить оцінити почерк брата. Скажіть їй повною фразою, що він розбірливий."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "legible"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вчителька просить оцінити почерк брата. Скажіть їй повною фразою, що він розбірливий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is legible.`",
+                "uk": "тут потрібно `is` — `It is legible.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що брат каже про сторінку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i02:r1",
+            "text": "It is neat."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i02:r2",
+            "text": "It is messy."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i02:r3",
+            "text": "It is torn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що брат каже про сторінку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i02:audio",
+            "transcript": "It is neat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:i02:r1",
+              "targetText": "It is neat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i02:r2",
+              "targetText": "It is messy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i02:r3",
+              "targetText": "It is torn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про сторінку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `neat`, а в этом варианте — `messy`.",
+                "uk": "У записі останнє слово — `neat`, а в цьому варіанті — `messy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про сторінку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `neat`, а в этом варианте — `torn`.",
+                "uk": "У записі останнє слово — `neat`, а в цьому варіанті — `torn`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:word:smudged",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — smudged",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:smudged:audio"
+        ],
+        "accessibilityLabel": "Картка слова — smudged",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:smudged:audio",
+            "transcript": "smudged"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:smudged:r1",
+              "targetText": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный, расплывшийся. Is it smudged? — «Тут размазано?» О чернилах, записи, краске, помаде.",
+                "uk": "розмазаний, розпливчастий. Is it smudged? — «Тут розмазано?» Про чорнило, запис, фарбу, помаду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "smudged",
+            "definitionByLocale": {
+              "ru": "размазанный, расплывшийся. Is it smudged? — «Тут размазано?» О чернилах, записи, краске, помаде.",
+              "uk": "розмазаний, розпливчастий. Is it smudged? — «Тут розмазано?» Про чорнило, запис, фарбу, помаду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви помітили на сторінці пляму. Запитайте брата, чи розмазаний запис",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви помітили на сторінці пляму. Запитайте брата, чи розмазаний запис",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заметили на странице пятно. Спросите брата, размазана ли запись",
+            "uk": "Ви помітили на сторінці пляму. Запитайте брата, чи розмазаний запис"
+          },
+          "gappedTargetPhrase": "___ it smudged?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-52:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Ви помітили на сторінці пляму. Запитайте брата, чи розмазаний запис",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви помітили на сторінці пляму. Запитайте брата, чи розмазаний запис",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `Is`.",
+                "uk": "З `it` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви помітили на сторінці пляму. Запитайте брата, чи розмазаний запис",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is it smudged?`.",
+                "uk": "Питання — `Is it smudged?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-52:i04:p1",
+              "target": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый",
+                "uk": "розбірливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i04:p2",
+              "target": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный",
+                "uk": "розмазаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i04:p3",
+              "target": "sloppy",
+              "meaningByLocale": {
+                "ru": "небрежный",
+                "uk": "недбалий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i04:p4",
+              "target": "neat",
+              "meaningByLocale": {
+                "ru": "аккуратный",
+                "uk": "охайний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "legible",
+            "smudged",
+            "sloppy",
+            "neat"
+          ],
+          "rightColumn": [
+            "розбірливий",
+            "розмазаний",
+            "недбалий",
+            "охайний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що вчителька каже про запис, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що вчителька каже про запис, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i05:audio",
+            "transcript": "It is not legible."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not legible.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "legible"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що вчителька каже про запис, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not legible.`",
+                "uk": "тут потрібно `is` — `It is not legible.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:word:sloppy",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sloppy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:sloppy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sloppy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:sloppy:audio",
+            "transcript": "sloppy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:sloppy:r1",
+              "targetText": "sloppy",
+              "meaningByLocale": {
+                "ru": "небрежный, неаккуратный. It's sloppy — «Тут небрежно». О работе, записи, почерке, уборке.",
+                "uk": "недбалий, неохайний. It's sloppy — «Тут недбало». Про роботу, запис, почерк, прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sloppy",
+            "definitionByLocale": {
+              "ru": "небрежный, неаккуратный. It's sloppy — «Тут небрежно». О работе, записи, почерке, уборке.",
+              "uk": "недбалий, неохайний. It's sloppy — «Тут недбало». Про роботу, запис, почерк, прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вчителька каже, що в зошиті є недбале місце. Запитайте її, що саме недбале.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька каже, що в зошиті є недбале місце. Запитайте її, що саме недбале.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What is sloppy?",
+          "localizedMeaning": {
+            "ru": "Учительница говорит, что в тетради есть небрежное место. Спросите её, что именно небрежное.",
+            "uk": "Вчителька каже, що в зошиті є недбале місце. Запитайте її, що саме недбале."
+          },
+          "orderedTokens": [
+            "What",
+            "is",
+            "sloppy"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вчителька каже, що в зошиті є недбале місце. Запитайте її, що саме недбале.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `What` — `What is sloppy?`",
+                "uk": "тут потрібно `What` — `What is sloppy?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька гортає зошит і просить оцінити сторінку. Скажіть коротко, що вона недбала.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Вчителька гортає зошит і просить оцінити сторінку. Скажіть коротко, що вона недбала.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i07:audio",
+            "transcript": "It's sloppy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's sloppy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчителька спитала: «Is it smudged?» Ви бачите на сторінці синю пляму. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька спитала: «Is it smudged?» Ви бачите на сторінці синю пляму. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница спросила: «Is it smudged?» Вы видите на странице синее пятно. Дополните короткое «да»",
+            "uk": "Вчителька спитала: «Is it smudged?» Ви бачите на сторінці синю пляму. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-52:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчителька спитала: «Is it smudged?» Ви бачите на сторінці синю пляму. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Вчителька спитала: «Is it smudged?» Ви бачите на сторінці синю пляму. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `it` нужно `is`.",
+                "uk": "З `it` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Вчителька спитала: «Is it smudged?» Ви бачите на сторінці синю пляму. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, it is`.",
+                "uk": "Відповідь — `Yes, it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:word:thorough",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thorough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:word:thorough:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thorough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:word:thorough:audio",
+            "transcript": "thorough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:word:thorough:r1",
+              "targetText": "thorough",
+              "meaningByLocale": {
+                "ru": "тщательный, подробный: ничего не пропущено. It is thorough — «Тут всё сделано тщательно». О работе, проверке, ответе, уборке.",
+                "uk": "ретельний, докладний: нічого не пропущено. It is thorough — «Тут усе зроблено ретельно». Про роботу, перевірку, відповідь, прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thorough",
+            "definitionByLocale": {
+              "ru": "тщательный, подробный: ничего не пропущено. It is thorough — «Тут всё сделано тщательно». О работе, проверке, ответе, уборке.",
+              "uk": "ретельний, докладний: нічого не пропущено. It is thorough — «Тут усе зроблено ретельно». Про роботу, перевірку, відповідь, прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що вчителька каже про домашню роботу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i09:r1",
+            "text": "It is thorough."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i09:r2",
+            "text": "It is sloppy."
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i09:r3",
+            "text": "It is legible."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що вчителька каже про домашню роботу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i09:audio",
+            "transcript": "It is thorough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:i09:r1",
+              "targetText": "It is thorough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i09:r2",
+              "targetText": "It is sloppy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i09:r3",
+              "targetText": "It is legible.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що вчителька каже про домашню роботу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `thorough`, а в этом варианте — `sloppy`.",
+                "uk": "У записі останнє слово — `thorough`, а в цьому варіанті — `sloppy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що вчителька каже про домашню роботу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `thorough`, а в этом варианте — `legible`.",
+                "uk": "У записі останнє слово — `thorough`, а в цьому варіанті — `legible`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-52:i10:p1",
+              "target": "thorough",
+              "meaningByLocale": {
+                "ru": "тщательный, подробный",
+                "uk": "ретельний, докладний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i10:p2",
+              "target": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный",
+                "uk": "розмазаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i10:p3",
+              "target": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый",
+                "uk": "розбірливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i10:p4",
+              "target": "messy",
+              "meaningByLocale": {
+                "ru": "неряшливый, в беспорядке",
+                "uk": "неохайний, у безладі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thorough",
+            "smudged",
+            "legible",
+            "messy"
+          ],
+          "rightColumn": [
+            "ретельний, докладний",
+            "розмазаний",
+            "розбірливий",
+            "неохайний, у безладі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що брат каже про своє розв’язання, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що брат каже про своє розв’язання, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i11:audio",
+            "transcript": "It is not sloppy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not sloppy.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "sloppy"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що брат каже про своє розв’язання, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not sloppy.`",
+                "uk": "тут потрібно `is` — `It is not sloppy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви дивитеся на завдання брата. Запитайте вчительку, чи докладне воно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви дивитеся на завдання брата. Запитайте вчительку, чи докладне воно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it thorough?",
+          "localizedMeaning": {
+            "ru": "Вы смотрите на задание брата. Спросите учительницу, подробное ли оно.",
+            "uk": "Ви дивитеся на завдання брата. Запитайте вчительку, чи докладне воно."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "thorough"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви дивитеся на завдання брата. Запитайте вчительку, чи докладне воно.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it thorough?`",
+                "uk": "тут потрібно `Is` — `Is it thorough?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат переписав сторінку, і тепер усе читається. Скажіть коротко, що запис розбірливий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Брат переписав сторінку, і тепер усе читається. Скажіть коротко, що запис розбірливий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i13:audio",
+            "transcript": "It's legible."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's legible.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчителька читає відповідь брата: у ній усе розписано по кроках. Скажіть, що відповідь докладна",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька читає відповідь брата: у ній усе розписано по кроках. Скажіть, що відповідь докладна",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница читает ответ брата: в нём всё расписано по шагам. Скажите, что ответ подробный",
+            "uk": "Вчителька читає відповідь брата: у ній усе розписано по кроках. Скажіть, що відповідь докладна"
+          },
+          "gappedTargetPhrase": "It ___ thorough.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-52:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчителька читає відповідь брата: у ній усе розписано по кроках. Скажіть, що відповідь докладна",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i14:r2",
+              "correct": false,
+              "testedDimension": "Вчителька читає відповідь брата: у ній усе розписано по кроках. Скажіть, що відповідь докладна",
+              "feedbackByLocale": {
+                "ru": "С `It` нужно `is`.",
+                "uk": "З `It` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i14:r3",
+              "correct": false,
+              "testedDimension": "Вчителька читає відповідь брата: у ній усе розписано по кроках. Скажіть, що відповідь докладна",
+              "feedbackByLocale": {
+                "ru": "Фраза — `It is thorough`.",
+                "uk": "Фраза — `It is thorough`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання вчительки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-52:i15:r1",
+            "text": "Is it legible?"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i15:r2",
+            "text": "Is it smudged?"
+          },
+          {
+            "responseId": "en:lesson-02:session-52:i15:r3",
+            "text": "Is it sloppy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання вчительки",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i15:audio",
+            "transcript": "Is it legible?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-52:i15:r1",
+              "targetText": "Is it legible?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i15:r2",
+              "targetText": "Is it smudged?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i15:r3",
+              "targetText": "Is it sloppy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-52:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання вчительки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `legible`, а в этом варианте — `smudged`.",
+                "uk": "У записі останнє слово — `legible`, а в цьому варіанті — `smudged`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-52:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання вчительки",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `legible`, а в этом варианте — `sloppy`.",
+                "uk": "У записі останнє слово — `legible`, а в цьому варіанті — `sloppy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-52:i16:p1",
+              "target": "legible",
+              "meaningByLocale": {
+                "ru": "разборчивый",
+                "uk": "розбірливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i16:p2",
+              "target": "smudged",
+              "meaningByLocale": {
+                "ru": "размазанный",
+                "uk": "розмазаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i16:p3",
+              "target": "sloppy",
+              "meaningByLocale": {
+                "ru": "небрежный",
+                "uk": "недбалий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-52:i16:p4",
+              "target": "thorough",
+              "meaningByLocale": {
+                "ru": "тщательный, подробный",
+                "uk": "ретельний, докладний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "legible",
+            "smudged",
+            "sloppy",
+            "thorough"
+          ],
+          "rightColumn": [
+            "розбірливий",
+            "розмазаний",
+            "недбалий",
+            "ретельний, докладний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-52:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат приніс нову сторінку. Запитайте вчительку, чи розбірлива вона.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Брат приніс нову сторінку. Запитайте вчительку, чи розбірлива вона.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-52:i17:audio",
+            "transcript": "Is it legible?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it legible?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-52:word:legible",
+      "correctText": "legible",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i01",
+      "correctText": "It is legible.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i02",
+      "correctText": "It is neat.",
+      "correctResponseId": "en:lesson-02:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:word:smudged",
+      "correctText": "smudged",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i05",
+      "correctText": "It is not legible.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:word:sloppy",
+      "correctText": "sloppy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i06",
+      "correctText": "What is sloppy?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i07",
+      "correctText": "It's sloppy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:word:thorough",
+      "correctText": "thorough",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i09",
+      "correctText": "It is thorough.",
+      "correctResponseId": "en:lesson-02:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i11",
+      "correctText": "It is not sloppy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i12",
+      "correctText": "Is it thorough?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i13",
+      "correctText": "It's legible.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-52:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i15",
+      "correctText": "Is it legible?",
+      "correctResponseId": "en:lesson-02:session-52:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i17",
+      "correctText": "Is it legible?",
+      "correctResponseId": null
+    }
+  ]
+}

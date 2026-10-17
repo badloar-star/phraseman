@@ -1,138 +1,154 @@
-# Английский · Урок 3 · Занятие 9 — Вход в мастерскую
+# Английский · Урок 3 · Занятие 9 — У входа в мебельный магазин
 
-**Ситуация.** Вы с Анной стоите у входа в мастерскую. Вы оба смотрите на одну и ту же дверь. Нужный ключ только что нашли. Высокий Олег и его невысокий молодой помощник готовят помещение. Вы обсуждаете, можно ли начать встречу раньше.
+**Ситуация.** Вы с сестрой пришли в мебельный магазин: нужно обставить новую квартиру. Продавец ведёт вас по первому залу и показывает, что есть в продаже. Вы называете то, что видите.
 
-**Что вы освоите:** говорить о конкретном понятном собеседнику предмете с the
-**Новые слова:** door
+**Что вы освоите:** называть предметы со словом an, если слово начинается с гласного звука
+**Новые слова:** armchair, oven, umbrella, elevator
+**Возвращаются:** lamp, sofa
 
 ---
 
 ## Интро 1
 
-### Дверь, о которой мы оба знаем
+### Кресло у входа
 
-`door` — «дверь». `It is a door` называет предмет: «Это дверь». Теперь вы оба смотрите на дверь мастерской и говорите именно о ней: `The door is open` — «Дверь открыта». `the` показывает, что собеседнику понятно, какую дверь вы имеете в виду. Здесь важно не количество дверей в городе, а понятный вам обоим предмет.
+У входа в магазин стоит мягкое кресло с ценником. Сестра садится в него и говорит, что дома такого нет. Подходит продавец и спрашивает, на что вы смотрите. armchair — «кресло». Оно начинается с гласного звука, поэтому перед ним an: It is an armchair — «Это кресло».
 
-**Вы с Анной смотрите на дверь мастерской. Она открыта. Сообщите об этой двери полной фразой.**
+**Продавец спрашивает, что это. Скажите полной фразой, что это кресло.**
 
-- ✅ **The door is open.**
-- ❌ The door are open. — *С одной дверью здесь нужно `is`.*
-- ❌ The door open. — *Между `The door` и `open` нужно `is`.*
+- ✅ **It is an armchair.**
+- ❌ It is a armchair. — *Перед armchair нужно an: слово начинается с гласного звука.*
+- ❌ It an armchair. — *Между It и an нужно is: It is an armchair.*
 
 ---
 
 ## Интро 2
 
-### Тот самый ключ
+### Техника на кухне
 
-`The key is here` — «Ключ здесь». Вы имеете в виду нужный ключ, который только что искали. Олег проверил все карманы, а ключ всё время держал в руке. Слово `the` не означает «ближайший» и не требует второй попытки назвать вещь: главное, чтобы было понятно, о каком ключе речь.
+В кухонном зале брат остановился у большой белой техники с дверцей и ручкой. Продавец открывает дверцу: внутри чистый противень и две решётки. Брат не уверен, что это, и просит вас спросить. oven — «духовка». Перед oven тоже an: Is it an oven? — «Это духовка?»
 
-**Вы нашли нужный ключ и показываете его Анне. Вы оба знаете, какой ключ искали. Сообщите «Ключ здесь».**
+**Вы подходите к продавцу. Спросите, духовка ли это.**
 
-- ✅ **The key is here.**
-- ❌ The key are here. — *С одним ключом здесь нужно `is`.*
-- ❌ The key here. — *После `The key` нужно `is`.*
+- ✅ **Is it an oven?**
+- ❌ It is an oven. — *Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it an oven?*
+- ❌ Is it a oven? — *Перед oven нужно an: Is it an oven?*
 
 ---
 
 ## Интро 3
 
-### Вопрос о той же двери
+### Зонт у кассы
 
-`Is the door open?` — «Дверь открыта?» В вопросе `Is` стоит перед `the door`, а название остаётся вместе. Для ключа можно спросить `Where is the key?` — «Где ключ?» Повторим `tall` — «высокий», `short` — «невысокий», `young` — «молодой», `possible` — «возможный». `the` нужен перед названием понятного предмета, а не перед отдельным описанием в `He is young`.
+На выходе из магазина идёт сильный дождь, а зонта у вас нет. У кассы стоит чёрный зонт с табличкой «для покупателей». Сестра показывает на него и спрашивает, как это называется. umbrella — «зонт». Перед umbrella тоже an: It's an umbrella — «Это зонт».
 
-**Анна отошла к знакомой вам обоим двери мастерской. Спросите, открыта ли дверь.**
+**Сестра спрашивает, что стоит у кассы. Скажите коротко, что это зонт.**
 
-- ✅ **Is the door open?**
-- ❌ Are the door open? — *Об одной двери здесь спрашиваем с `Is`.*
-- ❌ The door is open. — *Это сообщение. В вопросе начните с `Is the door`.*
+- ✅ **It's an umbrella.**
+- ❌ It's a umbrella. — *Перед umbrella нужно an: слово начинается с гласного звука.*
+- ❌ It's umbrella. — *Перед umbrella нужно an: It's an umbrella.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы оба смотрите на дверь мастерской. Она открыта. Сообщите об этой двери**
+**1 · Карточка слова — armchair**
+<!-- interaction_id: en:lesson-03:session-09:word:armchair; family: word_card -->
+> **armchair** — кресло. It is an armchair — «Это кресло». О мягком кресле в гостиной, в углу, у окна.
+
+**2 · Сестра села в кресло у входа. Продавец спрашивает, что это. Ответьте полной фразой.**
 <!-- interaction_id: en:lesson-03:session-09:i01; family: phrase_builder -->
-Плитки: `open` `is` `door` `The` `are` → **The door is open.**
-*(плитка `are` лишняя: здесь нужно `is` — `The door is open.`)*
+Плитки: `armchair` `is` `an` `It` `a` → **It is an armchair.**
+*(плитка `a` лишняя: здесь нужно `an` — `It is an armchair.`)*
 
-**2 · Послушайте ответ о более раннем начале встречи**
+**3 · Карточка слова — oven**
+<!-- interaction_id: en:lesson-03:session-09:word:oven; family: word_card -->
+> **oven** — духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.
+
+**4 · Послушайте, что продавец говорит о технике в кухонном зале**
 <!-- interaction_id: en:lesson-03:session-09:i02; family: listen_choose -->
-🔊 *It is possible.* → **It is possible.** · It is necessary. · It is unfair.
-- It is necessary. — *В записи последнее слово — `possible`, а в этом варианте — `necessary`.*
-- It is unfair. — *В записи последнее слово — `possible`, а в этом варианте — `unfair`.*
+🔊 *It is an oven.* → **It is an oven.** · It is an armchair. · It is a lamp.
+- It is an armchair. — *В записи последнее слово — `oven`, а в этом варианте — `armchair`.*
+- It is a lamp. — *В записи последнее слово — `oven`, а в этом варианте — `lamp`.*
 
-**3 · Дополните сообщение об открытой двери мастерской**
+**5 · Карточка слова — umbrella**
+<!-- interaction_id: en:lesson-03:session-09:word:umbrella; family: word_card -->
+> **umbrella** — зонт. It's an umbrella — «Это зонт». О зонте от дождя, от солнца, садовом зонте.
+
+**6 · Вы показываете сестре на зонт у кассы. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-09:i03; family: context_gap_grammar -->
-The door ___ open. → **is** · am · are
-- am — *С `The door` нужно `is`.*
-- are — *Один предмет `door`: `The door is open`.*
+It is ___ umbrella. → **an** · a · is
+- a — *Перед umbrella нужно an: слово начинается с гласного звука.*
+- is — *Слово is уже стоит перед пропуском. Перед umbrella нужно an.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-09:i04; family: speed_match -->
-door — дверь · key — ключ · tall — высокий · short — невысокий
+armchair — кресло · oven — духовка · umbrella — зонт · lamp — лампа
 
-**5 · Послушайте и соберите сообщение о ключе**
+**8 · Карточка слова — elevator**
+<!-- interaction_id: en:lesson-03:session-09:word:elevator; family: word_card -->
+> **elevator** — лифт. It is an elevator — «Это лифт». О лифте в доме, в магазине, в гостинице.
+
+**9 · Послушайте продавца у входа и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-09:i05; family: listen_build_dictation -->
-🔊 *The key is here.* Плитки: `here` `is` `key` `The` `are` → **The key is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The key is here.`)*
+🔊 *It is an elevator.* Плитки: `elevator` `is` `an` `It` `a` → **It is an elevator.**
+*(плитка `a` лишняя: здесь нужно `an` — `It is an elevator.`)*
 
-**6 · Вы с Анной ищете нужный ключ от мастерской. Спросите, где ключ**
+**10 · Брат стоит у большой кухонной техники. Спросите продавца, духовка ли это.**
 <!-- interaction_id: en:lesson-03:session-09:i06; family: phrase_builder -->
-Плитки: `key` `the` `is` `Where` `What` → **Where is the key?**
-*(плитка `What` лишняя: здесь нужно `Where` — `Where is the key?`)*
+Плитки: `oven` `it` `Is` `an` `a` → **Is it an oven?**
+*(плитка `a` лишняя: здесь нужно `an` — `Is it an oven?`)*
 
-**7 · Вы оба знаете, о какой двери мастерской речь. Теперь она закрыта. Сообщите «Дверь закрыта»**
+**11 · Продавец показывает на лифт. Скажите коротко, что это лифт.**
 <!-- interaction_id: en:lesson-03:session-09:i07; family: scripted_repeat_compare -->
-🎙 **The door is closed.**
+🎙 **It's an elevator.**
 
-**8 · Помощник Олега молодой. Сообщите это**
+**12 · Продавец спрашивает: «Is it an armchair?» Да, это кресло. Дополните короткое «да»**
 <!-- interaction_id: en:lesson-03:session-09:i08; family: context_gap_grammar -->
-He ___ young. → **is** · is the · are
-- is the — *Перед отдельным `young` в этой фразе не нужно `the`.*
-- are — *С `He` нужно `is`.*
+Yes, it ___. → **is** · am · are
+- am — *С it нужно is: Yes, it is.*
+- are — *С it нужно is: Yes, it is.*
 
-**9 · Послушайте сообщение о двери**
+**13 · Послушайте, что сестра говорит о вещи у выхода**
 <!-- interaction_id: en:lesson-03:session-09:i09; family: listen_choose -->
-🔊 *The door is open.* → **The door is open.** · The door is closed. · The door is tall.
-- The door is closed. — *В записи последнее слово — `open`, а в этом варианте — `closed`.*
-- The door is tall. — *В записи последнее слово — `open`, а в этом варианте — `tall`.*
+🔊 *It's an umbrella.* → **It's an umbrella.** · It's an armchair. · It's an oven.
+- It's an armchair. — *В записи последнее слово — `umbrella`, а в этом варианте — `armchair`.*
+- It's an oven. — *В записи последнее слово — `umbrella`, а в этом варианте — `oven`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-09:i10; family: speed_match -->
-possible — возможный · young — молодой · door — дверь · key — ключ
+elevator — лифт · oven — духовка · umbrella — зонт · sofa — диван
 
-**11 · Послушайте и соберите сообщение**
+**15 · Послушайте, что продавец говорит о технике, и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-09:i11; family: listen_build_dictation -->
-🔊 *The door is not open.* Плитки: `open` `not` `is` `door` `The` `are` → **The door is not open.**
-*(плитка `are` лишняя: здесь нужно `is` — `The door is not open.`)*
+🔊 *It is not an oven.* Плитки: `oven` `not` `is` `It` `an` `a` → **It is not an oven.**
+*(плитка `a` лишняя: здесь нужно `an` — `It is not an oven.`)*
 
-**12 · Анна стоит у двери мастерской, о которой вы уже говорили. Спросите, открыта ли дверь**
+**16 · Вы стоите у двери с кнопкой вызова. Спросите продавца, лифт ли это.**
 <!-- interaction_id: en:lesson-03:session-09:i12; family: phrase_builder -->
-Плитки: `open` `door` `the` `Is` `Are` → **Is the door open?**
-*(плитка `Are` лишняя: здесь нужно `Is` — `Is the door open?`)*
+Плитки: `elevator` `it` `Is` `an` `a` → **Is it an elevator?**
+*(плитка `a` лишняя: здесь нужно `an` — `Is it an elevator?`)*
 
-**13 · Помощник Олега невысокий. Сообщите это с сокращением**
+**17 · Сестра показывает на кресло в углу. Скажите коротко, что это кресло.**
 <!-- interaction_id: en:lesson-03:session-09:i13; family: scripted_repeat_compare -->
-🎙 **He's short.**
+🎙 **It's an armchair.**
 
-**14 · Вы говорите именно о нужном ключе, который оба только что искали. Дополните «Ключ здесь»**
+**18 · Продавец показывает на лампу у стены. Дополните фразу**
 <!-- interaction_id: en:lesson-03:session-09:i14; family: context_gap_grammar -->
-___ key is here. → **The** · A · An
-- A — *`A key` сообщает о каком-то ключе. Здесь нужен известный вам обоим ключ: `The key`.*
-- An — *Перед `key` форма `an` не подходит; для нужного вам обоим ключа здесь `The`.*
+It is ___ lamp. → **a** · an · is
+- an — *Слово lamp начинается с согласного звука, поэтому здесь a: It is a lamp.*
+- is — *Слово is уже стоит перед пропуском. Перед lamp нужно a.*
 
-**15 · Послушайте вопрос об Олеге**
+**19 · Послушайте вопрос сестры**
 <!-- interaction_id: en:lesson-03:session-09:i15; family: listen_choose -->
-🔊 *Is he tall?* → **Is he tall?** · Is he short? · Is he young?
-- Is he short? — *В записи последнее слово — `tall`, а в этом варианте — `short`.*
-- Is he young? — *В записи последнее слово — `tall`, а в этом варианте — `young`.*
+🔊 *Is it an elevator?* → **Is it an elevator?** · Is it an oven? · Is it an umbrella?
+- Is it an oven? — *В записи последнее слово — `elevator`, а в этом варианте — `oven`.*
+- Is it an umbrella? — *В записи последнее слово — `elevator`, а в этом варианте — `umbrella`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-09:i16; family: speed_match -->
-door — дверь · young — молодой · possible — возможный · tall — высокий
+armchair — кресло · elevator — лифт · oven — духовка · umbrella — зонт
 
-**17 · После встречи вы с Анной собираетесь закрыть мастерскую. Вы оба знаете, какой ключ нужен. Спросите, где ключ**
+**21 · Выходя из магазина, вы видите зонт у кассы. Спросите сестру, зонт ли это.**
 <!-- interaction_id: en:lesson-03:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where is the key?**
-
+🎙 **Is it an umbrella?**

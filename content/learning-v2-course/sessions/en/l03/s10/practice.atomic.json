@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-10",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-10:word:kettle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kettle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:kettle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kettle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:kettle:audio",
+            "transcript": "kettle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:kettle:r1",
+              "targetText": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник для кипячения воды. It is a kettle — «Это чайник». О электрическом чайнике на кухне, в офисе, в отеле.",
+                "uk": "чайник для кип’ятіння води. It is a kettle — «Це чайник». Про електричний чайник на кухні, в офісі, в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kettle",
+            "definitionByLocale": {
+              "ru": "чайник для кипячения воды. It is a kettle — «Это чайник». О электрическом чайнике на кухне, в офисе, в отеле.",
+              "uk": "чайник для кип’ятіння води. It is a kettle — «Це чайник». Про електричний чайник на кухні, в офісі, в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец показывает чайник на полке. Скажите ему полной фразой, что это чайник.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает чайник на полке. Скажите ему полной фразой, что это чайник.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a kettle.",
+          "localizedMeaning": {
+            "ru": "Продавец показывает чайник на полке. Скажите ему полной фразой, что это чайник.",
+            "uk": "Продавець показує чайник на полиці. Скажіть йому повною фразою, що це чайник."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец показывает чайник на полке. Скажите ему полной фразой, что это чайник.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a kettle.`",
+                "uk": "тут потрібно `a` — `It is a kettle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:word:toaster",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — toaster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:toaster:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — toaster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:toaster:audio",
+            "transcript": "toaster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:toaster:r1",
+              "targetText": "toaster",
+              "meaningByLocale": {
+                "ru": "тостер, прибор для поджаривания хлеба. Is it a toaster? — «Это тостер?» О приборе на кухне или в кафе.",
+                "uk": "тостер, прилад для підсмажування хліба. Is it a toaster? — «Це тостер?» Про прилад на кухні або в кафе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toaster",
+            "definitionByLocale": {
+              "ru": "тостер, прибор для поджаривания хлеба. Is it a toaster? — «Это тостер?» О приборе на кухне или в кафе.",
+              "uk": "тостер, прилад для підсмажування хліба. Is it a toaster? — «Це тостер?» Про прилад на кухні або в кафе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит о приборе на столе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i02:r1",
+            "text": "It is a toaster."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i02:r2",
+            "text": "It is a kettle."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i02:r3",
+            "text": "It is an oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит о приборе на столе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i02:audio",
+            "transcript": "It is a toaster."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:i02:r1",
+              "targetText": "It is a toaster.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i02:r2",
+              "targetText": "It is a kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i02:r3",
+              "targetText": "It is an oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о приборе на столе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `toaster`, а в этом варианте — `kettle`.",
+                "uk": "У записі останнє слово — `toaster`, а в цьому варіанті — `kettle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит о приборе на столе",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `toaster`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `toaster`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:word:vacuum",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vacuum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:vacuum:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vacuum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:vacuum:audio",
+            "transcript": "vacuum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:vacuum:r1",
+              "targetText": "vacuum",
+              "meaningByLocale": {
+                "ru": "пылесос. It's a vacuum — «Это пылесос». О пылесосе в доме, в отеле, в магазине.",
+                "uk": "пилосос. It's a vacuum — «Це пилосос». Про пилосос у домі, в готелі, в магазині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vacuum",
+            "definitionByLocale": {
+              "ru": "пылесос. It's a vacuum — «Это пылесос». О пылесосе в доме, в отеле, в магазине.",
+              "uk": "пилосос. It's a vacuum — «Це пилосос». Про пилосос у домі, в готелі, в магазині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец катит к вам пылесос. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец катит к вам пылесос. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец катит к вам пылесос. Дополните фразу",
+            "uk": "Продавець котить до вас пилосос. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ vacuum.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-10:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавец катит к вам пылесос. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Продавец катит к вам пылесос. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово vacuum начинается с согласного звука, поэтому здесь a: It is a vacuum.",
+                "uk": "Слово vacuum починається з приголосного звуку, тому тут a: It is a vacuum."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Продавец катит к вам пылесос. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед vacuum нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед vacuum потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-10:i04:p1",
+              "target": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник",
+                "uk": "чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i04:p2",
+              "target": "toaster",
+              "meaningByLocale": {
+                "ru": "тостер",
+                "uk": "тостер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i04:p3",
+              "target": "vacuum",
+              "meaningByLocale": {
+                "ru": "пылесос",
+                "uk": "пилосос"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i04:p4",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kettle",
+            "toaster",
+            "vacuum",
+            "oven"
+          ],
+          "rightColumn": [
+            "чайник",
+            "тостер",
+            "пылесос",
+            "духовка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:word:blender",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blender",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:blender:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blender",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:blender:audio",
+            "transcript": "blender"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:blender:r1",
+              "targetText": "blender",
+              "meaningByLocale": {
+                "ru": "блендер, прибор для смешивания и взбивания. It is a blender — «Это блендер». О блендере для супов, коктейлей, пюре.",
+                "uk": "блендер, прилад для змішування й збивання. It is a blender — «Це блендер». Про блендер для супів, коктейлів, пюре."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blender",
+            "definitionByLocale": {
+              "ru": "блендер, прибор для смешивания и взбивания. It is a blender — «Это блендер». О блендере для супов, коктейлей, пюре.",
+              "uk": "блендер, прилад для змішування й збивання. It is a blender — «Це блендер». Про блендер для супів, коктейлів, пюре."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i05:audio",
+            "transcript": "It is a blender."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a blender.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "blender"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a blender.`",
+                "uk": "тут потрібно `a` — `It is a blender.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показывает на коробку с прорезями. Спросите продавца, тостер ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показывает на коробку с прорезями. Спросите продавца, тостер ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a toaster?",
+          "localizedMeaning": {
+            "ru": "Брат показывает на коробку с прорезями. Спросите продавца, тостер ли это.",
+            "uk": "Брат показує на коробку з прорізами. Запитайте продавця, чи це тостер."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "toaster"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат показывает на коробку с прорезями. Спросите продавца, тостер ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `Is it a toaster?`",
+                "uk": "тут потрібно `a` — `Is it a toaster?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавец включает блендер. Скажите коротко, что это блендер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i07:audio"
+        ],
+        "accessibilityLabel": "Продавец включает блендер. Скажите коротко, что это блендер.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i07:audio",
+            "transcript": "It's a blender."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a blender.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец спрашивает: «Is it a kettle?» Да, это чайник. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец спрашивает: «Is it a kettle?» Да, это чайник. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец спрашивает: «Is it a kettle?» Да, это чайник. Дополните короткое «да»",
+            "uk": "Продавець питає: «Is it a kettle?» Так, це чайник. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-10:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Продавец спрашивает: «Is it a kettle?» Да, это чайник. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавец спрашивает: «Is it a kettle?» Да, это чайник. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавец спрашивает: «Is it a kettle?» Да, это чайник. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i09:r1",
+            "text": "Is it a vacuum?"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i09:r2",
+            "text": "Is it a kettle?"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i09:r3",
+            "text": "Is it a blender?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i09:audio",
+            "transcript": "Is it a vacuum?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:i09:r1",
+              "targetText": "Is it a vacuum?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i09:r2",
+              "targetText": "Is it a kettle?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i09:r3",
+              "targetText": "Is it a blender?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `kettle`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `kettle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `blender`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `blender`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-10:i10:p1",
+              "target": "blender",
+              "meaningByLocale": {
+                "ru": "блендер",
+                "uk": "блендер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i10:p2",
+              "target": "vacuum",
+              "meaningByLocale": {
+                "ru": "пылесос",
+                "uk": "пилосос"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i10:p3",
+              "target": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник",
+                "uk": "чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blender",
+            "vacuum",
+            "kettle",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "блендер",
+            "пылесос",
+            "чайник",
+            "зонт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте ответ продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте ответ продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i11:audio",
+            "transcript": "It is not a toaster."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a toaster.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "toaster"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте ответ продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is not a toaster.`",
+                "uk": "тут потрібно `a` — `It is not a toaster.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у ряда с духовками. Спросите продавца, духовка ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у ряда с духовками. Спросите продавца, духовка ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an oven?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у ряда с духовками. Спросите продавца, духовка ли это.",
+            "uk": "Ви стоїте біля ряду з духовками. Запитайте продавця, чи це духовка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите у ряда с духовками. Спросите продавца, духовка ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an oven?`",
+                "uk": "тут потрібно `an` — `Is it an oven?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра держит в руках чайник. Скажите коротко, что это чайник.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра держит в руках чайник. Скажите коротко, что это чайник.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i13:audio",
+            "transcript": "It's a kettle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a kettle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавец показывает на кресло у входа в отдел. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i14:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i14:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец показывает на кресло у входа в отдел. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает на кресло у входа в отдел. Дополните фразу",
+            "uk": "Продавець показує на крісло біля входу у відділ. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ armchair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-10:i14:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i14:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавец показывает на кресло у входа в отдел. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавец показывает на кресло у входа в отдел. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово armchair начинается с гласного звука, поэтому здесь an: It is an armchair.",
+                "uk": "Слово armchair починається з голосного звуку, тому тут an: It is an armchair."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавец показывает на кресло у входа в отдел. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед armchair нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед armchair потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавец говорит в конце ряда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i15:r1",
+            "text": "It's a vacuum."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i15:r2",
+            "text": "It's a blender."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i15:r3",
+            "text": "It's an oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавец говорит в конце ряда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i15:audio",
+            "transcript": "It's a vacuum."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:i15:r1",
+              "targetText": "It's a vacuum.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i15:r2",
+              "targetText": "It's a blender.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i15:r3",
+              "targetText": "It's an oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит в конце ряда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `blender`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `blender`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавец говорит в конце ряда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-10:i16:p1",
+              "target": "toaster",
+              "meaningByLocale": {
+                "ru": "тостер",
+                "uk": "тостер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i16:p2",
+              "target": "blender",
+              "meaningByLocale": {
+                "ru": "блендер",
+                "uk": "блендер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i16:p3",
+              "target": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i16:p4",
+              "target": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "toaster",
+            "blender",
+            "armchair",
+            "elevator"
+          ],
+          "rightColumn": [
+            "тостер",
+            "блендер",
+            "кресло",
+            "лифт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы выбрали технику для новой кухни. Спросите продавца, блендер ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Вы выбрали технику для новой кухни. Спросите продавца, блендер ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i17:audio",
+            "transcript": "Is it a blender?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a blender?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-10:word:kettle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kettle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:kettle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kettle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:kettle:audio",
+            "transcript": "kettle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:kettle:r1",
+              "targetText": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник для кипячения воды. It is a kettle — «Это чайник». О электрическом чайнике на кухне, в офисе, в отеле.",
+                "uk": "чайник для кип’ятіння води. It is a kettle — «Це чайник». Про електричний чайник на кухні, в офісі, в готелі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kettle",
+            "definitionByLocale": {
+              "ru": "чайник для кипячения воды. It is a kettle — «Это чайник». О электрическом чайнике на кухне, в офисе, в отеле.",
+              "uk": "чайник для кип’ятіння води. It is a kettle — «Це чайник». Про електричний чайник на кухні, в офісі, в готелі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець показує чайник на полиці. Скажіть йому повною фразою, що це чайник.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує чайник на полиці. Скажіть йому повною фразою, що це чайник.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is a kettle.",
+          "localizedMeaning": {
+            "ru": "Продавец показывает чайник на полке. Скажите ему полной фразой, что это чайник.",
+            "uk": "Продавець показує чайник на полиці. Скажіть йому повною фразою, що це чайник."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець показує чайник на полиці. Скажіть йому повною фразою, що це чайник.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a kettle.`",
+                "uk": "тут потрібно `a` — `It is a kettle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:word:toaster",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — toaster",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:toaster:audio"
+        ],
+        "accessibilityLabel": "Картка слова — toaster",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:toaster:audio",
+            "transcript": "toaster"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:toaster:r1",
+              "targetText": "toaster",
+              "meaningByLocale": {
+                "ru": "тостер, прибор для поджаривания хлеба. Is it a toaster? — «Это тостер?» О приборе на кухне или в кафе.",
+                "uk": "тостер, прилад для підсмажування хліба. Is it a toaster? — «Це тостер?» Про прилад на кухні або в кафе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toaster",
+            "definitionByLocale": {
+              "ru": "тостер, прибор для поджаривания хлеба. Is it a toaster? — «Это тостер?» О приборе на кухне или в кафе.",
+              "uk": "тостер, прилад для підсмажування хліба. Is it a toaster? — «Це тостер?» Про прилад на кухні або в кафе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже про прилад на столі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i02:r1",
+            "text": "It is a toaster."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i02:r2",
+            "text": "It is a kettle."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i02:r3",
+            "text": "It is an oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже про прилад на столі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i02:audio",
+            "transcript": "It is a toaster."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:i02:r1",
+              "targetText": "It is a toaster.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i02:r2",
+              "targetText": "It is a kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i02:r3",
+              "targetText": "It is an oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про прилад на столі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `toaster`, а в этом варианте — `kettle`.",
+                "uk": "У записі останнє слово — `toaster`, а в цьому варіанті — `kettle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже про прилад на столі",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `toaster`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `toaster`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:word:vacuum",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vacuum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:vacuum:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vacuum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:vacuum:audio",
+            "transcript": "vacuum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:vacuum:r1",
+              "targetText": "vacuum",
+              "meaningByLocale": {
+                "ru": "пылесос. It's a vacuum — «Это пылесос». О пылесосе в доме, в отеле, в магазине.",
+                "uk": "пилосос. It's a vacuum — «Це пилосос». Про пилосос у домі, в готелі, в магазині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vacuum",
+            "definitionByLocale": {
+              "ru": "пылесос. It's a vacuum — «Это пылесос». О пылесосе в доме, в отеле, в магазине.",
+              "uk": "пилосос. It's a vacuum — «Це пилосос». Про пилосос у домі, в готелі, в магазині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець котить до вас пилосос. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець котить до вас пилосос. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец катит к вам пылесос. Дополните фразу",
+            "uk": "Продавець котить до вас пилосос. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ vacuum.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-10:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавець котить до вас пилосос. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Продавець котить до вас пилосос. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово vacuum начинается с согласного звука, поэтому здесь a: It is a vacuum.",
+                "uk": "Слово vacuum починається з приголосного звуку, тому тут a: It is a vacuum."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Продавець котить до вас пилосос. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед vacuum нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед vacuum потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-10:i04:p1",
+              "target": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник",
+                "uk": "чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i04:p2",
+              "target": "toaster",
+              "meaningByLocale": {
+                "ru": "тостер",
+                "uk": "тостер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i04:p3",
+              "target": "vacuum",
+              "meaningByLocale": {
+                "ru": "пылесос",
+                "uk": "пилосос"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i04:p4",
+              "target": "oven",
+              "meaningByLocale": {
+                "ru": "духовка",
+                "uk": "духовка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kettle",
+            "toaster",
+            "vacuum",
+            "oven"
+          ],
+          "rightColumn": [
+            "чайник",
+            "тостер",
+            "пилосос",
+            "духовка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:word:blender",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blender",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:word:blender:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blender",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:word:blender:audio",
+            "transcript": "blender"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:word:blender:r1",
+              "targetText": "blender",
+              "meaningByLocale": {
+                "ru": "блендер, прибор для смешивания и взбивания. It is a blender — «Это блендер». О блендере для супов, коктейлей, пюре.",
+                "uk": "блендер, прилад для змішування й збивання. It is a blender — «Це блендер». Про блендер для супів, коктейлів, пюре."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blender",
+            "definitionByLocale": {
+              "ru": "блендер, прибор для смешивания и взбивания. It is a blender — «Это блендер». О блендере для супов, коктейлей, пюре.",
+              "uk": "блендер, прилад для змішування й збивання. It is a blender — «Це блендер». Про блендер для супів, коктейлів, пюре."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i05:audio",
+            "transcript": "It is a blender."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is a blender.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "a",
+            "blender"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is a blender.`",
+                "uk": "тут потрібно `a` — `It is a blender.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат показує на коробку з прорізами. Запитайте продавця, чи це тостер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат показує на коробку з прорізами. Запитайте продавця, чи це тостер.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a toaster?",
+          "localizedMeaning": {
+            "ru": "Брат показывает на коробку с прорезями. Спросите продавца, тостер ли это.",
+            "uk": "Брат показує на коробку з прорізами. Запитайте продавця, чи це тостер."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "toaster"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат показує на коробку з прорізами. Запитайте продавця, чи це тостер.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `Is it a toaster?`",
+                "uk": "тут потрібно `a` — `Is it a toaster?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавець вмикає блендер. Скажіть коротко, що це блендер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i07:audio"
+        ],
+        "accessibilityLabel": "Продавець вмикає блендер. Скажіть коротко, що це блендер.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i07:audio",
+            "transcript": "It's a blender."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a blender.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець питає: «Is it a kettle?» Так, це чайник. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець питає: «Is it a kettle?» Так, це чайник. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец спрашивает: «Is it a kettle?» Да, это чайник. Дополните короткое «да»",
+            "uk": "Продавець питає: «Is it a kettle?» Так, це чайник. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-10:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Продавець питає: «Is it a kettle?» Так, це чайник. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Продавець питає: «Is it a kettle?» Так, це чайник. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Продавець питає: «Is it a kettle?» Так, це чайник. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С it нужно is: Yes, it is.",
+                "uk": "З it потрібно is: Yes, it is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i09:r1",
+            "text": "Is it a vacuum?"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i09:r2",
+            "text": "Is it a kettle?"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i09:r3",
+            "text": "Is it a blender?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i09:audio",
+            "transcript": "Is it a vacuum?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:i09:r1",
+              "targetText": "Is it a vacuum?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i09:r2",
+              "targetText": "Is it a kettle?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i09:r3",
+              "targetText": "Is it a blender?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `kettle`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `kettle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `blender`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `blender`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-10:i10:p1",
+              "target": "blender",
+              "meaningByLocale": {
+                "ru": "блендер",
+                "uk": "блендер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i10:p2",
+              "target": "vacuum",
+              "meaningByLocale": {
+                "ru": "пылесос",
+                "uk": "пилосос"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i10:p3",
+              "target": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник",
+                "uk": "чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blender",
+            "vacuum",
+            "kettle",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "блендер",
+            "пилосос",
+            "чайник",
+            "парасолька"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте відповідь продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте відповідь продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i11:audio",
+            "transcript": "It is not a toaster."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a toaster.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "toaster"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте відповідь продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is not a toaster.`",
+                "uk": "тут потрібно `a` — `It is not a toaster.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля ряду з духовками. Запитайте продавця, чи це духовка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля ряду з духовками. Запитайте продавця, чи це духовка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an oven?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у ряда с духовками. Спросите продавца, духовка ли это.",
+            "uk": "Ви стоїте біля ряду з духовками. Запитайте продавця, чи це духовка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "oven"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля ряду з духовками. Запитайте продавця, чи це духовка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an oven?`",
+                "uk": "тут потрібно `an` — `Is it an oven?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра тримає в руках чайник. Скажіть коротко, що це чайник.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра тримає в руках чайник. Скажіть коротко, що це чайник.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i13:audio",
+            "transcript": "It's a kettle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a kettle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавець показує на крісло біля входу у відділ. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i14:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i14:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець показує на крісло біля входу у відділ. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавец показывает на кресло у входа в отдел. Дополните фразу",
+            "uk": "Продавець показує на крісло біля входу у відділ. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ armchair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-10:i14:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i14:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавець показує на крісло біля входу у відділ. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавець показує на крісло біля входу у відділ. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово armchair начинается с гласного звука, поэтому здесь an: It is an armchair.",
+                "uk": "Слово armchair починається з голосного звуку, тому тут an: It is an armchair."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавець показує на крісло біля входу у відділ. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед armchair нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед armchair потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавець каже в кінці ряду",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i15:r1",
+            "text": "It's a vacuum."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i15:r2",
+            "text": "It's a blender."
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i15:r3",
+            "text": "It's an oven."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавець каже в кінці ряду",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i15:audio",
+            "transcript": "It's a vacuum."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-10:i15:r1",
+              "targetText": "It's a vacuum.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i15:r2",
+              "targetText": "It's a blender.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i15:r3",
+              "targetText": "It's an oven.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-10:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже в кінці ряду",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `blender`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `blender`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-10:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавець каже в кінці ряду",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `oven`.",
+                "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `oven`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-10:i16:p1",
+              "target": "toaster",
+              "meaningByLocale": {
+                "ru": "тостер",
+                "uk": "тостер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i16:p2",
+              "target": "blender",
+              "meaningByLocale": {
+                "ru": "блендер",
+                "uk": "блендер"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i16:p3",
+              "target": "armchair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-10:i16:p4",
+              "target": "elevator",
+              "meaningByLocale": {
+                "ru": "лифт",
+                "uk": "ліфт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "toaster",
+            "blender",
+            "armchair",
+            "elevator"
+          ],
+          "rightColumn": [
+            "тостер",
+            "блендер",
+            "крісло",
+            "ліфт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви вибрали техніку для нової кухні. Запитайте продавця, чи це блендер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Ви вибрали техніку для нової кухні. Запитайте продавця, чи це блендер.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-10:i17:audio",
+            "transcript": "Is it a blender?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a blender?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-10:word:kettle",
+      "correctText": "kettle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i01",
+      "correctText": "It is a kettle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:word:toaster",
+      "correctText": "toaster",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i02",
+      "correctText": "It is a toaster.",
+      "correctResponseId": "en:lesson-03:session-10:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:word:vacuum",
+      "correctText": "vacuum",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-10:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:word:blender",
+      "correctText": "blender",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i05",
+      "correctText": "It is a blender.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i06",
+      "correctText": "Is it a toaster?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i07",
+      "correctText": "It's a blender.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-03:session-10:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i09",
+      "correctText": "Is it a vacuum?",
+      "correctResponseId": "en:lesson-03:session-10:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i11",
+      "correctText": "It is not a toaster.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i12",
+      "correctText": "Is it an oven?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i13",
+      "correctText": "It's a kettle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i14",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-03:session-10:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i15",
+      "correctText": "It's a vacuum.",
+      "correctResponseId": "en:lesson-03:session-10:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i17",
+      "correctText": "Is it a blender?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-14:intro1:r2": {
-          "ru": "Перед `picture` нужно `a`: первый звук согласный.",
-          "uk": "Перед `picture` потрібно `a`: перший звук приголосний."
+          "ru": "Перед sandwich нужно a: слово начинается с согласного звука.",
+          "uk": "Перед sandwich потрібно a: слово починається з приголосного звуку."
         },
         "en:lesson-03:session-14:intro1:r3": {
-          "ru": "В этой фразе перед названием одной картинки нужно `a`.",
-          "uk": "У цій фразі перед назвою одного зображення потрібно `a`."
+          "ru": "Перед названием одного такого блюда нужно a: It is a sandwich.",
+          "uk": "Перед назвою однієї такої страви потрібно a: It is a sandwich."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-14:intro2:r2": {
-          "ru": "С одной картинкой здесь нужно `is`.",
-          "uk": "З одним зображенням тут потрібно `is`."
+          "ru": "Так звучит утверждение. Чтобы спросить, ставим Is вперёд: Is it a salad?",
+          "uk": "Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it a salad?"
         },
         "en:lesson-03:session-14:intro2:r3": {
-          "ru": "После `The picture` нужно `is`.",
-          "uk": "Після `The picture` потрібно `is`."
+          "ru": "Перед salad нужно a: слово начинается с согласного звука.",
+          "uk": "Перед salad потрібно a: слово починається з приголосного звуку."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-14:intro3:r2": {
-          "ru": "О месте спрашиваем `Where`, а не `What`.",
-          "uk": "Про місце запитуємо `Where`, а не `What`."
+          "ru": "Перед egg нужно an: слово начинается с гласного звука.",
+          "uk": "Перед egg потрібно an: слово починається з голосного звуку."
         },
         "en:lesson-03:session-14:intro3:r3": {
-          "ru": "С одной ручкой здесь нужно `is`.",
-          "uk": "З однією ручкою тут потрібно `is`."
+          "ru": "Перед egg нужно an: It's an egg.",
+          "uk": "Перед egg потрібно an: It's an egg."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f9e9103b045e7083c5b908e03cc61d2b6760551ab09d083c141edcde6c731981"
+  "auxiliaryFingerprint": "11b45a7ce4ac1dffc961c7317bb7a4bf68bc15f40265d3310408217214605ea7"
 }

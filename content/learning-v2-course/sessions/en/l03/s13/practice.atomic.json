@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-13",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-13:word:earring",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — earring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:earring:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — earring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:earring:audio",
+            "transcript": "earring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:earring:r1",
+              "targetText": "earring",
+              "meaningByLocale": {
+                "ru": "серьга, украшение для уха. It is an earring — «Это серьга». О серьге из золота, серебра, бижутерии.",
+                "uk": "сережка, прикраса для вуха. It is an earring — «Це сережка». Про сережку із золота, срібла, біжутерії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earring",
+            "definitionByLocale": {
+              "ru": "серьга, украшение для уха. It is an earring — «Это серьга». О серьге из золота, серебра, бижутерии.",
+              "uk": "сережка, прикраса для вуха. It is an earring — «Це сережка». Про сережку із золота, срібла, біжутерії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is an earring.",
+          "localizedMeaning": {
+            "ru": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
+            "uk": "Продавчиня кладе на подушку сережку. Скажіть сестрі повною фразою, що це сережка."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "an",
+            "earring"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is an earring.`",
+                "uk": "тут потрібно `an` — `It is an earring.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:word:necklace",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — necklace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:necklace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — necklace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:necklace:audio",
+            "transcript": "necklace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:necklace:r1",
+              "targetText": "necklace",
+              "meaningByLocale": {
+                "ru": "ожерелье, украшение на шею. Is it a necklace? — «Это ожерелье?» О цепочке с камнем или бусами.",
+                "uk": "намисто, прикраса на шию. Is it a necklace? — «Це намисто?» Про ланцюжок із каменем або буси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "necklace",
+            "definitionByLocale": {
+              "ru": "ожерелье, украшение на шею. Is it a necklace? — «Это ожерелье?» О цепочке с камнем или бусами.",
+              "uk": "намисто, прикраса на шию. Is it a necklace? — «Це намисто?» Про ланцюжок із каменем або буси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что продавщица говорит о вещи в витрине",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i02:r1",
+            "text": "It is a necklace."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i02:r2",
+            "text": "It is an earring."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i02:r3",
+            "text": "It is a vase."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что продавщица говорит о вещи в витрине",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i02:audio",
+            "transcript": "It is a necklace."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:i02:r1",
+              "targetText": "It is a necklace.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i02:r2",
+              "targetText": "It is an earring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i02:r3",
+              "targetText": "It is a vase.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавщица говорит о вещи в витрине",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `necklace`, а в этом варианте — `earring`.",
+                "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `earring`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что продавщица говорит о вещи в витрине",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `necklace`, а в этом варианте — `vase`.",
+                "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `vase`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра держит серьгу. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра держит серьгу. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра держит серьгу. Дополните фразу",
+            "uk": "Сестра тримає сережку. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ earring.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-13:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Сестра держит серьгу. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Сестра держит серьгу. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово earring начинается с гласного звука, поэтому здесь an.",
+                "uk": "Слово earring починається з голосного звуку, тому тут an."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Сестра держит серьгу. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед earring нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед earring потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-13:i04:p1",
+              "target": "earring",
+              "meaningByLocale": {
+                "ru": "серьга",
+                "uk": "сережка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i04:p2",
+              "target": "necklace",
+              "meaningByLocale": {
+                "ru": "ожерелье",
+                "uk": "намисто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i04:p3",
+              "target": "vase",
+              "meaningByLocale": {
+                "ru": "ваза",
+                "uk": "ваза"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i04:p4",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "earring",
+            "necklace",
+            "vase",
+            "clock"
+          ],
+          "rightColumn": [
+            "серьга",
+            "ожерелье",
+            "ваза",
+            "часы (настенные)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:word:bracelet",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bracelet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:bracelet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bracelet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:bracelet:audio",
+            "transcript": "bracelet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:bracelet:r1",
+              "targetText": "bracelet",
+              "meaningByLocale": {
+                "ru": "браслет, украшение на запястье. It's a bracelet — «Это браслет». О тонком или широком браслете на руку.",
+                "uk": "браслет, прикраса на зап’ястя. It's a bracelet — «Це браслет». Про тонкий або широкий браслет на руку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bracelet",
+            "definitionByLocale": {
+              "ru": "браслет, украшение на запястье. It's a bracelet — «Это браслет». О тонком или широком браслете на руку.",
+              "uk": "браслет, прикраса на зап’ястя. It's a bracelet — «Це браслет». Про тонкий або широкий браслет на руку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавщицу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавщицу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i05:audio",
+            "transcript": "It's a bracelet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's a bracelet.",
+          "orderedTokens": [
+            "It's",
+            "a",
+            "bracelet"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавщицу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It's a bracelet.`",
+                "uk": "тут потрібно `a` — `It's a bracelet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a bracelet?",
+          "localizedMeaning": {
+            "ru": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
+            "uk": "Сестра показує на тонку річ на подушці. Запитайте продавчиню, чи це браслет."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "bracelet"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `Is it a bracelet?`",
+                "uk": "тут потрібно `a` — `Is it a bracelet?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавщица держит на ладони браслет. Скажите коротко, что это браслет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i07:audio"
+        ],
+        "accessibilityLabel": "Продавщица держит на ладони браслет. Скажите коротко, что это браслет.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i07:audio",
+            "transcript": "It's a bracelet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a bracelet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:word:pearl",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pearl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:pearl:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pearl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:pearl:audio",
+            "transcript": "pearl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:pearl:r1",
+              "targetText": "pearl",
+              "meaningByLocale": {
+                "ru": "жемчужина, круглая белая бусина из раковины. It is a pearl — «Это жемчужина». О настоящей жемчужине и о бусине из ожерелья.",
+                "uk": "перлина, кругла біла намистина з мушлі. It is a pearl — «Це перлина». Про справжню перлину й про намистину з намиста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pearl",
+            "definitionByLocale": {
+              "ru": "жемчужина, круглая белая бусина из раковины. It is a pearl — «Это жемчужина». О настоящей жемчужине и о бусине из ожерелья.",
+              "uk": "перлина, кругла біла намистина з мушлі. It is a pearl — «Це перлина». Про справжню перлину й про намистину з намиста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i08:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i08:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+            "uk": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ pearl.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-13:i08:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i08:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово pearl начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово pearl починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед pearl нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед pearl потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос сестры",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i09:r1",
+            "text": "Is it an earring?"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i09:r2",
+            "text": "Is it a pearl?"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i09:r3",
+            "text": "Is it a bracelet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос сестры",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i09:audio",
+            "transcript": "Is it an earring?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:i09:r1",
+              "targetText": "Is it an earring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i09:r2",
+              "targetText": "Is it a pearl?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i09:r3",
+              "targetText": "Is it a bracelet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос сестры",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `pearl`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `pearl`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос сестры",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-13:i10:p1",
+              "target": "pearl",
+              "meaningByLocale": {
+                "ru": "жемчужина",
+                "uk": "перлина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i10:p2",
+              "target": "bracelet",
+              "meaningByLocale": {
+                "ru": "браслет",
+                "uk": "браслет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i10:p3",
+              "target": "necklace",
+              "meaningByLocale": {
+                "ru": "ожерелье",
+                "uk": "намисто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i10:p4",
+              "target": "earring",
+              "meaningByLocale": {
+                "ru": "серьга",
+                "uk": "сережка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pearl",
+            "bracelet",
+            "necklace",
+            "earring"
+          ],
+          "rightColumn": [
+            "жемчужина",
+            "браслет",
+            "ожерелье",
+            "серьга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавщицу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавщицу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i11:audio",
+            "transcript": "It is not a pearl."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a pearl.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "pearl"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавщицу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is not a pearl.`",
+                "uk": "тут потрібно `a` — `It is not a pearl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an earring?",
+          "localizedMeaning": {
+            "ru": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
+            "uk": "Сестра тримає сережку. Запитайте продавчиню, чи це сережка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "earring"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an earring?`",
+                "uk": "тут потрібно `an` — `Is it an earring?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра показывает круглую белую бусину. Скажите коротко, что это жемчужина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра показывает круглую белую бусину. Скажите коротко, что это жемчужина.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i13:audio",
+            "transcript": "It's a pearl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a pearl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавщица показывает на часы на стене. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i14:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i14:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавщица показывает на часы на стене. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавщица показывает на часы на стене. Дополните фразу",
+            "uk": "Продавчиня показує на годинник на стіні. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ clock.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-13:i14:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i14:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавщица показывает на часы на стене. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавщица показывает на часы на стене. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово clock начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово clock починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавщица показывает на часы на стене. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед clock нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед clock потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что говорит сестра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i15:r1",
+            "text": "It's an earring."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i15:r2",
+            "text": "It's a necklace."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i15:r3",
+            "text": "It's a bracelet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что говорит сестра",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i15:audio",
+            "transcript": "It's an earring."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:i15:r1",
+              "targetText": "It's an earring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i15:r2",
+              "targetText": "It's a necklace.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i15:r3",
+              "targetText": "It's a bracelet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит сестра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `necklace`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `necklace`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что говорит сестра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-13:i16:p1",
+              "target": "bracelet",
+              "meaningByLocale": {
+                "ru": "браслет",
+                "uk": "браслет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i16:p2",
+              "target": "pearl",
+              "meaningByLocale": {
+                "ru": "жемчужина",
+                "uk": "перлина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i16:p3",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i16:p4",
+              "target": "teapot",
+              "meaningByLocale": {
+                "ru": "заварочный чайник",
+                "uk": "чайник для заварювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bracelet",
+            "pearl",
+            "umbrella",
+            "teapot"
+          ],
+          "rightColumn": [
+            "браслет",
+            "жемчужина",
+            "зонт",
+            "заварочный чайник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавщица достаёт цепочку с камнем. Спросите её, ожерелье ли это.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Продавщица достаёт цепочку с камнем. Спросите её, ожерелье ли это.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i17:audio",
+            "transcript": "Is it a necklace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a necklace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-13:word:earring",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — earring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:earring:audio"
+        ],
+        "accessibilityLabel": "Картка слова — earring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:earring:audio",
+            "transcript": "earring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:earring:r1",
+              "targetText": "earring",
+              "meaningByLocale": {
+                "ru": "серьга, украшение для уха. It is an earring — «Это серьга». О серьге из золота, серебра, бижутерии.",
+                "uk": "сережка, прикраса для вуха. It is an earring — «Це сережка». Про сережку із золота, срібла, біжутерії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "earring",
+            "definitionByLocale": {
+              "ru": "серьга, украшение для уха. It is an earring — «Это серьга». О серьге из золота, серебра, бижутерии.",
+              "uk": "сережка, прикраса для вуха. It is an earring — «Це сережка». Про сережку із золота, срібла, біжутерії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавчиня кладе на подушку сережку. Скажіть сестрі повною фразою, що це сережка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавчиня кладе на подушку сережку. Скажіть сестрі повною фразою, що це сережка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is an earring.",
+          "localizedMeaning": {
+            "ru": "Продавщица кладёт на подушку серьгу. Скажите сестре полной фразой, что это серьга.",
+            "uk": "Продавчиня кладе на подушку сережку. Скажіть сестрі повною фразою, що це сережка."
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "an",
+            "earring"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавчиня кладе на подушку сережку. Скажіть сестрі повною фразою, що це сережка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `It is an earring.`",
+                "uk": "тут потрібно `an` — `It is an earring.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:word:necklace",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — necklace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:necklace:audio"
+        ],
+        "accessibilityLabel": "Картка слова — necklace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:necklace:audio",
+            "transcript": "necklace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:necklace:r1",
+              "targetText": "necklace",
+              "meaningByLocale": {
+                "ru": "ожерелье, украшение на шею. Is it a necklace? — «Это ожерелье?» О цепочке с камнем или бусами.",
+                "uk": "намисто, прикраса на шию. Is it a necklace? — «Це намисто?» Про ланцюжок із каменем або буси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "necklace",
+            "definitionByLocale": {
+              "ru": "ожерелье, украшение на шею. Is it a necklace? — «Это ожерелье?» О цепочке с камнем или бусами.",
+              "uk": "намисто, прикраса на шию. Is it a necklace? — «Це намисто?» Про ланцюжок із каменем або буси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що продавчиня каже про річ у вітрині",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i02:r1",
+            "text": "It is a necklace."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i02:r2",
+            "text": "It is an earring."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i02:r3",
+            "text": "It is a vase."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що продавчиня каже про річ у вітрині",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i02:audio",
+            "transcript": "It is a necklace."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:i02:r1",
+              "targetText": "It is a necklace.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i02:r2",
+              "targetText": "It is an earring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i02:r3",
+              "targetText": "It is a vase.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавчиня каже про річ у вітрині",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `necklace`, а в этом варианте — `earring`.",
+                "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `earring`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що продавчиня каже про річ у вітрині",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `necklace`, а в этом варианте — `vase`.",
+                "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `vase`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра тримає сережку. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра тримає сережку. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра держит серьгу. Дополните фразу",
+            "uk": "Сестра тримає сережку. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ earring.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-13:i03:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i03:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Сестра тримає сережку. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Сестра тримає сережку. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово earring начинается с гласного звука, поэтому здесь an.",
+                "uk": "Слово earring починається з голосного звуку, тому тут an."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Сестра тримає сережку. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед earring нужно an.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед earring потрібно an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-13:i04:p1",
+              "target": "earring",
+              "meaningByLocale": {
+                "ru": "серьга",
+                "uk": "сережка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i04:p2",
+              "target": "necklace",
+              "meaningByLocale": {
+                "ru": "ожерелье",
+                "uk": "намисто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i04:p3",
+              "target": "vase",
+              "meaningByLocale": {
+                "ru": "ваза",
+                "uk": "ваза"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i04:p4",
+              "target": "clock",
+              "meaningByLocale": {
+                "ru": "часы (настенные)",
+                "uk": "годинник (настінний)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "earring",
+            "necklace",
+            "vase",
+            "clock"
+          ],
+          "rightColumn": [
+            "сережка",
+            "намисто",
+            "ваза",
+            "годинник (настінний)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:word:bracelet",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bracelet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:bracelet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bracelet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:bracelet:audio",
+            "transcript": "bracelet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:bracelet:r1",
+              "targetText": "bracelet",
+              "meaningByLocale": {
+                "ru": "браслет, украшение на запястье. It's a bracelet — «Это браслет». О тонком или широком браслете на руку.",
+                "uk": "браслет, прикраса на зап’ястя. It's a bracelet — «Це браслет». Про тонкий або широкий браслет на руку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bracelet",
+            "definitionByLocale": {
+              "ru": "браслет, украшение на запястье. It's a bracelet — «Это браслет». О тонком или широком браслете на руку.",
+              "uk": "браслет, прикраса на зап’ястя. It's a bracelet — «Це браслет». Про тонкий або широкий браслет на руку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавчиню й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавчиню й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i05:audio",
+            "transcript": "It's a bracelet."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It's a bracelet.",
+          "orderedTokens": [
+            "It's",
+            "a",
+            "bracelet"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавчиню й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It's a bracelet.`",
+                "uk": "тут потрібно `a` — `It's a bracelet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра показує на тонку річ на подушці. Запитайте продавчиню, чи це браслет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра показує на тонку річ на подушці. Запитайте продавчиню, чи це браслет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it a bracelet?",
+          "localizedMeaning": {
+            "ru": "Сестра показывает на тонкую вещь на подушке. Спросите продавщицу, браслет ли это.",
+            "uk": "Сестра показує на тонку річ на подушці. Запитайте продавчиню, чи це браслет."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "a",
+            "bracelet"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра показує на тонку річ на подушці. Запитайте продавчиню, чи це браслет.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `Is it a bracelet?`",
+                "uk": "тут потрібно `a` — `Is it a bracelet?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавчиня тримає на долоні браслет. Скажіть коротко, що це браслет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i07:audio"
+        ],
+        "accessibilityLabel": "Продавчиня тримає на долоні браслет. Скажіть коротко, що це браслет.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i07:audio",
+            "transcript": "It's a bracelet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a bracelet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:word:pearl",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pearl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:word:pearl:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pearl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:word:pearl:audio",
+            "transcript": "pearl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:word:pearl:r1",
+              "targetText": "pearl",
+              "meaningByLocale": {
+                "ru": "жемчужина, круглая белая бусина из раковины. It is a pearl — «Это жемчужина». О настоящей жемчужине и о бусине из ожерелья.",
+                "uk": "перлина, кругла біла намистина з мушлі. It is a pearl — «Це перлина». Про справжню перлину й про намистину з намиста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pearl",
+            "definitionByLocale": {
+              "ru": "жемчужина, круглая белая бусина из раковины. It is a pearl — «Это жемчужина». О настоящей жемчужине и о бусине из ожерелья.",
+              "uk": "перлина, кругла біла намистина з мушлі. It is a pearl — «Це перлина». Про справжню перлину й про намистину з намиста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i08:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i08:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На ладони продавщицы лежит круглая белая бусина. Дополните фразу",
+            "uk": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ pearl.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-13:i08:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i08:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово pearl начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово pearl починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "На долоні продавчині лежить кругла біла намистина. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед pearl нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед pearl потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання сестри",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i09:r1",
+            "text": "Is it an earring?"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i09:r2",
+            "text": "Is it a pearl?"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i09:r3",
+            "text": "Is it a bracelet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання сестри",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i09:audio",
+            "transcript": "Is it an earring?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:i09:r1",
+              "targetText": "Is it an earring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i09:r2",
+              "targetText": "Is it a pearl?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i09:r3",
+              "targetText": "Is it a bracelet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сестри",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `pearl`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `pearl`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання сестри",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-13:i10:p1",
+              "target": "pearl",
+              "meaningByLocale": {
+                "ru": "жемчужина",
+                "uk": "перлина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i10:p2",
+              "target": "bracelet",
+              "meaningByLocale": {
+                "ru": "браслет",
+                "uk": "браслет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i10:p3",
+              "target": "necklace",
+              "meaningByLocale": {
+                "ru": "ожерелье",
+                "uk": "намисто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i10:p4",
+              "target": "earring",
+              "meaningByLocale": {
+                "ru": "серьга",
+                "uk": "сережка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pearl",
+            "bracelet",
+            "necklace",
+            "earring"
+          ],
+          "rightColumn": [
+            "перлина",
+            "браслет",
+            "намисто",
+            "сережка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавчиню й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавчиню й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i11:audio",
+            "transcript": "It is not a pearl."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not a pearl.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "a",
+            "pearl"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавчиню й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `It is not a pearl.`",
+                "uk": "тут потрібно `a` — `It is not a pearl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра тримає сережку. Запитайте продавчиню, чи це сережка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра тримає сережку. Запитайте продавчиню, чи це сережка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it an earring?",
+          "localizedMeaning": {
+            "ru": "Сестра держит серьгу. Спросите продавщицу, серьга ли это.",
+            "uk": "Сестра тримає сережку. Запитайте продавчиню, чи це сережка."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "earring"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра тримає сережку. Запитайте продавчиню, чи це сережка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `Is it an earring?`",
+                "uk": "тут потрібно `an` — `Is it an earring?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра показує круглу білу намистину. Скажіть коротко, що це перлина.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра показує круглу білу намистину. Скажіть коротко, що це перлина.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i13:audio",
+            "transcript": "It's a pearl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's a pearl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Продавчиня показує на годинник на стіні. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i14:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i14:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавчиня показує на годинник на стіні. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Продавщица показывает на часы на стене. Дополните фразу",
+            "uk": "Продавчиня показує на годинник на стіні. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "It is ___ clock.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-13:i14:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i14:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Продавчиня показує на годинник на стіні. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i14:r2",
+              "correct": false,
+              "testedDimension": "Продавчиня показує на годинник на стіні. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово clock начинается с согласного звука, поэтому здесь a.",
+                "uk": "Слово clock починається з приголосного звуку, тому тут a."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i14:r3",
+              "correct": false,
+              "testedDimension": "Продавчиня показує на годинник на стіні. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово is уже стоит перед пропуском. Перед clock нужно a.",
+                "uk": "Слово is уже стоїть перед пропуском. Перед clock потрібно a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що каже сестра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i15:r1",
+            "text": "It's an earring."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i15:r2",
+            "text": "It's a necklace."
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i15:r3",
+            "text": "It's a bracelet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що каже сестра",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i15:audio",
+            "transcript": "It's an earring."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-13:i15:r1",
+              "targetText": "It's an earring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i15:r2",
+              "targetText": "It's a necklace.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i15:r3",
+              "targetText": "It's a bracelet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-13:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сестра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `necklace`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `necklace`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-13:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що каже сестра",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
+                "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-13:i16:p1",
+              "target": "bracelet",
+              "meaningByLocale": {
+                "ru": "браслет",
+                "uk": "браслет"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i16:p2",
+              "target": "pearl",
+              "meaningByLocale": {
+                "ru": "жемчужина",
+                "uk": "перлина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i16:p3",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-13:i16:p4",
+              "target": "teapot",
+              "meaningByLocale": {
+                "ru": "заварочный чайник",
+                "uk": "чайник для заварювання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bracelet",
+            "pearl",
+            "umbrella",
+            "teapot"
+          ],
+          "rightColumn": [
+            "браслет",
+            "перлина",
+            "парасолька",
+            "чайник для заварювання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-13:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Продавчиня дістає ланцюжок із каменем. Запитайте її, чи це намисто.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Продавчиня дістає ланцюжок із каменем. Запитайте її, чи це намисто.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-13:i17:audio",
+            "transcript": "Is it a necklace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it a necklace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-13:word:earring",
+      "correctText": "earring",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i01",
+      "correctText": "It is an earring.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:word:necklace",
+      "correctText": "necklace",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i02",
+      "correctText": "It is a necklace.",
+      "correctResponseId": "en:lesson-03:session-13:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i03",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-03:session-13:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:word:bracelet",
+      "correctText": "bracelet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i05",
+      "correctText": "It's a bracelet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i06",
+      "correctText": "Is it a bracelet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i07",
+      "correctText": "It's a bracelet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:word:pearl",
+      "correctText": "pearl",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i08",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-13:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i09",
+      "correctText": "Is it an earring?",
+      "correctResponseId": "en:lesson-03:session-13:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i11",
+      "correctText": "It is not a pearl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i12",
+      "correctText": "Is it an earring?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i13",
+      "correctText": "It's a pearl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i14",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-03:session-13:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i15",
+      "correctText": "It's an earring.",
+      "correctResponseId": "en:lesson-03:session-13:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i17",
+      "correctText": "Is it a necklace?",
+      "correctResponseId": null
+    }
+  ]
+}

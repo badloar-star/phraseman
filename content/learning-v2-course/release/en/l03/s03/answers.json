@@ -1,12 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-03:session-03:word:stool",
+    "correctText": "stool",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-03:i01",
-    "correctText": "It is a book.",
+    "correctText": "It is a stool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-03:word:mirror",
+    "correctText": "mirror",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i02",
-    "correctText": "He is busy.",
+    "correctText": "It is a rug.",
     "correctResponseId": "en:lesson-03:session-03:i02:r1"
   },
   {
@@ -16,22 +26,32 @@
   },
   {
     "interactionId": "en:lesson-03:session-03:i04",
-    "correctText": "en:lesson-03:session-03:i04:p1=book\nen:lesson-03:session-03:i04:p2=busy\nen:lesson-03:session-03:i04:p3=free\nen:lesson-03:session-03:i04:p4=late",
+    "correctText": "en:lesson-03:session-03:i04:p1=stool\nen:lesson-03:session-03:i04:p2=mirror\nen:lesson-03:session-03:i04:p3=rug\nen:lesson-03:session-03:i04:p4=picture",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i05",
-    "correctText": "It is a book.",
+    "correctText": "It is a mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-03:word:picture",
+    "correctText": "picture",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i06",
-    "correctText": "Who is free?",
+    "correctText": "Is it a picture?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-03:word:rug",
+    "correctText": "rug",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i07",
-    "correctText": "I'm convinced.",
+    "correctText": "It's a rug.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-03:i09",
-    "correctText": "Is he late?",
+    "correctText": "Is it a picture?",
     "correctResponseId": "en:lesson-03:session-03:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i10",
-    "correctText": "en:lesson-03:session-03:i10:p1=aware\nen:lesson-03:session-03:i10:p2=convinced\nen:lesson-03:session-03:i10:p3=concerned\nen:lesson-03:session-03:i10:p4=ineffective",
+    "correctText": "en:lesson-03:session-03:i10:p1=picture\nen:lesson-03:session-03:i10:p2=rug\nen:lesson-03:session-03:i10:p3=stool\nen:lesson-03:session-03:i10:p4=closed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i11",
-    "correctText": "She is concerned.",
+    "correctText": "It is not a stool.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i12",
-    "correctText": "Is it a book?",
+    "correctText": "It is not a mirror.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i13",
-    "correctText": "It's ineffective.",
+    "correctText": "It's a picture.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i14",
-    "correctText": "a",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-03:session-03:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i15",
-    "correctText": "Are you convinced?",
+    "correctText": "It is a picture.",
     "correctResponseId": "en:lesson-03:session-03:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-03:i16",
-    "correctText": "en:lesson-03:session-03:i16:p1=book\nen:lesson-03:session-03:i16:p2=apple\nen:lesson-03:session-03:i16:p3=busy\nen:lesson-03:session-03:i16:p4=free",
+    "correctText": "en:lesson-03:session-03:i16:p1=mirror\nen:lesson-03:session-03:i16:p2=picture\nen:lesson-03:session-03:i16:p3=desk\nen:lesson-03:session-03:i16:p4=bed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i17",
-    "correctText": "It's a book.",
+    "correctText": "Is it a mirror?",
     "correctResponseId": null
   }
 ]

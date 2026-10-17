@@ -1,138 +1,154 @@
-# Англійська · Урок 3 · Заняття 16 — Усе на своїх місцях
+# Англійська · Урок 3 · Заняття 16 — Перевірка перед оплатою
 
-**Ситуація.** Зустріч у майстерні закінчилася. Ви з Анною допомагаєте Олегу прибрати кімнату: перевіряєте вікно й двері, знаходите зображення та пальто. Потрібно зрозуміти, про який предмет говорять, і поставити точне запитання.
+**Ситуація.** Ви з сестрою стоїте біля каси меблевого магазину. Касир звіряє кошик і папери, а ви перевіряєте, чи все гаразд. Кожен папір і кожен рядок ви називаєте самі, обираючи a чи an.
 
-**Що ви опануєте:** повторити назви предметів, a/an/the і запитання про місце
-**Нові слова:** —
+**Що ви опануєте:** розрізняти a та an під час перевірки паперів і рядків перед оплатою
+**Нові слова:** invoice, discount, warranty, address
+**Повертаються:** vase, candle, lantern, plant, oven
 
 ---
 
 ## Інтро 1
 
-### Назвати або вказати на знайоме
+### Довгий папір із принтера
 
-Повторимо `door` — «двері», `lock` — «замок», `room` — «кімната», `table` — «стіл». `It is a lock` — «Це замок»: називаємо предмет. `The lock is old` — «Замок старий»: говоримо про зрозумілий співрозмовнику замок. Вибір між `a` та `an` залежить від першого звука наступного слова; перед `lock` потрібне `a`.
+Касир друкує довгий папір зі списком покупок: крісло, духовка, чайник, а внизу сума. Сестра бере його й питає, як називається такий папір. invoice — «рахунок» зі списком покупок і ціною. Слово починається з голосного звуку, тому an: It is an invoice — «Це рахунок».
 
-**Олег показує вам окремий предмет, який ви ще не обговорювали. Назвіть його: «Це замок».**
+**Сестра питає, що це за папір. Скажіть повною фразою, що це рахунок.**
 
-- ✅ **It is a lock.**
-- ❌ It is an lock. — *Перед `lock` потрібно `a`, бо перший звук приголосний.*
-- ❌ It is lock. — *У цій фразі перед назвою одного замка потрібно `a`.*
+- ✅ **It is an invoice.**
+- ❌ It is a invoice. — *Перед invoice потрібно an: слово починається з голосного звуку.*
+- ❌ It an invoice. — *Між It і an потрібно is: It is an invoice.*
 
 ---
 
 ## Інтро 2
 
-### Потрібна саме ця річ
+### Рядок на екрані
 
-`window` — «вікно», `picture` — «зображення», `coat` — «пальто». `Where is the coat?` — «Де пальто?» Співрозмовник знає, яке пальто ви шукаєте. Олег помахав пальту на спинці стільця, сприйнявши його за гостя. Гість виявився дуже мовчазним, зате пальто нарешті знайшлося.
+Касир вводить ваш талон у касу, і на екрані з’являється новий рядок: мінус десять відсотків від суми. Сестра не розчула, що сказав касир, і просить вас уточнити. discount — «знижка». Слово починається з приголосного звуку: Is it a discount? — «Це знижка?»
 
-**Ви з Анною вже говорили про залишене пальто. Тепер ви його не бачите. Запитайте, де пальто.**
+**Ви показуєте на рядок на екрані. Запитайте касира, чи це знижка.**
 
-- ✅ **Where is the coat?**
-- ❌ What is the coat? — *Потрібно дізнатися місце: `Where`, а не `What`.*
-- ❌ Where are the coat? — *З одним пальтом тут потрібно `is`.*
+- ✅ **Is it a discount?**
+- ❌ It is a discount. — *Так звучить твердження. Щоб запитати, ставимо Is наперед: Is it a discount?*
+- ❌ Is it an discount? — *Перед discount потрібно a: слово починається з приголосного звуку.*
 
 ---
 
 ## Інтро 3
 
-### Перевірити перед виходом
+### Аркуш із печаткою в пакеті
 
-`Is the window closed?` — «Вікно зачинене?» Запитання починається з `Is`, потім іде `the window`. Ви обоє знаєте, яке вікно перевіряєте. Про двері можна повідомити `The door is closed` — «Двері зачинені». Назва предмета з `the` залишається разом і в повідомленні, і в запитанні.
+Касир вкладає в пакет із духовкою аркуш із печаткою та строком: два роки. Брат дістає його з пакета, читає й питає, що це за аркуш. warranty — «гарантія», папір про безкоштовний ремонт. Слово починається з приголосного звуку: It's a warranty — «Це гарантія».
 
-**Перед виходом Анна перевіряє знайоме вам обом вікно майстерні. Запитайте, чи вікно зачинене.**
+**Брат питає, що це за аркуш. Скажіть коротко, що це гарантія.**
 
-- ✅ **Is the window closed?**
-- ❌ Are the window closed? — *З одним вікном тут потрібне запитання з `Is`.*
-- ❌ The window is closed. — *Це повідомлення. Щоб запитати, почніть з `Is the window`.*
+- ✅ **It's a warranty.**
+- ❌ It's an warranty. — *Перед warranty потрібно a: слово починається з приголосного звуку.*
+- ❌ It's warranty. — *Перед warranty потрібно a: It's a warranty.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · На плані Олег показує незнайомий Анні предмет. Назвіть його: «Це стіл»**
+**1 · Картка слова — invoice**
+<!-- interaction_id: en:lesson-03:session-16:word:invoice; family: word_card -->
+> **invoice** — рахунок зі списком покупок і ціною. It is an invoice — «Це рахунок». Про папір, який видають магазин або фірма.
+
+**2 · Касир друкує папір зі списком покупок. Скажіть сестрі повною фразою, що це рахунок.**
 <!-- interaction_id: en:lesson-03:session-16:i01; family: phrase_builder -->
-Плитки: `table` `a` `is` `It` `an` → **It is a table.**
-*(плитка `an` зайва: тут потрібно `a` — `It is a table.`)*
+Плитки: `invoice` `is` `an` `It` `a` → **It is an invoice.**
+*(плитка `a` зайва: тут потрібно `an` — `It is an invoice.`)*
 
-**2 · Послухайте повідомлення про двері майстерні**
+**3 · Картка слова — discount**
+<!-- interaction_id: en:lesson-03:session-16:word:discount; family: word_card -->
+> **discount** — знижка, зниження ціни. Is it a discount? — «Це знижка?» Про знижку в магазині, за талоном, для постійних клієнтів.
+
+**4 · Послухайте, що касир каже про рядок на екрані**
 <!-- interaction_id: en:lesson-03:session-16:i02; family: listen_choose -->
-🔊 *The door is closed.* → **The door is closed.** · The door is open. · The door is dirty.
-- The door is open. — *У записі останнє слово — `closed`, а в цьому варіанті — `open`.*
-- The door is dirty. — *У записі останнє слово — `closed`, а в цьому варіанті — `dirty`.*
+🔊 *It is a discount.* → **It is a discount.** · It is an invoice. · It is a vase.
+- It is an invoice. — *У записі останнє слово — `discount`, а в цьому варіанті — `invoice`.*
+- It is a vase. — *У записі останнє слово — `discount`, а в цьому варіанті — `vase`.*
 
-**3 · Анна вказує на приміщення на плані. Назвіть його: «Це кімната»**
+**5 · Картка слова — warranty**
+<!-- interaction_id: en:lesson-03:session-16:word:warranty; family: word_card -->
+> **warranty** — гарантія, папір про безкоштовний ремонт. It's a warranty — «Це гарантія». Про гарантію на техніку, меблі, годинники.
+
+**6 · Касир вкладає в пакет аркуш із печаткою. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-16:i03; family: context_gap_grammar -->
-It is ___ room. → **a** · an · are
-- an — *Перед `room` потрібно `a`: перший звук приголосний.*
-- are — *Тут потрібна назва `a room`.*
+It is ___ warranty. → **a** · an · is
+- an — *Слово warranty починається з приголосного звуку, тому тут a.*
+- is — *Слово is уже стоїть перед пропуском. Перед warranty потрібно a.*
 
-**4 · З’єднайте знайомі слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-16:i04; family: speed_match -->
-door — двері · lock — замок · room — кімната · table — стіл
+invoice — рахунок-фактура · discount — знижка · warranty — гарантія · candle — свічка
 
-**5 · Послухайте й складіть повідомлення**
+**8 · Картка слова — address**
+<!-- interaction_id: en:lesson-03:session-16:word:address; family: word_card -->
+> **address** — адреса: вулиця, будинок і місто. It's an address — «Це адреса». Про адресу доставки, дому, магазину.
+
+**9 · Послухайте касира й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-16:i05; family: listen_build_dictation -->
-🔊 *The picture is here.* Плитки: `here` `is` `picture` `The` `are` → **The picture is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The picture is here.`)*
+🔊 *It's an address.* Плитки: `address` `an` `a` `It's` → **It's an address.**
+*(плитка `a` зайва: тут потрібно `an` — `It's an address.`)*
 
-**6 · Ви з Олегом шукаєте пальто, про яке щойно говорили. Запитайте, де пальто**
+**10 · На бланку доставки написані вулиця й номер будинку. Запитайте касира, чи це адреса.**
 <!-- interaction_id: en:lesson-03:session-16:i06; family: phrase_builder -->
-Плитки: `coat` `the` `is` `Where` `What` → **Where is the coat?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where is the coat?`)*
+Плитки: `address` `it` `Is` `an` `a` → **Is it an address?**
+*(плитка `a` зайва: тут потрібно `an` — `Is it an address?`)*
 
-**7 · Ви з Анною оглядаєте замок майстерні. Скажіть «Замок старий»**
+**11 · Касир показує рядок зі знижкою. Скажіть коротко, що це знижка.**
 <!-- interaction_id: en:lesson-03:session-16:i07; family: scripted_repeat_compare -->
-🎙 **The lock is old.**
+🎙 **It's a discount.**
 
-**8 · Ви показуєте вимите вікно майстерні. Доповніть «Вікно чисте»**
+**12 · Сестра питає, чи це гарантія. Ні, це рахунок. Доповніть відповідь**
 <!-- interaction_id: en:lesson-03:session-16:i08; family: context_gap_grammar -->
-The window ___ clean. → **is** · am · are
-- am — *З одним вікном тут потрібно `is`.*
-- are — *`The window` — один предмет, тому тут `is`.*
+No, it ___ not a warranty. → **is** · am · are
+- am — *З it потрібно is: No, it is not a warranty.*
+- are — *З it потрібно is: No, it is not a warranty.*
 
-**9 · Послухайте опис кімнати після зустрічі**
+**13 · Послухайте запитання сестри**
 <!-- interaction_id: en:lesson-03:session-16:i09; family: listen_choose -->
-🔊 *The room is quiet.* → **The room is quiet.** · The room is cold. · The room is warm.
-- The room is cold. — *У записі останнє слово — `quiet`, а в цьому варіанті — `cold`.*
-- The room is warm. — *У записі останнє слово — `quiet`, а в цьому варіанті — `warm`.*
+🔊 *Is it a warranty?* → **Is it a warranty?** · Is it an address? · Is it a discount?
+- Is it an address? — *У записі останнє слово — `warranty`, а в цьому варіанті — `address`.*
+- Is it a discount? — *У записі останнє слово — `warranty`, а в цьому варіанті — `discount`.*
 
-**10 · З’єднайте знайомі слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-16:i10; family: speed_match -->
-window — вікно · picture — зображення · coat — пальто · door — двері
+address — адреса · warranty — гарантія · lantern — ліхтар · plant — рослина
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте касира й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-16:i11; family: listen_build_dictation -->
-🔊 *Where is the table?* Плитки: `table` `the` `is` `Where` `What` → **Where is the table?**
-*(плитка `What` зайва: тут потрібно `Where` — `Where is the table?`)*
+🔊 *It is not an address.* Плитки: `address` `not` `is` `It` `an` `a` → **It is not an address.**
+*(плитка `a` зайва: тут потрібно `an` — `It is not an address.`)*
 
-**12 · Анна стоїть біля відомого вам обом вікна майстерні. Запитайте, чи вікно зачинене**
+**16 · Касир показує рядок на екрані. Запитайте його, чи це знижка.**
 <!-- interaction_id: en:lesson-03:session-16:i12; family: phrase_builder -->
-Плитки: `closed` `window` `the` `Is` `Are` → **Is the window closed?**
-*(плитка `Are` зайва: тут потрібно `Is` — `Is the window closed?`)*
+Плитки: `discount` `it` `Is` `a` `an` → **Is it a discount?**
+*(плитка `an` зайва: тут потрібно `a` — `Is it a discount?`)*
 
-**13 · Ви збираєте роботи після виставки. Анна знає, яке зображення вам потрібне. Запитайте, де зображення**
+**17 · Касир простягає папір зі списком покупок. Скажіть коротко, що це рахунок.**
 <!-- interaction_id: en:lesson-03:session-16:i13; family: scripted_repeat_compare -->
-🎙 **Where is the picture?**
+🎙 **It's an invoice.**
 
-**14 · Ви знайшли пальто, яке щойно шукали разом з Олегом. Доповніть повідомлення**
+**18 · На бланку написані вулиця й номер будинку. Доповніть фразу**
 <!-- interaction_id: en:lesson-03:session-16:i14; family: context_gap_grammar -->
-___ coat is here. → **The** · An · Are
-- An — *Для відомого вам обом пальта тут `The coat`; перед `coat` форма `An` також не підходить.*
-- Are — *Це повідомлення `The coat is here`.*
+It is ___ address. → **an** · a · is
+- a — *Слово address починається з голосного звуку, тому тут an.*
+- is — *Слово is уже стоїть перед пропуском. Перед address потрібно an.*
 
-**15 · Послухайте опис замка**
+**19 · Послухайте, що каже касир**
 <!-- interaction_id: en:lesson-03:session-16:i15; family: listen_choose -->
-🔊 *The lock is old.* → **The lock is old.** · The lock is new. · The lock is open.
-- The lock is new. — *У записі останнє слово — `old`, а в цьому варіанті — `new`.*
-- The lock is open. — *У записі останнє слово — `old`, а в цьому варіанті — `open`.*
+🔊 *It's an address.* → **It's an address.** · It's a warranty. · It's a discount.
+- It's a warranty. — *У записі останнє слово — `address`, а в цьому варіанті — `warranty`.*
+- It's a discount. — *У записі останнє слово — `address`, а в цьому варіанті — `discount`.*
 
-**16 · З’єднайте знайомі слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-16:i16; family: speed_match -->
-table — стіл · window — вікно · picture — зображення · coat — пальто
+discount — знижка · address — адреса · invoice — рахунок-фактура · oven — духовка
 
-**17 · Ви збираєтеся йти з майстерні. Олег стоїть біля вікна, про яке ви обоє говорили. Запитайте, чи вікно зачинене**
+**21 · Ви звіряєте папери перед оплатою. Запитайте касира, чи це рахунок.**
 <!-- interaction_id: en:lesson-03:session-16:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is the window closed?**
-
+🎙 **Is it an invoice?**

@@ -1,13 +1,23 @@
 [
   {
+    "interactionId": "en:lesson-02:session-47:word:shallow",
+    "correctText": "shallow",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-47:i01",
-    "correctText": "It is acceptable.",
+    "correctText": "It is shallow.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i02",
-    "correctText": "It is dangerous.",
+    "correctText": "It is deep.",
     "correctResponseId": "en:lesson-02:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:word:overgrown",
+    "correctText": "overgrown",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i03",
@@ -16,22 +26,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-47:i04",
-    "correctText": "en:lesson-02:session-47:i04:p1=acceptable\nen:lesson-02:session-47:i04:p2=dangerous\nen:lesson-02:session-47:i04:p3=relevant\nen:lesson-02:session-47:i04:p4=appropriate",
+    "correctText": "en:lesson-02:session-47:i04:p1=shallow\nen:lesson-02:session-47:i04:p2=peaceful\nen:lesson-02:session-47:i04:p3=overgrown\nen:lesson-02:session-47:i04:p4=narrow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:word:peaceful",
+    "correctText": "peaceful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i05",
-    "correctText": "Yes, it is.",
+    "correctText": "It is not peaceful.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i06",
-    "correctText": "What is acceptable?",
+    "correctText": "What is peaceful?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i07",
-    "correctText": "It's acceptable.",
+    "correctText": "It's overgrown.",
     "correctResponseId": null
   },
   {
@@ -40,28 +55,33 @@
     "correctResponseId": "en:lesson-02:session-47:i08:r1"
   },
   {
+    "interactionId": "en:lesson-02:session-47:word:cuddly",
+    "correctText": "cuddly",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-02:session-47:i09",
-    "correctText": "Is it relevant?",
+    "correctText": "They are cuddly.",
     "correctResponseId": "en:lesson-02:session-47:i09:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i10",
-    "correctText": "en:lesson-02:session-47:i10:p1=relevant\nen:lesson-02:session-47:i10:p2=appropriate\nen:lesson-02:session-47:i10:p3=dangerous\nen:lesson-02:session-47:i10:p4=acceptable",
+    "correctText": "en:lesson-02:session-47:i10:p1=cuddly\nen:lesson-02:session-47:i10:p2=shallow\nen:lesson-02:session-47:i10:p3=peaceful\nen:lesson-02:session-47:i10:p4=wide",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i11",
-    "correctText": "It is not acceptable.",
+    "correctText": "They are not overgrown.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i12",
-    "correctText": "Is it dangerous?",
+    "correctText": "Is it cuddly?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i13",
-    "correctText": "It's relevant.",
+    "correctText": "They're cuddly.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-47:i15",
-    "correctText": "Is it acceptable?",
+    "correctText": "Is it peaceful?",
     "correctResponseId": "en:lesson-02:session-47:i15:r1"
   },
   {
     "interactionId": "en:lesson-02:session-47:i16",
-    "correctText": "en:lesson-02:session-47:i16:p1=dangerous\nen:lesson-02:session-47:i16:p2=acceptable\nen:lesson-02:session-47:i16:p3=appropriate\nen:lesson-02:session-47:i16:p4=relevant",
+    "correctText": "en:lesson-02:session-47:i16:p1=shallow\nen:lesson-02:session-47:i16:p2=peaceful\nen:lesson-02:session-47:i16:p3=overgrown\nen:lesson-02:session-47:i16:p4=cuddly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-47:i17",
-    "correctText": "Is it acceptable?",
+    "correctText": "Is it peaceful?",
     "correctResponseId": null
   }
 ]

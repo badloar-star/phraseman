@@ -1,0 +1,2439 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-02:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-02:session-54:word:talented",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — talented",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:talented:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — talented",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:talented:audio",
+            "transcript": "talented"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:talented:r1",
+              "targetText": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый, одарённый. He is talented — «Он талантливый». О скрипаче, художнике, девочке, поваре.",
+                "uk": "талановитий, обдарований. He is talented — «Він талановитий». Про скрипаля, художника, дівчинку, кухаря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "talented",
+            "definitionByLocale": {
+              "ru": "талантливый, одарённый. He is talented — «Он талантливый». О скрипаче, художнике, девочке, поваре.",
+              "uk": "талановитий, обдарований. He is talented — «Він талановитий». Про скрипаля, художника, дівчинку, кухаря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама спрашивает про мальчика со скрипкой. Скажите ей полной фразой, что он талантливый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама спрашивает про мальчика со скрипкой. Скажите ей полной фразой, что он талантливый.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is talented.",
+          "localizedMeaning": {
+            "ru": "Мама спрашивает про мальчика со скрипкой. Скажите ей полной фразой, что он талантливый.",
+            "uk": "Мама питає про хлопчика зі скрипкою. Скажіть їй повною фразою, що він талановитий."
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "talented"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама спрашивает про мальчика со скрипкой. Скажите ей полной фразой, что он талантливый.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is talented.`",
+                "uk": "тут потрібно `is` — `He is talented.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что соседка говорит о мальчике перед выходом",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i02:r1",
+            "text": "He is nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i02:r2",
+            "text": "He is shy."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i02:r3",
+            "text": "He is brave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что соседка говорит о мальчике перед выходом",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i02:audio",
+            "transcript": "He is nervous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:i02:r1",
+              "targetText": "He is nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i02:r2",
+              "targetText": "He is shy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i02:r3",
+              "targetText": "He is brave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что соседка говорит о мальчике перед выходом",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `shy`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `shy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что соседка говорит о мальчике перед выходом",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `brave`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `brave`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:word:graceful",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — graceful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:graceful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — graceful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:graceful:audio",
+            "transcript": "graceful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:graceful:r1",
+              "targetText": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный, плавный в движениях. Is he graceful? — «Он грациозный?» О танцоре, кошке, жесте, походке.",
+                "uk": "граціозний, плавний у рухах. Is he graceful? — «Він граціозний?» Про танцюриста, кішку, жест, ходу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "graceful",
+            "definitionByLocale": {
+              "ru": "грациозный, плавный в движениях. Is he graceful? — «Он грациозный?» О танцоре, кошке, жесте, походке.",
+              "uk": "граціозний, плавний у рухах. Is he graceful? — «Він граціозний?» Про танцюриста, кішку, жест, ходу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Танцор двигается очень плавно. Спросите соседку, грациозный ли он",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Танцор двигается очень плавно. Спросите соседку, грациозный ли он",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Танцор двигается очень плавно. Спросите соседку, грациозный ли он",
+            "uk": "Танцюрист рухається дуже плавно. Запитайте сусідку, чи він граціозний"
+          },
+          "gappedTargetPhrase": "___ he graceful?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-54:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Танцор двигается очень плавно. Спросите соседку, грациозный ли он",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Танцор двигается очень плавно. Спросите соседку, грациозный ли он",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `Is`.",
+                "uk": "З `he` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Танцор двигается очень плавно. Спросите соседку, грациозный ли он",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is he graceful?`.",
+                "uk": "Питання — `Is he graceful?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-54:i04:p1",
+              "target": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый",
+                "uk": "талановитий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i04:p2",
+              "target": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный",
+                "uk": "граціозний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i04:p3",
+              "target": "stunning",
+              "meaningByLocale": {
+                "ru": "потрясающий",
+                "uk": "приголомшливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i04:p4",
+              "target": "shy",
+              "meaningByLocale": {
+                "ru": "стеснительный",
+                "uk": "сором’язливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "talented",
+            "graceful",
+            "stunning",
+            "shy"
+          ],
+          "rightColumn": [
+            "талантливый",
+            "грациозный",
+            "потрясающий",
+            "стеснительный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что соседка говорит о танцоре, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что соседка говорит о танцоре, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i05:audio",
+            "transcript": "He is not graceful."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not graceful.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "graceful"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что соседка говорит о танцоре, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not graceful.`",
+                "uk": "тут потрібно `is` — `He is not graceful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ведущий обещает в конце концерта лучшего исполнителя. Спросите соседку, кто талантливый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ведущий обещает в конце концерта лучшего исполнителя. Спросите соседку, кто талантливый.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is talented?",
+          "localizedMeaning": {
+            "ru": "Ведущий обещает в конце концерта лучшего исполнителя. Спросите соседку, кто талантливый.",
+            "uk": "Ведучий обіцяє наприкінці концерту найкращого виконавця. Запитайте сусідку, хто талановитий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "talented"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ведущий обещает в конце концерта лучшего исполнителя. Спросите соседку, кто талантливый.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is talented?`",
+                "uk": "тут потрібно `Who` — `Who is talented?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама говорит, что скрипач играет прекрасно. Скажите коротко, что он талантливый.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i07:audio"
+        ],
+        "accessibilityLabel": "Мама говорит, что скрипач играет прекрасно. Скажите коротко, что он талантливый.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i07:audio",
+            "transcript": "He's talented."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's talented.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»",
+            "uk": "Сусідка спитала: «Is he graceful?» Танцюрист знову плавно пройшов сценою. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-54:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, he is`.",
+                "uk": "Відповідь — `Yes, he is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:word:stunning",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stunning",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:stunning:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stunning",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:stunning:audio",
+            "transcript": "stunning"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:stunning:r1",
+              "targetText": "stunning",
+              "meaningByLocale": {
+                "ru": "потрясающий, захватывающий дух. It's stunning — «Это потрясающе». О номере, виде, платье, голосе.",
+                "uk": "приголомшливий, що захоплює подих. It's stunning — «Це приголомшливо». Про номер, краєвид, сукню, голос."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stunning",
+            "definitionByLocale": {
+              "ru": "потрясающий, захватывающий дух. It's stunning — «Это потрясающе». О номере, виде, платье, голосе.",
+              "uk": "приголомшливий, що захоплює подих. It's stunning — «Це приголомшливо». Про номер, краєвид, сукню, голос."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, что ведущий говорит о последнем номере",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i09:r1",
+            "text": "It is dramatic."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i09:r2",
+            "text": "It is loud."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i09:r3",
+            "text": "It is stunning."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что ведущий говорит о последнем номере",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i09:audio",
+            "transcript": "It is dramatic."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:i09:r1",
+              "targetText": "It is dramatic.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i09:r2",
+              "targetText": "It is loud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i09:r3",
+              "targetText": "It is stunning.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, что ведущий говорит о последнем номере",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dramatic`, а в этом варианте — `loud`.",
+                "uk": "У записі останнє слово — `dramatic`, а в цьому варіанті — `loud`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, что ведущий говорит о последнем номере",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dramatic`, а в этом варианте — `stunning`.",
+                "uk": "У записі останнє слово — `dramatic`, а в цьому варіанті — `stunning`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-54:i10:p1",
+              "target": "dramatic",
+              "meaningByLocale": {
+                "ru": "драматичный, эффектный",
+                "uk": "драматичний, ефектний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i10:p2",
+              "target": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный",
+                "uk": "граціозний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i10:p3",
+              "target": "proud",
+              "meaningByLocale": {
+                "ru": "гордый",
+                "uk": "гордий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i10:p4",
+              "target": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый",
+                "uk": "талановитий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dramatic",
+            "graceful",
+            "proud",
+            "talented"
+          ],
+          "rightColumn": [
+            "драматичный, эффектный",
+            "грациозный",
+            "гордый",
+            "талантливый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте, что мама говорит о хоре, и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте, что мама говорит о хоре, и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i11:audio",
+            "transcript": "It is not stunning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not stunning.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "stunning"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте, что мама говорит о хоре, и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not stunning.`",
+                "uk": "тут потрібно `is` — `It is not stunning.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:word:dramatic",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dramatic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:dramatic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dramatic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:dramatic:audio",
+            "transcript": "dramatic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:dramatic:r1",
+              "targetText": "dramatic",
+              "meaningByLocale": {
+                "ru": "драматичный, эффектный, с сильными чувствами. It is dramatic — «Тут всё очень эффектно». О сцене, голосе, паузе, концовке.",
+                "uk": "драматичний, ефектний, із сильними почуттями. It is dramatic — «Тут усе дуже ефектно». Про сцену, голос, паузу, кінцівку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dramatic",
+            "definitionByLocale": {
+              "ru": "драматичный, эффектный, с сильными чувствами. It is dramatic — «Тут всё очень эффектно». О сцене, голосе, паузе, концовке.",
+              "uk": "драматичний, ефектний, із сильними почуттями. It is dramatic — «Тут усе дуже ефектно». Про сцену, голос, паузу, кінцівку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На сцене погоня и громкая музыка. Спросите соседку, эффектный ли это номер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На сцене погоня и громкая музыка. Спросите соседку, эффектный ли это номер.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it dramatic?",
+          "localizedMeaning": {
+            "ru": "На сцене погоня и громкая музыка. Спросите соседку, эффектный ли это номер.",
+            "uk": "На сцені погоня й гучна музика. Запитайте сусідку, чи ефектний це номер."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "dramatic"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На сцене погоня и громкая музыка. Спросите соседку, эффектный ли это номер.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it dramatic?`",
+                "uk": "тут потрібно `Is` — `Is it dramatic?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Занавес закрылся, зал аплодирует. Скажите коротко, что номер потрясающий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Занавес закрылся, зал аплодирует. Скажите коротко, что номер потрясающий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i13:audio",
+            "transcript": "It's stunning."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's stunning.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный",
+            "uk": "Скрипаль упевнено вийшов і вклонився залі. Скажіть, що він не сором’язливий"
+          },
+          "gappedTargetPhrase": "He ___ not shy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-54:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i14:r2",
+              "correct": false,
+              "testedDimension": "Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный",
+              "feedbackByLocale": {
+                "ru": "С `He` нужно `is`.",
+                "uk": "З `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i14:r3",
+              "correct": false,
+              "testedDimension": "Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный",
+              "feedbackByLocale": {
+                "ru": "Фраза — `He is not shy`.",
+                "uk": "Фраза — `He is not shy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос мамы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i15:r1",
+            "text": "Is he talented?"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i15:r2",
+            "text": "Is he graceful?"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i15:r3",
+            "text": "Is he shy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос мамы",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i15:audio",
+            "transcript": "Is he talented?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:i15:r1",
+              "targetText": "Is he talented?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i15:r2",
+              "targetText": "Is he graceful?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i15:r3",
+              "targetText": "Is he shy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос мамы",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `talented`, а в этом варианте — `graceful`.",
+                "uk": "У записі останнє слово — `talented`, а в цьому варіанті — `graceful`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос мамы",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `talented`, а в этом варианте — `shy`.",
+                "uk": "У записі останнє слово — `talented`, а в цьому варіанті — `shy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-54:i16:p1",
+              "target": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый",
+                "uk": "талановитий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i16:p2",
+              "target": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный",
+                "uk": "граціозний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i16:p3",
+              "target": "stunning",
+              "meaningByLocale": {
+                "ru": "потрясающий",
+                "uk": "приголомшливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i16:p4",
+              "target": "dramatic",
+              "meaningByLocale": {
+                "ru": "драматичный, эффектный",
+                "uk": "драматичний, ефектний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "talented",
+            "graceful",
+            "stunning",
+            "dramatic"
+          ],
+          "rightColumn": [
+            "талантливый",
+            "грациозный",
+            "потрясающий",
+            "драматичный, эффектный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Выходит новый солист. Спросите соседку, талантлив ли он.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Выходит новый солист. Спросите соседку, талантлив ли он.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i17:audio",
+            "transcript": "Is he talented?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is he talented?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-02:session-54:word:talented",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — talented",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:talented:audio"
+        ],
+        "accessibilityLabel": "Картка слова — talented",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:talented:audio",
+            "transcript": "talented"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:talented:r1",
+              "targetText": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый, одарённый. He is talented — «Он талантливый». О скрипаче, художнике, девочке, поваре.",
+                "uk": "талановитий, обдарований. He is talented — «Він талановитий». Про скрипаля, художника, дівчинку, кухаря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "talented",
+            "definitionByLocale": {
+              "ru": "талантливый, одарённый. He is talented — «Он талантливый». О скрипаче, художнике, девочке, поваре.",
+              "uk": "талановитий, обдарований. He is talented — «Він талановитий». Про скрипаля, художника, дівчинку, кухаря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мама питає про хлопчика зі скрипкою. Скажіть їй повною фразою, що він талановитий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама питає про хлопчика зі скрипкою. Скажіть їй повною фразою, що він талановитий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is talented.",
+          "localizedMeaning": {
+            "ru": "Мама спрашивает про мальчика со скрипкой. Скажите ей полной фразой, что он талантливый.",
+            "uk": "Мама питає про хлопчика зі скрипкою. Скажіть їй повною фразою, що він талановитий."
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "talented"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Мама питає про хлопчика зі скрипкою. Скажіть їй повною фразою, що він талановитий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is talented.`",
+                "uk": "тут потрібно `is` — `He is talented.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що сусідка каже про хлопчика перед виходом",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i02:r1",
+            "text": "He is nervous."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i02:r2",
+            "text": "He is shy."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i02:r3",
+            "text": "He is brave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що сусідка каже про хлопчика перед виходом",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i02:audio",
+            "transcript": "He is nervous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:i02:r1",
+              "targetText": "He is nervous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i02:r2",
+              "targetText": "He is shy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i02:r3",
+              "targetText": "He is brave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що сусідка каже про хлопчика перед виходом",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `shy`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `shy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що сусідка каже про хлопчика перед виходом",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `nervous`, а в этом варианте — `brave`.",
+                "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `brave`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:word:graceful",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — graceful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:graceful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — graceful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:graceful:audio",
+            "transcript": "graceful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:graceful:r1",
+              "targetText": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный, плавный в движениях. Is he graceful? — «Он грациозный?» О танцоре, кошке, жесте, походке.",
+                "uk": "граціозний, плавний у рухах. Is he graceful? — «Він граціозний?» Про танцюриста, кішку, жест, ходу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "graceful",
+            "definitionByLocale": {
+              "ru": "грациозный, плавный в движениях. Is he graceful? — «Он грациозный?» О танцоре, кошке, жесте, походке.",
+              "uk": "граціозний, плавний у рухах. Is he graceful? — «Він граціозний?» Про танцюриста, кішку, жест, ходу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Танцюрист рухається дуже плавно. Запитайте сусідку, чи він граціозний",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i03:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Танцюрист рухається дуже плавно. Запитайте сусідку, чи він граціозний",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Танцор двигается очень плавно. Спросите соседку, грациозный ли он",
+            "uk": "Танцюрист рухається дуже плавно. Запитайте сусідку, чи він граціозний"
+          },
+          "gappedTargetPhrase": "___ he graceful?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-54:i03:r1",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i03:r2",
+              "text": "Am"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i03:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Танцюрист рухається дуже плавно. Запитайте сусідку, чи він граціозний",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Танцюрист рухається дуже плавно. Запитайте сусідку, чи він граціозний",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `Is`.",
+                "uk": "З `he` потрібно `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Танцюрист рухається дуже плавно. Запитайте сусідку, чи він граціозний",
+              "feedbackByLocale": {
+                "ru": "Вопрос — `Is he graceful?`.",
+                "uk": "Питання — `Is he graceful?`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-54:i04:p1",
+              "target": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый",
+                "uk": "талановитий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i04:p2",
+              "target": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный",
+                "uk": "граціозний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i04:p3",
+              "target": "stunning",
+              "meaningByLocale": {
+                "ru": "потрясающий",
+                "uk": "приголомшливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i04:p4",
+              "target": "shy",
+              "meaningByLocale": {
+                "ru": "стеснительный",
+                "uk": "сором’язливий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "talented",
+            "graceful",
+            "stunning",
+            "shy"
+          ],
+          "rightColumn": [
+            "талановитий",
+            "граціозний",
+            "приголомшливий",
+            "сором’язливий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що сусідка каже про танцюриста, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що сусідка каже про танцюриста, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i05:audio",
+            "transcript": "He is not graceful."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is not graceful.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "graceful"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що сусідка каже про танцюриста, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `He is not graceful.`",
+                "uk": "тут потрібно `is` — `He is not graceful.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ведучий обіцяє наприкінці концерту найкращого виконавця. Запитайте сусідку, хто талановитий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ведучий обіцяє наприкінці концерту найкращого виконавця. Запитайте сусідку, хто талановитий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Who is talented?",
+          "localizedMeaning": {
+            "ru": "Ведущий обещает в конце концерта лучшего исполнителя. Спросите соседку, кто талантливый.",
+            "uk": "Ведучий обіцяє наприкінці концерту найкращого виконавця. Запитайте сусідку, хто талановитий."
+          },
+          "orderedTokens": [
+            "Who",
+            "is",
+            "talented"
+          ],
+          "authoredDistractorTokens": [
+            "Where"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ведучий обіцяє наприкінці концерту найкращого виконавця. Запитайте сусідку, хто талановитий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Who` — `Who is talented?`",
+                "uk": "тут потрібно `Who` — `Who is talented?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама каже, що скрипаль грає чудово. Скажіть коротко, що він талановитий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i07:audio"
+        ],
+        "accessibilityLabel": "Мама каже, що скрипаль грає чудово. Скажіть коротко, що він талановитий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i07:audio",
+            "transcript": "He's talented."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's talented.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусідка спитала: «Is he graceful?» Танцюрист знову плавно пройшов сценою. Доповніть коротке «так»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка спитала: «Is he graceful?» Танцюрист знову плавно пройшов сценою. Доповніть коротке «так»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Соседка спросила: «Is he graceful?» Танцор снова плавно прошёл по сцене. Дополните короткое «да»",
+            "uk": "Сусідка спитала: «Is he graceful?» Танцюрист знову плавно пройшов сценою. Доповніть коротке «так»"
+          },
+          "gappedTargetPhrase": "Yes, he ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-54:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i08:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сусідка спитала: «Is he graceful?» Танцюрист знову плавно пройшов сценою. Доповніть коротке «так»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Сусідка спитала: «Is he graceful?» Танцюрист знову плавно пройшов сценою. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "С `he` нужно `is`.",
+                "uk": "З `he` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Сусідка спитала: «Is he graceful?» Танцюрист знову плавно пройшов сценою. Доповніть коротке «так»",
+              "feedbackByLocale": {
+                "ru": "Ответ — `Yes, he is`.",
+                "uk": "Відповідь — `Yes, he is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:word:stunning",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stunning",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:stunning:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stunning",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:stunning:audio",
+            "transcript": "stunning"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:stunning:r1",
+              "targetText": "stunning",
+              "meaningByLocale": {
+                "ru": "потрясающий, захватывающий дух. It's stunning — «Это потрясающе». О номере, виде, платье, голосе.",
+                "uk": "приголомшливий, що захоплює подих. It's stunning — «Це приголомшливо». Про номер, краєвид, сукню, голос."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stunning",
+            "definitionByLocale": {
+              "ru": "потрясающий, захватывающий дух. It's stunning — «Это потрясающе». О номере, виде, платье, голосе.",
+              "uk": "приголомшливий, що захоплює подих. It's stunning — «Це приголомшливо». Про номер, краєвид, сукню, голос."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, що ведучий каже про останній номер",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i09:r1",
+            "text": "It is dramatic."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i09:r2",
+            "text": "It is loud."
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i09:r3",
+            "text": "It is stunning."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що ведучий каже про останній номер",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i09:audio",
+            "transcript": "It is dramatic."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:i09:r1",
+              "targetText": "It is dramatic.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i09:r2",
+              "targetText": "It is loud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i09:r3",
+              "targetText": "It is stunning.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, що ведучий каже про останній номер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dramatic`, а в этом варианте — `loud`.",
+                "uk": "У записі останнє слово — `dramatic`, а в цьому варіанті — `loud`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, що ведучий каже про останній номер",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dramatic`, а в этом варианте — `stunning`.",
+                "uk": "У записі останнє слово — `dramatic`, а в цьому варіанті — `stunning`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-54:i10:p1",
+              "target": "dramatic",
+              "meaningByLocale": {
+                "ru": "драматичный, эффектный",
+                "uk": "драматичний, ефектний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i10:p2",
+              "target": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный",
+                "uk": "граціозний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i10:p3",
+              "target": "proud",
+              "meaningByLocale": {
+                "ru": "гордый",
+                "uk": "гордий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i10:p4",
+              "target": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый",
+                "uk": "талановитий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dramatic",
+            "graceful",
+            "proud",
+            "talented"
+          ],
+          "rightColumn": [
+            "драматичний, ефектний",
+            "граціозний",
+            "гордий",
+            "талановитий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте, що мама каже про хор, і складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте, що мама каже про хор, і складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i11:audio",
+            "transcript": "It is not stunning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is not stunning.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "stunning"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте, що мама каже про хор, і складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `It is not stunning.`",
+                "uk": "тут потрібно `is` — `It is not stunning.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:word:dramatic",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dramatic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:word:dramatic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dramatic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:word:dramatic:audio",
+            "transcript": "dramatic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:word:dramatic:r1",
+              "targetText": "dramatic",
+              "meaningByLocale": {
+                "ru": "драматичный, эффектный, с сильными чувствами. It is dramatic — «Тут всё очень эффектно». О сцене, голосе, паузе, концовке.",
+                "uk": "драматичний, ефектний, із сильними почуттями. It is dramatic — «Тут усе дуже ефектно». Про сцену, голос, паузу, кінцівку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dramatic",
+            "definitionByLocale": {
+              "ru": "драматичный, эффектный, с сильными чувствами. It is dramatic — «Тут всё очень эффектно». О сцене, голосе, паузе, концовке.",
+              "uk": "драматичний, ефектний, із сильними почуттями. It is dramatic — «Тут усе дуже ефектно». Про сцену, голос, паузу, кінцівку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На сцені погоня й гучна музика. Запитайте сусідку, чи ефектний це номер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На сцені погоня й гучна музика. Запитайте сусідку, чи ефектний це номер.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is it dramatic?",
+          "localizedMeaning": {
+            "ru": "На сцене погоня и громкая музыка. Спросите соседку, эффектный ли это номер.",
+            "uk": "На сцені погоня й гучна музика. Запитайте сусідку, чи ефектний це номер."
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "dramatic"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "На сцені погоня й гучна музика. Запитайте сусідку, чи ефектний це номер.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is it dramatic?`",
+                "uk": "тут потрібно `Is` — `Is it dramatic?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Завіса закрилася, зала аплодує. Скажіть коротко, що номер приголомшливий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Завіса закрилася, зала аплодує. Скажіть коротко, що номер приголомшливий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i13:audio",
+            "transcript": "It's stunning."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It's stunning.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скрипаль упевнено вийшов і вклонився залі. Скажіть, що він не сором’язливий",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скрипаль упевнено вийшов і вклонився залі. Скажіть, що він не сором’язливий",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скрипач уверенно вышел и поклонился залу. Скажите, что он не стеснительный",
+            "uk": "Скрипаль упевнено вийшов і вклонився залі. Скажіть, що він не сором’язливий"
+          },
+          "gappedTargetPhrase": "He ___ not shy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-54:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Скрипаль упевнено вийшов і вклонився залі. Скажіть, що він не сором’язливий",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i14:r2",
+              "correct": false,
+              "testedDimension": "Скрипаль упевнено вийшов і вклонився залі. Скажіть, що він не сором’язливий",
+              "feedbackByLocale": {
+                "ru": "С `He` нужно `is`.",
+                "uk": "З `He` потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i14:r3",
+              "correct": false,
+              "testedDimension": "Скрипаль упевнено вийшов і вклонився залі. Скажіть, що він не сором’язливий",
+              "feedbackByLocale": {
+                "ru": "Фраза — `He is not shy`.",
+                "uk": "Фраза — `He is not shy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання мами",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i15:r1",
+            "text": "Is he talented?"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i15:r2",
+            "text": "Is he graceful?"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i15:r3",
+            "text": "Is he shy?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання мами",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i15:audio",
+            "transcript": "Is he talented?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-54:i15:r1",
+              "targetText": "Is he talented?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i15:r2",
+              "targetText": "Is he graceful?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i15:r3",
+              "targetText": "Is he shy?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-54:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання мами",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `talented`, а в этом варианте — `graceful`.",
+                "uk": "У записі останнє слово — `talented`, а в цьому варіанті — `graceful`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-54:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання мами",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `talented`, а в этом варианте — `shy`.",
+                "uk": "У записі останнє слово — `talented`, а в цьому варіанті — `shy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-02:session-54:i16:p1",
+              "target": "talented",
+              "meaningByLocale": {
+                "ru": "талантливый",
+                "uk": "талановитий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i16:p2",
+              "target": "graceful",
+              "meaningByLocale": {
+                "ru": "грациозный",
+                "uk": "граціозний"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i16:p3",
+              "target": "stunning",
+              "meaningByLocale": {
+                "ru": "потрясающий",
+                "uk": "приголомшливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-02:session-54:i16:p4",
+              "target": "dramatic",
+              "meaningByLocale": {
+                "ru": "драматичный, эффектный",
+                "uk": "драматичний, ефектний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "talented",
+            "graceful",
+            "stunning",
+            "dramatic"
+          ],
+          "rightColumn": [
+            "талановитий",
+            "граціозний",
+            "приголомшливий",
+            "драматичний, ефектний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-02:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Виходить новий соліст. Запитайте сусідку, чи він талановитий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-02:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Виходить новий соліст. Запитайте сусідку, чи він талановитий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-54:i17:audio",
+            "transcript": "Is he talented?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is he talented?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-02:session-54:word:talented",
+      "correctText": "talented",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i01",
+      "correctText": "He is talented.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i02",
+      "correctText": "He is nervous.",
+      "correctResponseId": "en:lesson-02:session-54:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:word:graceful",
+      "correctText": "graceful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i03",
+      "correctText": "Is",
+      "correctResponseId": "en:lesson-02:session-54:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i05",
+      "correctText": "He is not graceful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i06",
+      "correctText": "Who is talented?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i07",
+      "correctText": "He's talented.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:word:stunning",
+      "correctText": "stunning",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i09",
+      "correctText": "It is dramatic.",
+      "correctResponseId": "en:lesson-02:session-54:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i11",
+      "correctText": "It is not stunning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:word:dramatic",
+      "correctText": "dramatic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i12",
+      "correctText": "Is it dramatic?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i13",
+      "correctText": "It's stunning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-02:session-54:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i15",
+      "correctText": "Is he talented?",
+      "correctResponseId": "en:lesson-02:session-54:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i17",
+      "correctText": "Is he talented?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1236,9 +1236,17 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     if (Platform.OS === 'web') return;
     return startRemoteAccountDeletionMonitor(async () => {
-      if (isLocalAccountDeletionInProgress()) return false;
+      // зачем (координатор 18.10): каждая ветка обработчика пишет, что решило исход и что увидел человек.
+      if (isLocalAccountDeletionInProgress()) {
+        console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'layout_skip', reason: 'local_delete_in_progress', userSees: 'local_delete_flow' })); // guard-ok: ранний выход
+        return false;
+      }
       const result = await handleAccountDeletedOnAnotherDevice();
-      if (!result.ok) return false;
+      if (!result.ok) {
+        console.warn('[ACCOUNT-GONE]', JSON.stringify({ step: 'layout_handler_failed', reason: result.reason, userSees: 'unchanged_retry_scheduled' })); // guard-ok: ранний выход
+        return false;
+      }
+      console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'layout_account_deleted_emitted', userSees: 'onboarding', notice: 'none_owner_rule' })); // guard-ok: итог
       emitAppEvent('account_deleted');
       await showRemoteAccountDeletionNotice();
       return true;

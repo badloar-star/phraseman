@@ -54,6 +54,7 @@ export function accountRestorePromptMessage(lang: Lang, rawDays: number): string
  */
 export function noticeAccountDeletedForever(lang: Lang, surface: string): void {
   console.log(`[ACCOUNT-RESTORE] retired_notice surface=${surface}`);
+  console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'user_sees_retired_notice', surface })); // guard-ok: что увидел человек
   void enqueueThemedBlockingInfoAlert(
     triLang(lang, {
       ru: 'Аккаунт удалён', uk: 'Акаунт видалено', en: 'Account deleted', es: 'Cuenta eliminada',
@@ -101,6 +102,7 @@ export function accountRestoreFailedCopy(lang: Lang): { title: string; body: str
 
 export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promise<AccountRestorePromptOutcome> {
   console.log('[ACCOUNT-RESTORE] prompt start');
+  console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'restore_prompt_start', next: 'see [ACCOUNT-RESTORE]' })); // guard-ok: стык цепочек
   // зачем (координатор 12.10, съёмка auth-gap-006/007): dev `restore=offer|restored` — подставной статус без сервера;
   // настоящее восстановление при подмене недостижимо (см. ниже). Вне dev / в стор-сборке — всегда null.
   const devRestoreMode = getDevAccountRestoreMode();

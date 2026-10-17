@@ -3167,6 +3167,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           subject: retiredSubject,
           ready: fresh.status === 'ready' ? 1 : 0,
         });
+        // зачем (координатор 18.10): вход в удалённый аккаунт — какой subject вернул сервер и чем кончился вход.
+        console.log('[ACCOUNT-GONE]', JSON.stringify({
+          step: 'signin_identity_retired', provider, scope: 'remote', subject: retiredSubject, fresh: fresh.status,
+          result: retiredSubject === 'stable' && fresh.status === 'ready' ? 'created_new' : 'error_identity_retired',
+        })); // guard-ok: без идентификаторов
         if (retiredSubject === 'stable' && fresh.status === 'ready') {
           emitAuthProviderLinked();
           return { result: 'created_new', email: firebaseEmail, displayName: providerDisplayName };
@@ -3179,6 +3184,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // identity_retired и молча выдавал пустой профиль.
       if (linkedRemote.failure === 'account_delete_pending') {
         logAuthEvent('auth_signin_account_delete_pending', { provider, scope: 'remote' });
+        console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'signin_delete_pending', provider, scope: 'remote', result: 'error_account_delete_pending' })); // guard-ok: ранний выход
         return { result: 'error', error: 'account_delete_pending' };
       }
       // зачем (AA S2c, L-S2b-4): перепривязку отклонили из-за потерянного nonce —
@@ -3262,6 +3268,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           subject: retiredSubject,
           ready: fresh.status === 'ready' ? 1 : 0,
         });
+        // зачем (координатор 18.10): вход в удалённый аккаунт — какой subject вернул сервер и чем кончился вход.
+        console.log('[ACCOUNT-GONE]', JSON.stringify({
+          step: 'signin_identity_retired', provider, scope: 'local', subject: retiredSubject, fresh: fresh.status,
+          result: retiredSubject === 'stable' && fresh.status === 'ready' ? 'created_new' : 'error_identity_retired',
+        })); // guard-ok: без идентификаторов
         if (retiredSubject === 'stable' && fresh.status === 'ready') {
           emitAuthProviderLinked();
           return { result: 'created_new', email: firebaseEmail, displayName: providerDisplayName };
@@ -3272,6 +3283,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // нельзя — иначе человек потеряет прогресс, который ещё можно вернуть.
       if (linkedLocal.failure === 'account_delete_pending') {
         logAuthEvent('auth_signin_account_delete_pending', { provider, scope: 'local' });
+        console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'signin_delete_pending', provider, scope: 'local', result: 'error_account_delete_pending' })); // guard-ok: ранний выход
         return { result: 'error', error: 'account_delete_pending' };
       }
       // Тихий deferred link: провайдер-вход УЖЕ состоялся (Firebase-сессия жива
@@ -5236,17 +5248,22 @@ export type RemoteAccountDeleteResult =
 
 /** Clears a device whose still-signed-in provider account was deleted elsewhere. */
 export async function handleAccountDeletedOnAnotherDevice(): Promise<RemoteAccountDeleteResult> {
+  // зачем (координатор 18.10): цепочка «удалён в другом месте» видна одним поиском [ACCOUNT-GONE] — вход, исход личности, итог.
+  const startedAt = Date.now();
+  console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'reset_start' })); // guard-ok: без идентификаторов
   void cancelPendingPushPrefsForAccountDelete('deleted_on_another_device');
   discardAccountSwitchResumeCredential('account_deleted_elsewhere');
   const freshIdentity = await ensureFreshPostDeletionIdentity('identity_retired', {
     subject: 'auth',
   });
   if (freshIdentity.status !== 'ready') {
+    console.warn('[ACCOUNT-GONE]', JSON.stringify({ step: 'reset_not_ready', status: freshIdentity.status, phase: freshIdentity.phase ?? null, ms: Date.now() - startedAt })); // guard-ok: ранний выход
     return { ok: false, reason: freshIdentity.status };
   }
   await AsyncStorage.setItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY, '1').catch(swallowAuthAs('[AUTH-DELETE]', 'remote_deleted_notice_write', undefined));
   invalidatePremiumCache();
   logAuthEvent('auth_account_deleted_on_another_device');
+  console.log('[ACCOUNT-GONE]', JSON.stringify({ step: 'reset_done', status: 'ready', ms: Date.now() - startedAt })); // guard-ok: итог
   return { ok: true };
 }
 

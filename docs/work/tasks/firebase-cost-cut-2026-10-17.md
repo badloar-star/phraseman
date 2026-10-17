@@ -199,3 +199,12 @@
 Команда для п. 6 (обратимо): `gcloud firestore backups schedules delete <id> --database='(default)'` + `gcloud firestore backups schedules create --database='(default)' --recurrence=weekly --day-of-week=SUN --retention=14d`.
 
 (Клиентский аудит — `docs/work/tasks/firebase-client-cost-audit-2026-10-17.md` — сведу сюда, когда файл появится.)
+
+
+## 8. Полный деплой functions — ОТЛОЖЕН до выхода релиза (владелец 17.10, вечер)
+- Владелец (прямо в сессии Ревизора): «подожди с полным деплоем… после того, как выпустим версию в релиз, тогда сделаем полную выкатку всего. Пока не ломаем то, что в продакшене. Только аккуратно.»
+- До этого действует прежнее правило: **только адресный деплой без `--force`**, список «НЕ УДАЛЯТЬ» выше в силе.
+- Подготовлено к полному деплою после релиза:
+  - сборка functions зелёная (`npm --prefix functions run build`, починка `__DEV__` — 0f25d0ca5);
+  - полный деплой удалит **63 функции** вне HEAD (список с gs-путём и generation — `docs/work/tasks/firebase-fulldeploy-would-delete-2026-10-17.tsv`), их архивы уже скопированы в `gs://gcf-v2-sources-1047658658799-us-central1/_revizor_backup_fulldeploy_2026-10-17/<имя>/`;
+  - внимание при деплое: 9 функций с меткой кодовой базы `content` (`learningV2CourseReleasedSessionGetV3` и др.) теперь экспортируются из `default` — возможен конфликт кодовых баз, план: сначала удалить content-копию, затем выложить default.

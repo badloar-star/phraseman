@@ -71,7 +71,8 @@ export default function PlusBadge({
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const isGlass = themeMode !== 'gold' && !isOliveTheme;
-  const fg = isGlass ? glass.text : isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : GOLD_RICH.bronzeDark;
+  // зачем (владелец 17.10, «кнопки нигде не сливаются», координатор): метка Plus на стекле — заливка и подпись акцентной пары темы ctaFill/ctaFillInk (≥3:1 к странице, ≥1,5:1 к кнопкам-хозяевам, подпись ≥4,5:1 во всех темах); прежний opaqueControl совпадал с подложкой (1,00)
+  const fg = isGlass ? glass.ctaFillInk : isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : GOLD_RICH.bronzeDark;
   const gradientColors = isOliveTheme ? OLIVE_GRADIENTS.primaryButton : isLight ? LIGHT_THEME_GRADIENT : GOLD_GRADIENTS.primaryButton;
 
   const reduceMotion = useReduceMotion();
@@ -104,7 +105,7 @@ export default function PlusBadge({
           paddingHorizontal: s.padX,
           paddingVertical: s.padY,
         },
-        isGlass ? { backgroundColor: glass.opaqueControl } : null,
+        isGlass ? { backgroundColor: glass.ctaFill } : null,
         style,
       ]}
     >

@@ -312,7 +312,8 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               <Pressable
                 accessibilityRole="button"
                 onPress={() => { hapticTap(); props.onRepeatErrors?.(); }}
-                style={[s.ghost, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}
+                // зачем (координатор 17.10): кнопка «Повторить ошибки» — тоном buttonFill (≥1,5:1 к панели), а не dividerTone 6–7 % (1,1–1,25:1); без контура
+                style={[s.ghost, { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }]}
               >
                 <Ionicons name="refresh" size={18} color={g.text} />
                 <Text style={[s.ghostText, { color: g.text }]}>{c.repeatErrors}</Text>

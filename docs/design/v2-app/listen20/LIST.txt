@@ -1,0 +1,20 @@
+01 [onyx] envelope
+02 [coral] That is a recycling bin.
+03 [onyx] asleep
+04 [onyx] There is some soup.
+05 [onyx] Where are my headphones?
+06 [onyx] Where do you park?
+07 [nova] This is a fountain.
+08 [nova] This is not a magnet.
+09 [coral] She's ill.
+10 [ash] steady
+11 [coral] The chairs are under the awning.
+12 [ash] inactive
+13 [onyx] We're late.
+14 [coral] It is impossible.
+15 [nova] sturdy
+16 [onyx] stadium
+17 [onyx] The locker is mine.
+18 [onyx] playground
+19 [nova] The berry is red.
+20 [ash] icy

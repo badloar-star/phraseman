@@ -995,7 +995,14 @@ export function theoryEntryForMode(lang: Lang, interactiveTheory: boolean, mode:
   const own: TheoryEntry = interactiveTheory ? 'hint' : 'lesson_help';
   if (lang === 'ru' || lang === 'uk' || lang === 'es') return own;
   if (FIVE_FALLBACK_LANGS.has(lang)) return 'lesson_help';
-  return mode === 'es' ? own : 'hidden';
+  // зачем (координатор 17.10, «шпаргалки на английском — ДА»): шпаргалки app/hint.tsx переведены на 9 языков — English вместо
+  // «скрыто» открывает шпаргалку (hint.tsx показывает её, а не испанскую теорию: theoryHasOwnText).
+  return mode === 'es' ? own : 'hint';
+}
+
+/** Есть ли у языка интерфейса своя длинная теория уроков (theory_content_lesson*: ru/uk/es). Нет — экран /hint показывает шпаргалку. */
+export function theoryHasOwnText(lang: Lang): boolean {
+  return lang === 'ru' || lang === 'uk' || lang === 'es';
 }
 
 export function theoryEntryFor(lang: Lang, interactiveTheory: boolean, screen: string): TheoryEntry {

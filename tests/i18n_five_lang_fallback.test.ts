@@ -1,4 +1,4 @@
-import { bundleLang, legacyRuUk, THEORY_FALLBACK, theoryContentKey, theoryEntryFor, theoryEntryForMode, triLang } from '../constants/i18n';
+import { bundleLang, legacyRuUk, THEORY_FALLBACK, theoryContentKey, theoryEntryFor, theoryEntryForMode, theoryHasOwnText, triLang } from '../constants/i18n';
 
 // зачем (координатор 12.10, 🔴): pt-BR/vi/id/tr/pl видимы в выпуске, а словарь без их ключа отдавал РУССКИЙ (~2400 словарей,
 // docs/phraseman-2.0/I18N_FALLBACK_5LANG_R1.md). Страховка: свой ключ → en → ru последним. ru/uk/es не меняются.
@@ -76,10 +76,16 @@ describe('theoryEntryFor / THEORY_FALLBACK', () => {
   beforeEach(() => { jest.spyOn(console, 'warn').mockImplementation(() => undefined); });
   afterEach(() => { jest.restoreAllMocks(); });
 
-  it('default mode is hide until the owner decides', () => {
+  // зачем (координатор 17.10, «шпаргалки на английском — ДА»): в режиме hide English открывает 9-язычную шпаргалку /hint
+  it('default mode is hide: English opens the 9-language cheat sheet, not the Spanish theory', () => {
     expect(THEORY_FALLBACK).toBe('hide');
-    expect(theoryEntryFor('en', true, 'test')).toBe('hidden');
-    expect(theoryEntryFor('en', false, 'test')).toBe('hidden');
+    expect(theoryEntryFor('en', true, 'test')).toBe('hint');
+    expect(theoryEntryFor('en', false, 'test')).toBe('hint');
+    expect(theoryHasOwnText('en')).toBe(false);
+    for (const lang of ['ru', 'uk', 'es'] as const) expect(theoryHasOwnText(lang)).toBe(true);
+    const hintSource = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'hint.tsx'), 'utf8');
+    expect(hintSource).toContain("hasTheoryContent(lessonId) && (theoryHasOwnText(lang) || THEORY_FALLBACK === 'es')");
+    expect(hintSource).toContain('titleEn:');
   });
 
   it.each(['hide', 'es'] as const)('mode %s: ru/uk/es keep their route', (mode) => {
@@ -96,9 +102,9 @@ describe('theoryEntryFor / THEORY_FALLBACK', () => {
     }
   });
 
-  it('English: hidden in hide mode, the usual route (Spanish theory) in es mode', () => {
-    expect(theoryEntryForMode('en', true, 'hide')).toBe('hidden');
-    expect(theoryEntryForMode('en', false, 'hide')).toBe('hidden');
+  it('English: cheat sheet in hide mode, the usual route (Spanish theory) in es mode', () => {
+    expect(theoryEntryForMode('en', true, 'hide')).toBe('hint');
+    expect(theoryEntryForMode('en', false, 'hide')).toBe('hint');
     expect(theoryEntryForMode('en', true, 'es')).toBe('hint');
     expect(theoryEntryForMode('en', false, 'es')).toBe('lesson_help');
   });

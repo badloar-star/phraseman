@@ -117,7 +117,7 @@ Contain: каждая красная строка — чей-то долг; чи
 |---|---|---|---|
 | Карточки / LABEL-FIT | cards_hub_large_font_contract | нет `lineHeight: lh(19)` — строки хаба после R109 / 893db7388 | устарел (перепин под новые строки) |
 | Карточки / LABEL-FIT | flashcards_my_packs_review_p1_contract | нет регулярки `accessibilityLabel={t.count === '' ? t.title : …}` — у плитки добавлена единица (`t.unit`) | устарел (перепин) |
-| Карточки | flashcards_deck_picker_liquid_glass_source_contract | хэш «до-правочных» контрактов DeckPickerSheet изменился | проверить: намеренная правка кнопок (05198c295, BackGlyph) → перепин с причиной |
+| Карточки | flashcards_deck_picker_liquid_glass_source_contract | хэш «до-правочных» контрактов DeckPickerSheet изменился | проверить: последняя правка файла — 05198c295 (14.10, цвет кнопок, №35); значок «назад» в нём не менялся. Хэш последнего return листа разошёлся → перепин с причиной, если правка намеренная |
 | Макеты | cards_section_locked | изменён зафиксированный макет `cards-section-extra.js` (4e71be616, «хаб Карточек зазор») | решение владельца: макет заморожен 04.10 — либо вернуть, либо владелец снимает фиксацию |
 | Макеты / Фраза дня | render_daily_phrase_content_preview | strict equal на предпросмотре фразы дня (старый №28) | устарел |
 | Темы | action_toast_liquid_glass_source_contract | `ActionToast.tsx` больше не содержит `glass.card` (7247ff99d) | устарел (перепин на новый токен) |

@@ -34,6 +34,7 @@ import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
+import { logFriendAdd } from '../../app/friend_add_trace';
 import {
   checkNameAvailabilityDetailed,
   normalizeNameIndexKey,
@@ -311,6 +312,8 @@ export default function NicknameEditModal({
         reservation = { status: 'error' };
       }
       traceNick(`save:reserve status=${reservation.status} tookMs=${Date.now() - reserveStartedAt}`);
+      // зачем (владелец 17.10 «друзья должны находиться мгновенно»): в сторе видно, когда новый ник попал в поисковый индекс.
+      logFriendAdd('nick_publish', { source: 'settings', status: reservation.status, ms: Date.now() - reserveStartedAt });
 
       if (isStaleAttempt()) {
         traceNick('save:out stale_attempt — исход решает более свежая попытка');

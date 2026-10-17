@@ -77,6 +77,29 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const fireRef = useRef<(id: string) => void>(() => undefined);
   const mountedAtRef = useRef(Date.now());
   const viewportHRef = useRef(0);
+  // зачем (Сверка d30b fd2e677da: календарь смонтирован 347×235, но на кадре t14 его нет) — сперва логи [STREAK-MILESTONE] calendar:visual:
+  // где календарь на экране (measureInWindow) против высоты окна и прокрутки, в момент раскладки и через 0,5/1/2 с; такты; цвета клеток.
+  const calendarRef = useRef<View>(null);
+  const scrollYRef = useRef(0);
+  const visualTracedRef = useRef(false);
+  const doneRef = useRef(done);
+  doneRef.current = done;
+  const { height: windowH } = useWindowDimensions();
+  const traceCalendarVisual = (trigger: string) => {
+    if (visualTracedRef.current && trigger === 'layout') return;
+    if (trigger === 'layout') {
+      visualTracedRef.current = true;
+      [500, 1000, 2000].forEach((ms) => setTimeout(() => traceCalendarVisual(`+${ms}ms`), ms));
+    }
+    calendarRef.current?.measureInWindow((x, y, w, h) => {
+      console.log(`[STREAK-MILESTONE] calendar:visual ${JSON.stringify({
+        trigger, milestone, x: Math.round(x), y: Math.round(y), w: Math.round(w), h: Math.round(h), windowH: Math.round(windowH),
+        onScreen: y < windowH && y + h > 0, bottomCut: Math.max(0, Math.round(y + h - windowH)), scrollY: Math.round(scrollYRef.current),
+        viewportH: viewportHRef.current, beats: [...doneRef.current], extraFired: doneRef.current.has('extra'),
+        cellOn: glass.accentGraphic, cellOff: p.control, bg: p.bg,
+      })}`); // guard-ok: строка на замер видимости календаря
+    });
+  };
   const layoutLoggedRef = useRef('');
   fireRef.current = (id: string) => {
     // зачем (Сверка r8, d30: «календаря нет даже через 14 с, под заголовком пусто») — сперва логи: какой такт сработал и когда
@@ -173,8 +196,10 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
             ) : null}
             {milestone === 30 && has('extra') ? (
               <View
+                ref={calendarRef}
                 style={s.extra}
                 onLayout={(e) => {
+                  traceCalendarVisual('layout');
                   // зачем (Сверка r8 b705b923f: calendar=false, высота сцены после такта extra не изменилась) — сперва логи: реальный размер календаря
                   const { width, height } = e.nativeEvent.layout;
                   console.log(`[STREAK-MILESTONE] calendar:layout ${JSON.stringify({ milestone, w: Math.round(width), h: Math.round(height), zero: Math.round(width) === 0 || Math.round(height) === 0 })}`); // guard-ok: строка на раскладку календаря
@@ -263,6 +288,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
           showsVerticalScrollIndicator={false}
           bounces={false}
           onLayout={(e) => { viewportHRef.current = Math.round(e.nativeEvent.layout.height); }}
+          onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; }}
+          scrollEventThrottle={64}
           onContentSizeChange={(_w, h) => {
             // зачем (Сверка r8, d30 «огонь у верхнего края»): содержимое выше окна прокрутки → сцена прижата к верху; строка на каждую смену высоты
             const line = `${kind}:${Math.round(h)}/${viewportHRef.current}:${[...done].join(',')}`;

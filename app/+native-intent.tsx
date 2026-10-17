@@ -72,6 +72,17 @@ function redirectSystemPathInner({
     return LEARNING_V2_HIDDEN_REDIRECT;
   }
 
+  // зачем (координатор 17.10, проверка живых входов в занятие, [V2-HANDOFF]): внешняя ссылка прямо в занятие идёт мимо карты — без
+  // подготовки (handoff). Канонический id (lesson-NN:session:NN) пропускаем: плеер строит локатор из id и уводит на карту с журналом
+  // (задача диплинка s56 — отдельно). Неканонический id (например en-l01-s01) давал «Сессия недоступна» — ведём на карту курса.
+  const sessionLink = raw.match(/^\/?learning-v2\/session\/([^?#/]+)/i);
+  if (sessionLink) {
+    const linkId = decodeURIComponent(sessionLink[1]);
+    const canonical = /^lesson-\d{2}:session:\d{2}$/.test(linkId);
+    console.log('[V2-HANDOFF] deep_link', JSON.stringify({ id: linkId, canonical, hasLocator: canonical, hasRunId: /[?&]sessionRunId=/.test(raw), action: canonical ? 'pass_to_player' : 'course_map' })); // guard-ok: строка на каждый внешний вход в занятие
+    if (!canonical) return '/learning-v2/course';
+  }
+
   // зачем (владелец 2026-09-30): пейволы A–G удалены, остался один пейвол Plus
   // за диспетчером /premium_modal. Старые внешние ссылки /paywall_a…/paywall_g
   // (с их query — context/source) открывают его, а не «Unmatched Route».

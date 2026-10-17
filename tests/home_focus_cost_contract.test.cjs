@@ -32,8 +32,31 @@ test('зонд: только dev и не стор-релиз, порог 30 мс
 });
 
 test('снимок зонда перерисовок получил названные значения вместо parent_or_unlisted', () => {
-  for (const key of ['continueMarks', 'continueV2Progress', 'continueV2Launching', 'devMistakesCardOverride', 'devMistakesCount', 'opened', 'onOpenDevHub']) {
+  for (const key of ['continueMarks', 'continueV2Progress', 'continueV2Launching', 'devMistakesCardOverride', 'devMistakesCount', 'onOpenDevHub']) {
     assert.ok(home.includes(`${key},`) || home.includes(`${key} `), key);
   }
-  assert.ok(home.includes('continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount, opened,'));
+  assert.ok(home.includes('continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount,'));
+});
+
+// зачем (красный экран 18.10, «Property 'opened' doesn't exist», af6044a1f): в снимок зонда попало имя из ДРУГОГО компонента файла, и Главная падала на каждом рендере.
+// Сторож: каждое простое имя в снимке useRenderCause('home') объявлено внутри HomeScreen (const/let, деструктуризация или проп) раньше этого вызова.
+test('каждое имя в снимке зонда Главной объявлено в HomeScreen до вызова', () => {
+  const start = home.indexOf('export default function HomeScreen(');
+  const callAt = home.indexOf("useRenderCause('home'");
+  assert.ok(start > 0 && callAt > start);
+  const body = home.slice(start, callAt);
+  const snapshot = home.slice(callAt, home.indexOf('}), homeRuntimeActive, true);', callAt));
+  const names = snapshot
+    .slice(snapshot.indexOf('({') + 2)
+    .split('\n').filter((line) => !line.trim().startsWith('//'))
+    .join(' ')
+    .split(',')
+    .map((part) => part.trim())
+    .filter((part) => /^[A-Za-z_]\w*$/.test(part));
+  assert.ok(names.length > 60, `имён в снимке: ${names.length}`);
+  const undeclared = names.filter((name) => {
+    const decl = new RegExp(String.raw`(?:const|let|var)\s+(?:\[[^\]=]*\b${name}\b[^\]=]*\]|\{[^}=]*\b${name}\b[^}=]*\}|${name}\b)|HomeScreen\(\{[^}]*\b${name}\b`);
+    return !decl.test(body);
+  });
+  assert.deepEqual(undeclared, [], 'имена без объявления в HomeScreen');
 });

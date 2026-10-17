@@ -2725,7 +2725,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,
         // зачем ([HOME-SETSTATE] 18.10): значения, которых не было в снимке — «parent_or_unlisted» на возврате (~0,3 с и ~1,2 с) не имел названной причины; onOpenDevHub — признак «перерисовал родитель»
-        continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount, opened, homeMotionReduceMotion, homePriorityCardReduceMotion, homeFeatureTipReduceMotion, onOpenDevHub,
+        continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount, homeMotionReduceMotion, homePriorityCardReduceMotion, homeFeatureTipReduceMotion, onOpenDevHub,
     }), homeRuntimeActive, true);
     useHomeFocusCostEnd(homeFocusCost, 'home'); // зачем ([HOME-FOCUS-COST]): ПОСЛЕДНИЙ эффект корня — парой к useHomeFocusCostBegin
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>

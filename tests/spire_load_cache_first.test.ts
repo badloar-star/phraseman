@@ -13,6 +13,7 @@ jest.mock('../components/spire/spire_tower_model', () => ({ spireCurrentWeekKey:
 
 /* eslint-disable import/first */
 import { spireFirstFrameRoom, spireLoadEnter } from '../app/spire/spire_load_trace';
+import { spireMsToWeekEnd, spireNearWeekEnd } from '../modules/spire/report_queue';
 /* eslint-enable import/first */
 
 const room = (weekId: string, ageMs: number) => ({ weekId, fetchedAtMs: Date.now() - ageMs, members: [{}, {}], tier: 2 });
@@ -72,6 +73,15 @@ describe('💸 Пик: без опроса раз в 5 минут, журнал 
     expect(hook).toContain("if (kind === 'floor' || kind === 'summit') flush('floor_closed');");
     expect(hook).toContain("flush('app_background')");
     expect(hook).toContain("flush('screen_leave')");
+  });
+  // зачем (Ревизор 17.10, 🟡): ступени последнего часа недели должны успеть к подсчёту пн 00:01 — досылка на закрытии ступени
+  it('последний час недели (до пн 00:00 UTC) — досылка на каждой ступени, раньше — нет', () => {
+    const sunday2330 = Date.UTC(2026, 9, 18, 23, 30);
+    expect(spireMsToWeekEnd(sunday2330)).toBe(30 * 60 * 1000);
+    expect(spireNearWeekEnd(sunday2330)).toBe(true);
+    expect(spireNearWeekEnd(Date.UTC(2026, 9, 18, 22, 59))).toBe(false);
+    expect(spireNearWeekEnd(Date.UTC(2026, 9, 19, 0, 5))).toBe(false); // новая неделя — до конца почти 7 дней
+    expect(read('app/spire/use_spire_game.ts')).toContain("else if (spireNearWeekEnd(Date.now())) flush('week_end');");
   });
   it('каждый запрос и пропуск отчётов и комнаты пишет причину', () => {
     const report = read('app/spire_report_client.ts');

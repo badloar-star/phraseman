@@ -90,7 +90,27 @@ export type SpireWeekLocal = Readonly<{
   rejectedTotal: number;
 }>;
 
-export type SpireFlushTrigger = 'screen_leave' | 'app_background' | 'interval' | 'app_start' | 'manual' | 'floor_closed'; // floor_closed — 💸 аудит 17.10: вместо опроса раз в 5 мин
+export type SpireFlushTrigger = 'screen_leave' | 'app_background' | 'interval' | 'app_start' | 'manual' | 'floor_closed' | 'week_end'; // floor_closed — 💸 аудит 17.10: вместо опроса раз в 5 мин; week_end — см. spireNearWeekEnd
+
+/**
+ * Окно досылки перед подведением недели (понедельник 00:00 UTC, подсчёт в 00:01).
+ * зачем (Ревизор 17.10, 🟡): без опроса раз в 5 мин ступени последнего захода до подсчёта уходили только при фоне/входе —
+ * могли не попасть в итог недели. В последний час недели каждая закрытая ступень досылается сразу (запросов — не больше ступеней).
+ */
+export const SPIRE_WEEK_END_FLUSH_WINDOW_MS = 60 * 60 * 1000;
+
+/** Сколько мс до конца недели лиги (понедельник 00:00 UTC). */
+export function spireMsToWeekEnd(nowMs: number): number {
+  const now = new Date(nowMs);
+  const daysSinceMonday = (now.getUTCDay() + 6) % 7;
+  const weekStart = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - daysSinceMonday);
+  return weekStart + 7 * 24 * 60 * 60 * 1000 - nowMs;
+}
+
+/** Последний час недели — досылать очередь на каждой закрытой ступени. */
+export function spireNearWeekEnd(nowMs: number): boolean {
+  return spireMsToWeekEnd(nowMs) <= SPIRE_WEEK_END_FLUSH_WINDOW_MS;
+}
 
 export function spireWeekLocalKey(uid: string, lang: SpireLang): string {
   return `spire_week_v1:${uid}:${lang}`;

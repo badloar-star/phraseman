@@ -21,7 +21,7 @@ import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_
 import {
   spireApplyStepReport,
   spireCreateWeekLocal,
-  type SpireFlushTrigger,
+  type SpireFlushTrigger, spireNearWeekEnd,
   type SpireLang,
   type SpireWeekLocal,
 } from '../../modules/spire/report_queue';
@@ -350,7 +350,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         setOutcome({ ...view, kind: 'save_failed', local: base });
         return;
       }
-      setWeek(res.local); if (kind === 'floor' || kind === 'summit') flush('floor_closed'); // 💸 закрыт этаж — место в комнате меняется, шлём пачку
+      setWeek(res.local); if (kind === 'floor' || kind === 'summit') flush('floor_closed'); else if (spireNearWeekEnd(Date.now())) flush('week_end'); // 💸 закрыт этаж — место меняется; последний час недели (Ревизор 17.10) — каждая ступень, чтобы попала в подсчёт пн 00:01
       // зачем (D49 + PM-280-A2, «Сегодня»): пройденная НОВАЯ ступень, легшая на
       // диск, засчитывает «Пройти N ступеней Шпиля». Провал и повтор того же отчёта
       // не считаются; ключ — reportId (повтор записи не двигает счётчик дважды).

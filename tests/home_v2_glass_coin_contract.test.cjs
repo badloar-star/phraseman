@@ -22,7 +22,9 @@ test('all three feature illustrations sit at the left on one uninterrupted glass
 test('V2 home identity and balance use one real coin-rank asset, never the hex avatar or rune', () => {
   assert.match(home, /useMyCoinRank\(\)/);
   assert.match(home, /coinRankRowForDisplay\(/);
-  assert.match(v2Home, /testID="home-hero-avatar-button"/);
+  // зачем (17.10, шапка Главной перестроена: HomeV2Header со StoryAvatarSlot и строкой монет): тот же смысл — и аватар, и баланс берут ОДИН ассет ранга монет
+  assert.match(v2Home, /testID: 'home-v2-coins'/);
+  assert.match(v2Home, /<StoryAvatarSlot[\s\S]{0,400}coinSource=\{homeCoinRankSource\}/);
   assert.match(v2Home, /source=\{homeCoinRankSource\}/);
   assert.doesNotMatch(v2Home, /<AvatarView|source=\{homeHeaderRuneIconSource\}/);
   assert.match(v2Home, /homeCoinRankSource \?/);
@@ -32,7 +34,8 @@ test('continue-learning card has no differently colored half-panel', () => {
   // зачем (01.10): заготовка первого кадра лишь приглушает арт (artPending), заливки-половинки нет.
   assert.match(continueCard, /<View pointerEvents="none" onLayout=\{logLayout\('artColumn'\)\} style=\{\[s\.art, pending \? s\.artPending : null\]\}>/); // зачем (15.10): на колонке арта журнал геометрии [HOME-CONTINUE-ART]
   assert.doesNotMatch(continueCard, /s\.art, \{ backgroundColor: p\.glassRaised \}/);
-  assert.match(continueCard, /style=\{\[s\.card, glass\]\}/);
+  // 17.10: к стеклу добавилась приглушённая заливка занятости (busy → cardBusy, R09); стекло карточки прежнее
+  assert.match(continueCard, /style=\{\[s\.card, glass(?:, busy \? s\.cardBusy : null)?\]\}/);
 });
 
 test('continue-learning card receives the approved notepad art from the real producer chain', () => {
@@ -43,9 +46,11 @@ test('continue-learning card receives the approved notepad art from the real pro
   assert.equal((assetProducer.match(/HOME_LAST_LESSON_ART/g) ?? []).length, 10);
   assert.match(home, /const lastLessonImage = getHomeLastLessonImage\(themeMode\);/);
   // 04.10: карточка «Продолжить» — только последний урок (владелец), арт урока.
-  assert.match(home, /const priorityCardImage = resolveThemedArt\(lastLessonCompleted \? 'today' : 'continue', homeArtTone\)\.base \?\? lastLessonImage;/);
+  // 17.10: основа и слой акцента — из ОДНОГО resolveThemedArt (priorityCardArt), картинка урока — запасная
+  assert.match(home, /const priorityCardArt = resolveThemedArt\(lastLessonCompleted \? 'today' : 'continue', homeArtTone\);/);
+  assert.match(home, /const priorityCardImage = priorityCardArt\.base \?\? lastLessonImage;/);
   assert.match(home, /<HomeV2ContinueCard[\s\S]{0,900}art=\{priorityCardImage\}/);
-  assert.match(continueCard, /<Image source=\{art\}/);
+  assert.match(continueCard, /<ThemedArtLayers source=\{art\}/); // 17.10: арт рисует ThemedArtLayers (основа + слой акцента темы)
   assert.match(continueCard, /style=\{badge && !pending \? s\.artImage : s\.artImageSolo\}/); // зачем (15.10): рисунок — contain, с плашкой 46, без неё 64
   assert.match(continueCard, /art: \{[^}]*right: 0/);
 });

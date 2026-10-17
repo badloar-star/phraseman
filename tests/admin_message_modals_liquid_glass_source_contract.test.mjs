@@ -34,7 +34,11 @@ test('personal message keeps guarded acknowledgement and hybrid variant', () => 
 
 test('broadcast keeps claim/review-promo behaviour and busy guard', () => {
   const s = files.broadcast;
-  for (const x of ['claimAndDismissGlobalBroadcastModal', 'recordReviewPromoClick', 'getReviewPromoUrl', 'if (!payload || busy) return;', 'hapticSuccess', 'RuneGlyph']) {
+  // зачем (перепин 17.10, Optimistic UI): окно закрывается СРАЗУ, а награда забирается фоном с повторами — компонент зовёт closeGlobalBroadcastModalAndClaimInBackground,
+  // а сам claimAndDismissGlobalBroadcastModal живёт в app/global_broadcast_modal.ts и вызывается из фонового запроса; смысл (награда забирается, окно не вернётся) прежний
+  for (const x of ['closeGlobalBroadcastModalAndClaimInBackground', 'recordReviewPromoClick', 'getReviewPromoUrl', 'if (!payload || busy) return;', 'hapticSuccess', 'RuneGlyph']) {
     assert.ok(s.includes(x), `keeps ${x}`);
   }
+  const claim = readFileSync(new URL('../app/global_broadcast_modal.ts', import.meta.url), 'utf8');
+  assert.ok(claim.includes('claimAndDismissGlobalBroadcastModal(payload, studyTarget)'), 'background claim still calls claimAndDismissGlobalBroadcastModal');
 });

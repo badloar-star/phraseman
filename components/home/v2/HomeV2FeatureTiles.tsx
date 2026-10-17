@@ -145,11 +145,12 @@ const s = StyleSheet.create({
   art: { flex: 1, marginHorizontal: -10, marginBottom: 4, paddingLeft: 10, paddingTop: 6, alignItems: 'flex-start', justifyContent: 'center' },
   artImage: { width: '86%', height: '100%', maxWidth: 84, maxHeight: 84 },
   title: { ...V2_TYPE.headline },
-  // Вариант (а): плашка-иконка, арт по центру (башня Пика целиком в кадре), название 14/18 под плашкой.
+  // Вариант (а): плашка-иконка, арт по центру (башня Пика целиком в кадре), название под плашкой.
+  // зачем (ратчет typography_two_sizes, D145; координатор 17.10): ниже заголовка допустимы только 16 и 13 — название 14→13, цифра места на бейдже 11→13 (бейдж на 2 dp выше, текст всё так же в одну строку).
   iconPlate: { aspectRatio: 1, borderRadius: V2.radius.tile, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   iconArt: { width: '74%', height: '74%' },
-  iconTitle: { marginTop: 8, fontSize: 14, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
+  iconTitle: { marginTop: 8, fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
   // бейдж поверх угла плашки (вне её overflow), растёт влево на длинных языках
-  badge: { position: 'absolute', top: -7, right: -4, minHeight: 20, paddingHorizontal: 7, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  badgeText: { fontSize: 11, lineHeight: 14, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  badge: { position: 'absolute', top: -8, right: -4, minHeight: 22, paddingHorizontal: 7, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
+  badgeText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

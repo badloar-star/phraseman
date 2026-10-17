@@ -2,6 +2,7 @@
 
 Governance-ID: TG-CE4B226D513A
 Governance-ID: TG-45F62AB902EF
+Governance-ID: TG-AD29CBF7A293
 Status: Planned
 Owner: сессия «2 · ДИЗАЙН» (список), чинят зоны владельцев
 Related epic/enabler: R115
@@ -77,3 +78,26 @@ Contain: каждая красная строка — чей-то долг; чи
 Мои правки новых красных не добавили; пересчёт «было 69 → стало N» — по `node --test tests/*.test.mjs tests/*.test.cjs` после коммитов владельцев.
 
 Замечание: столбец «Чей» — по имени теста и зоне файла (предположение), «Вердикт» — по первой ошибке прогона; перед правкой проверь первую ошибку командой `node --test tests/<файл>`.
+
+## Починено после первой версии таблицы (✅ — честная причина перепина в комментарии рядом с хэшем теста)
+
+- №4 admin_message_modals: окно закрывается сразу, награда фоном (`closeGlobalBroadcastModalAndClaimInBackground`), сам `claimAndDismissGlobalBroadcastModal` вызывается из фонового запроса — тест ищет оба; поведение прежнее ✅
+- №5 cards_free_limit_variants: лимит считается по языку набора (`savedCardsForPackLanguage`) — аудит кнопок Карточек; смысл (только Free, скрытые лимитом или счёт ≥ лимита) прежний ✅
+- №7 flashcards_speaking: перепин трёх слепков (узлы 36, защищённые элементы, SpeakHoldButton/SpeakingPanel) — намеренные правки D194 (попытка голоса при РЕАЛЬНОМ старте записи), речи 15.10 (строгие слова, missingWords, язык микрофона), цифры остатка голоса ✅
+- №8 flashcards_training_setup: перепин слепка (28) — единственная правка маршрута после пина: 719e4c771 (метка «последнее место» перед router.push); V2Kit — только вид (buttonFill, NavIcon) ✅
+- №12 home_v2_glass_coin: сторож приведён к текущей разметке Главной (HomeV2Header/StoryAvatarSlot, стекло карточки с busy, ThemedArtLayers) — смысл «один ассет ранга монет, стекло, арт» сохранён ✅
+- №13 home_v2_video_rail: уже зелёный (чужая правка заглушки) ✅
+- №37 typography_two_sizes: мои нарушения (подпись этапа 12→13, плитки Главной 14/11→13/13) убраны ✅; остаётся SpireWeekMomentHost (Моменты)
+
+## Раздача: владелец → номера тестов (по таблице выше)
+
+| Владелец | Номера | Что делать |
+|----------|--------|------------|
+| Ядро | 6, 29, 38 | 6: хэш app/stable_id.ts; 29: слепок rate/store actions (отзывы); 38: «failed store opening must restore the modal» (окно обновления) |
+| Темы | 1, 2, 3, 23, 39 | 1: псевдоним токена заливки красит текст → accentText; 2, 3: непрозрачный стеклянный вид достижений/тоста по-новому; 23: регулярка g.opaque…/glassButtonFill в списке ошибок; 39: уровни палитры тем |
+| Вход | — | в этом прогоне красных нет |
+| Сайт | 27, 34, 40 | 27: текст предпроверки «ОТКАЗ: не прошло гейтов — 1»; 34: в learning_v2_ceiling_committed_gate.mjs нет пропуска в стор-режиме; 40: video_market_loader — тест не собирает TS (Transform failed) |
+| Моменты | 24, 25, 32, 36, 37 (SpireWeekMomentHost) | 24, 25: слепки кегля/dev-превью; 32: обводки в MomentDown.tsx и mode_feedback_v1.tsx; 36: hex в ComboMomentLayer, LegacyBonusHero, моментах |
+| Макеты | 28, 18 | 28: render_daily_phrase_content_preview (strict equal на предпросмотре); 18: в макетах нет встроенного JSON #session-audio-evidence |
+| V2 (курс и релиз) | 17, 19, 20, 30 | 17: нет content/learning-v2-course/pipeline/session_readiness.mjs; 19, 20: паритет релиза (состав выпущенных занятий, validateReleaseQuality); 30: saved_packs_completion — язык наборов (4 вместо 1) |
+| Переводчик | 9, 14, 15 | 9: одобренный текст «Пять минут на английский?»; 14: scan_i18n_design_zone падает; 15: «вы/Нажмите» в ru/uk |

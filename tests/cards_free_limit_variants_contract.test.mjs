@@ -8,7 +8,8 @@ const read = (p) => readFileSync(p, 'utf8').replace(/\r\n/g, '\n');
 
 test('saved cards: limit pill and the Plus button replace the hidden-cards section', () => {
   const screen = read('app/flashcards_collection.tsx');
-  assert.match(screen, /const savedLimitReached = savedSurface && !isPremium && \(hiddenByLimitCount > 0 \|\| savedCards\.length >= FREE_SAVED_CARD_LIMIT\);/);
+  // перепин 17.10 (аудит кнопок Карточек): лимит считается по языку набора (savedCardsForPackLanguage), а не по всем сохранённым; смысл прежний — только у Free, скрытые лимитом или счёт ≥ лимита
+  assert.match(screen, /const savedLimitReached = savedSurface && !isPremium && \(hiddenByLimitCount > 0 \|\| savedCardsForPackLanguage\.length >= FREE_SAVED_CARD_LIMIT\);/);
   assert.ok(screen.indexOf('const savedSurface =') < screen.indexOf('const savedLimitReached ='), 'savedSurface is declared before the limit flag (no TDZ)');
   assert.ok(screen.includes('limitIcon="bookmark-outline"'));
   assert.ok(screen.includes('limitCta={savedLimitReached ? { onPress: openPremiumLimit } : null}'));

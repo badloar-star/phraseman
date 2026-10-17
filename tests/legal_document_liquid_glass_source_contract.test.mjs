@@ -55,8 +55,11 @@ const LEGAL_FILES = [
   // 17.10 (координатор, слово владельца): ИИ-разбор ошибок в уроках выключен, кнопка «Объяснить» убрана — из §11 удалён абзац о
   // согласии на «Mistake-explanation features in lessons»; дата «Last updated» → October 17, 2026. Остальной текст байт в байт.
   // 17.10 (координатор): из перечня первой фразы §11 убрано «mistake explanations» — функции нет.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '3619f4cb1bb6cc26fc5a6993b8072a987e98fac47889cf4292fbe5df7524f0d9'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '73f908613e0b78fad2fa03102532ccfce0aa449ff317823acb2bea8b32de6e24'],
+  // 17.10 (координатор, вариант (а) по замечанию Ревизора 3.01/3.02): старые сборки в сторах ещё зовут explainMistake — абзац о согласии
+  // и «mistake explanations» в §11 возвращены с пометкой «only in app versions earlier than 2.0.0»; в 2.0.0 обе функции выключены
+  // (MISTAKE_EXPLAIN_ENABLED = false). Снять отдельной правкой, когда старые версии уйдут и explainMistake удалят с сервера.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '3c0a5654f1789d68d4ce04c741f0e0c6adbdcd93296b3088ec3ccbc24f1739b9'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '36a76ed6bacc0a6f04ee9a3c1952a55fb49118915070ba0f67529fbb32ee4d2a'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],

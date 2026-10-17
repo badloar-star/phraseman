@@ -503,9 +503,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                     void hapticTap();
                     router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
                   }}
-                  style={[styles.createBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }]}
+                  style={[styles.createBtn, { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }]}
                 >
-                  <Ionicons name="add" size={22} color={g.accentInk} />
+                  <Ionicons name="add" size={22} color={g.ctaFillInk} />
                 </KitTouchable>
               </View>
               <View style={styles.searchWrap}>

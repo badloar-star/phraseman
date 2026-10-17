@@ -2,7 +2,7 @@
 // шторка режимов на ролике, метки PlusBadge xs на «Добить» / «Повторить ошибки» / «Ещё N», приглашение войти после урока 1,
 // кнопки на нижней подложке итога урока. Пары считаются по реальным токенам liquidGlassTokens (все темы × тёмная/светлая × 5 ползунков).
 // Пороги — те же, что в buttons_never_merge_audit: основная кнопка к фону ≥ 3:1, тоновая плашка к поверхности ≥ 1,5:1, подпись ≥ 4,5:1.
-// Тоновые пары (плашка/метка к поверхности) — форма, не читаемость: у «Повторить ошибки» заливка — dividerTone 6–7 % по макету (1,1–1,25:1, держится тенью), метка Plus — opaqueControl, на светлых градиентных темах совпадает с подложкой (1,0) — подпись метки при этом ≥ 11:1. Порог 1,0 = только фиксация цифр; читаемость и основная кнопка (≥3:1) — жёсткие.
+// Решение координатора 17.10: метка Plus — заливка ctaFill / подпись ctaFillInk (тон акцента, ≥1,5:1 к любой подложке, ≥3:1 к странице); «Повторить ошибки» — buttonFill вместо dividerTone (был 1,1–1,25:1). Без контуров.
 // AUDIT_PRINT=1 печатает худшие значения по каждому элементу.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
@@ -42,15 +42,15 @@ const PAIRS: readonly Pair[] = [
   // «Ещё N» (PanelCta ghost: buttonFill, подпись text) + метка Plus xs (opaqueControl, подпись text)
   { element: '«Ещё N» + Plus', what: 'кнопка к странице (тон)', min: 1.5, get: (t) => ratioRgb(solid(t.buttonFill!), solid(t.bgBottom!)) },
   { element: '«Ещё N» + Plus', what: 'подпись кнопки к кнопке', min: 4.5, get: (t) => ratioRgb(solid(t.text!), solid(t.buttonFill!)) },
-  { element: '«Ещё N» + Plus', what: 'метка Plus к кнопке (тон)', min: 1.0, get: (t) => ratioRgb(solid(t.opaqueControl!), solid(t.buttonFill!)) },
-  { element: '«Ещё N» + Plus', what: 'подпись метки к метке', min: 4.5, get: (t) => ratioRgb(solid(t.text!), solid(t.opaqueControl!)) },
-  // «Повторить ошибки» (V2DoneScreen ghost: dividerTone поверх панели plateFillFrom) + метка Plus
-  { element: '«Повторить ошибки» + Plus', what: 'кнопка к панели (тон)', min: 1.0, get: (t) => ratioRgb(over(t.dividerTone!, t.plateFillFrom!), solid(t.plateFillFrom!)) },
-  { element: '«Повторить ошибки» + Plus', what: 'подпись к кнопке', min: 4.5, get: (t) => ratioRgb(solid(t.text!), over(t.dividerTone!, t.plateFillFrom!)) },
-  { element: '«Повторить ошибки» + Plus', what: 'метка Plus к кнопке (тон)', min: 1.0, get: (t) => ratioRgb(solid(t.opaqueControl!), over(t.dividerTone!, t.plateFillFrom!)) },
+  { element: '«Ещё N» + Plus', what: 'метка Plus к кнопке (тон)', min: 1.5, get: (t) => ratioRgb(solid(t.ctaFill!), solid(t.buttonFill!)) },
+  { element: '«Ещё N» + Plus', what: 'подпись метки к метке', min: 4.5, get: (t) => ratioRgb(solid(t.ctaFillInk!), solid(t.ctaFill!)) },
+  // «Повторить ошибки» (V2DoneScreen ghost: теперь buttonFill, был dividerTone 6–7 %) + метка Plus
+  { element: '«Повторить ошибки» + Plus', what: 'кнопка к панели (тон)', min: 1.5, get: (t) => ratioRgb(solid(t.buttonFill!), solid(t.plateFillFrom!)) },
+  { element: '«Повторить ошибки» + Plus', what: 'подпись к кнопке', min: 4.5, get: (t) => ratioRgb(solid(t.text!), solid(t.buttonFill!)) },
+  { element: '«Повторить ошибки» + Plus', what: 'метка Plus к кнопке (тон)', min: 1.5, get: (t) => ratioRgb(solid(t.ctaFill!), solid(t.buttonFill!)) },
   // «Добить» (тихая ссылка secondary на подложке итога bg) + метка Plus
   { element: '«Добить» + Plus', what: 'подпись ссылки к подложке', min: 4.5, get: (t) => ratioRgb(solid(t.secondary!), solid(t.bg!)) },
-  { element: '«Добить» + Plus', what: 'метка Plus к подложке (тон)', min: 1.0, get: (t) => ratioRgb(solid(t.opaqueControl!), solid(t.bg!)) },
+  { element: '«Добить» + Plus', what: 'метка Plus к подложке (тон)', min: 3, get: (t) => ratioRgb(solid(t.ctaFill!), solid(t.bg!)) },
   // Итог урока: основная кнопка на нижней подложке (фейд к bg)
   { element: 'итог урока: основная', what: 'кнопка к подложке', min: 3, get: (t) => ratioRgb(solid(t.ctaFill!), solid(t.bg!)) },
   { element: 'итог урока: основная', what: 'подпись к кнопке', min: 4.5, get: (t) => ratioRgb(solid(t.ctaFillInk!), solid(t.ctaFill!)) },
@@ -69,6 +69,22 @@ describe('итог урока: основная кнопка берёт пару
     expect(src).toContain('backgroundColor: g.ctaFill');
     expect(src).toContain('color: g.ctaFillInk');
     expect(src).not.toMatch(/backgroundColor: g\.cta/);
+  });
+});
+
+// зачем (координатор 17.10, пункт 3): заливки основных кнопок — только пара ctaFill/ctaFillInk. Яркие accent/cta на светлых градиентных темах (ползунок ≥0,75)
+// давали 1,0–2,5:1 к фону (кнопка «слипалась»). Список — места, где такие кнопки были; новые кнопки в этих файлах тоже не должны брать accent/cta как заливку.
+describe('основные кнопки не красятся яркими accent/cta', () => {
+  const FILES = [
+    'components/mistakes-panel/PanelKit.tsx', 'components/cards-grid/CardsKit.tsx', 'app/flashcards/CardsHubV2.tsx',
+    'app/flashcards/CardsSessionResultV2.tsx', 'app/flashcards/CollectionGalleryView.tsx', 'app/flashcards/CollectionListView.tsx',
+    'app/flashcards/FlashcardsCategoryHub.tsx', 'app/flashcards_packs.tsx', 'app/lingman_videos.tsx', 'app/flashcards/VideoSetView.tsx',
+    'app/mistake_practice_session.tsx',
+  ];
+  it.each(FILES)('%s', (file) => {
+    const src = fs.readFileSync(path.join(process.cwd(), file), 'utf8');
+    const hits = src.split('\n').filter((l) => /backgroundColor: g\.(accent|cta)\b/.test(l) && !/styles\.check/.test(l));
+    expect(hits).toEqual([]);
   });
 });
 

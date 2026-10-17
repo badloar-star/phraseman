@@ -1075,9 +1075,9 @@ export default function FlashcardsCategoryHub({
                   accessibilityRole="button"
                   activeOpacity={0.86}
                   onPress={() => { console.log('[CATALOG-OFFLINE] retry tap'); onRetryCatalog(); }}
-                  style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.accent }}
+                  style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.ctaFill }}
                 >
-                  <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '700' }}>
+                  <Text style={{ color: g.ctaFillInk, fontSize: 16, fontWeight: '700' }}>
                     {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
                   </Text>
                 </TouchableOpacity>
@@ -1096,9 +1096,9 @@ export default function FlashcardsCategoryHub({
                       accessibilityRole="button"
                       activeOpacity={0.86}
                       onPress={onResetFilters}
-                      style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.accent }}
+                      style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.ctaFill }}
                     >
-                      <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '700' }}>
+                      <Text style={{ color: g.ctaFillInk, fontSize: 16, fontWeight: '700' }}>
                         {triLang(lang, { ru: 'Сбросить поиск', uk: 'Скинути пошук', en: 'Reset search', es: 'Borrar la búsqueda', 'pt-BR': 'Limpar a busca', vi: 'Xóa tìm kiếm', id: 'Hapus pencarian', tr: 'Aramayı temizle', pl: 'Wyczyść wyszukiwanie' })}
                       </Text>
                     </TouchableOpacity>

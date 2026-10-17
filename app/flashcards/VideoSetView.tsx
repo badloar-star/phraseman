@@ -210,10 +210,10 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
                       accessibilityRole="button"
                       accessibilityLabel={`${jumpLabel} ${time}`}
                       onPress={() => { void hapticTap(); jumpToVideo(card); }}
-                      style={({ pressed }) => [styles.jump, { backgroundColor: g.cta }, pressed && styles.pressed]}
+                      style={({ pressed }) => [styles.jump, { backgroundColor: g.ctaFill }, pressed && styles.pressed]}
                     >
-                      <Ionicons name="play" size={16} color={g.ctaInk} />
-                      <Text style={[styles.jumpText, { color: g.ctaInk }]}>{jumpLabel}</Text>
+                      <Ionicons name="play" size={16} color={g.ctaFillInk} />
+                      <Text style={[styles.jumpText, { color: g.ctaFillInk }]}>{jumpLabel}</Text>
                     </Pressable>
                   </View>
                 ) : null}

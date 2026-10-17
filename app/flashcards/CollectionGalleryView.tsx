@@ -289,7 +289,7 @@ export default function CollectionGalleryView({
               <Ionicons name="lock-closed" size={24} color={g.text} />
               <Text style={[styles.limitTitle, { color: g.text }]}>{copy.hidden(hiddenByLimitCount)}</Text>
               <Text style={[styles.limitSub, { color: g.secondary }]}>{copy.free}</Text>
-              <View style={[styles.limitCta, { backgroundColor: g.accent }]}><Text style={[styles.limitCtaText, { color: g.accentInk }]}>{copy.plus}</Text></View>
+              <View style={[styles.limitCta, { backgroundColor: g.ctaFill }]}><Text style={[styles.limitCtaText, { color: g.ctaFillInk }]}>{copy.plus}</Text></View>
             </Pressable>
           ) : null}
           <View style={styles.report}>
@@ -331,18 +331,18 @@ export default function CollectionGalleryView({
       ) : onTrain ? (
         // зачем (макет cards-v2 `.fab-wrap`): «Тренировать» — плавающая пилюля по центру внизу (42 высотой, значок ▶ и подпись), а не широкая панель
         <View pointerEvents="box-none" style={[styles.fabWrap, { bottom: Math.max(30, insets.bottom + 10) + (limitCta ? 66 : 0) }]}>
-          <Pressable testID="fc-gallery-train" accessibilityRole="button" accessibilityLabel={copy.train} onPress={onTrain} style={({ pressed }) => [styles.fab, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
-            <Ionicons name="play" size={18} color={g.accentInk} />
-            <Text style={[styles.fabText, { color: g.accentInk }]}>{copy.train}</Text>
+          <Pressable testID="fc-gallery-train" accessibilityRole="button" accessibilityLabel={copy.train} onPress={onTrain} style={({ pressed }) => [styles.fab, { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
+            <Ionicons name="play" size={18} color={g.ctaFillInk} />
+            <Text style={[styles.fabText, { color: g.ctaFillInk }]}>{copy.train}</Text>
           </Pressable>
         </View>
       ) : null}
 
       {limitCta && !selectionMode ? (
         <View pointerEvents="box-none" style={[styles.limitBar, { bottom: Math.max(16, insets.bottom + 6) }]}>
-          <Pressable testID="fc-gallery-unlimited" accessibilityRole="button" accessibilityLabel={unlimitedLabelFor(uiLang)} onPress={limitCta.onPress} style={({ pressed }) => [styles.limitBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
-            <Ionicons name="lock-open-outline" size={18} color={g.accentInk} />
-            <Text style={[styles.limitBtnText, { color: g.accentInk }]}>{unlimitedLabelFor(uiLang)}</Text>
+          <Pressable testID="fc-gallery-unlimited" accessibilityRole="button" accessibilityLabel={unlimitedLabelFor(uiLang)} onPress={limitCta.onPress} style={({ pressed }) => [styles.limitBtn, { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
+            <Ionicons name="lock-open-outline" size={18} color={g.ctaFillInk} />
+            <Text style={[styles.limitBtnText, { color: g.ctaFillInk }]}>{unlimitedLabelFor(uiLang)}</Text>
           </Pressable>
         </View>
       ) : null}

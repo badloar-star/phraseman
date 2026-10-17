@@ -168,11 +168,11 @@ export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disa
         flex && styles.ctaFlex,
         ghost
           ? { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }
-          : { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
+          : { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) },
         disabled && styles.ctaDisabled,
         pressed && styles.pressed,
       ]}>
-      <Text style={[styles.ctaText, { color: ghost ? g.text : g.accentInk }]}>{label}</Text>
+      <Text style={[styles.ctaText, { color: ghost ? g.text : g.ctaFillInk }]}>{label}</Text>
       {trailing}
     </Pressable>
   );

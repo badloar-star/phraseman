@@ -188,14 +188,14 @@ function CardsHubV2Inner({
       <Pressable ref={trainButtonRef} testID="fc-cards-hub-train" accessibilityRole="button" accessibilityLabel={fresh ? fresh.cta : labels.trainA11y} onPress={fresh ? fresh.onPress : onTrain}
         style={({ pressed }) => [
           styles.cta,
-          { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
+          { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) },
           // зачем (hubLimitS): исчерпанный лимит — кнопка приглушена до .55, как в макете.
           !fresh && trainLocked ? styles.ctaLocked : null,
           pressed && styles.pressed,
         ]}>
-        <Text style={[styles.ctaText, { color: g.accentInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
+        <Text style={[styles.ctaText, { color: g.ctaFillInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
         <View style={styles.ctaIcon}>
-          <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.accentInk} />
+          <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.ctaFillInk} />
         </View>
       </Pressable>
 

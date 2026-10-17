@@ -117,7 +117,7 @@ export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPre
   /** Вид «недоступно» (`.cta.dis`): плотная заливка, приглушённый текст; нажатие остаётся — экран сам объяснит причину. */
   disabled?: boolean;
 }>) {
-  const ink = disabled ? g.mutedText : g.accentInk;
+  const ink = disabled ? g.mutedText : g.ctaFillInk;
   return (
     <Pressable
       testID={testID}
@@ -129,7 +129,7 @@ export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPre
         styles.cta,
         disabled
           ? { backgroundColor: g.buttonFill }
-          : { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
+          : { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) },
         pressed && styles.pressed,
       ]}>
       {icon ? <Ionicons name={icon} size={20} color={ink} /> : null}

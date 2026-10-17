@@ -761,9 +761,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         accessibilityRole="button"
         accessibilityLabel={copy.retry}
         onPress={() => void loadCatalog(undefined, true)}
-        style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 }]}
+        style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.ctaFill, opacity: pressed ? 0.8 : 1 }]}
       >
-        <Text style={[styles.unavailableActionLabel, { color: g.ctaInk }]}>{copy.retry}</Text>
+        <Text style={[styles.unavailableActionLabel, { color: g.ctaFillInk }]}>{copy.retry}</Text>
       </Pressable>
     </ScrollView>
   );
@@ -849,9 +849,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               accessibilityRole="button"
               accessibilityLabel={copy.tryAgain}
               onPress={() => retryCatalogAfterUnavailable('tap')}
-              style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 }]}
+              style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.ctaFill, opacity: pressed ? 0.8 : 1 }]}
             >
-              <Text style={[styles.unavailableActionLabel, { color: g.ctaInk }]}>{copy.retry}</Text>
+              <Text style={[styles.unavailableActionLabel, { color: g.ctaFillInk }]}>{copy.retry}</Text>
             </Pressable>
           </ScrollView>
         ) : (visibleLoading || issue === 'error') && !catalog && !snapshot ? (

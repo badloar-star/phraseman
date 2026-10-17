@@ -1753,9 +1753,9 @@ function MistakePracticeSessionScreen() {
                 accessibilityLabel={copy.holdToSpeak}
                 onPressIn={() => { if (!voiceGate.canStartAttempt()) return; setSpeechHeld(true); }}
                 onPressOut={() => setSpeechHeld(false)}
-                style={({ pressed }) => [styles.mic, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 34, spreadDistance: -12, color: `${g.accent}B3` }] }, pressed && { opacity: 0.9 }]}
+                style={({ pressed }) => [styles.mic, { backgroundColor: g.ctaFill, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 34, spreadDistance: -12, color: `${g.ctaFill}B3` }] }, pressed && { opacity: 0.9 }]}
               >
-                <Ionicons name="mic" size={32} color={g.accentInk} />
+                <Ionicons name="mic" size={32} color={g.ctaFillInk} />
                 <MicAllowanceBadge testID="mistake-practice-allowance" />
               </Pressable>
               <Text style={[styles.micLabel, { color: g.secondary }]}>{pcopy.holdToSpeak}</Text>

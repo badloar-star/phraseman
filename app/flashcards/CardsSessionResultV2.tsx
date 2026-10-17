@@ -252,10 +252,10 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
             variant="primary"
             pressScaleTo={KIT_MOTION.pressScale}
             style={s.flex}
-            contentStyle={[s.cta, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }]}
+            contentStyle={[s.cta, { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }]}
           >
             <ThemeAccentFill glass={g} radius={24} />
-            <Text style={[s.ctaText, { color: g.accentInk }]}>{hasRetry ? props.retryLabel : c.done}</Text>
+            <Text style={[s.ctaText, { color: g.ctaFillInk }]}>{hasRetry ? props.retryLabel : c.done}</Text>
           </PressableHybrid>
         </View>
       </View>

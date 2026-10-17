@@ -126,11 +126,72 @@ type RecoverySession = {
   provider: RecoveryProvider;
 };
 
+// ── [AUTH-RECOVERY] лимит на вызывающего вместо App Check (координатор 17.10, находка Ревизора ec28dd324 §10) ──────────
+// зачем: здесь стояло `if (!request.app) throw 'app_check_required'`, а клиентский App Check удалён (пломба владельца
+// 2026-08-17, APP_CHECK_SEALED_BY_OWNER_2026_08_17) — request.app всегда пуст, и восстановление по коду было мертво целиком.
+// Голым снимать нельзя: App Check мешал скриптовой рассылке писем по чужим stableId (они видны как id документов рейтинга).
+// Замена — как authRecoveryHint (auth_identity.ts): обязательная сессия Google/Apple (как и было) + окно 1 ч на uid
+// вызывающего и на IP поверх прежних лимитов (3 письма/ч на stableId, 5 попыток кода). Документы — по хэшу, в уже
+// закрытой правилами коллекции auth_recovery_rate_limits (префикс caller_ не пересекается со stableId).
+export const RECOVERY_CALLER_RATE_WINDOW_MS = 60 * 60 * 1000;
+export const RECOVERY_CALLER_RATE_MAX_PER_UID = 10;
+export const RECOVERY_CALLER_RATE_MAX_PER_IP = 30;
+
+function recoveryLog(outcome: string, extra: Record<string, unknown> = {}): void {
+  console.log(JSON.stringify({ event: 'auth_recovery', tag: '[AUTH-RECOVERY]', outcome, ...extra }));
+}
+
+/** IP вызывающего: первый адрес из x-forwarded-for, иначе rawRequest.ip; нет — пусто (лимит тогда только по uid). */
+export function recoveryCallerIp(rawRequest: unknown): string {
+  const req = (rawRequest ?? {}) as { headers?: Record<string, unknown>; ip?: unknown };
+  const forwarded = req.headers?.['x-forwarded-for'];
+  const first = (Array.isArray(forwarded) ? String(forwarded[0] ?? '') : String(forwarded ?? '')).split(',')[0].trim();
+  const ip = first || (typeof req.ip === 'string' ? req.ip.trim() : '');
+  return ip.slice(0, 64);
+}
+
+export async function consumeRecoveryCallerRate(
+  db: FirebaseFirestore.Firestore,
+  authUid: string,
+  ip: string,
+  scope: string,
+  nowMs = Date.now(),
+): Promise<void> {
+  const hash = (value: string) => crypto.createHash('sha256').update(value).digest('hex').slice(0, 32);
+  const refs = [
+    { kind: 'uid' as const, max: RECOVERY_CALLER_RATE_MAX_PER_UID, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`caller_uid_${hash(authUid)}`) },
+    ...(ip ? [{ kind: 'ip' as const, max: RECOVERY_CALLER_RATE_MAX_PER_IP, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`caller_ip_${hash(ip)}`) }] : []),
+  ];
+  // Без транзакции: лимит против рассылки, а не счёт денег — гонка двух параллельных вызовов даст максимум +1, зато
+  // основная транзакция восстановления остаётся единственной (её фазы и откаты не сдвигаются).
+  const snaps = await Promise.all(refs.map(({ ref }) => ref.get()));
+  const states = snaps.map((snap) => {
+    const data = snap.exists ? snap.data() ?? {} : {};
+    const windowStartMs = Number(data.windowStartMs ?? 0);
+    const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_CALLER_RATE_WINDOW_MS;
+    return { sameWindow, windowStartMs, count: sameWindow ? Number(data.count ?? 0) : 0 };
+  });
+  const limitedAt = states.findIndex((state, i) => state.count >= refs[i].max);
+  const outcome = limitedAt >= 0 ? (refs[limitedAt].kind === 'uid' ? 'limited_uid' : 'limited_ip') : 'ok';
+  if (outcome === 'ok') {
+    await Promise.all(refs.map(({ ref }, i) => ref.set({
+      count: states[i].count + 1,
+      windowStartMs: states[i].sameWindow ? states[i].windowStartMs : nowMs,
+      updatedAtMs: nowMs,
+    }, { merge: true })));
+  }
+  if (outcome !== 'ok') {
+    recoveryLog(outcome, { scope, hasIp: Boolean(ip) });
+    throw new HttpsError('resource-exhausted', 'recovery_caller_rate_limited');
+  }
+  recoveryLog('caller_rate_ok', { scope, hasIp: Boolean(ip) });
+}
+
 function requireRecoverySession(request: {
   app?: unknown;
   auth?: { uid?: string; token?: Record<string, unknown> } | null;
 }): RecoverySession {
-  if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
+  // App Check снят (пломба владельца 2026-08-17): защита — сессия провайдера ниже + consumeRecoveryCallerRate.
   const authUid = String(request.auth?.uid ?? '').trim();
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
   const token = request.auth?.token ?? {};
@@ -602,6 +663,9 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
     throwRecoveryUnavailable();
   }
 
+  // Лимит вызывающего — перед самой отправкой письма: отказы до создания кода ничего не пишут (как и раньше),
+  // а рассылка по многим чужим stableId упирается в окно на uid/IP. Чистая установка лимитирует отправителя сама.
+  await consumeRecoveryCallerRate(db, authUid, recoveryCallerIp((request as { rawRequest?: unknown }).rawRequest), 'request_code');
   const sendResult = await sendTransactionalEmail({
     to: delivery.email,
     subject: 'Phraseman — код восстановления аккаунта',
@@ -1674,7 +1738,7 @@ function requireCustomRecoverySession(request: {
   app?: unknown;
   auth?: { uid?: string; token?: Record<string, unknown> } | null;
 }, recoveryEventId: string): string {
-  if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
+  // App Check снят (пломба владельца 2026-08-17): handoff доказывается custom-токеном с claims события ниже.
   const authUid = String(request.auth?.uid ?? '').trim();
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
   const token = request.auth?.token ?? {};

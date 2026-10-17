@@ -620,21 +620,16 @@ describe('recovery callable security boundary', () => {
   it.each([
     ['authRequestRecoveryCode', { stableId: STABLE }],
     ['authConfirmRecoveryCode', { stableId: STABLE, code: '123456' }],
-  ])('%s fails closed without direct request.app and performs no side effects', async (exportName, data) => {
+  ])('%s does not require App Check (sealed by owner 2026-08-17): no app_check_required without request.app', async (exportName, data) => {
+    // зачем (координатор 17.10, Ревизор ec28dd324 §10): клиентский App Check удалён — request.app всегда пуст,
+    // и проверка делала восстановление по коду мёртвым. Защита теперь — сессия провайдера + лимиты.
     seedLinkedUser();
     const recovery = require('./auth_recovery');
-    const before = storeSnapshot();
     const request = authRequest('verified-google-uid', data);
     delete (request as { app?: unknown }).app;
 
-    await expect(recovery[exportName](request)).rejects.toMatchObject({
-      code: 'failed-precondition',
-      message: 'app_check_required',
-    });
-    const { sendTransactionalEmail } = require('./admin_email');
-    expect(sendTransactionalEmail).not.toHaveBeenCalled();
-    expect(writeLog).toEqual([]);
-    expect(storeSnapshot()).toEqual(before);
+    const outcome = await recovery[exportName](request).then(() => 'resolved', (error: { message?: string }) => error?.message);
+    expect(outcome).not.toBe('app_check_required');
   });
 });
 
@@ -2377,17 +2372,11 @@ describe('clean-install recovery', () => {
     },
   );
 
-  it('binds confirm to AppCheck, requester UID, and provider without target-specific errors', async () => {
+  it('binds confirm to requester UID and provider without target-specific errors (App Check sealed)', async () => {
     seedLinkedUser('google');
     const requested = await cleanRequest();
     await deliverCleanChallenge(requested);
     const data = { challengeId: (requested as DocData).challengeId, code: emailedCode(), clientRequestId: 'clean-confirm-1' };
-    const request = authRequest('new-google-uid', data);
-    delete (request as { app?: unknown }).app;
-    const recovery = require('./auth_recovery');
-    await expect(recovery.authConfirmCleanInstallRecoveryCode(request)).rejects.toMatchObject({
-      code: 'failed-precondition', message: 'app_check_required',
-    });
     await expect(settleCleanInstall(callCleanConfirm(data, 'different-google-uid'))).rejects.toMatchObject({
       code: 'permission-denied', message: 'clean_recovery_unavailable',
     });
@@ -2561,5 +2550,53 @@ describe('clean-install recovery', () => {
 
     expect(outcomes.map(({ kind }) => kind)).toEqual(['resolved', 'resolved', 'rejected', 'rejected']);
     expect(outcomes.every(({ elapsed }) => elapsed >= 400)).toBe(true);
+  });
+});
+
+// зачем (координатор 17.10, Ревизор ec28dd324 §10): App Check снят пломбой владельца — рассылку кодов по чужим stableId
+// сдерживает окно на uid вызывающего и на IP поверх прежних лимитов на stableId и попыток кода.
+describe('recovery caller rate limit (замена App Check)', () => {
+  it('пропускает 10 вызовов одного uid за час и отказывает 11-му без утечки причины по цели', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 1_000_000_000;
+    for (let i = 0; i < recovery.RECOVERY_CALLER_RATE_MAX_PER_UID; i += 1) {
+      await expect(recovery.consumeRecoveryCallerRate(db, 'caller-a', '', 'test', now + i)).resolves.toBeUndefined();
+    }
+    await expect(recovery.consumeRecoveryCallerRate(db, 'caller-a', '', 'test', now + 50)).rejects.toMatchObject({
+      code: 'resource-exhausted', message: 'recovery_caller_rate_limited',
+    });
+    // новое окно — снова можно
+    await expect(recovery.consumeRecoveryCallerRate(db, 'caller-a', '', 'test', now + recovery.RECOVERY_CALLER_RATE_WINDOW_MS + 1))
+      .resolves.toBeUndefined();
+  });
+
+  it('ограничивает и IP: разные uid с одного адреса упираются в общий лимит', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 2_000_000_000;
+    for (let i = 0; i < recovery.RECOVERY_CALLER_RATE_MAX_PER_IP; i += 1) {
+      await recovery.consumeRecoveryCallerRate(db, `caller-${i}`, '203.0.113.7', 'test', now + i);
+    }
+    await expect(recovery.consumeRecoveryCallerRate(db, 'caller-new', '203.0.113.7', 'test', now + 99)).rejects.toMatchObject({
+      code: 'resource-exhausted', message: 'recovery_caller_rate_limited',
+    });
+  });
+
+  it('документы лимита — по хэшу, без uid и IP в открытом виде', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    await recovery.consumeRecoveryCallerRate(db, 'caller-plain', '198.51.100.1', 'test', 3_000_000_000);
+    const keys = [...docs.keys()].filter((key) => key.startsWith('auth_recovery_rate_limits/caller_'));
+    expect(keys.length).toBe(2);
+    expect(keys.join(' ')).not.toContain('caller-plain');
+    expect(keys.join(' ')).not.toContain('198.51.100.1');
+  });
+
+  it('IP берётся из x-forwarded-for (первый адрес), иначе из rawRequest.ip', () => {
+    const { recoveryCallerIp } = require('./auth_recovery');
+    expect(recoveryCallerIp({ headers: { 'x-forwarded-for': '203.0.113.9, 10.0.0.1' } })).toBe('203.0.113.9');
+    expect(recoveryCallerIp({ ip: '198.51.100.2' })).toBe('198.51.100.2');
+    expect(recoveryCallerIp(undefined)).toBe('');
   });
 });

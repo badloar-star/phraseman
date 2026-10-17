@@ -184,6 +184,14 @@ import {
 import { adaptLearningV2DirectSessionIntroV1 } from "./learning_v2_direct_session_intro_adapter_v1";
 import { resolvePreparedLearningV2FactoryWordAudioV1 } from "./learning_v2_lesson_audio_pack_v1";
 import LearningV2SessionIntro from "./learning_v2_session_intro";
+import LearningV2VoiceHeadsupSheet from "../components/learning-v2/LearningV2VoiceHeadsupSheet";
+import {
+  countLearningV2VoiceTasksV1,
+  decideLearningV2VoiceHeadsupV1,
+  logLearningV2VoiceHeadsupV1,
+  markLearningV2VoiceHeadsupShownV1,
+  wasLearningV2VoiceHeadsupShownV1,
+} from "./learning_v2_voice_headsup_v1";
 import { LearningV2FirstQuestionShownReporter } from "../hooks/learningV2FirstQuestionEnergy";
 import { learningV2CheckpointCopy } from "./learning_v2_checkpoint_copy";
 import {
@@ -1995,6 +2003,41 @@ export default function LearningV2DirectSessionPlayerV1() {
     // литерал контекста нужен сторожу точек входа пейвола (tests/paywall_entry_callsite_registry_contract): значение то же, что VOICE_LIMIT_PAYWALL_CONTEXT
     router.push({ pathname: "/premium_modal", params: { context: "ai_voice_input", source: "learning_v2_course_voice" } } as never);
   }, [router]);
+  // зачем (владелец 17.10, координатор): голосовых заданий больше, чем попыток у Free на сегодня — предупреждаем ДО первого
+  // задания, поверх вступления, без сети, раз на запуск занятия. Решаем только пока идёт вступление: позже остаток падает от
+  // собственных записей занятия, и окно посреди занятия было бы ложной тревогой. 'unknown' — молчим (app/learning_v2_voice_headsup_v1.ts).
+  const voiceHeadsupTasks = useMemo(
+    () => countLearningV2VoiceTasksV1(material?.learnerChild.interactions ?? []),
+    [material],
+  );
+  const [voiceHeadsupOpen, setVoiceHeadsupOpen] = useState(false);
+  const voiceHeadsupLoggedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!material || introDone) return;
+    const runId = sessionRunIdRef.current;
+    const result = decideLearningV2VoiceHeadsupV1({
+      allowance: voiceAllowance,
+      voiceTasks: voiceHeadsupTasks,
+      alreadyShownForRun: wasLearningV2VoiceHeadsupShownV1(runId),
+    });
+    const logKey = `${runId}:${result.decision}:${result.remaining}`;
+    if (voiceHeadsupLoggedRef.current !== logKey) {
+      voiceHeadsupLoggedRef.current = logKey;
+      logLearningV2VoiceHeadsupV1(result, { lessonOrdinal, sessionOrdinal, kind: voiceAllowance.kind });
+    }
+    if (result.decision !== "show") return;
+    markLearningV2VoiceHeadsupShownV1(runId);
+    setVoiceHeadsupOpen(true);
+  }, [introDone, lessonOrdinal, material, sessionOrdinal, voiceAllowance, voiceHeadsupTasks]);
+  const voiceHeadsupTryPlus = useCallback(() => {
+    console.log("[VOICE-HEADSUP] tap: Попробовать Plus → пейвол"); // guard-ok: одна строка на тап
+    setVoiceHeadsupOpen(false);
+    openVoicePlus();
+  }, [openVoicePlus]);
+  const voiceHeadsupStartAnyway = useCallback(() => {
+    console.log("[VOICE-HEADSUP] tap: Начать всё равно"); // guard-ok: одна строка на тап
+    setVoiceHeadsupOpen(false);
+  }, []);
   const voiceTargetText = practice
     ? material?.factoryPracticeSemantics?.[practice.interactionId]
         ?.canonicalTarget ?? auxiliary?.save.targetText ?? ""
@@ -2922,6 +2965,14 @@ export default function LearningV2DirectSessionPlayerV1() {
         </View>
         {devJumpToVoiceButton}
         {runeFlightOverlay}
+        <LearningV2VoiceHeadsupSheet
+          visible={voiceHeadsupOpen}
+          lang={lang}
+          voiceTasks={voiceHeadsupTasks}
+          remaining={voiceAllowance.remaining ?? 0}
+          onTryPlus={voiceHeadsupTryPlus}
+          onStartAnyway={voiceHeadsupStartAnyway}
+        />
       </View>
     );
   }

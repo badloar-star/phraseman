@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-10:i01",
-    "correctText": "There is a garden.",
+    "correctText": "en:lesson-04:session-10:i01:p1=hotel\nen:lesson-04:session-10:i01:p2=hostel\nen:lesson-04:session-10:i01:p3=reception\nen:lesson-04:session-10:i01:p4=lobby",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:word:hotel",
+    "correctText": "hotel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i02",
     "correctText": "hotel",
-    "correctResponseId": "en:lesson-04:session-10:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-10:i03",
-    "correctText": "hotel",
-    "correctResponseId": "en:lesson-04:session-10:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-10:i04",
-    "correctText": "en:lesson-04:session-10:i04:p1=hotel\nen:lesson-04:session-10:i04:p2=impossible\nen:lesson-04:session-10:i04:p3=lock\nen:lesson-04:session-10:i04:p4=garden",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-10:i03",
+    "correctText": "Is there a hotel near here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:word:hostel",
+    "correctText": "hostel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:i04",
+    "correctText": "hostel",
+    "correctResponseId": "en:lesson-04:session-10:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-10:i05",
-    "correctText": "Is there a hotel?",
+    "correctText": "Is there a hostel near here?",
+    "correctResponseId": "en:lesson-04:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:word:reception",
+    "correctText": "reception",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i06",
-    "correctText": "Is there a garden here?",
+    "correctText": "reception",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i07",
-    "correctText": "It's impossible.",
+    "correctText": "Is there a bank near here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-10:word:lobby",
+    "correctText": "lobby",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i08",
-    "correctText": "a",
+    "correctText": "lobby",
     "correctResponseId": "en:lesson-04:session-10:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-10:i09",
-    "correctText": "Is there a lock?",
-    "correctResponseId": "en:lesson-04:session-10:i09:r1"
+    "correctText": "Is there a reception here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i10",
-    "correctText": "en:lesson-04:session-10:i10:p1=hotel\nen:lesson-04:session-10:i10:p2=lock\nen:lesson-04:session-10:i10:p3=here\nen:lesson-04:session-10:i10:p4=there",
+    "correctText": "en:lesson-04:session-10:i10:p1=hotel\nen:lesson-04:session-10:i10:p2=hostel\nen:lesson-04:session-10:i10:p3=pharmacy\nen:lesson-04:session-10:i10:p4=bank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i11",
-    "correctText": "There is a lock here.",
-    "correctResponseId": null
+    "correctText": "Is there a pharmacy near here?",
+    "correctResponseId": "en:lesson-04:session-10:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-10:i12",
-    "correctText": "This is a hotel.",
-    "correctResponseId": null
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-10:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-10:i13",
-    "correctText": "Is there a lock here?",
+    "correctText": "Is there a hostel here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i14",
-    "correctText": "Is",
-    "correctResponseId": "en:lesson-04:session-10:i14:r1"
+    "correctText": "Is there a lobby here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i15",
-    "correctText": "It is impossible.",
-    "correctResponseId": "en:lesson-04:session-10:i15:r1"
+    "correctText": "Is there a hotel near the bank?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i16",
-    "correctText": "en:lesson-04:session-10:i16:p1=hotel\nen:lesson-04:session-10:i16:p2=impossible\nen:lesson-04:session-10:i16:p3=lock\nen:lesson-04:session-10:i16:p4=garden",
+    "correctText": "en:lesson-04:session-10:i16:p1=lobby\nen:lesson-04:session-10:i16:p2=reception\nen:lesson-04:session-10:i16:p3=hostel\nen:lesson-04:session-10:i16:p4=hotel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-10:i17",
-    "correctText": "Is there a hotel here?",
+    "correctText": "No, there isn't.",
     "correctResponseId": null
   }
 ]

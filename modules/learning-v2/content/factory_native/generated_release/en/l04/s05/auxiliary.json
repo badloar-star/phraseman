@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-05:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-05:intro1:r2": {
-          "ru": "Один супермаркет: `There is a supermarket`.",
-          "uk": "Один супермаркет: `There is a supermarket`."
+          "ru": "Перед названием одного места нужно a: There is a supermarket nearby.",
+          "uk": "Перед назвою одного місця потрібно a: There is a supermarket nearby."
         },
         "en:lesson-04:session-05:intro1:r3": {
-          "ru": "Перед одним местом нужно `a`: `a supermarket`.",
-          "uk": "Перед одним місцем потрібне `a`: `a supermarket`."
+          "ru": "Супермаркет один, поэтому нужно is: There is a supermarket nearby.",
+          "uk": "Супермаркет один, тому потрібно is: There is a supermarket nearby."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-05:intro2:r2": {
-          "ru": "Карта одна: `This is a map`.",
-          "uk": "Карта одна: `This is a map`."
+          "ru": "Улиц несколько, поэтому нужно are: There are quiet streets here.",
+          "uk": "Вулиць кілька, тому потрібно are: There are quiet streets here."
         },
         "en:lesson-04:session-05:intro2:r3": {
-          "ru": "С `This` нужно `is`.",
-          "uk": "З `This` потрібне `is`."
+          "ru": "Улиц несколько, поэтому нужно streets: There are quiet streets here.",
+          "uk": "Вулиць кілька, тому потрібно streets: There are quiet streets here."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-05:intro3:r2": {
-          "ru": "С `It` нужно `is`, сокращение `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочення `It’s`."
+          "ru": "Слово cafe начинается с согласного звука, поэтому нужно a: There is a cafe near the supermarket.",
+          "uk": "Слово cafe починається з приголосного звуку, тому потрібно a: There is a cafe near the supermarket."
         },
         "en:lesson-04:session-05:intro3:r3": {
-          "ru": "`hidden` — скрытый, а здесь настоящее: `real`.",
-          "uk": "`hidden` — прихований, а тут справжнє: `real`."
+          "ru": "Супермаркет вы оба знаете, поэтому перед ним нужно the: near the supermarket.",
+          "uk": "Супермаркет ви обоє знаєте, тому перед ним потрібно the: near the supermarket."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "93e66bddc48adfc2d885ae1b1575a5d3b29c03b20baf04a2bb15d3f180d1ee3d"
+  "auxiliaryFingerprint": "d4900ea8f74d2eeb4e76594aa291e3f6bb0c6619787f3e4c8502e80be59b4b08"
 }

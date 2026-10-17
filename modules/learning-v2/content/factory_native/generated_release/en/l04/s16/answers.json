@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-16:i01",
-    "correctText": "This is a neighbourhood.",
+    "correctText": "en:lesson-04:session-16:i01:p1=swimming pool\nen:lesson-04:session-16:i01:p2=sauna\nen:lesson-04:session-16:i01:p3=lifeguard\nen:lesson-04:session-16:i01:p4=swimsuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-16:word:swimming pool",
+    "correctText": "swimming pool",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i02",
     "correctText": "swimming pool",
-    "correctResponseId": "en:lesson-04:session-16:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-16:i03",
-    "correctText": "swimming pool",
-    "correctResponseId": "en:lesson-04:session-16:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-16:i04",
-    "correctText": "en:lesson-04:session-16:i04:p1=swimming pool\nen:lesson-04:session-16:i04:p2=dentist\nen:lesson-04:session-16:i04:p3=hotel\nen:lesson-04:session-16:i04:p4=tram",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-16:i03",
+    "correctText": "Is there a swimming pool here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-16:word:sauna",
+    "correctText": "sauna",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-16:i04",
+    "correctText": "sauna",
+    "correctResponseId": "en:lesson-04:session-16:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-16:i05",
-    "correctText": "Is there a swimming pool?",
+    "correctText": "Is there a sauna here?",
+    "correctResponseId": "en:lesson-04:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-16:word:lifeguard",
+    "correctText": "lifeguard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i06",
-    "correctText": "There is a hotel here.",
+    "correctText": "lifeguard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i07",
-    "correctText": "That is a tram.",
+    "correctText": "Is there a lifeguard here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-16:word:swimsuit",
+    "correctText": "swimsuit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i08",
-    "correctText": "Are",
+    "correctText": "swimsuit",
     "correctResponseId": "en:lesson-04:session-16:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-16:i09",
-    "correctText": "Is there a gym?",
-    "correctResponseId": "en:lesson-04:session-16:i09:r1"
+    "correctText": "Are there swimsuits here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i10",
-    "correctText": "en:lesson-04:session-16:i10:p1=platform\nen:lesson-04:session-16:i10:p2=taxi\nen:lesson-04:session-16:i10:p3=laundrette\nen:lesson-04:session-16:i10:p4=gym",
+    "correctText": "en:lesson-04:session-16:i10:p1=swimsuit\nen:lesson-04:session-16:i10:p2=lifeguard\nen:lesson-04:session-16:i10:p3=sauna\nen:lesson-04:session-16:i10:p4=gym",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i11",
-    "correctText": "There is a swimming pool here.",
-    "correctResponseId": null
+    "correctText": "Yes, there is.",
+    "correctResponseId": "en:lesson-04:session-16:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-16:i12",
-    "correctText": "Are there swimming pools here?",
-    "correctResponseId": null
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-04:session-16:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-16:i13",
-    "correctText": "That is a swimming pool.",
+    "correctText": "Are there lifeguards here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-04:session-16:i14:r1"
+    "correctText": "Is there a sauna near the gym?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i15",
-    "correctText": "Is there a dentist?",
-    "correctResponseId": "en:lesson-04:session-16:i15:r1"
+    "correctText": "Are there swimsuits near here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i16",
-    "correctText": "en:lesson-04:session-16:i16:p1=neighbourhood\nen:lesson-04:session-16:i16:p2=dentist\nen:lesson-04:session-16:i16:p3=platform\nen:lesson-04:session-16:i16:p4=taxi",
+    "correctText": "en:lesson-04:session-16:i16:p1=swimming pool\nen:lesson-04:session-16:i16:p2=sauna\nen:lesson-04:session-16:i16:p3=swimsuit\nen:lesson-04:session-16:i16:p4=lifeguard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-16:i17",
-    "correctText": "Is there a swimming pool here?",
+    "correctText": "Yes, there are.",
     "correctResponseId": null
   }
 ]

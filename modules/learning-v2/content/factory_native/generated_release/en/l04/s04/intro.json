@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-04",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о наличии почты и различить видимое, скрытое и понятное",
-    "uk": "повідомити про наявність пошти й розрізнити видиме, приховане та зрозуміле"
+    "ru": "выбрать There is или There are, когда вы слышите про одно или несколько мест",
+    "uk": "вибрати There is або There are, коли ви чуєте про одне або кілька місць"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одно место — два слова",
-        "uk": "Одне місце — два слова"
+        "ru": "Письмо в конверте",
+        "uk": "Лист у конверті"
       },
       "bodyByLocale": {
-        "ru": "`post office` — «почтовое отделение». Это одно название из двух слов. `There is a post office` — «Есть почтовое отделение». Для одного места нужны `is` и `a`. Два слова в названии не означают две очереди. `There is a post office here` — «Здесь есть почтовое отделение».",
-        "uk": "`post office` — «поштове відділення». Це одна назва з двох слів. `There is a post office` — «Є поштове відділення». Для одного місця потрібні `is` і `a`. Два слова в назві не означають дві черги. `There is a post office here` — «Тут є поштове відділення»."
+        "ru": "Вам нужно отправить письмо, и вы идёте по району с аудиогидом в наушниках, пока подруга идёт рядом. Гид говорит, что слева стоит здание с жёлтой вывеской, где принимают письма и посылки. post office — «почта». Почта одна: There is a post office here — «Здесь есть почта».",
+        "uk": "Вам треба відправити листа, і ви йдете районом з аудіогідом у навушниках, поки подруга йде поруч. Гід каже, що ліворуч стоїть будівля з жовтою вивіскою, де приймають листи й посилки. post office — «пошта». Пошта одна: There is a post office here — «Тут є пошта»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-04:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите, что в районе есть почтовое отделение.",
-          "uk": "Повідомте, що в районі є поштове відділення."
+          "ru": "Подруга спрашивает, где отправить письмо. Скажите ей, что здесь есть почта.",
+          "uk": "Подруга питає, де відправити листа. Скажіть їй, що тут є пошта."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-04:intro1:r1",
-              "text": "There is a post office."
+              "text": "There is a post office here."
             },
             {
               "responseId": "en:lesson-04:session-04:intro1:r2",
-              "text": "There are a post office."
+              "text": "There is post office here."
             },
             {
               "responseId": "en:lesson-04:session-04:intro1:r3",
-              "text": "There is post office."
+              "text": "There are a post office here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-04:intro1:r1",
-              "text": "There is a post office."
+              "text": "There is a post office here."
             },
             {
               "responseId": "en:lesson-04:session-04:intro1:r2",
-              "text": "There are a post office."
+              "text": "There is post office here."
             },
             {
               "responseId": "en:lesson-04:session-04:intro1:r3",
-              "text": "There is post office."
+              "text": "There are a post office here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что в районе есть почтовое отделение.",
-          "uk": "Повідомте, що в районі є поштове відділення."
+          "ru": "Подруга спрашивает, где отправить письмо. Скажите ей, что здесь есть почта.",
+          "uk": "Подруга питає, де відправити листа. Скажіть їй, що тут є пошта."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Видно или скрыто",
-        "uk": "Видно чи приховано"
+        "ru": "Другой берег реки",
+        "uk": "Інший берег річки"
       },
       "bodyByLocale": {
-        "ru": "`visible` — «видимый»: отметку на карте хорошо видно. О ней: `It is visible` — «Она видна». `hidden` — «скрытый»: другую отметку закрыла складка бумаги. `It is hidden` — «Она скрыта». Это не оценка понятности: видимая отметка тоже может быть непонятной. `bag` — «сумка»: `This is a bag` — «Это сумка».",
-        "uk": "`visible` — «видимий»: позначку на карті добре видно. Про неї: `It is visible` — «Її видно». `hidden` — «прихований»: іншу позначку закрив згин паперу. `It is hidden` — «Вона прихована». Це не оцінка зрозумілості: видима позначка теж може бути незрозумілою. `bag` — «сумка»: `This is a bag` — «Це сумка»."
+        "ru": "Аудиогид ведёт вас дальше, к реке. Подруга хочет перейти на другой берег. Через реку перекинуты несколько каменных мостов, и по ним спокойно идут люди с сумками. bridge — «мост». Мостов несколько, поэтому добавляем s: There are bridges nearby — «Рядом есть мосты».",
+        "uk": "Аудіогід веде вас далі, до річки. Подруга хоче перейти на інший берег. Через річку перекинуто кілька кам’яних мостів, і по них спокійно ідуть люди з сумками. bridge — «міст». Мостів кілька, тому додаємо s: There are bridges nearby — «Поруч є мости»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-04:intro2:q",
         "promptByLocale": {
-          "ru": "Отметка закрыта складкой бумаги. Скажите о ней «Она скрыта».",
-          "uk": "Позначка закрита згином паперу. Скажіть про неї «Вона прихована»."
+          "ru": "Подруга спрашивает, как перейти реку. Скажите ей, что рядом есть мосты.",
+          "uk": "Подруга питає, як перейти річку. Скажіть їй, що поруч є мости."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-04:intro2:r1",
-              "text": "It is hidden."
+              "text": "There are bridges nearby."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r2",
-              "text": "It is visible."
+              "text": "There is bridges nearby."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r3",
-              "text": "It are hidden."
+              "text": "There are bridge nearby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-04:intro2:r1",
-              "text": "It is hidden."
+              "text": "There are bridges nearby."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r2",
-              "text": "It is visible."
+              "text": "There is bridges nearby."
             },
             {
               "responseId": "en:lesson-04:session-04:intro2:r3",
-              "text": "It are hidden."
+              "text": "There are bridge nearby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Отметка закрыта складкой бумаги. Скажите о ней «Она скрыта».",
-          "uk": "Позначка закрита згином паперу. Скажіть про неї «Вона прихована»."
+          "ru": "Подруга спрашивает, как перейти реку. Скажите ей, что рядом есть мосты.",
+          "uk": "Подруга питає, як перейти річку. Скажіть їй, що поруч є мости."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Теперь понятно",
-        "uk": "Тепер зрозуміло"
+        "ru": "Овощи по субботам",
+        "uk": "Овочі по суботах"
       },
       "bodyByLocale": {
-        "ru": "`clear` — «понятный, ясный»: друг объяснил схему маршрута, и теперь вы её понимаете. О схеме: `It is clear` — «Она понятна». Сокращение `It is` → `It’s`. `stations` — «станции»: `There are stations here` — «Здесь есть станции». Станций несколько, поэтому `are`, без `a`.",
-        "uk": "`clear` — «зрозумілий, ясний»: друг пояснив схему маршруту, і тепер ви її розумієте. Про схему: `It is clear` — «Вона зрозуміла». Скорочення `It is` → `It’s`. `stations` — «станції»: `There are stations here` — «Тут є станції». Станцій кілька, тому `are`, без `a`."
+        "ru": "В субботу утром соседка зовёт вас за свежими овощами к завтраку. Недалеко от моста есть место, где стоит много прилавков с овощами и фруктами, и оно в районе одно. market — «рынок». There is a market near the bridge — «Рядом с мостом есть рынок».",
+        "uk": "У суботу зранку сусідка кличе вас по свіжі овочі до сніданку. Неподалік від моста є місце, де стоїть багато прилавків з овочами й фруктами, і воно в районі одне. market — «ринок». There is a market near the bridge — «Поруч із мостом є ринок»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-04:intro3:q",
         "promptByLocale": {
-          "ru": "После объяснения схема вам понятна. Скажите «Она понятна» с сокращением.",
-          "uk": "Після пояснення схема вам зрозуміла. Скажіть «Вона зрозуміла» зі скороченням."
+          "ru": "Соседка спрашивает, где купить овощи. Скажите ей, что рядом с мостом есть рынок.",
+          "uk": "Сусідка питає, де купити овочі. Скажіть їй, що поруч із мостом є ринок."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-04:intro3:r1",
-              "text": "It's clear."
+              "text": "There is a market near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r2",
-              "text": "It's hidden."
+              "text": "There are a market near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r3",
-              "text": "It are clear."
+              "text": "There is a market behind the bridge."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-04:intro3:r1",
-              "text": "It's clear."
+              "text": "There is a market near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r2",
-              "text": "It's hidden."
+              "text": "There are a market near the bridge."
             },
             {
               "responseId": "en:lesson-04:session-04:intro3:r3",
-              "text": "It are clear."
+              "text": "There is a market behind the bridge."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "После объяснения схема вам понятна. Скажите «Она понятна» с сокращением.",
-          "uk": "Після пояснення схема вам зрозуміла. Скажіть «Вона зрозуміла» зі скороченням."
+          "ru": "Соседка спрашивает, где купить овощи. Скажите ей, что рядом с мостом есть рынок.",
+          "uk": "Сусідка питає, де купити овочі. Скажіть їй, що поруч із мостом є ринок."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a3546a0cdd05b8572ee0791e6886f75902a978f2f907316ac27bc3486f321790"
+  "introFingerprint": "8a9d1c7bfafa3930639705d25d6b98886bd88c916ccb674158ff420afb2b0f1a"
 }

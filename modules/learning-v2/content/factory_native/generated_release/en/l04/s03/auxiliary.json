@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-03:intro1:r2": {
-          "ru": "Один банк: `There is a bank`.",
-          "uk": "Один банк: `There is a bank`."
+          "ru": "Банков несколько, поэтому нужно are: There are banks here.",
+          "uk": "Банків кілька, тому потрібно are: There are banks here."
         },
         "en:lesson-04:session-03:intro1:r3": {
-          "ru": "Перед одним банком нужно `a`: `a bank`.",
-          "uk": "Перед одним банком потрібне `a`: `a bank`."
+          "ru": "Перед несколькими банками a не ставим: There are banks here.",
+          "uk": "Перед кількома банками a не ставимо: There are banks here."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-03:intro2:r2": {
-          "ru": "Библиотек несколько: `There are`.",
-          "uk": "Бібліотек кілька: `There are`."
+          "ru": "Музеев несколько, поэтому нужно museums: There are museums nearby.",
+          "uk": "Музеїв кілька, тому потрібно museums: There are museums nearby."
         },
         "en:lesson-04:session-03:intro2:r3": {
-          "ru": "Перед несколькими `libraries` артикль `a` не нужен.",
-          "uk": "Перед кількома `libraries` артикль `a` не потрібен."
+          "ru": "Музеев несколько, поэтому нужно are: There are museums nearby.",
+          "uk": "Музеїв кілька, тому потрібно are: There are museums nearby."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-03:intro3:r2": {
-          "ru": "Это беспокойство. «Я в курсе» — `I am aware`.",
-          "uk": "Це занепокоєння. «Я в курсі» — `I am aware`."
+          "ru": "Церковь одна, поэтому нужно is: There is a church behind the bank.",
+          "uk": "Церква одна, тому потрібно is: There is a church behind the bank."
         },
         "en:lesson-04:session-03:intro3:r3": {
-          "ru": "С `I` нужно `am`.",
-          "uk": "З `I` потрібне `am`."
+          "ru": "Перед названием одного места нужно a: There is a church behind the bank.",
+          "uk": "Перед назвою одного місця потрібно a: There is a church behind the bank."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b3c089ef82a41fb89838f0706852c53497bb0e53e5c4046a5675f00fc352cef3"
+  "auxiliaryFingerprint": "aeca89bab1d811e4cfffc7e3b4f490dc4948327f7801de9b9140bcf6f2c08c79"
 }

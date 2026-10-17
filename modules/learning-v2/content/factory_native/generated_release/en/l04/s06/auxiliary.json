@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-06:intro1:r2": {
-          "ru": "Клиника одна: `There is a clinic here`.",
-          "uk": "Клініка одна: `There is a clinic here`."
+          "ru": "Перед названием одного места нужно a: There is a clinic inside the building.",
+          "uk": "Перед назвою одного місця потрібно a: There is a clinic inside the building."
         },
         "en:lesson-04:session-06:intro1:r3": {
-          "ru": "Перед одной клиникой нужно `a`: `a clinic`.",
-          "uk": "Перед однією клінікою потрібне `a`: `a clinic`."
+          "ru": "Здание вы оба знаете, поэтому перед ним нужно the: inside the building.",
+          "uk": "Будівлю ви обоє знаєте, тому перед нею потрібно the: inside the building."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-06:intro2:r2": {
-          "ru": "`real` — настоящее. Здесь яблоко искусственное: `fake`.",
-          "uk": "`real` — справжнє. Тут яблуко штучне: `fake`."
+          "ru": "Слово office начинается с гласного звука, поэтому нужно an: There is an office upstairs.",
+          "uk": "Слово office починається з голосного звуку, тому потрібно an: There is an office upstairs."
         },
         "en:lesson-04:session-06:intro2:r3": {
-          "ru": "Об одном яблоке: `It is fake`.",
-          "uk": "Про одне яблуко: `It is fake`."
+          "ru": "Кабинет один, поэтому нужно is: There is an office upstairs.",
+          "uk": "Кабінет один, тому потрібно is: There is an office upstairs."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-06:intro3:r2": {
-          "ru": "Одна сумка: `That bag is`.",
-          "uk": "Одна сумка: `That bag is`."
+          "ru": "Перед одним залом нужно a: There is a big hall inside.",
+          "uk": "Перед одним залом потрібно a: There is a big hall inside."
         },
         "en:lesson-04:session-06:intro3:r3": {
-          "ru": "`Those` для нескольких, а сумка одна: `That bag`.",
-          "uk": "`Those` для кількох, а сумка одна: `That bag`."
+          "ru": "Слово big идёт перед словом hall: a big hall.",
+          "uk": "Слово big іде перед словом hall: a big hall."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c41b0209cd3bb7342de5b84503604134fac49e3d25fbf59bf5f1df07b1bead8c"
+  "auxiliaryFingerprint": "2e6d18847f08b2bdb486254aaeb84a7b08ad4b30cf4542cbe7649fff2580b8e9"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-07",
   "learningOutcomeByLocale": {
-    "ru": "сообщить об одной площадке и нескольких кафе, назвать необходимую вещь",
-    "uk": "повідомити про один майданчик і кілька кафе, назвати необхідну річ"
+    "ru": "самим выбрать There is или There are и сказать, где находится место",
+    "uk": "самим вибрати There is або There are і сказати, де розташоване місце"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-04:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для игр",
-        "uk": "Місце для ігор"
+        "ru": "Горки и качели",
+        "uk": "Гірки й гойдалки"
       },
       "bodyByLocale": {
-        "ru": "`playground` — «детская площадка». `There is a playground` — «Есть детская площадка». Качели и горка могут быть частью одной площадки: две горки не означают две площадки. Для одного места нужны `is` и `a`. `There is a playground here` — «Здесь есть детская площадка».",
-        "uk": "`playground` — «дитячий майданчик». `There is a playground` — «Є дитячий майданчик». Гойдалки й гірка можуть бути частиною одного майданчика: дві гірки не означають два майданчики. Для одного місця потрібні `is` і `a`. `There is a playground here` — «Тут є дитячий майданчик»."
+        "ru": "Во дворе жилого комплекса вы гуляете с братом. Брат тянет вас за руку: он смотрит на яркие горки и качели за низким забором и хочет туда. playground — «детская площадка». Она во дворе одна: There is a playground here — «Здесь есть детская площадка».",
+        "uk": "У дворі житлового комплексу ви гуляєте з братом. Брат тягне вас за руку: він дивиться на яскраві гірки й гойдалки за низьким парканом і хоче туди. playground — «дитячий майданчик». Він у дворі один: There is a playground here — «Тут є дитячий майданчик»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-07:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите, что здесь есть детская площадка.",
-          "uk": "Повідомте, що тут є дитячий майданчик."
+          "ru": "Брат спрашивает, где можно поиграть. Скажите ему, что здесь есть детская площадка.",
+          "uk": "Брат питає, де можна погратися. Скажіть йому, що тут є дитячий майданчик."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-04:session-07:intro1:r2",
-              "text": "There are a playground here."
+              "text": "There is playground here."
             },
             {
               "responseId": "en:lesson-04:session-07:intro1:r3",
-              "text": "There is playground here."
+              "text": "There are a playground here."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-04:session-07:intro1:r2",
-              "text": "There are a playground here."
+              "text": "There is playground here."
             },
             {
               "responseId": "en:lesson-04:session-07:intro1:r3",
-              "text": "There is playground here."
+              "text": "There are a playground here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что здесь есть детская площадка.",
-          "uk": "Повідомте, що тут є дитячий майданчик."
+          "ru": "Брат спрашивает, где можно поиграть. Скажите ему, что здесь есть детская площадка.",
+          "uk": "Брат питає, де можна погратися. Скажіть йому, що тут є дитячий майданчик."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кафе для отдыха",
-        "uk": "Кафе для відпочинку"
+        "ru": "Зелёные дорожки",
+        "uk": "Зелені доріжки"
       },
       "bodyByLocale": {
-        "ru": "`cafes` — «кафе», когда их несколько. `There are cafes here` — «Здесь есть кафе». Несколько мест — `are`, без `a`. `cup` — «чашка»: `This is a cup` — «Это чашка». Для одной чашки: `There is a cup here` — «Здесь есть чашка».",
-        "uk": "`cafes` — «кафе», коли їх кілька. `There are cafes here` — «Тут є кафе». Кілька місць — `are`, без `a`. `cup` — «чашка»: `This is a cup` — «Це чашка». Для однієї чашки: `There is a cup here` — «Тут є чашка»."
+        "ru": "За двором начинаются зелёные дорожки с деревьями и скамейками, где шумят листья. На карте района вы насчитали несколько таких мест, и все они рядом с домом. park — «парк». Парков несколько, поэтому добавляем s: There are parks nearby — «Рядом есть парки».",
+        "uk": "За двором починаються зелені доріжки з деревами й лавками, де шумить листя. На мапі району ви нарахували кілька таких місць, і всі вони поруч із будинком. park — «парк». Парків кілька, тому додаємо s: There are parks nearby — «Поруч є парки»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-07:intro2:q",
         "promptByLocale": {
-          "ru": "Сообщите, что здесь есть несколько кафе.",
-          "uk": "Повідомте, що тут є кілька кафе."
+          "ru": "Соседка спрашивает, где можно погулять. Скажите ей, что рядом есть парки.",
+          "uk": "Сусідка питає, де можна погуляти. Скажіть їй, що поруч є парки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-07:intro2:r1",
-              "text": "There are cafes here."
+              "text": "There are parks nearby."
             },
             {
               "responseId": "en:lesson-04:session-07:intro2:r2",
-              "text": "There is cafes here."
+              "text": "There are park nearby."
             },
             {
               "responseId": "en:lesson-04:session-07:intro2:r3",
-              "text": "There are a cafes here."
+              "text": "There is parks nearby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-07:intro2:r1",
-              "text": "There are cafes here."
+              "text": "There are parks nearby."
             },
             {
               "responseId": "en:lesson-04:session-07:intro2:r2",
-              "text": "There is cafes here."
+              "text": "There are park nearby."
             },
             {
               "responseId": "en:lesson-04:session-07:intro2:r3",
-              "text": "There are a cafes here."
+              "text": "There is parks nearby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что здесь есть несколько кафе.",
-          "uk": "Повідомте, що тут є кілька кафе."
+          "ru": "Соседка спрашивает, где можно погулять. Скажите ей, что рядом есть парки.",
+          "uk": "Сусідка питає, де можна погуляти. Скажіть їй, що поруч є парки."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что необходимо",
-        "uk": "Що необхідне"
+        "ru": "Утки на воде",
+        "uk": "Качки на воді"
       },
       "bodyByLocale": {
-        "ru": "`necessary` — «необходимый». Для пикника нужна чашка: без неё вам не из чего пить. О чашке в этой ситуации: `It is necessary` — «Она необходима». Сокращение: `It’s necessary`. Это не значит, что чашка нужна всегда и всем: говорим о конкретной прогулке.",
-        "uk": "`necessary` — «необхідний». Для пікніка потрібна чашка: без неї вам немає з чого пити. Про чашку в цій ситуації: `It is necessary` — «Вона необхідна». Скорочення: `It’s necessary`. Це не означає, що чашка потрібна завжди й усім: говоримо про конкретну прогулянку."
+        "ru": "В выходной вы с подругой ищете, где покормить уток, и взяли с собой хлеб. На карте района вы находите большое голубое пятно за парком, и оно там одно. Вы нашли его не сразу. lake — «озеро». Озеро одно: There is a lake behind the park — «За парком есть озеро».",
+        "uk": "У вихідний ви з подругою шукаєте, де погодувати качок, і взяли з собою хліб. На мапі району ви знаходите велику блакитну пляму за парком, і вона там одна. Ви знайшли її не одразу. lake — «озеро». Озеро одне: There is a lake behind the park — «За парком є озеро»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-07:intro3:q",
         "promptByLocale": {
-          "ru": "Вы объясняете, что чашка нужна для этого пикника. Скажите «Она необходима» с сокращением.",
-          "uk": "Ви пояснюєте, що чашка потрібна для цього пікніка. Скажіть «Вона необхідна» зі скороченням."
+          "ru": "Подруга хочет покормить уток. Скажите ей, что за парком есть озеро.",
+          "uk": "Подруга хоче погодувати качок. Скажіть їй, що за парком є озеро."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-07:intro3:r1",
-              "text": "It's necessary."
+              "text": "There is a lake behind the park."
             },
             {
               "responseId": "en:lesson-04:session-07:intro3:r2",
-              "text": "It are necessary."
+              "text": "There are a lake behind the park."
             },
             {
               "responseId": "en:lesson-04:session-07:intro3:r3",
-              "text": "It's striped."
+              "text": "There is a lake behind park."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-07:intro3:r1",
-              "text": "It's necessary."
+              "text": "There is a lake behind the park."
             },
             {
               "responseId": "en:lesson-04:session-07:intro3:r2",
-              "text": "It are necessary."
+              "text": "There are a lake behind the park."
             },
             {
               "responseId": "en:lesson-04:session-07:intro3:r3",
-              "text": "It's striped."
+              "text": "There is a lake behind park."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы объясняете, что чашка нужна для этого пикника. Скажите «Она необходима» с сокращением.",
-          "uk": "Ви пояснюєте, що чашка потрібна для цього пікніка. Скажіть «Вона необхідна» зі скороченням."
+          "ru": "Подруга хочет покормить уток. Скажите ей, что за парком есть озеро.",
+          "uk": "Подруга хоче погодувати качок. Скажіть їй, що за парком є озеро."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1dd6fe3240a382ba728e3eec03661ca4251b034e0cda6290256f933fc6c413e3"
+  "introFingerprint": "3580d1f374ae5b5a59850dd8f4809421dd5e53ca3c8756ac4caaee5ff4156f38"
 }

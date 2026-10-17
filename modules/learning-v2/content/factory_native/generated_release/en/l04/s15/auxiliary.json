@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-15:intro1:r2": {
-          "ru": "Один зал: `Is there a gym here?`.",
-          "uk": "Одна зала: `Is there a gym here?`."
+          "ru": "Зал один, поэтому перед ним нужно a: a gym.",
+          "uk": "Зал один, тому перед ним потрібно a: a gym."
         },
         "en:lesson-04:session-15:intro1:r3": {
-          "ru": "Это сообщение; вопрос начинается с `Is there`.",
-          "uk": "Це повідомлення; запитання починається з `Is there`."
+          "ru": "Зал один, поэтому нужно Is there, а не Are there.",
+          "uk": "Зал один, тому потрібно Is there, а не Are there."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-15:intro2:r2": {
-          "ru": "С `That` нужно `is`.",
-          "uk": "З `That` потрібне `is`."
+          "ru": "Дорожек несколько, поэтому начинаем с Are there, а не с Is there.",
+          "uk": "Доріжок кілька, тому починаємо з Are there, а не з Is there."
         },
         "en:lesson-04:session-15:intro2:r3": {
-          "ru": "Речь об одной вещи: `That is a coat`.",
-          "uk": "Ідеться про одну річ: `That is a coat`."
+          "ru": "Перед несколькими дорожками a не ставим: treadmills.",
+          "uk": "Перед кількома доріжками a не ставимо: treadmills."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-15:intro3:r2": {
-          "ru": "`noisy` — шумный; полная тишина — `silent`.",
-          "uk": "`noisy` — шумний; цілковита тиша — `silent`."
+          "ru": "Instructor начинается с гласного звука, поэтому нужно an.",
+          "uk": "Instructor починається з голосного звуку, тому потрібно an."
         },
         "en:lesson-04:session-15:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s silent`.",
-          "uk": "З `It` потрібне `is`: `It’s silent`."
+          "ru": "Инструктор один, поэтому нужно Is there, а не Are there.",
+          "uk": "Інструктор один, тому потрібно Is there, а не Are there."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "273a06ec69a8d8a6b5b18760de2cc4c53bf570199a6ae7147f9dcb128318cb94"
+  "auxiliaryFingerprint": "01eb5b73aeff022e3239c9a4a404b664710f9026297eb52c8a7bb7ce974a976b"
 }

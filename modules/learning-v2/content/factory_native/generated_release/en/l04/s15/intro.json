@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-15",
   "learningOutcomeByLocale": {
-    "ru": "спросить о тренажёрном зале и площадке, назвать пальто и описать полную тишину",
-    "uk": "запитати про тренажерну залу й майданчик, назвати пальто та описати цілковиту тишу"
+    "ru": "самому выбрать Is there или Are there и задать вопрос о наличии",
+    "uk": "самому вибрати Is there чи Are there і поставити запитання про наявність"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Зал для тренировок",
-        "uk": "Зала для тренувань"
+        "ru": "Вывеска у школы",
+        "uk": "Вивіска біля школи"
       },
       "bodyByLocale": {
-        "ru": "`gym` — «тренажёрный зал, спортзал». `Is there a gym here?` — «Здесь есть тренажёрный зал?» Несколько залов — `gyms`: `Are there gyms here?` — «Здесь есть тренажёрные залы?» В слове `gym` всего три буквы. Выучить его легче, чем сделать три отжимания.",
-        "uk": "`gym` — «тренажерна зала, спортзал». `Is there a gym here?` — «Тут є тренажерна зала?» Кілька зал — `gyms`: `Are there gyms here?` — «Тут є тренажерні зали?» У слові `gym` лише три літери. Вивчити його легше, ніж відтиснутися тричі."
+        "ru": "Вы записались в спортивный центр и ищете зал с тренажёрами. Рядом со школой вы заметили вывеску, но не уверены, что это он. Навстречу идёт прохожий с сумкой. gym — «тренажёрный зал». Остановите его: Is there a gym near the school? — «Есть ли тренажёрный зал рядом со школой?»",
+        "uk": "Ви записалися до спортивного центру й шукаєте зал із тренажерами. Поруч зі школою ви помітили вивіску, але не певні, що це він. Назустріч іде перехожий із сумкою. gym — «тренажерний зал». Зупиніть його: Is there a gym near the school? — «Чи є тренажерний зал поруч зі школою?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-15:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли здесь тренажёрный зал.",
-          "uk": "Запитайте, чи є тут тренажерна зала."
+          "ru": "Прохожий остановился. Спросите его, есть ли рядом со школой тренажёрный зал.",
+          "uk": "Перехожий зупинився. Запитайте його, чи є поруч зі школою тренажерний зал."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-15:intro1:r1",
-              "text": "Is there a gym here?"
+              "text": "Is there a gym near the school?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro1:r2",
-              "text": "Are there a gym here?"
+              "text": "Is there gym near the school?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro1:r3",
-              "text": "There is a gym here."
+              "text": "Are there a gym near the school?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-15:intro1:r1",
-              "text": "Is there a gym here?"
+              "text": "Is there a gym near the school?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro1:r2",
-              "text": "Are there a gym here?"
+              "text": "Is there gym near the school?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro1:r3",
-              "text": "There is a gym here."
+              "text": "Are there a gym near the school?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли здесь тренажёрный зал.",
-          "uk": "Запитайте, чи є тут тренажерна зала."
+          "ru": "Прохожий остановился. Спросите его, есть ли рядом со школой тренажёрный зал.",
+          "uk": "Перехожий зупинився. Запитайте його, чи є поруч зі школою тренажерний зал."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Площадка и пальто",
-        "uk": "Майданчик і пальто"
+        "ru": "Дождь на улице",
+        "uk": "Дощ на вулиці"
       },
       "bodyByLocale": {
-        "ru": "`playground` — «детская площадка», `coat` — «пальто». `There is a playground here` — «Здесь есть детская площадка». `That is a coat` — «То — пальто»: так можно назвать вещь вдалеке, которую друг не разглядел.",
-        "uk": "`playground` — «дитячий майданчик», `coat` — «пальто». `There is a playground here` — «Тут є дитячий майданчик». `That is a coat` — «То — пальто»: так можна назвати річ удалині, яку друг не розгледів."
+        "ru": "На улице льёт дождь, а вы хотели побегать. Вы зашли в спортивный центр и подошли к администратору. treadmill — «беговая дорожка», лента, на которой бегут на месте. Таких дорожек в зале может быть несколько: Are there treadmills near the window? — «Есть ли беговые дорожки рядом с окном?»",
+        "uk": "На вулиці ллє дощ, а ви хотіли побігати. Ви зайшли до спортивного центру й підійшли до адміністратора. treadmill — «бігова доріжка», стрічка, на якій біжать на місці. Таких доріжок у залі може бути кілька: Are there treadmills near the window? — «Чи є бігові доріжки поруч із вікном?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-15:intro2:q",
         "promptByLocale": {
-          "ru": "Друг не разглядел вещь на дальней вешалке. Скажите «То — пальто».",
-          "uk": "Друг не розгледів річ на далекій вішалці. Скажіть «То — пальто»."
+          "ru": "Администратор поднял на вас глаза. Спросите его, есть ли беговые дорожки рядом с окном.",
+          "uk": "Адміністратор підвів на вас очі. Запитайте його, чи є бігові доріжки поруч із вікном."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-15:intro2:r1",
-              "text": "That is a coat."
+              "text": "Are there treadmills near the window?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro2:r2",
-              "text": "That are a coat."
+              "text": "Is there treadmills near the window?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro2:r3",
-              "text": "Those are coats."
+              "text": "Are there a treadmills near the window?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-15:intro2:r1",
-              "text": "That is a coat."
+              "text": "Are there treadmills near the window?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro2:r2",
-              "text": "That are a coat."
+              "text": "Is there treadmills near the window?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro2:r3",
-              "text": "Those are coats."
+              "text": "Are there a treadmills near the window?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг не разглядел вещь на дальней вешалке. Скажите «То — пальто».",
-          "uk": "Друг не розгледів річ на далекій вішалці. Скажіть «То — пальто»."
+          "ru": "Администратор поднял на вас глаза. Спросите его, есть ли беговые дорожки рядом с окном.",
+          "uk": "Адміністратор підвів на вас очі. Запитайте його, чи є бігові доріжки поруч із вікном."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ни звука",
-        "uk": "Ані звуку"
+        "ru": "Первая тренировка",
+        "uk": "Перше тренування"
       },
       "bodyByLocale": {
-        "ru": "`silent` — «безмолвный, бесшумный». О зале, где совсем нет звуков: `It is silent` — «В нём полная тишина». Сокращённо: `It’s silent`. Это сильнее, чем просто «негромко»: вы не слышите ни голосов, ни музыки, ни шума тренажёров.",
-        "uk": "`silent` — «мовчазний, безшумний». Про залу, де зовсім немає звуків: `It is silent` — «У ній цілковита тиша». Скорочено: `It’s silent`. Це сильніше, ніж просто «неголосно»: ви не чуєте ані голосів, ані музики, ані шуму тренажерів."
+        "ru": "Вы впервые в тренажёрном зале и не понимаете, как включить машину. Рядом стоит только администратор. instructor — «инструктор», человек, который показывает упражнения. Спросите: Is there an instructor near the door? — «Есть ли инструктор рядом с дверью?»",
+        "uk": "Ви вперше в тренажерному залі й не розумієте, як увімкнути машину. Поруч стоїть лише адміністратор. instructor — «інструктор», людина, яка показує вправи. Запитайте: Is there an instructor near the door? — «Чи є інструктор поруч із дверима?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-15:intro3:q",
         "promptByLocale": {
-          "ru": "В зале совсем не слышно звуков. Скажите с сокращением «В нём полная тишина».",
-          "uk": "У залі зовсім не чути звуків. Скажіть зі скороченням «У ній цілковита тиша»."
+          "ru": "Администратор стоит рядом с вами. Спросите его, есть ли инструктор рядом с дверью.",
+          "uk": "Адміністратор стоїть поруч із вами. Запитайте його, чи є інструктор поруч із дверима."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-15:intro3:r1",
-              "text": "It's silent."
+              "text": "Is there an instructor near the door?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro3:r2",
-              "text": "It's noisy."
+              "text": "Is there a instructor near the door?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro3:r3",
-              "text": "It are silent."
+              "text": "Are there an instructor near the door?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-15:intro3:r1",
-              "text": "It's silent."
+              "text": "Is there an instructor near the door?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro3:r2",
-              "text": "It's noisy."
+              "text": "Is there a instructor near the door?"
             },
             {
               "responseId": "en:lesson-04:session-15:intro3:r3",
-              "text": "It are silent."
+              "text": "Are there an instructor near the door?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В зале совсем не слышно звуков. Скажите с сокращением «В нём полная тишина».",
-          "uk": "У залі зовсім не чути звуків. Скажіть зі скороченням «У ній цілковита тиша»."
+          "ru": "Администратор стоит рядом с вами. Спросите его, есть ли инструктор рядом с дверью.",
+          "uk": "Адміністратор стоїть поруч із вами. Запитайте його, чи є інструктор поруч із дверима."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7a73d3f671c534e2bbe34596014018893821eeaecfff40b147327bb37ef9034e"
+  "introFingerprint": "cb4e64f2acaefba74f9496a75e4bd1c2dbdc8d01387ded06c55b40c2f3a2dbf5"
 }

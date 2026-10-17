@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-03",
   "learningOutcomeByLocale": {
-    "ru": "сообщить об одном банке и нескольких библиотеках, описать осведомлённость, убеждённость и беспокойство",
-    "uk": "повідомити про один банк і кілька бібліотек, описати обізнаність, переконаність і занепокоєння"
+    "ru": "сказать, что мест несколько: There are banks here, There are museums nearby",
+    "uk": "сказати, що місць кілька: There are banks here, There are museums nearby"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один банк",
-        "uk": "Один банк"
+        "ru": "Где снять деньги",
+        "uk": "Де зняти гроші"
       },
       "bodyByLocale": {
-        "ru": "`bank` — «банк», здесь учреждение, где обслуживают денежные счета. `There is a bank` — «Есть банк». Для одного банка нужны `is` и `a`. `There is a bank here` — «Здесь есть банк». Банк на карте не выдаёт деньги, но помогает найти настоящий.",
-        "uk": "`bank` — «банк», тут установа, де обслуговують грошові рахунки. `There is a bank` — «Є банк». Для одного банку потрібні `is` і `a`. `There is a bank here` — «Тут є банк». Банк на карті не видає грошей, але допомагає знайти справжній."
+        "ru": "У районного стенда вы с подругой смотрите на карту. Вам нужны деньги, и вы ищете значки с монетой. Таких значков на карте сразу несколько. bank — «банк». Банков несколько, поэтому добавляем s и говорим There are: There are banks here — «Здесь есть банки».",
+        "uk": "Біля районного стенда ви з подругою дивитеся на мапу. Вам потрібні гроші, і ви шукаєте значки з монетою. Таких значків на мапі одразу кілька. bank — «банк». Банків кілька, тому додаємо s і кажемо There are: There are banks here — «Тут є банки»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-03:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите, что в районе есть банк.",
-          "uk": "Повідомте, що в районі є банк."
+          "ru": "Подруга спрашивает, где можно снять деньги. Скажите ей, что здесь есть банки.",
+          "uk": "Подруга питає, де можна зняти гроші. Скажіть їй, що тут є банки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-03:intro1:r1",
-              "text": "There is a bank."
+              "text": "There are banks here."
             },
             {
               "responseId": "en:lesson-04:session-03:intro1:r2",
-              "text": "There are a bank."
+              "text": "There is banks here."
             },
             {
               "responseId": "en:lesson-04:session-03:intro1:r3",
-              "text": "There is bank."
+              "text": "There are a banks here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-03:intro1:r1",
-              "text": "There is a bank."
+              "text": "There are banks here."
             },
             {
               "responseId": "en:lesson-04:session-03:intro1:r2",
-              "text": "There are a bank."
+              "text": "There is banks here."
             },
             {
               "responseId": "en:lesson-04:session-03:intro1:r3",
-              "text": "There is bank."
+              "text": "There are a banks here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что в районе есть банк.",
-          "uk": "Повідомте, що в районі є банк."
+          "ru": "Подруга спрашивает, где можно снять деньги. Скажите ей, что здесь есть банки.",
+          "uk": "Подруга питає, де можна зняти гроші. Скажіть їй, що тут є банки."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Библиотеки и книга",
-        "uk": "Бібліотеки й книга"
+        "ru": "Выходные с соседкой",
+        "uk": "Вихідні із сусідкою"
       },
       "bodyByLocale": {
-        "ru": "`libraries` — «библиотеки»: `There are libraries here` — «Здесь есть библиотеки». Для нескольких нужны `are` и множественное число, без `a`. `book` — «книга»: `This is a book` — «Это книга». Сообщить о наличии: `There is a book here` — «Здесь есть книга».",
-        "uk": "`libraries` — «бібліотеки»: `There are libraries here` — «Тут є бібліотеки». Для кількох потрібні `are` і множина, без `a`. `book` — «книга»: `This is a book` — «Це книга». Повідомити про наявність: `There is a book here` — «Тут є книга»."
+        "ru": "К вам на выходные приехала соседка из другого города. Она любит смотреть старые картины и необычные вещи за стеклом. На карте района вы находите сразу несколько таких мест. museum — «музей». Музеев несколько: There are museums nearby — «Рядом есть музеи».",
+        "uk": "До вас на вихідні приїхала сусідка з іншого міста. Вона любить дивитися старі картини й незвичайні речі за склом. На мапі району ви знаходите одразу кілька таких місць. museum — «музей». Музеїв кілька: There are museums nearby — «Поруч є музеї»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-03:intro2:q",
         "promptByLocale": {
-          "ru": "Сообщите, что здесь есть несколько библиотек.",
-          "uk": "Повідомте, що тут є кілька бібліотек."
+          "ru": "Соседка спрашивает, что посмотреть. Скажите ей, что рядом есть музеи.",
+          "uk": "Сусідка питає, що подивитися. Скажіть їй, що поруч є музеї."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-03:intro2:r1",
-              "text": "There are libraries here."
+              "text": "There are museums nearby."
             },
             {
               "responseId": "en:lesson-04:session-03:intro2:r2",
-              "text": "There is libraries here."
+              "text": "There are museum nearby."
             },
             {
               "responseId": "en:lesson-04:session-03:intro2:r3",
-              "text": "There are a libraries here."
+              "text": "There is museums nearby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-03:intro2:r1",
-              "text": "There are libraries here."
+              "text": "There are museums nearby."
             },
             {
               "responseId": "en:lesson-04:session-03:intro2:r2",
-              "text": "There is libraries here."
+              "text": "There are museum nearby."
             },
             {
               "responseId": "en:lesson-04:session-03:intro2:r3",
-              "text": "There are a libraries here."
+              "text": "There is museums nearby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что здесь есть несколько библиотек.",
-          "uk": "Повідомте, що тут є кілька бібліотек."
+          "ru": "Соседка спрашивает, что посмотреть. Скажите ей, что рядом есть музеи.",
+          "uk": "Сусідка питає, що подивитися. Скажіть їй, що поруч є музеї."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "В курсе, убеждены или обеспокоены",
-        "uk": "У курсі, переконані чи стурбовані"
+        "ru": "Старое здание с колокольней",
+        "uk": "Стара будівля з дзвіницею"
       },
       "bodyByLocale": {
-        "ru": "`aware` — «осведомлённый, в курсе»: Анна напоминает, что расписание изменилось, а вы уже знаете. `I am aware` — «Я в курсе». `convinced` — «убеждённый»: доводы Анны убедили вас, что её план подходит. `I am convinced` — «Я убеждён». `concerned` — «обеспокоенный»: вы волнуетесь из-за потерянной книги. `I am concerned` — «Я обеспокоен». `I am` сокращается до `I’m`.",
-        "uk": "`aware` — «обізнаний, у курсі»: Анна нагадує, що розклад змінився, а ви вже знаєте. `I am aware` — «Я в курсі». `convinced` — «переконаний»: доводи Анни переконали вас, що її план підходить. `I am convinced` — «Я переконаний». `concerned` — «стурбований»: ви хвилюєтеся через загублену книгу. `I am concerned` — «Я стурбований». `I am` скорочується до `I’m`."
+        "ru": "Подруга спрашивает, что стоит за банком. Вы оглядываетесь и видите одно старое здание с высокой колокольней. Оно здесь единственное, других таких нет. church — «церковь». Когда место одно, снова говорим There is a: There is a church behind the bank — «За банком есть церковь».",
+        "uk": "Подруга питає, що стоїть за банком. Ви озираєтеся й бачите одну стару будівлю з високою дзвіницею. Вона тут єдина, інших таких немає. church — «церква». Коли місце одне, знову кажемо There is a: There is a church behind the bank — «За банком є церква»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-03:intro3:q",
         "promptByLocale": {
-          "ru": "Анна напоминает об изменении расписания. Вы уже об этом знаете. Ответьте «Я в курсе».",
-          "uk": "Анна нагадує про зміну розкладу. Ви вже про це знаєте. Дайте відповідь «Я в курсі»."
+          "ru": "Подруга спрашивает, что стоит за банком. Скажите ей, что за банком есть церковь.",
+          "uk": "Подруга питає, що стоїть за банком. Скажіть їй, що за банком є церква."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-03:intro3:r1",
-              "text": "I am aware."
+              "text": "There is a church behind the bank."
             },
             {
               "responseId": "en:lesson-04:session-03:intro3:r2",
-              "text": "I am concerned."
+              "text": "There are a church behind the bank."
             },
             {
               "responseId": "en:lesson-04:session-03:intro3:r3",
-              "text": "I are aware."
+              "text": "There is church behind the bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-03:intro3:r1",
-              "text": "I am aware."
+              "text": "There is a church behind the bank."
             },
             {
               "responseId": "en:lesson-04:session-03:intro3:r2",
-              "text": "I am concerned."
+              "text": "There are a church behind the bank."
             },
             {
               "responseId": "en:lesson-04:session-03:intro3:r3",
-              "text": "I are aware."
+              "text": "There is church behind the bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна напоминает об изменении расписания. Вы уже об этом знаете. Ответьте «Я в курсе».",
-          "uk": "Анна нагадує про зміну розкладу. Ви вже про це знаєте. Дайте відповідь «Я в курсі»."
+          "ru": "Подруга спрашивает, что стоит за банком. Скажите ей, что за банком есть церковь.",
+          "uk": "Подруга питає, що стоїть за банком. Скажіть їй, що за банком є церква."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a448a8e7d6c1316666ee150bfe30452f96d31b237c5e8f55e93897ad44691424"
+  "introFingerprint": "cd6cb0cb4fb962eaa174f7de7d1a1e8ff73a617478082cbcebfc03e7830d58a9"
 }

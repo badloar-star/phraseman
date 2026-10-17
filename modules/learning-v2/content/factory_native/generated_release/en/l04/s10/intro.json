@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-10",
   "learningOutcomeByLocale": {
-    "ru": "спросить о наличии отеля и замка, сообщить о невозможности конкретного плана",
-    "uk": "запитати про наявність готелю й замка, повідомити про неможливість конкретного плану"
+    "ru": "коротко ответить на вопрос о наличии: Yes, there is. и No, there isn't.",
+    "uk": "коротко відповісти на запитання про наявність: Yes, there is. і No, there isn't."
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Есть ли отель?",
-        "uk": "Чи є готель?"
+        "ru": "Туристка с чемоданом",
+        "uk": "Туристка з валізою"
       },
       "bodyByLocale": {
-        "ru": "`hotel` — «отель, гостиница». `There is a hotel` — «Есть отель». Вопрос: `Is there a hotel?` — «Есть ли отель?» Один отель — `a hotel`, вопрос начинается с `Is there`. Чемодан готов ночевать где угодно, но вам лучше найти комнату.",
-        "uk": "`hotel` — «готель». `There is a hotel` — «Є готель». Запитання: `Is there a hotel?` — «Чи є готель?» Один готель — `a hotel`, запитання починається з `Is there`. Валіза готова ночувати будь-де, але вам краще знайти кімнату."
+        "ru": "На улице к вам подошла туристка с чемоданом. Она ищет, где переночевать, и спрашивает: Is there a hotel near here? — «Есть ли здесь рядом отель?» hotel — «отель». Вы знаете, что он стоит за банком. Ответьте коротко: Yes, there is. — «Да, есть».",
+        "uk": "На вулиці до вас підійшла туристка з валізою. Вона шукає, де переночувати, і питає: Is there a hotel near here? — «Чи є тут поруч готель?» hotel — «готель». Ви знаєте, що він стоїть за банком. Відповідайте коротко: Yes, there is. — «Так, є»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-10:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли здесь отель.",
-          "uk": "Запитайте, чи є тут готель."
+          "ru": "Туристка ждёт вашего ответа. Скажите ей коротко: да, отель есть.",
+          "uk": "Туристка чекає на вашу відповідь. Скажіть їй коротко: так, готель є."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-10:intro1:r1",
-              "text": "Is there a hotel here?"
+              "text": "Yes, there is."
             },
             {
               "responseId": "en:lesson-04:session-10:intro1:r2",
-              "text": "There is a hotel here."
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-04:session-10:intro1:r3",
-              "text": "Is there hotel here?"
+              "text": "Yes, there are."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-10:intro1:r1",
-              "text": "Is there a hotel here?"
+              "text": "Yes, there is."
             },
             {
               "responseId": "en:lesson-04:session-10:intro1:r2",
-              "text": "There is a hotel here."
+              "text": "Yes, it is."
             },
             {
               "responseId": "en:lesson-04:session-10:intro1:r3",
-              "text": "Is there hotel here?"
+              "text": "Yes, there are."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли здесь отель.",
-          "uk": "Запитайте, чи є тут готель."
+          "ru": "Туристка ждёт вашего ответа. Скажите ей коротко: да, отель есть.",
+          "uk": "Туристка чекає на вашу відповідь. Скажіть їй коротко: так, готель є."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сад и замок",
-        "uk": "Сад і замок"
+        "ru": "Брат звонит из поезда",
+        "uk": "Брат дзвонить із потяга"
       },
       "bodyByLocale": {
-        "ru": "`garden` — «сад»: `Is there a garden here?` — «Здесь есть сад?» `lock` — «замок» на двери, не дворец. `Is there a lock?` — «Есть ли замок?» `There is a lock here` — «Здесь есть замок». Вопрос и сообщение различаются порядком `Is there` и `There is`.",
-        "uk": "`garden` — «сад»: `Is there a garden here?` — «Тут є сад?» `lock` — «замок» на дверях, не палац. `Is there a lock?` — «Чи є замок?» `There is a lock here` — «Тут є замок». Запитання й повідомлення відрізняються порядком `Is there` та `There is`."
+        "ru": "Ваш брат едет в город на поезде, денег у него мало. Он звонит вам: Is there a hostel near the park? — «Есть ли хостел рядом с парком?» hostel — «хостел», недорогое жильё, где спят в общей комнате. Вы знаете район: там одни дорогие отели. Ответьте: No, there isn't.",
+        "uk": "Ваш брат їде до міста потягом, грошей у нього мало. Він дзвонить вам: Is there a hostel near the park? — «Чи є хостел поруч із парком?» hostel — «хостел», недороге житло, де сплять в одній кімнаті. Ви знаєте район: там самі дорогі готелі. Відповідайте: No, there isn't."
       },
       "question": {
         "interactionId": "en:lesson-04:session-10:intro2:q",
         "promptByLocale": {
-          "ru": "Вы смотрите план двери и хотите узнать, предусмотрен ли замок. Спросите «Есть ли замок?»",
-          "uk": "Ви дивитеся план дверей і хочете дізнатися, чи передбачений замок. Запитайте «Чи є замок?»"
+          "ru": "Брат слушает вас по телефону. Скажите ему коротко: нет, хостела там нет.",
+          "uk": "Брат слухає вас по телефону. Скажіть йому коротко: ні, хостелу там немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-10:intro2:r1",
-              "text": "Is there a lock?"
+              "text": "No, there isn't."
             },
             {
               "responseId": "en:lesson-04:session-10:intro2:r2",
-              "text": "There is a lock."
+              "text": "Yes, there isn't."
             },
             {
               "responseId": "en:lesson-04:session-10:intro2:r3",
-              "text": "Are there a lock?"
+              "text": "No, it isn't."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-10:intro2:r1",
-              "text": "Is there a lock?"
+              "text": "No, there isn't."
             },
             {
               "responseId": "en:lesson-04:session-10:intro2:r2",
-              "text": "There is a lock."
+              "text": "Yes, there isn't."
             },
             {
               "responseId": "en:lesson-04:session-10:intro2:r3",
-              "text": "Are there a lock?"
+              "text": "No, it isn't."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы смотрите план двери и хотите узнать, предусмотрен ли замок. Спросите «Есть ли замок?»",
-          "uk": "Ви дивитеся план дверей і хочете дізнатися, чи передбачений замок. Запитайте «Чи є замок?»"
+          "ru": "Брат слушает вас по телефону. Скажите ему коротко: нет, хостела там нет.",
+          "uk": "Брат слухає вас по телефону. Скажіть йому коротко: ні, хостелу там немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Это невозможно",
-        "uk": "Це неможливо"
+        "ru": "Большой отель",
+        "uk": "Великий готель"
       },
       "bodyByLocale": {
-        "ru": "`impossible` — «невозможный». Друг предлагает встретиться через минуту, но вы ещё далеко и точно не успеете. О таком плане: `It is impossible` — «Это невозможно». Сокращённо: `It’s impossible`. Это сильнее, чем «трудно»: по условиям выполнить план нельзя.",
-        "uk": "`impossible` — «неможливий». Друг пропонує зустрітися за хвилину, але ви ще далеко й точно не встигнете. Про такий план: `It is impossible` — «Це неможливо». Скорочено: `It’s impossible`. Це сильніше, ніж «важко»: за цих умов виконати план не можна."
+        "ru": "Вы с подругой вошли в большой отель и ищете, где получить ключ от номера. Вокруг столько людей, что табличек не видно. reception — «стойка регистрации». Рядом стоит охранник. Спросите его: Is there a reception here? — «Здесь есть стойка регистрации?»",
+        "uk": "Ви з подругою зайшли до великого готелю й шукаєте, де отримати ключ від номера. Навколо стільки людей, що табличок не видно. reception — «стійка реєстрації». Поруч стоїть охоронець. Запитайте його: Is there a reception here? — «Чи є тут стійка реєстрації?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-10:intro3:q",
         "promptByLocale": {
-          "ru": "Вы точно не успеете к предложенному времени. Скажите о плане «Это невозможно» с сокращением.",
-          "uk": "Ви точно не встигнете на запропонований час. Скажіть про план «Це неможливо» зі скороченням."
+          "ru": "Охранник стоит у входа. Спросите его, есть ли здесь стойка регистрации.",
+          "uk": "Охоронець стоїть біля входу. Запитайте його, чи є тут стійка реєстрації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-10:intro3:r1",
-              "text": "It's impossible."
+              "text": "Is there a reception here?"
             },
             {
               "responseId": "en:lesson-04:session-10:intro3:r2",
-              "text": "It's possible."
+              "text": "Is there reception here?"
             },
             {
               "responseId": "en:lesson-04:session-10:intro3:r3",
-              "text": "It are impossible."
+              "text": "There is a reception here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-10:intro3:r1",
-              "text": "It's impossible."
+              "text": "Is there a reception here?"
             },
             {
               "responseId": "en:lesson-04:session-10:intro3:r2",
-              "text": "It's possible."
+              "text": "Is there reception here?"
             },
             {
               "responseId": "en:lesson-04:session-10:intro3:r3",
-              "text": "It are impossible."
+              "text": "There is a reception here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы точно не успеете к предложенному времени. Скажите о плане «Это невозможно» с сокращением.",
-          "uk": "Ви точно не встигнете на запропонований час. Скажіть про план «Це неможливо» зі скороченням."
+          "ru": "Охранник стоит у входа. Спросите его, есть ли здесь стойка регистрации.",
+          "uk": "Охоронець стоїть біля входу. Запитайте його, чи є тут стійка реєстрації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f472adbdcfb2a2fafaeaca82d0ca42b86fb873204c2aaaabe56b08dd7d744c0e"
+  "introFingerprint": "fbb5676eb5ef01e2d62fb94e284837b1364bd4724ac3989180b9b3f5ce69f6ee"
 }

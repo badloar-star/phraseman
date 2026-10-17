@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-03:i01",
-    "correctText": "This is a book.",
+    "correctText": "en:lesson-04:session-03:i01:p1=bank\nen:lesson-04:session-03:i01:p2=museum\nen:lesson-04:session-03:i01:p3=church\nen:lesson-04:session-03:i01:p4=school",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-03:word:bank",
+    "correctText": "bank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i02",
     "correctText": "bank",
-    "correctResponseId": "en:lesson-04:session-03:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-03:i03",
-    "correctText": "bank",
-    "correctResponseId": "en:lesson-04:session-03:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-03:i04",
-    "correctText": "en:lesson-04:session-03:i04:p1=bank\nen:lesson-04:session-03:i04:p2=aware\nen:lesson-04:session-03:i04:p3=convinced\nen:lesson-04:session-03:i04:p4=libraries",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-03:i03",
+    "correctText": "There are banks here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-03:word:museum",
+    "correctText": "museum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-03:i04",
+    "correctText": "museum",
+    "correctResponseId": "en:lesson-04:session-03:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-03:i05",
-    "correctText": "There is a bank.",
+    "correctText": "There are museums nearby.",
+    "correctResponseId": "en:lesson-04:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-03:word:church",
+    "correctText": "church",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i06",
-    "correctText": "There are libraries here.",
+    "correctText": "church",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i07",
-    "correctText": "I'm aware.",
+    "correctText": "There is a church here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-03:word:school",
+    "correctText": "school",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i08",
-    "correctText": "a",
+    "correctText": "school",
     "correctResponseId": "en:lesson-04:session-03:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-03:i09",
-    "correctText": "I am concerned.",
-    "correctResponseId": "en:lesson-04:session-03:i09:r1"
+    "correctText": "There are schools nearby.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i10",
-    "correctText": "en:lesson-04:session-03:i10:p1=concerned\nen:lesson-04:session-03:i10:p2=book\nen:lesson-04:session-03:i10:p3=libraries\nen:lesson-04:session-03:i10:p4=aware",
-    "correctResponseId": null
+    "correctText": "There is a church behind the bank.",
+    "correctResponseId": "en:lesson-04:session-03:i10:r1"
   },
   {
     "interactionId": "en:lesson-04:session-03:i11",
-    "correctText": "There is a book here.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-03:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-03:i12",
-    "correctText": "I am convinced.",
+    "correctText": "en:lesson-04:session-03:i12:p1=banks\nen:lesson-04:session-03:i12:p2=museums\nen:lesson-04:session-03:i12:p3=churches\nen:lesson-04:session-03:i12:p4=schools",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i13",
-    "correctText": "I'm concerned.",
+    "correctText": "There are museums behind the bank.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-03:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-04:session-03:i14:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-03:i15",
-    "correctText": "I am aware.",
-    "correctResponseId": "en:lesson-04:session-03:i15:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-03:i16",
-    "correctText": "en:lesson-04:session-03:i16:p1=bank\nen:lesson-04:session-03:i16:p2=convinced\nen:lesson-04:session-03:i16:p3=concerned\nen:lesson-04:session-03:i16:p4=book",
+    "correctText": "There are schools nearby.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-03:i15",
+    "correctText": "There are churches near the garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-03:i16",
+    "correctText": "There are banks nearby.",
+    "correctResponseId": "en:lesson-04:session-03:i16:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-03:i17",
-    "correctText": "There is a bank here.",
+    "correctText": "There are schools near the bank.",
     "correctResponseId": null
   }
 ]

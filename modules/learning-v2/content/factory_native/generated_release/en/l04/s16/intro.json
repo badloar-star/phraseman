@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-16",
   "learningOutcomeByLocale": {
-    "ru": "спросить о бассейне и вспомнить места и транспорт из главы",
-    "uk": "запитати про басейн і пригадати місця та транспорт із глави"
+    "ru": "самому задать вопрос о наличии и отдельно дать короткий ответ",
+    "uk": "самому поставити запитання про наявність і окремо дати коротку відповідь"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два слова — один бассейн",
-        "uk": "Два слова — один басейн"
+        "ru": "Выходной в центре",
+        "uk": "Вихідний у центрі"
       },
       "bodyByLocale": {
-        "ru": "`swimming pool` — «бассейн», место для плавания. Одно место — `a swimming pool`, несколько — `swimming pools`: окончание меняется у последнего слова. `Is there a swimming pool here?` — «Здесь есть бассейн?» Два слова не означают два бассейна: второй купальник пока не нужен.",
-        "uk": "`swimming pool` — «басейн», місце для плавання. Одне місце — `a swimming pool`, кілька — `swimming pools`: закінчення змінюється в останньому слові. `Is there a swimming pool here?` — «Тут є басейн?» Два слова не означають два басейни: другий купальник поки не потрібен."
+        "ru": "В выходные вы с подругой пришли в досуговый центр рядом с домом. Подруга давно хочет поплавать, а здание вам незнакомо. swimming pool — «бассейн». Администратор свободен. Спросите его: Is there a swimming pool near the gym? — «Есть ли бассейн рядом с тренажёрным залом?»",
+        "uk": "У вихідні ви з подругою прийшли до дозвільного центру поруч із домом. Подруга давно хоче поплавати, а будівля вам незнайома. swimming pool — «басейн». Адміністратор вільний. Запитайте його: Is there a swimming pool near the gym? — «Чи є басейн поруч із тренажерним залом?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-16:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите «Здесь есть бассейн?»",
-          "uk": "Запитайте «Тут є басейн?»"
+          "ru": "Администратор свободен. Спросите его, есть ли бассейн рядом с тренажёрным залом.",
+          "uk": "Адміністратор вільний. Запитайте його, чи є басейн поруч із тренажерним залом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-16:intro1:r1",
-              "text": "Is there a swimming pool here?"
+              "text": "Is there a swimming pool near the gym?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r2",
-              "text": "Are there a swimming pool here?"
+              "text": "There is a swimming pool near the gym?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r3",
-              "text": "Is there swimming pool here?"
+              "text": "Is there swimming pool near the gym?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-16:intro1:r1",
-              "text": "Is there a swimming pool here?"
+              "text": "Is there a swimming pool near the gym?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r2",
-              "text": "Are there a swimming pool here?"
+              "text": "There is a swimming pool near the gym?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro1:r3",
-              "text": "Is there swimming pool here?"
+              "text": "Is there swimming pool near the gym?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Здесь есть бассейн?»",
-          "uk": "Запитайте «Тут є басейн?»"
+          "ru": "Администратор свободен. Спросите его, есть ли бассейн рядом с тренажёрным залом.",
+          "uk": "Адміністратор вільний. Запитайте його, чи є басейн поруч із тренажерним залом."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что есть в районе",
-        "uk": "Що є в районі"
+        "ru": "Схема этажа",
+        "uk": "Схема поверху"
       },
       "bodyByLocale": {
-        "ru": "`neighbourhood` — «район», `hotel` — «отель», `dentist` — «стоматолог». `This is a neighbourhood` — «Это район». `There is a hotel here` — «Здесь есть отель». `Is there a dentist here?` — «Здесь есть стоматолог?» Ещё два знакомых места: `laundrette` — «прачечная самообслуживания», `gym` — «тренажёрный зал».",
-        "uk": "`neighbourhood` — «район», `hotel` — «готель», `dentist` — «стоматолог». `This is a neighbourhood` — «Це район». `There is a hotel here` — «Тут є готель». `Is there a dentist here?` — «Тут є стоматолог?» Ще два знайомі місця: `laundrette` — «пральня самообслуговування», `gym` — «тренажерна зала»."
+        "ru": "После долгой прогулки вы замёрзли. В центре вы читаете схему этажа и находите значок с горячим паром. sauna — «сауна», тёплая комната, где сидят и греются. Подруга просит сказать, что нарисовано. Скажите ей: There is a sauna near the door. — «Рядом с дверью есть сауна».",
+        "uk": "Після довгої прогулянки ви змерзли. У центрі ви читаєте схему поверху й знаходите значок із гарячою парою. sauna — «сауна», тепла кімната, де сидять і гріються. Подруга просить сказати, що намальовано. Скажіть їй: There is a sauna near the door. — «Поруч із дверима є сауна»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-16:intro2:q",
         "promptByLocale": {
-          "ru": "На схеме района вы нашли отель. Сообщите «Здесь есть отель».",
-          "uk": "На схемі району ви знайшли готель. Повідомте «Тут є готель»."
+          "ru": "Подруга смотрит на схему. Скажите ей, что рядом с дверью есть сауна.",
+          "uk": "Подруга дивиться на схему. Скажіть їй, що поруч із дверима є сауна."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-16:intro2:r1",
-              "text": "There is a hotel here."
+              "text": "There is a sauna near the door."
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r2",
-              "text": "There are a hotel here."
+              "text": "Is there a sauna near the door?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r3",
-              "text": "Is there a hotel here?"
+              "text": "There are a sauna near the door."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-16:intro2:r1",
-              "text": "There is a hotel here."
+              "text": "There is a sauna near the door."
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r2",
-              "text": "There are a hotel here."
+              "text": "Is there a sauna near the door?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro2:r3",
-              "text": "Is there a hotel here?"
+              "text": "There are a sauna near the door."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На схеме района вы нашли отель. Сообщите «Здесь есть отель».",
-          "uk": "На схемі району ви знайшли готель. Повідомте «Тут є готель»."
+          "ru": "Подруга смотрит на схему. Скажите ей, что рядом с дверью есть сауна.",
+          "uk": "Подруга дивиться на схему. Скажіть їй, що поруч із дверима є сауна."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Добраться и потренироваться",
-        "uk": "Дістатися й потренуватися"
+        "ru": "Подруга боится глубины",
+        "uk": "Подруга боїться глибини"
       },
       "bodyByLocale": {
-        "ru": "`tram` — «трамвай», `taxi` — «такси», `platform` — «платформа». Друг показывает на трамвай вдали: `That is a tram` — «То — трамвай». Вопрос о зале: `Is there a gym?` — «Есть ли тренажёрный зал?» О нескольких прачечных: `Are there laundrettes here?` — «Здесь есть прачечные самообслуживания?» Перед несколькими местами `a` не ставим.",
-        "uk": "`tram` — «трамвай», `taxi` — «таксі», `platform` — «платформа». Друг показує на трамвай удалині: `That is a tram` — «То — трамвай». Запитання про залу: `Is there a gym?` — «Чи є тренажерна зала?» Про кілька пралень: `Are there laundrettes here?` — «Тут є пральні самообслуговування?» Перед кількома місцями `a` не ставимо."
+        "ru": "Подруга плавает хуже вас и боится глубины. В бассейне тихо, людей мало. lifeguard — «спасатель», человек, который следит за плавающими. У двери стоит администратор. Спросите его: Is there a lifeguard near the swimming pool? — «Есть ли спасатель рядом с бассейном?»",
+        "uk": "Подруга плаває гірше за вас і боїться глибини. У басейні тихо, людей мало. lifeguard — «рятувальник», людина, яка стежить за тими, хто плаває. Біля дверей стоїть адміністратор. Запитайте його: Is there a lifeguard near the swimming pool? — «Чи є рятувальник поруч із басейном?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-16:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли здесь несколько прачечных самообслуживания.",
-          "uk": "Запитайте, чи є тут кілька пралень самообслуговування."
+          "ru": "Администратор стоит у двери. Спросите его, есть ли спасатель рядом с бассейном.",
+          "uk": "Адміністратор стоїть біля дверей. Запитайте його, чи є рятувальник поруч із басейном."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-16:intro3:r1",
-              "text": "Are there laundrettes here?"
+              "text": "Is there a lifeguard near the swimming pool?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r2",
-              "text": "Is there laundrettes here?"
+              "text": "Is there lifeguard near the swimming pool?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r3",
-              "text": "Are there a laundrettes here?"
+              "text": "Are there a lifeguard near the swimming pool?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-16:intro3:r1",
-              "text": "Are there laundrettes here?"
+              "text": "Is there a lifeguard near the swimming pool?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r2",
-              "text": "Is there laundrettes here?"
+              "text": "Is there lifeguard near the swimming pool?"
             },
             {
               "responseId": "en:lesson-04:session-16:intro3:r3",
-              "text": "Are there a laundrettes here?"
+              "text": "Are there a lifeguard near the swimming pool?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли здесь несколько прачечных самообслуживания.",
-          "uk": "Запитайте, чи є тут кілька пралень самообслуговування."
+          "ru": "Администратор стоит у двери. Спросите его, есть ли спасатель рядом с бассейном.",
+          "uk": "Адміністратор стоїть біля дверей. Запитайте його, чи є рятувальник поруч із басейном."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ee8c20ecfe2393486995dbb97e577dff1c8bac939473ab306b5b4c52736b0d39"
+  "introFingerprint": "279c507fda506bfa4e1beefce5999d50c5b3b62c0365cad8a8c3410bbcf4d059"
 }

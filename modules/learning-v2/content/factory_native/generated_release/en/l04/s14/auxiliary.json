@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-14:intro1:r2": {
-          "ru": "Одно место: `Is there a laundrette here?`.",
-          "uk": "Одне місце: `Is there a laundrette here?`."
+          "ru": "Прачечная одна, поэтому нужно Is there, а не Are there.",
+          "uk": "Пральня одна, тому потрібно Is there, а не Are there."
         },
         "en:lesson-04:session-14:intro1:r3": {
-          "ru": "Это сообщение; вопрос начинается с `Is there`.",
-          "uk": "Це повідомлення; запитання починається з `Is there`."
+          "ru": "Перед одной прачечной нужно a: a laundrette.",
+          "uk": "Перед однією пральнею потрібно a: a laundrette."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-14:intro2:r2": {
-          "ru": "С `That` нужно `is`.",
-          "uk": "З `That` потрібне `is`."
+          "ru": "Сушилок несколько, поэтому начинаем с Are there, а не с Is there.",
+          "uk": "Сушарок кілька, тому починаємо з Are there, а не з Is there."
         },
         "en:lesson-04:session-14:intro2:r3": {
-          "ru": "Здесь одно здание: `That is a clinic`.",
-          "uk": "Тут одна будівля: `That is a clinic`."
+          "ru": "Перед несколькими сушилками a не ставим: dryers.",
+          "uk": "Перед кількома сушарками a не ставимо: dryers."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-14:intro3:r2": {
-          "ru": "`private` — частный; очевидный — `obvious`.",
-          "uk": "`private` — приватний; очевидний — `obvious`."
+          "ru": "Объявление одно, поэтому нужно Is there, а не Are there.",
+          "uk": "Оголошення одне, тому потрібно Is there, а не Are there."
         },
         "en:lesson-04:session-14:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s obvious`.",
-          "uk": "З `It` потрібне `is`: `It’s obvious`."
+          "ru": "Вопрос начинаем с Is there, а не с There is.",
+          "uk": "Запитання починаємо з Is there, а не з There is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8728fa46177b558768fc3904e9ab011839d6834675dd8a696e7bdfd9d225f065"
+  "auxiliaryFingerprint": "c3fa732d59b7d8be4c7ae0e330a932515803d9c0d4f4a7f31cd542cc3ec4a11e"
 }

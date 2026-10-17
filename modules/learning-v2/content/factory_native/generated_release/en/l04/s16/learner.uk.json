@@ -7,208 +7,18 @@
       "interactionId": "en:lesson-04:session-16:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Показуючи виділену ділянку міста на карті, скажіть «Це район»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Показуючи виділену ділянку міста на карті, скажіть «Це район»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is a neighbourhood.",
-        "localizedMeaning": {
-          "ru": "Показывая выделенный участок города на карте, скажите «Это район»",
-          "uk": "Показуючи виділену ділянку міста на карті, скажіть «Це район»"
-        },
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "neighbourhood"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-16:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Показуючи виділену ділянку міста на карті, скажіть «Це район»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a neighbourhood.`",
-              "uk": "тут потрібно `is` — `This is a neighbourhood.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-16:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть назву",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-16:i02:r1",
-          "text": "swimming pool"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i02:r2",
-          "text": "swimming pools"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i02:r3",
-          "text": "small pool"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-16:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть назву",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-16:i02:audio",
-          "transcript": "swimming pool"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-16:i02:r1",
-            "targetText": "swimming pool",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i02:r2",
-            "targetText": "swimming pools",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i02:r3",
-            "targetText": "small pool",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-16:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `pool`, а в этом варианте — `pools`.",
-              "uk": "У записі останнє слово — `pool`, а в цьому варіанті — `pools`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `swimming`, а в этом варианте — `small`.",
-              "uk": "У записі перше слово — `swimming`, а в цьому варіанті — `small`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-16:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть басейн двома англійськими словами",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-16:i03:r1",
-          "text": "swimming pool"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i03:r2",
-          "text": "gym"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i03:r3",
-          "text": "hotel"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть басейн двома англійськими словами",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите бассейн двумя английскими словами",
-          "uk": "Назвіть басейн двома англійськими словами"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-16:i03:r1",
-            "text": "swimming pool"
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i03:r2",
-            "text": "gym"
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i03:r3",
-            "text": "hotel"
-          }
-        ],
-        "testedDimension": "Назвіть басейн двома англійськими словами",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-16:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть басейн двома англійськими словами",
-            "feedbackByLocale": {
-              "ru": "`gym` — тренажёрный зал; бассейн — `swimming pool`.",
-              "uk": "`gym` — тренажерна зала; басейн — `swimming pool`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть басейн двома англійськими словами",
-            "feedbackByLocale": {
-              "ru": "`hotel` — отель; бассейн — `swimming pool`.",
-              "uk": "`hotel` — готель; басейн — `swimming pool`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-16:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви зі значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви зі значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-16:i04:p1",
+            "pairId": "en:lesson-04:session-16:i01:p1",
             "target": "swimming pool",
             "meaningByLocale": {
               "ru": "бассейн",
@@ -216,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-16:i04:p2",
-            "target": "dentist",
+            "pairId": "en:lesson-04:session-16:i01:p2",
+            "target": "sauna",
             "meaningByLocale": {
-              "ru": "стоматолог",
-              "uk": "стоматолог"
+              "ru": "сауна",
+              "uk": "сауна"
             }
           },
           {
-            "pairId": "en:lesson-04:session-16:i04:p3",
-            "target": "hotel",
+            "pairId": "en:lesson-04:session-16:i01:p3",
+            "target": "lifeguard",
             "meaningByLocale": {
-              "ru": "отель",
-              "uk": "готель"
+              "ru": "спасатель",
+              "uk": "рятувальник"
             }
           },
           {
-            "pairId": "en:lesson-04:session-16:i04:p4",
-            "target": "tram",
+            "pairId": "en:lesson-04:session-16:i01:p4",
+            "target": "swimsuit",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "купальник",
+              "uk": "купальник"
             }
           }
         ],
         "leftColumn": [
           "swimming pool",
-          "dentist",
-          "hotel",
-          "tram"
+          "sauna",
+          "lifeguard",
+          "swimsuit"
         ],
         "rightColumn": [
           "басейн",
-          "стоматолог",
-          "готель",
-          "трамвай"
+          "сауна",
+          "рятувальник",
+          "купальник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,109 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-16:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-16:word:swimming pool",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swimming pool",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-16:i05:audio"
+        "en:lesson-04:session-16:word:swimming pool:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Картка слова — swimming pool",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-16:i05:audio",
-          "transcript": "Is there a swimming pool?"
+          "audioTargetId": "en:lesson-04:session-16:word:swimming pool:audio",
+          "transcript": "swimming pool"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is there a swimming pool?",
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "swimming",
-          "pool"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-16:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "За картою повідомте «Тут є готель»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "За картою повідомте «Тут є готель»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a hotel here.",
-        "localizedMeaning": {
-          "ru": "По карте сообщите «Здесь есть отель»",
-          "uk": "За картою повідомте «Тут є готель»"
-        },
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "hotel",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-16:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "За картою повідомте «Тут є готель»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a hotel here.`",
-              "uk": "тут потрібно `is` — `There is a hotel here.`"
+            "responseId": "en:lesson-04:session-16:word:swimming pool:r1",
+            "targetText": "swimming pool",
+            "meaningByLocale": {
+              "ru": "бассейн. Is there a swimming pool near the gym? — «Есть ли бассейн рядом с тренажёрным залом?» О месте, где плавают.",
+              "uk": "басейн. Is there a swimming pool near the gym? — «Чи є басейн поруч із тренажерним залом?» Про місце, де плавають."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swimming pool",
+          "definitionByLocale": {
+            "ru": "бассейн. Is there a swimming pool near the gym? — «Есть ли бассейн рядом с тренажёрным залом?» О месте, где плавают.",
+            "uk": "басейн. Is there a swimming pool near the gym? — «Чи є басейн поруч із тренажерним залом?» Про місце, де плавають."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-16:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-16:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Укажіть на далекий транспорт на фотографії: «То — трамвай»",
+      "prompt": "Адміністратор центру називає місце, де плавають, а ви повторюєте за ним",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-16:i07:audio"
+        "en:lesson-04:session-16:i02:audio"
       ],
-      "accessibilityLabel": "Укажіть на далекий транспорт на фотографії: «То — трамвай»",
+      "accessibilityLabel": "Адміністратор центру називає місце, де плавають, а ви повторюєте за ним",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-16:i07:audio",
-          "transcript": "That is a tram."
+          "audioTargetId": "en:lesson-04:session-16:i02:audio",
+          "transcript": "swimming pool"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That is a tram.",
+        "targetPhrase": "swimming pool",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -383,68 +153,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-16:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви стоїте біля стійки адміністратора. Запитайте його повною фразою: чи є тут басейн?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви стоїте біля стійки адміністратора. Запитайте його повною фразою: чи є тут басейн?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a swimming pool here?",
+        "localizedMeaning": {
+          "ru": "Вы стоите у стойки администратора. Спросите его полной фразой: здесь есть бассейн?",
+          "uk": "Ви стоїте біля стійки адміністратора. Запитайте його повною фразою: чи є тут басейн?"
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "swimming",
+          "pool",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-16:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви стоїте біля стійки адміністратора. Запитайте його повною фразою: чи є тут басейн?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a swimming pool here?`",
+              "uk": "тут потрібно `Is` — `Is there a swimming pool here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:word:sauna",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sauna",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-16:word:sauna:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sauna",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-16:word:sauna:audio",
+          "transcript": "sauna"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-16:word:sauna:r1",
+            "targetText": "sauna",
+            "meaningByLocale": {
+              "ru": "сауна. There is a sauna near the door. — «Рядом с дверью есть сауна». О тёплой комнате с горячим паром.",
+              "uk": "сауна. There is a sauna near the door. — «Поруч із дверима є сауна». Про теплу кімнату з гарячою парою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sauna",
+          "definitionByLocale": {
+            "ru": "сауна. There is a sauna near the door. — «Рядом с дверью есть сауна». О тёплой комнате с горячим паром.",
+            "uk": "сауна. There is a sauna near the door. — «Поруч із дверима є сауна». Про теплу кімнату з гарячою парою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, чи є тут кілька пралень самообслуговування",
+      "prompt": "Тепла кімната з гарячою парою, де люди сидять і гріються. Як вона називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-16:i08:r1",
-          "text": "Are"
+          "responseId": "en:lesson-04:session-16:i04:r1",
+          "text": "sauna"
         },
         {
-          "responseId": "en:lesson-04:session-16:i08:r2",
-          "text": "Is"
+          "responseId": "en:lesson-04:session-16:i04:r2",
+          "text": "gym"
         },
         {
-          "responseId": "en:lesson-04:session-16:i08:r3",
-          "text": "Am"
+          "responseId": "en:lesson-04:session-16:i04:r3",
+          "text": "swimming pool"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, чи є тут кілька пралень самообслуговування",
+      "accessibilityLabel": "Тепла кімната з гарячою парою, де люди сидять і гріються. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, есть ли здесь несколько прачечных самообслуживания",
-          "uk": "Запитайте, чи є тут кілька пралень самообслуговування"
+          "ru": "Тёплая комната с горячим паром, где люди сидят и греются. Как она называется по-английски?",
+          "uk": "Тепла кімната з гарячою парою, де люди сидять і гріються. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "___ there laundrettes here?",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-16:i08:r1",
-            "text": "Are"
+            "responseId": "en:lesson-04:session-16:i04:r1",
+            "text": "sauna"
           },
           {
-            "responseId": "en:lesson-04:session-16:i08:r2",
-            "text": "Is"
+            "responseId": "en:lesson-04:session-16:i04:r2",
+            "text": "gym"
           },
           {
-            "responseId": "en:lesson-04:session-16:i08:r3",
-            "text": "Am"
+            "responseId": "en:lesson-04:session-16:i04:r3",
+            "text": "swimming pool"
           }
         ],
-        "testedDimension": "Запитайте, чи є тут кілька пралень самообслуговування",
+        "testedDimension": "Тепла кімната з гарячою парою, де люди сидять і гріються. Як вона називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-16:i08:r2",
+            "responseId": "en:lesson-04:session-16:i04:r2",
             "correct": false,
-            "testedDimension": "Запитайте, чи є тут кілька пралень самообслуговування",
+            "testedDimension": "Тепла кімната з гарячою парою, де люди сидять і гріються. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`laundrettes` — несколько мест: `Are there`.",
-              "uk": "`laundrettes` — кілька місць: `Are there`."
+              "ru": "gym — это зал с тренажёрами, а тёплая комната с паром называется sauna.",
+              "uk": "gym — це зал із тренажерами, а тепла кімната з парою називається sauna."
             }
           },
           {
-            "responseId": "en:lesson-04:session-16:i08:r3",
+            "responseId": "en:lesson-04:session-16:i04:r3",
             "correct": false,
-            "testedDimension": "Запитайте, чи є тут кілька пралень самообслуговування",
+            "testedDimension": "Тепла кімната з гарячою парою, де люди сидять і гріються. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Вопрос о нескольких местах начинается с `Are there`.",
-              "uk": "Запитання про кілька місць починається з `Are there`."
+              "ru": "swimming pool — это бассейн с водой, а тёплая комната с паром называется sauna.",
+              "uk": "swimming pool — це басейн із водою, а тепла кімната з парою називається sauna."
             }
           }
         ]
@@ -452,73 +312,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-16:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте запитання подруги",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-16:i09:r1",
-          "text": "Is there a gym?"
+          "responseId": "en:lesson-04:session-16:i05:r1",
+          "text": "Is there a sauna here?"
         },
         {
-          "responseId": "en:lesson-04:session-16:i09:r2",
-          "text": "Is there a hotel?"
+          "responseId": "en:lesson-04:session-16:i05:r2",
+          "text": "Is there a swimming pool here?"
         },
         {
-          "responseId": "en:lesson-04:session-16:i09:r3",
-          "text": "Is there a laundrette?"
+          "responseId": "en:lesson-04:session-16:i05:r3",
+          "text": "There is a sauna here."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-16:i09:audio"
+        "en:lesson-04:session-16:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте запитання подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-16:i09:audio",
-          "transcript": "Is there a gym?"
+          "audioTargetId": "en:lesson-04:session-16:i05:audio",
+          "transcript": "Is there a sauna here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-16:i09:r1",
-            "targetText": "Is there a gym?",
+            "responseId": "en:lesson-04:session-16:i05:r1",
+            "targetText": "Is there a sauna here?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-16:i09:r2",
-            "targetText": "Is there a hotel?",
+            "responseId": "en:lesson-04:session-16:i05:r2",
+            "targetText": "Is there a swimming pool here?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-16:i09:r3",
-            "targetText": "Is there a laundrette?",
+            "responseId": "en:lesson-04:session-16:i05:r3",
+            "targetText": "There is a sauna here.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-16:i09:r2",
+            "responseId": "en:lesson-04:session-16:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `gym`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `gym`, а в цьому варіанті — `hotel`."
+              "ru": "В записи спрашивают про `sauna`, а в этом варианте про `swimming pool`.",
+              "uk": "У записі питають про `sauna`, а в цьому варіанті про `swimming pool`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-16:i09:r3",
+            "responseId": "en:lesson-04:session-16:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте запитання подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `gym`, а в этом варианте — `laundrette`.",
-              "uk": "У записі останнє слово — `gym`, а в цьому варіанті — `laundrette`."
+              "ru": "В записи вопрос `Is there`, а в этом варианте сообщение `There is`.",
+              "uk": "У записі запитання `Is there`, а в цьому варіанті повідомлення `There is`."
             }
           }
         ],
@@ -528,41 +388,323 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-16:i10",
+      "interactionId": "en:lesson-04:session-16:word:lifeguard",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lifeguard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-16:word:lifeguard:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lifeguard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-16:word:lifeguard:audio",
+          "transcript": "lifeguard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-16:word:lifeguard:r1",
+            "targetText": "lifeguard",
+            "meaningByLocale": {
+              "ru": "спасатель. Is there a lifeguard near the swimming pool? — «Есть ли спасатель рядом с бассейном?» О человеке, который следит за плавающими.",
+              "uk": "рятувальник. Is there a lifeguard near the swimming pool? — «Чи є рятувальник поруч із басейном?» Про людину, яка стежить за тими, хто плаває."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lifeguard",
+          "definitionByLocale": {
+            "ru": "спасатель. Is there a lifeguard near the swimming pool? — «Есть ли спасатель рядом с бассейном?» О человеке, который следит за плавающими.",
+            "uk": "рятувальник. Is there a lifeguard near the swimming pool? — «Чи є рятувальник поруч із басейном?» Про людину, яка стежить за тими, хто плаває."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Адміністратор називає людину, яка стежить за тими, хто плаває, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Адміністратор називає людину, яка стежить за тими, хто плаває, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-16:i06:audio",
+          "transcript": "lifeguard"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lifeguard",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви зі значеннями",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте подругу й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-16:i07:audio",
+          "transcript": "Is there a lifeguard here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a lifeguard here?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "lifeguard",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-16:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a lifeguard here?`",
+              "uk": "тут потрібно `Is` — `Is there a lifeguard here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:word:swimsuit",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swimsuit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-16:word:swimsuit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swimsuit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-16:word:swimsuit:audio",
+          "transcript": "swimsuit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-16:word:swimsuit:r1",
+            "targetText": "swimsuit",
+            "meaningByLocale": {
+              "ru": "купальник, плавки. Are there swimsuits here? — «Здесь есть купальники?» Об одежде для плавания.",
+              "uk": "купальник, плавки. Are there swimsuits here? — «Чи є тут купальники?» Про одяг для плавання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swimsuit",
+          "definitionByLocale": {
+            "ru": "купальник, плавки. Are there swimsuits here? — «Здесь есть купальники?» Об одежде для плавания.",
+            "uk": "купальник, плавки. Are there swimsuits here? — «Чи є тут купальники?» Про одяг для плавання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для басейну потрібен спеціальний одяг для плавання. Як він називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-16:i08:r1",
+          "text": "swimsuit"
+        },
+        {
+          "responseId": "en:lesson-04:session-16:i08:r2",
+          "text": "shirt"
+        },
+        {
+          "responseId": "en:lesson-04:session-16:i08:r3",
+          "text": "towel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для басейну потрібен спеціальний одяг для плавання. Як він називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для бассейна нужна специальная одежда для плавания. Как она называется по-английски?",
+          "uk": "Для басейну потрібен спеціальний одяг для плавання. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-16:i08:r1",
+            "text": "swimsuit"
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i08:r2",
+            "text": "shirt"
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i08:r3",
+            "text": "towel"
+          }
+        ],
+        "testedDimension": "Для басейну потрібен спеціальний одяг для плавання. Як він називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Для басейну потрібен спеціальний одяг для плавання. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "shirt — это рубашка, а одежда для плавания называется swimsuit.",
+              "uk": "shirt — це сорочка, а одяг для плавання називається swimsuit."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Для басейну потрібен спеціальний одяг для плавання. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "towel — это полотенце, а одежда для плавания называется swimsuit.",
+              "uk": "towel — це рушник, а одяг для плавання називається swimsuit."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви прийшли до басейну без речей. Запитайте адміністратора повною фразою: чи є тут купальники?",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви зі значеннями",
+      "accessibilityLabel": "Ви прийшли до басейну без речей. Запитайте адміністратора повною фразою: чи є тут купальники?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there swimsuits here?",
+        "localizedMeaning": {
+          "ru": "Вы пришли в бассейн без вещей. Спросите администратора полной фразой: здесь есть купальники?",
+          "uk": "Ви прийшли до басейну без речей. Запитайте адміністратора повною фразою: чи є тут купальники?"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "swimsuits",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-16:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви прийшли до басейну без речей. Запитайте адміністратора повною фразою: чи є тут купальники?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are there swimsuits here?`",
+              "uk": "тут потрібно `Are` — `Are there swimsuits here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-16:i10:p1",
-            "target": "platform",
+            "target": "swimsuit",
             "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
+              "ru": "купальник",
+              "uk": "купальник"
             }
           },
           {
             "pairId": "en:lesson-04:session-16:i10:p2",
-            "target": "taxi",
+            "target": "lifeguard",
             "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
+              "ru": "спасатель",
+              "uk": "рятувальник"
             }
           },
           {
             "pairId": "en:lesson-04:session-16:i10:p3",
-            "target": "laundrette",
+            "target": "sauna",
             "meaningByLocale": {
-              "ru": "прачечная самообслуживания",
-              "uk": "пральня самообслуговування"
+              "ru": "сауна",
+              "uk": "сауна"
             }
           },
           {
@@ -570,21 +712,21 @@
             "target": "gym",
             "meaningByLocale": {
               "ru": "тренажёрный зал",
-              "uk": "тренажерна зала"
+              "uk": "тренажерний зал"
             }
           }
         ],
         "leftColumn": [
-          "platform",
-          "taxi",
-          "laundrette",
+          "swimsuit",
+          "lifeguard",
+          "sauna",
           "gym"
         ],
         "rightColumn": [
-          "платформа",
-          "таксі",
-          "пральня самообслуговування",
-          "тренажерна зала"
+          "купальник",
+          "рятувальник",
+          "сауна",
+          "тренажерний зал"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -602,44 +744,187 @@
     },
     {
       "interactionId": "en:lesson-04:session-16:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку відповідь адміністратора",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-16:i11:r1",
+          "text": "Yes, there is."
+        },
+        {
+          "responseId": "en:lesson-04:session-16:i11:r2",
+          "text": "No, there isn't."
+        },
+        {
+          "responseId": "en:lesson-04:session-16:i11:r3",
+          "text": "Yes, there are."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-16:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте коротку відповідь адміністратора",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-16:i11:audio",
+          "transcript": "Yes, there is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-16:i11:r1",
+            "targetText": "Yes, there is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i11:r2",
+            "targetText": "No, there isn't.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i11:r3",
+            "targetText": "Yes, there are.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку відповідь адміністратора",
+            "feedbackByLocale": {
+              "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+              "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку відповідь адміністратора",
+            "feedbackByLocale": {
+              "ru": "В записи `there is`, а в этом варианте `there are`.",
+              "uk": "У записі `there is`, а в цьому варіанті `there are`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Адміністратор відповів заперечно: сауни тут немає. Доповніть його коротку відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-16:i12:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-04:session-16:i12:r2",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-04:session-16:i12:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Адміністратор відповів заперечно: сауни тут немає. Доповніть його коротку відповідь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Администратор ответил отрицательно: сауны здесь нет. Дополните его короткий ответ",
+          "uk": "Адміністратор відповів заперечно: сауни тут немає. Доповніть його коротку відповідь"
+        },
+        "gappedTargetPhrase": "No, there ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-16:i12:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i12:r2",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i12:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Адміністратор відповів заперечно: сауни тут немає. Доповніть його коротку відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Адміністратор відповів заперечно: сауни тут немає. Доповніть його коротку відповідь",
+            "feedbackByLocale": {
+              "ru": "Сауна одна, поэтому нужно isn't, а не aren't.",
+              "uk": "Сауна одна, тому потрібно isn't, а не aren't."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Адміністратор відповів заперечно: сауни тут немає. Доповніть його коротку відповідь",
+            "feedbackByLocale": {
+              "ru": "Слово no уже стоит в начале ответа: дальше нужно isn't.",
+              "uk": "Слово no вже стоїть на початку відповіді: далі потрібно isn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте подругу й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-16:i11:audio",
-          "transcript": "There is a swimming pool here."
+          "audioTargetId": "en:lesson-04:session-16:i13:audio",
+          "transcript": "Are there lifeguards here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There is a swimming pool here.",
+        "hiddenTargetPhrase": "Are there lifeguards here?",
         "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "swimming",
-          "pool",
+          "Are",
+          "there",
+          "lifeguards",
           "here"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-16:i11:tile:d1",
+            "responseId": "en:lesson-04:session-16:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте подругу й складіть запитання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a swimming pool here.`",
-              "uk": "тут потрібно `is` — `There is a swimming pool here.`"
+              "ru": "здесь нужно `Are` — `Are there lifeguards here?`",
+              "uk": "тут потрібно `Are` — `Are there lifeguards here?`"
             }
           }
         ],
@@ -651,60 +936,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-16:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Запитайте про кілька басейнів тут",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про кілька басейнів тут",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Are there swimming pools here?",
-        "localizedMeaning": {
-          "ru": "Спросите о нескольких бассейнах здесь",
-          "uk": "Запитайте про кілька басейнів тут"
-        },
-        "orderedTokens": [
-          "Are",
-          "there",
-          "swimming",
-          "pools",
-          "here"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-16:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-16:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У далекій частині фотографії друг не впізнає басейн. Скажіть «То — басейн»",
+      "prompt": "Подруга хоче погрітися перед плаванням. Запитайте адміністратора, чи є сауна поруч із тренажерним залом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-16:i13:audio"
+        "en:lesson-04:session-16:i14:audio"
       ],
-      "accessibilityLabel": "У далекій частині фотографії друг не впізнає басейн. Скажіть «То — басейн»",
+      "accessibilityLabel": "Подруга хоче погрітися перед плаванням. Запитайте адміністратора, чи є сауна поруч із тренажерним залом",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-16:i13:audio",
-          "transcript": "That is a swimming pool."
+          "audioTargetId": "en:lesson-04:session-16:i14:audio",
+          "transcript": "Is there a sauna near the gym?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That is a swimming pool.",
+        "targetPhrase": "Is there a sauna near the gym?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -718,208 +969,109 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-16:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Повідомте «Тут є басейни»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-16:i14:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i14:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i14:r3",
-          "text": "am"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте одяг для басейну. Запитайте адміністратора повною фразою: чи є поруч купальники?",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Тут є басейни»",
+      "accessibilityLabel": "Ви шукаєте одяг для басейну. Запитайте адміністратора повною фразою: чи є поруч купальники?",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Сообщите «Здесь есть бассейны»",
-          "uk": "Повідомте «Тут є басейни»"
+        "family": "phrase_builder",
+        "targetPhrase": "Are there swimsuits near here?",
+        "localizedMeaning": {
+          "ru": "Вы ищете одежду для бассейна. Спросите администратора полной фразой: рядом есть купальники?",
+          "uk": "Ви шукаєте одяг для басейну. Запитайте адміністратора повною фразою: чи є поруч купальники?"
         },
-        "gappedTargetPhrase": "There ___ swimming pools here.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Are",
+          "there",
+          "swimsuits",
+          "near",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-16:i14:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i14:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i14:r3",
-            "text": "am"
+            "responseId": "en:lesson-04:session-16:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте одяг для басейну. Запитайте адміністратора повною фразою: чи є поруч купальники?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are there swimsuits near here?`",
+              "uk": "тут потрібно `Are` — `Are there swimsuits near here?`"
+            }
           }
         ],
-        "testedDimension": "Повідомте «Тут є басейни»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-16:i14:r2",
-            "correct": false,
-            "testedDimension": "Повідомте «Тут є басейни»",
-            "feedbackByLocale": {
-              "ru": "Бассейнов несколько: `There are swimming pools here`.",
-              "uk": "Басейнів кілька: `There are swimming pools here`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i14:r3",
-            "correct": false,
-            "testedDimension": "Повідомте «Тут є басейни»",
-            "feedbackByLocale": {
-              "ru": "О наличии нескольких бассейнов говорим `There are`.",
-              "uk": "Про наявність кількох басейнів кажемо `There are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-16:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-16:i15:r1",
-          "text": "Is there a dentist?"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i15:r2",
-          "text": "Is there a gym?"
-        },
-        {
-          "responseId": "en:lesson-04:session-16:i15:r3",
-          "text": "Is there a hotel?"
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-16:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте запитання",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-16:i15:audio",
-          "transcript": "Is there a dentist?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-16:i15:r1",
-            "targetText": "Is there a dentist?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i15:r2",
-            "targetText": "Is there a gym?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i15:r3",
-            "targetText": "Is there a hotel?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-16:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте запитання",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dentist`, а в этом варианте — `gym`.",
-              "uk": "У записі останнє слово — `dentist`, а в цьому варіанті — `gym`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-16:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте запитання",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dentist`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `dentist`, а в цьому варіанті — `hotel`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-16:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви зі значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви зі значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-16:i16:p1",
-            "target": "neighbourhood",
+            "target": "swimming pool",
             "meaningByLocale": {
-              "ru": "район",
-              "uk": "район"
+              "ru": "бассейн",
+              "uk": "басейн"
             }
           },
           {
             "pairId": "en:lesson-04:session-16:i16:p2",
-            "target": "dentist",
+            "target": "sauna",
             "meaningByLocale": {
-              "ru": "стоматолог",
-              "uk": "стоматолог"
+              "ru": "сауна",
+              "uk": "сауна"
             }
           },
           {
             "pairId": "en:lesson-04:session-16:i16:p3",
-            "target": "platform",
+            "target": "swimsuit",
             "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
+              "ru": "купальник",
+              "uk": "купальник"
             }
           },
           {
             "pairId": "en:lesson-04:session-16:i16:p4",
-            "target": "taxi",
+            "target": "lifeguard",
             "meaningByLocale": {
-              "ru": "такси",
-              "uk": "таксі"
+              "ru": "спасатель",
+              "uk": "рятувальник"
             }
           }
         ],
         "leftColumn": [
-          "neighbourhood",
-          "dentist",
-          "platform",
-          "taxi"
+          "swimming pool",
+          "sauna",
+          "swimsuit",
+          "lifeguard"
         ],
         "rightColumn": [
-          "район",
-          "стоматолог",
-          "платформа",
-          "таксі"
+          "басейн",
+          "сауна",
+          "купальник",
+          "рятувальник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -937,25 +1089,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-16:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншій подорожі ви хочете поплавати. На стійці готелю запитайте «Тут є басейн?»",
+      "prompt": "Подруга питає, чи є в центрі кілька рятувальників. Вони є. Відповідайте їй коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-16:i17:audio"
       ],
-      "accessibilityLabel": "В іншій подорожі ви хочете поплавати. На стійці готелю запитайте «Тут є басейн?»",
+      "accessibilityLabel": "Подруга питає, чи є в центрі кілька рятувальників. Вони є. Відповідайте їй коротко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-16:i17:audio",
-          "transcript": "Is there a swimming pool here?"
+          "transcript": "Yes, there are."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a swimming pool here?",
+        "targetPhrase": "Yes, there are.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -977,11 +1129,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fa911ef24117e827946df72f335d1d38b8a709a51f821d891058982b55174bdd"
+  "learnerFingerprint": "d847f5983ee1df8dd5a2bf4e592a273b495fbc0f5c2eac41532989953347a0b9"
 }

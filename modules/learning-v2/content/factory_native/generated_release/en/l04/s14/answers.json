@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-14:i01",
-    "correctText": "There is a picture.",
+    "correctText": "en:lesson-04:session-14:i01:p1=laundrette\nen:lesson-04:session-14:i01:p2=dryer\nen:lesson-04:session-14:i01:p3=notice\nen:lesson-04:session-14:i01:p4=token",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:word:laundrette",
+    "correctText": "laundrette",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i02",
     "correctText": "laundrette",
-    "correctResponseId": "en:lesson-04:session-14:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-14:i03",
-    "correctText": "laundrette",
-    "correctResponseId": "en:lesson-04:session-14:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-14:i04",
-    "correctText": "en:lesson-04:session-14:i04:p1=laundrette\nen:lesson-04:session-14:i04:p2=obvious\nen:lesson-04:session-14:i04:p3=picture\nen:lesson-04:session-14:i04:p4=clinic",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-14:i03",
+    "correctText": "Is there a laundrette near here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:word:dryer",
+    "correctText": "dryer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:i04",
+    "correctText": "dryer",
+    "correctResponseId": "en:lesson-04:session-14:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-14:i05",
-    "correctText": "Is there a laundrette?",
+    "correctText": "Are there dryers here?",
+    "correctResponseId": "en:lesson-04:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:word:token",
+    "correctText": "token",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i06",
-    "correctText": "That is a clinic.",
+    "correctText": "token",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i07",
-    "correctText": "It's obvious.",
+    "correctText": "Are there tokens here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-14:word:notice",
+    "correctText": "notice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i08",
-    "correctText": "Are",
+    "correctText": "notice",
     "correctResponseId": "en:lesson-04:session-14:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-14:i09",
-    "correctText": "Is there a picture?",
-    "correctResponseId": "en:lesson-04:session-14:i09:r1"
+    "correctText": "Is there a notice here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i10",
-    "correctText": "en:lesson-04:session-14:i10:p1=laundrette\nen:lesson-04:session-14:i10:p2=laundrettes\nen:lesson-04:session-14:i10:p3=picture\nen:lesson-04:session-14:i10:p4=obvious",
+    "correctText": "en:lesson-04:session-14:i10:p1=dryer\nen:lesson-04:session-14:i10:p2=token\nen:lesson-04:session-14:i10:p3=notice\nen:lesson-04:session-14:i10:p4=coin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i11",
-    "correctText": "There is a clinic here.",
-    "correctResponseId": null
+    "correctText": "Are there laundrettes near here?",
+    "correctResponseId": "en:lesson-04:session-14:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-14:i12",
-    "correctText": "There are laundrettes here.",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-04:session-14:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-14:i13",
-    "correctText": "Is there a picture here?",
+    "correctText": "Is there a dryer near the door?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i14",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-04:session-14:i14:r1"
+    "correctText": "Are there notices here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i15",
-    "correctText": "It is obvious.",
-    "correctResponseId": "en:lesson-04:session-14:i15:r1"
+    "correctText": "Are there laundrettes here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i16",
-    "correctText": "en:lesson-04:session-14:i16:p1=laundrette\nen:lesson-04:session-14:i16:p2=obvious\nen:lesson-04:session-14:i16:p3=picture\nen:lesson-04:session-14:i16:p4=clinic",
+    "correctText": "en:lesson-04:session-14:i16:p1=laundrette\nen:lesson-04:session-14:i16:p2=dryer\nen:lesson-04:session-14:i16:p3=token\nen:lesson-04:session-14:i16:p4=notice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-14:i17",
-    "correctText": "Is there a laundrette here?",
+    "correctText": "Is there a laundrette near the bank?",
     "correctResponseId": null
   }
 ]

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-04:intro1:r2": {
-          "ru": "Отделение одно, хотя в названии два слова: `There is a post office`.",
-          "uk": "Відділення одне, хоча в назві два слова: `There is a post office`."
+          "ru": "Перед названием одного места нужно a: There is a post office here.",
+          "uk": "Перед назвою одного місця потрібно a: There is a post office here."
         },
         "en:lesson-04:session-04:intro1:r3": {
-          "ru": "Перед одним отделением нужно `a`: `a post office`.",
-          "uk": "Перед одним відділенням потрібне `a`: `a post office`."
+          "ru": "Почта одна, поэтому нужно is: There is a post office here.",
+          "uk": "Пошта одна, тому потрібно is: There is a post office here."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-04:intro2:r2": {
-          "ru": "`visible` — видно, а отметка закрыта: `hidden`.",
-          "uk": "`visible` — видно, а позначка закрита: `hidden`."
+          "ru": "Мостов несколько, поэтому нужно are: There are bridges nearby.",
+          "uk": "Мостів кілька, тому потрібно are: There are bridges nearby."
         },
         "en:lesson-04:session-04:intro2:r3": {
-          "ru": "Одна отметка: `It is hidden`.",
-          "uk": "Одна позначка: `It is hidden`."
+          "ru": "Мостов несколько, поэтому нужно bridges: There are bridges nearby.",
+          "uk": "Мостів кілька, тому потрібно bridges: There are bridges nearby."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-04:intro3:r2": {
-          "ru": "Это значит «Она скрыта». О понятной схеме — `clear`.",
-          "uk": "Це означає «Вона прихована». Про зрозумілу схему — `clear`."
+          "ru": "Рынок один, поэтому нужно is: There is a market near the bridge.",
+          "uk": "Ринок один, тому потрібно is: There is a market near the bridge."
         },
         "en:lesson-04:session-04:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Рынок стоит рядом с мостом, а не за ним: near, а не behind.",
+          "uk": "Ринок стоїть поруч із мостом, а не за ним: near, а не behind."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b2fd763e4569e2eb310b4f8bbd1bfee4e4d5cf702a0e23cae8f06275d445e4f4"
+  "auxiliaryFingerprint": "954c4a28b908480c2715827ece0f3bcbe74e8be40e148343573981bca17db1a6"
 }

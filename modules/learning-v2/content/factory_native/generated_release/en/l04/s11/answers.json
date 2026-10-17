@@ -1,82 +1,102 @@
 [
   {
     "interactionId": "en:lesson-04:session-11:i01",
-    "correctText": "There is a bank.",
+    "correctText": "en:lesson-04:session-11:i01:p1=tram\nen:lesson-04:session-11:i01:p2=seat\nen:lesson-04:session-11:i01:p3=train\nen:lesson-04:session-11:i01:p4=route",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:word:tram",
+    "correctText": "tram",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i02",
     "correctText": "tram",
-    "correctResponseId": "en:lesson-04:session-11:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-11:i03",
-    "correctText": "tram",
-    "correctResponseId": "en:lesson-04:session-11:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-11:i04",
-    "correctText": "en:lesson-04:session-11:i04:p1=tram\nen:lesson-04:session-11:i04:p2=urgent\nen:lesson-04:session-11:i04:p3=room\nen:lesson-04:session-11:i04:p4=bank",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-11:i03",
+    "correctText": "Are there trams near here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:word:train",
+    "correctText": "train",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:i04",
+    "correctText": "train",
+    "correctResponseId": "en:lesson-04:session-11:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-11:i05",
-    "correctText": "Is there a tram?",
+    "correctText": "Are there trains here?",
+    "correctResponseId": "en:lesson-04:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:word:seat",
+    "correctText": "seat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i06",
-    "correctText": "That is a bank.",
+    "correctText": "seat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i07",
-    "correctText": "It's urgent.",
+    "correctText": "Are there seats here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-11:word:route",
+    "correctText": "route",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i08",
-    "correctText": "Are",
+    "correctText": "route",
     "correctResponseId": "en:lesson-04:session-11:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-11:i09",
-    "correctText": "Is there a room?",
-    "correctResponseId": "en:lesson-04:session-11:i09:r1"
+    "correctText": "Are there tram routes here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i10",
-    "correctText": "en:lesson-04:session-11:i10:p1=tram\nen:lesson-04:session-11:i10:p2=trams\nen:lesson-04:session-11:i10:p3=room\nen:lesson-04:session-11:i10:p4=urgent",
+    "correctText": "en:lesson-04:session-11:i10:p1=route\nen:lesson-04:session-11:i10:p2=seat\nen:lesson-04:session-11:i10:p3=bus\nen:lesson-04:session-11:i10:p4=map",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i11",
-    "correctText": "There is a room here.",
-    "correctResponseId": null
+    "correctText": "Are there banks near here?",
+    "correctResponseId": "en:lesson-04:session-11:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-11:i12",
-    "correctText": "There are trams here.",
-    "correctResponseId": null
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-04:session-11:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-11:i13",
-    "correctText": "Is there a bank here?",
+    "correctText": "Are there parks near here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i14",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-04:session-11:i14:r1"
+    "correctText": "Are there routes here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i15",
-    "correctText": "It is urgent.",
-    "correctResponseId": "en:lesson-04:session-11:i15:r1"
+    "correctText": "Are there schools near here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-11:i16",
-    "correctText": "en:lesson-04:session-11:i16:p1=tram\nen:lesson-04:session-11:i16:p2=urgent\nen:lesson-04:session-11:i16:p3=room\nen:lesson-04:session-11:i16:p4=bank",
+    "correctText": "en:lesson-04:session-11:i16:p1=tram\nen:lesson-04:session-11:i16:p2=train\nen:lesson-04:session-11:i16:p3=seat\nen:lesson-04:session-11:i16:p4=route",
     "correctResponseId": null
   },
   {

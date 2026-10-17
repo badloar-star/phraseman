@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-01",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о наличии одного места с There is и нескольких предметов с There are",
-    "uk": "повідомити про наявність одного місця з There is і кількох предметів з There are"
+    "ru": "сообщить, что рядом есть одно место: There is a pharmacy here",
+    "uk": "повідомити, що поруч є одне місце: There is a pharmacy here"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Есть аптека",
-        "uk": "Є аптека"
+        "ru": "Таблетки от головы",
+        "uk": "Таблетки від голови"
       },
       "bodyByLocale": {
-        "ru": "`pharmacy` — «аптека». `There is a pharmacy` — «Есть аптека»: сообщаем, что такое место есть. Начало `There is` здесь работает целиком и не значит «там есть»: слово «там» отдельно не требуется. Одно место — `is`, перед названием — `a`. Вспомним `comfortable` — «комфортный, удобный»: в комнате уютно, `It is comfortable` — «В ней комфортно».",
-        "uk": "`pharmacy` — «аптека». `There is a pharmacy` — «Є аптека»: повідомляємо, що таке місце є. Початок `There is` тут працює як одне ціле й не означає «там є»: слово «там» окремо не потрібне. Одне місце — `is`, перед назвою — `a`. Згадаймо `comfortable` — «комфортний, зручний»: у кімнаті затишно, `It is comfortable` — «У ній комфортно»."
+        "ru": "Вы только что переехали в новый район, и у вас разболелась голова. Подруга показывает на карту у входа в дом: на ней значок с зелёным крестом. pharmacy — «аптека». Вы сообщаете, что аптека есть: There is a pharmacy here — «Здесь есть аптека».",
+        "uk": "Ви щойно переїхали в новий район, і у вас розболілася голова. Подруга показує на мапу біля входу в будинок, і ви разом дивитеся: на ній значок із зеленим хрестом. pharmacy — «аптека». Ви повідомляєте, що аптека є: There is a pharmacy here — «Тут є аптека»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-01:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите, что в районе есть аптека.",
-          "uk": "Повідомте, що в районі є аптека."
+          "ru": "Подруга спрашивает, где купить таблетки. Скажите ей, что здесь есть аптека.",
+          "uk": "Подруга питає, де купити таблетки. Скажіть їй, що тут є аптека."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-01:intro1:r1",
-              "text": "There is a pharmacy."
+              "text": "There is a pharmacy here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro1:r2",
-              "text": "There a pharmacy."
+              "text": "There a pharmacy here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro1:r3",
-              "text": "There is pharmacy."
+              "text": "There is pharmacy here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-01:intro1:r1",
-              "text": "There is a pharmacy."
+              "text": "There is a pharmacy here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro1:r2",
-              "text": "There a pharmacy."
+              "text": "There a pharmacy here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro1:r3",
-              "text": "There is pharmacy."
+              "text": "There is pharmacy here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что в районе есть аптека.",
-          "uk": "Повідомте, що в районі є аптека."
+          "ru": "Подруга спрашивает, где купить таблетки. Скажите ей, что здесь есть аптека.",
+          "uk": "Подруга питає, де купити таблетки. Скажіть їй, що тут є аптека."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Есть библиотека",
-        "uk": "Є бібліотека"
+        "ru": "Книги для брата",
+        "uk": "Книжки для брата"
       },
       "bodyByLocale": {
-        "ru": "`library` — «библиотека». `There is a library` — «Есть библиотека». Название места меняется, начало остаётся. `sure` — «уверенный»: `I am sure` — «Я уверен». `interested` — «заинтересованный»: рассказ о районе увлёк вас, `I am interested` — «Мне интересно». `hospital` — «больница»: `There is a hospital` — «Есть больница».",
-        "uk": "`library` — «бібліотека». `There is a library` — «Є бібліотека». Назва місця змінюється, початок залишається. `sure` — «упевнений»: `I am sure` — «Я впевнений». `interested` — «зацікавлений»: розповідь про район захопила вас, `I am interested` — «Мені цікаво». `hospital` — «лікарня»: `There is a hospital` — «Є лікарня»."
+        "ru": "Ваш брат любит читать, а книги в магазине дорогие, поэтому ему нужно место, где их можно брать домой. Вы смотрите на карту района и видите значок с раскрытой книгой. library — «библиотека». Вы пишете брату, что такое место рядом есть: There is a library nearby — «Рядом есть библиотека».",
+        "uk": "Ваш брат любить читати, а книжки в магазині дорогі, тому йому потрібне місце, де їх можна брати додому. Ви дивитеся на мапу району й бачите значок із розгорнутою книжкою. library — «бібліотека». Ви пишете братові, що таке місце поруч є: There is a library nearby — «Поруч є бібліотека»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-01:intro2:q",
         "promptByLocale": {
-          "ru": "Сообщите, что в районе есть библиотека.",
-          "uk": "Повідомте, що в районі є бібліотека."
+          "ru": "Брат спрашивает, где можно брать книги. Напишите ему, что рядом есть библиотека.",
+          "uk": "Брат питає, де можна брати книжки. Напишіть йому, що поруч є бібліотека."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-01:intro2:r1",
-              "text": "There is a library."
+              "text": "There is a library nearby."
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r2",
-              "text": "There are a library."
+              "text": "There is an library nearby."
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r3",
-              "text": "There is an library."
+              "text": "There are a library nearby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-01:intro2:r1",
-              "text": "There is a library."
+              "text": "There is a library nearby."
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r2",
-              "text": "There are a library."
+              "text": "There is an library nearby."
             },
             {
               "responseId": "en:lesson-04:session-01:intro2:r3",
-              "text": "There is an library."
+              "text": "There are a library nearby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что в районе есть библиотека.",
-          "uk": "Повідомте, що в районі є бібліотека."
+          "ru": "Брат спрашивает, где можно брать книги. Напишите ему, что рядом есть библиотека.",
+          "uk": "Брат питає, де можна брати книжки. Напишіть йому, що поруч є бібліотека."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пекарня и ключи",
-        "uk": "Пекарня й ключі"
+        "ru": "Запах свежего хлеба",
+        "uk": "Запах свіжого хліба"
       },
       "bodyByLocale": {
-        "ru": "`bakery` — «пекарня». `There is a bakery here` — «Здесь есть пекарня». Пекарня на карте хлебом не пахнет, но теперь вы знаете, куда идти. `key` — «ключ», несколько — `keys`. Для нескольких: `There are keys here` — «Здесь есть ключи». С несколькими ключами нужны `are` и `keys`, без `a`.",
-        "uk": "`bakery` — «пекарня». `There is a bakery here` — «Тут є пекарня». Пекарня на карті хлібом не пахне, але тепер ви знаєте, куди йти. `key` — «ключ», кілька — `keys`. Для кількох: `There are keys here` — «Тут є ключі». З кількома ключами потрібні `are` і `keys`, без `a`."
+        "ru": "Утром вы с подругой идёте по двору, и вокруг пахнет свежим хлебом. Вам обоим захотелось есть. Подруга показывает на небольшую дверь с вывеской, из которой идёт тёплый воздух. bakery — «пекарня». Вы подсказываете ей: There is a bakery here — «Здесь есть пекарня».",
+        "uk": "Зранку ви з подругою йдете по двору, і навколо пахне свіжим хлібом. Вам обом захотілося їсти. Подруга показує на невеликі двері з вивіскою, з яких іде тепле повітря. bakery — «пекарня». Ви підказуєте їй: There is a bakery here — «Тут є пекарня»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-01:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите, что здесь есть несколько ключей.",
-          "uk": "Повідомте, що тут є кілька ключів."
+          "ru": "Подруга хочет купить хлеба. Скажите ей, что здесь есть пекарня.",
+          "uk": "Подруга хоче купити хліба. Скажіть їй, що тут є пекарня."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-01:intro3:r1",
-              "text": "There are keys here."
+              "text": "There is a bakery here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r2",
-              "text": "There is keys here."
+              "text": "There is bakery here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r3",
-              "text": "There are a keys here."
+              "text": "There is the bakery here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-01:intro3:r1",
-              "text": "There are keys here."
+              "text": "There is a bakery here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r2",
-              "text": "There is keys here."
+              "text": "There is bakery here."
             },
             {
               "responseId": "en:lesson-04:session-01:intro3:r3",
-              "text": "There are a keys here."
+              "text": "There is the bakery here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что здесь есть несколько ключей.",
-          "uk": "Повідомте, що тут є кілька ключів."
+          "ru": "Подруга хочет купить хлеба. Скажите ей, что здесь есть пекарня.",
+          "uk": "Подруга хоче купити хліба. Скажіть їй, що тут є пекарня."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cec5547811e429771595f6c594c9be4c72931d44956f01ec6445df24a3509022"
+  "introFingerprint": "3a3b26d4b76bc724b88e0459463d53c9ff42c4a8c80312834a488744bc1ac298"
 }

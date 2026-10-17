@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-04:i01",
-    "correctText": "This is a bag.",
+    "correctText": "en:lesson-04:session-04:i01:p1=post office\nen:lesson-04:session-04:i01:p2=bridge\nen:lesson-04:session-04:i01:p3=restaurant\nen:lesson-04:session-04:i01:p4=market",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:word:post-office",
+    "correctText": "post office",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-04:i02",
     "correctText": "post office",
-    "correctResponseId": "en:lesson-04:session-04:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-04:i03",
-    "correctText": "post office",
-    "correctResponseId": "en:lesson-04:session-04:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-04:i04",
-    "correctText": "en:lesson-04:session-04:i04:p1=post office\nen:lesson-04:session-04:i04:p2=visible\nen:lesson-04:session-04:i04:p3=hidden\nen:lesson-04:session-04:i04:p4=stations",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-04:i03",
+    "correctText": "There is a post office here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:word:bridge",
+    "correctText": "bridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i04",
+    "correctText": "bridge",
+    "correctResponseId": "en:lesson-04:session-04:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-04:i05",
-    "correctText": "There is a post office.",
+    "correctText": "There are bridges nearby.",
+    "correctResponseId": "en:lesson-04:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:word:market",
+    "correctText": "market",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-04:i06",
-    "correctText": "There are stations here.",
+    "correctText": "market",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-04:i07",
-    "correctText": "It's visible.",
+    "correctText": "There is a market here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:word:restaurant",
+    "correctText": "restaurant",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-04:i08",
-    "correctText": "a",
+    "correctText": "restaurant",
     "correctResponseId": "en:lesson-04:session-04:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-04:i09",
-    "correctText": "It is hidden.",
-    "correctResponseId": "en:lesson-04:session-04:i09:r1"
+    "correctText": "There are restaurants nearby.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-04:i10",
-    "correctText": "en:lesson-04:session-04:i10:p1=clear\nen:lesson-04:session-04:i10:p2=bag\nen:lesson-04:session-04:i10:p3=stations\nen:lesson-04:session-04:i10:p4=visible",
-    "correctResponseId": null
+    "correctText": "There is a post office near the bank.",
+    "correctResponseId": "en:lesson-04:session-04:i10:r1"
   },
   {
     "interactionId": "en:lesson-04:session-04:i11",
-    "correctText": "This is a post office.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-04:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-04:i12",
-    "correctText": "It is clear.",
+    "correctText": "en:lesson-04:session-04:i12:p1=bridge\nen:lesson-04:session-04:i12:p2=market\nen:lesson-04:session-04:i12:p3=restaurant\nen:lesson-04:session-04:i12:p4=bank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-04:i13",
-    "correctText": "It's hidden.",
+    "correctText": "There are bridges behind the market.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-04:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-04:session-04:i14:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-04:i15",
-    "correctText": "It is visible.",
-    "correctResponseId": "en:lesson-04:session-04:i15:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-04:i16",
-    "correctText": "en:lesson-04:session-04:i16:p1=post office\nen:lesson-04:session-04:i16:p2=hidden\nen:lesson-04:session-04:i16:p3=clear\nen:lesson-04:session-04:i16:p4=bag",
+    "correctText": "There is a post office near the bridge.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-04:i15",
+    "correctText": "There are markets near the school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i16",
+    "correctText": "There are restaurants nearby.",
+    "correctResponseId": "en:lesson-04:session-04:i16:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-04:i17",
-    "correctText": "There is a post office here.",
+    "correctText": "There is a post office behind the market.",
     "correctResponseId": null
   }
 ]

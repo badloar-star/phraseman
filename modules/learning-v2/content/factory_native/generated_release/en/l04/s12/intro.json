@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-12",
   "learningOutcomeByLocale": {
-    "ru": "спросить о платформе и столе, найти почту и объяснить, что комната не для всех",
-    "uk": "запитати про платформу й стіл, знайти пошту та пояснити, що кімната не для всіх"
+    "ru": "коротко ответить на вопрос о нескольких предметах: Yes, there are. и No, there aren't.",
+    "uk": "коротко відповісти на запитання про кілька предметів: Yes, there are. і No, there aren't."
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Где ждут поезд",
-        "uk": "Де чекають на поїзд"
+        "ru": "Подруга едет в поезде",
+        "uk": "Подруга їде в потязі"
       },
       "bodyByLocale": {
-        "ru": "`platform` — «платформа» на вокзале: место у путей, где ждут поезд. Несколько — `platforms`. `Is there a platform here?` — «Здесь есть платформа?» `Are there platforms here?` — «Здесь есть платформы?» Платформа сама никуда не уедет: опоздать можно на поезд, а не на неё.",
-        "uk": "`platform` — «платформа» на вокзалі: місце біля колій, де чекають на поїзд. Кілька — `platforms`. `Is there a platform here?` — «Тут є платформа?» `Are there platforms here?` — «Тут є платформи?» Платформа сама нікуди не поїде: запізнитися можна на поїзд, а не на неї."
+        "ru": "Вы встречаете подругу на вокзале маленького города. Она звонит из поезда и спрашивает, где вас искать. platform — «платформа», длинная площадка у рельсов, куда подходит поезд. Подруга: Are there platforms here? — «Здесь есть платформы?» Вокруг вас их несколько. Ответьте: Yes, there are.",
+        "uk": "Ви зустрічаєте подругу на вокзалі маленького міста. Вона дзвонить із потяга й питає, де вас шукати. platform — «платформа», довгий майданчик біля рейок, куди підходить потяг. Подруга: Are there platforms here? — «Чи є тут платформи?» Навколо вас їх кілька. Відповідайте: Yes, there are."
       },
       "question": {
         "interactionId": "en:lesson-04:session-12:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите «Здесь есть платформа?»",
-          "uk": "Запитайте «Тут є платформа?»"
+          "ru": "Подруга слушает вас в телефоне. Скажите ей коротко: да, платформы есть.",
+          "uk": "Подруга слухає вас у телефоні. Скажіть їй коротко: так, платформи є."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-12:intro1:r1",
-              "text": "Is there a platform here?"
+              "text": "Yes, there are."
             },
             {
               "responseId": "en:lesson-04:session-12:intro1:r2",
-              "text": "Are there a platform here?"
+              "text": "Yes, there is."
             },
             {
               "responseId": "en:lesson-04:session-12:intro1:r3",
-              "text": "There is a platform here."
+              "text": "Yes, they are."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-12:intro1:r1",
-              "text": "Is there a platform here?"
+              "text": "Yes, there are."
             },
             {
               "responseId": "en:lesson-04:session-12:intro1:r2",
-              "text": "Are there a platform here?"
+              "text": "Yes, there is."
             },
             {
               "responseId": "en:lesson-04:session-12:intro1:r3",
-              "text": "There is a platform here."
+              "text": "Yes, they are."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Здесь есть платформа?»",
-          "uk": "Запитайте «Тут є платформа?»"
+          "ru": "Подруга слушает вас в телефоне. Скажите ей коротко: да, платформы есть.",
+          "uk": "Подруга слухає вас у телефоні. Скажіть їй коротко: так, платформи є."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Почта и стол",
-        "uk": "Пошта й стіл"
+        "ru": "Пустая стена",
+        "uk": "Порожня стіна"
       },
       "bodyByLocale": {
-        "ru": "`post office` — «почта», место, где отправляют письма. Это два слова, но одно место: `a post office`. `There is a post office here` — «Здесь есть почта». `table` — «стол»: `Is there a table?` — «Есть ли стол?»",
-        "uk": "`post office` — «пошта», місце, де надсилають листи. Це два слова, але одне місце: `a post office`. `There is a post office here` — «Тут є пошта». `table` — «стіл»: `Is there a table?` — «Чи є стіл?»"
+        "ru": "Вы с братом ждёте поезда на старом вокзале и смотрите на пустую стену. timetable — «расписание», таблица со временем отправления поездов. Брат спрашивает: Are there timetables here? — «Здесь есть расписания?» Вы видите только голые стены и ни одной таблицы. Ответьте: No, there aren't.",
+        "uk": "Ви з братом чекаєте на потяг на старому вокзалі й дивитеся на порожню стіну. timetable — «розклад», таблиця з часом відправлення потягів. Брат питає: Are there timetables here? — «Чи є тут розклади?» Ви бачите лише голі стіни й жодної таблиці. Відповідайте: No, there aren't."
       },
       "question": {
         "interactionId": "en:lesson-04:session-12:intro2:q",
         "promptByLocale": {
-          "ru": "Вы нашли почту на схеме. Сообщите «Здесь есть почта».",
-          "uk": "Ви знайшли пошту на схемі. Повідомте «Тут є пошта»."
+          "ru": "Брат стоит рядом с вами. Скажите ему коротко: нет, расписаний тут нет.",
+          "uk": "Брат стоїть поруч із вами. Скажіть йому коротко: ні, розкладів тут немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-12:intro2:r1",
-              "text": "There is a post office here."
+              "text": "No, there aren't."
             },
             {
               "responseId": "en:lesson-04:session-12:intro2:r2",
-              "text": "There are a post office here."
+              "text": "No, there isn't."
             },
             {
               "responseId": "en:lesson-04:session-12:intro2:r3",
-              "text": "There is post office here."
+              "text": "No, they aren't."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-12:intro2:r1",
-              "text": "There is a post office here."
+              "text": "No, there aren't."
             },
             {
               "responseId": "en:lesson-04:session-12:intro2:r2",
-              "text": "There are a post office here."
+              "text": "No, there isn't."
             },
             {
               "responseId": "en:lesson-04:session-12:intro2:r3",
-              "text": "There is post office here."
+              "text": "No, they aren't."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы нашли почту на схеме. Сообщите «Здесь есть почта».",
-          "uk": "Ви знайшли пошту на схемі. Повідомте «Тут є пошта»."
+          "ru": "Брат стоит рядом с вами. Скажите ему коротко: нет, расписаний тут нет.",
+          "uk": "Брат стоїть поруч із вами. Скажіть йому коротко: ні, розкладів тут немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не для всех",
-        "uk": "Не для всіх"
+        "ru": "Тяжёлая сумка",
+        "uk": "Важка сумка"
       },
       "bodyByLocale": {
-        "ru": "`private` — «частный, личный; не для общего доступа». Комната на вокзале только для сотрудников. О ней можно сказать `It is private` — «Она не для общего доступа». Сокращённо: `It’s private`. Слово не означает, что дверь обязательно заперта: оно говорит, кому разрешено пользоваться помещением.",
-        "uk": "`private` — «приватний, особистий; не для загального доступу». Кімната на вокзалі лише для працівників. Про неї можна сказати `It is private` — «Вона не для загального доступу». Скорочено: `It’s private`. Слово не означає, що двері обов’язково замкнені: воно говорить, кому дозволено користуватися приміщенням."
+        "ru": "Вы с мамой вошли на большой вокзал, а в руках у вас тяжёлая сумка. Подниматься на второй этаж по крутой лестнице тяжело. escalator — «эскалатор», лестница, которая едет сама. Рядом стоит охранник: Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?»",
+        "uk": "Ви з мамою зайшли на великий вокзал, а в руках у вас важка сумка. Підніматися на другий поверх крутими сходами важко. escalator — «ескалатор», сходи, які їдуть самі. Поруч стоїть охоронець: Are there escalators near the door? — «Чи є ескалатори поруч із дверима?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-12:intro3:q",
         "promptByLocale": {
-          "ru": "Друг спрашивает о комнате для сотрудников. Скажите с сокращением, что она не для общего доступа.",
-          "uk": "Друг запитує про кімнату для працівників. Скажіть зі скороченням, що вона не для загального доступу."
+          "ru": "Охранник стоит у двери. Спросите его, есть ли эскалаторы рядом с дверью.",
+          "uk": "Охоронець стоїть біля дверей. Запитайте його, чи є ескалатори поруч із дверима."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-12:intro3:r1",
-              "text": "It's private."
+              "text": "Are there escalators near the door?"
             },
             {
               "responseId": "en:lesson-04:session-12:intro3:r2",
-              "text": "It's urgent."
+              "text": "Is there escalators near the door?"
             },
             {
               "responseId": "en:lesson-04:session-12:intro3:r3",
-              "text": "It are private."
+              "text": "Are there an escalators near the door?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-12:intro3:r1",
-              "text": "It's private."
+              "text": "Are there escalators near the door?"
             },
             {
               "responseId": "en:lesson-04:session-12:intro3:r2",
-              "text": "It's urgent."
+              "text": "Is there escalators near the door?"
             },
             {
               "responseId": "en:lesson-04:session-12:intro3:r3",
-              "text": "It are private."
+              "text": "Are there an escalators near the door?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг спрашивает о комнате для сотрудников. Скажите с сокращением, что она не для общего доступа.",
-          "uk": "Друг запитує про кімнату для працівників. Скажіть зі скороченням, що вона не для загального доступу."
+          "ru": "Охранник стоит у двери. Спросите его, есть ли эскалаторы рядом с дверью.",
+          "uk": "Охоронець стоїть біля дверей. Запитайте його, чи є ескалатори поруч із дверима."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "30e6c7995819ae41bbdd904d62b8867032d3b649c760fcaee2444a0ea950a293"
+  "introFingerprint": "4e61ce622957b87769f69af3e10d9040ce5b926b0d5ccde452ca17c5921e9dea"
 }

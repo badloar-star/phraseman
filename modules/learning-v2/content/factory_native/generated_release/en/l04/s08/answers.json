@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-08:i01",
-    "correctText": "There is a pharmacy.",
+    "correctText": "en:lesson-04:session-08:i01:p1=neighbourhood\nen:lesson-04:session-08:i01:p2=crossing\nen:lesson-04:session-08:i01:p3=mall\nen:lesson-04:session-08:i01:p4=beach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:word:neighbourhood",
+    "correctText": "neighbourhood",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i02",
     "correctText": "neighbourhood",
-    "correctResponseId": "en:lesson-04:session-08:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-08:i03",
-    "correctText": "neighbourhood",
-    "correctResponseId": "en:lesson-04:session-08:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-08:i04",
-    "correctText": "en:lesson-04:session-08:i04:p1=neighbourhood\nen:lesson-04:session-08:i04:p2=pharmacy\nen:lesson-04:session-08:i04:p3=library\nen:lesson-04:session-08:i04:p4=garden",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-08:i03",
+    "correctText": "The neighbourhood is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:word:crossing",
+    "correctText": "crossing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:i04",
+    "correctText": "crossing",
+    "correctResponseId": "en:lesson-04:session-08:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-08:i05",
-    "correctText": "This neighbourhood is quiet.",
+    "correctText": "There are crossings near the school.",
+    "correctResponseId": "en:lesson-04:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:word:mall",
+    "correctText": "mall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i06",
-    "correctText": "There is a library here.",
+    "correctText": "mall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i07",
-    "correctText": "There is a bakery.",
+    "correctText": "There is a mall behind the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:word:beach",
+    "correctText": "beach",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i08",
-    "correctText": "is",
+    "correctText": "beach",
     "correctResponseId": "en:lesson-04:session-08:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-08:i09",
-    "correctText": "There is a bank.",
-    "correctResponseId": "en:lesson-04:session-08:i09:r1"
+    "correctText": "There is a beach near the lake.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i10",
-    "correctText": "en:lesson-04:session-08:i10:p1=pharmacy\nen:lesson-04:session-08:i10:p2=library\nen:lesson-04:session-08:i10:p3=bakery\nen:lesson-04:session-08:i10:p4=garden",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-08:i10:r1"
   },
   {
     "interactionId": "en:lesson-04:session-08:i11",
-    "correctText": "There is a post office.",
-    "correctResponseId": null
+    "correctText": "The neighbourhood is friendly.",
+    "correctResponseId": "en:lesson-04:session-08:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-08:i12",
-    "correctText": "There is a supermarket here.",
+    "correctText": "en:lesson-04:session-08:i12:p1=mall\nen:lesson-04:session-08:i12:p2=beach\nen:lesson-04:session-08:i12:p3=crossing\nen:lesson-04:session-08:i12:p4=park",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i13",
-    "correctText": "There is a clinic here.",
+    "correctText": "There are benches near the beach.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-08:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-04:session-08:i14:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-08:i15",
-    "correctText": "post office",
-    "correctResponseId": "en:lesson-04:session-08:i15:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-08:i16",
-    "correctText": "en:lesson-04:session-08:i16:p1=bank\nen:lesson-04:session-08:i16:p2=supermarket\nen:lesson-04:session-08:i16:p3=clinic\nen:lesson-04:session-08:i16:p4=playground",
+    "correctText": "There is a clean beach near the lake.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-08:i15",
+    "correctText": "There are cafes near the mall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-08:i16",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-04:session-08:i16:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-08:i17",
-    "correctText": "This neighbourhood is small.",
+    "correctText": "There is a mall near the park.",
     "correctResponseId": null
   }
 ]

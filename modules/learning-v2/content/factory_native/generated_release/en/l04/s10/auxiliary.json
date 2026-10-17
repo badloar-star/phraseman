@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-10:intro1:r2": {
-          "ru": "Это сообщение; вопрос начинается с `Is there`.",
-          "uk": "Це повідомлення; запитання починається з `Is there`."
+          "ru": "Вопрос начинался с Is there, поэтому и ответ начинается с there: Yes, there is.",
+          "uk": "Запитання починалося з Is there, тому й відповідь починається з there: Yes, there is."
         },
         "en:lesson-04:session-10:intro1:r3": {
-          "ru": "Перед одним отелем нужно `a`: `a hotel`.",
-          "uk": "Перед одним готелем потрібне `a`: `a hotel`."
+          "ru": "Отель один, поэтому нужно is, а не are: Yes, there is.",
+          "uk": "Готель один, тому потрібно is, а не are: Yes, there is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-10:intro2:r2": {
-          "ru": "Это сообщение. Для вопроса нужно `Is there a lock?`.",
-          "uk": "Це повідомлення. Для запитання потрібне `Is there a lock?`."
+          "ru": "С Yes говорим is, а isn't идёт с No: No, there isn't.",
+          "uk": "З Yes кажемо is, а isn't іде з No: No, there isn't."
         },
         "en:lesson-04:session-10:intro2:r3": {
-          "ru": "Один замок: `Is there a lock?`.",
-          "uk": "Один замок: `Is there a lock?`."
+          "ru": "На вопрос Is there… отвечаем с there: No, there isn't.",
+          "uk": "На запитання Is there… відповідаємо з there: No, there isn't."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-10:intro3:r2": {
-          "ru": "`possible` — возможно, а здесь невозможно: `impossible`.",
-          "uk": "`possible` — можливо, а тут неможливо: `impossible`."
+          "ru": "Стойка одна, поэтому перед ней нужно a: a reception.",
+          "uk": "Стійка одна, тому перед нею потрібно a: a reception."
         },
         "en:lesson-04:session-10:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Вопрос начинаем с Is there, а не с There is.",
+          "uk": "Запитання починаємо з Is there, а не з There is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a8000db63ec22bb30a102dd0aa000b5872abcff77739b2e3c466b0064b7383b4"
+  "auxiliaryFingerprint": "ee526a222c7f10009f4f78cb9672dd275323b7727499ab13fede82cdac68bfde"
 }

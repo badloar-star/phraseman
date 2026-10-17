@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro1:r2": {
-          "ru": "Это сообщение. Для вопроса начинаем с `Is there`.",
-          "uk": "Це повідомлення. Для запитання починаємо з `Is there`."
+          "ru": "Это сообщение, а вам нужен вопрос: начинаем с Is there.",
+          "uk": "Це повідомлення, а вам потрібне запитання: починаємо з Is there."
         },
         "en:lesson-04:session-09:intro1:r3": {
-          "ru": "Перед одним специалистом нужно `a`: `a dentist`.",
-          "uk": "Перед одним фахівцем потрібне `a`: `a dentist`."
+          "ru": "Врач один, поэтому перед ним нужно a: a dentist.",
+          "uk": "Лікар один, тому перед ним потрібно a: a dentist."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro2:r2": {
-          "ru": "Библиотек несколько: `Are there libraries here?`.",
-          "uk": "Бібліотек кілька: `Are there libraries here?`."
+          "ru": "Врач один, поэтому перед ним нужно a: a doctor.",
+          "uk": "Лікар один, тому перед ним потрібно a: a doctor."
         },
         "en:lesson-04:session-09:intro2:r3": {
-          "ru": "Перед несколькими `libraries` не ставим `a`.",
-          "uk": "Перед кількома `libraries` не ставимо `a`."
+          "ru": "Врач один, поэтому нужно Is, а не Are.",
+          "uk": "Лікар один, тому потрібно Is, а не Are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro3:r2": {
-          "ru": "`necessary` — необходимо; здесь говорим о возможности: `possible`.",
-          "uk": "`necessary` — необхідно; тут говоримо про можливість: `possible`."
+          "ru": "Вопрос начинаем с Is there, а не с There is.",
+          "uk": "Запитання починаємо з Is there, а не з There is."
         },
         "en:lesson-04:session-09:intro3:r3": {
-          "ru": "С `It` нужно `is`.",
-          "uk": "З `It` потрібне `is`."
+          "ru": "Туалет один, поэтому нужно Is, а не Are.",
+          "uk": "Туалет один, тому потрібно Is, а не Are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "adb3b1591266e9f9847ad034816f2b6bceea463028f01bf21972dc589be59927"
+  "auxiliaryFingerprint": "464fdc4ba759d0202575695238f89fcc83ab529a0e0da8de536a9f04fce72645"
 }

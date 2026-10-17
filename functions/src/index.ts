@@ -734,33 +734,10 @@ export { adminCreatePlan, adminGetPlan, adminListPlans } from "./admin_plans";
 // «Качество» по требованию владельца через панель admin/v2/legacy.html.
 // Старые agent_office/agent_manager выше не тронуты и сносятся отдельным
 // шагом позже, когда у нового Джарвиса будет диалог и approvals.
-export {
-  jarvisGetQualitySnapshot,
-  jarvisGetMoneySnapshot,
-  jarvisGetGrowthSnapshot,
-  jarvisGetAllDecisions,
-  jarvisGetApprovalAudit,
-  jarvisGetCohortRetention,
-  jarvisGetPlans,
-  jarvisSetPlanStatus,
-  jarvisDeletePlan,
-} from "./jarvis";
-// зачем отдельно: owner-facing раздел «Стадия роста бизнеса» — своя пара
-// callable (чтение панели + продолжаемый бэкфилл истории под строгим гейтом).
-export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from "./jarvis";
-// зачем три крона: суточный проход департаментов (06:00 UTC), точка истории
-// бизнес-тиров (07:00 UTC, после устаканивания суточных счётчиков) и
-// еженедельная проверка, не пора ли пересматривать устав продукта — она пишет
-// в телеграм, только когда чей-то срок подошёл (владелец, 2026-08-16).
-export {
-  jarvisDailyDepartmentsCron,
-  jarvisDailyBusinessHistoryCron,
-  jarvisProductKnowledgeReviewCron,
-} from "./jarvis";
-
-// Кнопки подтверждения в Telegram. Функция выключена (404), пока не задан
-// секрет JARVIS_TELEGRAM_CONFIG; вебхук ставится вручную по runbook.
-export { jarvisTelegramApprovalWebhook } from "./jarvis";
+// зачем (владелец 17.10, сокращение расходов Firebase — docs/work/tasks/firebase-cost-cut-2026-10-17.md):
+// Джарвис выключен целиком — 12 callable, 3 крона, вебхук Telegram и триггер планов сняты с деплоя и удалены
+// из облака (кроны и OpenAI до 50 $/мес). Модули functions/src/jarvis/* остаются: из них берут общие части
+// support_inbox, progress_events, admin_product_charter, support_telegram_review.
 
 // Устав Phraseman: описание продукта, на которое опирается Джарвис. Правится в
 // админке, каждая версия сохраняется в неизменяемую историю (владелец,
@@ -1204,7 +1181,7 @@ export {
   adminAlertOnPushJobWritten,
   adminAlertOnAppMessageWritten,
   adminAlertOnComplianceControlWritten,
-  adminAlertOnJarvisPlanWritten,
+  // adminAlertOnJarvisPlanWritten снят 17.10 вместе с Джарвисом (расходы).
 } from "./admin_alert_sources_ops";
 export {
   adminAlertDailyDigestsCron,

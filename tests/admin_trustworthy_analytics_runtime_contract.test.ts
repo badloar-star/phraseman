@@ -152,9 +152,7 @@ describe('live admin trustworthy analytics runtime contract', () => {
       'adminGetAnalyticsSnapshot',
       'adminGetAnalyticsTrends',
       'adminGetRevenueCatOverviewMetrics',
-      'jarvisGetMoneySnapshot',
-      'jarvisGetAllDecisions',
-      'jarvisDailyDepartmentsCron',
+      // Джарвис снят с деплоя 17.10 (владелец, расходы Firebase) — его функций в профиле больше нет
     ]);
     expect(command).not.toContain('--only functions"');
   });

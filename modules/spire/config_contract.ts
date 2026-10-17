@@ -12,6 +12,8 @@
  * (см. integrity в TOWER_CONTRACT.md §5).
  */
 
+import { spireScaledStepBudgetMs } from './step_budget_scale';
+
 export const SPIRE_CONFIG_SCHEMA_VERSION = 'spire-v1-config.v1' as const;
 export const SPIRE_CONFIG_DOC_ID = 'spire_v1' as const;
 export const SPIRE_CONFIG_COLLECTION = 'config' as const;
@@ -232,12 +234,17 @@ export function spireConfigStatus(raw: unknown): SpireConfigStatus {
   };
 }
 
-/** Бюджет ступени для этажа: сумма baseMsByKind по фактическим типам заданий в наборе, ужатая по T8. */
+/**
+ * Бюджет ступени. С лигой (tier 0…11) — шкала владельца 17.10: база «комфортно» × множитель лиги × поправка этажа
+ * (modules/spire/step_budget_scale.ts; щедро внизу, жёстко только 12-я лига и 15-й этаж). Без лиги — прежний расчёт по baseMsByKind × спад T8.
+ */
 export function spireStepBudgetMs(
   timer: SpireTimerConfig,
   floor: number,
   taskKinds: readonly SpireTaskTimerKind[],
+  tier: number | null = null,
 ): number {
+  if (tier !== null) return spireScaledStepBudgetMs(tier, floor, taskKinds);
   const base = taskKinds.reduce((sum, kind) => sum + (timer.baseMsByKind[kind] ?? 0), 0);
   const decay = Math.max(timer.floorMinRatio, 1 - timer.perFloorDecay * Math.max(0, floor - 1));
   return Math.round(base * decay);

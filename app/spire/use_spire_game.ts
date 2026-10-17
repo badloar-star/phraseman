@@ -252,7 +252,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     const prepId = `${weekKey}:${floor}:${stepInFloor + 1}:${Date.now()}`;
     prepIdRef.current = prepId;
     const startedAt = Date.now();
-    setPending({ prepId, ctx: { lang, weekKey, tier, floor, stepInFloor }, budgetMs: spireEstimateStepBudgetMs(config.timer, floor) });
+    setPending({ prepId, ctx: { lang, weekKey, tier, floor, stepInFloor }, budgetMs: spireEstimateStepBudgetMs(config.timer, floor, tier) });
     DebugLogger.info(LOG, `game: ступень открыта сразу (Готовим…) prep=${prepId} — пакет догружаем`);
     const stillMine = (where: string): boolean => {
       if (prepIdRef.current === prepId) return true;
@@ -275,13 +275,13 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       if (!stillMine('attempt')) return;
       const pick = spirePickStepPlan(packLoad.pack, {
         floor, step: stepInFloor + 1, attempt,
-        budgetMs: (kinds) => spireStepBudgetMs(config.timer, floor, kinds),
+        budgetMs: (kinds) => spireStepBudgetMs(config.timer, floor, kinds, tier), // зачем (владелец 17.10): шкала «база × лига × этаж»
       });
       if (!pick) {
         failStart('pack_missing', `в пакете нет ступени этаж=${floor} ступень=${stepInFloor + 1}`);
         return;
       }
-      spireRememberStepBudget(floor, pick.plan.budgetMs);
+      spireRememberStepBudget(floor, pick.plan.budgetMs, { tier, tasks: pick.tasks }); // [SPIRE-TIME]
       const runId = `${weekKey}:${floor}:${stepInFloor + 1}:${attempt}:${Date.now()}`;
       DebugLogger.info(LOG, `game: открываем ступень этаж=${floor} ступень=${stepInFloor + 1} попытка=${attempt} пакет=${packLoad.source} за ${Date.now() - startedAt} мс (бюджет ${pick.plan.budgetMs} мс)`);
       setSession({ pick, ctx: { lang, weekKey, tier, floor, stepInFloor }, attempt, runId });

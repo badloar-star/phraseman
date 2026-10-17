@@ -287,3 +287,39 @@ export function spireConfigStatus(raw: unknown): SpireConfigStatus {
     config,
   };
 }
+
+// ── Шкала времени ступени (владелец 17.10; аудит docs/work/tasks/spire-timing-audit-2026-10-17.md, вариант (б)) ──
+// зачем: копия modules/spire/step_budget_scale.ts — клиент и сервер считают бюджет одинаково (сторож tests/spire_time_scale.test.ts
+// сверяет числа). Сервер пока бюджет не проверяет (durationMs только пишется) — копия уезжает с выкладкой 18.10 заранее.
+// Жёстко только 12-я лига и 15-й этаж, ниже — щедро. Запись в прод config/spire_v1 не делается.
+export const SPIRE_COMFORT_BASE_MS: Readonly<Record<SpireTaskTimerKind, number>> = Object.freeze({
+  choice: 11_000,
+  translate: 20_000,
+  match: 20_000,
+  timeattack: 20_000,
+  listen: 14_000,
+  dictate: 20_000,
+  voice: 18_000,
+});
+
+export const SPIRE_LEAGUE_TIME_MULTIPLIER: readonly number[] = Object.freeze([1.8, 1.77, 1.74, 1.71, 1.68, 1.64, 1.6, 1.55, 1.48, 1.4, 1.3, 1.0]);
+
+export function spireLeagueTimeMultiplier(tier: number): number {
+  const i = Number.isFinite(tier) ? Math.max(0, Math.min(SPIRE_LEAGUE_TIME_MULTIPLIER.length - 1, Math.trunc(tier))) : 0;
+  return SPIRE_LEAGUE_TIME_MULTIPLIER[i] ?? 1;
+}
+
+export function spireFloorTimeFactor(floor: number): number {
+  const f = Number.isFinite(floor) ? Math.trunc(floor) : 1;
+  if (f >= 15) return 0.85;
+  if (f <= 1) return 1;
+  return 1 - (0.1 * (f - 1)) / 13;
+}
+
+export function spireTaskBudgetMs(kind: SpireTaskTimerKind, tier: number, floor: number): number {
+  return Math.round((SPIRE_COMFORT_BASE_MS[kind] ?? SPIRE_COMFORT_BASE_MS.choice) * spireLeagueTimeMultiplier(tier) * spireFloorTimeFactor(floor));
+}
+
+export function spireScaledStepBudgetMs(tier: number, floor: number, kinds: readonly SpireTaskTimerKind[]): number {
+  return kinds.reduce((sum, kind) => sum + spireTaskBudgetMs(kind, tier, floor), 0);
+}

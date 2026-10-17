@@ -1050,7 +1050,7 @@ export function useCollectionDeletion(args: {
         actionToastTri('error', {
           ru: 'Не удалось удалить карточку.',
           uk: 'Не вдалося видалити картку.',
-          es: 'No se pudo eliminar la tarjeta.', en: 'Could not delete the card.',
+          es: 'No se pudo eliminar la tarjeta.', en: 'Couldn’t delete the card.',
           'pt-BR': 'Não foi possível excluir o cartão.', vi: 'Không xóa được thẻ.', id: 'Kartu tidak bisa dihapus.', tr: 'Kart silinemedi.', pl: 'Nie udało się usunąć fiszki.',
         }),
       );
@@ -1113,7 +1113,7 @@ export function useCollectionDeletion(args: {
         actionToastTri('error', {
           ru: 'Не удалось удалить выбранные карточки.',
           uk: 'Не вдалося видалити вибрані картки.',
-          es: 'No se pudieron eliminar las tarjetas seleccionadas.', en: 'Could not delete the selected cards.',
+          es: 'No se pudieron eliminar las tarjetas seleccionadas.', en: 'Couldn’t delete the selected cards.',
           'pt-BR': 'Não foi possível excluir os cartões selecionados.', vi: 'Không xóa được các thẻ đã chọn.', id: 'Kartu yang dipilih tidak bisa dihapus.', tr: 'Seçilen kartlar silinemedi.', pl: 'Nie udało się usunąć wybranych fiszek.',
         }),
       );
@@ -1189,7 +1189,7 @@ export function useCollectionDeletion(args: {
         actionToastTri('error', {
           ru: 'Не удалось вернуть карточку.',
           uk: 'Не вдалося повернути картку.',
-          es: 'No se pudo restaurar la tarjeta.', en: 'Could not restore the card.',
+          es: 'No se pudo restaurar la tarjeta.', en: 'Couldn’t restore the card.',
           'pt-BR': 'Não foi possível restaurar o cartão.', vi: 'Không khôi phục được thẻ.', id: 'Kartu tidak bisa dipulihkan.', tr: 'Kart geri yüklenemedi.', pl: 'Nie udało się przywrócić fiszki.',
         }),
       );

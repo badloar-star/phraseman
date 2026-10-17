@@ -58,7 +58,7 @@ export async function runPublishPackFlow(packId: string, lang: Lang, studyTarget
   emitAppEvent('action_toast', actionToastTri('error', {
     ru: 'Не удалось отправить набор на публикацию.',
     uk: 'Не вдалося надіслати набір на публікацію.',
-    en: 'Could not submit the pack for publishing.',
+    en: 'Couldn’t submit the pack for publishing.',
     es: 'No se pudo enviar el pack para publicarse.',
     'pt-BR': 'Não foi possível enviar o pacote para publicação.',
     vi: 'Không thể gửi bộ thẻ để đăng.',

@@ -43,7 +43,7 @@ function sourcePrefix(source: string, lang: Lang): string {
     'pt-BR': 'Fonte: Diálogos', vi: 'Nguồn: Hội thoại', id: 'Sumber: Dialog', tr: 'Kaynak: Diyaloglar', pl: 'Źródło: Dialogi',
   });
   if (source === 'community') return triLang(lang, {
-    ru: 'Источник: Набор сообщества', uk: 'Джерело: Набір спільноти', en: 'Source: Community set', es: 'Fuente: Set de la comunidad',
+    ru: 'Источник: Набор сообщества', uk: 'Джерело: Набір спільноти', en: 'Source: Community pack', es: 'Fuente: Set de la comunidad',
     'pt-BR': 'Fonte: Conjunto da comunidade', vi: 'Nguồn: Bộ thẻ cộng đồng', id: 'Sumber: Set komunitas', tr: 'Kaynak: Topluluk seti', pl: 'Źródło: Zestaw społeczności',
   });
   return triLang(lang, {

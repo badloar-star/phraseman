@@ -197,7 +197,7 @@ export default function SavedTopCommunityPacks({
   const heading = triLang(lang, {
     ru: 'Популярное в сообществе',
     uk: 'Найкраще у спільноти',
-    en: 'Top from the community',
+    en: 'Popular in the community',
     es: 'Lo mejor de la comunidad',
     'pt-BR': 'O melhor da comunidade',
     vi: 'Hay nhất từ cộng đồng',

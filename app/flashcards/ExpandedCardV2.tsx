@@ -75,7 +75,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 const toastCopy = {
   added: { ru: 'Добавлено в набор', uk: 'Додано до набору', en: 'Added to the pack', es: 'Añadida al set', 'pt-BR': 'Adicionado ao conjunto', vi: 'Đã thêm vào bộ thẻ', id: 'Ditambahkan ke set', tr: 'Sete eklendi', pl: 'Dodano do zestawu' },
   duplicate: { ru: 'Эта карточка уже в наборе', uk: 'Ця картка вже в наборі', en: 'The card is already in this pack', es: 'La tarjeta ya está en el set', 'pt-BR': 'O cartão já está no conjunto', vi: 'Thẻ đã có trong bộ thẻ', id: 'Kartu sudah ada di set', tr: 'Kart zaten sette', pl: 'Karta jest już w zestawie' },
-  failed: { ru: 'Не удалось добавить карточку', uk: 'Не вдалося додати картку', en: 'Could not add the card', es: 'No se pudo añadir la tarjeta', 'pt-BR': 'Não foi possível adicionar o cartão', vi: 'Không thể thêm thẻ', id: 'Kartu tidak dapat ditambahkan', tr: 'Kart eklenemedi', pl: 'Nie udało się dodać karty' },
+  failed: { ru: 'Не удалось добавить карточку', uk: 'Не вдалося додати картку', en: 'Couldn’t add the card', es: 'No se pudo añadir la tarjeta', 'pt-BR': 'Não foi possível adicionar o cartão', vi: 'Không thể thêm thẻ', id: 'Kartu tidak dapat ditambahkan', tr: 'Kart eklenemedi', pl: 'Nie udało się dodać karty' },
 } as const;
 
 const TAG = '[CARD-SHEET]';

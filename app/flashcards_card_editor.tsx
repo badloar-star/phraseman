@@ -581,7 +581,7 @@ export default function FlashcardsCardEditorScreen() {
           ...actionToastTri('error', {
             ru: 'Не удалось сохранить карточку.',
             uk: 'Не вдалося зберегти картку.',
-            es: 'No se pudo guardar la tarjeta.', en: 'Could not save the card.',
+            es: 'No se pudo guardar la tarjeta.', en: 'Couldn’t save the card.',
             'pt-BR': 'Não foi possível salvar o cartão.', vi: 'Không lưu được thẻ.', id: 'Kartu tidak bisa disimpan.', tr: 'Kart kaydedilemedi.', pl: 'Nie udało się zapisać fiszki.',
           }),
           // зачем (макет cards.html «Не удалось сохранить»): повтор в один тап,

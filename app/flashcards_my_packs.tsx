@@ -851,7 +851,7 @@ export default function FlashcardsMyPacksScreen() {
         ru: 'Нет интернета. Набор на месте.', uk: 'Немає інтернету. Набір на місці.', en: 'No internet. The pack is still here.', es: 'Sin internet. El pack sigue aquí.',
         'pt-BR': 'Sem internet. O pacote continua aqui.', vi: 'Không có mạng. Bộ thẻ vẫn còn.', id: 'Tidak ada internet. Paket masih ada.', tr: 'İnternet yok. Paket yerinde.', pl: 'Brak internetu. Zestaw został.',
       } : {
-        ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Could not delete the pack.', es: 'No se pudo eliminar el pack.',
+        ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Couldn’t delete the pack.', es: 'No se pudo eliminar el pack.',
         'pt-BR': 'Não foi possível excluir o pacote.', vi: 'Không thể xóa bộ thẻ.', id: 'Paket tidak dapat dihapus.', tr: 'Paket silinemedi.', pl: 'Nie udało się usunąć zestawu.',
       }));
     } finally {

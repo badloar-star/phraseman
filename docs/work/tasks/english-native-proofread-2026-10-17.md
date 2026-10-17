@@ -51,3 +51,6 @@ No architecture change. Меняются только значения стро�
 - Онбординг: 16 (en 11, калька «dificultad adulta» и т. п. в es/pt-BR/vi/id/tr/pl 7; ru не тронут)
 - Главная и «Сегодня»: 1 («Climb steps in Peak»), остальное чисто
 - Урок и итог: 10 + та же кнопка в итоге диалога 1 («Finish the rest (N)»)
+- Карточки: 5 по смыслу («Nothing to practice yet», «Community pack» вместо «Community set», «Popular in the community», «I didn’t know») + 14 «Could not» → «Couldn’t» на одном экране одним стилем
+- Диалоги: 15 (калька «language contour», «It goes into the field», «has not caught up», «Open Plus:», «Practise» → US «Practice», «lvl.» → «Lvl»)
+- Пик: 3 («we move down» → «you move down», «Peak» без артикля как имя раздела, «is overtaking you»)

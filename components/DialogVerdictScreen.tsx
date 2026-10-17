@@ -671,7 +671,7 @@ export default function DialogVerdictScreen({
                       {triLang(lang, {
                         ru: 'Подробный разбор сейчас недоступен. Не будем приписывать ошибки или успехи без проверки.',
                         uk: 'Детальний розбір зараз недоступний. Не будемо приписувати помилки чи успіхи без перевірки.',
-                        en: 'A detailed review is unavailable right now. We will not claim mistakes or successes without checking.',
+                        en: 'A detailed review isn’t available right now. We won’t point out mistakes or wins without checking.',
                         es: 'El análisis detallado no está disponible ahora. No atribuiremos errores ni aciertos sin comprobarlos.',
                         'pt-BR': 'A análise detalhada não está disponível agora. Não vamos atribuir erros ou acertos sem verificar.',
                         vi: 'Bản phân tích chi tiết hiện chưa có. Chúng tôi sẽ không khẳng định lỗi hay thành công khi chưa kiểm tra.',

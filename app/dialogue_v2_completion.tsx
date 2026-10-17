@@ -113,7 +113,7 @@ function completionLabels(lang: Lang) {
       tr: `Bitir: Öğreniyorum (${n})`, pl: `Dokończ: Uczę się (${n})`, fr: `Finir : encore à apprendre (${n})`, de: `Abschließen: Noch am Lernen (${n})`,
     }),
     repeatMistakes: triLang(lang, {
-      ru: 'Повторить ошибки', uk: 'Повторити помилки', en: 'Practise mistakes', es: 'Repasar errores', 'pt-BR': 'Revisar erros', vi: 'Ôn lại lỗi',
+      ru: 'Повторить ошибки', uk: 'Повторити помилки', en: 'Practice mistakes', es: 'Repasar errores', 'pt-BR': 'Revisar erros', vi: 'Ôn lại lỗi',
       id: 'Ulangi kesalahan', tr: 'Hataları tekrarla', pl: 'Powtórz błędy', fr: 'Revoir les erreurs', de: 'Fehler wiederholen',
     }),
     again: triLang(lang, { ru: 'Ещё раз', uk: 'Ще раз', en: 'Once more', es: 'Otra vez', 'pt-BR': 'De novo', vi: 'Làm lại', id: 'Sekali lagi', tr: 'Bir daha', pl: 'Jeszcze raz', fr: 'Encore', de: 'Noch einmal' }),

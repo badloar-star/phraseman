@@ -160,7 +160,7 @@ describe('m05C · последний шанс', () => {
 describe('тексты и исходники', () => {
   it('каждая строка есть на 9 языках; подстановки; формат часов', () => {
     for (const key of POSITION_MOMENT_STRING_KEYS) for (const lang of POSITION_MOMENT_LANGS) expect([key, lang, positionMomentText(lang, key, { name: 'X', n: 1, gap: '60', t: '9:40' }).length > 0]).toEqual([key, lang, true]);
-    expect(positionMomentText('en', 'overtake', { name: 'Ira' })).toBe('Ira is passing you');
+    expect(positionMomentText('en', 'overtake', { name: 'Ira' })).toBe('Ira is overtaking you');
     expect(positionClockHms((3 * 3600 + 12 * 60 + 40) * 1000)).toBe('03:12:40');
     expect(positionClockHms(-5)).toBe('00:00:00');
   });

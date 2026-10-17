@@ -148,7 +148,7 @@ function dialogueStartFailedToast() {
   return actionToastTri('error', {
     ru: 'Не получилось начать диалог. Попробуй ещё раз',
     uk: 'Не вдалося почати діалог. Спробуй ще раз',
-    en: 'Could not start the dialogue. Please try again',
+    en: 'Couldn’t start the dialogue. Try again',
     es: 'No se pudo iniciar el diálogo. Inténtalo de nuevo',
     'pt-BR': 'Não foi possível iniciar o diálogo. Tente de novo',
     vi: 'Không thể bắt đầu hội thoại. Hãy thử lại',

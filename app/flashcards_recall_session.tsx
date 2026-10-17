@@ -746,7 +746,7 @@ export default function FlashcardsRecallSession() {
       tr: 'Yaz', pl: 'Napisz',
     }),
     prompt: triLang(lang, {
-      ru: 'Напиши на изучаемом языке', uk: 'Напиши мовою, яку вивчаєш', en: 'Write in the language you are learning', es: 'Escribe en el idioma que estudias',
+      ru: 'Напиши на изучаемом языке', uk: 'Напиши мовою, яку вивчаєш', en: 'Write in the language you’re learning', es: 'Escribe en el idioma que estudias',
       'pt-BR': 'Escreva no idioma que você está aprendendo', vi: 'Viết bằng ngôn ngữ bạn đang học', id: 'Tulis dalam bahasa yang sedang kamu pelajari',
       tr: 'Öğrendiğin dilde yaz', pl: 'Napisz w języku, którego się uczysz',
     }),
@@ -782,7 +782,7 @@ export default function FlashcardsRecallSession() {
       vi: 'Tôi biết', id: 'Saya tahu', tr: 'Biliyordum', pl: 'Wiedziałem',
     }),
     didNotKnow: triLang(lang, {
-      ru: 'Не знал', uk: 'Не знав', en: 'I did not know', es: 'No lo sabía', 'pt-BR': 'Eu não sabia',
+      ru: 'Не знал', uk: 'Не знав', en: 'I didn’t know', es: 'No lo sabía', 'pt-BR': 'Eu não sabia',
       vi: 'Tôi không biết', id: 'Saya tidak tahu', tr: 'Bilmiyordum', pl: 'Nie wiedziałem',
     }),
     // зачем (Карточки 2.0 12.10, макет «Дальше»)

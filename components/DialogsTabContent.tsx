@@ -488,11 +488,11 @@ function DialogsTabContentBody({
           levelChip: triLang(lang, {
             ru: `ур. ${requiredLevel}`,
             uk: `рів. ${requiredLevel}`,
-            en: `lvl. ${requiredLevel}`,
+            en: `Lvl ${requiredLevel}`,
             es: `niv. ${requiredLevel}`,
             'pt-BR': `nív. ${requiredLevel}`,
             vi: `cấp ${requiredLevel}`,
-            id: `lvl. ${requiredLevel}`,
+            id: `Lvl ${requiredLevel}`,
             tr: `sv. ${requiredLevel}`,
             pl: `poz. ${requiredLevel}`,
           }),

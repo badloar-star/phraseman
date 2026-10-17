@@ -200,7 +200,7 @@ export default function DialogWhySheet({
                       : triLang(lang, {
                           ru: 'Не получилось. Попробуй ещё раз.',
                           uk: 'Не вийшло. Спробуй ще раз.',
-                          en: 'That did not work. Try again.',
+                          en: 'That didn’t work. Try again.',
                           es: 'No funcionó. Inténtalo de nuevo.',
                           'pt-BR': 'Não deu certo. Tente de novo.',
                           vi: 'Không thành công. Thử lại nhé.',

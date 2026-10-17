@@ -965,7 +965,7 @@ export default function FlashcardsScreen() {
       router.push({ pathname: '/community_pack_create', params: { fresh: '1', stage: stageKey, origin: 'saved' } } as never);
     } catch (error: unknown) {
       console.warn('[OPT-UI] pack_from_selection rollback reason=stage_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
-      emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуй ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуй ще раз.', en: 'Could not open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível abrir o editor. Tente de novo.', vi: 'Không mở được trình chỉnh sửa. Hãy thử lại.', id: 'Editor tidak bisa dibuka. Coba lagi.', tr: 'Düzenleyici açılamadı. Tekrar dene.', pl: 'Nie udało się otworzyć edytora. Spróbuj ponownie.' }));
+      emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуй ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуй ще раз.', en: 'Couldn’t open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível abrir o editor. Tente de novo.', vi: 'Không mở được trình chỉnh sửa. Hãy thử lại.', id: 'Editor tidak bisa dibuka. Coba lagi.', tr: 'Düzenleyici açılamadı. Tekrar dene.', pl: 'Nie udało się otworzyć edytora. Spróbuj ponownie.' }));
     } finally {
       selectionCreateLockRef.current = false;
       setSelectionCreateBusy(false);
@@ -1110,7 +1110,7 @@ export default function FlashcardsScreen() {
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось отправить набор на публикацию.',
         uk: 'Не вдалося надіслати набір на публікацію.',
-        es: 'No se pudo enviar el pack para publicarse.', en: 'Could not send the pack for publication.',
+        es: 'No se pudo enviar el pack para publicarse.', en: 'Couldn’t send the pack for publication.',
         'pt-BR': 'Não foi possível enviar o pacote para publicação.',
         vi: 'Không thể gửi bộ thẻ để đăng.',
         id: 'Gagal mengirim paket untuk dipublikasikan.',
@@ -1236,7 +1236,7 @@ export default function FlashcardsScreen() {
   }, []);
   const releasePackCardDelete = useCallback((cardId: string) => { deletingPackCardIdsRef.current.delete(cardId); }, []);
   const packCardDeleteFailToast = useCallback(() => emitAppEvent('action_toast', actionToastTri('error', {
-    ru: 'Не удалось удалить карточку.', uk: 'Не вдалося видалити картку.', en: 'Could not delete the card.', es: 'No se pudo eliminar la tarjeta.',
+    ru: 'Не удалось удалить карточку.', uk: 'Не вдалося видалити картку.', en: 'Couldn’t delete the card.', es: 'No se pudo eliminar la tarjeta.',
     'pt-BR': 'Não foi possível excluir o cartão.', vi: 'Không thể xóa thẻ.', id: 'Kartu tidak dapat dihapus.', tr: 'Kart silinemedi.', pl: 'Nie udało się usunąć karty.',
   })), []);
   // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): «Вернуть» при сбое молчало — человек думал, что карточка вернулась
@@ -1355,7 +1355,7 @@ export default function FlashcardsScreen() {
       } else if (result === 'stale' || result === 'failed') {
         setOpenedSaved(before);
         emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Не удалось сохранить карточку.', uk: 'Не вдалося зберегти картку.', en: 'Could not save the card.', es: 'No se pudo guardar la tarjeta.',
+          ru: 'Не удалось сохранить карточку.', uk: 'Не вдалося зберегти картку.', en: 'Couldn’t save the card.', es: 'No se pudo guardar la tarjeta.',
           'pt-BR': 'Não foi possível salvar o cartão.', vi: 'Không thể lưu thẻ.', id: 'Kartu tidak dapat disimpan.', tr: 'Kart kaydedilemedi.', pl: 'Nie udało się zapisać karty.',
         }));
       } else if (result === 'duplicate') {
@@ -1421,7 +1421,7 @@ export default function FlashcardsScreen() {
         console.warn('[PACK-DELETE] экран набора: удаление не удалось', { packId: pack.id, error: String(error) });
         invalidateCommunityPackCatalog(); // зачем (аудит Optimistic UI, координатор 15.10, дыры №7 и №10): после сбоя набор должен вернуться в «Мои наборы» при следующем показе списка, а не сидеть в старом кэше
         emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Could not delete the pack.', es: 'No se pudo eliminar el pack.',
+          ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Couldn’t delete the pack.', es: 'No se pudo eliminar el pack.',
           'pt-BR': 'Não foi possível excluir o pacote.', vi: 'Không thể xóa bộ thẻ.', id: 'Paket tidak dapat dihapus.', tr: 'Paket silinemedi.', pl: 'Nie udało się usunąć zestawu.',
         }));
       })

@@ -3179,7 +3179,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                     accessibilityLabel={triLang(lang, {
                       ru: 'Открыть Plus: разговоры без месячного лимита',
                       uk: 'Відкрити Plus: розмови без місячного ліміту',
-                      en: 'Open Plus: conversations without a monthly limit',
+                      en: 'Get Plus: talk without a monthly limit',
                       es: 'Abrir Plus: conversaciones sin límite mensual',
                       'pt-BR': 'Abrir Plus: conversas sem limite mensal',
                       vi: 'Mở Plus: trò chuyện không giới hạn mỗi tháng',

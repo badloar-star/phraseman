@@ -411,7 +411,7 @@ export default function DialogHowToSaySheet({
                     {triLang(lang, {
                       ru: 'Вставится в поле, отправишь сам',
                       uk: 'Вставиться в поле, надішлеш сам',
-                      en: 'It goes into the field; you send it yourself',
+                      en: 'It goes into the text box — you send it yourself',
                       es: 'Se pone en el campo; tú lo envías',
                       'pt-BR': 'Vai para o campo; você envia',
                       vi: 'Sẽ điền vào ô nhập, bạn tự gửi',

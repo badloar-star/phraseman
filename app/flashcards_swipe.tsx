@@ -216,7 +216,7 @@ type CorrectTranslationReminder = {
 function swipeQuotaUnverifiedText(lang: Lang): string {
   return triLang(lang, {
     ru: 'Не удалось проверить лимит тренировки. Попробуй ещё раз.',
-    en: 'Could not verify the training limit. Please try again.',
+    en: 'Couldn’t verify the training limit. Please try again.',
     uk: 'Не вдалося перевірити ліміт тренування. Спробуй ще раз.',
     es: 'No se pudo verificar el límite. Inténtalo de nuevo.',
     'pt-BR': 'Não foi possível verificar o limite. Tente novamente.',
@@ -230,7 +230,7 @@ function swipeQuotaUnverifiedText(lang: Lang): string {
 function swipePrepareFailedText(lang: Lang): string {
   return triLang(lang, {
     ru: 'Не удалось подготовить тренировку. Энергия возвращена.',
-    en: 'Could not prepare the training session. Energy was returned.',
+    en: 'Couldn’t prepare the training session. Energy was returned.',
     uk: 'Не вдалося підготувати тренування. Енергію повернуто.',
     es: 'No se pudo preparar la sesión. Se devolvió la energía.',
     'pt-BR': 'Não foi possível preparar a sessão. A energia foi devolvida.',

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View, type ImageSourcePropType, type LayoutChangeEvent } from 'react-native';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -56,7 +56,19 @@ type Props = {
 // зачем (аудит контраста 17.10): плашка номера урока лежит на арте (картинка) и стрелка — маленькие вложенные элементы; при альфе 0,5 подпись на светлом/тёмном арте читалась 2,8–3,5:1. Для них заливка плотнее (0,9); сама плашка карточки остаётся 0,5 по приказу владельца.
 const BADGE_ON_ART_ALPHA = 0.9;
 
-export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false, busy = false, hideProgress = false }: Props) {
+/**
+ * зачем (координатор 17.10, скорость Главной): Главная передаёт новый onPress на каждый свой рендер — карточка перерисовывалась впустую.
+ * Обёртка кладёт свежие обработчики в ref, memo-вид сравнивает только данные; тап зовёт самый свежий onPress.
+ */
+export default function HomeV2ContinueCard(props: Props) {
+  const latestRef = useRef<Props>(props);
+  latestRef.current = props;
+  const press = useCallback(() => latestRef.current.onPress(), []);
+  const longPress = useCallback(() => latestRef.current.onLongPress?.(), []);
+  return <HomeV2ContinueCardView {...props} onPress={press} onLongPress={props.onLongPress ? longPress : undefined} />;
+}
+
+const HomeV2ContinueCardView = memo(function HomeV2ContinueCardView({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false, busy = false, hideProgress = false }: Props) {
   useRenderCause('home:continue', () => ({ title, done, total, art, artAccent, artWide, badge, accessibilityLabel, onPress, onLongPress, pending, busy, hideProgress }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
@@ -126,7 +138,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
       </View>
     </V2Pressable>
   );
-}
+});
 
 // зачем (координатор 15.10, эталон Главной: карточка «Продолжить» 96, не 80): рисунок 64 + плашка 22 + зазор 3 = 89 из 96 (по 3–4 сверху и снизу); без плашки рисунок 80
 const CARD_HEIGHT = 96;

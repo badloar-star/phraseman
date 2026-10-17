@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -25,7 +25,15 @@ type Props = {
 export const VIDEO_RAIL_GIVE_UP_MS = 10_000;
 
 /** The Home snapshot is already loaded for the unread count; no second feed request. */
-export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll }: Props) {
+/** зачем (координатор 17.10, скорость Главной): onSeeAll — новая стрелка на каждый рендер Главной; через ref memo-вид перерисовывается только от данных. */
+export default function HomeV2VideoRail(props: Props) {
+  const latestRef = useRef(props.onSeeAll);
+  latestRef.current = props.onSeeAll;
+  const seeAll = useCallback(() => latestRef.current(), []);
+  return <HomeV2VideoRailView videos={props.videos} status={props.status} ownerActive={props.ownerActive} onSeeAll={seeAll} />;
+}
+
+const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, ownerActive, onSeeAll }: Props) {
   useRenderCause('home:video_rail', () => ({ videos, status, ownerActive, onSeeAll }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const { lang } = useLang();
   const p = useV2Palette();
@@ -110,7 +118,8 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
       {VideoPlayerModal && selectedVideo ? <VideoPlayerModal video={selectedVideo} onClose={() => setActiveVideoId(null)} /> : null}
     </View>
   );
-}
+});
+
 
 const s = StyleSheet.create({
   section: { marginTop: 0 },

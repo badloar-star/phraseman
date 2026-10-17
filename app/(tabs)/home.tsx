@@ -1235,6 +1235,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => runAfterHomeFirstFrame('spire_config_warm', () => import('../spire_config_client').then((m) => m.warmSpireConfigFromDisk()), { holdDuringOnboarding: true }), []);
     // зачем (замер 17.10 [SPIRE-LOAD]: комната с диска 1,3 с на входе в Пик): та же копия читается в память, пока человек на Главной — Пик открывается с людьми и «Играть» сразу
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: прогрев один раз за запуск, язык на момент первого кадра
+    // зачем (координатор 17.10, скорость Главной): StoryAvatarSlot уже memo, но onOpenProfile был новой функцией на каждый рендер Главной —
+    // слот (подписка на сторис) перерисовывался всегда. Стабильная обёртка зовёт самый свежий обработчик (ref обновляется в рендере ниже).
+    const openHomeProfileRef = useRef<() => void>(() => undefined);
+    const stableOpenHomeProfile = useCallback(() => openHomeProfileRef.current(), []);
     useEffect(() => runAfterHomeFirstFrame('spire_room_warm', () => import('../spire/spire_load_trace').then((m) => m.warmSpireRoomFromDisk(studyTarget)), { holdDuringOnboarding: true }), []);
     // зачем (координатор 15.10, 🔴 №7: 358 из 440 ключей — страницы аварийных копий): одна копия на владельца, страницы без
     // корня долой — после первого кадра, под замком смены аккаунта, не чаще раза в 6 ч ([ACC-SWITCH-BACKUP]).
@@ -2371,6 +2375,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 isVip,
             });
         };
+        openHomeProfileRef.current = openHomeProfile;
         const homeV2Days = Math.max(0, displayStreak);
         const homeV2DaysRuForm = homeV2Days % 10 === 1 && homeV2Days % 100 !== 11
             ? 0
@@ -2500,7 +2505,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null}
                     coinSource={homeCoinRankSource}
                     placeholderColor={t.bgSurface2}
-                    onOpenProfile={openHomeProfile}
+                    onOpenProfile={stableOpenHomeProfile}
                     profileLabel={triLang(lang, { ru: 'Мой профиль', uk: 'Мій профіль', en: 'My profile', es: 'Mi perfil', 'pt-BR': 'Meu perfil', vi: 'Hồ sơ của tôi', id: 'Profil saya', tr: 'Profilim', pl: 'Mój profil' })}
                   />
                 )}

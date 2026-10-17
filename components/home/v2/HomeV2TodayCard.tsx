@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
@@ -38,8 +38,35 @@ type Props = {
  * Тап по задаче сразу ведёт в активность. Владелец 17.10: кольца дня — не здесь, а на экране «Сегодня»
  * по ссылке «Смотреть все» (app/today_tasks.tsx); тот экран рисует эти же строки (title=null, doneColors — цвета колец).
  */
-export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow, seeAll, doneColors }: Props) {
-  useRenderCause('home:today', () => ({ title, tasks, onOpenTask, surveyRow, seeAll, doneColors }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+/**
+ * зачем (координатор 17.10, скорость Главной): Главная пересобирает props на каждый свой рендер — новый массив tasks, новые onOpenTask/
+ * surveyRow/seeAll — и карточка перерисовывалась впустую. Тонкая обёртка кладёт свежие props в ref, memo-вид сравнивает только ДАННЫЕ;
+ * тап зовёт самый свежий обработчик из ref (как плитки HomeV2FeatureTiles) — устаревших замыканий нет.
+ */
+export default function HomeV2TodayCard(props: Props) {
+  const latestRef = useRef<Props>(props);
+  latestRef.current = props;
+  return <HomeV2TodayCardView {...props} latestRef={latestRef} />;
+}
+
+function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
+  if (a.title !== b.title || a.latestRef !== b.latestRef) return false;
+  if ((a.surveyRow?.title ?? null) !== (b.surveyRow?.title ?? null) || (a.surveyRow?.subtitle ?? null) !== (b.surveyRow?.subtitle ?? null)) return false;
+  if ((a.seeAll?.label ?? null) !== (b.seeAll?.label ?? null)) return false;
+  const ac = a.doneColors ?? [];
+  const bc = b.doneColors ?? [];
+  if (ac.length !== bc.length || ac.some((c, i) => c !== bc[i])) return false;
+  if (a.tasks.length !== b.tasks.length) return false;
+  return a.tasks.every((t, i) => {
+    const o = b.tasks[i];
+    return t.id === o.id && t.kind === o.kind && t.title === o.title && t.subtitle === o.subtitle && t.progress === o.progress && t.target === o.target && t.done === o.done && t.route === o.route;
+  });
+}
+
+type ViewProps = Props & Readonly<{ latestRef: React.MutableRefObject<Props> }>;
+
+const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, surveyRow, seeAll, doneColors, latestRef }: ViewProps) {
+  useRenderCause('home:today', () => ({ title, tasks, surveyRow, seeAll, doneColors }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);
@@ -52,7 +79,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow, s
         <View style={s.headerRow}>
           <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
           {seeAllShown ? (
-            <Pressable testID="home-v2-today-see-all" accessibilityRole="button" accessibilityLabel={seeAllShown.label} onPress={seeAllShown.onPress} hitSlop={8} style={({ pressed }) => [s.seeAll, pressed ? s.seeAllPressed : null]}>
+            <Pressable testID="home-v2-today-see-all" accessibilityRole="button" accessibilityLabel={seeAllShown.label} onPress={() => latestRef.current.seeAll?.onPress()} hitSlop={8} style={({ pressed }) => [s.seeAll, pressed ? s.seeAllPressed : null]}>
               <Text style={[s.seeAllText, { color: p.link }]}>{seeAllShown.label}</Text>
               <Ionicons name="chevron-forward" size={15} color={p.link} />
             </Pressable>
@@ -73,7 +100,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow, s
               onPress={() => {
                 // зачем (владелец 01.10: «задания дня должны открывать свой раздел»): лог маршрута каждого нажатия.
                 console.log('[TODAY-TASKS] route', JSON.stringify({ kind: task.kind, route: task.route, done: task.done, progress: task.progress, target: task.target }));
-                onOpenTask(task);
+                latestRef.current.onOpenTask(task);
               }}
               scaleTo={0.98}
               style={[s.row, rowGlass]}
@@ -99,7 +126,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow, s
             testID="home-v2-today-survey"
             accessibilityRole="button"
             accessibilityLabel={`${surveyRow.title}${surveyRow.subtitle ? `. ${surveyRow.subtitle}` : ''}`}
-            onPress={surveyRow.onPress}
+            onPress={() => latestRef.current.surveyRow?.onPress()}
             scaleTo={0.98}
             style={[s.row, rowGlass]}
           >
@@ -118,7 +145,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow, s
       </View>
     </View>
   );
-}
+}, sameTodayCardData);
 
 const s = StyleSheet.create({
   card: {

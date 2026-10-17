@@ -271,6 +271,32 @@
 
 **Предложение владельцу на утро (R103, адресно, без `--force`, по одной функции, с проверкой журнала после каждой):** `levelSpinStarGrant`, `submitLearningV2CourseSessionCompletedV1`, `submitFeedbackEntry`, `reEngagePushCron`, `legacyBonusConvertMine`, `onboardingLevelRecord`, `communityAuthorRemoveCard`. Отдельно и не ночью: ИИ-диалоги (пп. 5–6) и восстановление аккаунта (п. 2, сперва правка кода).
 
+### R103 — ОБЯЗАТЕЛЬНЫЙ способ выкладки: только из `git archive HEAD` (координатор 17.10; пробная сборка Ревизора 17.10 — зелёная)
+Всегда, даже если рабочее дерево чистое: в общем дереве лежит чужая незакоммиченная работа (Codex, Вход и др.), её не трогаем и в прод не везём.
+1. Зафиксировать коммит: `C=$(git -C /c/appsprojects/phraseman rev-parse HEAD)`; записать `$C` в журнал выкладки.
+2. Чистая копия в отдельную папку (это не worktree и не ветка):
+   `D=/c/Temp/claude/deploy_${C:0:9}; mkdir -p $D && git -C /c/appsprojects/phraseman archive $C -- . ':(exclude)docs' ':(exclude)assets' ':(exclude)ART_STYLE_FOR_CODEX' ':(exclude)asset_sources' ':(exclude).dev-screens' ':(exclude).codex-tmp-local-inventory.txt' | tar -x -C $D`
+   (`content/` и `knowly-www/` нужны сборке: проверка пулов Пика и контекст поддержки.)
+3. Зависимости — ссылками на установленные, только если файлы блокировки в HEAD совпадают с рабочими (`git -C /c/appsprojects/phraseman diff --quiet HEAD -- package-lock.json functions/package-lock.json`), иначе `npm ci --prefix functions` в `$D`:
+   `cmd //c "mklink /J <D>\node_modules C:\appsprojects\phraseman\node_modules"` и то же для `functions\node_modules`.
+4. Выкладка из `$D` с режимом архива (иначе сборка контекста поддержки требует `.git` и падает — проверено):
+   `cd $D && PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$C firebase deploy --only functions:<имя>[,functions:<имя>] --project phraseman-ea0b3` — без `--force`.
+   `node_modules` в выгрузку не попадает (правило игнора firebase по умолчанию).
+5. Уборка: СНАЧАЛА снять ссылки `cmd //c "rmdir <D>\node_modules"` и `cmd //c "rmdir <D>\functions\node_modules"`, ПОТОМ `rm -rf $D`. Обратный порядок удалит node_modules самого репозитория.
+Пробная сборка (17.10, 0cb2d532c, без выкладки): `npm --prefix functions run build` в такой копии — зелёная, `functions-runtime-parity` совпал.
+
+### R103-0 — ПЕРВЫМ: ИИ-диалоги `premiumDialogSend` + `premiumDialogStream` + `premiumDialogTranslate` (чинит текущий прод)
+- Что сломано сейчас у людей: в сторе 1.6.24 (с 22.09) и в 2.0 сценарные диалоги и компаньон не показывают ответ — клиент требует `resetAtMs`/`quotaVersion` с 1.6.22, а прод их не отдаёт. «Как сказать…» всегда ошибка. es/de отвечают по-английски. Квота списывается, OpenAI оплачен. Перепроверено Ревизором: af76518ac ai_dialog_daily_quota.ts:46-56 и ai_dialog_stream_client.ts:56-61; в прод-исходниках Send и Stream `quotaVersion` 0 вхождений.
+- Совместимость HEAD со старыми сборками — таблица Моментов выше. Ревизор выборочно проверил: 1.6.24 шлёт `studyTarget` только en/es/de/fr, а при `unknown` экраны диалогов закрыты — строгий `resolveDialogueStudyTarget` HEAD её не отвергнет.
+- Меняется для старых сборок, решает владелец: Free 30 ответов в месяц вместо 10 в день (D111); потолок Plus с кодом `plus_daily_cap` старые покажут общим текстом. `premiumDialogReview` НЕ трогаем.
+- Команда (по способу выше, три вместе — у них общий контракт квоты): `firebase deploy --only functions:premiumDialogSend,functions:premiumDialogStream,functions:premiumDialogTranslate --project phraseman-ea0b3`.
+- Проверка после:
+  1. `gcloud functions describe` → у всех трёх ACTIVE и свежий `updateTime`;
+  2. журнал ERROR за 15 мин пуст;
+  3. Сверка на эмуляторе 2.0: один ответ en и один es в сценарии, «Как сказать…» отдаёт варианты, ответ es по-испански;
+  4. по возможности один ответ на телефоне с 1.6.24.
+- Откат — пересборка из прежних исходников: Send `gs://gcf-v2-sources-1047658658799-us-central1/premiumDialogSend/function-source.zip#1789672329852868` (callable, 512Mi), Translate `…/premiumDialogTranslate/function-source.zip#1789376455876702` (callable, 256Mi), Stream `…/premiumDialogStream/function-source.zip#1792260767122293` (onRequest, 512Mi, 60 с). Команда: `gcloud functions deploy <имя> --gen2 --region us-central1 --runtime nodejs22 --entry-point <имя> --source <gs-путь> --trigger-http --memory <…> --quiet`. Откат вернёт и поломку — только при новой, худшей ошибке.
+
 ### R103 — утренний порядок адресной выкладки (готовит Ревизор; выкладка только после «да» владельца в чате Ревизора)
 
 Общее для каждой строки:

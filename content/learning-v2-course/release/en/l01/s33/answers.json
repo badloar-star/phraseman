@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-33:word:shy",
+    "correctText": "shy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:word:awful",
+    "correctText": "awful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:word:great",
+    "correctText": "great",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:word:amazing",
+    "correctText": "amazing",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-33:i01",
     "correctText": "I'm okay.",
     "correctResponseId": null
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-33:i15",
-    "correctText": "It's okay.",
+    "correctText": "It's amazing.",
     "correctResponseId": "en:lesson-01:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-01:session-33:i16",
-    "correctText": "en:lesson-01:session-33:i16:p1=okay\nen:lesson-01:session-33:i16:p2=proud\nen:lesson-01:session-33:i16:p3=ashamed\nen:lesson-01:session-33:i16:p4=surprised",
+    "correctText": "en:lesson-01:session-33:i16:p1=shy\nen:lesson-01:session-33:i16:p2=awful\nen:lesson-01:session-33:i16:p3=great\nen:lesson-01:session-33:i16:p4=amazing",
     "correctResponseId": null
   },
   {

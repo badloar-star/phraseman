@@ -4,8 +4,180 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-01:session-31:i01",
+      "interactionId": "en:lesson-01:session-31:word:equal",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — equal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:word:equal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — equal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:word:equal:audio",
+          "transcript": "equal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:word:equal:r1",
+            "targetText": "equal",
+            "meaningByLocale": {
+              "ru": "равный, одинаковый по величине. They are equal — «Они равны»: например, две одинаковые суммы.",
+              "uk": "рівний, однаковий за величиною. They are equal — «Вони рівні»: наприклад, дві однакові суми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "equal",
+          "definitionByLocale": {
+            "ru": "равный, одинаковый по величине. They are equal — «Они равны»: например, две одинаковые суммы.",
+            "uk": "рівний, однаковий за величиною. They are equal — «Вони рівні»: наприклад, дві однакові суми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:word:similar",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — similar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:word:similar:audio"
+      ],
+      "accessibilityLabel": "Картка слова — similar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:word:similar:audio",
+          "transcript": "similar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:word:similar:r1",
+            "targetText": "similar",
+            "meaningByLocale": {
+              "ru": "похожий, но не во всём одинаковый. They are similar — «Они похожи».",
+              "uk": "схожий, але не в усьому однаковий. They are similar — «Вони схожі»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "similar",
+          "definitionByLocale": {
+            "ru": "похожий, но не во всём одинаковый. They are similar — «Они похожи».",
+            "uk": "схожий, але не в усьому однаковий. They are similar — «Вони схожі»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:word:separate",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — separate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:word:separate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — separate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:word:separate:audio",
+          "transcript": "separate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:word:separate:r1",
+            "targetText": "separate",
+            "meaningByLocale": {
+              "ru": "отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.",
+              "uk": "окремий, не об’єднаний з іншим. They are separate — «Вони окремі»: два рахунки, а не один."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "separate",
+          "definitionByLocale": {
+            "ru": "отдельный, не объединён с другим. They are separate — «Они отдельные»: два счёта, а не один.",
+            "uk": "окремий, не об’єднаний з іншим. They are separate — «Вони окремі»: два рахунки, а не один."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:word:shared",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shared",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:word:shared:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:word:shared:audio",
+          "transcript": "shared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:word:shared:r1",
+            "targetText": "shared",
+            "meaningByLocale": {
+              "ru": "общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.",
+              "uk": "спільний, на всіх. It is shared — «Це спільне»: одна страва, яку їдять усі за столом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shared",
+          "definitionByLocale": {
+            "ru": "общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.",
+            "uk": "спільний, на всіх. It is shared — «Це спільне»: одна страва, яку їдять усі за столом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i01",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -49,7 +221,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i02",
-      "ordinal": 5,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -125,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i03",
-      "ordinal": 6,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -194,8 +366,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -232,10 +404,10 @@
           },
           {
             "pairId": "en:lesson-01:session-31:i04:p4",
-            "target": "different",
+            "target": "shared",
             "meaningByLocale": {
-              "ru": "разный",
-              "uk": "різний"
+              "ru": "общий",
+              "uk": "спільний"
             }
           }
         ],
@@ -243,13 +415,13 @@
           "equal",
           "similar",
           "separate",
-          "different"
+          "shared"
         ],
         "rightColumn": [
           "рівний",
           "схожий",
           "окремий",
-          "різний"
+          "спільний"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,8 +439,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -314,8 +486,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Дві тарілки схожі за малюнком. Складіть фразу про їхню схожість",
@@ -358,7 +530,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -391,7 +563,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -460,15 +632,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис малюнка на чашці",
+      "prompt": "Друг питає, чия піца в центрі столу. Послухайте відповідь і виберіть почуте",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-31:i09:r1",
-          "text": "It is similar."
+          "text": "It is shared."
         },
         {
           "responseId": "en:lesson-01:session-31:i09:r2",
@@ -476,25 +648,25 @@
         },
         {
           "responseId": "en:lesson-01:session-31:i09:r3",
-          "text": "It is missing."
+          "text": "It is similar."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-31:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте опис малюнка на чашці",
+      "accessibilityLabel": "Друг питає, чия піца в центрі столу. Послухайте відповідь і виберіть почуте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-31:i09:audio",
-          "transcript": "It is similar."
+          "transcript": "It is shared."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-31:i09:r1",
-            "targetText": "It is similar.",
+            "targetText": "It is shared.",
             "meaningByLocale": null
           },
           {
@@ -504,7 +676,7 @@
           },
           {
             "responseId": "en:lesson-01:session-31:i09:r3",
-            "targetText": "It is missing.",
+            "targetText": "It is similar.",
             "meaningByLocale": null
           }
         ],
@@ -513,19 +685,19 @@
           {
             "responseId": "en:lesson-01:session-31:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис малюнка на чашці",
+            "testedDimension": "Друг питає, чия піца в центрі столу. Послухайте відповідь і виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `similar`, а в этом варианте — `separate`.",
-              "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `separate`."
+              "ru": "В записи последнее слово — `shared`, а в этом варианте — `separate`.",
+              "uk": "У записі останнє слово — `shared`, а в цьому варіанті — `separate`."
             }
           },
           {
             "responseId": "en:lesson-01:session-31:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис малюнка на чашці",
+            "testedDimension": "Друг питає, чия піца в центрі столу. Послухайте відповідь і виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `similar`, а в этом варианте — `missing`.",
-              "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `missing`."
+              "ru": "В записи последнее слово — `shared`, а в этом варианте — `similar`.",
+              "uk": "У записі останнє слово — `shared`, а в цьому варіанті — `similar`."
             }
           }
         ],
@@ -536,8 +708,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте знайомі слова зі значеннями",
@@ -609,8 +781,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу про замовлення",
@@ -656,7 +828,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -700,7 +872,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -733,8 +905,8 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Дві чашки схожі. Вставте слово",
@@ -802,7 +974,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -878,7 +1050,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,10 +1064,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-01:session-31:i16:p1",
-            "target": "single",
+            "target": "shared",
             "meaningByLocale": {
-              "ru": "не состоит в браке (в анкете)",
-              "uk": "не перебуває у шлюбі (в анкеті)"
+              "ru": "общий",
+              "uk": "спільний"
             }
           },
           {
@@ -924,13 +1096,13 @@
           }
         ],
         "leftColumn": [
-          "single",
+          "shared",
           "equal",
           "similar",
           "separate"
         ],
         "rightColumn": [
-          "не перебуває у шлюбі (в анкеті)",
+          "спільний",
           "рівний",
           "схожий",
           "окремий"
@@ -951,7 +1123,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-31:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -991,11 +1163,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1b000eb61ba3b2f2261d8d785f3362aa6f7efcae1a54d2f9b700a557d81581cc"
+  "learnerFingerprint": "c9c1c8c5368b13d0b33912cc32bd4a3827d8c7bea03f8d49775ab279055b479e"
 }

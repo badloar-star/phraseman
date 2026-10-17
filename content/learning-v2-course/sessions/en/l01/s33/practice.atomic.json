@@ -1,0 +1,2425 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-01:session-33",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-01:session-33:word:shy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:shy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:shy:audio",
+            "transcript": "shy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:shy:r1",
+              "targetText": "shy",
+              "meaningByLocale": {
+                "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+                "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shy",
+            "definitionByLocale": {
+              "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+              "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:word:awful",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — awful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:awful:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — awful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:awful:audio",
+            "transcript": "awful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:awful:r1",
+              "targetText": "awful",
+              "meaningByLocale": {
+                "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
+                "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "awful",
+            "definitionByLocale": {
+              "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
+              "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:word:great",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — great",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:great:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — great",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:great:audio",
+            "transcript": "great"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:great:r1",
+              "targetText": "great",
+              "meaningByLocale": {
+                "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
+                "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "great",
+            "definitionByLocale": {
+              "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
+              "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:word:amazing",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — amazing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:amazing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — amazing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:amazing:audio",
+            "transcript": "amazing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:amazing:r1",
+              "targetText": "amazing",
+              "meaningByLocale": {
+                "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
+                "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "amazing",
+            "definitionByLocale": {
+              "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
+              "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "После заминки вы уже в порядке. Соберите короткую фразу о себе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "После заминки вы уже в порядке. Соберите короткую фразу о себе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'm okay.",
+          "localizedMeaning": {
+            "ru": "После заминки вы уже в порядке. Соберите короткую фразу о себе",
+            "uk": "Після заминки ви вже в порядку. Складіть коротку фразу про себе"
+          },
+          "orderedTokens": [
+            "I'm",
+            "okay"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "После заминки вы уже в порядке. Соберите короткую фразу о себе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm okay.`",
+                "uk": "тут потрібно `I'm` — `I'm okay.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i02:r1",
+            "text": "She's proud."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i02:r2",
+            "text": "He's proud."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i02:r3",
+            "text": "She's ashamed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i02:audio",
+            "transcript": "She's proud."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:i02:r1",
+              "targetText": "She's proud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i02:r2",
+              "targetText": "He's proud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i02:r3",
+              "targetText": "She's ashamed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `proud`, а в этом варианте — `ashamed`.",
+                "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i03:r1",
+            "text": "We're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i03:r2",
+            "text": "They're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i03:r3",
+            "text": "You're"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»",
+            "uk": "Ви та ваш партнер здивовані. Скажіть за вас обох: «Ми здивовані»"
+          },
+          "gappedTargetPhrase": "___ surprised.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-33:i03:r1",
+              "text": "We're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i03:r2",
+              "text": "They're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i03:r3",
+              "text": "You're"
+            }
+          ],
+          "testedDimension": "Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»",
+              "feedbackByLocale": {
+                "ru": "Это «они», а нужно «мы»: `We're`.",
+                "uk": "Це «вони», а потрібно «ми»: `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»",
+              "feedbackByLocale": {
+                "ru": "Это «ты/вы», а от вашей группы — `We're`.",
+                "uk": "Це «ти/ви», а від вашої групи — `We're`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините короткие начала с полными",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините короткие начала с полными",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-33:i04:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i04:p2",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i04:p3",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i04:p4",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "He's",
+            "She's",
+            "It's"
+          ],
+          "rightColumn": [
+            "I am",
+            "He is",
+            "She is",
+            "It is"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i05:audio",
+            "transcript": "He's okay."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He's okay.",
+          "orderedTokens": [
+            "He's",
+            "okay"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `He's` — `He's okay.`",
+                "uk": "тут потрібно `He's` — `He's okay.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двое друзей гордятся своими выступлениями. Вы рассказываете о них. Соберите короткую фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое друзей гордятся своими выступлениями. Вы рассказываете о них. Соберите короткую фразу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They're proud.",
+          "localizedMeaning": {
+            "ru": "Двое друзей гордятся своими выступлениями. Вы рассказываете о них. Соберите короткую фразу",
+            "uk": "Двоє друзів пишаються своїми виступами. Ви розповідаєте про них. Складіть коротку фразу"
+          },
+          "orderedTokens": [
+            "They're",
+            "proud"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Двое друзей гордятся своими выступлениями. Вы рассказываете о них. Соберите короткую фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're proud.`",
+                "uk": "тут потрібно `They're` — `They're proud.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Партнёр переживает, что выглядит растерянным. Вы видите, что с ним всё нормально. Скажите ему об этом короткой фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Партнёр переживает, что выглядит растерянным. Вы видите, что с ним всё нормально. Скажите ему об этом короткой фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i07:audio",
+            "transcript": "You're okay."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You're okay.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Шум из колонок режет уши. Скажите о звуке короткой фразой: «Это ужасно»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i08:r1",
+            "text": "It's"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i08:r2",
+            "text": "I'm"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i08:r3",
+            "text": "They're"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Шум из колонок режет уши. Скажите о звуке короткой фразой: «Это ужасно»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Шум из колонок режет уши. Скажите о звуке короткой фразой: «Это ужасно»",
+            "uk": "Шум із колонок ріже вуха. Скажіть про звук короткою фразою: «Це жахливо»"
+          },
+          "gappedTargetPhrase": "___ awful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-33:i08:r1",
+              "text": "It's"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i08:r2",
+              "text": "I'm"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i08:r3",
+              "text": "They're"
+            }
+          ],
+          "testedDimension": "Шум из колонок режет уши. Скажите о звуке короткой фразой: «Это ужасно»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Шум из колонок режет уши. Скажите о звуке короткой фразой: «Это ужасно»",
+              "feedbackByLocale": {
+                "ru": "Это о себе. Про звук — `It's`.",
+                "uk": "Це про себе. Про звук — `It's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Шум из колонок режет уши. Скажите о звуке короткой фразой: «Это ужасно»",
+              "feedbackByLocale": {
+                "ru": "Это «они». Звук здесь один — `It's`.",
+                "uk": "Це «вони». Звук тут один — `It's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i09:r1",
+            "text": "They're surprised."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i09:r2",
+            "text": "We're surprised."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i09:r3",
+            "text": "They're ashamed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i09:audio",
+            "transcript": "They're surprised."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:i09:r1",
+              "targetText": "They're surprised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i09:r2",
+              "targetText": "We're surprised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i09:r3",
+              "targetText": "They're ashamed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `surprised`, а в этом варианте — `ashamed`.",
+                "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `ashamed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Найдите полную форму каждого короткого начала",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Найдите полную форму каждого короткого начала",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-33:i10:p1",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i10:p2",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i10:p3",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i10:p4",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            }
+          ],
+          "leftColumn": [
+            "You're",
+            "We're",
+            "They're",
+            "I'm"
+          ],
+          "rightColumn": [
+            "You are",
+            "We are",
+            "They are",
+            "I am"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i11:audio",
+            "transcript": "We're okay."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We're okay.",
+          "orderedTokens": [
+            "We're",
+            "okay"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We're` — `We're okay.`",
+                "uk": "тут потрібно `We're` — `We're okay.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы перебили партнёра и теперь испытываете стыд. Соберите короткую фразу о себе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы перебили партнёра и теперь испытываете стыд. Соберите короткую фразу о себе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'm ashamed.",
+          "localizedMeaning": {
+            "ru": "Вы перебили партнёра и теперь испытываете стыд. Соберите короткую фразу о себе",
+            "uk": "Ви перебили партнера й тепер відчуваєте сором. Складіть коротку фразу про себе"
+          },
+          "orderedTokens": [
+            "I'm",
+            "ashamed"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы перебили партнёра и теперь испытываете стыд. Соберите короткую фразу о себе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm ashamed.`",
+                "uk": "тут потрібно `I'm` — `I'm ashamed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг удивлён аплодисментами. Скажите о его удивлении короткой фразой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Друг удивлён аплодисментами. Скажите о его удивлении короткой фразой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i13:audio",
+            "transcript": "He's surprised."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's surprised.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i14:r1",
+            "text": "You're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i14:r2",
+            "text": "We're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i14:r3",
+            "text": "She's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
+            "uk": "Після метушливої сцени Маша та Іра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»"
+          },
+          "gappedTargetPhrase": "___ okay.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-33:i14:r1",
+              "text": "You're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i14:r2",
+              "text": "We're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i14:r3",
+              "text": "She's"
+            }
+          ],
+          "testedDimension": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
+              "feedbackByLocale": {
+                "ru": "Это включает говорящего: «мы». К собеседницам — `You're`.",
+                "uk": "Це включає мовця: «ми». До співрозмовниць — `You're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
+              "feedbackByLocale": {
+                "ru": "Это рассказ об одной женщине. Обращение к ним обеим — `You're`.",
+                "uk": "Це розповідь про одну жінку. Звертання до них обох — `You're`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Зал аплодирует стоя. Послушайте, что говорит Маша, и выберите услышанное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i15:r1",
+            "text": "It's amazing."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i15:r2",
+            "text": "It's awful."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i15:r3",
+            "text": "He's amazing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Зал аплодирует стоя. Послушайте, что говорит Маша, и выберите услышанное",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i15:audio",
+            "transcript": "It's amazing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:i15:r1",
+              "targetText": "It's amazing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i15:r2",
+              "targetText": "It's awful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i15:r3",
+              "targetText": "He's amazing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Зал аплодирует стоя. Послушайте, что говорит Маша, и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `amazing`, а в этом варианте — `awful`.",
+                "uk": "У записі останнє слово — `amazing`, а в цьому варіанті — `awful`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Зал аплодирует стоя. Послушайте, что говорит Маша, и выберите услышанное",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `He's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-33:i16:p1",
+              "target": "shy",
+              "meaningByLocale": {
+                "ru": "стесняется",
+                "uk": "соромиться"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i16:p2",
+              "target": "awful",
+              "meaningByLocale": {
+                "ru": "ужасный",
+                "uk": "жахливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i16:p3",
+              "target": "great",
+              "meaningByLocale": {
+                "ru": "отличный",
+                "uk": "чудовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i16:p4",
+              "target": "amazing",
+              "meaningByLocale": {
+                "ru": "потрясающий",
+                "uk": "неймовірний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shy",
+            "awful",
+            "great",
+            "amazing"
+          ],
+          "rightColumn": [
+            "стесняется",
+            "ужасный",
+            "отличный",
+            "потрясающий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На прогулке вы споткнулись, но не ушиблись. Друг волнуется за вас. Скажите коротко, что с вами всё нормально",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "На прогулке вы споткнулись, но не ушиблись. Друг волнуется за вас. Скажите коротко, что с вами всё нормально",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i17:audio",
+            "transcript": "I'm okay."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm okay.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-01:session-33:word:shy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:shy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:shy:audio",
+            "transcript": "shy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:shy:r1",
+              "targetText": "shy",
+              "meaningByLocale": {
+                "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+                "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shy",
+            "definitionByLocale": {
+              "ru": "застенчивый, стеснительный. I'm shy — «Я стесняюсь»: не люблю быть в центре внимания.",
+              "uk": "сором’язливий. I'm shy — «Я соромлюся»: не люблю бути в центрі уваги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:word:awful",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — awful",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:awful:audio"
+        ],
+        "accessibilityLabel": "Картка слова — awful",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:awful:audio",
+            "transcript": "awful"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:awful:r1",
+              "targetText": "awful",
+              "meaningByLocale": {
+                "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
+                "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "awful",
+            "definitionByLocale": {
+              "ru": "ужасный, очень плохой. It's awful — «Это ужасно».",
+              "uk": "жахливий, дуже поганий. It's awful — «Це жахливо»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:word:great",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — great",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:great:audio"
+        ],
+        "accessibilityLabel": "Картка слова — great",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:great:audio",
+            "transcript": "great"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:great:r1",
+              "targetText": "great",
+              "meaningByLocale": {
+                "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
+                "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "great",
+            "definitionByLocale": {
+              "ru": "отличный, классный. You're great — «Ты молодец», «Ты отлично справился».",
+              "uk": "чудовий, класний. You're great — «Ти молодець», «Ти чудово впорався»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:word:amazing",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — amazing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:word:amazing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — amazing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:word:amazing:audio",
+            "transcript": "amazing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:word:amazing:r1",
+              "targetText": "amazing",
+              "meaningByLocale": {
+                "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
+                "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "amazing",
+            "definitionByLocale": {
+              "ru": "потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.",
+              "uk": "неймовірний, приголомшливий. It's amazing — «Це неймовірно». Сильніше, ніж great."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i01",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Після заминки ви вже в порядку. Складіть коротку фразу про себе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Після заминки ви вже в порядку. Складіть коротку фразу про себе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'm okay.",
+          "localizedMeaning": {
+            "ru": "После заминки вы уже в порядке. Соберите короткую фразу о себе",
+            "uk": "Після заминки ви вже в порядку. Складіть коротку фразу про себе"
+          },
+          "orderedTokens": [
+            "I'm",
+            "okay"
+          ],
+          "authoredDistractorTokens": [
+            "He's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Після заминки ви вже в порядку. Складіть коротку фразу про себе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm okay.`",
+                "uk": "тут потрібно `I'm` — `I'm okay.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i02",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i02:r1",
+            "text": "She's proud."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i02:r2",
+            "text": "He's proud."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i02:r3",
+            "text": "She's ashamed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i02:audio",
+            "transcript": "She's proud."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:i02:r1",
+              "targetText": "She's proud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i02:r2",
+              "targetText": "He's proud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i02:r3",
+              "targetText": "She's ashamed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `proud`, а в этом варианте — `ashamed`.",
+                "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i03",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви та ваш партнер здивовані. Скажіть за вас обох: «Ми здивовані»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i03:r1",
+            "text": "We're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i03:r2",
+            "text": "They're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i03:r3",
+            "text": "You're"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви та ваш партнер здивовані. Скажіть за вас обох: «Ми здивовані»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы и ваш партнёр удивлены. Скажите за вас обоих: «Мы удивлены»",
+            "uk": "Ви та ваш партнер здивовані. Скажіть за вас обох: «Ми здивовані»"
+          },
+          "gappedTargetPhrase": "___ surprised.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-33:i03:r1",
+              "text": "We're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i03:r2",
+              "text": "They're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i03:r3",
+              "text": "You're"
+            }
+          ],
+          "testedDimension": "Ви та ваш партнер здивовані. Скажіть за вас обох: «Ми здивовані»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви та ваш партнер здивовані. Скажіть за вас обох: «Ми здивовані»",
+              "feedbackByLocale": {
+                "ru": "Это «они», а нужно «мы»: `We're`.",
+                "uk": "Це «вони», а потрібно «ми»: `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви та ваш партнер здивовані. Скажіть за вас обох: «Ми здивовані»",
+              "feedbackByLocale": {
+                "ru": "Это «ты/вы», а от вашей группы — `We're`.",
+                "uk": "Це «ти/ви», а від вашої групи — `We're`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i04",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте короткі початки з повними",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте короткі початки з повними",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-33:i04:p1",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i04:p2",
+              "target": "He's",
+              "meaningByLocale": {
+                "ru": "He is",
+                "uk": "He is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i04:p3",
+              "target": "She's",
+              "meaningByLocale": {
+                "ru": "She is",
+                "uk": "She is"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i04:p4",
+              "target": "It's",
+              "meaningByLocale": {
+                "ru": "It is",
+                "uk": "It is"
+              }
+            }
+          ],
+          "leftColumn": [
+            "I'm",
+            "He's",
+            "She's",
+            "It's"
+          ],
+          "rightColumn": [
+            "I am",
+            "He is",
+            "She is",
+            "It is"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i05:audio",
+            "transcript": "He's okay."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He's okay.",
+          "orderedTokens": [
+            "He's",
+            "okay"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `He's` — `He's okay.`",
+                "uk": "тут потрібно `He's` — `He's okay.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоє друзів пишаються своїми виступами. Ви розповідаєте про них. Складіть коротку фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє друзів пишаються своїми виступами. Ви розповідаєте про них. Складіть коротку фразу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They're proud.",
+          "localizedMeaning": {
+            "ru": "Двое друзей гордятся своими выступлениями. Вы рассказываете о них. Соберите короткую фразу",
+            "uk": "Двоє друзів пишаються своїми виступами. Ви розповідаєте про них. Складіть коротку фразу"
+          },
+          "orderedTokens": [
+            "They're",
+            "proud"
+          ],
+          "authoredDistractorTokens": [
+            "We're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоє друзів пишаються своїми виступами. Ви розповідаєте про них. Складіть коротку фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They're` — `They're proud.`",
+                "uk": "тут потрібно `They're` — `They're proud.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Партнер хвилюється, що має розгублений вигляд. Ви бачите, що з ним усе гаразд. Скажіть йому про це короткою фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i07:audio"
+        ],
+        "accessibilityLabel": "Партнер хвилюється, що має розгублений вигляд. Ви бачите, що з ним усе гаразд. Скажіть йому про це короткою фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i07:audio",
+            "transcript": "You're okay."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You're okay.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Шум із колонок ріже вуха. Скажіть про звук короткою фразою: «Це жахливо»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i08:r1",
+            "text": "It's"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i08:r2",
+            "text": "I'm"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i08:r3",
+            "text": "They're"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Шум із колонок ріже вуха. Скажіть про звук короткою фразою: «Це жахливо»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Шум из колонок режет уши. Скажите о звуке короткой фразой: «Это ужасно»",
+            "uk": "Шум із колонок ріже вуха. Скажіть про звук короткою фразою: «Це жахливо»"
+          },
+          "gappedTargetPhrase": "___ awful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-33:i08:r1",
+              "text": "It's"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i08:r2",
+              "text": "I'm"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i08:r3",
+              "text": "They're"
+            }
+          ],
+          "testedDimension": "Шум із колонок ріже вуха. Скажіть про звук короткою фразою: «Це жахливо»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Шум із колонок ріже вуха. Скажіть про звук короткою фразою: «Це жахливо»",
+              "feedbackByLocale": {
+                "ru": "Это о себе. Про звук — `It's`.",
+                "uk": "Це про себе. Про звук — `It's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Шум із колонок ріже вуха. Скажіть про звук короткою фразою: «Це жахливо»",
+              "feedbackByLocale": {
+                "ru": "Это «они». Звук здесь один — `It's`.",
+                "uk": "Це «вони». Звук тут один — `It's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i09:r1",
+            "text": "They're surprised."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i09:r2",
+            "text": "We're surprised."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i09:r3",
+            "text": "They're ashamed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i09:audio",
+            "transcript": "They're surprised."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:i09:r1",
+              "targetText": "They're surprised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i09:r2",
+              "targetText": "We're surprised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i09:r3",
+              "targetText": "They're ashamed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
+                "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `surprised`, а в этом варианте — `ashamed`.",
+                "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `ashamed`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Знайдіть повну форму кожного короткого початку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Знайдіть повну форму кожного короткого початку",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-33:i10:p1",
+              "target": "You're",
+              "meaningByLocale": {
+                "ru": "You are",
+                "uk": "You are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i10:p2",
+              "target": "We're",
+              "meaningByLocale": {
+                "ru": "We are",
+                "uk": "We are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i10:p3",
+              "target": "They're",
+              "meaningByLocale": {
+                "ru": "They are",
+                "uk": "They are"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i10:p4",
+              "target": "I'm",
+              "meaningByLocale": {
+                "ru": "I am",
+                "uk": "I am"
+              }
+            }
+          ],
+          "leftColumn": [
+            "You're",
+            "We're",
+            "They're",
+            "I'm"
+          ],
+          "rightColumn": [
+            "You are",
+            "We are",
+            "They are",
+            "I am"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i11:audio",
+            "transcript": "We're okay."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We're okay.",
+          "orderedTokens": [
+            "We're",
+            "okay"
+          ],
+          "authoredDistractorTokens": [
+            "They're"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `We're` — `We're okay.`",
+                "uk": "тут потрібно `We're` — `We're okay.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви перебили партнера й тепер відчуваєте сором. Складіть коротку фразу про себе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви перебили партнера й тепер відчуваєте сором. Складіть коротку фразу про себе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'm ashamed.",
+          "localizedMeaning": {
+            "ru": "Вы перебили партнёра и теперь испытываете стыд. Соберите короткую фразу о себе",
+            "uk": "Ви перебили партнера й тепер відчуваєте сором. Складіть коротку фразу про себе"
+          },
+          "orderedTokens": [
+            "I'm",
+            "ashamed"
+          ],
+          "authoredDistractorTokens": [
+            "She's"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви перебили партнера й тепер відчуваєте сором. Складіть коротку фразу про себе",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `I'm` — `I'm ashamed.`",
+                "uk": "тут потрібно `I'm` — `I'm ashamed.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг здивований оплесками. Скажіть про його здивування короткою фразою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i13:audio"
+        ],
+        "accessibilityLabel": "Друг здивований оплесками. Скажіть про його здивування короткою фразою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i13:audio",
+            "transcript": "He's surprised."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He's surprised.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Після метушливої сцени Маша та Іра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i14:r1",
+            "text": "You're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i14:r2",
+            "text": "We're"
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i14:r3",
+            "text": "She's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Після метушливої сцени Маша та Іра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "После суматошной сцены Маша и Ира выглядят растерянными, но с ними всё нормально. Вы обращаетесь прямо к ним обеим: «С вами всё нормально»",
+            "uk": "Після метушливої сцени Маша та Іра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»"
+          },
+          "gappedTargetPhrase": "___ okay.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-33:i14:r1",
+              "text": "You're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i14:r2",
+              "text": "We're"
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i14:r3",
+              "text": "She's"
+            }
+          ],
+          "testedDimension": "Після метушливої сцени Маша та Іра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "Після метушливої сцени Маша та Іра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»",
+              "feedbackByLocale": {
+                "ru": "Это включает говорящего: «мы». К собеседницам — `You're`.",
+                "uk": "Це включає мовця: «ми». До співрозмовниць — `You're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "Після метушливої сцени Маша та Іра мають розгублений вигляд, але з ними все гаразд. Ви звертаєтеся просто до них обох: «З вами все гаразд»",
+              "feedbackByLocale": {
+                "ru": "Это рассказ об одной женщине. Обращение к ним обеим — `You're`.",
+                "uk": "Це розповідь про одну жінку. Звертання до них обох — `You're`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Зала аплодує стоячи. Послухайте, що каже Маша, і виберіть почуте",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-33:i15:r1",
+            "text": "It's amazing."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i15:r2",
+            "text": "It's awful."
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i15:r3",
+            "text": "He's amazing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i15:audio"
+        ],
+        "accessibilityLabel": "Зала аплодує стоячи. Послухайте, що каже Маша, і виберіть почуте",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i15:audio",
+            "transcript": "It's amazing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-33:i15:r1",
+              "targetText": "It's amazing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i15:r2",
+              "targetText": "It's awful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i15:r3",
+              "targetText": "He's amazing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Зала аплодує стоячи. Послухайте, що каже Маша, і виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `amazing`, а в этом варианте — `awful`.",
+                "uk": "У записі останнє слово — `amazing`, а в цьому варіанті — `awful`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Зала аплодує стоячи. Послухайте, що каже Маша, і виберіть почуте",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `It's`, а в этом варианте — `He's`.",
+                "uk": "У записі перше слово — `It's`, а в цьому варіанті — `He's`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-33:i16:p1",
+              "target": "shy",
+              "meaningByLocale": {
+                "ru": "стесняется",
+                "uk": "соромиться"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i16:p2",
+              "target": "awful",
+              "meaningByLocale": {
+                "ru": "ужасный",
+                "uk": "жахливий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i16:p3",
+              "target": "great",
+              "meaningByLocale": {
+                "ru": "отличный",
+                "uk": "чудовий"
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-33:i16:p4",
+              "target": "amazing",
+              "meaningByLocale": {
+                "ru": "потрясающий",
+                "uk": "неймовірний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shy",
+            "awful",
+            "great",
+            "amazing"
+          ],
+          "rightColumn": [
+            "соромиться",
+            "жахливий",
+            "чудовий",
+            "неймовірний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-33:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На прогулянці ви спіткнулися, але не забилися. Друг хвилюється за вас. Скажіть коротко, що з вами все гаразд",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "На прогулянці ви спіткнулися, але не забилися. Друг хвилюється за вас. Скажіть коротко, що з вами все гаразд",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-33:i17:audio",
+            "transcript": "I'm okay."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'm okay.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-01:session-33:word:shy",
+      "correctText": "shy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:word:awful",
+      "correctText": "awful",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:word:great",
+      "correctText": "great",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:word:amazing",
+      "correctText": "amazing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i01",
+      "correctText": "I'm okay.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i02",
+      "correctText": "She's proud.",
+      "correctResponseId": "en:lesson-01:session-33:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i03",
+      "correctText": "We're",
+      "correctResponseId": "en:lesson-01:session-33:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i05",
+      "correctText": "He's okay.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i06",
+      "correctText": "They're proud.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i07",
+      "correctText": "You're okay.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i08",
+      "correctText": "It's",
+      "correctResponseId": "en:lesson-01:session-33:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i09",
+      "correctText": "They're surprised.",
+      "correctResponseId": "en:lesson-01:session-33:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i11",
+      "correctText": "We're okay.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i12",
+      "correctText": "I'm ashamed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i13",
+      "correctText": "He's surprised.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i14",
+      "correctText": "You're",
+      "correctResponseId": "en:lesson-01:session-33:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i15",
+      "correctText": "It's amazing.",
+      "correctResponseId": "en:lesson-01:session-33:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:i17",
+      "correctText": "I'm okay.",
+      "correctResponseId": null
+    }
+  ]
+}

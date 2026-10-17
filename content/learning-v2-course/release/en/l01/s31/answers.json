@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-31:word:equal",
+    "correctText": "equal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:word:similar",
+    "correctText": "similar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:word:separate",
+    "correctText": "separate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:word:shared",
+    "correctText": "shared",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-31:i01",
     "correctText": "They are equal.",
     "correctResponseId": null
@@ -16,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-31:i04",
-    "correctText": "en:lesson-01:session-31:i04:p1=equal\nen:lesson-01:session-31:i04:p2=similar\nen:lesson-01:session-31:i04:p3=separate\nen:lesson-01:session-31:i04:p4=different",
+    "correctText": "en:lesson-01:session-31:i04:p1=equal\nen:lesson-01:session-31:i04:p2=similar\nen:lesson-01:session-31:i04:p3=separate\nen:lesson-01:session-31:i04:p4=shared",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-31:i09",
-    "correctText": "It is similar.",
+    "correctText": "It is shared.",
     "correctResponseId": "en:lesson-01:session-31:i09:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-31:i16",
-    "correctText": "en:lesson-01:session-31:i16:p1=single\nen:lesson-01:session-31:i16:p2=equal\nen:lesson-01:session-31:i16:p3=similar\nen:lesson-01:session-31:i16:p4=separate",
+    "correctText": "en:lesson-01:session-31:i16:p1=shared\nen:lesson-01:session-31:i16:p2=equal\nen:lesson-01:session-31:i16:p3=similar\nen:lesson-01:session-31:i16:p4=separate",
     "correctResponseId": null
   },
   {

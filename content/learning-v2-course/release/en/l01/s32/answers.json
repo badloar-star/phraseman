@@ -1,5 +1,25 @@
 [
   {
+    "interactionId": "en:lesson-01:session-32:word:crooked",
+    "correctText": "crooked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:word:blurry",
+    "correctText": "blurry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:word:huge",
+    "correctText": "huge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-32:word:tiny",
+    "correctText": "tiny",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-01:session-32:i01",
     "correctText": "We are proud.",
     "correctResponseId": null
@@ -16,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-32:i04",
-    "correctText": "en:lesson-01:session-32:i04:p1=ashamed\nen:lesson-01:session-32:i04:p2=surprised\nen:lesson-01:session-32:i04:p3=bored\nen:lesson-01:session-32:i04:p4=confused",
+    "correctText": "en:lesson-01:session-32:i04:p1=crooked\nen:lesson-01:session-32:i04:p2=blurry\nen:lesson-01:session-32:i04:p3=huge\nen:lesson-01:session-32:i04:p4=tiny",
     "correctResponseId": null
   },
   {
@@ -41,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-32:i09",
-    "correctText": "She is awake.",
+    "correctText": "It is tiny.",
     "correctResponseId": "en:lesson-01:session-32:i09:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-32:i16",
-    "correctText": "en:lesson-01:session-32:i16:p1=alive\nen:lesson-01:session-32:i16:p2=dead\nen:lesson-01:session-32:i16:p3=missing\nen:lesson-01:session-32:i16:p4=available",
+    "correctText": "en:lesson-01:session-32:i16:p1=tiny\nen:lesson-01:session-32:i16:p2=crooked\nen:lesson-01:session-32:i16:p3=blurry\nen:lesson-01:session-32:i16:p4=missing",
     "correctResponseId": null
   },
   {

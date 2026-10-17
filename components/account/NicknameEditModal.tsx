@@ -217,8 +217,11 @@ export default function NicknameEditModal({
     onRequestClose();
   }, [onRequestClose]);
 
+  // зачем (координатор 18.10, аудит Optimistic UI): окно открыли повторно, пока бронь прошлого имени ещё идёт (до ~16 с
+  // на плохой сети) — крестик, «Отмена» и «назад» молчали, окно залипало. Закрытие не трогает идущую попытку: она сама
+  // применит подтверждение или откат по attemptGuard. «Сохранить» остаётся заблокированным до ответа брони.
   const close = useCallback(() => {
-    if (savingRef.current) return;
+    if (savingRef.current) console.log('[NAME-CHANGE] close_while_reserving — окно закрыто, бронь прошлого имени доживает'); // guard-ok: редкий крайний случай
     closeNow();
   }, [closeNow]);
 
@@ -444,8 +447,6 @@ export default function NicknameEditModal({
             accessibilityRole="button"
             accessibilityLabel={closeLabel}
             activeOpacity={0.7}
-            disabled={saving}
-            accessibilityState={{ disabled: saving }}
             // зачем: паритет profile.html (13.10): крестик 35×35 как в макете; зона нажатия добрана hitSlop до 45
             hitSlop={{ top: 5, right: 5, bottom: 5, left: 5 }}
             style={{
@@ -456,9 +457,8 @@ export default function NicknameEditModal({
               justifyContent: 'center',
               backgroundColor: glass.selected,
               boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень»): кнопка закрытия — малая тень
-              opacity: saving ? 0.5 : 1,
             }}
-            onPress={() => { if (saving) return; doHaptic(); close(); }}
+            onPress={() => { doHaptic(); close(); }}
           >
             <Ionicons name="close" size={18} color={glass.text} />
           </TouchableOpacity>
@@ -524,8 +524,6 @@ export default function NicknameEditModal({
           <TouchableOpacity
             accessibilityRole="button"
             activeOpacity={0.7}
-            disabled={saving}
-            accessibilityState={{ disabled: saving }}
             style={{
               flex: 1,
               minHeight: 48,
@@ -535,9 +533,8 @@ export default function NicknameEditModal({
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: glass.selected,
-              opacity: saving ? 0.6 : 1,
             }}
-            onPress={() => { if (saving) return; doHaptic(); close(); }}
+            onPress={() => { doHaptic(); close(); }}
           >
             {/* зачем: text-integrity — лейбл переносится, кнопка растёт по паддингам. */}
             <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>

@@ -377,7 +377,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 }, header: { minHeight: 44, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 } /* зачем (round-2 C-A): строка «назад + HUD» 44, поля страницы 12 */, headerSpacer: { flex: 1 }, lessonTitleBlock: { paddingHorizontal: 12, marginTop: 8, paddingBottom: 14, gap: 2 }, lessonTitleWide: { fontSize: 22, lineHeight: 27, fontWeight: "700", letterSpacing: -0.2 }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "700" }, lessonKicker: { fontSize: 13, lineHeight: 17, fontWeight: "700" }, lessonTopic: { fontSize: 13, lineHeight: 17, fontWeight: "500", marginTop: 2 }, iconButton: { width: 48, height: 48, borderRadius: 24 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 12 },
+  root: { flex: 1 }, header: { minHeight: 44, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 } /* зачем (round-2 C-A): строка «назад + HUD» 44, поля страницы 12 */, headerSpacer: { flex: 1 }, lessonTitleBlock: { paddingHorizontal: 12, marginTop: 8, paddingBottom: 14, gap: 2 }, lessonTitleWide: { fontSize: 22, lineHeight: 27, fontWeight: "700", letterSpacing: -0.2 }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "700" }, lessonKicker: { fontSize: 13, lineHeight: 17, fontWeight: "700", flexShrink: 0 }, lessonTopic: { fontSize: 13, lineHeight: 17, fontWeight: "500", marginTop: 2 }, iconButton: { width: 48, height: 48, borderRadius: 24 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 12 },
   chapter: { overflow: "hidden", paddingBottom: 6 },
   chapterPress: { borderRadius: 22 },
   chapterPressContent: { minHeight: 84, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 14 },
@@ -388,7 +388,8 @@ const styles = StyleSheet.create({
   chapterCopy: { flex: 1, minWidth: 0, gap: 4 },
   chapterTitle: { fontSize: 19, lineHeight: 24, fontWeight: "700" },
   chapterSub: { fontSize: 16, lineHeight: 21 },
-  chapterFrac: { fontSize: 13, lineHeight: 28, fontVariant: ["tabular-nums"] }, chapterFracDone: { fontSize: 24, lineHeight: 28, fontWeight: "800" },
+  // зачем (Сверка 18.10, шрифт 1,3: «0/8» → «0/»): счётчик главы не сжимается и имеет минимальную ширину под «0/8» при крупном шрифте
+  chapterFrac: { fontSize: 13, lineHeight: 28, fontVariant: ["tabular-nums"], flexShrink: 0, minWidth: 56, textAlign: "right" }, chapterFracDone: { fontSize: 24, lineHeight: 28, fontWeight: "800" },
   chapterTrack: { height: 7, borderRadius: 4, marginTop: 2, marginBottom: 14, marginHorizontal: 20, overflow: "hidden" },
   chapterTrackFill: { height: "100%", borderRadius: 4 },
   sessions: { paddingHorizontal: 6, paddingBottom: 10, paddingTop: 6, flexDirection: "row", flexWrap: "wrap", rowGap: 18 },
@@ -399,8 +400,9 @@ const styles = StyleSheet.create({
   nodeStars: { position: "absolute", bottom: -10, minHeight: 20, paddingHorizontal: 6, borderRadius: 10, flexDirection: "row", alignItems: "center", gap: 1 },
   sessionLabel: { width: 82, fontSize: 13, lineHeight: 17, textAlign: "center", marginTop: 10 },
   allLessons: { borderRadius: 28, marginTop: 6 }, allLessonsContent: { minHeight: 56, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }, allLessonsText: { fontSize: 16, fontWeight: "700" }, lessonCard: { marginBottom: 2 }, fallbackLesson: { borderRadius: 14 }, fallbackLessonContent: { minHeight: 76, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 12 }, lessonCopy: { flex: 1 }, lessonMeta: { fontSize: 13, fontWeight: "600", marginBottom: 2 }, lessonTitle: { fontSize: 16, fontWeight: "700" }, legacyButton: { borderRadius: 28, marginTop: 6 }, legacyButtonContent: { minHeight: 48, alignItems: "center", justifyContent: "center" },
-  kickerRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10, minHeight: 36 },
-  classicChip: { flexShrink: 1, minWidth: 0, borderRadius: 18, alignSelf: "center" },
+  // зачем (Сверка 18.10, светлая тема, шрифт 1,3: «Урок 1» → «Ур», плашка → «Классический»): подпись урока не сжимается (flexShrink 0), строка переносится, плашка может занять свою строку и сама переносит текст — без ужатия кегля
+  kickerRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", columnGap: 10, rowGap: 6, minHeight: 36 },
+  classicChip: { flexShrink: 1, minWidth: 0, maxWidth: "100%", marginLeft: "auto", borderRadius: 18, alignSelf: "center" },
   classicChipContent: { width: "auto", minHeight: 36, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 6 },
   classicChipText: { flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: "700" },
 });

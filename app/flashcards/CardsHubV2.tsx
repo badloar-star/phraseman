@@ -10,7 +10,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import { CardsHubAnimProbe } from './CardsHubAnimProbe';
-import React, { memo, useEffect, useSyncExternalStore } from 'react';
+import React, { memo, useEffect, useState, useSyncExternalStore } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -25,8 +25,13 @@ export type CardsHubTile = Readonly<{
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
   count: string;
+  /** Единица для скринридера («наборов», «карточек»): число на плитке без слова, голосом читается «Из видео. наборов: 6». */
+  unit?: string;
   onPress: () => void;
 }>;
+
+/** Потолок ожидания чисел плиток: дольше — число скрываем (не «…» навсегда). */
+export const CARDS_HUB_COUNT_WAIT_CEILING_MS = 5000;
 
 type Props = Readonly<{
   g: GlassTokens;
@@ -116,6 +121,17 @@ function CardsHubV2Inner({
     return () => { float.value = 0; noteHubSubscription('CardsHubV2.floatLoop', 'off'); };
   }, [animationsOffByDev, float, reduceMotion, runtimeActive]);
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: float.value }] }));
+  // зачем (Ревизор 3.13 🟡б): при неудачной загрузке (null) число навсегда оставалось «…». Через потолок ожидания число скрывается (место остаётся), причина — в журнал.
+  const [countsGaveUp, setCountsGaveUp] = useState(false);
+  const pendingCountIds = tiles.filter((t) => t.count === '').map((t) => t.id).join(',');
+  useEffect(() => {
+    if (pendingCountIds === '' || !runtimeActive) { setCountsGaveUp(false); return undefined; }
+    const timer = setTimeout(() => {
+      console.log('[CARDS-HUB] tile counts still loading → numbers hidden', JSON.stringify({ pending: pendingCountIds, ceilingMs: CARDS_HUB_COUNT_WAIT_CEILING_MS, reason: 'count_null_after_ceiling' })); // guard-ok: потолок ожидания чисел
+      setCountsGaveUp(true);
+    }, CARDS_HUB_COUNT_WAIT_CEILING_MS);
+    return () => clearTimeout(timer);
+  }, [pendingCountIds, runtimeActive]);
   const animProbe = typeof __DEV__ !== 'undefined' && __DEV__
     ? <CardsHubAnimProbe float={float} active={!reduceMotion && runtimeActive && !animationsOffByDev} />
     : null;
@@ -202,7 +218,7 @@ function CardsHubV2Inner({
 
       <View style={styles.tiles}>
         {tiles.map((t) => (
-          <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.count}`} onPress={t.onPress}
+          <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.unit ? `${t.unit}: ` : ''}${t.count}`} onPress={t.onPress}
             style={({ pressed }) => [
               styles.tile,
               { minHeight: tileH, boxShadow: plateBoxShadow(g) },
@@ -216,7 +232,7 @@ function CardsHubV2Inner({
                 <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
                 <Ionicons name={t.icon} size={24} color={faceInk} />
               </View>
-              <Text testID={`fc-cards-hub-tile-count-${t.id}`} style={[styles.tileCount, { color: g.text, lineHeight: lh(28) }]} numberOfLines={1}>{t.count === '' ? '…' : t.count}</Text>
+              <Text testID={`fc-cards-hub-tile-count-${t.id}`} style={[styles.tileCount, { color: g.text, lineHeight: lh(28) }]} numberOfLines={1}>{t.count === '' ? (countsGaveUp ? ' ' : '…') : t.count}</Text>
             </View>
             <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
           </Pressable>

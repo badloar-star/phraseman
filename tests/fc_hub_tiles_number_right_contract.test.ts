@@ -25,12 +25,20 @@ describe('хаб Карточек: число справа от иконки', (
   it('число 22/28, 700, tabular-nums, цвет основного текста; «…» при загрузке', () => {
     expect(view).toMatch(/tileCount: \{[^}]*fontSize: 22, lineHeight: 28, fontWeight: '700'[^}]*fontVariant: \['tabular-nums'\]/);
     expect(view).toContain("{ color: g.text, lineHeight: lh(28) }");
-    expect(view).toContain("{t.count === '' ? '…' : t.count}");
   });
 
   it('название 19/25, 700; строки с числом под названием больше нет', () => {
     expect(view).toMatch(/tileTitle: \{ fontSize: 19, lineHeight: 25, fontWeight: '700' \}/);
     expect(view).not.toContain("color: g.secondary, lineHeight: lh(19) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.count");
+  });
+
+  it('скринридер: единица в подписи плитки (9 языков), потолок ожидания чисел с логом [CARDS-HUB]', () => {
+    expect(view).toContain("accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.unit ? `${t.unit}: ` : ''}${t.count}`}");
+    expect(screen).toContain("ru: 'наборов', uk: 'наборів', en: 'packs', es: 'packs', 'pt-BR': 'pacotes', vi: 'bộ thẻ', id: 'paket', tr: 'paket', pl: 'zestawów'");
+    expect(screen).toContain('unit: cardsUnit');
+    expect(view).toContain('CARDS_HUB_COUNT_WAIT_CEILING_MS = 5000');
+    expect(view).toContain('[CARDS-HUB] tile counts still loading');
+    expect(view).toContain("{t.count === '' ? (countsGaveUp ? ' ' : '…') : t.count}");
   });
 
   it('«Из видео»: число без слова «наборов»', () => {

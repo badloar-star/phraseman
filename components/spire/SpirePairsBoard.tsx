@@ -66,7 +66,8 @@ const Tile = memo(function Tile({ label, tone, disabled, onPress, testID }: Read
     Animated.timing(fade, { toValue: tone === 'matched' ? 0.28 : 1, duration: FADE_MS, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
   }, [fade, tone]);
   // зачем (храповик light_accent_graphics): заливка выбранной плитки — графика темы, берём accentGraphic (в тёмном = accent, в светлом виден)
-  const bg = tone === 'selected' ? lv2Alpha(p.accentGraphic, 0.16)
+  // зачем ([BLEND-AUDIT] 18.10): при 0,16 выбранная плитка отличалась от обычной тоном на 1,04–1,07:1 (почти не видно); 0,32 даёт ≥1,59:1 во всех 23 темах, подпись остаётся ≥7,3:1
+  const bg = tone === 'selected' ? lv2Alpha(p.accentGraphic, 0.32)
     : tone === 'wrong' ? lv2Alpha(p.wrong, 0.12)
       : tone === 'matched' ? lv2Alpha(p.correct, 0.12)
         : p.card;

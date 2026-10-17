@@ -793,12 +793,15 @@ export default function FlashcardsHubScreen() {
   // зачем (аудит скорости R1, C2, координатор 12.10): `tiles` собирался заново на каждый рендер корня (новые объекты и inline-onPress), и memo у CardsHubV2 не срабатывал.
   // Плитки зависят только от подписей, счётчиков, форматтера чисел и языка; `router` стабилен. fmt/packsWord читают лишь numberFormat и lang — они в deps.
   /* eslint-disable react-hooks/exhaustive-deps */
+  // зачем (Ревизор 3.13 🟡а): единица для скринридера — на плитке число без слова, голосом должно читаться «Из видео. наборов: 6» (9 языков)
+  const packsUnit = triLang(lang, { ru: 'наборов', uk: 'наборів', en: 'packs', es: 'packs', 'pt-BR': 'pacotes', vi: 'bộ thẻ', id: 'paket', tr: 'paket', pl: 'zestawów' });
+  const cardsUnit = triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' });
   const tiles = useMemo(() => [
-    { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
-    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount ?? heldMineCount), onPress: () => router.push('/flashcards_my_packs' as never) },
-    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmt(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
-    { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
-  ], [copy, savedCount, myPackCount, heldMineCount, videoPackCount, communityPackCount, numberFormat, lang, router]);
+    { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), unit: cardsUnit, onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
+    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount ?? heldMineCount), unit: packsUnit, onPress: () => router.push('/flashcards_my_packs' as never) },
+    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmt(videoPackCount), unit: packsUnit, onPress: () => router.push('/flashcards_video_packs' as never) },
+    { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), unit: packsUnit, onPress: () => router.push('/flashcards_packs' as never) },
+  ], [copy, savedCount, myPackCount, heldMineCount, videoPackCount, communityPackCount, numberFormat, lang, router, packsUnit, cardsUnit]);
   /* eslint-enable react-hooks/exhaustive-deps */
   const limitOutTitle = triLang(lang, { ru: 'Лимит на этот месяц исчерпан', uk: 'Ліміт на цей місяць вичерпано', en: 'This month’s limit is used up', es: 'Has agotado el límite de este mes', 'pt-BR': 'O limite deste mês acabou', vi: 'Đã hết lượt của tháng này', id: 'Batas bulan ini sudah habis', tr: 'Bu ayın limiti doldu', pl: 'Limit na ten miesiąc wyczerpany' });
   const limitOutSub = triLang(lang, { ru: `Обновится ${resetDate}`, uk: `Оновиться ${resetDate}`, en: `Resets on ${resetDate}`, es: `Se renueva el ${resetDate}`, 'pt-BR': `Renova em ${resetDate}`, vi: `Làm mới vào ${resetDate}`, id: `Diperbarui ${resetDate}`, tr: `${resetDate} tarihinde yenilenir`, pl: `Odnowi się ${resetDate}` });

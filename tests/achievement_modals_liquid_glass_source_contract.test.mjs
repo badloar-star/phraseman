@@ -66,7 +66,8 @@ test('AchievementModal (achievements_screen) is an opaque glass dossier without 
     assert.ok(block.includes(id), `testID ${id}`);
   }
   assert.ok(block.includes('buildAchievementShareMessage(lang, name, STORE_URL)'));
-  assert.ok(block.includes("checkAchievements({ type: 'achievement_shared', studyTarget })"));
+  // зачем (R56, 258cde253): событие achievement_shared проверка достижений не отслеживает — пустой вызов убран намеренно; ожидание устарело.
+  assert.ok(!block.includes("checkAchievements({ type: 'achievement_shared', studyTarget })"), 'пустой вызов checkAchievements убран (R56)');
   assert.ok(block.includes('<ScrollView'), 'прокрутка для крупного шрифта');
   assert.ok(src.includes('<AchievementModal'), 'вызов на месте');
 });

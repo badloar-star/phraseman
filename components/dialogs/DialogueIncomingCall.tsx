@@ -150,7 +150,7 @@ function DialogueIncomingCall({ lang, glass, partnerName, cefr, sceneTitle, onAn
         <View style={s.body}>
           <Text style={[s.over, { color: glass.secondary }]}>{c.incoming(cefr)}</Text>
           <Reanimated.View style={[s.avatarWrap, popStyle]}>
-            {reduced ? null : <><Ring delay={0} color={accent} run={loopsOn} /><Ring delay={INCOMING_CALL_TIMELINE.ring2Delay} color={accent} run={loopsOn} /></>}
+            {reduced ? null : <>{/* accent-text-ok: кольца входящего вызова — графика accentGraphic (≥3:1 к фону), не текст и не значок */}<Ring delay={0} color={accent} run={loopsOn} /><Ring delay={INCOMING_CALL_TIMELINE.ring2Delay} color={accent} run={loopsOn} /></>}
             <View style={[s.avatar, { backgroundColor: glass.opaqueControl }]}>
               <Ionicons name="chatbubbles-outline" size={52} color={glass.text} />
             </View>

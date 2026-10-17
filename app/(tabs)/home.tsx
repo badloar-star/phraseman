@@ -2456,9 +2456,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 ...tileArt('cards_empty_saved', require('../../assets/images/v2/cards_hub_saved.webp')), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
             },
         ];
-        const homeV2Tiles: HomeFeatureTile[] = homeV2BaseTiles.length >= 3 || homeV2BaseTiles.length === 0
+        // зачем (владелец 17.10: «На Главной должен быть Пик тоже — кнопка-иконка… 4: Уроки, Диалоги, Карточки и Пик»; эталон #four-tiles вариант (а)):
+        // все три раздела есть и Пик открыт для языка → четвёртая плитка «Пик»; иначе прежний ряд из трёх (D143). Без сети: только флаги готовности.
+        const homeV2SpireTile = homeV2FillerTiles[0]!;
+        const homeV2WithSpire = homeV2BaseTiles.length === 3 && homeV2SpireTile.available;
+        const homeV2Tiles: HomeFeatureTile[] = homeV2WithSpire
+            ? [...homeV2BaseTiles, (({ available: _available, ...tile }) => tile)(homeV2SpireTile)]
+            : homeV2BaseTiles.length >= 3 || homeV2BaseTiles.length === 0
             ? homeV2BaseTiles
             : [...homeV2BaseTiles, ...homeV2FillerTiles.filter((tile) => tile.available).map(({ available: _available, ...tile }) => tile)].slice(0, 3);
+        const homeV2TilesReason = homeV2WithSpire ? 'four:all_sections_and_spire'
+            : homeV2BaseTiles.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
+            : `fill:base=${homeV2BaseTiles.map((tile) => tile.key).join('+') || 'none'}`;
         // зачем D129: задания только из разделов, видимых для языка обучения
         // (хук уже строит набор из доступных типов; фильтр — страховка при смене языка днём).
         // Подпись урока — название последнего урока, как было в заглушке.
@@ -2588,7 +2597,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               />
             ) : null}
             <View style={{ gap: 4 }}>
-              {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} /> : null}
+              {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget}`} spireLang={String(studyTarget)} uiLang={lang} /> : null}
               {isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel ? (
                 <HomeV2VideoRail
                   videos={homeV2Videos}

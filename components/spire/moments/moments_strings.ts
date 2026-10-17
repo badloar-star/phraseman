@@ -23,6 +23,8 @@ const S = {
   zoneTop5: ['ТОП-5', 'ТОП-5', 'TOP 5', 'TOP 5', 'TOP 5', 'TOP 5', 'TOP 5', 'İLK 5', 'TOP 5'],
   promoRoomOverline: ['Топ-5 комнаты', 'Топ-5 кімнати', 'Room top 5', 'Top 5 de la sala', 'Top 5 da sala', 'Top 5 của phòng', '5 besar ruangan', 'Odanın ilk 5’i', 'Top 5 pokoju'],
   promoPlace: ['{n} место. Поднимаешься', '{n} місце. Піднімаєшся', 'Place {n}. You’re moving up', 'Puesto {n}. Subes de liga', 'Posição {n}. Você sobe de liga', 'Hạng {n}. Bạn thăng hạng', 'Peringkat {n}. Kamu naik liga', '{n}. sıra. Yükseliyorsun', '{n}. miejsce. Awansujesz'],
+  // зачем (координатор 17.10, эталон #four-tiles (в)): бейдж места на плитке «Пик» Главной
+  placeBadge: ['{n} место', '{n} місце', 'Place {n}', 'Puesto {n}', '{n}º lugar', 'Hạng {n}', 'Peringkat {n}', '{n}. sıra', '{n}. miejsce'],
   floorTag: ['Этаж {n}', 'Поверх {n}', 'Floor {n}', 'Piso {n}', 'Andar {n}', 'Tầng {n}', 'Lantai {n}', 'Kat {n}', 'Piętro {n}'],
   promoBonus: ['+{n} {nw} за повышение', '+{n} {nw} за підвищення', '+{n} {nw} for moving up', '+{n} {nw} por subir', '+{n} {nw} por subir', '+{n} {nw} vì thăng hạng', '+{n} {nw} karena naik', 'Yükseldiğin için +{n} {nw}', '+{n} {nw} za awans'],
   // зачем (m01 вариант B «Короткая», лист приёмки CHECKLIST_m01): надпись, заголовок, строка итога и текст «Поделиться»; нейтральные по роду формулировки

@@ -7,6 +7,10 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { useHomePlateStyle } from './homePlate';
 import type { HomeFeatureTile } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
+import { useShadowGlass } from '../../v2/ShadowSurface';
+import { useSpireHomePlace } from '../../../app/spire/spire_home_place';
+import { momentText } from '../../spire/moments/moments_strings';
+import type { Lang } from '../../../constants/i18n';
 
 /**
  * Три плитки новой Главной (референс 2.0): Уроки / Диалоги / Карточки.
@@ -21,7 +25,7 @@ import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_pro
  * (рендерится с родителем, только кладёт свежие tiles в ref) и memo-вид, который сравнивает ДАННЫЕ плитки (ключ, тексты, арт) и не смотрит на onPress:
  * тап зовёт самый свежий onPress из ref, поэтому устаревших замыканий нет. Счётчики [HOME-RENDER] tiles — только dev, снять после проверки Сверкой.
  */
-type TilesViewProps = Readonly<{ tiles: readonly HomeFeatureTile[]; pressRef: React.MutableRefObject<readonly HomeFeatureTile[]> }>;
+type TilesViewProps = Readonly<{ tiles: readonly HomeFeatureTile[]; pressRef: React.MutableRefObject<readonly HomeFeatureTile[]>; spireLang: string | null; uiLang: Lang }>;
 
 function sameTileData(a: readonly HomeFeatureTile[], b: readonly HomeFeatureTile[]): boolean {
   if (a.length !== b.length) return false;
@@ -33,20 +37,29 @@ function sameTileData(a: readonly HomeFeatureTile[], b: readonly HomeFeatureTile
 
 let wrapperRenders = 0;
 let viewRenders = 0;
+let lastTilesLog = '';
 
-export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeatureTile[] }) {
+export default function HomeV2FeatureTiles({ tiles, reason, spireLang = null, uiLang = 'en' }: { tiles: readonly HomeFeatureTile[]; reason?: string; spireLang?: string | null; uiLang?: Lang }) {
   useRenderCause('home:tiles', () => ({ tiles }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const pressRef = useRef<readonly HomeFeatureTile[]>(tiles);
   pressRef.current = tiles;
+  // [HOME-TILES] — набор плиток и почему он такой (4 с Пиком или 3); строка только при смене, не на каждую перерисовку Главной.
+  const tilesLog = `${tiles.map((tile) => tile.key).join(',')}|${reason ?? 'none'}`;
+  if (tilesLog !== lastTilesLog) {
+    lastTilesLog = tilesLog;
+    console.log('[HOME-TILES]', JSON.stringify({ keys: tiles.map((tile) => tile.key), count: tiles.length, reason: reason ?? null })); // guard-ok: строка на смену набора плиток
+  }
   if (__DEV__) {
     wrapperRenders += 1;
     console.log('[HOME-RENDER] tiles wrapper', JSON.stringify({ wrapperRenders, viewRenders, keys: tiles.map((tile) => tile.key) })); // guard-ok: счётчик рендеров плиток, только dev
   }
-  return <HomeV2FeatureTilesView tiles={tiles} pressRef={pressRef} />;
+  return <HomeV2FeatureTilesView tiles={tiles} pressRef={pressRef} spireLang={spireLang} uiLang={uiLang} />;
 }
 
-const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pressRef }: TilesViewProps) {
+const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pressRef, spireLang, uiLang }: TilesViewProps) {
   const p = useV2Palette();
+  const g = useShadowGlass(); // зачем (Темы 17.10): заливка бейджа — ctaFill/ctaFillInk, сырой accent на светлых темах сливается с фоном
+  const spirePlace = useSpireHomePlace(tiles.length === 4 ? spireLang : null); // только из копии на устройстве, без сети
   const press = useCallback((key: HomeFeatureTile['key']) => {
     const current = pressRef.current.find((tile) => tile.key === key);
     if (!current) {
@@ -60,6 +73,38 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
     console.log('[HOME-RENDER] tiles view', JSON.stringify({ wrapperRenders, viewRenders })); // guard-ok: счётчик рендеров плиток, только dev
   }
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
+  // зачем (владелец 17.10, «Пик — кнопка-иконка»; эталон #four-tiles вариант (а)): 4 плитки — квадрат только с артом по центру, название ПОД плашкой.
+  // На 360 dp внутри плашки ~72 dp название не помещается, а ужимать шрифт запрещено; длинное переносится, не обрезается.
+  if (tiles.length === 4) {
+    return (
+      <View testID="home-v2-feature-tiles" style={s.row}>
+        {tiles.map((tile) => (
+          <V2Pressable
+            key={tile.key}
+            testID={`home-quick-tile-${tile.key}`}
+            accessibilityRole="button"
+            accessibilityLabel={`${tile.title}. ${tile.subtitle}`}
+            onPress={() => press(tile.key)}
+            scaleTo={0.96}
+            outerStyle={s.tileSlot}
+          >
+            <View pointerEvents="none">
+              <View style={[s.iconPlate, glass]}>
+                <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.iconArt} />
+              </View>
+              {/* зачем (координатор 17.10, вариант (в); владелец: «цифры справа от иконки, а не внизу»): место в лиге — бейдж в правом верхнем углу, как у иконки приложения */}
+              {tile.key === 'spire' && spirePlace !== null ? (
+                <View testID="home-quick-tile-spire-place" style={[s.badge, { backgroundColor: g.ctaFill }]}>
+                  <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{momentText(uiLang, 'placeBadge', { n: spirePlace })}</Text>
+                </View>
+              ) : null}
+            </View>
+            <Text style={[s.iconTitle, { color: p.text }]}>{tile.title}</Text>
+          </V2Pressable>
+        ))}
+      </View>
+    );
+  }
   return (
     <View testID="home-v2-feature-tiles" style={s.row}>
       {tiles.map((tile) => (
@@ -82,7 +127,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
       ))}
     </View>
   );
-}, (prev, next) => prev.pressRef === next.pressRef && sameTileData(prev.tiles, next.tiles));
+}, (prev, next) => prev.pressRef === next.pressRef && prev.spireLang === next.spireLang && prev.uiLang === next.uiLang && sameTileData(prev.tiles, next.tiles));
 
 const s = StyleSheet.create({
   // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются
@@ -100,4 +145,11 @@ const s = StyleSheet.create({
   art: { flex: 1, marginHorizontal: -10, marginBottom: 4, paddingLeft: 10, paddingTop: 6, alignItems: 'flex-start', justifyContent: 'center' },
   artImage: { width: '86%', height: '100%', maxWidth: 84, maxHeight: 84 },
   title: { ...V2_TYPE.headline },
+  // Вариант (а): плашка-иконка, арт по центру (башня Пика целиком в кадре), название 14/18 под плашкой.
+  iconPlate: { aspectRatio: 1, borderRadius: V2.radius.tile, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  iconArt: { width: '74%', height: '74%' },
+  iconTitle: { marginTop: 8, fontSize: 14, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
+  // бейдж поверх угла плашки (вне её overflow), растёт влево на длинных языках
+  badge: { position: 'absolute', top: -7, right: -4, minHeight: 20, paddingHorizontal: 7, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  badgeText: { fontSize: 11, lineHeight: 14, fontWeight: '800', fontVariant: ['tabular-nums'] },
 });

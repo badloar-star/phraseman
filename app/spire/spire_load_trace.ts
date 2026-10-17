@@ -109,6 +109,8 @@ export async function warmSpireRoomFromDisk(studyTarget: unknown): Promise<'warm
     const room = await spireReadRoomCache(uid, lang);
     const fresh = room !== null && room.weekId === spireCurrentWeekKey(Date.now());
     console.log('[SPIRE]', '[SPIRE-LOAD]', 'room:warm', JSON.stringify({ result: fresh ? 'warmed' : 'none', lang, weekId: room?.weekId ?? null, members: room?.members.length ?? null, ms: Date.now() - startedAt })); // guard-ok: итог прогрева
+    // зачем (вариант (в) плиток Главной, координатор 17.10): бейдж места на плитке «Пик» — из этой же копии, без сети
+    if (fresh && room) void import('./spire_home_place').then((m) => m.refreshSpireHomePlace(uid, lang, room));
     return fresh ? 'warmed' : 'none';
   } catch (error: unknown) {
     console.warn('[SPIRE]', '[SPIRE-LOAD]', 'room:warm_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину

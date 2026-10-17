@@ -145,6 +145,9 @@ export default function LearningV2NewWordEncounterOverlay({
   const pocketFlightX = useRef(new RNAnimated.Value(0)).current;
   const pocketFlightY = useRef(new RNAnimated.Value(0)).current;
   const entranceProgress = useRef(new RNAnimated.Value(0)).current;
+  // зачем (эмулятор 17.10, L01 s16: после «Начать проверку» ~3 с серый экран без карточки): мс от рендера карточки до старта анимации входа —
+  // если JS-поток занят монтированием занятия, разница видна в [V2-WORD-CARD] entrance_start.
+  const renderedAtRef = useRef(Date.now());
   const hintPulse = useRef(new RNAnimated.Value(1)).current;
   const [continuing, setContinuing] = useState(false);
   const continuingRef = useRef(false);
@@ -200,6 +203,8 @@ export default function LearningV2NewWordEncounterOverlay({
     };
   }, [animateFlipTo, encounter.lexicalItemId]);
   useEffect(() => {
+    console.log("[V2-WORD-CARD] entrance_start", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, sinceRenderMs: Date.now() - renderedAtRef.current, reduceMotion })); // guard-ok: строка на карточку
+    renderedAtRef.current = Date.now();
     entranceProgress.setValue(reduceMotion ? 1 : 0);
     if (reduceMotion) return;
     const entrance = RNAnimated.timing(entranceProgress, {
@@ -319,13 +324,12 @@ export default function LearningV2NewWordEncounterOverlay({
           {
             backgroundColor: g.opaqueSheet,
             boxShadow: plateBoxShadow(g), // зачем («Тень» 12.10): окно по центру без кромки, с тенью плашки
-            opacity: RNAnimated.multiply(
-              entranceProgress,
-              pocketFlight.interpolate({
-                inputRange: [0, 0.9, 1],
-                outputRange: [1, 1, 0],
-              }),
-            ),
+            // зачем (эмулятор 17.10, ~3 с серого экрана): карточка видна с первого кадра — вход лишь сдвиг и масштаб; прозрачность от него
+            // не зависит, иначе занятый JS-поток (старт анимации ждёт эффекта) держал карточку невидимой поверх уже затемнённого фона
+            opacity: pocketFlight.interpolate({
+              inputRange: [0, 0.9, 1],
+              outputRange: [1, 1, 0],
+            }),
             transform: [
               { translateX: pocketFlightX },
               {

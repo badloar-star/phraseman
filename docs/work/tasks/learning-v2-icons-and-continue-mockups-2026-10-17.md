@@ -1,6 +1,8 @@
 # Task packet: макеты — иконки уроков и глав V2 с узорами плашек, карточка «Продолжить», счётчик карты
 
 Governance-ID: TG-3602416C5BBA
+Governance-ID: TG-55B228ED871D
+Governance-ID: TG-F0409110F60B
 Status: In progress
 Owner: 3 · МАКЕТЫ (координатор 17.10, слово владельца)
 Related epic/enabler: карта V2 LearningV2ChaptersCourse (98f738846), стиль иконок Диалогов

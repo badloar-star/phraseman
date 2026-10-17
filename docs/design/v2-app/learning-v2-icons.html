@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Иконки уроков и глав V2</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · иконки уроков и глав курса V2 + узор плашки главы ─────────
+   зачем (владелец 17.10, через координатора): у каждого урока и каждой главы на карте V2 — своя пиктограмма по смыслу, «не генерация, а именно
+   создание, как в диалогах»; плашка главы — со своим узором по теме, «чтобы они не были все одинаковые, а было интересно».
+   Система иконок — та же, что у нарисованных иконок макетов Диалогов (kit.js / dialogs.html): холст 24, линия 1,8, концы и стыки скруглены,
+   заливки нет, цвет — currentColor. Плитка — как плитка главы в коде (LearningV2ChaptersCourse.tsx: 55×55, радиус 16), значок 26.
+   Узор — SVG-pattern тонкой линией 1,2 по теме главы, низкий контраст, тает к тексту (маска слева направо): текст плашки ≥ 4,5:1.
+   У каждой главы свой оттенок акцента в пределах палитры темы (OKLCH: та же светлота и насыщенность, сдвиг тона ±50°).
+   Состояния: открыта — полным цветом; закрыта — приглушена + замок в углу плитки; пройдена — галочка в углу. Без обводок, стиль «Тень».
+   Темы по умолчанию: «Сумерки» (ink) и «Океан» (marine), токены liquidGlass. Урок 1 — первая партия; уроки 2–8 — следующими партиями. */
+.ph.th-ink, .pane.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #E6E7F4;
+  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sb: #111; --L: .52; --C: .14; --Lt: .93; --Ct: .045; --pa: .22; --pal: .09; --badge-bg: #FFFFFF; }
+.ph.th-marine, .pane.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037;
+  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sb: #fff; --L: .82; --C: .11; --Lt: .33; --Ct: .06; --pa: .22; --pal: .08; --badge-bg: #02242B; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+
+/* оттенок главы: --h задаётся на элементе; акцент, тон плитки и узор — из него */
+.hue { --ac: oklch(var(--L) var(--C) var(--h)); --tint: oklch(var(--Lt) var(--Ct) var(--h)); }
+.ico { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.itile { position: relative; flex: none; width: 55px; height: 55px; border-radius: 16px; background: var(--tint); color: var(--ac); display: flex; align-items: center; justify-content: center; }
+.itile.ism { width: 48px; height: 48px; border-radius: 14px; }
+.itile.ism .ico { width: 24px; height: 24px; }
+/* закрыта: значок приглушён (тон текста, низкая непрозрачность), плитка — нейтральная; замок в углу */
+.st-locked .itile { background: var(--ctl); color: var(--sec); }
+.st-locked .itile .ico { opacity: .55; }
+.bdg { position: absolute; right: -4px; bottom: -4px; width: 22px; height: 22px; border-radius: 11px; background: var(--badge-bg); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; }
+.bdg svg { width: 13px; height: 13px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.st-done .bdg svg { stroke: var(--ac); }
+.st-locked .bdg svg { stroke: var(--sec); }
+
+/* плашка главы — как в коде: карточка r22, плитка 55, «Глава N» 19/700, «Занятия a–b», счёт n/8, шеврон, дорожка прогресса */
+.chap { position: relative; overflow: hidden; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; isolation: isolate; }
+.chap .pat { position: absolute; inset: 0; z-index: -1; color: var(--ac); opacity: var(--pa);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); }
+.st-locked .pat { color: var(--sec); opacity: var(--pal); }
+.chap .crow { display: flex; align-items: center; gap: 14px; }
+.chap .cp { flex: 1; min-width: 0; }
+.chap .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.chap .csub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.chap .cfr { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.chap .cfr b { color: var(--tx); }
+.chap .chev { width: 20px; height: 20px; fill: none; stroke: var(--sec); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chap .ctrk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.chap .ctrk i { display: block; height: 100%; border-radius: 3px; background: var(--ac); }
+.st-locked .tl { color: var(--sec); }
+
+/* шапка карты (код: строка «Урок N» + «Классический курс», ниже тема 22/700); иконка урока — слева от темы */
+.mh { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.mrb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); }
+.mrb svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh { margin-top: 14px; }
+.lh .kr { display: flex; align-items: center; justify-content: space-between; min-height: 36px; }
+.lh .lk { font-size: 13px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); text-transform: uppercase; }
+.lh .clc { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); font-size: 13px; font-weight: 700; }
+.lh .clc svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh .tr { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.lh .ltt { font-size: 22px; line-height: 27px; font-weight: 700; text-wrap: balance; }
+
+/* сетка иконок вне телефона — на панели темы */
+.pane { border-radius: 28px; padding: 22px; background: var(--bg); color: var(--tx); max-width: 980px; flex: 1 1 520px; }
+.pane h3 { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+.pane .pnote { font-size: 13px; color: var(--sec); margin-bottom: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.cell { border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 14px 10px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.cell .cn { font-size: 12px; font-weight: 700; color: var(--sec); }
+.cell .nm { font-size: 13px; line-height: 17px; font-weight: 600; }
+.states { display: flex; gap: 14px; }
+.panes { display: flex; flex-wrap: wrap; gap: 24px; }
+.blk2 { margin-top: 48px; }
+.blk2 h2 { font-size: 20px; margin: 0 0 14px; }
+.ph .t { transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
+.ph .t:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) { .ph .t { transition: none; } }
+</style>
+</head>
+<body>
+<header class="top"><h1>Иконки уроков и глав V2 — урок 1</h1>
+<p>Своя пиктограмма у урока и у каждой главы, нарисованная вручную в системе иконок Диалогов (холст 24, линия 1,8, скругления, цвет акцента). У каждой плашки главы — свой лёгкий узор по теме и свой оттенок акцента в пределах палитры темы. Урок 1 «Первый день в новом офисе»: главы названы по первым занятиям (план курса, session_titles_v1).</p></header>
+<main id="root"></main>
+<script src="kit.js"></script>
+<script>
+const { phone, col, block } = K;
+// ── рисунки (холст 24, линия 1,8 — задаётся классом .ico) ──
+const ICON = {
+  // урок 1 «Первый день в новом офисе» — портфель новичка
+  l1: '<rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 012-2h2a2 2 0 012 2v1.5"/><path d="M3.5 12.5h17"/><path d="M10.5 12.5v2h3v-2"/>',
+  // гл.1 «Вошли в офис» — приоткрытая дверь с ручкой
+  c1: '<path d="M4.5 20.5h15"/><path d="M7 20.5V4h10v16.5"/><path d="M7 4l5.5 2.2v14.3"/><path d="M10.6 13.2h.01" stroke-width="2.6"/>',
+  // гл.2 «Коллега приносит кофе» — чашка с паром
+  c2: '<path d="M4 9h12v5a5 5 0 01-5 5H9a5 5 0 01-5-5z"/><path d="M16 10.5h1.5a2.5 2.5 0 010 5H16"/><path d="M8 4.5c0 1 1 1 1 2.2M11.5 4.5c0 1 1 1 1 2.2"/>',
+  // гл.3 «Начальник представляет людей» — двое и бейдж с именем
+  c3: '<circle cx="8.5" cy="7.5" r="3"/><path d="M3 19.5c.4-3.3 2.6-5.3 5.5-5.3s5.1 2 5.5 5.3"/><circle cx="16.8" cy="8.6" r="2.4"/><path d="M15.6 13.6c2.6.1 4.4 2 4.9 4.9"/><path d="M7 16.8h3"/>',
+  // гл.4 «Первый вечер в квартире» — дом с окошком и месяц
+  c4: '<path d="M3.5 11.5L11 5l7.5 6.5"/><path d="M5.5 10v10h11V10"/><rect x="9" y="13" width="4" height="4" rx=".8"/><path d="M19.6 3a2.4 2.4 0 102 3.3 2.9 2.9 0 01-2-3.3z"/>',
+  // гл.5 «Идём обедать всей командой» — тарелка, вилка и нож
+  c5: '<circle cx="12" cy="12.5" r="5"/><circle cx="12" cy="12.5" r="2.3"/><path d="M3.5 4v4a1.5 1.5 0 003 0V4M5 9.5v10.5"/><path d="M20.5 4c-1.4 1-2 3-2 5.5h2v10.5"/>',
+  // гл.6 «Так говорят на самом деле» — два облачка реплик
+  c6: '<path d="M14 4.5h5a1.5 1.5 0 011.5 1.5v4.5a1.5 1.5 0 01-1.5 1.5h-1v2.2l-2.6-2.2"/><path d="M3.5 9.5A1.5 1.5 0 015 8h8a1.5 1.5 0 011.5 1.5v5A1.5 1.5 0 0113 16H8.4l-3 2.5V16H5a1.5 1.5 0 01-1.5-1.5z"/><path d="M6.6 12h.01M9 12h.01M11.4 12h.01" stroke-width="2.4"/>',
+  // гл.7 «Рассказываем о неделе» — календарь с отметкой
+  c7: '<rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/><path d="M9 15l2 2 4-4"/>',
+};
+// ── узоры плашек (тонкая линия 1,2, повтор; рисунок по теме главы) ──
+const PAT = {
+  c1: { w: 26, h: 26, d: '<rect x="4" y="4" width="7" height="8" rx="1.5"/><rect x="15" y="4" width="7" height="8" rx="1.5"/><rect x="4" y="16" width="7" height="8" rx="1.5"/><rect x="15" y="16" width="7" height="8" rx="1.5"/>' }, // окна офисного фасада
+  c2: { w: 30, h: 30, d: '<ellipse cx="9" cy="9" rx="3.4" ry="4.6" transform="rotate(-30 9 9)"/><path d="M7.4 6.1c1.6 1.4 1.6 4.4 3.2 5.8"/><ellipse cx="23" cy="23" rx="3.4" ry="4.6" transform="rotate(25 23 23)"/><path d="M21.6 20.1c1.4 1.6 1.4 4.2 2.8 5.8"/>' }, // кофейные зёрна
+  c3: { w: 28, h: 28, d: '<circle cx="7" cy="7" r="2.6"/><path d="M2.5 15c.6-2.5 2.3-3.8 4.5-3.8s3.9 1.3 4.5 3.8"/><circle cx="21" cy="19" r="2.6"/><path d="M16.5 27c.6-2.5 2.3-3.8 4.5-3.8s3.9 1.3 4.5 3.8"/>' }, // люди
+  c4: { w: 32, h: 32, d: '<path d="M7 6.5l1 2.2 2.2 1-2.2 1-1 2.2-1-2.2-2.2-1 2.2-1z"/><path d="M24 19a3 3 0 102.6 4.2 3.6 3.6 0 01-2.6-4.2z"/><circle cx="22" cy="6" r=".6"/><circle cx="10" cy="25" r=".6"/>' }, // ночное небо: звёзды и месяц
+  c5: { w: 30, h: 30, d: '<circle cx="9" cy="9" r="4.5"/><circle cx="9" cy="9" r="1.8"/><path d="M21 18v4a1.2 1.2 0 002.4 0v-4M22.2 23.2V28"/>' }, // тарелки и вилки
+  c6: { w: 34, h: 18, d: '<path d="M1 9c2.5-6 5-6 7.5 0s5 6 7.5 0 5-6 7.5 0 5 6 7.5 0"/>' }, // звуковая волна живой речи
+  c7: { w: 24, h: 24, d: '<rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="15" width="6" height="6" rx="1.5"/><path d="M15.6 5.6l1.6 1.6 3-3"/>' }, // клетки календаря с отметкой
+};
+// оттенки глав: сдвиг тона от акцента темы, светлота и насыщенность — из темы (--L/--C)
+const HUE = { ink: { l1: 282, c1: 282, c2: 306, c3: 256, c4: 328, c5: 236, c6: 300, c7: 266 }, marine: { l1: 215, c1: 215, c2: 190, c3: 238, c4: 170, c5: 252, c6: 198, c7: 228 } };
+const CHAPTERS = [['c1', 'Вошли в офис'], ['c2', 'Коллега приносит кофе'], ['c3', 'Начальник представляет людей'], ['c4', 'Первый вечер в квартире'], ['c5', 'Идём обедать всей командой'], ['c6', 'Так говорят на самом деле'], ['c7', 'Рассказываем о неделе']];
+let patSeq = 0;
+const ico = (k) => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg>`;
+const BADGE = { done: '<path d="M5 12.5l4.5 4.5L19 7.5"/>', locked: '<rect x="5.5" y="10.5" width="13" height="9.5" rx="2.2"/><path d="M8.5 10.5V8a3.5 3.5 0 017 0v2.5"/>' };
+const tile = (k, st, cls = '') => `<span class="itile ${cls}">${ico(k)}${st !== 'open' ? `<span class="bdg"><svg viewBox="0 0 24 24">${BADGE[st]}</svg></span>` : ''}</span>`;
+const pat = (k) => { const p = PAT[k]; const id = `p-${k}-${++patSeq}`; return `<svg class="pat" width="100%" height="100%" aria-hidden="true"><defs><pattern id="${id}" width="${p.w}" height="${p.h}" patternUnits="userSpaceOnUse"><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">${p.d}</g></pattern></defs><rect width="100%" height="100%" fill="url(#${id})"/></svg>`; };
+const chev = '<svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+const chapter = (th, i, st, done) => { const [k] = CHAPTERS[i]; const a = i * 8 + 1;
+  return `<div class="chap hue st-${st} t" style="--h:${HUE[th][k]}">${pat(k)}<div class="crow">${tile(k, st)}<div class="cp"><div class="tl">Глава ${i + 1}</div><div class="csub">Занятия ${a}–${a + 7}</div></div><span class="cfr"><b>${done}</b>/8</span>${chev}</div><div class="ctrk">${done ? `<i style="width:${Math.round(done / 8 * 100)}%"></i>` : ''}</div></div>`; };
+const back = '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+const bookI = '<svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-1 8 .8 2.8-1.8 5.4-1.8 8-.8v13c-2.6-1-5.2-1-8 .8-2.8-1.8-5.4-1.8-8-.8z"/><path d="M12 6.3v13"/></svg>';
+const libI = '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="16" rx="1"/><rect x="9.5" y="6" width="4" height="14" rx="1"/><path d="M15.2 7.2l3.6-1 3 13.4-3.6 1z"/></svg>';
+const thc = (th) => th === 'ink' ? 'th-ink' : 'th-marine';
+// ── карта урока 1: главы 1–2 пройдены, 3 — текущая, 4–7 закрыты ──
+const STATE = [['done', 8], ['done', 8], ['open', 3], ['locked', 0], ['locked', 0], ['locked', 0], ['locked', 0]];
+const map = (th) => phone(`<div class="mh"><span class="mrb">${back}</span><span class="mrb">${bookI}</span></div>
+  <div class="lh"><div class="kr"><span class="lk">Урок 1</span><span class="clc">${libI}Классический курс</span></div>
+  <div class="tr"><span class="hue" style="--h:${HUE[th].l1}">${tile('l1', 'open', 'ism')}</span><div class="ltt">Present be: утверждение + not</div></div></div>
+  ${STATE.map(([st, d], i) => chapter(th, i, st, d)).join('')}`, { time: '9:41' }).replace('class="ph"', `class="ph ${thc(th)}"`);
+// ── сетка: урок + 7 глав в трёх состояниях ──
+const grid = (th) => `<div class="pane ${thc(th)}"><h3>${th === 'ink' ? '«Сумерки»' : '«Океан»'}</h3><div class="pnote">Открыта · пройдена · закрыта</div><div class="grid">
+  <div class="cell"><span class="cn">Урок 1</span><div class="states"><span class="hue st-open" style="--h:${HUE[th].l1}">${tile('l1', 'open')}</span></div><span class="nm">Первый день в новом офисе</span></div>
+  ${CHAPTERS.map(([k, nm], i) => `<div class="cell"><span class="cn">Глава ${i + 1}</span><div class="states">${['open', 'done', 'locked'].map((st) => `<span class="hue st-${st}" style="--h:${HUE[th][k]}">${tile(k, st, 'ism')}</span>`).join('')}</div><span class="nm">${nm}</span></div>`).join('')}
+  </div></div>`;
+const plates = (th) => `<div class="pane ${thc(th)}" style="max-width:440px"><h3>Плашки глав — узор на каждую главу</h3><div class="pnote">Все семь открыты + пример закрытой</div>${CHAPTERS.map((c, i) => chapter(th, i, i < 2 ? 'done' : 'open', i < 2 ? 8 : i === 2 ? 3 : 0)).join('')}${chapter(th, 3, 'locked', 0)}</div>`;
+
+document.getElementById('root').innerHTML =
+  block('map', 'Карта урока 1 с иконками', 'Как в коде (LearningV2ChaptersCourse): шапка «Урок N» + «Классический курс», тема урока — теперь со своей иконкой слева. Плашки глав: вместо кубка и замка — иконка главы на плитке её оттенка; узор по теме тает к тексту; закрытые — приглушены, с замком в углу; пройденные — с галочкой.', [
+    col('Урок 1 · «Сумерки»', map('ink')), col('Урок 1 · «Океан»', map('marine'))]) +
+  `<section class="blk2" id="grid"><h2>Сетка иконок урока 1</h2><div class="panes">${grid('ink')}${grid('marine')}</div></section>` +
+  `<section class="blk2" id="plates"><h2>Узоры плашек — по одному на главу</h2><div class="panes">${plates('ink')}${plates('marine')}</div></section>`;
+K.init();
+</script>
+</body>
+</html>

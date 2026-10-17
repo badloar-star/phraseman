@@ -190,18 +190,18 @@ describe('засчитывание по типам', () => {
   });
 
   // зачем (Q21, координатор 01.10): видео-задание платит как остальные — награда за задание дня.
-  it('видео: 60 секунд воспроизведения через шину плеера; 50 монет за задание дня (Q21)', async () => {
+  it('видео: 10 минут (600 с) воспроизведения через шину плеера; 50 монет за задание дня (Q21, владелец 17.10)', async () => {
     await startDayWith(['video', 'dialog', 'cards']);
-    for (let s = 0; s < 59; s += 1) {
+    for (let s = 0; s < 599; s += 1) {
       nowMs = DAY1_NOON + s * 1000;
       jest.spyOn(Date, 'now').mockReturnValue(nowMs);
       publishYoutubePosition('vid1', s);
     }
     await flush();
     expect(task('video').done).toBe(false);
-    nowMs = DAY1_NOON + 59 * 1000;
+    nowMs = DAY1_NOON + 599 * 1000;
     jest.spyOn(Date, 'now').mockReturnValue(nowMs);
-    publishYoutubePosition('vid1', 59);
+    publishYoutubePosition('vid1', 599);
     await flush();
     expect(task('video')).toMatchObject({ done: true, rewardCoins: 50 });
     expect(grants.filter((g) => g.kind === 'video')).toHaveLength(1);

@@ -44,7 +44,8 @@ export const TODAY_TASK_RULES: Readonly<Record<TodayTaskKindCore, TodayTaskRule>
   lesson: Object.freeze({ target: 1, unitsPerStep: 1, rewardCoins: 50 }),
   dialog: Object.freeze({ target: 1, unitsPerStep: 1, rewardCoins: 50 }),
   cards: Object.freeze({ target: 10, unitsPerStep: 1, rewardCoins: 50 }),
-  video: Object.freeze({ target: 1, unitsPerStep: 60, rewardCoins: 50 }),
+  // зачем: владелец 17.10 — «засчитывать только если посмотрели не менее 10 минут» (было 60 с).
+  video: Object.freeze({ target: 1, unitsPerStep: 600, rewardCoins: 50 }),
   mistakes: Object.freeze({ target: 5, unitsPerStep: 1, rewardCoins: 50 }),
   spire_steps: Object.freeze({ target: 3, unitsPerStep: 1, rewardCoins: 50 }),
 });

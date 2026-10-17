@@ -38,9 +38,9 @@ function copyFor(kind: TodayTaskKindCore, lang: Lang): { title: string; subtitle
         subtitle: triLang(lang, { ru: 'Не менее 10 слов', uk: 'Не менше 10 слів', en: 'At least 10 words', es: 'Al menos 10 palabras', 'pt-BR': 'Pelo menos 10 palavras', vi: 'Ít nhất 10 từ', id: 'Minimal 10 kata', tr: 'En az 10 kelime', pl: 'Co najmniej 10 słów' }),
       };
     case 'video':
+      // зачем: владелец 17.10 — «не надо писать „хотя бы минуту“»; подписи под заданием нет.
       return {
         title: triLang(lang, { ru: 'Посмотреть видео', uk: 'Переглянути відео', en: 'Watch a video', es: 'Mira un vídeo', 'pt-BR': 'Assista a um vídeo', vi: 'Xem một video', id: 'Tonton video', tr: 'Bir video izle', pl: 'Obejrzyj wideo' }),
-        subtitle: triLang(lang, { ru: 'Хотя бы минуту', uk: 'Хоча б хвилину', en: 'At least a minute', es: 'Al menos un minuto', 'pt-BR': 'Pelo menos um minuto', vi: 'Ít nhất một phút', id: 'Minimal satu menit', tr: 'En az bir dakika', pl: 'Co najmniej minutę' }),
       };
     case 'mistakes':
       return { title: triLang(lang, { ru: 'Исправить ошибки', uk: 'Виправити помилки', en: 'Fix your mistakes', es: 'Corrige tus errores', 'pt-BR': 'Corrija seus erros', vi: 'Sửa lỗi của bạn', id: 'Perbaiki kesalahan', tr: 'Hatalarını düzelt', pl: 'Popraw błędy' }) };

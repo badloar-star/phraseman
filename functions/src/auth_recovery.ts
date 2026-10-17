@@ -187,6 +187,89 @@ export async function consumeRecoveryCallerRate(
   recoveryLog('caller_rate_ok', { scope, hasIp: Boolean(ip) });
 }
 
+// ── [RECOVERY-LIMIT] дневные потолки неверных кодов (security-review Ревизора 454976a16, пакет R111) ──────────────────
+// зачем: новый код обнулял попытки (3 письма/ч × 5 = 15 угадываний в час на цель), а лимит вызывающего ограничивал
+// письма, но не неверные коды (N Google-аккаунтов → ≈50·N угадываний в час по разным людям). Потолок 10 неверных за
+// 24 ч — и на цель, и на uid вызывающего (общий для обычного и «чистого» пути). Проверка ДО проверки кода: исчерпал —
+// дальше не проверяем вовсе. Счётчики вне основной транзакции (её фазы не сдвигаются), документы по хэшу.
+export const RECOVERY_WRONG_CODE_WINDOW_MS = 24 * 60 * 60 * 1000;
+export const RECOVERY_WRONG_CODE_MAX_PER_TARGET = 10;
+export const RECOVERY_WRONG_CODE_MAX_PER_CALLER = 10;
+
+type WrongCodeBudget = Readonly<{
+  refs: ReadonlyArray<{ kind: 'target' | 'caller'; ref: FirebaseFirestore.DocumentReference }>;
+  states: ReadonlyArray<{ count: number; windowStartMs: number; sameWindow: boolean }>;
+  nowMs: number;
+  scope: string;
+}>;
+
+function recoveryLimitLog(payload: Record<string, unknown>): void {
+  console.log(JSON.stringify({ event: 'recovery_limit', tag: '[RECOVERY-LIMIT]', ...payload }));
+}
+
+/** Сколько адресов в x-forwarded-for (без самих адресов) — факт для решения, какой адрес доверенный (п. 3 ревью). */
+function forwardedChainLength(rawRequest: unknown): number {
+  const forwarded = ((rawRequest ?? {}) as { headers?: Record<string, unknown> }).headers?.['x-forwarded-for'];
+  const value = Array.isArray(forwarded) ? forwarded.join(',') : String(forwarded ?? '');
+  return value.split(',').map((part) => part.trim()).filter(Boolean).length;
+}
+
+export async function assertWrongCodeBudget(
+  db: FirebaseFirestore.Firestore,
+  targetKey: string,
+  callerUid: string,
+  scope: string,
+  nowMs = Date.now(),
+  rawRequest?: unknown,
+): Promise<WrongCodeBudget> {
+  const hash = (value: string) => crypto.createHash('sha256').update(value).digest('hex').slice(0, 32);
+  const refs = [
+    { kind: 'target' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_target_${hash(targetKey)}`) },
+    { kind: 'caller' as const, ref: db.collection(RECOVERY_RATE_LIMITS).doc(`wrong_caller_${hash(callerUid)}`) },
+  ];
+  const snaps = await Promise.all(refs.map(({ ref }) => ref.get()));
+  const states = snaps.map((snap) => {
+    const data = snap.exists ? snap.data() ?? {} : {};
+    const windowStartMs = Number(data.windowStartMs ?? 0);
+    const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_WRONG_CODE_WINDOW_MS;
+    return { sameWindow, windowStartMs, count: sameWindow ? Number(data.count ?? 0) || 0 : 0 };
+  });
+  const targetCount = states[0].count;
+  const callerCount = states[1].count;
+  const blockedBy = targetCount >= RECOVERY_WRONG_CODE_MAX_PER_TARGET
+    ? 'target'
+    : callerCount >= RECOVERY_WRONG_CODE_MAX_PER_CALLER ? 'caller' : null;
+  recoveryLimitLog({
+    scope,
+    step: 'check',
+    targetCount,
+    callerCount,
+    decision: blockedBy ? `blocked_${blockedBy}` : 'allowed',
+    forwardedChain: forwardedChainLength(rawRequest),
+  });
+  if (blockedBy) throw new HttpsError('resource-exhausted', 'recovery_daily_attempts_limited');
+  return { refs, states, nowMs, scope };
+}
+
+export async function recordWrongCode(budget: WrongCodeBudget): Promise<void> {
+  try {
+    await Promise.all(budget.refs.map(({ ref }, i) => ref.set({
+      count: budget.states[i].count + 1,
+      windowStartMs: budget.states[i].sameWindow ? budget.states[i].windowStartMs : budget.nowMs,
+      updatedAtMs: budget.nowMs,
+    }, { merge: true })));
+    recoveryLimitLog({
+      scope: budget.scope,
+      step: 'wrong_code_recorded',
+      targetCount: budget.states[0].count + 1,
+      callerCount: budget.states[1].count + 1,
+    });
+  } catch (error) {
+    // Счётчик не записался — ответ «код не подошёл» всё равно уходит; причину пишем (без идентификаторов).
+    recoveryLimitLog({ scope: budget.scope, step: 'record_failed', kind: error instanceof Error ? error.name : typeof error });
+  }
+}
+
 function requireRecoverySession(request: {
   app?: unknown;
   auth?: { uid?: string; token?: Record<string, unknown> } | null;
@@ -950,6 +1033,8 @@ export const authConfirmRecoveryCode = onCall(CONFIRM_RECOVERY_CALLABLE_OPTIONS,
     throwRecoveryUnavailable();
   }
 
+  const wrongCodeBudget = await assertWrongCodeBudget(db, `stable:${stableId}`, newUid, 'confirm', now, (request as { rawRequest?: unknown }).rawRequest);
+
   let outcome: ConfirmTransactionOutcome;
   try {
     outcome = await db.runTransaction(async (tx): Promise<ConfirmTransactionOutcome> => {
@@ -1025,6 +1110,7 @@ export const authConfirmRecoveryCode = onCall(CONFIRM_RECOVERY_CALLABLE_OPTIONS,
   }
 
   if (outcome.kind === 'invalid') {
+    await recordWrongCode(wrongCodeBudget);
     throw new HttpsError('permission-denied', 'recovery_code_invalid');
   }
   if (outcome.kind === 'locked') {
@@ -1179,7 +1265,9 @@ async function requestCleanInstallRecoveryCodeCore(request: {
   try {
     const found = await admin.auth().getUserByEmail(email);
     if (adminUserMatchesProvider(found, found.uid, provider, email)) candidateUser = found;
-  } catch {
+  } catch (error) {
+    // Ревизор 454976a16 п.4: немой catch — пишем только код Admin Auth (обычно auth/user-not-found), без e-mail.
+    recoveryLog('clean_candidate_lookup_failed', { code: String((error as { code?: unknown })?.code ?? 'unknown').slice(0, 60) });
     candidateUser = null;
   }
 
@@ -1555,6 +1643,16 @@ export const authConfirmCleanInstallRecoveryCode = onCall(
     }
 
     const now = Date.now();
+    // Цель — тот, кого восстанавливают (targetStableId вызова); вызова нет — ключ самого вызова. 1 предварительное чтение.
+    let cleanTargetKey = `challenge:${challengeId}`;
+    try {
+      const preflightChallenge = await challengeRef.get();
+      const targetStableId = String(preflightChallenge.data()?.targetStableId ?? '').trim();
+      if (targetStableId) cleanTargetKey = `stable:${targetStableId}`;
+    } catch (error) {
+      recoveryLimitLog({ scope: 'clean_confirm', step: 'challenge_preflight_failed', kind: error instanceof Error ? error.name : typeof error });
+    }
+    const wrongCodeBudget = await assertWrongCodeBudget(db, cleanTargetKey, newUid, 'clean_confirm', now, (request as { rawRequest?: unknown }).rawRequest);
     let outcome: CleanConfirmOutcome;
     try {
       outcome = await db.runTransaction(async (tx): Promise<CleanConfirmOutcome> => {
@@ -1694,6 +1792,7 @@ export const authConfirmCleanInstallRecoveryCode = onCall(
     }
 
     if (outcome.kind === 'invalid') {
+      await recordWrongCode(wrongCodeBudget);
       throw new HttpsError('permission-denied', 'clean_recovery_code_invalid');
     }
     if (outcome.kind === 'locked') {

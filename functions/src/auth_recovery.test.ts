@@ -1199,7 +1199,9 @@ describe('authConfirmRecoveryCode', () => {
       .rejects.toMatchObject({ code: 'permission-denied', message: 'recovery_code_invalid' });
     await expect(callConfirm({ stableId: STABLE, code }, 'different-google-uid'))
       .rejects.toMatchObject({ code: 'permission-denied', message: 'recovery_requester_mismatch' });
-    expect(writeLog).toEqual([]);
+    // [RECOVERY-LIMIT] (Ревизор 454976a16): неверный код пишет только дневные счётчики цели и вызывающего.
+    expect(writeLog.filter(({ path }) => !path.startsWith('auth_recovery_rate_limits/wrong_'))).toEqual([]);
+    expect(writeLog.filter(({ path }) => path.startsWith('auth_recovery_rate_limits/wrong_'))).toHaveLength(2);
   });
 
   it('rejects a different requester before hash attempts and without writes', async () => {
@@ -1384,7 +1386,8 @@ describe('authConfirmRecoveryCode', () => {
     expect(docs.get('auth_links/new-google-uid')).toBeUndefined();
     expect(collectionDocs('auth_recovery_events')).toHaveLength(0);
     expect(identitySnapshot()).toEqual(identityBefore);
-    expect(new Set(writeLog.map(({ path }) => path))).toEqual(new Set([`auth_recovery_codes/${STABLE}`]));
+    expect(new Set(writeLog.map(({ path }) => path).filter((path) => !path.startsWith('auth_recovery_rate_limits/wrong_'))))
+      .toEqual(new Set([`auth_recovery_codes/${STABLE}`]));
   });
 
   // The fake transaction scheduler exercises retry logic only; it is not an
@@ -1417,7 +1420,8 @@ describe('authConfirmRecoveryCode', () => {
     expect(docs.get(`users/${STABLE}`)).toMatchObject({ firebaseAuthUid: 'old-provider-uid' });
     expect(collectionDocs('auth_recovery_events')).toHaveLength(0);
     expect(identitySnapshot()).toEqual(identityBefore);
-    expect(new Set(writeLog.map(({ path }) => path))).toEqual(new Set([`auth_recovery_codes/${STABLE}`]));
+    expect(new Set(writeLog.map(({ path }) => path).filter((path) => !path.startsWith('auth_recovery_rate_limits/wrong_'))))
+      .toEqual(new Set([`auth_recovery_codes/${STABLE}`]));
 
     await expect(callConfirm(
       { stableId: STABLE, code: correct },
@@ -2598,5 +2602,63 @@ describe('recovery caller rate limit (замена App Check)', () => {
     expect(recoveryCallerIp({ headers: { 'x-forwarded-for': '203.0.113.9, 10.0.0.1' } })).toBe('203.0.113.9');
     expect(recoveryCallerIp({ ip: '198.51.100.2' })).toBe('198.51.100.2');
     expect(recoveryCallerIp(undefined)).toBe('');
+  });
+});
+
+// зачем (security-review Ревизора 454976a16, пакет R111): подбор 6-значного кода упирается в дневной потолок неверных
+// кодов — на цель и на вызывающего; честный ввод проходит.
+describe('[RECOVERY-LIMIT] дневные потолки неверных кодов', () => {
+  it('10 неверных кодов по одной цели за сутки — дальше цель закрыта, даже для другого вызывающего', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 5_000_000_000;
+    for (let i = 0; i < recovery.RECOVERY_WRONG_CODE_MAX_PER_TARGET; i += 1) {
+      const budget = await recovery.assertWrongCodeBudget(db, 'stable:victim', `caller-${i}`, 'test', now + i);
+      await recovery.recordWrongCode(budget);
+    }
+    await expect(recovery.assertWrongCodeBudget(db, 'stable:victim', 'caller-fresh', 'test', now + 100)).rejects.toMatchObject({
+      code: 'resource-exhausted', message: 'recovery_daily_attempts_limited',
+    });
+    // через сутки окно сбрасывается
+    await expect(recovery.assertWrongCodeBudget(db, 'stable:victim', 'caller-fresh', 'test', now + recovery.RECOVERY_WRONG_CODE_WINDOW_MS + 1))
+      .resolves.toBeTruthy();
+  });
+
+  it('10 неверных кодов одного вызывающего по разным целям — дальше вызывающий закрыт', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const now = 6_000_000_000;
+    for (let i = 0; i < recovery.RECOVERY_WRONG_CODE_MAX_PER_CALLER; i += 1) {
+      const budget = await recovery.assertWrongCodeBudget(db, `stable:target-${i}`, 'attacker', 'test', now + i);
+      await recovery.recordWrongCode(budget);
+    }
+    await expect(recovery.assertWrongCodeBudget(db, 'stable:new-target', 'attacker', 'test', now + 100)).rejects.toMatchObject({
+      code: 'resource-exhausted', message: 'recovery_daily_attempts_limited',
+    });
+  });
+
+  it('честный ввод: проверка без неверных кодов проходит и ничего не записывает', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const before = [...docs.keys()].filter((key) => key.includes('/wrong_')).length;
+    await expect(recovery.assertWrongCodeBudget(db, 'stable:honest', 'honest-caller', 'test', 7_000_000_000)).resolves.toBeTruthy();
+    expect([...docs.keys()].filter((key) => key.includes('/wrong_')).length).toBe(before);
+  });
+
+  it('документы потолков — по хэшу, без stableId и uid в открытом виде', async () => {
+    const recovery = require('./auth_recovery');
+    const db = require('firebase-admin').firestore();
+    const budget = await recovery.assertWrongCodeBudget(db, 'stable:plain-target', 'plain-caller', 'test', 8_000_000_000);
+    await recovery.recordWrongCode(budget);
+    const keys = [...docs.keys()].filter((key) => key.startsWith('auth_recovery_rate_limits/wrong_')).join(' ');
+    expect(keys).not.toContain('plain-target');
+    expect(keys).not.toContain('plain-caller');
+  });
+
+  it('обычное подтверждение: неверный код увеличивает счётчик цели, исчерпанный потолок отказывает до проверки кода', () => {
+    const src = require('node:fs').readFileSync(require('node:path').join(__dirname, 'auth_recovery.ts'), 'utf8');
+    expect(src).toContain("const wrongCodeBudget = await assertWrongCodeBudget(db, `stable:${stableId}`, newUid, 'confirm'");
+    expect(src).toContain("await assertWrongCodeBudget(db, cleanTargetKey, newUid, 'clean_confirm'");
+    expect((src.match(/await recordWrongCode\(wrongCodeBudget\);/g) ?? []).length).toBe(2);
   });
 });

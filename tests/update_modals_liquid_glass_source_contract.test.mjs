@@ -50,5 +50,7 @@ assert.match(optionalSource, /updateBtn:\s*\{[\s\S]*?minHeight:\s*48,[\s\S]*?bor
 assert.match(optionalSource, /\ben:\s*\{[\s\S]*?title:[\s\S]*?body:[\s\S]*?update:[\s\S]*?close:/, 'ordinary update modal must retain explicit English copy alongside the other eight locales');
 assert.match(optionalSource, /if \(onPrimaryPress\) \{\s*onPrimaryPress\(\);\s*return;\s*\}/, 'custom update action must retain priority over store navigation');
 assert.match(optionalSource, /onWillOpenExternalUrl\?\.\(\);/, 'Android external-store lifecycle handoff must remain wired');
-assert.match(optionalSource, /Linking\.openURL\(storeUrl\)\.catch\(\(\) => \{\s*onExternalOpenFailed\?\.\(\);/, 'failed store opening must restore the modal through the existing callback');
+// зачем (17.10, R58 #57 3080d1805): в catch добавились журнал причины и снятие защиты от двойного стора — окно по-прежнему
+// возвращается тем же колбэком; проверяем именно это, а не пустую сигнатуру catch.
+assert.match(optionalSource, /Linking\.openURL\(storeUrl\)\.catch\(\(error: unknown\) => \{[\s\S]{0,300}?onExternalOpenFailed\?\.\(\);/, 'failed store opening must restore the modal through the existing callback');
 assert.doesNotMatch(optionalSource, /PREMIUM_UPDATE_EMBLEM|UpdateModalPalette|OLIVE_PALETTE|SAGE_PALETTE/, 'retired theme-specific update art and palette branches must not drive the 2.0 modal');

@@ -38,4 +38,5 @@ for (const language of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl
 assert.match(source, /const storeName = Platform\.OS === 'ios' \? 'App Store' : 'Google Play';/, 'store labels must match the platform');
 assert.doesNotMatch(source, /const bottomSheet = false;/, 'review contexts must not remain forced centered');
 assert.match(source, /void markReviewPrompted\(\)/, 'prompt lifecycle must remain unchanged');
-assert.match(source, /await openStoreReviewPage\(\);\s*await markReviewRated\(\);/, 'rate/store actions must remain unchanged');
+// зачем (17.10, R58 #55 3080d1805): «оценено» отмечается только если стор действительно открылся — без ложного «оценено»
+assert.match(source, /const opened = await openStoreReviewPage\(\);[\s\S]{0,200}?if \(opened\) await markReviewRated\(\);/, 'rate marks the review only after the store actually opened');

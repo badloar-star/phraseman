@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-02:intro1:r2": {
-          "ru": "Один сад: `There is a garden here`.",
-          "uk": "Один сад: `There is a garden here`."
+          "ru": "Перед названием одного места нужно a: There is a garden here.",
+          "uk": "Перед назвою одного місця потрібно a: There is a garden here."
         },
         "en:lesson-04:session-02:intro1:r3": {
-          "ru": "Перед одним садом нужно `a`: `a garden`.",
-          "uk": "Перед одним садом потрібне `a`: `a garden`."
+          "ru": "Слово garden начинается с согласного звука, поэтому нужно a: There is a garden here.",
+          "uk": "Слово garden починається з приголосного звуку, тому потрібно a: There is a garden here."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-02:intro2:r2": {
-          "ru": "Это уверенность в себе. Здесь говорим о расслабленности: `relaxed`.",
-          "uk": "Це впевненість у собі. Тут говоримо про розслабленість: `relaxed`."
+          "ru": "Здание вы оба знаете, поэтому перед ним нужно the: behind the building.",
+          "uk": "Будівлю ви обоє знаєте, тому перед нею потрібно the: behind the building."
         },
         "en:lesson-04:session-02:intro2:r3": {
-          "ru": "После `I` нужна форма `am`: `I am`, сокращённо `I’m`.",
-          "uk": "Після `I` потрібна форма `am`: `I am`, скорочено `I’m`."
+          "ru": "Слово behind стоит перед местом: behind the building.",
+          "uk": "Слово behind стоїть перед місцем: behind the building."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-02:intro3:r2": {
-          "ru": "Это расслабленность, а здесь удовлетворение результатом: `satisfied`.",
-          "uk": "Це розслабленість, а тут задоволення результатом: `satisfied`."
+          "ru": "Нужно полное начало There is: There is a bench near the garden.",
+          "uk": "Потрібен повний початок There is: There is a bench near the garden."
         },
         "en:lesson-04:session-02:intro3:r3": {
-          "ru": "После `I` нужно `am`.",
-          "uk": "Після `I` потрібне `am`."
+          "ru": "Скамейка стоит рядом с садом, а не за ним: near, а не behind.",
+          "uk": "Лавка стоїть поруч із садом, а не за ним: near, а не behind."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0991dc2359b610bd8287758980829609a8221dda36119ee0fbe04c219e9b2ef5"
+  "auxiliaryFingerprint": "49a3da3bb10eeb4c4bf3f08691389a6d9736cf4f487d914b86e3e8b230abd6fb"
 }

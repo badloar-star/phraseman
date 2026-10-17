@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-07:i01",
-    "correctText": "This is a cup.",
+    "correctText": "en:lesson-04:session-07:i01:p1=playground\nen:lesson-04:session-07:i01:p2=park\nen:lesson-04:session-07:i01:p3=lake\nen:lesson-04:session-07:i01:p4=zoo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:word:playground",
+    "correctText": "playground",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-07:i02",
     "correctText": "playground",
-    "correctResponseId": "en:lesson-04:session-07:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-07:i03",
-    "correctText": "playground",
-    "correctResponseId": "en:lesson-04:session-07:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-07:i04",
-    "correctText": "en:lesson-04:session-07:i04:p1=playground\nen:lesson-04:session-07:i04:p2=necessary\nen:lesson-04:session-07:i04:p3=cup\nen:lesson-04:session-07:i04:p4=cafes",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-07:i03",
+    "correctText": "There is a playground here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:word:park",
+    "correctText": "park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i04",
+    "correctText": "park",
+    "correctResponseId": "en:lesson-04:session-07:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-07:i05",
-    "correctText": "There is a playground.",
+    "correctText": "There are parks nearby.",
+    "correctResponseId": "en:lesson-04:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:word:lake",
+    "correctText": "lake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-07:i06",
-    "correctText": "There are cafes here.",
+    "correctText": "lake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-07:i07",
-    "correctText": "It's necessary.",
+    "correctText": "There is a lake behind the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:word:zoo",
+    "correctText": "zoo",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-07:i08",
-    "correctText": "a",
+    "correctText": "zoo",
     "correctResponseId": "en:lesson-04:session-07:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-07:i09",
-    "correctText": "It is necessary.",
-    "correctResponseId": "en:lesson-04:session-07:i09:r1"
+    "correctText": "There is a zoo near the lake.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-07:i10",
-    "correctText": "en:lesson-04:session-07:i10:p1=playground\nen:lesson-04:session-07:i10:p2=cafes\nen:lesson-04:session-07:i10:p3=here\nen:lesson-04:session-07:i10:p4=there",
-    "correctResponseId": null
+    "correctText": "There is a playground near the zoo.",
+    "correctResponseId": "en:lesson-04:session-07:i10:r1"
   },
   {
     "interactionId": "en:lesson-04:session-07:i11",
-    "correctText": "There is a cup here.",
-    "correctResponseId": null
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-07:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-07:i12",
-    "correctText": "This is a playground.",
+    "correctText": "en:lesson-04:session-07:i12:p1=playground\nen:lesson-04:session-07:i12:p2=lake\nen:lesson-04:session-07:i12:p3=building\nen:lesson-04:session-07:i12:p4=street",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-07:i13",
-    "correctText": "That is a cup.",
+    "correctText": "There are benches near the lake.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-07:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-04:session-07:i14:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-07:i15",
-    "correctText": "That is a playground.",
-    "correctResponseId": "en:lesson-04:session-07:i15:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-07:i16",
-    "correctText": "en:lesson-04:session-07:i16:p1=playground\nen:lesson-04:session-07:i16:p2=necessary\nen:lesson-04:session-07:i16:p3=cup\nen:lesson-04:session-07:i16:p4=cafes",
+    "correctText": "There is a zoo behind the park.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-07:i15",
+    "correctText": "There are playgrounds near the street.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-07:i16",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-07:i16:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-07:i17",
-    "correctText": "There is a playground here.",
+    "correctText": "There are parks near the zoo.",
     "correctResponseId": null
   }
 ]

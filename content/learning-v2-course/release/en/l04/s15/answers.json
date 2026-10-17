@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-15:i01",
-    "correctText": "There is a coat.",
+    "correctText": "en:lesson-04:session-15:i01:p1=gym\nen:lesson-04:session-15:i01:p2=treadmill\nen:lesson-04:session-15:i01:p3=instructor\nen:lesson-04:session-15:i01:p4=dumbbell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:word:gym",
+    "correctText": "gym",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i02",
     "correctText": "gym",
-    "correctResponseId": "en:lesson-04:session-15:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-15:i03",
-    "correctText": "gym",
-    "correctResponseId": "en:lesson-04:session-15:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-15:i04",
-    "correctText": "en:lesson-04:session-15:i04:p1=gym\nen:lesson-04:session-15:i04:p2=silent\nen:lesson-04:session-15:i04:p3=coat\nen:lesson-04:session-15:i04:p4=playground",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-15:i03",
+    "correctText": "Is there a gym near here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:word:treadmill",
+    "correctText": "treadmill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i04",
+    "correctText": "treadmill",
+    "correctResponseId": "en:lesson-04:session-15:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-15:i05",
-    "correctText": "Is there a gym?",
+    "correctText": "Are there treadmills here?",
+    "correctResponseId": "en:lesson-04:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:word:instructor",
+    "correctText": "instructor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i06",
-    "correctText": "That is a coat.",
+    "correctText": "instructor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i07",
-    "correctText": "It's silent.",
+    "correctText": "Is there an instructor here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:word:dumbbell",
+    "correctText": "dumbbell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i08",
-    "correctText": "Are",
+    "correctText": "dumbbell",
     "correctResponseId": "en:lesson-04:session-15:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-15:i09",
-    "correctText": "Is there a playground?",
-    "correctResponseId": "en:lesson-04:session-15:i09:r1"
+    "correctText": "Are there dumbbells here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i10",
-    "correctText": "en:lesson-04:session-15:i10:p1=gym\nen:lesson-04:session-15:i10:p2=gyms\nen:lesson-04:session-15:i10:p3=coat\nen:lesson-04:session-15:i10:p4=silent",
+    "correctText": "en:lesson-04:session-15:i10:p1=dumbbell\nen:lesson-04:session-15:i10:p2=treadmill\nen:lesson-04:session-15:i10:p3=instructor\nen:lesson-04:session-15:i10:p4=bench",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i11",
-    "correctText": "There is a playground here.",
-    "correctResponseId": null
+    "correctText": "Is there a gym near the bank?",
+    "correctResponseId": "en:lesson-04:session-15:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-15:i12",
-    "correctText": "There are gyms here.",
-    "correctResponseId": null
+    "correctText": "treadmills",
+    "correctResponseId": "en:lesson-04:session-15:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-15:i13",
-    "correctText": "Is there a coat here?",
+    "correctText": "Are there dumbbells near here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i14",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-04:session-15:i14:r1"
+    "correctText": "Is there a treadmill here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i15",
-    "correctText": "It is silent.",
-    "correctResponseId": "en:lesson-04:session-15:i15:r1"
+    "correctText": "Are there instructors here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i16",
-    "correctText": "en:lesson-04:session-15:i16:p1=gym\nen:lesson-04:session-15:i16:p2=silent\nen:lesson-04:session-15:i16:p3=coat\nen:lesson-04:session-15:i16:p4=playground",
+    "correctText": "en:lesson-04:session-15:i16:p1=gym\nen:lesson-04:session-15:i16:p2=instructor\nen:lesson-04:session-15:i16:p3=treadmill\nen:lesson-04:session-15:i16:p4=dumbbell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-15:i17",
-    "correctText": "Is there a gym here?",
+    "correctText": "Is there a gym near the park?",
     "correctResponseId": null
   }
 ]

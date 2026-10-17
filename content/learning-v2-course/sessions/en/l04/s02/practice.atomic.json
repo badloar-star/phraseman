@@ -1,0 +1,2387 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-02",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-02:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-02:i01:p1",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i01:p2",
+              "target": "behind",
+              "meaningByLocale": {
+                "ru": "за, позади",
+                "uk": "за, позаду"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i01:p3",
+              "target": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около",
+                "uk": "поруч, біля"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i01:p4",
+              "target": "cinema",
+              "meaningByLocale": {
+                "ru": "кинотеатр",
+                "uk": "кінотеатр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "garden",
+            "behind",
+            "near",
+            "cinema"
+          ],
+          "rightColumn": [
+            "сад",
+            "за, позади",
+            "рядом, около",
+            "кинотеатр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:garden",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — garden",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:garden:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — garden",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:garden:audio",
+            "transcript": "garden"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:garden:r1",
+              "targetText": "garden",
+              "meaningByLocale": {
+                "ru": "сад. There is a garden here — «Здесь есть сад». О месте с травой, цветами и деревьями при доме.",
+                "uk": "сад. There is a garden here — «Тут є сад». Про місце з травою, квітами й деревами біля дому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "garden",
+            "definitionByLocale": {
+              "ru": "сад. There is a garden here — «Здесь есть сад». О месте с травой, цветами и деревьями при доме.",
+              "uk": "сад. There is a garden here — «Тут є сад». Про місце з травою, квітами й деревами біля дому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор открывает дверь во двор и называет место с травой и деревьями, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Администратор открывает дверь во двор и называет место с травой и деревьями, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i02:audio",
+            "transcript": "garden"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "garden",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что вы увидели во дворе. Скажите ей полной фразой: здесь есть сад.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что вы увидели во дворе. Скажите ей полной фразой: здесь есть сад.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a garden here.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что вы увидели во дворе. Скажите ей полной фразой: здесь есть сад.",
+            "uk": "Подруга питає, що ви побачили у дворі. Скажіть їй повною фразою: тут є сад."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "garden",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, что вы увидели во дворе. Скажите ей полной фразой: здесь есть сад.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `There is a garden here.`",
+                "uk": "тут потрібно `a` — `There is a garden here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:behind",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — behind",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:behind:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — behind",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:behind:audio",
+            "transcript": "behind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:behind:r1",
+              "targetText": "behind",
+              "meaningByLocale": {
+                "ru": "за, позади. There is a garden behind the building — «За зданием есть сад». О том, что находится с обратной стороны.",
+                "uk": "за, позаду. There is a garden behind the building — «За будівлею є сад». Про те, що розташоване з протилежного боку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "behind",
+            "definitionByLocale": {
+              "ru": "за, позади. There is a garden behind the building — «За зданием есть сад». О том, что находится с обратной стороны.",
+              "uk": "за, позаду. There is a garden behind the building — «За будівлею є сад». Про те, що розташоване з протилежного боку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сад находится с обратной стороны дома. Как по-английски «за, позади»?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i04:r1",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i04:r2",
+            "text": "inside"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i04:r3",
+            "text": "outside"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сад находится с обратной стороны дома. Как по-английски «за, позади»?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сад находится с обратной стороны дома. Как по-английски «за, позади»?",
+            "uk": "Сад розташований з протилежного боку будинку. Як англійською «за, позаду»?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-02:i04:r1",
+              "text": "behind"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i04:r2",
+              "text": "inside"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i04:r3",
+              "text": "outside"
+            }
+          ],
+          "testedDimension": "Сад находится с обратной стороны дома. Как по-английски «за, позади»?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i04:r2",
+              "correct": false,
+              "testedDimension": "Сад находится с обратной стороны дома. Как по-английски «за, позади»?",
+              "feedbackByLocale": {
+                "ru": "inside — это внутри, а нужное слово — behind.",
+                "uk": "inside — це всередині, а потрібне слово — behind."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i04:r3",
+              "correct": false,
+              "testedDimension": "Сад находится с обратной стороны дома. Как по-английски «за, позади»?",
+              "feedbackByLocale": {
+                "ru": "outside — это снаружи, а нужное слово — behind.",
+                "uk": "outside — це надворі, а потрібне слово — behind."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте администратора и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i05:r1",
+            "text": "There is a garden behind the building."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i05:r2",
+            "text": "There is a garden behind the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i05:r3",
+            "text": "There is a garden inside the building."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i05:audio",
+            "transcript": "There is a garden behind the building."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:i05:r1",
+              "targetText": "There is a garden behind the building.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i05:r2",
+              "targetText": "There is a garden behind the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i05:r3",
+              "targetText": "There is a garden inside the building.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `building`, а в этом варианте — `library`.",
+                "uk": "У записі — `building`, а в цьому варіанті — `library`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `behind`, а в этом варианте — `inside`.",
+                "uk": "У записі — `behind`, а в цьому варіанті — `inside`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:near",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — near",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:near:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — near",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:near:audio",
+            "transcript": "near"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:near:r1",
+              "targetText": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около. There is a bench near the garden — «Рядом с садом есть скамейка». О том, что стоит совсем близко.",
+                "uk": "поруч, біля. There is a bench near the garden — «Поруч із садом є лавка». Про те, що стоїть зовсім близько."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "near",
+            "definitionByLocale": {
+              "ru": "рядом, около. There is a bench near the garden — «Рядом с садом есть скамейка». О том, что стоит совсем близко.",
+              "uk": "поруч, біля. There is a bench near the garden — «Поруч із садом є лавка». Про те, що стоїть зовсім близько."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор показывает на скамейку рядом с вами и называет слово «рядом», а вы повторяете за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i06:audio"
+        ],
+        "accessibilityLabel": "Администратор показывает на скамейку рядом с вами и называет слово «рядом», а вы повторяете за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i06:audio",
+            "transcript": "near"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "near",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте администратора и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i07:audio",
+            "transcript": "There is a bench near the garden."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a bench near the garden.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "bench",
+            "near",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a bench near the garden.`",
+                "uk": "тут потрібно `near` — `There is a bench near the garden.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:cinema",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cinema",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:cinema:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cinema",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:cinema:audio",
+            "transcript": "cinema"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:cinema:r1",
+              "targetText": "cinema",
+              "meaningByLocale": {
+                "ru": "кинотеатр. There is a cinema near the library — «Рядом с библиотекой есть кинотеатр». О месте, где показывают фильмы на большом экране.",
+                "uk": "кінотеатр. There is a cinema near the library — «Поруч із бібліотекою є кінотеатр». Про місце, де показують фільми на великому екрані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cinema",
+            "definitionByLocale": {
+              "ru": "кинотеатр. There is a cinema near the library — «Рядом с библиотекой есть кинотеатр». О месте, где показывают фильмы на большом экране.",
+              "uk": "кінотеатр. There is a cinema near the library — «Поруч із бібліотекою є кінотеатр». Про місце, де показують фільми на великому екрані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i08:r1",
+            "text": "cinema"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i08:r2",
+            "text": "library"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i08:r3",
+            "text": "bakery"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?",
+            "uk": "Ввечері ви хочете подивитися фільм на великому екрані. Як називається таке місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-02:i08:r1",
+              "text": "cinema"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i08:r2",
+              "text": "library"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i08:r3",
+              "text": "bakery"
+            }
+          ],
+          "testedDimension": "Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?",
+              "feedbackByLocale": {
+                "ru": "library — это библиотека, а нужное слово — cinema.",
+                "uk": "library — це бібліотека, а потрібне слово — cinema."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?",
+              "feedbackByLocale": {
+                "ru": "bakery — это пекарня, а нужное слово — cinema.",
+                "uk": "bakery — це пекарня, а потрібне слово — cinema."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет, где купить хлеб. Скажите ей полной фразой: рядом с садом есть пекарня.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет, где купить хлеб. Скажите ей полной фразой: рядом с садом есть пекарня.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a bakery near the garden.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет, где купить хлеб. Скажите ей полной фразой: рядом с садом есть пекарня.",
+            "uk": "Подруга шукає, де купити хліб. Скажіть їй повною фразою: поруч із садом є пекарня."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "bakery",
+            "near",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет, где купить хлеб. Скажите ей полной фразой: рядом с садом есть пекарня.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a bakery near the garden.`",
+                "uk": "тут потрібно `near` — `There is a bakery near the garden.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i10:r1",
+            "text": "There is a cinema near the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i10:r2",
+            "text": "There is a cinema behind the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i10:r3",
+            "text": "There is a pharmacy near the library."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i10:audio",
+            "transcript": "There is a cinema near the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:i10:r1",
+              "targetText": "There is a cinema near the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i10:r2",
+              "targetText": "There is a cinema behind the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i10:r3",
+              "targetText": "There is a pharmacy near the library.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `near`, а в этом варианте — `behind`.",
+                "uk": "У записі — `near`, а в цьому варіанті — `behind`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `cinema`, а в этом варианте — `pharmacy`.",
+                "uk": "У записі — `cinema`, а в цьому варіанті — `pharmacy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-02:i11:p1",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i11:p2",
+              "target": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около",
+                "uk": "поруч, біля"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i11:p3",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i11:p4",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            }
+          ],
+          "leftColumn": [
+            "garden",
+            "near",
+            "bench",
+            "tree"
+          ],
+          "rightColumn": [
+            "сад",
+            "рядом, около",
+            "скамейка",
+            "дерево"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы впервые говорите подруге о старом кинотеатре. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i12:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые говорите подруге о старом кинотеатре. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы впервые говорите подруге о старом кинотеатре. Дополните фразу",
+            "uk": "Ви вперше говорите подрузі про старий кінотеатр. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ old cinema near the garden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-02:i12:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i12:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Вы впервые говорите подруге о старом кинотеатре. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы впервые говорите подруге о старом кинотеатре. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово old начинается с гласного звука, поэтому нужно an, а не a.",
+                "uk": "Слово old починається з голосного звуку, тому потрібно an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы впервые говорите подруге о старом кинотеатре. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о кинотеатре впервые, поэтому нужно an, а не the.",
+                "uk": "Ви говорите про кінотеатр вперше, тому потрібно an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте администратора и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i13:audio",
+            "transcript": "There is a hospital behind the building."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a hospital behind the building.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "hospital",
+            "behind",
+            "the",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "near"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `behind` — `There is a hospital behind the building.`",
+                "uk": "тут потрібно `behind` — `There is a hospital behind the building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга просит повторить, где сад. Скажите ей: «За зданием есть сад».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга просит повторить, где сад. Скажите ей: «За зданием есть сад».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i14:audio",
+            "transcript": "There is a garden behind the building."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a garden behind the building.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете подруге большую скамейку. Скажите ей полной фразой: рядом с деревом есть большая скамейка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете подруге большую скамейку. Скажите ей полной фразой: рядом с деревом есть большая скамейка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a big bench near the tree.",
+          "localizedMeaning": {
+            "ru": "Вы показываете подруге большую скамейку. Скажите ей полной фразой: рядом с деревом есть большая скамейка.",
+            "uk": "Ви показуєте подрузі велику лавку. Скажіть їй повною фразою: поруч із деревом є велика лавка."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "big",
+            "bench",
+            "near",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете подруге большую скамейку. Скажите ей полной фразой: рядом с деревом есть большая скамейка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a big bench near the tree.`",
+                "uk": "тут потрібно `near` — `There is a big bench near the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-02:i16:p1",
+              "target": "cinema",
+              "meaningByLocale": {
+                "ru": "кинотеатр",
+                "uk": "кінотеатр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i16:p2",
+              "target": "behind",
+              "meaningByLocale": {
+                "ru": "за, позади",
+                "uk": "за, позаду"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i16:p3",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i16:p4",
+              "target": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около",
+                "uk": "поруч, біля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cinema",
+            "behind",
+            "garden",
+            "near"
+          ],
+          "rightColumn": [
+            "кинотеатр",
+            "за, позади",
+            "сад",
+            "рядом, около"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, что рядом с садом. Скажите ей: «Рядом с садом есть кинотеатр».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, что рядом с садом. Скажите ей: «Рядом с садом есть кинотеатр».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i17:audio",
+            "transcript": "There is a cinema near the garden."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a cinema near the garden.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-02:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-02:i01:p1",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i01:p2",
+              "target": "behind",
+              "meaningByLocale": {
+                "ru": "за, позади",
+                "uk": "за, позаду"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i01:p3",
+              "target": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около",
+                "uk": "поруч, біля"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i01:p4",
+              "target": "cinema",
+              "meaningByLocale": {
+                "ru": "кинотеатр",
+                "uk": "кінотеатр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "garden",
+            "behind",
+            "near",
+            "cinema"
+          ],
+          "rightColumn": [
+            "сад",
+            "за, позаду",
+            "поруч, біля",
+            "кінотеатр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:garden",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — garden",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:garden:audio"
+        ],
+        "accessibilityLabel": "Картка слова — garden",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:garden:audio",
+            "transcript": "garden"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:garden:r1",
+              "targetText": "garden",
+              "meaningByLocale": {
+                "ru": "сад. There is a garden here — «Здесь есть сад». О месте с травой, цветами и деревьями при доме.",
+                "uk": "сад. There is a garden here — «Тут є сад». Про місце з травою, квітами й деревами біля дому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "garden",
+            "definitionByLocale": {
+              "ru": "сад. There is a garden here — «Здесь есть сад». О месте с травой, цветами и деревьями при доме.",
+              "uk": "сад. There is a garden here — «Тут є сад». Про місце з травою, квітами й деревами біля дому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор відчиняє двері у двір і називає місце з травою та деревами, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Адміністратор відчиняє двері у двір і називає місце з травою та деревами, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i02:audio",
+            "transcript": "garden"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "garden",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що ви побачили у дворі. Скажіть їй повною фразою: тут є сад.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що ви побачили у дворі. Скажіть їй повною фразою: тут є сад.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a garden here.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что вы увидели во дворе. Скажите ей полной фразой: здесь есть сад.",
+            "uk": "Подруга питає, що ви побачили у дворі. Скажіть їй повною фразою: тут є сад."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "garden",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, що ви побачили у дворі. Скажіть їй повною фразою: тут є сад.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `There is a garden here.`",
+                "uk": "тут потрібно `a` — `There is a garden here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:behind",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — behind",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:behind:audio"
+        ],
+        "accessibilityLabel": "Картка слова — behind",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:behind:audio",
+            "transcript": "behind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:behind:r1",
+              "targetText": "behind",
+              "meaningByLocale": {
+                "ru": "за, позади. There is a garden behind the building — «За зданием есть сад». О том, что находится с обратной стороны.",
+                "uk": "за, позаду. There is a garden behind the building — «За будівлею є сад». Про те, що розташоване з протилежного боку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "behind",
+            "definitionByLocale": {
+              "ru": "за, позади. There is a garden behind the building — «За зданием есть сад». О том, что находится с обратной стороны.",
+              "uk": "за, позаду. There is a garden behind the building — «За будівлею є сад». Про те, що розташоване з протилежного боку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сад розташований з протилежного боку будинку. Як англійською «за, позаду»?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i04:r1",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i04:r2",
+            "text": "inside"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i04:r3",
+            "text": "outside"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сад розташований з протилежного боку будинку. Як англійською «за, позаду»?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сад находится с обратной стороны дома. Как по-английски «за, позади»?",
+            "uk": "Сад розташований з протилежного боку будинку. Як англійською «за, позаду»?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-02:i04:r1",
+              "text": "behind"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i04:r2",
+              "text": "inside"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i04:r3",
+              "text": "outside"
+            }
+          ],
+          "testedDimension": "Сад розташований з протилежного боку будинку. Як англійською «за, позаду»?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i04:r2",
+              "correct": false,
+              "testedDimension": "Сад розташований з протилежного боку будинку. Як англійською «за, позаду»?",
+              "feedbackByLocale": {
+                "ru": "inside — это внутри, а нужное слово — behind.",
+                "uk": "inside — це всередині, а потрібне слово — behind."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i04:r3",
+              "correct": false,
+              "testedDimension": "Сад розташований з протилежного боку будинку. Як англійською «за, позаду»?",
+              "feedbackByLocale": {
+                "ru": "outside — это снаружи, а нужное слово — behind.",
+                "uk": "outside — це надворі, а потрібне слово — behind."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте адміністратора й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i05:r1",
+            "text": "There is a garden behind the building."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i05:r2",
+            "text": "There is a garden behind the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i05:r3",
+            "text": "There is a garden inside the building."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i05:audio",
+            "transcript": "There is a garden behind the building."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:i05:r1",
+              "targetText": "There is a garden behind the building.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i05:r2",
+              "targetText": "There is a garden behind the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i05:r3",
+              "targetText": "There is a garden inside the building.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `building`, а в этом варианте — `library`.",
+                "uk": "У записі — `building`, а в цьому варіанті — `library`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `behind`, а в этом варианте — `inside`.",
+                "uk": "У записі — `behind`, а в цьому варіанті — `inside`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:near",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — near",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:near:audio"
+        ],
+        "accessibilityLabel": "Картка слова — near",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:near:audio",
+            "transcript": "near"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:near:r1",
+              "targetText": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около. There is a bench near the garden — «Рядом с садом есть скамейка». О том, что стоит совсем близко.",
+                "uk": "поруч, біля. There is a bench near the garden — «Поруч із садом є лавка». Про те, що стоїть зовсім близько."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "near",
+            "definitionByLocale": {
+              "ru": "рядом, около. There is a bench near the garden — «Рядом с садом есть скамейка». О том, что стоит совсем близко.",
+              "uk": "поруч, біля. There is a bench near the garden — «Поруч із садом є лавка». Про те, що стоїть зовсім близько."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор показує на лавку поруч із вами й називає слово «поруч», а ви повторюєте за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i06:audio"
+        ],
+        "accessibilityLabel": "Адміністратор показує на лавку поруч із вами й називає слово «поруч», а ви повторюєте за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i06:audio",
+            "transcript": "near"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "near",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте адміністратора й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i07:audio",
+            "transcript": "There is a bench near the garden."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a bench near the garden.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "bench",
+            "near",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a bench near the garden.`",
+                "uk": "тут потрібно `near` — `There is a bench near the garden.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:word:cinema",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cinema",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:word:cinema:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cinema",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:word:cinema:audio",
+            "transcript": "cinema"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:word:cinema:r1",
+              "targetText": "cinema",
+              "meaningByLocale": {
+                "ru": "кинотеатр. There is a cinema near the library — «Рядом с библиотекой есть кинотеатр». О месте, где показывают фильмы на большом экране.",
+                "uk": "кінотеатр. There is a cinema near the library — «Поруч із бібліотекою є кінотеатр». Про місце, де показують фільми на великому екрані."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cinema",
+            "definitionByLocale": {
+              "ru": "кинотеатр. There is a cinema near the library — «Рядом с библиотекой есть кинотеатр». О месте, где показывают фильмы на большом экране.",
+              "uk": "кінотеатр. There is a cinema near the library — «Поруч із бібліотекою є кінотеатр». Про місце, де показують фільми на великому екрані."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ввечері ви хочете подивитися фільм на великому екрані. Як називається таке місце?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i08:r1",
+            "text": "cinema"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i08:r2",
+            "text": "library"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i08:r3",
+            "text": "bakery"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввечері ви хочете подивитися фільм на великому екрані. Як називається таке місце?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?",
+            "uk": "Ввечері ви хочете подивитися фільм на великому екрані. Як називається таке місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-02:i08:r1",
+              "text": "cinema"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i08:r2",
+              "text": "library"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i08:r3",
+              "text": "bakery"
+            }
+          ],
+          "testedDimension": "Ввечері ви хочете подивитися фільм на великому екрані. Як називається таке місце?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Ввечері ви хочете подивитися фільм на великому екрані. Як називається таке місце?",
+              "feedbackByLocale": {
+                "ru": "library — это библиотека, а нужное слово — cinema.",
+                "uk": "library — це бібліотека, а потрібне слово — cinema."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Ввечері ви хочете подивитися фільм на великому екрані. Як називається таке місце?",
+              "feedbackByLocale": {
+                "ru": "bakery — это пекарня, а нужное слово — cinema.",
+                "uk": "bakery — це пекарня, а потрібне слово — cinema."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає, де купити хліб. Скажіть їй повною фразою: поруч із садом є пекарня.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає, де купити хліб. Скажіть їй повною фразою: поруч із садом є пекарня.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a bakery near the garden.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет, где купить хлеб. Скажите ей полной фразой: рядом с садом есть пекарня.",
+            "uk": "Подруга шукає, де купити хліб. Скажіть їй повною фразою: поруч із садом є пекарня."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "bakery",
+            "near",
+            "the",
+            "garden"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає, де купити хліб. Скажіть їй повною фразою: поруч із садом є пекарня.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a bakery near the garden.`",
+                "uk": "тут потрібно `near` — `There is a bakery near the garden.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i10:r1",
+            "text": "There is a cinema near the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i10:r2",
+            "text": "There is a cinema behind the library."
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i10:r3",
+            "text": "There is a pharmacy near the library."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i10:audio",
+            "transcript": "There is a cinema near the library."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-02:i10:r1",
+              "targetText": "There is a cinema near the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i10:r2",
+              "targetText": "There is a cinema behind the library.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i10:r3",
+              "targetText": "There is a pharmacy near the library.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `near`, а в этом варианте — `behind`.",
+                "uk": "У записі — `near`, а в цьому варіанті — `behind`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `cinema`, а в этом варианте — `pharmacy`.",
+                "uk": "У записі — `cinema`, а в цьому варіанті — `pharmacy`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-02:i11:p1",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i11:p2",
+              "target": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около",
+                "uk": "поруч, біля"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i11:p3",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i11:p4",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            }
+          ],
+          "leftColumn": [
+            "garden",
+            "near",
+            "bench",
+            "tree"
+          ],
+          "rightColumn": [
+            "сад",
+            "поруч, біля",
+            "лавка",
+            "дерево"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вперше говорите подрузі про старий кінотеатр. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i12:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше говорите подрузі про старий кінотеатр. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы впервые говорите подруге о старом кинотеатре. Дополните фразу",
+            "uk": "Ви вперше говорите подрузі про старий кінотеатр. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ old cinema near the garden.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-02:i12:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i12:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Ви вперше говорите подрузі про старий кінотеатр. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви вперше говорите подрузі про старий кінотеатр. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово old начинается с гласного звука, поэтому нужно an, а не a.",
+                "uk": "Слово old починається з голосного звуку, тому потрібно an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви вперше говорите подрузі про старий кінотеатр. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о кинотеатре впервые, поэтому нужно an, а не the.",
+                "uk": "Ви говорите про кінотеатр вперше, тому потрібно an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте адміністратора й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i13:audio",
+            "transcript": "There is a hospital behind the building."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a hospital behind the building.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "hospital",
+            "behind",
+            "the",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "near"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `behind` — `There is a hospital behind the building.`",
+                "uk": "тут потрібно `behind` — `There is a hospital behind the building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга просить повторити, де сад. Скажіть їй: «За будівлею є сад».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга просить повторити, де сад. Скажіть їй: «За будівлею є сад».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i14:audio",
+            "transcript": "There is a garden behind the building."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a garden behind the building.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте подрузі велику лавку. Скажіть їй повною фразою: поруч із деревом є велика лавка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте подрузі велику лавку. Скажіть їй повною фразою: поруч із деревом є велика лавка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a big bench near the tree.",
+          "localizedMeaning": {
+            "ru": "Вы показываете подруге большую скамейку. Скажите ей полной фразой: рядом с деревом есть большая скамейка.",
+            "uk": "Ви показуєте подрузі велику лавку. Скажіть їй повною фразою: поруч із деревом є велика лавка."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "big",
+            "bench",
+            "near",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-02:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте подрузі велику лавку. Скажіть їй повною фразою: поруч із деревом є велика лавка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a big bench near the tree.`",
+                "uk": "тут потрібно `near` — `There is a big bench near the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-02:i16:p1",
+              "target": "cinema",
+              "meaningByLocale": {
+                "ru": "кинотеатр",
+                "uk": "кінотеатр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i16:p2",
+              "target": "behind",
+              "meaningByLocale": {
+                "ru": "за, позади",
+                "uk": "за, позаду"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i16:p3",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-02:i16:p4",
+              "target": "near",
+              "meaningByLocale": {
+                "ru": "рядом, около",
+                "uk": "поруч, біля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cinema",
+            "behind",
+            "garden",
+            "near"
+          ],
+          "rightColumn": [
+            "кінотеатр",
+            "за, позаду",
+            "сад",
+            "поруч, біля"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-02:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, що поруч із садом. Скажіть їй: «Поруч із садом є кінотеатр».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, що поруч із садом. Скажіть їй: «Поруч із садом є кінотеатр».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-02:i17:audio",
+            "transcript": "There is a cinema near the garden."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a cinema near the garden.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-02:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:word:garden",
+      "correctText": "garden",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i02",
+      "correctText": "garden",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i03",
+      "correctText": "There is a garden here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:word:behind",
+      "correctText": "behind",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i04",
+      "correctText": "behind",
+      "correctResponseId": "en:lesson-04:session-02:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i05",
+      "correctText": "There is a garden behind the building.",
+      "correctResponseId": "en:lesson-04:session-02:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:word:near",
+      "correctText": "near",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i06",
+      "correctText": "near",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i07",
+      "correctText": "There is a bench near the garden.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:word:cinema",
+      "correctText": "cinema",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i08",
+      "correctText": "cinema",
+      "correctResponseId": "en:lesson-04:session-02:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i09",
+      "correctText": "There is a bakery near the garden.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i10",
+      "correctText": "There is a cinema near the library.",
+      "correctResponseId": "en:lesson-04:session-02:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i11",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i12",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-04:session-02:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i13",
+      "correctText": "There is a hospital behind the building.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i14",
+      "correctText": "There is a garden behind the building.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i15",
+      "correctText": "There is a big bench near the tree.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i17",
+      "correctText": "There is a cinema near the garden.",
+      "correctResponseId": null
+    }
+  ]
+}

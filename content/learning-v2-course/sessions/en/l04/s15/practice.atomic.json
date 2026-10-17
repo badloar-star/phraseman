@@ -1,0 +1,2367 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-15:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-15:i01:p1",
+              "target": "gym",
+              "meaningByLocale": {
+                "ru": "тренажёрный зал",
+                "uk": "тренажерний зал"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i01:p2",
+              "target": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка",
+                "uk": "бігова доріжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i01:p3",
+              "target": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор",
+                "uk": "інструктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i01:p4",
+              "target": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель",
+                "uk": "гантеля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gym",
+            "treadmill",
+            "instructor",
+            "dumbbell"
+          ],
+          "rightColumn": [
+            "тренажёрный зал",
+            "беговая дорожка",
+            "инструктор",
+            "гантель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:gym",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gym",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:gym:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gym",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:gym:audio",
+            "transcript": "gym"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:gym:r1",
+              "targetText": "gym",
+              "meaningByLocale": {
+                "ru": "тренажёрный зал. Is there a gym near the school? — «Есть ли тренажёрный зал рядом со школой?» О зале с тренажёрами и штангами.",
+                "uk": "тренажерний зал. Is there a gym near the school? — «Чи є тренажерний зал поруч зі школою?» Про зал із тренажерами й штангами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gym",
+            "definitionByLocale": {
+              "ru": "тренажёрный зал. Is there a gym near the school? — «Есть ли тренажёрный зал рядом со школой?» О зале с тренажёрами и штангами.",
+              "uk": "тренажерний зал. Is there a gym near the school? — «Чи є тренажерний зал поруч зі школою?» Про зал із тренажерами й штангами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор спортивного центра называет зал с тренажёрами, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Администратор спортивного центра называет зал с тренажёрами, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i02:audio",
+            "transcript": "gym"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "gym",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите на улице с картой. Спросите прохожего полной фразой: рядом есть тренажёрный зал?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите на улице с картой. Спросите прохожего полной фразой: рядом есть тренажёрный зал?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there a gym near here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите на улице с картой. Спросите прохожего полной фразой: рядом есть тренажёрный зал?",
+            "uk": "Ви стоїте на вулиці з мапою. Запитайте перехожого повною фразою: чи є поруч тренажерний зал?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "gym",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите на улице с картой. Спросите прохожего полной фразой: рядом есть тренажёрный зал?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a gym near here?`",
+                "uk": "тут потрібно `Is` — `Is there a gym near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:treadmill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — treadmill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:treadmill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — treadmill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:treadmill:audio",
+            "transcript": "treadmill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:treadmill:r1",
+              "targetText": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка. Are there treadmills near the window? — «Есть ли беговые дорожки рядом с окном?» О машине с лентой для бега на месте.",
+                "uk": "бігова доріжка. Are there treadmills near the window? — «Чи є бігові доріжки поруч із вікном?» Про машину зі стрічкою для бігу на місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "treadmill",
+            "definitionByLocale": {
+              "ru": "беговая дорожка. Are there treadmills near the window? — «Есть ли беговые дорожки рядом с окном?» О машине с лентой для бега на месте.",
+              "uk": "бігова доріжка. Are there treadmills near the window? — «Чи є бігові доріжки поруч із вікном?» Про машину зі стрічкою для бігу на місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В зале стоит машина с лентой, на которой бегут на месте. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i04:r1",
+            "text": "treadmill"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i04:r2",
+            "text": "gym"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i04:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В зале стоит машина с лентой, на которой бегут на месте. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В зале стоит машина с лентой, на которой бегут на месте. Как она называется по-английски?",
+            "uk": "У залі стоїть машина зі стрічкою, на якій біжать на місці. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-15:i04:r1",
+              "text": "treadmill"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i04:r2",
+              "text": "gym"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i04:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "В зале стоит машина с лентой, на которой бегут на месте. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i04:r2",
+              "correct": false,
+              "testedDimension": "В зале стоит машина с лентой, на которой бегут на месте. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "gym — это весь зал, а машина с лентой для бега называется treadmill.",
+                "uk": "gym — це весь зал, а машина зі стрічкою для бігу називається treadmill."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i04:r3",
+              "correct": false,
+              "testedDimension": "В зале стоит машина с лентой, на которой бегут на месте. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, на ней сидят, а бегут на treadmill.",
+                "uk": "bench — це лавка, на ній сидять, а біжать на treadmill."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос администратора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i05:r1",
+            "text": "Are there treadmills here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i05:r2",
+            "text": "Is there a treadmill here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i05:r3",
+            "text": "Are there treadmills near here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос администратора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i05:audio",
+            "transcript": "Are there treadmills here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:i05:r1",
+              "targetText": "Are there treadmills here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i05:r2",
+              "targetText": "Is there a treadmill here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i05:r3",
+              "targetText": "Are there treadmills near here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос администратора",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких дорожках, а в этом варианте `Is there a` об одной.",
+                "uk": "У записі запитання `Are there` про кілька доріжок, а в цьому варіанті `Is there a` про одну."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос администратора",
+              "feedbackByLocale": {
+                "ru": "В записи нет слова `near`, а в этом варианте оно есть.",
+                "uk": "У записі немає слова `near`, а в цьому варіанті воно є."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:instructor",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — instructor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:instructor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — instructor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:instructor:audio",
+            "transcript": "instructor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:instructor:r1",
+              "targetText": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор. Is there an instructor near the door? — «Есть ли инструктор рядом с дверью?» О человеке, который показывает упражнения.",
+                "uk": "інструктор. Is there an instructor near the door? — «Чи є інструктор поруч із дверима?» Про людину, яка показує вправи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "instructor",
+            "definitionByLocale": {
+              "ru": "инструктор. Is there an instructor near the door? — «Есть ли инструктор рядом с дверью?» О человеке, который показывает упражнения.",
+              "uk": "інструктор. Is there an instructor near the door? — «Чи є інструктор поруч із дверима?» Про людину, яка показує вправи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор называет человека, который показывает упражнения, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i06:audio"
+        ],
+        "accessibilityLabel": "Администратор называет человека, который показывает упражнения, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i06:audio",
+            "transcript": "instructor"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "instructor",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте администратора и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i07:audio",
+            "transcript": "Is there an instructor here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there an instructor here?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "an",
+            "instructor",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there an instructor here?`",
+                "uk": "тут потрібно `Is` — `Is there an instructor here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:dumbbell",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dumbbell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:dumbbell:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dumbbell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:dumbbell:audio",
+            "transcript": "dumbbell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:dumbbell:r1",
+              "targetText": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель. Are there dumbbells here? — «Здесь есть гантели?» О тяжёлом снаряде, который поднимают рукой.",
+                "uk": "гантеля. Are there dumbbells here? — «Чи є тут гантелі?» Про важкий снаряд, який піднімають рукою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dumbbell",
+            "definitionByLocale": {
+              "ru": "гантель. Are there dumbbells here? — «Здесь есть гантели?» О тяжёлом снаряде, который поднимают рукой.",
+              "uk": "гантеля. Are there dumbbells here? — «Чи є тут гантелі?» Про важкий снаряд, який піднімають рукою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Короткая металлическая палка с тяжёлыми шарами на концах. Её поднимают для силы. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i08:r1",
+            "text": "dumbbell"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i08:r2",
+            "text": "treadmill"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i08:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Короткая металлическая палка с тяжёлыми шарами на концах. Её поднимают для силы. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Короткая металлическая палка с тяжёлыми шарами на концах. Её поднимают для силы. Как она называется по-английски?",
+            "uk": "Коротка металева палиця з важкими кулями на кінцях. Її піднімають для сили. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-15:i08:r1",
+              "text": "dumbbell"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i08:r2",
+              "text": "treadmill"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i08:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "Короткая металлическая палка с тяжёлыми шарами на концах. Её поднимают для силы. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Короткая металлическая палка с тяжёлыми шарами на концах. Её поднимают для силы. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "treadmill — это беговая дорожка, а палку с тяжёлыми шарами называют dumbbell.",
+                "uk": "treadmill — це бігова доріжка, а палицю з важкими кулями називають dumbbell."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Короткая металлическая палка с тяжёлыми шарами на концах. Её поднимают для силы. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а палку с тяжёлыми шарами называют dumbbell.",
+                "uk": "bench — це лавка, а палицю з важкими кулями називають dumbbell."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы спрашиваете инструктора о снарядах. Задайте вопрос полной фразой: здесь есть гантели?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете инструктора о снарядах. Задайте вопрос полной фразой: здесь есть гантели?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there dumbbells here?",
+          "localizedMeaning": {
+            "ru": "Вы спрашиваете инструктора о снарядах. Задайте вопрос полной фразой: здесь есть гантели?",
+            "uk": "Ви питаєте інструктора про снаряди. Поставте запитання повною фразою: чи є тут гантелі?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "dumbbells",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете инструктора о снарядах. Задайте вопрос полной фразой: здесь есть гантели?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there dumbbells here?`",
+                "uk": "тут потрібно `Are` — `Are there dumbbells here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-15:i10:p1",
+              "target": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель",
+                "uk": "гантеля"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i10:p2",
+              "target": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка",
+                "uk": "бігова доріжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i10:p3",
+              "target": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор",
+                "uk": "інструктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dumbbell",
+            "treadmill",
+            "instructor",
+            "bench"
+          ],
+          "rightColumn": [
+            "гантель",
+            "беговая дорожка",
+            "инструктор",
+            "скамейка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос прохожего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i11:r1",
+            "text": "Is there a gym near the bank?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i11:r2",
+            "text": "Are there gyms near the bank?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i11:r3",
+            "text": "Is there a gym near the park?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос прохожего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i11:audio",
+            "transcript": "Is there a gym near the bank?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:i11:r1",
+              "targetText": "Is there a gym near the bank?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i11:r2",
+              "targetText": "Are there gyms near the bank?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i11:r3",
+              "targetText": "Is there a gym near the park?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there a` об одном зале, а в этом варианте `Are there` о нескольких.",
+                "uk": "У записі запитання `Is there a` про один зал, а в цьому варіанті `Are there` про кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи ориентир — `bank`, а в этом варианте — `park`.",
+                "uk": "У записі орієнтир — `bank`, а в цьому варіанті — `park`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете администратора о дорожках. Выберите слово для вашего вопроса",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i12:r1",
+            "text": "treadmills"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i12:r2",
+            "text": "treadmill"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i12:r3",
+            "text": "a treadmill"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете администратора о дорожках. Выберите слово для вашего вопроса",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете администратора о дорожках. Выберите слово для вашего вопроса",
+            "uk": "Ви питаєте адміністратора про доріжки. Виберіть слово для вашого запитання"
+          },
+          "gappedTargetPhrase": "Are there ___ near the door?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-15:i12:r1",
+              "text": "treadmills"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i12:r2",
+              "text": "treadmill"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i12:r3",
+              "text": "a treadmill"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете администратора о дорожках. Выберите слово для вашего вопроса",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете администратора о дорожках. Выберите слово для вашего вопроса",
+              "feedbackByLocale": {
+                "ru": "После Are there говорим о нескольких предметах, поэтому нужно treadmills.",
+                "uk": "Після Are there говоримо про кілька предметів, тому потрібно treadmills."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете администратора о дорожках. Выберите слово для вашего вопроса",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими дорожками a не ставим: treadmills.",
+                "uk": "Перед кількома доріжками a не ставимо: treadmills."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте инструктора и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте инструктора и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i13:audio",
+            "transcript": "Are there dumbbells near here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there dumbbells near here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "dumbbells",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте инструктора и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there dumbbells near here?`",
+                "uk": "тут потрібно `Are` — `Are there dumbbells near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Инструктор показывает вам зал. Спросите его, есть ли здесь беговая дорожка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Инструктор показывает вам зал. Спросите его, есть ли здесь беговая дорожка",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i14:audio",
+            "transcript": "Is there a treadmill here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a treadmill here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы пришли на тренировку. Спросите администратора полной фразой: здесь есть инструкторы?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы пришли на тренировку. Спросите администратора полной фразой: здесь есть инструкторы?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there instructors here?",
+          "localizedMeaning": {
+            "ru": "Вы пришли на тренировку. Спросите администратора полной фразой: здесь есть инструкторы?",
+            "uk": "Ви прийшли на тренування. Запитайте адміністратора повною фразою: чи є тут інструктори?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "instructors",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы пришли на тренировку. Спросите администратора полной фразой: здесь есть инструкторы?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there instructors here?`",
+                "uk": "тут потрібно `Are` — `Are there instructors here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-15:i16:p1",
+              "target": "gym",
+              "meaningByLocale": {
+                "ru": "тренажёрный зал",
+                "uk": "тренажерний зал"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i16:p2",
+              "target": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор",
+                "uk": "інструктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i16:p3",
+              "target": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка",
+                "uk": "бігова доріжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i16:p4",
+              "target": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель",
+                "uk": "гантеля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gym",
+            "instructor",
+            "treadmill",
+            "dumbbell"
+          ],
+          "rightColumn": [
+            "тренажёрный зал",
+            "инструктор",
+            "беговая дорожка",
+            "гантель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы стоите у входа в спортивный центр. Спросите прохожего полной фразой, есть ли тренажёрный зал рядом с парком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Вы стоите у входа в спортивный центр. Спросите прохожего полной фразой, есть ли тренажёрный зал рядом с парком",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i17:audio",
+            "transcript": "Is there a gym near the park?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a gym near the park?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-15:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-15:i01:p1",
+              "target": "gym",
+              "meaningByLocale": {
+                "ru": "тренажёрный зал",
+                "uk": "тренажерний зал"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i01:p2",
+              "target": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка",
+                "uk": "бігова доріжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i01:p3",
+              "target": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор",
+                "uk": "інструктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i01:p4",
+              "target": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель",
+                "uk": "гантеля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gym",
+            "treadmill",
+            "instructor",
+            "dumbbell"
+          ],
+          "rightColumn": [
+            "тренажерний зал",
+            "бігова доріжка",
+            "інструктор",
+            "гантеля"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:gym",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gym",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:gym:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gym",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:gym:audio",
+            "transcript": "gym"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:gym:r1",
+              "targetText": "gym",
+              "meaningByLocale": {
+                "ru": "тренажёрный зал. Is there a gym near the school? — «Есть ли тренажёрный зал рядом со школой?» О зале с тренажёрами и штангами.",
+                "uk": "тренажерний зал. Is there a gym near the school? — «Чи є тренажерний зал поруч зі школою?» Про зал із тренажерами й штангами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gym",
+            "definitionByLocale": {
+              "ru": "тренажёрный зал. Is there a gym near the school? — «Есть ли тренажёрный зал рядом со школой?» О зале с тренажёрами и штангами.",
+              "uk": "тренажерний зал. Is there a gym near the school? — «Чи є тренажерний зал поруч зі школою?» Про зал із тренажерами й штангами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор спортивного центру називає зал із тренажерами, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Адміністратор спортивного центру називає зал із тренажерами, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i02:audio",
+            "transcript": "gym"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "gym",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте на вулиці з мапою. Запитайте перехожого повною фразою: чи є поруч тренажерний зал?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте на вулиці з мапою. Запитайте перехожого повною фразою: чи є поруч тренажерний зал?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there a gym near here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите на улице с картой. Спросите прохожего полной фразой: рядом есть тренажёрный зал?",
+            "uk": "Ви стоїте на вулиці з мапою. Запитайте перехожого повною фразою: чи є поруч тренажерний зал?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "gym",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте на вулиці з мапою. Запитайте перехожого повною фразою: чи є поруч тренажерний зал?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a gym near here?`",
+                "uk": "тут потрібно `Is` — `Is there a gym near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:treadmill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — treadmill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:treadmill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — treadmill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:treadmill:audio",
+            "transcript": "treadmill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:treadmill:r1",
+              "targetText": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка. Are there treadmills near the window? — «Есть ли беговые дорожки рядом с окном?» О машине с лентой для бега на месте.",
+                "uk": "бігова доріжка. Are there treadmills near the window? — «Чи є бігові доріжки поруч із вікном?» Про машину зі стрічкою для бігу на місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "treadmill",
+            "definitionByLocale": {
+              "ru": "беговая дорожка. Are there treadmills near the window? — «Есть ли беговые дорожки рядом с окном?» О машине с лентой для бега на месте.",
+              "uk": "бігова доріжка. Are there treadmills near the window? — «Чи є бігові доріжки поруч із вікном?» Про машину зі стрічкою для бігу на місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У залі стоїть машина зі стрічкою, на якій біжать на місці. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i04:r1",
+            "text": "treadmill"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i04:r2",
+            "text": "gym"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i04:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У залі стоїть машина зі стрічкою, на якій біжать на місці. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В зале стоит машина с лентой, на которой бегут на месте. Как она называется по-английски?",
+            "uk": "У залі стоїть машина зі стрічкою, на якій біжать на місці. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-15:i04:r1",
+              "text": "treadmill"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i04:r2",
+              "text": "gym"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i04:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "У залі стоїть машина зі стрічкою, на якій біжать на місці. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i04:r2",
+              "correct": false,
+              "testedDimension": "У залі стоїть машина зі стрічкою, на якій біжать на місці. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "gym — это весь зал, а машина с лентой для бега называется treadmill.",
+                "uk": "gym — це весь зал, а машина зі стрічкою для бігу називається treadmill."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i04:r3",
+              "correct": false,
+              "testedDimension": "У залі стоїть машина зі стрічкою, на якій біжать на місці. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, на ней сидят, а бегут на treadmill.",
+                "uk": "bench — це лавка, на ній сидять, а біжать на treadmill."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання адміністратора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i05:r1",
+            "text": "Are there treadmills here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i05:r2",
+            "text": "Is there a treadmill here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i05:r3",
+            "text": "Are there treadmills near here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання адміністратора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i05:audio",
+            "transcript": "Are there treadmills here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:i05:r1",
+              "targetText": "Are there treadmills here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i05:r2",
+              "targetText": "Is there a treadmill here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i05:r3",
+              "targetText": "Are there treadmills near here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання адміністратора",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких дорожках, а в этом варианте `Is there a` об одной.",
+                "uk": "У записі запитання `Are there` про кілька доріжок, а в цьому варіанті `Is there a` про одну."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання адміністратора",
+              "feedbackByLocale": {
+                "ru": "В записи нет слова `near`, а в этом варианте оно есть.",
+                "uk": "У записі немає слова `near`, а в цьому варіанті воно є."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:instructor",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — instructor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:instructor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — instructor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:instructor:audio",
+            "transcript": "instructor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:instructor:r1",
+              "targetText": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор. Is there an instructor near the door? — «Есть ли инструктор рядом с дверью?» О человеке, который показывает упражнения.",
+                "uk": "інструктор. Is there an instructor near the door? — «Чи є інструктор поруч із дверима?» Про людину, яка показує вправи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "instructor",
+            "definitionByLocale": {
+              "ru": "инструктор. Is there an instructor near the door? — «Есть ли инструктор рядом с дверью?» О человеке, который показывает упражнения.",
+              "uk": "інструктор. Is there an instructor near the door? — «Чи є інструктор поруч із дверима?» Про людину, яка показує вправи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор називає людину, яка показує вправи, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i06:audio"
+        ],
+        "accessibilityLabel": "Адміністратор називає людину, яка показує вправи, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i06:audio",
+            "transcript": "instructor"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "instructor",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте адміністратора й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i07:audio",
+            "transcript": "Is there an instructor here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there an instructor here?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "an",
+            "instructor",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there an instructor here?`",
+                "uk": "тут потрібно `Is` — `Is there an instructor here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:word:dumbbell",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dumbbell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:word:dumbbell:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dumbbell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:word:dumbbell:audio",
+            "transcript": "dumbbell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:word:dumbbell:r1",
+              "targetText": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель. Are there dumbbells here? — «Здесь есть гантели?» О тяжёлом снаряде, который поднимают рукой.",
+                "uk": "гантеля. Are there dumbbells here? — «Чи є тут гантелі?» Про важкий снаряд, який піднімають рукою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dumbbell",
+            "definitionByLocale": {
+              "ru": "гантель. Are there dumbbells here? — «Здесь есть гантели?» О тяжёлом снаряде, который поднимают рукой.",
+              "uk": "гантеля. Are there dumbbells here? — «Чи є тут гантелі?» Про важкий снаряд, який піднімають рукою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коротка металева палиця з важкими кулями на кінцях. Її піднімають для сили. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i08:r1",
+            "text": "dumbbell"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i08:r2",
+            "text": "treadmill"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i08:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коротка металева палиця з важкими кулями на кінцях. Її піднімають для сили. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Короткая металлическая палка с тяжёлыми шарами на концах. Её поднимают для силы. Как она называется по-английски?",
+            "uk": "Коротка металева палиця з важкими кулями на кінцях. Її піднімають для сили. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-15:i08:r1",
+              "text": "dumbbell"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i08:r2",
+              "text": "treadmill"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i08:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "Коротка металева палиця з важкими кулями на кінцях. Її піднімають для сили. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Коротка металева палиця з важкими кулями на кінцях. Її піднімають для сили. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "treadmill — это беговая дорожка, а палку с тяжёлыми шарами называют dumbbell.",
+                "uk": "treadmill — це бігова доріжка, а палицю з важкими кулями називають dumbbell."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Коротка металева палиця з важкими кулями на кінцях. Її піднімають для сили. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а палку с тяжёлыми шарами называют dumbbell.",
+                "uk": "bench — це лавка, а палицю з важкими кулями називають dumbbell."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви питаєте інструктора про снаряди. Поставте запитання повною фразою: чи є тут гантелі?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте інструктора про снаряди. Поставте запитання повною фразою: чи є тут гантелі?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there dumbbells here?",
+          "localizedMeaning": {
+            "ru": "Вы спрашиваете инструктора о снарядах. Задайте вопрос полной фразой: здесь есть гантели?",
+            "uk": "Ви питаєте інструктора про снаряди. Поставте запитання повною фразою: чи є тут гантелі?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "dumbbells",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви питаєте інструктора про снаряди. Поставте запитання повною фразою: чи є тут гантелі?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there dumbbells here?`",
+                "uk": "тут потрібно `Are` — `Are there dumbbells here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-15:i10:p1",
+              "target": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель",
+                "uk": "гантеля"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i10:p2",
+              "target": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка",
+                "uk": "бігова доріжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i10:p3",
+              "target": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор",
+                "uk": "інструктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i10:p4",
+              "target": "bench",
+              "meaningByLocale": {
+                "ru": "скамейка",
+                "uk": "лавка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dumbbell",
+            "treadmill",
+            "instructor",
+            "bench"
+          ],
+          "rightColumn": [
+            "гантеля",
+            "бігова доріжка",
+            "інструктор",
+            "лавка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання перехожого",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i11:r1",
+            "text": "Is there a gym near the bank?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i11:r2",
+            "text": "Are there gyms near the bank?"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i11:r3",
+            "text": "Is there a gym near the park?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання перехожого",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i11:audio",
+            "transcript": "Is there a gym near the bank?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-15:i11:r1",
+              "targetText": "Is there a gym near the bank?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i11:r2",
+              "targetText": "Are there gyms near the bank?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i11:r3",
+              "targetText": "Is there a gym near the park?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Is there a` об одном зале, а в этом варианте `Are there` о нескольких.",
+                "uk": "У записі запитання `Is there a` про один зал, а в цьому варіанті `Are there` про кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи ориентир — `bank`, а в этом варианте — `park`.",
+                "uk": "У записі орієнтир — `bank`, а в цьому варіанті — `park`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви питаєте адміністратора про доріжки. Виберіть слово для вашого запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-15:i12:r1",
+            "text": "treadmills"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i12:r2",
+            "text": "treadmill"
+          },
+          {
+            "responseId": "en:lesson-04:session-15:i12:r3",
+            "text": "a treadmill"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте адміністратора про доріжки. Виберіть слово для вашого запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете администратора о дорожках. Выберите слово для вашего вопроса",
+            "uk": "Ви питаєте адміністратора про доріжки. Виберіть слово для вашого запитання"
+          },
+          "gappedTargetPhrase": "Are there ___ near the door?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-15:i12:r1",
+              "text": "treadmills"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i12:r2",
+              "text": "treadmill"
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i12:r3",
+              "text": "a treadmill"
+            }
+          ],
+          "testedDimension": "Ви питаєте адміністратора про доріжки. Виберіть слово для вашого запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви питаєте адміністратора про доріжки. Виберіть слово для вашого запитання",
+              "feedbackByLocale": {
+                "ru": "После Are there говорим о нескольких предметах, поэтому нужно treadmills.",
+                "uk": "Після Are there говоримо про кілька предметів, тому потрібно treadmills."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви питаєте адміністратора про доріжки. Виберіть слово для вашого запитання",
+              "feedbackByLocale": {
+                "ru": "Перед несколькими дорожками a не ставим: treadmills.",
+                "uk": "Перед кількома доріжками a не ставимо: treadmills."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте інструктора й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте інструктора й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i13:audio",
+            "transcript": "Are there dumbbells near here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there dumbbells near here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "dumbbells",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте інструктора й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there dumbbells near here?`",
+                "uk": "тут потрібно `Are` — `Are there dumbbells near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Інструктор показує вам зал. Запитайте його, чи є тут бігова доріжка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Інструктор показує вам зал. Запитайте його, чи є тут бігова доріжка",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i14:audio",
+            "transcript": "Is there a treadmill here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a treadmill here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви прийшли на тренування. Запитайте адміністратора повною фразою: чи є тут інструктори?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прийшли на тренування. Запитайте адміністратора повною фразою: чи є тут інструктори?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there instructors here?",
+          "localizedMeaning": {
+            "ru": "Вы пришли на тренировку. Спросите администратора полной фразой: здесь есть инструкторы?",
+            "uk": "Ви прийшли на тренування. Запитайте адміністратора повною фразою: чи є тут інструктори?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "instructors",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-15:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви прийшли на тренування. Запитайте адміністратора повною фразою: чи є тут інструктори?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there instructors here?`",
+                "uk": "тут потрібно `Are` — `Are there instructors here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-15:i16:p1",
+              "target": "gym",
+              "meaningByLocale": {
+                "ru": "тренажёрный зал",
+                "uk": "тренажерний зал"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i16:p2",
+              "target": "instructor",
+              "meaningByLocale": {
+                "ru": "инструктор",
+                "uk": "інструктор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i16:p3",
+              "target": "treadmill",
+              "meaningByLocale": {
+                "ru": "беговая дорожка",
+                "uk": "бігова доріжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-15:i16:p4",
+              "target": "dumbbell",
+              "meaningByLocale": {
+                "ru": "гантель",
+                "uk": "гантеля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gym",
+            "instructor",
+            "treadmill",
+            "dumbbell"
+          ],
+          "rightColumn": [
+            "тренажерний зал",
+            "інструктор",
+            "бігова доріжка",
+            "гантеля"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви стоїте біля входу до спортивного центру. Запитайте перехожого повною фразою, чи є тренажерний зал поруч із парком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Ви стоїте біля входу до спортивного центру. Запитайте перехожого повною фразою, чи є тренажерний зал поруч із парком",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-15:i17:audio",
+            "transcript": "Is there a gym near the park?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a gym near the park?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-15:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:word:gym",
+      "correctText": "gym",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i02",
+      "correctText": "gym",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i03",
+      "correctText": "Is there a gym near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:word:treadmill",
+      "correctText": "treadmill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i04",
+      "correctText": "treadmill",
+      "correctResponseId": "en:lesson-04:session-15:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i05",
+      "correctText": "Are there treadmills here?",
+      "correctResponseId": "en:lesson-04:session-15:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:word:instructor",
+      "correctText": "instructor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i06",
+      "correctText": "instructor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i07",
+      "correctText": "Is there an instructor here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:word:dumbbell",
+      "correctText": "dumbbell",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i08",
+      "correctText": "dumbbell",
+      "correctResponseId": "en:lesson-04:session-15:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i09",
+      "correctText": "Are there dumbbells here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i11",
+      "correctText": "Is there a gym near the bank?",
+      "correctResponseId": "en:lesson-04:session-15:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i12",
+      "correctText": "treadmills",
+      "correctResponseId": "en:lesson-04:session-15:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i13",
+      "correctText": "Are there dumbbells near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i14",
+      "correctText": "Is there a treadmill here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i15",
+      "correctText": "Are there instructors here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:i17",
+      "correctText": "Is there a gym near the park?",
+      "correctResponseId": null
+    }
+  ]
+}

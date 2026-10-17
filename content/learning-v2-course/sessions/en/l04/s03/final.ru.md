@@ -1,138 +1,154 @@
-# Английский · Урок 4 · Занятие 3 — Банк и библиотеки района
+# Английский · Урок 4 · Занятие 3 — Банки и музеи района
 
-**Ситуация.** Вы с Анной смотрите карту района. Здесь есть банк и несколько библиотек. Анна напоминает об изменении расписания, обсуждает с вами план прогулки и замечает, что вы волнуетесь из-за потерянной книги.
+**Ситуация.** У районного стенда вы смотрите, сколько в районе мест одного вида. Когда место одно, вы говорите There is a, как раньше. Когда мест несколько, вы говорите There are и добавляете s к названию: banks, museums. Слово a тогда не нужно.
 
-**Что вы освоите:** сообщить об одном банке и нескольких библиотеках, описать осведомлённость, убеждённость и беспокойство
-**Новые слова:** bank
+**Что вы освоите:** сказать, что мест несколько: There are banks here, There are museums nearby
+**Новые слова:** bank, museum, church, school
+**Возвращаются:** library, hospital, garden, behind, near
 
 ---
 
 ## Интро 1
 
-### Один банк
+### Где снять деньги
 
-`bank` — «банк», здесь учреждение, где обслуживают денежные счета. `There is a bank` — «Есть банк». Для одного банка нужны `is` и `a`. `There is a bank here` — «Здесь есть банк». Банк на карте не выдаёт деньги, но помогает найти настоящий.
+У районного стенда вы с подругой смотрите на карту. Вам нужны деньги, и вы ищете значки с монетой. Таких значков на карте сразу несколько. bank — «банк». Банков несколько, поэтому добавляем s и говорим There are: There are banks here — «Здесь есть банки».
 
-**Сообщите, что в районе есть банк.**
+**Подруга спрашивает, где можно снять деньги. Скажите ей, что здесь есть банки.**
 
-- ✅ **There is a bank.**
-- ❌ There are a bank. — *Один банк: `There is a bank`.*
-- ❌ There is bank. — *Перед одним банком нужно `a`: `a bank`.*
+- ✅ **There are banks here.**
+- ❌ There is banks here. — *Банков несколько, поэтому нужно are: There are banks here.*
+- ❌ There are a banks here. — *Перед несколькими банками a не ставим: There are banks here.*
 
 ---
 
 ## Интро 2
 
-### Библиотеки и книга
+### Выходные с соседкой
 
-`libraries` — «библиотеки»: `There are libraries here` — «Здесь есть библиотеки». Для нескольких нужны `are` и множественное число, без `a`. `book` — «книга»: `This is a book` — «Это книга». Сообщить о наличии: `There is a book here` — «Здесь есть книга».
+К вам на выходные приехала соседка из другого города. Она любит смотреть старые картины и необычные вещи за стеклом. На карте района вы находите сразу несколько таких мест. museum — «музей». Музеев несколько: There are museums nearby — «Рядом есть музеи».
 
-**Сообщите, что здесь есть несколько библиотек.**
+**Соседка спрашивает, что посмотреть. Скажите ей, что рядом есть музеи.**
 
-- ✅ **There are libraries here.**
-- ❌ There is libraries here. — *Библиотек несколько: `There are`.*
-- ❌ There are a libraries here. — *Перед несколькими `libraries` артикль `a` не нужен.*
+- ✅ **There are museums nearby.**
+- ❌ There are museum nearby. — *Музеев несколько, поэтому нужно museums: There are museums nearby.*
+- ❌ There is museums nearby. — *Музеев несколько, поэтому нужно are: There are museums nearby.*
 
 ---
 
 ## Интро 3
 
-### В курсе, убеждены или обеспокоены
+### Старое здание с колокольней
 
-`aware` — «осведомлённый, в курсе»: Анна напоминает, что расписание изменилось, а вы уже знаете. `I am aware` — «Я в курсе». `convinced` — «убеждённый»: доводы Анны убедили вас, что её план подходит. `I am convinced` — «Я убеждён». `concerned` — «обеспокоенный»: вы волнуетесь из-за потерянной книги. `I am concerned` — «Я обеспокоен». `I am` сокращается до `I’m`.
+Подруга спрашивает, что стоит за банком. Вы оглядываетесь и видите одно старое здание с высокой колокольней. Оно здесь единственное, других таких нет. church — «церковь». Когда место одно, снова говорим There is a: There is a church behind the bank — «За банком есть церковь».
 
-**Анна напоминает об изменении расписания. Вы уже об этом знаете. Ответьте «Я в курсе».**
+**Подруга спрашивает, что стоит за банком. Скажите ей, что за банком есть церковь.**
 
-- ✅ **I am aware.**
-- ❌ I am concerned. — *Это беспокойство. «Я в курсе» — `I am aware`.*
-- ❌ I are aware. — *С `I` нужно `am`.*
+- ✅ **There is a church behind the bank.**
+- ❌ There are a church behind the bank. — *Церковь одна, поэтому нужно is: There is a church behind the bank.*
+- ❌ There is church behind the bank. — *Перед названием одного места нужно a: There is a church behind the bank.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Назовите предмет в руках друга: «Это книга»**
-<!-- interaction_id: en:lesson-04:session-03:i01; family: phrase_builder -->
-Плитки: `book` `a` `is` `This` `are` → **This is a book.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a book.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-03:i01; family: speed_match -->
+bank — банк · museum — музей · church — церковь · school — школа
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-03:i02; family: listen_choose -->
-🔊 *bank* → **bank** · book · garden
-- book — *В записи первое слово — `bank`, а в этом варианте — `book`.*
-- garden — *В записи первое слово — `bank`, а в этом варианте — `garden`.*
+**2 · Карточка слова — bank**
+<!-- interaction_id: en:lesson-04:session-03:word:bank; family: word_card -->
+> **bank** — банк. There are banks here — «Здесь есть банки». О месте, где хранят и снимают деньги.
 
-**3 · Назовите банк одним английским словом**
-<!-- interaction_id: en:lesson-04:session-03:i03; family: context_gap_grammar -->
-___ → **bank** · book · cinema
-- book — *`book` — книга; банк — `bank`.*
-- cinema — *`cinema` — кинотеатр; банк — `bank`.*
+**3 · Подруга показывает на значок с монетой и называет место, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-03:i02; family: scripted_repeat_compare -->
+🎙 **bank**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-03:i04; family: speed_match -->
-bank — банк · aware — осведомлённый · convinced — убеждённый · libraries — библиотеки
+**4 · Подруга спрашивает, где снять деньги. Скажите ей полной фразой: здесь есть банки.**
+<!-- interaction_id: en:lesson-04:session-03:i03; family: phrase_builder -->
+Плитки: `banks` `There` `are` `here` `is` → **There are banks here.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are banks here.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-03:i05; family: listen_build_dictation -->
-🔊 *There is a bank.* Плитки: `bank` `a` `is` `There` `are` → **There is a bank.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a bank.`)*
+**5 · Карточка слова — museum**
+<!-- interaction_id: en:lesson-04:session-03:word:museum; family: word_card -->
+> **museum** — музей. There are museums nearby — «Рядом есть музеи». О месте, где показывают старые и необычные вещи.
 
-**6 · Друг не знает район. Сообщите «Здесь есть библиотеки»**
-<!-- interaction_id: en:lesson-04:session-03:i06; family: phrase_builder -->
-Плитки: `here` `libraries` `are` `There` `is` → **There are libraries here.**
-*(плитка `is` лишняя: здесь нужно `are` — `There are libraries here.`)*
+**6 · Вы хотите посмотреть старые картины и необычные вещи за стеклом. Как называется такое место?**
+<!-- interaction_id: en:lesson-04:session-03:i04; family: context_gap_grammar -->
+___ → **museum** · bakery · hospital
+- bakery — *bakery — это пекарня, а нужное слово — museum.*
+- hospital — *hospital — это больница, а нужное слово — museum.*
 
-**7 · Анна напоминает об изменении расписания, но вы уже знаете. Скажите «Я в курсе» с сокращением**
-<!-- interaction_id: en:lesson-04:session-03:i07; family: scripted_repeat_compare -->
-🎙 **I'm aware.**
+**7 · Послушайте соседку и выберите фразу**
+<!-- interaction_id: en:lesson-04:session-03:i05; family: listen_choose -->
+🔊 *There are museums nearby.* → **There are museums nearby.** · There are banks nearby. · There are museums here.
+- There are banks nearby. — *В записи — `museums`, а в этом варианте — `banks`.*
+- There are museums here. — *В записи — `nearby`, а в этом варианте — `here`.*
 
-**8 · Сообщите, что здесь есть один банк**
+**8 · Карточка слова — church**
+<!-- interaction_id: en:lesson-04:session-03:word:church; family: word_card -->
+> **church** — церковь. There is a church behind the bank — «За банком есть церковь». О старом здании с колокольней.
+
+**9 · Подруга показывает на здание с колокольней и называет его, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-03:i06; family: scripted_repeat_compare -->
+🎙 **church**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-03:i07; family: listen_build_dictation -->
+🔊 *There is a church here.* Плитки: `church` `here` `a` `There` `is` `are` → **There is a church here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a church here.`)*
+
+**11 · Карточка слова — school**
+<!-- interaction_id: en:lesson-04:session-03:word:school; family: word_card -->
+> **school** — школа. There are schools nearby — «Рядом есть школы». О месте, где учатся дети.
+
+**12 · Дети каждое утро идут туда учиться. Как называется это место?**
 <!-- interaction_id: en:lesson-04:session-03:i08; family: context_gap_grammar -->
-There is ___ bank here. → **a** · an · are
-- an — *Перед согласным звуком в `bank` нужно `a`.*
-- are — *`is` уже есть; здесь нужен артикль `a`.*
+___ → **school** · church · bank
+- church — *church — это церковь, а нужное слово — school.*
+- bank — *bank — это банк, а нужное слово — school.*
 
-**9 · Послушайте, как человек описывает своё состояние**
-<!-- interaction_id: en:lesson-04:session-03:i09; family: listen_choose -->
-🔊 *I am concerned.* → **I am concerned.** · I am convinced. · I am aware.
-- I am convinced. — *В записи последнее слово — `concerned`, а в этом варианте — `convinced`.*
-- I am aware. — *В записи последнее слово — `concerned`, а в этом варианте — `aware`.*
+**13 · Подруга спрашивает, есть ли здесь школы. Скажите ей полной фразой: рядом есть школы.**
+<!-- interaction_id: en:lesson-04:session-03:i09; family: phrase_builder -->
+Плитки: `schools` `nearby` `There` `are` `is` → **There are schools nearby.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are schools nearby.`)*
 
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-03:i10; family: speed_match -->
-concerned — обеспокоенный · book — книга · libraries — библиотеки · aware — осведомлённый
+**14 · Послушайте подругу и выберите фразу**
+<!-- interaction_id: en:lesson-04:session-03:i10; family: listen_choose -->
+🔊 *There is a church behind the bank.* → **There is a church behind the bank.** · There is a church behind the school. · There is a museum behind the bank.
+- There is a church behind the school. — *В записи — `bank`, а в этом варианте — `school`.*
+- There is a museum behind the bank. — *В записи — `church`, а в этом варианте — `museum`.*
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-03:i11; family: listen_build_dictation -->
-🔊 *There is a book here.* Плитки: `here` `book` `a` `is` `There` `are` → **There is a book here.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a book here.`)*
-
-**12 · Доводы Анны убедили вас, что её план подходит. Скажите «Я убеждён» полной формой**
-<!-- interaction_id: en:lesson-04:session-03:i12; family: phrase_builder -->
-Плитки: `convinced` `am` `I` `is` → **I am convinced.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am convinced.`)*
-
-**13 · Вы волнуетесь из-за потерянной книги. Скажите «Я обеспокоен» с сокращением**
-<!-- interaction_id: en:lesson-04:session-03:i13; family: scripted_repeat_compare -->
-🎙 **I'm concerned.**
-
-**14 · Друг показывает другой район на карте. Сообщите «Там есть библиотеки»**
-<!-- interaction_id: en:lesson-04:session-03:i14; family: context_gap_grammar -->
-There ___ libraries there. → **are** · is · am
-- is — *Библиотек несколько: `There are libraries there`. Последнее `there` — «там».*
-- am — *Для нескольких библиотек нужно `There are`.*
-
-**15 · Послушайте ответ на напоминание**
-<!-- interaction_id: en:lesson-04:session-03:i15; family: listen_choose -->
-🔊 *I am aware.* → **I am aware.** · I am concerned. · I am convinced.
-- I am concerned. — *В записи последнее слово — `aware`, а в этом варианте — `concerned`.*
-- I am convinced. — *В записи последнее слово — `aware`, а в этом варианте — `convinced`.*
+**15 · Вы видите на карте несколько библиотек рядом с садом. Дополните фразу**
+<!-- interaction_id: en:lesson-04:session-03:i11; family: context_gap_grammar -->
+There ___ libraries near the garden. → **are** · is · a
+- is — *Библиотек несколько, поэтому нужно are, а не is.*
+- a — *После There слово a не подходит: нужно are, ведь библиотек несколько.*
 
 **16 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-03:i16; family: speed_match -->
-bank — банк · convinced — убеждённый · concerned — обеспокоенный · book — книга
+<!-- interaction_id: en:lesson-04:session-03:i12; family: speed_match -->
+banks — банки · museums — музеи · churches — церкви · schools — школы
 
-**17 · В другом городе друг не знает, есть ли здесь банк. Вы уже увидели его вывеску. Сообщите «Здесь есть банк»**
+**17 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-03:i13; family: listen_build_dictation -->
+🔊 *There are museums behind the bank.* Плитки: `museums` `behind` `the` `bank` `There` `are` `is` → **There are museums behind the bank.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are museums behind the bank.`)*
+
+**18 · Соседка спрашивает, есть ли рядом школы. Скажите ей: «Рядом есть школы».**
+<!-- interaction_id: en:lesson-04:session-03:i14; family: scripted_repeat_compare -->
+🎙 **There are schools nearby.**
+
+**19 · Вы показываете подруге на карте несколько церквей. Скажите ей полной фразой: рядом с садом есть церкви.**
+<!-- interaction_id: en:lesson-04:session-03:i15; family: phrase_builder -->
+Плитки: `churches` `near` `the` `garden` `There` `are` `is` → **There are churches near the garden.**
+*(плитка `is` лишняя: здесь нужно `are` — `There are churches near the garden.`)*
+
+**20 · Послушайте подругу и выберите фразу**
+<!-- interaction_id: en:lesson-04:session-03:i16; family: listen_choose -->
+🔊 *There are banks nearby.* → **There are banks nearby.** · There is a bank nearby. · There are banks here.
+- There is a bank nearby. — *В записи — `are`, а в этом варианте — `is`.*
+- There are banks here. — *В записи — `nearby`, а в этом варианте — `here`.*
+
+**21 · Подруга просит ещё раз сказать про школы. Скажите ей: «Рядом с банком есть школы».**
 <!-- interaction_id: en:lesson-04:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There is a bank here.**
-
+🎙 **There are schools near the bank.**

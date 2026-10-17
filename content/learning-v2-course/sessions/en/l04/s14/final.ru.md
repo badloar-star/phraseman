@@ -1,137 +1,152 @@
 # Английский · Урок 4 · Занятие 14 — Пора постирать вещи
 
-**Ситуация.** В поездке закончились чистые футболки. Вы ищете прачечную на схеме района, замечаете клинику и сверяете рисунок на вывеске с фотографией друга.
+**Ситуация.** В поездке у вас с братом закончились чистые рубашки, и вы ищете, где постирать. Вопрос о наличии вы строите сами: если предмет один, говорите Is there a, а если несколько, говорите Are there и ставите название во множественное число.
 
-**Что вы освоите:** спросить о прачечной, назвать клинику и картинку, сказать, что ответ очевиден
-**Новые слова:** laundrette
+**Что вы освоите:** самому выбрать Is there a или Are there по числу предметов
+**Новые слова:** laundrette, dryer, notice, token
+**Возвращаются:** bank, park, door, coin, near
 
 ---
 
 ## Интро 1
 
-### Место для стирки
+### Нет чистых рубашек
 
-`laundrette` — «прачечная самообслуживания»: туда приходят постирать вещи в общих машинах. `Is there a laundrette here?` — «Здесь есть прачечная самообслуживания?» Несколько таких мест — `laundrettes`. Чистых футболок уже нет: теперь `laundrette` интереснее любого музея.
+В поездке у вас с братом закончились чистые рубашки, а стирать их негде. Вы останавливаете прохожего на улице. laundrette — «прачечная самообслуживания», где стирают сами. Спросите у него: Is there a laundrette near the park? — «Есть ли прачечная рядом с парком?»
 
-**Спросите, есть ли здесь прачечная самообслуживания.**
+**Прохожий остановился рядом с вами. Спросите, есть ли прачечная рядом с парком.**
 
-- ✅ **Is there a laundrette here?**
-- ❌ Are there a laundrette here? — *Одно место: `Is there a laundrette here?`.*
-- ❌ There is a laundrette here. — *Это сообщение; вопрос начинается с `Is there`.*
+- ✅ **Is there a laundrette near the park?**
+- ❌ Are there a laundrette near the park? — *Прачечная одна, поэтому нужно Is there, а не Are there.*
+- ❌ Is there laundrette near the park? — *Перед одной прачечной нужно a: a laundrette.*
 
 ---
 
 ## Интро 2
 
-### Вывеска и схема
+### Мокрые вещи
 
-`picture` — «картинка, изображение». `There is a picture here` — «Здесь есть картинка». `clinic` — «клиника»: `That is a clinic` — «То здание — клиника». На схеме можно спросить `Is there a clinic?` — «Есть ли клиника?»
+В прачечной вы достали из машины мокрые вещи, и нести их домой тяжело. Вы не видите, где их сушат. dryer — «сушилка», машина для сушки белья. Таких машин в зале может быть несколько. Спросите работницу: Are there dryers near the door? — «Есть ли сушилки рядом с дверью?»
 
-**Друг показывает на дальнее здание. Скажите «То здание — клиника».**
+**Работница прачечной стоит у стойки. Спросите её, есть ли сушилки рядом с дверью.**
 
-- ✅ **That is a clinic.**
-- ❌ That are a clinic. — *С `That` нужно `is`.*
-- ❌ Those are clinics. — *Здесь одно здание: `That is a clinic`.*
+- ✅ **Are there dryers near the door?**
+- ❌ Is there dryers near the door? — *Сушилок несколько, поэтому начинаем с Are there, а не с Is there.*
+- ❌ Are there a dryers near the door? — *Перед несколькими сушилками a не ставим: dryers.*
 
 ---
 
 ## Интро 3
 
-### И так понятно
+### Правила на двери
 
-`obvious` — «очевидный». На вывеске большая стиральная машина, и друг спрашивает, что здесь находится. Ответ теперь ясен: `It is obvious` — «Это очевидно». Сокращённо: `It’s obvious`. Так можно сказать о понятном ответе; в ответ на чужой вопрос фраза иногда звучит резко, поэтому не стоит упрекать ею человека за незнание.
+У двери прачечной висит лист с правилами, но руки заняты сумками, и подойти ближе вы не можете. Брат стоит у самой двери. notice — «объявление», лист бумаги со словами для всех. Спросите брата: Is there a notice near the door? — «Рядом с дверью есть объявление?»
 
-**Вы с другом вместе разглядели вывеску и поняли ответ. Скажите «Это очевидно» с сокращением.**
+**Брат стоит у самой двери. Спросите его, есть ли рядом с дверью объявление.**
 
-- ✅ **It's obvious.**
-- ❌ It's private. — *`private` — частный; очевидный — `obvious`.*
-- ❌ It are obvious. — *С `It` нужно `is`: `It’s obvious`.*
+- ✅ **Is there a notice near the door?**
+- ❌ Are there a notice near the door? — *Объявление одно, поэтому нужно Is there, а не Are there.*
+- ❌ There is a notice near the door? — *Вопрос начинаем с Is there, а не с There is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы нашли изображение на обратной стороне карты. Сообщите «Есть картинка»**
-<!-- interaction_id: en:lesson-04:session-14:i01; family: phrase_builder -->
-Плитки: `picture` `a` `is` `There` `are` → **There is a picture.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a picture.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-14:i01; family: speed_match -->
+laundrette — прачечная самообслуживания · dryer — сушилка · notice — объявление · token — жетон
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-14:i02; family: listen_choose -->
-🔊 *laundrette* → **laundrette** · clinic · hotel
-- clinic — *В записи первое слово — `laundrette`, а в этом варианте — `clinic`.*
-- hotel — *В записи первое слово — `laundrette`, а в этом варианте — `hotel`.*
+**2 · Карточка слова — laundrette**
+<!-- interaction_id: en:lesson-04:session-14:word:laundrette; family: word_card -->
+> **laundrette** — прачечная самообслуживания. Is there a laundrette near the park? — «Есть ли прачечная рядом с парком?» О месте, где стирают сами.
 
-**3 · Назовите прачечную самообслуживания одним словом**
-<!-- interaction_id: en:lesson-04:session-14:i03; family: context_gap_grammar -->
-___ → **laundrette** · clinic · supermarket
-- clinic — *`clinic` — клиника; прачечная самообслуживания — `laundrette`.*
-- supermarket — *`supermarket` — супермаркет; место для стирки — `laundrette`.*
+**3 · Работница прачечной называет место, где стирают сами, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-14:i02; family: scripted_repeat_compare -->
+🎙 **laundrette**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-14:i04; family: speed_match -->
-laundrette — прачечная самообслуживания · obvious — очевидный · picture — картинка · clinic — клиника
+**4 · Вы остановили прохожего на улице. Спросите его полной фразой: рядом есть прачечная?**
+<!-- interaction_id: en:lesson-04:session-14:i03; family: phrase_builder -->
+Плитки: `laundrette` `a` `there` `Is` `near` `here` `Are` → **Is there a laundrette near here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a laundrette near here?`)*
 
-**5 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-14:i05; family: listen_build_dictation -->
-🔊 *Is there a laundrette?* Плитки: `laundrette` `a` `there` `Is` → **Is there a laundrette?**
+**5 · Карточка слова — dryer**
+<!-- interaction_id: en:lesson-04:session-14:word:dryer; family: word_card -->
+> **dryer** — сушилка. Are there dryers near the door? — «Есть ли сушилки рядом с дверью?» О машине, которая сушит бельё после стирки.
 
-**6 · Назовите дальнее здание: «То здание — клиника»**
-<!-- interaction_id: en:lesson-04:session-14:i06; family: phrase_builder -->
-Плитки: `clinic` `a` `is` `That` `are` → **That is a clinic.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is a clinic.`)*
+**6 · Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-14:i04; family: context_gap_grammar -->
+___ → **dryer** · laundrette · oven
+- laundrette — *laundrette — это вся прачечная, а машина для сушки называется dryer.*
+- oven — *oven — это духовка для еды, а машина для сушки белья называется dryer.*
 
-**7 · Вы оба увидели большую стиральную машину на вывеске и поняли, что это за место. Скажите «Это очевидно» с сокращением**
-<!-- interaction_id: en:lesson-04:session-14:i07; family: scripted_repeat_compare -->
-🎙 **It's obvious.**
+**7 · Послушайте вопрос работницы**
+<!-- interaction_id: en:lesson-04:session-14:i05; family: listen_choose -->
+🔊 *Are there dryers here?* → **Are there dryers here?** · Is there a dryer here? · Are there dryers near here?
+- Is there a dryer here? — *В записи вопрос `Are there` о нескольких сушилках, а в этом варианте `Is there a` об одной.*
+- Are there dryers near here? — *В записи нет слова `near`, а в этом варианте оно есть.*
 
-**8 · Спросите, есть ли здесь несколько прачечных самообслуживания**
+**8 · Карточка слова — token**
+<!-- interaction_id: en:lesson-04:session-14:word:token; family: word_card -->
+> **token** — жетон. Are there tokens here? — «Здесь есть жетоны?» О маленьком металлическом кружке, который запускает машину.
+
+**9 · Работница показывает вам металлический кружок для машины и называет слово, а вы повторяете за ней**
+<!-- interaction_id: en:lesson-04:session-14:i06; family: scripted_repeat_compare -->
+🎙 **token**
+
+**10 · Послушайте работницу и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-14:i07; family: listen_build_dictation -->
+🔊 *Are there tokens here?* Плитки: `tokens` `there` `Are` `here` `Is` → **Are there tokens here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there tokens here?`)*
+
+**11 · Карточка слова — notice**
+<!-- interaction_id: en:lesson-04:session-14:word:notice; family: word_card -->
+> **notice** — объявление. Is there a notice near the door? — «Рядом с дверью есть объявление?» О листе бумаги с правилами на стене или двери.
+
+**12 · На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-04:session-14:i08; family: context_gap_grammar -->
-___ there laundrettes here? → **Are** · Is · Am
-- Is — *`laundrettes` — несколько мест: `Are there laundrettes here?`.*
-- Am — *Вопрос о нескольких местах начинается с `Are there`.*
+___ → **notice** · token · map
+- token — *token — это жетон для машины, а лист с правилами называется notice.*
+- map — *map — это карта, а лист с правилами называется notice.*
 
-**9 · Послушайте вопрос**
-<!-- interaction_id: en:lesson-04:session-14:i09; family: listen_choose -->
-🔊 *Is there a picture?* → **Is there a picture?** · Is there a clinic? · Is there a laundrette?
-- Is there a clinic? — *В записи последнее слово — `picture`, а в этом варианте — `clinic`.*
-- Is there a laundrette? — *В записи последнее слово — `picture`, а в этом варианте — `laundrette`.*
+**13 · Вы стоите у стены прачечной. Спросите брата полной фразой: здесь есть объявление?**
+<!-- interaction_id: en:lesson-04:session-14:i09; family: phrase_builder -->
+Плитки: `notice` `a` `there` `Is` `here` `Are` → **Is there a notice here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a notice here?`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-14:i10; family: speed_match -->
-laundrette — прачечная самообслуживания · laundrettes — прачечные самообслуживания · picture — картинка · obvious — очевидный
+dryer — сушилка · token — жетон · notice — объявление · coin — монета
 
-**11 · Послушайте и соберите сообщение**
-<!-- interaction_id: en:lesson-04:session-14:i11; family: listen_build_dictation -->
-🔊 *There is a clinic here.* Плитки: `here` `clinic` `a` `is` `There` `are` → **There is a clinic here.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a clinic here.`)*
+**15 · Послушайте вопрос прохожего**
+<!-- interaction_id: en:lesson-04:session-14:i11; family: listen_choose -->
+🔊 *Are there laundrettes near here?* → **Are there laundrettes near here?** · Is there a laundrette near here? · Are there dryers near here?
+- Is there a laundrette near here? — *В записи вопрос `Are there` о нескольких прачечных, а в этом варианте `Is there a` об одной.*
+- Are there dryers near here? — *В записи спрашивают про `laundrettes`, а в этом варианте про `dryers`.*
 
-**12 · На карте несколько таких мест. Сообщите «Здесь есть прачечные самообслуживания»**
-<!-- interaction_id: en:lesson-04:session-14:i12; family: phrase_builder -->
-Плитки: `here` `laundrettes` `are` `There` `is` → **There are laundrettes here.**
-*(плитка `is` лишняя: здесь нужно `are` — `There are laundrettes here.`)*
+**16 · Вы спрашиваете работницу о жетонах. Дополните ваш вопрос**
+<!-- interaction_id: en:lesson-04:session-14:i12; family: context_gap_grammar -->
+___ there tokens near here? → **Are** · Is · Am
+- Is — *Жетонов несколько, поэтому начинаем с Are there, а не с Is there.*
+- Am — *Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.*
 
-**13 · Вы рассматриваете нужный участок вывески на нечёткой фотографии. Спросите «Здесь есть картинка?»**
-<!-- interaction_id: en:lesson-04:session-14:i13; family: scripted_repeat_compare -->
-🎙 **Is there a picture here?**
+**17 · Послушайте брата и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-14:i13; family: listen_build_dictation -->
+🔊 *Is there a dryer near the door?* Плитки: `dryer` `a` `there` `Is` `near` `the` `door` `Are` → **Is there a dryer near the door?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a dryer near the door?`)*
 
-**14 · Спросите о наличии одной клиники**
-<!-- interaction_id: en:lesson-04:session-14:i14; family: context_gap_grammar -->
-Is there ___ clinic here? → **a** · an · are
-- an — *Первый звук в `clinic` согласный: `a clinic`.*
-- are — *Перед одной клиникой нужно `a`: `a clinic`.*
+**18 · Брат стоит у стены с листами бумаги. Спросите его, есть ли здесь объявления**
+<!-- interaction_id: en:lesson-04:session-14:i14; family: scripted_repeat_compare -->
+🎙 **Are there notices here?**
 
-**15 · Послушайте вывод о понятном ответе**
-<!-- interaction_id: en:lesson-04:session-14:i15; family: listen_choose -->
-🔊 *It is obvious.* → **It is obvious.** · It is private. · It is urgent.
-- It is private. — *В записи последнее слово — `obvious`, а в этом варианте — `private`.*
-- It is urgent. — *В записи последнее слово — `obvious`, а в этом варианте — `urgent`.*
+**19 · Вы ищете, где постирать. Спросите прохожего полной фразой: здесь есть прачечные?**
+<!-- interaction_id: en:lesson-04:session-14:i15; family: phrase_builder -->
+Плитки: `laundrettes` `there` `Are` `here` `Is` → **Are there laundrettes here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there laundrettes here?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-14:i16; family: speed_match -->
-laundrette — прачечная самообслуживания · obvious — очевидный · picture — картинка · clinic — клиника
+laundrette — прачечная самообслуживания · dryer — сушилка · token — жетон · notice — объявление
 
-**17 · В следующей поездке вам снова нужно постирать вещи. Спросите в новом районе «Здесь есть прачечная самообслуживания?»**
+**21 · Вы стоите на улице с мокрыми рубашками. Спросите прохожего полной фразой, есть ли рядом с банком прачечная**
 <!-- interaction_id: en:lesson-04:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there a laundrette here?**
-
+🎙 **Is there a laundrette near the bank?**

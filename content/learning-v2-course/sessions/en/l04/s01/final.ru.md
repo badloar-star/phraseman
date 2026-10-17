@@ -1,138 +1,152 @@
 # Английский · Урок 4 · Занятие 1 — Что есть в новом районе
 
-**Ситуация.** Вы заселились в новом районе. Друг рассказывает, какие места здесь есть. Вы отмечаете аптеку, библиотеку и пекарню, а затем проверяете, есть ли в сообщении нужные слова для одного места и нескольких предметов.
+**Ситуация.** Вы только что переехали в новый район, и подруга показывает вам, что здесь есть. Вы отвечаете полной фразой: сначала There is, потом a или an, потом место. Остальное вы уже умеете.
 
-**Что вы освоите:** сообщить о наличии одного места с There is и нескольких предметов с There are
-**Новые слова:** pharmacy, library, bakery
+**Что вы освоите:** сообщить, что рядом есть одно место: There is a pharmacy here
+**Новые слова:** pharmacy, library, bakery, hospital
+**Возвращаются:** map, building, nearby, old, clean
 
 ---
 
 ## Интро 1
 
-### Есть аптека
+### Таблетки от головы
 
-`pharmacy` — «аптека». `There is a pharmacy` — «Есть аптека»: сообщаем, что такое место есть. Начало `There is` здесь работает целиком и не значит «там есть»: слово «там» отдельно не требуется. Одно место — `is`, перед названием — `a`. Вспомним `comfortable` — «комфортный, удобный»: в комнате уютно, `It is comfortable` — «В ней комфортно».
+Вы только что переехали в новый район, и у вас разболелась голова. Подруга показывает на карту у входа в дом: на ней значок с зелёным крестом. pharmacy — «аптека». Вы сообщаете, что аптека есть: There is a pharmacy here — «Здесь есть аптека».
 
-**Сообщите, что в районе есть аптека.**
+**Подруга спрашивает, где купить таблетки. Скажите ей, что здесь есть аптека.**
 
-- ✅ **There is a pharmacy.**
-- ❌ There a pharmacy. — *Нужно полное начало `There is`.*
-- ❌ There is pharmacy. — *Перед названием одной аптеки нужно `a`.*
+- ✅ **There is a pharmacy here.**
+- ❌ There a pharmacy here. — *Нужно полное начало There is: There is a pharmacy here.*
+- ❌ There is pharmacy here. — *Перед названием одного места нужно a: There is a pharmacy here.*
 
 ---
 
 ## Интро 2
 
-### Есть библиотека
+### Книги для брата
 
-`library` — «библиотека». `There is a library` — «Есть библиотека». Название места меняется, начало остаётся. `sure` — «уверенный»: `I am sure` — «Я уверен». `interested` — «заинтересованный»: рассказ о районе увлёк вас, `I am interested` — «Мне интересно». `hospital` — «больница»: `There is a hospital` — «Есть больница».
+Ваш брат любит читать, а книги в магазине дорогие, поэтому ему нужно место, где их можно брать домой. Вы смотрите на карту района и видите значок с раскрытой книгой. library — «библиотека». Вы пишете брату, что такое место рядом есть: There is a library nearby — «Рядом есть библиотека».
 
-**Сообщите, что в районе есть библиотека.**
+**Брат спрашивает, где можно брать книги. Напишите ему, что рядом есть библиотека.**
 
-- ✅ **There is a library.**
-- ❌ There are a library. — *Одна библиотека: `There is a library`.*
-- ❌ There is an library. — *Перед `library` нужно `a`, поскольку первый звук согласный.*
+- ✅ **There is a library nearby.**
+- ❌ There is an library nearby. — *Слово library начинается с согласного звука, поэтому нужно a: There is a library nearby.*
+- ❌ There are a library nearby. — *Библиотека одна, поэтому нужно is: There is a library nearby.*
 
 ---
 
 ## Интро 3
 
-### Пекарня и ключи
+### Запах свежего хлеба
 
-`bakery` — «пекарня». `There is a bakery here` — «Здесь есть пекарня». Пекарня на карте хлебом не пахнет, но теперь вы знаете, куда идти. `key` — «ключ», несколько — `keys`. Для нескольких: `There are keys here` — «Здесь есть ключи». С несколькими ключами нужны `are` и `keys`, без `a`.
+Утром вы с подругой идёте по двору, и вокруг пахнет свежим хлебом. Вам обоим захотелось есть. Подруга показывает на небольшую дверь с вывеской, из которой идёт тёплый воздух. bakery — «пекарня». Вы подсказываете ей: There is a bakery here — «Здесь есть пекарня».
 
-**Сообщите, что здесь есть несколько ключей.**
+**Подруга хочет купить хлеба. Скажите ей, что здесь есть пекарня.**
 
-- ✅ **There are keys here.**
-- ❌ There is keys here. — *Ключей несколько: `There are`.*
-- ❌ There are a keys here. — *Перед несколькими `keys` артикль `a` не ставим.*
+- ✅ **There is a bakery here.**
+- ❌ There is bakery here. — *Перед названием одного места нужно a: There is a bakery here.*
+- ❌ There is the bakery here. — *О пекарне вы говорите подруге впервые, поэтому нужно a, а не the: There is a bakery here.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · В комнате уютно. Скажите о ней «Она комфортная»**
-<!-- interaction_id: en:lesson-04:session-01:i01; family: phrase_builder -->
-Плитки: `comfortable` `is` `It` `are` → **It is comfortable.**
-*(плитка `are` лишняя: здесь нужно `is` — `It is comfortable.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-01:i01; family: speed_match -->
+pharmacy — аптека · library — библиотека · bakery — пекарня · hospital — больница
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-01:i02; family: listen_choose -->
-🔊 *pharmacy* → **pharmacy** · hospital · museum
-- hospital — *В записи первое слово — `pharmacy`, а в этом варианте — `hospital`.*
-- museum — *В записи первое слово — `pharmacy`, а в этом варианте — `museum`.*
+**2 · Карточка слова — pharmacy**
+<!-- interaction_id: en:lesson-04:session-01:word:pharmacy; family: word_card -->
+> **pharmacy** — аптека. There is a pharmacy here — «Здесь есть аптека». О месте, где продают лекарства.
 
-**3 · Назовите библиотеку одним английским словом**
-<!-- interaction_id: en:lesson-04:session-01:i03; family: context_gap_grammar -->
-___ → **library** · hospital · museum
-- hospital — *Библиотека — `library`, а `hospital` — больница.*
-- museum — *Библиотека — `library`, а `museum` — музей.*
-
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-01:i04; family: speed_match -->
-bakery — пекарня · hospital — больница · sure — уверенный · interested — заинтересованный
-
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-01:i05; family: listen_build_dictation -->
-🔊 *There is a hospital.* Плитки: `hospital` `a` `is` `There` `are` → **There is a hospital.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a hospital.`)*
-
-**6 · На стойке лежат несколько ключей. Сообщите «Здесь есть ключи»**
-<!-- interaction_id: en:lesson-04:session-01:i06; family: phrase_builder -->
-Плитки: `here` `keys` `are` `There` `is` → **There are keys here.**
-*(плитка `is` лишняя: здесь нужно `are` — `There are keys here.`)*
-
-**7 · Назовите аптеку одним английским словом**
-<!-- interaction_id: en:lesson-04:session-01:i07; family: scripted_repeat_compare -->
+**3 · Подруга показывает на значок с зелёным крестом и называет место, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-01:i02; family: scripted_repeat_compare -->
 🎙 **pharmacy**
 
-**8 · Назовите пекарню одним английским словом**
+**4 · Подруга спрашивает, что есть рядом с домом. Скажите ей полной фразой: здесь есть аптека.**
+<!-- interaction_id: en:lesson-04:session-01:i03; family: phrase_builder -->
+Плитки: `pharmacy` `a` `There` `is` `here` `are` → **There is a pharmacy here.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a pharmacy here.`)*
+
+**5 · Карточка слова — hospital**
+<!-- interaction_id: en:lesson-04:session-01:word:hospital; family: word_card -->
+> **hospital** — больница. There is a hospital nearby — «Рядом есть больница». О большом здании, где лечат больных.
+
+**6 · Подруга показывает на большое здание, где лечат больных. Как оно называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-01:i04; family: context_gap_grammar -->
+___ → **hospital** · bus · bag
+- bus — *bus — это автобус, а нужное слово — hospital.*
+- bag — *bag — это сумка, а нужное слово — hospital.*
+
+**7 · Послушайте подругу и выберите фразу**
+<!-- interaction_id: en:lesson-04:session-01:i05; family: listen_choose -->
+🔊 *There is a hospital nearby.* → **There is a hospital nearby.** · There is a pharmacy nearby. · There is a hospital here.
+- There is a pharmacy nearby. — *В записи — `hospital`, а в этом варианте — `pharmacy`.*
+- There is a hospital here. — *В записи — `nearby`, а в этом варианте — `here`.*
+
+**8 · Карточка слова — library**
+<!-- interaction_id: en:lesson-04:session-01:word:library; family: word_card -->
+> **library** — библиотека. There is a library nearby — «Рядом есть библиотека». О месте, где берут книги домой.
+
+**9 · Подруга показывает на значок с раскрытой книгой и называет место, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-01:i06; family: scripted_repeat_compare -->
+🎙 **library**
+
+**10 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-01:i07; family: listen_build_dictation -->
+🔊 *There is a pharmacy nearby.* Плитки: `pharmacy` `nearby` `a` `There` `is` `are` → **There is a pharmacy nearby.**
+*(плитка `are` лишняя: здесь нужно `is` — `There is a pharmacy nearby.`)*
+
+**11 · Карточка слова — bakery**
+<!-- interaction_id: en:lesson-04:session-01:word:bakery; family: word_card -->
+> **bakery** — пекарня. There is a bakery here — «Здесь есть пекарня». О месте, где пекут и продают хлеб.
+
+**12 · Подруга чувствует запах свежего хлеба. Как называется место, где его пекут?**
 <!-- interaction_id: en:lesson-04:session-01:i08; family: context_gap_grammar -->
-___ → **bakery** · hospital · cinema
-- hospital — *Пекарня — `bakery`, а `hospital` — больница.*
-- cinema — *Пекарня — `bakery`, а `cinema` — кинотеатр.*
+___ → **bakery** · library · hospital
+- library — *library — это библиотека, а нужное слово — bakery.*
+- hospital — *hospital — это больница, а нужное слово — bakery.*
 
-**9 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-01:i09; family: listen_choose -->
-🔊 *library* → **library** · hospital · cinema
-- hospital — *В записи первое слово — `library`, а в этом варианте — `hospital`.*
-- cinema — *В записи первое слово — `library`, а в этом варианте — `cinema`.*
+**13 · Брат спрашивает, где брать книги. Скажите ему полной фразой: здесь есть библиотека.**
+<!-- interaction_id: en:lesson-04:session-01:i09; family: phrase_builder -->
+Плитки: `library` `a` `There` `is` `here` `an` → **There is a library here.**
+*(плитка `an` лишняя: здесь нужно `a` — `There is a library here.`)*
 
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-01:i10; family: speed_match -->
-pharmacy — аптека · library — библиотека · comfortable — комфортный · key — ключ
+**14 · Послушайте подругу и выберите фразу**
+<!-- interaction_id: en:lesson-04:session-01:i10; family: listen_choose -->
+🔊 *There is a bakery nearby.* → **There is a bakery nearby.** · There is a bakery here. · There is a library nearby.
+- There is a bakery here. — *В записи — `nearby`, а в этом варианте — `here`.*
+- There is a library nearby. — *В записи — `bakery`, а в этом варианте — `library`.*
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-01:i11; family: listen_build_dictation -->
-🔊 *There is a key here.* Плитки: `here` `key` `a` `is` `There` `are` → **There is a key here.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a key here.`)*
+**15 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-01:i11; family: speed_match -->
+library — библиотека · bakery — пекарня · map — карта · building — здание
 
-**12 · Друг спрашивает, какие места есть в районе. Сообщите «Есть аптека»**
-<!-- interaction_id: en:lesson-04:session-01:i12; family: phrase_builder -->
-Плитки: `pharmacy` `a` `is` `There` `are` → **There is a pharmacy.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a pharmacy.`)*
+**16 · Вы впервые говорите подруге о старой библиотеке. Дополните фразу**
+<!-- interaction_id: en:lesson-04:session-01:i12; family: context_gap_grammar -->
+There is ___ old library nearby. → **an** · a · the
+- a — *Слово old начинается с гласного звука, поэтому нужно an, а не a.*
+- the — *Вы говорите о библиотеке впервые, поэтому нужно an, а не the.*
 
-**13 · Друг не знает район. Сообщите «Здесь есть библиотека»**
-<!-- interaction_id: en:lesson-04:session-01:i13; family: scripted_repeat_compare -->
-🎙 **There is a library here.**
+**17 · Послушайте подругу и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-01:i13; family: listen_build_dictation -->
+🔊 *There is an old bakery nearby.* Плитки: `bakery` `old` `an` `There` `is` `nearby` `a` → **There is an old bakery nearby.**
+*(плитка `a` лишняя: здесь нужно `an` — `There is an old bakery nearby.`)*
 
-**14 · Вы увидели несколько ключей на дальней стойке. Сообщите «Там есть ключи»**
-<!-- interaction_id: en:lesson-04:session-01:i14; family: context_gap_grammar -->
-There ___ keys there. → **are** · is · am
-- is — *Ключей несколько: `There are keys there`. Последнее `there` значит «там».*
-- am — *Для нескольких ключей нужно `There are`.*
+**18 · Подруга спрашивает, что вы видите на карте. Скажите ей: «Рядом есть большая больница».**
+<!-- interaction_id: en:lesson-04:session-01:i14; family: scripted_repeat_compare -->
+🎙 **There is a big hospital nearby.**
 
-**15 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-01:i15; family: listen_choose -->
-🔊 *bakery* → **bakery** · hospital · cinema
-- hospital — *В записи первое слово — `bakery`, а в этом варианте — `hospital`.*
-- cinema — *В записи первое слово — `bakery`, а в этом варианте — `cinema`.*
+**19 · Подруга ищет тихое место с книгами. Скажите ей полной фразой: рядом есть чистая библиотека.**
+<!-- interaction_id: en:lesson-04:session-01:i15; family: phrase_builder -->
+Плитки: `library` `clean` `a` `There` `is` `nearby` `an` → **There is a clean library nearby.**
+*(плитка `an` лишняя: здесь нужно `a` — `There is a clean library nearby.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-01:i16; family: speed_match -->
-sure — уверенный · interested — заинтересованный · hospital — больница · key — ключ
+pharmacy — аптека · hospital — больница · bakery — пекарня · library — библиотека
 
-**17 · Вы приехали в другой район. Друг не знает, есть ли здесь пекарня, а вы уже увидели её вывеску. Сообщите «Здесь есть пекарня»**
+**21 · Подруга ищет аптеку. Скажите ей: «Рядом есть аптека».**
 <!-- interaction_id: en:lesson-04:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There is a bakery here.**
-
+🎙 **There is a pharmacy nearby.**

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-11:intro1:r2": {
-          "ru": "Трамваи — несколько: `Are there trams here?`.",
-          "uk": "Трамваїв кілька: `Are there trams here?`."
+          "ru": "Трамваев несколько, поэтому начинаем с Are there, а не с Is there.",
+          "uk": "Трамваїв кілька, тому починаємо з Are there, а не з Is there."
         },
         "en:lesson-04:session-11:intro1:r3": {
-          "ru": "Это сообщение. В вопросе сначала `Are there`.",
-          "uk": "Це повідомлення. У запитанні спочатку `Are there`."
+          "ru": "Перед несколькими трамваями a не ставим: trams.",
+          "uk": "Перед кількома трамваями a не ставимо: trams."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-11:intro2:r2": {
-          "ru": "Здесь одно здание: `That is a bank`.",
-          "uk": "Тут одна будівля: `That is a bank`."
+          "ru": "Мест несколько, и a перед ними не ставим: seats.",
+          "uk": "Місць кілька, і a перед ними не ставимо: seats."
         },
         "en:lesson-04:session-11:intro2:r3": {
-          "ru": "С `That` нужно `is`.",
-          "uk": "З `That` потрібне `is`."
+          "ru": "Вопрос начинаем с Are there, а не с There are.",
+          "uk": "Запитання починаємо з Are there, а не з There are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-11:intro3:r2": {
-          "ru": "`comfortable` — удобный; срочный — `urgent`.",
-          "uk": "`comfortable` — зручний; терміновий — `urgent`."
+          "ru": "Поездов несколько, поэтому trains, а не train.",
+          "uk": "Потягів кілька, тому trains, а не train."
         },
         "en:lesson-04:session-11:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s urgent`.",
-          "uk": "З `It` потрібне `is`: `It’s urgent`."
+          "ru": "Поездов несколько, поэтому нужно Are, а не Is.",
+          "uk": "Потягів кілька, тому потрібно Are, а не Is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7dff6e1c945351435e72276b04bb68cd7b37860dca1230a32a6ec83c0807b5f1"
+  "auxiliaryFingerprint": "cce0f571c3b2f44c9c52e4ed388b983d8462accbe9b0baf4c1e095cebb0de720"
 }

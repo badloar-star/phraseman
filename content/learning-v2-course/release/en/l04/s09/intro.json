@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-09",
   "learningOutcomeByLocale": {
-    "ru": "задать вопрос о наличии одного человека или места с Is there и нескольких мест с Are there",
-    "uk": "запитати про наявність однієї людини або місця з Is there та кількох місць з Are there"
+    "ru": "спросить, есть ли здесь один человек или одно место: Is there a dentist here?",
+    "uk": "запитати, чи є тут одна людина або одне місце: Is there a dentist here?"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Стоматолог — человек",
-        "uk": "Стоматолог — людина"
+        "ru": "Зубная боль в новом районе",
+        "uk": "Зубний біль у новому районі"
       },
       "bodyByLocale": {
-        "ru": "`dentist` — «стоматолог», врач, который лечит зубы. `clinic` называет место, а `dentist` — человека. `There is a dentist` — «Есть стоматолог». Для вопроса меняем начало: `Is there a dentist?` — «Есть ли стоматолог?» Начинаем с `Is there`, затем `a dentist`.",
-        "uk": "`dentist` — «стоматолог», лікар, який лікує зуби. `clinic` називає місце, а `dentist` — людину. `There is a dentist` — «Є стоматолог». Для запитання міняємо початок: `Is there a dentist?` — «Чи є стоматолог?» Починаємо з `Is there`, потім `a dentist`."
+        "ru": "Вы только переехали, а ночью у вас разболелся зуб. Утром вы зашли в справочную района, и сотрудница за стойкой готова помочь. Вам нужен врач, который лечит зубы. dentist — «стоматолог». Вопрос начинаем с Is there: Is there a dentist near here? — «Есть ли рядом стоматолог?»",
+        "uk": "Ви щойно переїхали, а вночі в вас розболівся зуб. Уранці ви зайшли до довідкової району, і працівниця за стійкою готова допомогти. Вам потрібен лікар, який лікує зуби. dentist — «стоматолог». Запитання починаємо з Is there: Is there a dentist near here? — «Чи є поблизу стоматолог?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-09:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли стоматолог.",
-          "uk": "Запитайте, чи є стоматолог."
+          "ru": "Сотрудница справочной слушает вас. Спросите, есть ли рядом стоматолог.",
+          "uk": "Працівниця довідкової слухає вас. Запитайте, чи є поблизу стоматолог."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-09:intro1:r1",
-              "text": "Is there a dentist?"
+              "text": "Is there a dentist near here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro1:r2",
-              "text": "There is a dentist."
+              "text": "There is a dentist near here."
             },
             {
               "responseId": "en:lesson-04:session-09:intro1:r3",
-              "text": "Is there dentist?"
+              "text": "Is there dentist near here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-09:intro1:r1",
-              "text": "Is there a dentist?"
+              "text": "Is there a dentist near here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro1:r2",
-              "text": "There is a dentist."
+              "text": "There is a dentist near here."
             },
             {
               "responseId": "en:lesson-04:session-09:intro1:r3",
-              "text": "Is there dentist?"
+              "text": "Is there dentist near here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли стоматолог.",
-          "uk": "Запитайте, чи є стоматолог."
+          "ru": "Сотрудница справочной слушает вас. Спросите, есть ли рядом стоматолог.",
+          "uk": "Працівниця довідкової слухає вас. Запитайте, чи є поблизу стоматолог."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спрашиваем о местах",
-        "uk": "Запитуємо про місця"
+        "ru": "Пожилая соседка в клинике",
+        "uk": "Літня сусідка в клініці"
       },
       "bodyByLocale": {
-        "ru": "`pharmacy` — «аптека», `library` — «библиотека», `bakery` — «пекарня». `Is there a pharmacy here?` — «Здесь есть аптека?» Одно место — `Is there a`. Для нескольких библиотек: `Are there libraries here?` — «Здесь есть библиотеки?» С несколькими — `Are there`, без `a`. Вопрос не создаёт новую аптеку, но помогает её найти.",
-        "uk": "`pharmacy` — «аптека», `library` — «бібліотека», `bakery` — «пекарня». `Is there a pharmacy here?` — «Тут є аптека?» Одне місце — `Is there a`. Для кількох бібліотек: `Are there libraries here?` — «Тут є бібліотеки?» З кількома — `Are there`, без `a`. Запитання не створює нової аптеки, але допомагає її знайти."
+        "ru": "Вы привели в клинику пожилую соседку: у неё закружилась голова. В холле тихо, а администратор за стойкой занят бумагами. Вам нужен человек, который лечит больных. doctor — «врач». Вопрос задаём так же: Is there a doctor here? — «Здесь есть врач?»",
+        "uk": "Ви привели до клініки літню сусідку: в неї запаморочилася голова. У холі тихо, а адміністратор за стійкою зайнятий паперами. Вам потрібна людина, яка лікує хворих. doctor — «лікар». Запитання ставимо так само: Is there a doctor here? — «Чи є тут лікар?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-09:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли здесь несколько библиотек.",
-          "uk": "Запитайте, чи є тут кілька бібліотек."
+          "ru": "Администратор поднял на вас глаза. Спросите, есть ли здесь врач.",
+          "uk": "Адміністратор підвів на вас очі. Запитайте, чи є тут лікар."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-09:intro2:r1",
-              "text": "Are there libraries here?"
+              "text": "Is there a doctor here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro2:r2",
-              "text": "Is there libraries here?"
+              "text": "Is there doctor here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro2:r3",
-              "text": "Are there a libraries here?"
+              "text": "Are there a doctor here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-09:intro2:r1",
-              "text": "Are there libraries here?"
+              "text": "Is there a doctor here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro2:r2",
-              "text": "Is there libraries here?"
+              "text": "Is there doctor here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro2:r3",
-              "text": "Are there a libraries here?"
+              "text": "Are there a doctor here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли здесь несколько библиотек.",
-          "uk": "Запитайте, чи є тут кілька бібліотек."
+          "ru": "Администратор поднял на вас глаза. Спросите, есть ли здесь врач.",
+          "uk": "Адміністратор підвів на вас очі. Запитайте, чи є тут лікар."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Возможно ли устроить встречу",
-        "uk": "Чи можливо влаштувати зустріч"
+        "ru": "Туалет в торговом центре",
+        "uk": "Туалет у торговому центрі"
       },
       "bodyByLocale": {
-        "ru": "`possible` — «возможный»: друг предлагает встретиться завтра, и вы знаете, что это возможно. `It is possible` — «Это возможно». `door` — «дверь»: вы смотрите план здания и спрашиваете о двери в отмеченной точке: `Is there a door here?` — «Здесь есть дверь?» Порядок вопроса тот же, что для места или человека.",
-        "uk": "`possible` — «можливий»: друг пропонує зустрітися завтра, і ви знаєте, що це можливо. `It is possible` — «Це можливо». `door` — «двері»: ви дивитеся план будівлі й запитуєте про двері в позначеній точці: `Is there a door here?` — «Тут є двері?» Порядок запитання той самий, що для місця чи людини."
+        "ru": "Вы с братом уже час гуляете по большому торговому центру, и ему срочно нужно помыть руки. Вокруг одни магазины, а нужной двери не видно. Рядом стоит охранник в форме. toilet — «туалет». Спросите его: Is there a toilet here? — «Здесь есть туалет?»",
+        "uk": "Ви з братом уже годину гуляєте великим торговим центром, і йому терміново треба помити руки. Навколо самі магазини, а потрібних дверей не видно. Поруч стоїть охоронець у формі. toilet — «туалет». Запитайте його: Is there a toilet here? — «Чи є тут туалет?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-09:intro3:q",
         "promptByLocale": {
-          "ru": "Вы знаете, что встретиться завтра возможно. Скажите «Это возможно».",
-          "uk": "Ви знаєте, що зустрітися завтра можливо. Скажіть «Це можливо»."
+          "ru": "Охранник стоит рядом. Спросите его, есть ли здесь туалет.",
+          "uk": "Охоронець стоїть поруч. Запитайте його, чи є тут туалет."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-09:intro3:r1",
-              "text": "It is possible."
+              "text": "Is there a toilet here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro3:r2",
-              "text": "It is necessary."
+              "text": "There is a toilet here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro3:r3",
-              "text": "It are possible."
+              "text": "Are there a toilet here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-09:intro3:r1",
-              "text": "It is possible."
+              "text": "Is there a toilet here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro3:r2",
-              "text": "It is necessary."
+              "text": "There is a toilet here?"
             },
             {
               "responseId": "en:lesson-04:session-09:intro3:r3",
-              "text": "It are possible."
+              "text": "Are there a toilet here?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы знаете, что встретиться завтра возможно. Скажите «Это возможно».",
-          "uk": "Ви знаєте, що зустрітися завтра можливо. Скажіть «Це можливо»."
+          "ru": "Охранник стоит рядом. Спросите его, есть ли здесь туалет.",
+          "uk": "Охоронець стоїть поруч. Запитайте його, чи є тут туалет."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2a9c20a003f1be065e44ef9d439f1e92853f9761c0ec943bb4919b0dc946a07a"
+  "introFingerprint": "91c800d906f4b5fb90ad982f69b274e2398d97f547600ddd3fca995c8ce95baf"
 }

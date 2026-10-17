@@ -1,0 +1,2385 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-06:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-06:i01:p1",
+              "target": "clinic",
+              "meaningByLocale": {
+                "ru": "клиника",
+                "uk": "клініка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i01:p2",
+              "target": "office",
+              "meaningByLocale": {
+                "ru": "кабинет, офис",
+                "uk": "кабінет, офіс"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i01:p3",
+              "target": "hall",
+              "meaningByLocale": {
+                "ru": "зал, холл",
+                "uk": "зал, хол"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i01:p4",
+              "target": "theatre",
+              "meaningByLocale": {
+                "ru": "театр",
+                "uk": "театр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "clinic",
+            "office",
+            "hall",
+            "theatre"
+          ],
+          "rightColumn": [
+            "клиника",
+            "кабинет, офис",
+            "зал, холл",
+            "театр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:clinic",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clinic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:clinic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clinic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:clinic:audio",
+            "transcript": "clinic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:clinic:r1",
+              "targetText": "clinic",
+              "meaningByLocale": {
+                "ru": "клиника. There is a clinic inside the building — «Внутри здания есть клиника». О месте, где принимают врачи.",
+                "uk": "клініка. There is a clinic inside the building — «Всередині будівлі є клініка». Про місце, де приймають лікарі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clinic",
+            "definitionByLocale": {
+              "ru": "клиника. There is a clinic inside the building — «Внутри здания есть клиника». О месте, где принимают врачи.",
+              "uk": "клініка. There is a clinic inside the building — «Всередині будівлі є клініка». Про місце, де приймають лікарі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на схему у входа и называет место, где принимают врачи, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на схему у входа и называет место, где принимают врачи, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i02:audio",
+            "transcript": "clinic"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "clinic",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет врача. Скажите ей полной фразой: наверху есть клиника.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет врача. Скажите ей полной фразой: наверху есть клиника.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a clinic upstairs.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет врача. Скажите ей полной фразой: наверху есть клиника.",
+            "uk": "Подруга шукає лікаря. Скажіть їй повною фразою: нагорі є клініка."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "clinic",
+            "upstairs"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет врача. Скажите ей полной фразой: наверху есть клиника.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a clinic upstairs.`",
+                "uk": "тут потрібно `is` — `There is a clinic upstairs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:office",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — office",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:office:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — office",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:office:audio",
+            "transcript": "office"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:office:r1",
+              "targetText": "office",
+              "meaningByLocale": {
+                "ru": "кабинет, офис. There is an office upstairs — «Наверху есть кабинет». О комнате, где человек работает за столом.",
+                "uk": "кабінет, офіс. There is an office upstairs — «Нагорі є кабінет». Про кімнату, де людина працює за столом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "office",
+            "definitionByLocale": {
+              "ru": "кабинет, офис. There is an office upstairs — «Наверху есть кабинет». О комнате, где человек работает за столом.",
+              "uk": "кабінет, офіс. There is an office upstairs — «Нагорі є кабінет». Про кімнату, де людина працює за столом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Менеджер работает за столом в комнате с табличкой на двери. Как называется такая комната?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i04:r1",
+            "text": "office"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i04:r2",
+            "text": "bank"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i04:r3",
+            "text": "school"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Менеджер работает за столом в комнате с табличкой на двери. Как называется такая комната?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Менеджер работает за столом в комнате с табличкой на двери. Как называется такая комната?",
+            "uk": "Менеджер працює за столом у кімнаті з табличкою на дверях. Як називається така кімната?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-06:i04:r1",
+              "text": "office"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i04:r2",
+              "text": "bank"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i04:r3",
+              "text": "school"
+            }
+          ],
+          "testedDimension": "Менеджер работает за столом в комнате с табличкой на двери. Как называется такая комната?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i04:r2",
+              "correct": false,
+              "testedDimension": "Менеджер работает за столом в комнате с табличкой на двери. Как называется такая комната?",
+              "feedbackByLocale": {
+                "ru": "bank — это банк, а нужное слово — office.",
+                "uk": "bank — це банк, а потрібне слово — office."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i04:r3",
+              "correct": false,
+              "testedDimension": "Менеджер работает за столом в комнате с табличкой на двери. Как называется такая комната?",
+              "feedbackByLocale": {
+                "ru": "school — это школа, а нужное слово — office.",
+                "uk": "school — це школа, а потрібне слово — office."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i05:r1",
+            "text": "There is an office upstairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i05:r2",
+            "text": "There is a clinic upstairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i05:r3",
+            "text": "There is an office inside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i05:audio",
+            "transcript": "There is an office upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:i05:r1",
+              "targetText": "There is an office upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i05:r2",
+              "targetText": "There is a clinic upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i05:r3",
+              "targetText": "There is an office inside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `an`, а в этом варианте — `a`.",
+                "uk": "У записі — `an`, а в цьому варіанті — `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `upstairs`, а в этом варианте — `inside`.",
+                "uk": "У записі — `upstairs`, а в цьому варіанті — `inside`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:hall",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:hall:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:hall:audio",
+            "transcript": "hall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:hall:r1",
+              "targetText": "hall",
+              "meaningByLocale": {
+                "ru": "зал, холл. There is a big hall inside — «Внутри есть большой зал». О большой комнате для встреч и ожидания.",
+                "uk": "зал, хол. There is a big hall inside — «Всередині є великий зал». Про велику кімнату для зустрічей і очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hall",
+            "definitionByLocale": {
+              "ru": "зал, холл. There is a big hall inside — «Внутри есть большой зал». О большой комнате для встреч и ожидания.",
+              "uk": "зал, хол. There is a big hall inside — «Всередині є великий зал». Про велику кімнату для зустрічей і очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает вдаль, на большую светлую комнату, и называет её, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает вдаль, на большую светлую комнату, и называет её, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i06:audio",
+            "transcript": "hall"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "hall",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i07:audio",
+            "transcript": "There is a big hall inside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a big hall inside.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "big",
+            "hall",
+            "inside"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `There is a big hall inside.`",
+                "uk": "тут потрібно `a` — `There is a big hall inside.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:theatre",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — theatre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:theatre:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — theatre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:theatre:audio",
+            "transcript": "theatre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:theatre:r1",
+              "targetText": "theatre",
+              "meaningByLocale": {
+                "ru": "театр. There is a theatre upstairs — «Наверху есть театр». О месте, где актёры играют спектакли на сцене.",
+                "uk": "театр. There is a theatre upstairs — «Нагорі є театр». Про місце, де актори грають вистави на сцені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "theatre",
+            "definitionByLocale": {
+              "ru": "театр. There is a theatre upstairs — «Наверху есть театр». О месте, где актёры играют спектакли на сцене.",
+              "uk": "театр. There is a theatre upstairs — «Нагорі є театр». Про місце, де актори грають вистави на сцені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вечером вы идёте смотреть спектакль: актёры играют на сцене. Как называется такое место?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i08:r1",
+            "text": "theatre"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i08:r2",
+            "text": "cinema"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i08:r3",
+            "text": "museum"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вечером вы идёте смотреть спектакль: актёры играют на сцене. Как называется такое место?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вечером вы идёте смотреть спектакль: актёры играют на сцене. Как называется такое место?",
+            "uk": "Ввечері ви йдете дивитися виставу: актори грають на сцені. Як називається таке місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-06:i08:r1",
+              "text": "theatre"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i08:r2",
+              "text": "cinema"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i08:r3",
+              "text": "museum"
+            }
+          ],
+          "testedDimension": "Вечером вы идёте смотреть спектакль: актёры играют на сцене. Как называется такое место?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Вечером вы идёте смотреть спектакль: актёры играют на сцене. Как называется такое место?",
+              "feedbackByLocale": {
+                "ru": "cinema — это кинотеатр, а нужное слово — theatre.",
+                "uk": "cinema — це кінотеатр, а потрібне слово — theatre."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Вечером вы идёте смотреть спектакль: актёры играют на сцене. Как называется такое место?",
+              "feedbackByLocale": {
+                "ru": "museum — это музей, а нужное слово — theatre.",
+                "uk": "museum — це музей, а потрібне слово — theatre."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает про спектакли. Скажите ей полной фразой: внутри здания есть театр.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает про спектакли. Скажите ей полной фразой: внутри здания есть театр.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a theatre inside the building.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает про спектакли. Скажите ей полной фразой: внутри здания есть театр.",
+            "uk": "Подруга питає про вистави. Скажіть їй повною фразою: всередині будівлі є театр."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "theatre",
+            "inside",
+            "the",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает про спектакли. Скажите ей полной фразой: внутри здания есть театр.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a theatre inside the building.`",
+                "uk": "тут потрібно `is` — `There is a theatre inside the building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i10:r1",
+            "text": "There is a hall inside the building."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i10:r2",
+            "text": "There is a hall outside the building."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i10:r3",
+            "text": "There is a clinic inside the building."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i10:audio",
+            "transcript": "There is a hall inside the building."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:i10:r1",
+              "targetText": "There is a hall inside the building.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i10:r2",
+              "targetText": "There is a hall outside the building.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i10:r3",
+              "targetText": "There is a clinic inside the building.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `inside`, а в этом варианте — `outside`.",
+                "uk": "У записі — `inside`, а в цьому варіанті — `outside`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `hall`, а в этом варианте — `clinic`.",
+                "uk": "У записі — `hall`, а в цьому варіанті — `clinic`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы впервые говорите подруге про кабинет в здании. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i11:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i11:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i11:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы впервые говорите подруге про кабинет в здании. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы впервые говорите подруге про кабинет в здании. Дополните фразу",
+            "uk": "Ви вперше говорите подрузі про кабінет у будівлі. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ office inside the building.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-06:i11:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i11:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i11:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Вы впервые говорите подруге про кабинет в здании. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Вы впервые говорите подруге про кабинет в здании. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово office начинается с гласного звука, поэтому нужно an, а не a.",
+                "uk": "Слово office починається з голосного звуку, тому потрібно an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Вы впервые говорите подруге про кабинет в здании. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о кабинете впервые, поэтому нужно an, а не the.",
+                "uk": "Ви говорите про кабінет вперше, тому потрібно an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-06:i12:p1",
+              "target": "clinic",
+              "meaningByLocale": {
+                "ru": "клиника",
+                "uk": "клініка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i12:p2",
+              "target": "hall",
+              "meaningByLocale": {
+                "ru": "зал, холл",
+                "uk": "зал, хол"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i12:p3",
+              "target": "theatre",
+              "meaningByLocale": {
+                "ru": "театр",
+                "uk": "театр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i12:p4",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "clinic",
+            "hall",
+            "theatre",
+            "building"
+          ],
+          "rightColumn": [
+            "клиника",
+            "зал, холл",
+            "театр",
+            "здание"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i13:audio",
+            "transcript": "There is an old theatre upstairs."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is an old theatre upstairs.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "an",
+            "old",
+            "theatre",
+            "upstairs"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `There is an old theatre upstairs.`",
+                "uk": "тут потрібно `an` — `There is an old theatre upstairs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, где врач. Скажите ей: «Внутри здания есть клиника».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, где врач. Скажите ей: «Внутри здания есть клиника».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i14:audio",
+            "transcript": "There is a clinic inside the building."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a clinic inside the building.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет тихое место для встречи. Скажите ей полной фразой: наверху есть чистый зал.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет тихое место для встречи. Скажите ей полной фразой: наверху есть чистый зал.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a clean hall upstairs.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет тихое место для встречи. Скажите ей полной фразой: наверху есть чистый зал.",
+            "uk": "Подруга шукає тихе місце для зустрічі. Скажіть їй повною фразою: нагорі є чистий зал."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "clean",
+            "hall",
+            "upstairs"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет тихое место для встречи. Скажите ей полной фразой: наверху есть чистый зал.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `There is a clean hall upstairs.`",
+                "uk": "тут потрібно `a` — `There is a clean hall upstairs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i16:r1",
+            "text": "There is a theatre upstairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i16:r2",
+            "text": "There is a theatre inside."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i16:r3",
+            "text": "There is a hall upstairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i16:audio",
+            "transcript": "There is a theatre upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:i16:r1",
+              "targetText": "There is a theatre upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i16:r2",
+              "targetText": "There is a theatre inside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i16:r3",
+              "targetText": "There is a hall upstairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `upstairs`, а в этом варианте — `inside`.",
+                "uk": "У записі — `upstairs`, а в цьому варіанті — `inside`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `theatre`, а в этом варианте — `hall`.",
+                "uk": "У записі — `theatre`, а в цьому варіанті — `hall`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга ищет менеджера. Скажите ей: «Внутри здания есть кабинет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга ищет менеджера. Скажите ей: «Внутри здания есть кабинет».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i17:audio",
+            "transcript": "There is an office inside the building."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is an office inside the building.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-06:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-06:i01:p1",
+              "target": "clinic",
+              "meaningByLocale": {
+                "ru": "клиника",
+                "uk": "клініка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i01:p2",
+              "target": "office",
+              "meaningByLocale": {
+                "ru": "кабинет, офис",
+                "uk": "кабінет, офіс"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i01:p3",
+              "target": "hall",
+              "meaningByLocale": {
+                "ru": "зал, холл",
+                "uk": "зал, хол"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i01:p4",
+              "target": "theatre",
+              "meaningByLocale": {
+                "ru": "театр",
+                "uk": "театр"
+              }
+            }
+          ],
+          "leftColumn": [
+            "clinic",
+            "office",
+            "hall",
+            "theatre"
+          ],
+          "rightColumn": [
+            "клініка",
+            "кабінет, офіс",
+            "зал, хол",
+            "театр"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:clinic",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clinic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:clinic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clinic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:clinic:audio",
+            "transcript": "clinic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:clinic:r1",
+              "targetText": "clinic",
+              "meaningByLocale": {
+                "ru": "клиника. There is a clinic inside the building — «Внутри здания есть клиника». О месте, где принимают врачи.",
+                "uk": "клініка. There is a clinic inside the building — «Всередині будівлі є клініка». Про місце, де приймають лікарі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clinic",
+            "definitionByLocale": {
+              "ru": "клиника. There is a clinic inside the building — «Внутри здания есть клиника». О месте, где принимают врачи.",
+              "uk": "клініка. There is a clinic inside the building — «Всередині будівлі є клініка». Про місце, де приймають лікарі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на схему біля входу й називає місце, де приймають лікарі, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на схему біля входу й називає місце, де приймають лікарі, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i02:audio",
+            "transcript": "clinic"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "clinic",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає лікаря. Скажіть їй повною фразою: нагорі є клініка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає лікаря. Скажіть їй повною фразою: нагорі є клініка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a clinic upstairs.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет врача. Скажите ей полной фразой: наверху есть клиника.",
+            "uk": "Подруга шукає лікаря. Скажіть їй повною фразою: нагорі є клініка."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "clinic",
+            "upstairs"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає лікаря. Скажіть їй повною фразою: нагорі є клініка.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a clinic upstairs.`",
+                "uk": "тут потрібно `is` — `There is a clinic upstairs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:office",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — office",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:office:audio"
+        ],
+        "accessibilityLabel": "Картка слова — office",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:office:audio",
+            "transcript": "office"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:office:r1",
+              "targetText": "office",
+              "meaningByLocale": {
+                "ru": "кабинет, офис. There is an office upstairs — «Наверху есть кабинет». О комнате, где человек работает за столом.",
+                "uk": "кабінет, офіс. There is an office upstairs — «Нагорі є кабінет». Про кімнату, де людина працює за столом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "office",
+            "definitionByLocale": {
+              "ru": "кабинет, офис. There is an office upstairs — «Наверху есть кабинет». О комнате, где человек работает за столом.",
+              "uk": "кабінет, офіс. There is an office upstairs — «Нагорі є кабінет». Про кімнату, де людина працює за столом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Менеджер працює за столом у кімнаті з табличкою на дверях. Як називається така кімната?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i04:r1",
+            "text": "office"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i04:r2",
+            "text": "bank"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i04:r3",
+            "text": "school"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Менеджер працює за столом у кімнаті з табличкою на дверях. Як називається така кімната?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Менеджер работает за столом в комнате с табличкой на двери. Как называется такая комната?",
+            "uk": "Менеджер працює за столом у кімнаті з табличкою на дверях. Як називається така кімната?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-06:i04:r1",
+              "text": "office"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i04:r2",
+              "text": "bank"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i04:r3",
+              "text": "school"
+            }
+          ],
+          "testedDimension": "Менеджер працює за столом у кімнаті з табличкою на дверях. Як називається така кімната?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i04:r2",
+              "correct": false,
+              "testedDimension": "Менеджер працює за столом у кімнаті з табличкою на дверях. Як називається така кімната?",
+              "feedbackByLocale": {
+                "ru": "bank — это банк, а нужное слово — office.",
+                "uk": "bank — це банк, а потрібне слово — office."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i04:r3",
+              "correct": false,
+              "testedDimension": "Менеджер працює за столом у кімнаті з табличкою на дверях. Як називається така кімната?",
+              "feedbackByLocale": {
+                "ru": "school — это школа, а нужное слово — office.",
+                "uk": "school — це школа, а потрібне слово — office."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i05:r1",
+            "text": "There is an office upstairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i05:r2",
+            "text": "There is a clinic upstairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i05:r3",
+            "text": "There is an office inside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i05:audio",
+            "transcript": "There is an office upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:i05:r1",
+              "targetText": "There is an office upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i05:r2",
+              "targetText": "There is a clinic upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i05:r3",
+              "targetText": "There is an office inside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `an`, а в этом варианте — `a`.",
+                "uk": "У записі — `an`, а в цьому варіанті — `a`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `upstairs`, а в этом варианте — `inside`.",
+                "uk": "У записі — `upstairs`, а в цьому варіанті — `inside`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:hall",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:hall:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:hall:audio",
+            "transcript": "hall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:hall:r1",
+              "targetText": "hall",
+              "meaningByLocale": {
+                "ru": "зал, холл. There is a big hall inside — «Внутри есть большой зал». О большой комнате для встреч и ожидания.",
+                "uk": "зал, хол. There is a big hall inside — «Всередині є великий зал». Про велику кімнату для зустрічей і очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hall",
+            "definitionByLocale": {
+              "ru": "зал, холл. There is a big hall inside — «Внутри есть большой зал». О большой комнате для встреч и ожидания.",
+              "uk": "зал, хол. There is a big hall inside — «Всередині є великий зал». Про велику кімнату для зустрічей і очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує вдалину, на велику світлу кімнату, і називає її, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показує вдалину, на велику світлу кімнату, і називає її, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i06:audio",
+            "transcript": "hall"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "hall",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i07:audio",
+            "transcript": "There is a big hall inside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a big hall inside.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "big",
+            "hall",
+            "inside"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `There is a big hall inside.`",
+                "uk": "тут потрібно `a` — `There is a big hall inside.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:word:theatre",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — theatre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:word:theatre:audio"
+        ],
+        "accessibilityLabel": "Картка слова — theatre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:word:theatre:audio",
+            "transcript": "theatre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:word:theatre:r1",
+              "targetText": "theatre",
+              "meaningByLocale": {
+                "ru": "театр. There is a theatre upstairs — «Наверху есть театр». О месте, где актёры играют спектакли на сцене.",
+                "uk": "театр. There is a theatre upstairs — «Нагорі є театр». Про місце, де актори грають вистави на сцені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "theatre",
+            "definitionByLocale": {
+              "ru": "театр. There is a theatre upstairs — «Наверху есть театр». О месте, где актёры играют спектакли на сцене.",
+              "uk": "театр. There is a theatre upstairs — «Нагорі є театр». Про місце, де актори грають вистави на сцені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ввечері ви йдете дивитися виставу: актори грають на сцені. Як називається таке місце?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i08:r1",
+            "text": "theatre"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i08:r2",
+            "text": "cinema"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i08:r3",
+            "text": "museum"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввечері ви йдете дивитися виставу: актори грають на сцені. Як називається таке місце?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вечером вы идёте смотреть спектакль: актёры играют на сцене. Как называется такое место?",
+            "uk": "Ввечері ви йдете дивитися виставу: актори грають на сцені. Як називається таке місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-06:i08:r1",
+              "text": "theatre"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i08:r2",
+              "text": "cinema"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i08:r3",
+              "text": "museum"
+            }
+          ],
+          "testedDimension": "Ввечері ви йдете дивитися виставу: актори грають на сцені. Як називається таке місце?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Ввечері ви йдете дивитися виставу: актори грають на сцені. Як називається таке місце?",
+              "feedbackByLocale": {
+                "ru": "cinema — это кинотеатр, а нужное слово — theatre.",
+                "uk": "cinema — це кінотеатр, а потрібне слово — theatre."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Ввечері ви йдете дивитися виставу: актори грають на сцені. Як називається таке місце?",
+              "feedbackByLocale": {
+                "ru": "museum — это музей, а нужное слово — theatre.",
+                "uk": "museum — це музей, а потрібне слово — theatre."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає про вистави. Скажіть їй повною фразою: всередині будівлі є театр.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про вистави. Скажіть їй повною фразою: всередині будівлі є театр.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a theatre inside the building.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает про спектакли. Скажите ей полной фразой: внутри здания есть театр.",
+            "uk": "Подруга питає про вистави. Скажіть їй повною фразою: всередині будівлі є театр."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "theatre",
+            "inside",
+            "the",
+            "building"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає про вистави. Скажіть їй повною фразою: всередині будівлі є театр.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a theatre inside the building.`",
+                "uk": "тут потрібно `is` — `There is a theatre inside the building.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i10:r1",
+            "text": "There is a hall inside the building."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i10:r2",
+            "text": "There is a hall outside the building."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i10:r3",
+            "text": "There is a clinic inside the building."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i10:audio",
+            "transcript": "There is a hall inside the building."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:i10:r1",
+              "targetText": "There is a hall inside the building.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i10:r2",
+              "targetText": "There is a hall outside the building.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i10:r3",
+              "targetText": "There is a clinic inside the building.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `inside`, а в этом варианте — `outside`.",
+                "uk": "У записі — `inside`, а в цьому варіанті — `outside`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `hall`, а в этом варианте — `clinic`.",
+                "uk": "У записі — `hall`, а в цьому варіанті — `clinic`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вперше говорите подрузі про кабінет у будівлі. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i11:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i11:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i11:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вперше говорите подрузі про кабінет у будівлі. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы впервые говорите подруге про кабинет в здании. Дополните фразу",
+            "uk": "Ви вперше говорите подрузі про кабінет у будівлі. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ office inside the building.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-06:i11:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i11:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i11:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Ви вперше говорите подрузі про кабінет у будівлі. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Ви вперше говорите подрузі про кабінет у будівлі. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово office начинается с гласного звука, поэтому нужно an, а не a.",
+                "uk": "Слово office починається з голосного звуку, тому потрібно an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Ви вперше говорите подрузі про кабінет у будівлі. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о кабинете впервые, поэтому нужно an, а не the.",
+                "uk": "Ви говорите про кабінет вперше, тому потрібно an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-06:i12:p1",
+              "target": "clinic",
+              "meaningByLocale": {
+                "ru": "клиника",
+                "uk": "клініка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i12:p2",
+              "target": "hall",
+              "meaningByLocale": {
+                "ru": "зал, холл",
+                "uk": "зал, хол"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i12:p3",
+              "target": "theatre",
+              "meaningByLocale": {
+                "ru": "театр",
+                "uk": "театр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-06:i12:p4",
+              "target": "building",
+              "meaningByLocale": {
+                "ru": "здание",
+                "uk": "будівля"
+              }
+            }
+          ],
+          "leftColumn": [
+            "clinic",
+            "hall",
+            "theatre",
+            "building"
+          ],
+          "rightColumn": [
+            "клініка",
+            "зал, хол",
+            "театр",
+            "будівля"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i13:audio",
+            "transcript": "There is an old theatre upstairs."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is an old theatre upstairs.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "an",
+            "old",
+            "theatre",
+            "upstairs"
+          ],
+          "authoredDistractorTokens": [
+            "a"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `an` — `There is an old theatre upstairs.`",
+                "uk": "тут потрібно `an` — `There is an old theatre upstairs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, де лікар. Скажіть їй: «Всередині будівлі є клініка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, де лікар. Скажіть їй: «Всередині будівлі є клініка».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i14:audio",
+            "transcript": "There is a clinic inside the building."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a clinic inside the building.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає тихе місце для зустрічі. Скажіть їй повною фразою: нагорі є чистий зал.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає тихе місце для зустрічі. Скажіть їй повною фразою: нагорі є чистий зал.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a clean hall upstairs.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет тихое место для встречи. Скажите ей полной фразой: наверху есть чистый зал.",
+            "uk": "Подруга шукає тихе місце для зустрічі. Скажіть їй повною фразою: нагорі є чистий зал."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "clean",
+            "hall",
+            "upstairs"
+          ],
+          "authoredDistractorTokens": [
+            "an"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає тихе місце для зустрічі. Скажіть їй повною фразою: нагорі є чистий зал.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `a` — `There is a clean hall upstairs.`",
+                "uk": "тут потрібно `a` — `There is a clean hall upstairs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i16:r1",
+            "text": "There is a theatre upstairs."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i16:r2",
+            "text": "There is a theatre inside."
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i16:r3",
+            "text": "There is a hall upstairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i16:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i16:audio",
+            "transcript": "There is a theatre upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-06:i16:r1",
+              "targetText": "There is a theatre upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i16:r2",
+              "targetText": "There is a theatre inside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i16:r3",
+              "targetText": "There is a hall upstairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-06:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `upstairs`, а в этом варианте — `inside`.",
+                "uk": "У записі — `upstairs`, а в цьому варіанті — `inside`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-06:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `theatre`, а в этом варианте — `hall`.",
+                "uk": "У записі — `theatre`, а в цьому варіанті — `hall`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга шукає менеджера. Скажіть їй: «Всередині будівлі є кабінет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга шукає менеджера. Скажіть їй: «Всередині будівлі є кабінет».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-06:i17:audio",
+            "transcript": "There is an office inside the building."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is an office inside the building.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-06:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:word:clinic",
+      "correctText": "clinic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i02",
+      "correctText": "clinic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i03",
+      "correctText": "There is a clinic upstairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:word:office",
+      "correctText": "office",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i04",
+      "correctText": "office",
+      "correctResponseId": "en:lesson-04:session-06:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i05",
+      "correctText": "There is an office upstairs.",
+      "correctResponseId": "en:lesson-04:session-06:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:word:hall",
+      "correctText": "hall",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i06",
+      "correctText": "hall",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i07",
+      "correctText": "There is a big hall inside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:word:theatre",
+      "correctText": "theatre",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i08",
+      "correctText": "theatre",
+      "correctResponseId": "en:lesson-04:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i09",
+      "correctText": "There is a theatre inside the building.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i10",
+      "correctText": "There is a hall inside the building.",
+      "correctResponseId": "en:lesson-04:session-06:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i11",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-04:session-06:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i12",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i13",
+      "correctText": "There is an old theatre upstairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i14",
+      "correctText": "There is a clinic inside the building.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i15",
+      "correctText": "There is a clean hall upstairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i16",
+      "correctText": "There is a theatre upstairs.",
+      "correctResponseId": "en:lesson-04:session-06:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i17",
+      "correctText": "There is an office inside the building.",
+      "correctResponseId": null
+    }
+  ]
+}

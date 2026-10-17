@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-06",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о наличии клиники и описать знакомые предметы",
-    "uk": "повідомити про наявність клініки й описати знайомі предмети"
+    "ru": "сказать, что одно место есть внутри здания или наверху: There is a clinic inside the building",
+    "uk": "сказати, що одне місце є всередині будівлі або нагорі: There is a clinic inside the building"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Есть клиника",
-        "uk": "Є клініка"
+        "ru": "Врач в этом же доме",
+        "uk": "Лікар у цьому ж будинку"
       },
       "bodyByLocale": {
-        "ru": "`clinic` — «клиника», место, куда приходят на приём к врачу. `There is a clinic` — «Есть клиника». Для одного места нужны `is` и `a`. `There is a clinic here` — «Здесь есть клиника». Одно слово на указателе не расскажет всё о клинике, но поможет её найти.",
-        "uk": "`clinic` — «клініка», місце, куди приходять на прийом до лікаря. `There is a clinic` — «Є клініка». Для одного місця потрібні `is` і `a`. `There is a clinic here` — «Тут є клініка». Одне слово на вказівнику не розповість усе про клініку, але допоможе її знайти."
+        "ru": "Вы пришли в большой дом, где работает много организаций, и ищете врача. У входа висит схема с названиями по этажам, и вы читаете её вместе с подругой. clinic — «клиника». Она не на улице, а в этом же доме: There is a clinic inside the building — «Внутри здания есть клиника».",
+        "uk": "Ви прийшли у великий будинок, де працює багато організацій, і шукаєте лікаря. Біля входу висить схема з назвами за поверхами, і читаєте її з подругою. clinic — «клініка». Вона не на вулиці, а в цьому ж будинку: There is a clinic inside the building — «Всередині будівлі є клініка»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-06:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите, что здесь есть клиника.",
-          "uk": "Повідомте, що тут є клініка."
+          "ru": "Подруга ищет врача. Скажите ей, что внутри здания есть клиника.",
+          "uk": "Подруга шукає лікаря. Скажіть їй, що всередині будівлі є клініка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-06:intro1:r1",
-              "text": "There is a clinic here."
+              "text": "There is a clinic inside the building."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r2",
-              "text": "There are a clinic here."
+              "text": "There is clinic inside the building."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r3",
-              "text": "There is clinic here."
+              "text": "There is a clinic inside building."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-06:intro1:r1",
-              "text": "There is a clinic here."
+              "text": "There is a clinic inside the building."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r2",
-              "text": "There are a clinic here."
+              "text": "There is clinic inside the building."
             },
             {
               "responseId": "en:lesson-04:session-06:intro1:r3",
-              "text": "There is clinic here."
+              "text": "There is a clinic inside building."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что здесь есть клиника.",
-          "uk": "Повідомте, що тут є клініка."
+          "ru": "Подруга ищет врача. Скажите ей, что внутри здания есть клиника.",
+          "uk": "Подруга шукає лікаря. Скажіть їй, що всередині будівлі є клініка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Настоящее или искусственное",
-        "uk": "Справжнє чи штучне"
+        "ru": "Работа на втором этаже",
+        "uk": "Робота на другому поверсі"
       },
       "bodyByLocale": {
-        "ru": "Вспомним `fake` — «ненастоящий, искусственный». Яблоко на выставке сделано из пластика, хотя выглядит как настоящее. О нём: `It is fake` — «Оно ненастоящее». Сокращённо `It’s fake`. Это описание яблока; слово не означает, что оно спрятано или плохо видно.",
-        "uk": "Згадаймо `fake` — «несправжній, штучний». Яблуко на виставці зроблене з пластику, хоча виглядає як справжнє. Про нього: `It is fake` — «Воно несправжнє». Скорочено `It’s fake`. Це опис яблука; слово не означає, що воно сховане або його погано видно."
+        "ru": "Подруга устраивается на работу и ищет кабинет менеджера. На схеме у входа вы видите, что нужная дверь находится на втором этаже. office — «кабинет, офис». Слово начинается с гласного звука, поэтому an: There is an office upstairs — «Наверху есть кабинет».",
+        "uk": "Подруга влаштовується на роботу й шукає кабінет менеджера. На схемі біля входу ви бачите, що потрібні двері розташовані на другому поверсі. office — «кабінет, офіс». Слово починається з голосного звуку, тому an: There is an office upstairs — «Нагорі є кабінет»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-06:intro2:q",
         "promptByLocale": {
-          "ru": "Яблоко на выставке сделано из пластика. Скажите «Оно ненастоящее».",
-          "uk": "Яблуко на виставці зроблене з пластику. Скажіть «Воно несправжнє»."
+          "ru": "Подруга ищет кабинет менеджера. Скажите ей, что наверху есть кабинет.",
+          "uk": "Подруга шукає кабінет менеджера. Скажіть їй, що нагорі є кабінет."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-06:intro2:r1",
-              "text": "It is fake."
+              "text": "There is an office upstairs."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r2",
-              "text": "It is real."
+              "text": "There is a office upstairs."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r3",
-              "text": "It are fake."
+              "text": "There are an office upstairs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-06:intro2:r1",
-              "text": "It is fake."
+              "text": "There is an office upstairs."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r2",
-              "text": "It is real."
+              "text": "There is a office upstairs."
             },
             {
               "responseId": "en:lesson-04:session-06:intro2:r3",
-              "text": "It are fake."
+              "text": "There are an office upstairs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Яблоко на выставке сделано из пластика. Скажите «Оно ненастоящее».",
-          "uk": "Яблуко на виставці зроблене з пластику. Скажіть «Воно несправжнє»."
+          "ru": "Подруга ищет кабинет менеджера. Скажите ей, что наверху есть кабинет.",
+          "uk": "Подруга шукає кабінет менеджера. Скажіть їй, що нагорі є кабінет."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ручка и полосы",
-        "uk": "Ручка й смуги"
+        "ru": "Светлая комната для встреч",
+        "uk": "Світла кімната для зустрічей"
       },
       "bodyByLocale": {
-        "ru": "`pen` — «ручка»: `This is a pen` — «Это ручка». Сообщить о наличии: `There is a pen here` — «Здесь есть ручка». `striped` — «полосатый»: `That bag is striped` — «Та сумка полосатая», показываем на сумку дальше. Полосатая сумка не превращает ручку внутри в полосатую: описываем именно сумку.",
-        "uk": "`pen` — «ручка»: `This is a pen` — «Це ручка». Повідомити про наявність: `There is a pen here` — «Тут є ручка». `striped` — «смугастий»: `That bag is striped` — «Та сумка смугаста», показуємо на сумку далі. Смугаста сумка не перетворює ручку всередині на смугасту: описуємо саме сумку."
+        "ru": "Вы заходите в здание и видите вдали большую светлую комнату с высокими окнами, где люди собираются на встречи. Она в здании одна. hall — «зал, холл». Описание big ставим между a и словом hall: There is a big hall inside — «Внутри есть большой зал».",
+        "uk": "Ви заходите в будівлю й бачите вдалині велику світлу кімнату з високими вікнами, де люди збираються на зустрічі. Вона в будівлі одна. hall — «зал, хол». Опис big ставимо між a і словом hall: There is a big hall inside — «Всередині є великий зал»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-06:intro3:q",
         "promptByLocale": {
-          "ru": "Сумка дальше от вас покрыта полосами. Скажите «Та сумка полосатая».",
-          "uk": "Сумка далі від вас укрита смугами. Скажіть «Та сумка смугаста»."
+          "ru": "Подруга спрашивает, что вы видите вдали. Скажите ей, что внутри есть большой зал.",
+          "uk": "Подруга питає, що ви бачите вдалині. Скажіть їй, що всередині є великий зал."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-06:intro3:r1",
-              "text": "That bag is striped."
+              "text": "There is a big hall inside."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r2",
-              "text": "That bag are striped."
+              "text": "There is big hall inside."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r3",
-              "text": "Those bag is striped."
+              "text": "There is a hall big inside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-06:intro3:r1",
-              "text": "That bag is striped."
+              "text": "There is a big hall inside."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r2",
-              "text": "That bag are striped."
+              "text": "There is big hall inside."
             },
             {
               "responseId": "en:lesson-04:session-06:intro3:r3",
-              "text": "Those bag is striped."
+              "text": "There is a hall big inside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сумка дальше от вас покрыта полосами. Скажите «Та сумка полосатая».",
-          "uk": "Сумка далі від вас укрита смугами. Скажіть «Та сумка смугаста»."
+          "ru": "Подруга спрашивает, что вы видите вдали. Скажите ей, что внутри есть большой зал.",
+          "uk": "Подруга питає, що ви бачите вдалині. Скажіть їй, що всередині є великий зал."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1651e6c0144fa7eb19f1e4d659fdf2dbf670009cbf233d9c492e7c259277ce39"
+  "introFingerprint": "c3fd86bcab41475fd5f90ec3429250ee16cfaec473dbf2316ab3ae2594fb9c82"
 }

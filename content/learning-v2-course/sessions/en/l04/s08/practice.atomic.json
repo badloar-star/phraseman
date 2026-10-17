@@ -1,0 +1,2371 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-08:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-08:i01:p1",
+              "target": "neighbourhood",
+              "meaningByLocale": {
+                "ru": "район (где вы живёте)",
+                "uk": "район (де ви живете)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i01:p2",
+              "target": "crossing",
+              "meaningByLocale": {
+                "ru": "пешеходный переход",
+                "uk": "пішохідний перехід"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i01:p3",
+              "target": "mall",
+              "meaningByLocale": {
+                "ru": "торговый центр",
+                "uk": "торговий центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i01:p4",
+              "target": "beach",
+              "meaningByLocale": {
+                "ru": "пляж",
+                "uk": "пляж"
+              }
+            }
+          ],
+          "leftColumn": [
+            "neighbourhood",
+            "crossing",
+            "mall",
+            "beach"
+          ],
+          "rightColumn": [
+            "район (где вы живёте)",
+            "пешеходный переход",
+            "торговый центр",
+            "пляж"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:neighbourhood",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — neighbourhood",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:neighbourhood:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — neighbourhood",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:neighbourhood:audio",
+            "transcript": "neighbourhood"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:neighbourhood:r1",
+              "targetText": "neighbourhood",
+              "meaningByLocale": {
+                "ru": "район, где вы живёте. The neighbourhood is quiet — «Район тихий». О части города, где стоит ваш дом и живут ваши соседи.",
+                "uk": "район, де ви живете. The neighbourhood is quiet — «Район тихий». Про частину міста, де стоїть ваш дім і живуть ваші сусіди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "neighbourhood",
+            "definitionByLocale": {
+              "ru": "район, где вы живёте. The neighbourhood is quiet — «Район тихий». О части города, где стоит ваш дом и живут ваши соседи.",
+              "uk": "район, де ви живете. The neighbourhood is quiet — «Район тихий». Про частину міста, де стоїть ваш дім і живуть ваші сусіди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка обводит рукой всё вокруг и называет район, где вы живёте, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Соседка обводит рукой всё вокруг и называет район, где вы живёте, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i02:audio",
+            "transcript": "neighbourhood"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "neighbourhood",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка спрашивает, как вам живётся здесь. Скажите ей полной фразой: район тихий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка спрашивает, как вам живётся здесь. Скажите ей полной фразой: район тихий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The neighbourhood is quiet.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает, как вам живётся здесь. Скажите ей полной фразой: район тихий.",
+            "uk": "Сусідка питає, як вам живеться тут. Скажіть їй повною фразою: район тихий."
+          },
+          "orderedTokens": [
+            "The",
+            "neighbourhood",
+            "is",
+            "quiet"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка спрашивает, как вам живётся здесь. Скажите ей полной фразой: район тихий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The neighbourhood is quiet.`",
+                "uk": "тут потрібно `is` — `The neighbourhood is quiet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:crossing",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crossing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:crossing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crossing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:crossing:audio",
+            "transcript": "crossing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:crossing:r1",
+              "targetText": "crossing",
+              "meaningByLocale": {
+                "ru": "пешеходный переход. There are crossings near the school — «Рядом со школой есть пешеходные переходы». О месте с белыми полосами, где люди переходят дорогу.",
+                "uk": "пішохідний перехід. There are crossings near the school — «Поруч зі школою є пішохідні переходи». Про місце з білими смугами, де люди переходять дорогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crossing",
+            "definitionByLocale": {
+              "ru": "пешеходный переход. There are crossings near the school — «Рядом со школой есть пешеходные переходы». О месте с белыми полосами, где люди переходят дорогу.",
+              "uk": "пішохідний перехід. There are crossings near the school — «Поруч зі школою є пішохідні переходи». Про місце з білими смугами, де люди переходять дорогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Люди переходят дорогу там, где на асфальте нарисованы белые полосы. Как называется это место?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i04:r1",
+            "text": "crossing"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i04:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i04:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Люди переходят дорогу там, где на асфальте нарисованы белые полосы. Как называется это место?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Люди переходят дорогу там, где на асфальте нарисованы белые полосы. Как называется это место?",
+            "uk": "Люди переходять дорогу там, де на асфальті намальовані білі смуги. Як називається це місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i04:r1",
+              "text": "crossing"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i04:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i04:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Люди переходят дорогу там, где на асфальте нарисованы белые полосы. Как называется это место?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i04:r2",
+              "correct": false,
+              "testedDimension": "Люди переходят дорогу там, где на асфальте нарисованы белые полосы. Как называется это место?",
+              "feedbackByLocale": {
+                "ru": "road — это дорога, а нужное слово — crossing.",
+                "uk": "road — це дорога, а потрібне слово — crossing."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i04:r3",
+              "correct": false,
+              "testedDimension": "Люди переходят дорогу там, где на асфальте нарисованы белые полосы. Как называется это место?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а нужное слово — crossing.",
+                "uk": "bridge — це міст, а потрібне слово — crossing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i05:r1",
+            "text": "There are crossings near the school."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i05:r2",
+            "text": "There is a crossing near the school."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i05:r3",
+            "text": "There are crossings near the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i05:audio",
+            "transcript": "There are crossings near the school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:i05:r1",
+              "targetText": "There are crossings near the school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i05:r2",
+              "targetText": "There is a crossing near the school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i05:r3",
+              "targetText": "There are crossings near the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `are`, а в этом варианте — `is`.",
+                "uk": "У записі — `are`, а в цьому варіанті — `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `school`, а в этом варианте — `park`.",
+                "uk": "У записі — `school`, а в цьому варіанті — `park`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:mall",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:mall:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:mall:audio",
+            "transcript": "mall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:mall:r1",
+              "targetText": "mall",
+              "meaningByLocale": {
+                "ru": "торговый центр. There is a mall behind the park — «За парком есть торговый центр». О большом здании, где много магазинов.",
+                "uk": "торговий центр. There is a mall behind the park — «За парком є торговий центр». Про велику будівлю, де багато магазинів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mall",
+            "definitionByLocale": {
+              "ru": "торговый центр. There is a mall behind the park — «За парком есть торговый центр». О большом здании, где много магазинов.",
+              "uk": "торговий центр. There is a mall behind the park — «За парком є торговий центр». Про велику будівлю, де багато магазинів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на большое здание с магазинами и называет его, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на большое здание с магазинами и называет его, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i06:audio",
+            "transcript": "mall"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "mall",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i07:audio",
+            "transcript": "There is a mall behind the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a mall behind the park.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "mall",
+            "behind",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "near"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `behind` — `There is a mall behind the park.`",
+                "uk": "тут потрібно `behind` — `There is a mall behind the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:beach",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beach",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:beach:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beach",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:beach:audio",
+            "transcript": "beach"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:beach:r1",
+              "targetText": "beach",
+              "meaningByLocale": {
+                "ru": "пляж. There is a beach near the lake — «Рядом с озером есть пляж». О месте с песком у воды.",
+                "uk": "пляж. There is a beach near the lake — «Поруч з озером є пляж». Про місце з піском біля води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach",
+            "definitionByLocale": {
+              "ru": "пляж. There is a beach near the lake — «Рядом с озером есть пляж». О месте с песком у воды.",
+              "uk": "пляж. There is a beach near the lake — «Поруч з озером є пляж». Про місце з піском біля води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Летом люди загорают на песке у воды. Как называется это место?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i08:r1",
+            "text": "beach"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i08:r2",
+            "text": "lake"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i08:r3",
+            "text": "garden"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Летом люди загорают на песке у воды. Как называется это место?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Летом люди загорают на песке у воды. Как называется это место?",
+            "uk": "Влітку люди засмагають на піску біля води. Як називається це місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i08:r1",
+              "text": "beach"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i08:r2",
+              "text": "lake"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i08:r3",
+              "text": "garden"
+            }
+          ],
+          "testedDimension": "Летом люди загорают на песке у воды. Как называется это место?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Летом люди загорают на песке у воды. Как называется это место?",
+              "feedbackByLocale": {
+                "ru": "lake — это озеро, а нужное слово — beach.",
+                "uk": "lake — це озеро, а потрібне слово — beach."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Летом люди загорают на песке у воды. Как называется это место?",
+              "feedbackByLocale": {
+                "ru": "garden — это сад, а нужное слово — beach.",
+                "uk": "garden — це сад, а потрібне слово — beach."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хочет искупаться. Скажите ей полной фразой: рядом с озером есть пляж.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хочет искупаться. Скажите ей полной фразой: рядом с озером есть пляж.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a beach near the lake.",
+          "localizedMeaning": {
+            "ru": "Подруга хочет искупаться. Скажите ей полной фразой: рядом с озером есть пляж.",
+            "uk": "Подруга хоче скупатися. Скажіть їй повною фразою: поруч з озером є пляж."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "beach",
+            "near",
+            "the",
+            "lake"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хочет искупаться. Скажите ей полной фразой: рядом с озером есть пляж.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a beach near the lake.`",
+                "uk": "тут потрібно `near` — `There is a beach near the lake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы показываете на карте несколько пешеходных переходов рядом с торговым центром. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i10:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i10:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i10:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете на карте несколько пешеходных переходов рядом с торговым центром. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете на карте несколько пешеходных переходов рядом с торговым центром. Дополните фразу",
+            "uk": "Ви показуєте на мапі кілька пішохідних переходів поруч із торговим центром. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There ___ crossings near the mall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i10:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i10:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i10:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы показываете на карте несколько пешеходных переходов рядом с торговым центром. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i10:r2",
+              "correct": false,
+              "testedDimension": "Вы показываете на карте несколько пешеходных переходов рядом с торговым центром. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Переходов несколько, поэтому нужно are, а не is.",
+                "uk": "Переходів кілька, тому потрібно are, а не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i10:r3",
+              "correct": false,
+              "testedDimension": "Вы показываете на карте несколько пешеходных переходов рядом с торговым центром. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "После There слово a не подходит: нужно are, ведь переходов несколько.",
+                "uk": "Після There слово a не підходить: потрібно are, адже переходів кілька."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i11:r1",
+            "text": "The neighbourhood is friendly."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i11:r2",
+            "text": "The neighbourhood is safe."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i11:r3",
+            "text": "A neighbourhood is friendly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i11:audio",
+            "transcript": "The neighbourhood is friendly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:i11:r1",
+              "targetText": "The neighbourhood is friendly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i11:r2",
+              "targetText": "The neighbourhood is safe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i11:r3",
+              "targetText": "A neighbourhood is friendly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `friendly`, а в этом варианте — `safe`.",
+                "uk": "У записі — `friendly`, а в цьому варіанті — `safe`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `The`, а в этом варианте — `A`.",
+                "uk": "У записі — `The`, а в цьому варіанті — `A`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-08:i12:p1",
+              "target": "mall",
+              "meaningByLocale": {
+                "ru": "торговый центр",
+                "uk": "торговий центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i12:p2",
+              "target": "beach",
+              "meaningByLocale": {
+                "ru": "пляж",
+                "uk": "пляж"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i12:p3",
+              "target": "crossing",
+              "meaningByLocale": {
+                "ru": "пешеходный переход",
+                "uk": "пішохідний перехід"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i12:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mall",
+            "beach",
+            "crossing",
+            "park"
+          ],
+          "rightColumn": [
+            "торговый центр",
+            "пляж",
+            "пешеходный переход",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i13:audio",
+            "transcript": "There are benches near the beach."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are benches near the beach.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "benches",
+            "near",
+            "the",
+            "beach"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are benches near the beach.`",
+                "uk": "тут потрібно `are` — `There are benches near the beach.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга просит рассказать про пляж. Скажите ей: «Рядом с озером есть чистый пляж».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга просит рассказать про пляж. Скажите ей: «Рядом с озером есть чистый пляж».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i14:audio",
+            "transcript": "There is a clean beach near the lake."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a clean beach near the lake.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка ищет, где посидеть за чаем. Скажите ей полной фразой: рядом с торговым центром есть кафе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка ищет, где посидеть за чаем. Скажите ей полной фразой: рядом с торговым центром есть кафе.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are cafes near the mall.",
+          "localizedMeaning": {
+            "ru": "Соседка ищет, где посидеть за чаем. Скажите ей полной фразой: рядом с торговым центром есть кафе.",
+            "uk": "Сусідка шукає, де посидіти за чаєм. Скажіть їй повною фразою: поруч із торговим центром є кафе."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "cafes",
+            "near",
+            "the",
+            "mall"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка ищет, где посидеть за чаем. Скажите ей полной фразой: рядом с торговым центром есть кафе.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are cafes near the mall.`",
+                "uk": "тут потрібно `are` — `There are cafes near the mall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рассказываете соседке про старый торговый центр. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i16:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i16:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i16:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете соседке про старый торговый центр. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете соседке про старый торговый центр. Дополните фразу",
+            "uk": "Ви розповідаєте сусідці про старий торговий центр. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ old mall behind the school.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i16:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i16:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i16:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Вы рассказываете соседке про старый торговый центр. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы рассказываете соседке про старый торговый центр. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово old начинается с гласного звука, поэтому нужно an, а не a.",
+                "uk": "Слово old починається з голосного звуку, тому потрібно an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы рассказываете соседке про старый торговый центр. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о торговом центре впервые, поэтому нужно an, а не the.",
+                "uk": "Ви говорите про торговий центр вперше, тому потрібно an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, что рядом с парком. Скажите ей: «Рядом с парком есть торговый центр».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, что рядом с парком. Скажите ей: «Рядом с парком есть торговый центр».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i17:audio",
+            "transcript": "There is a mall near the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a mall near the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-08:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-08:i01:p1",
+              "target": "neighbourhood",
+              "meaningByLocale": {
+                "ru": "район (где вы живёте)",
+                "uk": "район (де ви живете)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i01:p2",
+              "target": "crossing",
+              "meaningByLocale": {
+                "ru": "пешеходный переход",
+                "uk": "пішохідний перехід"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i01:p3",
+              "target": "mall",
+              "meaningByLocale": {
+                "ru": "торговый центр",
+                "uk": "торговий центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i01:p4",
+              "target": "beach",
+              "meaningByLocale": {
+                "ru": "пляж",
+                "uk": "пляж"
+              }
+            }
+          ],
+          "leftColumn": [
+            "neighbourhood",
+            "crossing",
+            "mall",
+            "beach"
+          ],
+          "rightColumn": [
+            "район (де ви живете)",
+            "пішохідний перехід",
+            "торговий центр",
+            "пляж"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:neighbourhood",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — neighbourhood",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:neighbourhood:audio"
+        ],
+        "accessibilityLabel": "Картка слова — neighbourhood",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:neighbourhood:audio",
+            "transcript": "neighbourhood"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:neighbourhood:r1",
+              "targetText": "neighbourhood",
+              "meaningByLocale": {
+                "ru": "район, где вы живёте. The neighbourhood is quiet — «Район тихий». О части города, где стоит ваш дом и живут ваши соседи.",
+                "uk": "район, де ви живете. The neighbourhood is quiet — «Район тихий». Про частину міста, де стоїть ваш дім і живуть ваші сусіди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "neighbourhood",
+            "definitionByLocale": {
+              "ru": "район, где вы живёте. The neighbourhood is quiet — «Район тихий». О части города, где стоит ваш дом и живут ваши соседи.",
+              "uk": "район, де ви живете. The neighbourhood is quiet — «Район тихий». Про частину міста, де стоїть ваш дім і живуть ваші сусіди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка обводить рукою все навколо й називає район, де ви живете, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Сусідка обводить рукою все навколо й називає район, де ви живете, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i02:audio",
+            "transcript": "neighbourhood"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "neighbourhood",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка питає, як вам живеться тут. Скажіть їй повною фразою: район тихий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка питає, як вам живеться тут. Скажіть їй повною фразою: район тихий.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The neighbourhood is quiet.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает, как вам живётся здесь. Скажите ей полной фразой: район тихий.",
+            "uk": "Сусідка питає, як вам живеться тут. Скажіть їй повною фразою: район тихий."
+          },
+          "orderedTokens": [
+            "The",
+            "neighbourhood",
+            "is",
+            "quiet"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка питає, як вам живеться тут. Скажіть їй повною фразою: район тихий.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The neighbourhood is quiet.`",
+                "uk": "тут потрібно `is` — `The neighbourhood is quiet.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:crossing",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crossing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:crossing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crossing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:crossing:audio",
+            "transcript": "crossing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:crossing:r1",
+              "targetText": "crossing",
+              "meaningByLocale": {
+                "ru": "пешеходный переход. There are crossings near the school — «Рядом со школой есть пешеходные переходы». О месте с белыми полосами, где люди переходят дорогу.",
+                "uk": "пішохідний перехід. There are crossings near the school — «Поруч зі школою є пішохідні переходи». Про місце з білими смугами, де люди переходять дорогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crossing",
+            "definitionByLocale": {
+              "ru": "пешеходный переход. There are crossings near the school — «Рядом со школой есть пешеходные переходы». О месте с белыми полосами, где люди переходят дорогу.",
+              "uk": "пішохідний перехід. There are crossings near the school — «Поруч зі школою є пішохідні переходи». Про місце з білими смугами, де люди переходять дорогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Люди переходять дорогу там, де на асфальті намальовані білі смуги. Як називається це місце?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i04:r1",
+            "text": "crossing"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i04:r2",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i04:r3",
+            "text": "bridge"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Люди переходять дорогу там, де на асфальті намальовані білі смуги. Як називається це місце?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Люди переходят дорогу там, где на асфальте нарисованы белые полосы. Как называется это место?",
+            "uk": "Люди переходять дорогу там, де на асфальті намальовані білі смуги. Як називається це місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i04:r1",
+              "text": "crossing"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i04:r2",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i04:r3",
+              "text": "bridge"
+            }
+          ],
+          "testedDimension": "Люди переходять дорогу там, де на асфальті намальовані білі смуги. Як називається це місце?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i04:r2",
+              "correct": false,
+              "testedDimension": "Люди переходять дорогу там, де на асфальті намальовані білі смуги. Як називається це місце?",
+              "feedbackByLocale": {
+                "ru": "road — это дорога, а нужное слово — crossing.",
+                "uk": "road — це дорога, а потрібне слово — crossing."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i04:r3",
+              "correct": false,
+              "testedDimension": "Люди переходять дорогу там, де на асфальті намальовані білі смуги. Як називається це місце?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а нужное слово — crossing.",
+                "uk": "bridge — це міст, а потрібне слово — crossing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i05:r1",
+            "text": "There are crossings near the school."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i05:r2",
+            "text": "There is a crossing near the school."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i05:r3",
+            "text": "There are crossings near the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i05:audio",
+            "transcript": "There are crossings near the school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:i05:r1",
+              "targetText": "There are crossings near the school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i05:r2",
+              "targetText": "There is a crossing near the school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i05:r3",
+              "targetText": "There are crossings near the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `are`, а в этом варианте — `is`.",
+                "uk": "У записі — `are`, а в цьому варіанті — `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `school`, а в этом варианте — `park`.",
+                "uk": "У записі — `school`, а в цьому варіанті — `park`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:mall",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:mall:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:mall:audio",
+            "transcript": "mall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:mall:r1",
+              "targetText": "mall",
+              "meaningByLocale": {
+                "ru": "торговый центр. There is a mall behind the park — «За парком есть торговый центр». О большом здании, где много магазинов.",
+                "uk": "торговий центр. There is a mall behind the park — «За парком є торговий центр». Про велику будівлю, де багато магазинів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mall",
+            "definitionByLocale": {
+              "ru": "торговый центр. There is a mall behind the park — «За парком есть торговый центр». О большом здании, где много магазинов.",
+              "uk": "торговий центр. There is a mall behind the park — «За парком є торговий центр». Про велику будівлю, де багато магазинів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на велику будівлю з магазинами й називає її, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i06:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на велику будівлю з магазинами й називає її, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i06:audio",
+            "transcript": "mall"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "mall",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i07:audio",
+            "transcript": "There is a mall behind the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a mall behind the park.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "mall",
+            "behind",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "near"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `behind` — `There is a mall behind the park.`",
+                "uk": "тут потрібно `behind` — `There is a mall behind the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:word:beach",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beach",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:word:beach:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beach",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:word:beach:audio",
+            "transcript": "beach"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:word:beach:r1",
+              "targetText": "beach",
+              "meaningByLocale": {
+                "ru": "пляж. There is a beach near the lake — «Рядом с озером есть пляж». О месте с песком у воды.",
+                "uk": "пляж. There is a beach near the lake — «Поруч з озером є пляж». Про місце з піском біля води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beach",
+            "definitionByLocale": {
+              "ru": "пляж. There is a beach near the lake — «Рядом с озером есть пляж». О месте с песком у воды.",
+              "uk": "пляж. There is a beach near the lake — «Поруч з озером є пляж». Про місце з піском біля води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Влітку люди засмагають на піску біля води. Як називається це місце?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i08:r1",
+            "text": "beach"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i08:r2",
+            "text": "lake"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i08:r3",
+            "text": "garden"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Влітку люди засмагають на піску біля води. Як називається це місце?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Летом люди загорают на песке у воды. Как называется это место?",
+            "uk": "Влітку люди засмагають на піску біля води. Як називається це місце?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i08:r1",
+              "text": "beach"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i08:r2",
+              "text": "lake"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i08:r3",
+              "text": "garden"
+            }
+          ],
+          "testedDimension": "Влітку люди засмагають на піску біля води. Як називається це місце?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Влітку люди засмагають на піску біля води. Як називається це місце?",
+              "feedbackByLocale": {
+                "ru": "lake — это озеро, а нужное слово — beach.",
+                "uk": "lake — це озеро, а потрібне слово — beach."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Влітку люди засмагають на піску біля води. Як називається це місце?",
+              "feedbackByLocale": {
+                "ru": "garden — это сад, а нужное слово — beach.",
+                "uk": "garden — це сад, а потрібне слово — beach."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хоче скупатися. Скажіть їй повною фразою: поруч з озером є пляж.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хоче скупатися. Скажіть їй повною фразою: поруч з озером є пляж.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a beach near the lake.",
+          "localizedMeaning": {
+            "ru": "Подруга хочет искупаться. Скажите ей полной фразой: рядом с озером есть пляж.",
+            "uk": "Подруга хоче скупатися. Скажіть їй повною фразою: поруч з озером є пляж."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "beach",
+            "near",
+            "the",
+            "lake"
+          ],
+          "authoredDistractorTokens": [
+            "behind"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хоче скупатися. Скажіть їй повною фразою: поруч з озером є пляж.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `near` — `There is a beach near the lake.`",
+                "uk": "тут потрібно `near` — `There is a beach near the lake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви показуєте на мапі кілька пішохідних переходів поруч із торговим центром. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i10:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i10:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i10:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте на мапі кілька пішохідних переходів поруч із торговим центром. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете на карте несколько пешеходных переходов рядом с торговым центром. Дополните фразу",
+            "uk": "Ви показуєте на мапі кілька пішохідних переходів поруч із торговим центром. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There ___ crossings near the mall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i10:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i10:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i10:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви показуєте на мапі кілька пішохідних переходів поруч із торговим центром. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i10:r2",
+              "correct": false,
+              "testedDimension": "Ви показуєте на мапі кілька пішохідних переходів поруч із торговим центром. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Переходов несколько, поэтому нужно are, а не is.",
+                "uk": "Переходів кілька, тому потрібно are, а не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i10:r3",
+              "correct": false,
+              "testedDimension": "Ви показуєте на мапі кілька пішохідних переходів поруч із торговим центром. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "После There слово a не подходит: нужно are, ведь переходов несколько.",
+                "uk": "Після There слово a не підходить: потрібно are, адже переходів кілька."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i11:r1",
+            "text": "The neighbourhood is friendly."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i11:r2",
+            "text": "The neighbourhood is safe."
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i11:r3",
+            "text": "A neighbourhood is friendly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i11:audio",
+            "transcript": "The neighbourhood is friendly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-08:i11:r1",
+              "targetText": "The neighbourhood is friendly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i11:r2",
+              "targetText": "The neighbourhood is safe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i11:r3",
+              "targetText": "A neighbourhood is friendly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `friendly`, а в этом варианте — `safe`.",
+                "uk": "У записі — `friendly`, а в цьому варіанті — `safe`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `The`, а в этом варианте — `A`.",
+                "uk": "У записі — `The`, а в цьому варіанті — `A`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-08:i12:p1",
+              "target": "mall",
+              "meaningByLocale": {
+                "ru": "торговый центр",
+                "uk": "торговий центр"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i12:p2",
+              "target": "beach",
+              "meaningByLocale": {
+                "ru": "пляж",
+                "uk": "пляж"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i12:p3",
+              "target": "crossing",
+              "meaningByLocale": {
+                "ru": "пешеходный переход",
+                "uk": "пішохідний перехід"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-08:i12:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mall",
+            "beach",
+            "crossing",
+            "park"
+          ],
+          "rightColumn": [
+            "торговий центр",
+            "пляж",
+            "пішохідний перехід",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i13:audio",
+            "transcript": "There are benches near the beach."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are benches near the beach.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "benches",
+            "near",
+            "the",
+            "beach"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are benches near the beach.`",
+                "uk": "тут потрібно `are` — `There are benches near the beach.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга просить розповісти про пляж. Скажіть їй: «Поруч з озером є чистий пляж».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга просить розповісти про пляж. Скажіть їй: «Поруч з озером є чистий пляж».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i14:audio",
+            "transcript": "There is a clean beach near the lake."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a clean beach near the lake.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка шукає, де посидіти за чаєм. Скажіть їй повною фразою: поруч із торговим центром є кафе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка шукає, де посидіти за чаєм. Скажіть їй повною фразою: поруч із торговим центром є кафе.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are cafes near the mall.",
+          "localizedMeaning": {
+            "ru": "Соседка ищет, где посидеть за чаем. Скажите ей полной фразой: рядом с торговым центром есть кафе.",
+            "uk": "Сусідка шукає, де посидіти за чаєм. Скажіть їй повною фразою: поруч із торговим центром є кафе."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "cafes",
+            "near",
+            "the",
+            "mall"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка шукає, де посидіти за чаєм. Скажіть їй повною фразою: поруч із торговим центром є кафе.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are cafes near the mall.`",
+                "uk": "тут потрібно `are` — `There are cafes near the mall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви розповідаєте сусідці про старий торговий центр. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-08:i16:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i16:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-08:i16:r3",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте сусідці про старий торговий центр. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете соседке про старый торговый центр. Дополните фразу",
+            "uk": "Ви розповідаєте сусідці про старий торговий центр. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There is ___ old mall behind the school.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-08:i16:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i16:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i16:r3",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Ви розповідаєте сусідці про старий торговий центр. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-08:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте сусідці про старий торговий центр. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово old начинается с гласного звука, поэтому нужно an, а не a.",
+                "uk": "Слово old починається з голосного звуку, тому потрібно an, а не a."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-08:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте сусідці про старий торговий центр. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Вы говорите о торговом центре впервые, поэтому нужно an, а не the.",
+                "uk": "Ви говорите про торговий центр вперше, тому потрібно an, а не the."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-08:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, що поруч із парком. Скажіть їй: «Поруч із парком є торговий центр».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, що поруч із парком. Скажіть їй: «Поруч із парком є торговий центр».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-08:i17:audio",
+            "transcript": "There is a mall near the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a mall near the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-08:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:word:neighbourhood",
+      "correctText": "neighbourhood",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i02",
+      "correctText": "neighbourhood",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i03",
+      "correctText": "The neighbourhood is quiet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:word:crossing",
+      "correctText": "crossing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i04",
+      "correctText": "crossing",
+      "correctResponseId": "en:lesson-04:session-08:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i05",
+      "correctText": "There are crossings near the school.",
+      "correctResponseId": "en:lesson-04:session-08:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:word:mall",
+      "correctText": "mall",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i06",
+      "correctText": "mall",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i07",
+      "correctText": "There is a mall behind the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:word:beach",
+      "correctText": "beach",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i08",
+      "correctText": "beach",
+      "correctResponseId": "en:lesson-04:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i09",
+      "correctText": "There is a beach near the lake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i10",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-04:session-08:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i11",
+      "correctText": "The neighbourhood is friendly.",
+      "correctResponseId": "en:lesson-04:session-08:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i12",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i13",
+      "correctText": "There are benches near the beach.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i14",
+      "correctText": "There is a clean beach near the lake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i15",
+      "correctText": "There are cafes near the mall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i16",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-04:session-08:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:i17",
+      "correctText": "There is a mall near the park.",
+      "correctResponseId": null
+    }
+  ]
+}

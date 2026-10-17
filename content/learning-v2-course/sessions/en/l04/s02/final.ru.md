@@ -1,138 +1,152 @@
-# Английский · Урок 4 · Занятие 2 — В районе есть сад
+# Английский · Урок 4 · Занятие 2 — Сад за домом
 
-**Ситуация.** Вы с другом изучаете новый район. Здесь есть сад и кинотеатр. После прогулки вы отдыхаете и делитесь впечатлениями: спокойны ли вы, довольны ли выбором и уверенно ли себя чувствуете.
+**Ситуация.** Администратор показывает вам новый дом и всё, что есть вокруг него. Вы по-прежнему говорите There is a и название места, а теперь ещё добавляете, где оно: behind the building (за зданием) или near the garden (рядом с садом).
 
-**Что вы освоите:** сообщить о наличии сада и описать своё состояние знакомыми сокращениями
-**Новые слова:** garden
+**Что вы освоите:** сказать, что место есть и где оно: There is a garden behind the building
+**Новые слова:** garden, behind, near, cinema
+**Возвращаются:** pharmacy, library, bakery, building, bench
 
 ---
 
 ## Интро 1
 
-### Есть сад
+### Дверь во двор
 
-`garden` — «сад». `There is a garden` — «Есть сад»: сообщаем о наличии одного места. Нужны `is` и `a`. `There is a garden here` — «Здесь есть сад». Сад на карте поливать не нужно, а настоящий — уже другое дело.
+Администратор ведёт вас по новому дому и открывает дверь во двор. Там зелёная трава, несколько деревьев и скамейка, а вокруг очень тихо. Вы звоните подруге и рассказываете, что увидели. garden — «сад». Вы говорите ей: There is a garden here — «Здесь есть сад».
 
-**Сообщите, что здесь есть сад.**
+**Подруга по телефону спрашивает, что за дверью. Скажите ей, что здесь есть сад.**
 
 - ✅ **There is a garden here.**
-- ❌ There are a garden here. — *Один сад: `There is a garden here`.*
-- ❌ There is garden here. — *Перед одним садом нужно `a`: `a garden`.*
+- ❌ There is garden here. — *Перед названием одного места нужно a: There is a garden here.*
+- ❌ There is an garden here. — *Слово garden начинается с согласного звука, поэтому нужно a: There is a garden here.*
 
 ---
 
 ## Интро 2
 
-### Уверенно и спокойно
+### Сад, которого не видно
 
-`confident` — «уверенный в себе»: вы спокойно общаетесь в новом месте. `I am confident` — «Я уверен в себе». Сокращение: `I am` → `I’m`. `relaxed` — «расслабленный, спокойный»: после прогулки вы отдыхаете, `I am relaxed` — «Я расслаблен». Это состояние человека, а не характеристика сада.
+Подруга приехала к вам в гости, но с улицы сада не видно. Вы объясняете, что он спрятан: чтобы попасть туда, надо обойти весь дом. behind — «за, позади». Вы говорите, где именно сад: There is a garden behind the building — «За зданием есть сад».
 
-**Вы отдохнули и чувствуете себя расслабленно. Скажите «Я расслаблен» с сокращением. **
+**Подруга не видит сад с улицы. Скажите ей, что сад находится за зданием.**
 
-- ✅ **I'm relaxed.**
-- ❌ I'm confident. — *Это уверенность в себе. Здесь говорим о расслабленности: `relaxed`.*
-- ❌ I are relaxed. — *После `I` нужна форма `am`: `I am`, сокращённо `I’m`.*
+- ✅ **There is a garden behind the building.**
+- ❌ There is a garden behind building. — *Здание вы оба знаете, поэтому перед ним нужно the: behind the building.*
+- ❌ There is a garden the building behind. — *Слово behind стоит перед местом: behind the building.*
 
 ---
 
 ## Интро 3
 
-### Довольны выбором
+### Скамейка у сада
 
-`satisfied` — «довольный»: новый район оправдал ваши ожидания. `I am satisfied` — «Я доволен». `cinema` — «кинотеатр»: `There is a cinema here` — «Здесь есть кинотеатр». `apple` — «яблоко»: `This is an apple` — «Это яблоко». Перед гласным звуком в `apple` нужен `an`, а перед `garden` — `a`.
+Вы с подругой долго гуляли, устали и хотите присесть. Подруга спрашивает, где здесь можно отдохнуть. Вы показываете на скамейку, которая стоит совсем близко к саду. near — «рядом, около». Вы говорите: There is a bench near the garden — «Рядом с садом есть скамейка».
 
-**Вы выбрали район и довольны результатом. Скажите «Я доволен».**
+**Подруга ищет, где присесть. Скажите ей, что рядом с садом есть скамейка.**
 
-- ✅ **I am satisfied.**
-- ❌ I am relaxed. — *Это расслабленность, а здесь удовлетворение результатом: `satisfied`.*
-- ❌ I is satisfied. — *После `I` нужно `am`.*
+- ✅ **There is a bench near the garden.**
+- ❌ There a bench near the garden. — *Нужно полное начало There is: There is a bench near the garden.*
+- ❌ There is a bench behind the garden. — *Скамейка стоит рядом с садом, а не за ним: near, а не behind.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Друг достаёт яблоко. Назовите его: «Это яблоко»**
-<!-- interaction_id: en:lesson-04:session-02:i01; family: phrase_builder -->
-Плитки: `apple` `an` `is` `This` `are` → **This is an apple.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is an apple.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-02:i01; family: speed_match -->
+garden — сад · behind — за, позади · near — рядом, около · cinema — кинотеатр
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-02:i02; family: listen_choose -->
-🔊 *garden* → **garden** · cinema · hospital
-- cinema — *В записи первое слово — `garden`, а в этом варианте — `cinema`.*
-- hospital — *В записи первое слово — `garden`, а в этом варианте — `hospital`.*
+**2 · Карточка слова — garden**
+<!-- interaction_id: en:lesson-04:session-02:word:garden; family: word_card -->
+> **garden** — сад. There is a garden here — «Здесь есть сад». О месте с травой, цветами и деревьями при доме.
 
-**3 · Назовите сад одним английским словом**
-<!-- interaction_id: en:lesson-04:session-02:i03; family: context_gap_grammar -->
-___ → **garden** · cinema · library
-- cinema — *Сад — `garden`, а `cinema` — кинотеатр.*
-- library — *Сад — `garden`, а `library` — библиотека.*
+**3 · Администратор открывает дверь во двор и называет место с травой и деревьями, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-02:i02; family: scripted_repeat_compare -->
+🎙 **garden**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-02:i04; family: speed_match -->
-garden — сад · confident — уверенный в себе · relaxed — расслабленный · cinema — кинотеатр
+**4 · Подруга спрашивает, что вы увидели во дворе. Скажите ей полной фразой: здесь есть сад.**
+<!-- interaction_id: en:lesson-04:session-02:i03; family: phrase_builder -->
+Плитки: `garden` `a` `There` `is` `here` `an` → **There is a garden here.**
+*(плитка `an` лишняя: здесь нужно `a` — `There is a garden here.`)*
 
-**5 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-02:i05; family: listen_build_dictation -->
-🔊 *There is a garden.* Плитки: `garden` `a` `is` `There` `are` → **There is a garden.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a garden.`)*
+**5 · Карточка слова — behind**
+<!-- interaction_id: en:lesson-04:session-02:word:behind; family: word_card -->
+> **behind** — за, позади. There is a garden behind the building — «За зданием есть сад». О том, что находится с обратной стороны.
 
-**6 · Друг не знает район. Сообщите «Здесь есть кинотеатр»**
-<!-- interaction_id: en:lesson-04:session-02:i06; family: phrase_builder -->
-Плитки: `here` `cinema` `a` `is` `There` `are` → **There is a cinema here.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a cinema here.`)*
+**6 · Сад находится с обратной стороны дома. Как по-английски «за, позади»?**
+<!-- interaction_id: en:lesson-04:session-02:i04; family: context_gap_grammar -->
+___ → **behind** · inside · outside
+- inside — *inside — это внутри, а нужное слово — behind.*
+- outside — *outside — это снаружи, а нужное слово — behind.*
 
-**7 · Вы уверенно общаетесь с новыми людьми. Скажите «Я уверен в себе» с сокращением**
-<!-- interaction_id: en:lesson-04:session-02:i07; family: scripted_repeat_compare -->
-🎙 **I'm confident.**
+**7 · Послушайте администратора и выберите фразу**
+<!-- interaction_id: en:lesson-04:session-02:i05; family: listen_choose -->
+🔊 *There is a garden behind the building.* → **There is a garden behind the building.** · There is a garden behind the library. · There is a garden inside the building.
+- There is a garden behind the library. — *В записи — `building`, а в этом варианте — `library`.*
+- There is a garden inside the building. — *В записи — `behind`, а в этом варианте — `inside`.*
 
-**8 · Сообщите, что здесь есть один сад**
+**8 · Карточка слова — near**
+<!-- interaction_id: en:lesson-04:session-02:word:near; family: word_card -->
+> **near** — рядом, около. There is a bench near the garden — «Рядом с садом есть скамейка». О том, что стоит совсем близко.
+
+**9 · Администратор показывает на скамейку рядом с вами и называет слово «рядом», а вы повторяете за ним**
+<!-- interaction_id: en:lesson-04:session-02:i06; family: scripted_repeat_compare -->
+🎙 **near**
+
+**10 · Послушайте администратора и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-02:i07; family: listen_build_dictation -->
+🔊 *There is a bench near the garden.* Плитки: `bench` `near` `the` `garden` `a` `There` `is` `behind` → **There is a bench near the garden.**
+*(плитка `behind` лишняя: здесь нужно `near` — `There is a bench near the garden.`)*
+
+**11 · Карточка слова — cinema**
+<!-- interaction_id: en:lesson-04:session-02:word:cinema; family: word_card -->
+> **cinema** — кинотеатр. There is a cinema near the library — «Рядом с библиотекой есть кинотеатр». О месте, где показывают фильмы на большом экране.
+
+**12 · Вечером вы хотите посмотреть фильм на большом экране. Как называется такое место?**
 <!-- interaction_id: en:lesson-04:session-02:i08; family: context_gap_grammar -->
-There is ___ garden here. → **a** · an · are
-- an — *`garden` начинается с согласного звука: `a garden`.*
-- are — *Здесь нужен артикль `a`; `is` уже стоит после `There`.*
+___ → **cinema** · library · bakery
+- library — *library — это библиотека, а нужное слово — cinema.*
+- bakery — *bakery — это пекарня, а нужное слово — cinema.*
 
-**9 · Послушайте, как человек описывает своё состояние после выбора района**
-<!-- interaction_id: en:lesson-04:session-02:i09; family: listen_choose -->
-🔊 *I am satisfied.* → **I am satisfied.** · I am relaxed. · I am confident.
-- I am relaxed. — *В записи последнее слово — `satisfied`, а в этом варианте — `relaxed`.*
-- I am confident. — *В записи последнее слово — `satisfied`, а в этом варианте — `confident`.*
+**13 · Подруга ищет, где купить хлеб. Скажите ей полной фразой: рядом с садом есть пекарня.**
+<!-- interaction_id: en:lesson-04:session-02:i09; family: phrase_builder -->
+Плитки: `bakery` `near` `the` `garden` `a` `There` `is` `behind` → **There is a bakery near the garden.**
+*(плитка `behind` лишняя: здесь нужно `near` — `There is a bakery near the garden.`)*
 
-**10 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-02:i10; family: speed_match -->
-satisfied — довольный · apple — яблоко · cinema — кинотеатр · relaxed — расслабленный
+**14 · Послушайте подругу и выберите фразу**
+<!-- interaction_id: en:lesson-04:session-02:i10; family: listen_choose -->
+🔊 *There is a cinema near the library.* → **There is a cinema near the library.** · There is a cinema behind the library. · There is a pharmacy near the library.
+- There is a cinema behind the library. — *В записи — `near`, а в этом варианте — `behind`.*
+- There is a pharmacy near the library. — *В записи — `cinema`, а в этом варианте — `pharmacy`.*
 
-**11 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-04:session-02:i11; family: listen_build_dictation -->
-🔊 *This is a garden.* Плитки: `garden` `a` `is` `This` `are` → **This is a garden.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is a garden.`)*
+**15 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-02:i11; family: speed_match -->
+garden — сад · near — рядом, около · bench — скамейка · tree — дерево
 
-**12 · Вы отдохнули после прогулки. Скажите «Я расслаблен» полной формой**
-<!-- interaction_id: en:lesson-04:session-02:i12; family: phrase_builder -->
-Плитки: `relaxed` `am` `I` `is` → **I am relaxed.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am relaxed.`)*
+**16 · Вы впервые говорите подруге о старом кинотеатре. Дополните фразу**
+<!-- interaction_id: en:lesson-04:session-02:i12; family: context_gap_grammar -->
+There is ___ old cinema near the garden. → **an** · a · the
+- a — *Слово old начинается с гласного звука, поэтому нужно an, а не a.*
+- the — *Вы говорите о кинотеатре впервые, поэтому нужно an, а не the.*
 
-**13 · Район оправдал ожидания. Скажите «Я доволен» с сокращением**
-<!-- interaction_id: en:lesson-04:session-02:i13; family: scripted_repeat_compare -->
-🎙 **I'm satisfied.**
+**17 · Послушайте администратора и соберите фразу**
+<!-- interaction_id: en:lesson-04:session-02:i13; family: listen_build_dictation -->
+🔊 *There is a hospital behind the building.* Плитки: `hospital` `behind` `the` `building` `a` `There` `is` `near` → **There is a hospital behind the building.**
+*(плитка `near` лишняя: здесь нужно `behind` — `There is a hospital behind the building.`)*
 
-**14 · Вы показываете дальше на карте: там есть сад**
-<!-- interaction_id: en:lesson-04:session-02:i14; family: context_gap_grammar -->
-There ___ a garden there. → **is** · are · am
-- are — *Один сад: `There is a garden there`.*
-- am — *Для наличия одного сада нужно `There is`.*
+**18 · Подруга просит повторить, где сад. Скажите ей: «За зданием есть сад».**
+<!-- interaction_id: en:lesson-04:session-02:i14; family: scripted_repeat_compare -->
+🎙 **There is a garden behind the building.**
 
-**15 · Послушайте описание состояния человека**
-<!-- interaction_id: en:lesson-04:session-02:i15; family: listen_choose -->
-🔊 *I am confident.* → **I am confident.** · I am satisfied. · I am relaxed.
-- I am satisfied. — *В записи последнее слово — `confident`, а в этом варианте — `satisfied`.*
-- I am relaxed. — *В записи последнее слово — `confident`, а в этом варианте — `relaxed`.*
+**19 · Вы показываете подруге большую скамейку. Скажите ей полной фразой: рядом с деревом есть большая скамейка.**
+<!-- interaction_id: en:lesson-04:session-02:i15; family: phrase_builder -->
+Плитки: `bench` `big` `near` `the` `tree` `a` `There` `is` `behind` → **There is a big bench near the tree.**
+*(плитка `behind` лишняя: здесь нужно `near` — `There is a big bench near the tree.`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-02:i16; family: speed_match -->
-garden — сад · confident — уверенный в себе · satisfied — довольный · apple — яблоко
+cinema — кинотеатр · behind — за, позади · garden — сад · near — рядом, около
 
-**17 · Вы приехали в гости в другой район и увидели сад. Друг ещё не знает о нём. Сообщите «Здесь есть сад»**
+**21 · Подруга спрашивает, что рядом с садом. Скажите ей: «Рядом с садом есть кинотеатр».**
 <!-- interaction_id: en:lesson-04:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There is a garden here.**
-
+🎙 **There is a cinema near the garden.**

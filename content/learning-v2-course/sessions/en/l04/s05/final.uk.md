@@ -1,138 +1,154 @@
-# Англійська · Урок 4 · Заняття 5 — Супермаркет на карті
+# Англійська · Урок 4 · Заняття 5 — Супермаркет і вулиці
 
-**Ситуація.** Ви з другом плануєте день у новому районі: спочатку музей, потім покупки. Ви розгортаєте карту й знаходите супермаркет. У музеї друг сприймає справжнє яблуко за штучне, і ви пояснюєте різницю.
+**Ситуація.** Ви розбираєте листівку доставки з планом району й відрізняєте одне місце від кількох. Одне місце — There is a і назва. Кілька місць — There are і назва з s на кінці, без a.
 
-**Що ви опануєте:** повідомити про наявність супермаркету й назвати знайомі предмети з this та that
-**Нові слова:** supermarket
+**Що ви опануєте:** відрізнити одне місце від кількох: There is a cafe і There are cafes
+**Нові слова:** supermarket, street, cafe, road
+**Повертаються:** market, bridge, post office, near, behind
 
 ---
 
 ## Інтро 1
 
-### Місце для покупок
+### Продукти на тиждень
 
-`supermarket` — «супермаркет»: великий магазин із продуктами та іншими товарами. `There is a supermarket` — «Є супермаркет». Один супермаркет — `is` і `a`. `There is a supermarket here` — «Тут є супермаркет». Слово довге, але другого візка для нього не потрібно.
+За листівкою доставки ви вибираєте, де купити продукти на тиждень. Подруга показує на найбільший магазин на плані: там є майже все, від хліба до мила. supermarket — «супермаркет». Магазин один: There is a supermarket nearby — «Поруч є супермаркет».
 
-**Повідомте, що в районі є супермаркет.**
+**Подруга питає, де купити продукти на тиждень. Скажіть їй, що поруч є супермаркет.**
 
-- ✅ **There is a supermarket.**
-- ❌ There are a supermarket. — *Один супермаркет: `There is a supermarket`.*
-- ❌ There is supermarket. — *Перед одним місцем потрібне `a`: `a supermarket`.*
+- ✅ **There is a supermarket nearby.**
+- ❌ There is supermarket nearby. — *Перед назвою одного місця потрібно a: There is a supermarket nearby.*
+- ❌ There are a supermarket nearby. — *Супермаркет один, тому потрібно is: There is a supermarket nearby.*
 
 ---
 
 ## Інтро 2
 
-### Карта й музей
+### Де гуляти
 
-`map` — «карта»: `This is a map` — «Це карта», показуємо поруч. `That is a map` — «То — карта», показуємо далі. `museum` — «музей»: `There is a museum here` — «Тут є музей». Перші фрази називають предмет, а `There is` повідомляє, що місце є.
+Сусідка питає, де у вашому районі приємно гуляти пішки. На плані з листівки ви повільно ведете пальцем кількома довгими вулицями з деревами, де майже немає машин. street — «вулиця». Вулиць кілька: There are quiet streets here — «Тут є тихі вулиці».
 
-**Ви тримаєте карту й показуєте її другові. Скажіть «Це карта».**
+**Сусідка питає, де можна гуляти. Скажіть їй, що тут є тихі вулиці.**
 
-- ✅ **This is a map.**
-- ❌ These are a map. — *Карта одна: `This is a map`.*
-- ❌ This are a map. — *З `This` потрібне `is`.*
+- ✅ **There are quiet streets here.**
+- ❌ There is quiet streets here. — *Вулиць кілька, тому потрібно are: There are quiet streets here.*
+- ❌ There are quiet street here. — *Вулиць кілька, тому потрібно streets: There are quiet streets here.*
 
 ---
 
 ## Інтро 3
 
-### Справжнє яблуко
+### Чай після покупок
 
-`real` — «справжній»: перед вами справжнє яблуко, а не штучне. Про нього: `It is real` — «Воно справжнє». Скорочено: `It’s real`. Це характеристика предмета; вона не повідомляє, де він розташований.
+Після покупок ви з подругою втомилися. На розі ви бачите затишне місце, де можна випити чаю й посидіти. Воно одне й стоїть прямо біля супермаркету. cafe — «кафе». Місце одне: There is a cafe near the supermarket — «Поруч із супермаркетом є кафе».
 
-**Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням.**
+**Подруга хоче випити чаю. Скажіть їй, що поруч із супермаркетом є кафе.**
 
-- ✅ **It's real.**
-- ❌ It are real. — *З `It` потрібне `is`, скорочення `It’s`.*
-- ❌ It's hidden. — *`hidden` — прихований, а тут справжнє: `real`.*
+- ✅ **There is a cafe near the supermarket.**
+- ❌ There is an cafe near the supermarket. — *Слово cafe починається з приголосного звуку, тому потрібно a: There is a cafe near the supermarket.*
+- ❌ There is a cafe near supermarket. — *Супермаркет ви обоє знаєте, тому перед ним потрібно the: near the supermarket.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ви показуєте карту у своїх руках: «Це карта»**
-<!-- interaction_id: en:lesson-04:session-05:i01; family: phrase_builder -->
-Плитки: `map` `a` `is` `This` `are` → **This is a map.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a map.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-05:i01; family: speed_match -->
+supermarket — супермаркет · street — вулиця · cafe — кафе · road — дорога
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-05:i02; family: listen_choose -->
-🔊 *supermarket* → **supermarket** · museum · garden
-- museum — *У записі перше слово — `supermarket`, а в цьому варіанті — `museum`.*
-- garden — *У записі перше слово — `supermarket`, а в цьому варіанті — `garden`.*
+**2 · Картка слова — supermarket**
+<!-- interaction_id: en:lesson-04:session-05:word:supermarket; family: word_card -->
+> **supermarket** — супермаркет. There is a supermarket nearby — «Поруч є супермаркет». Про великий магазин, де є майже всі продукти.
 
-**3 · Назвіть супермаркет одним англійським словом**
-<!-- interaction_id: en:lesson-04:session-05:i03; family: context_gap_grammar -->
-___ → **supermarket** · museum · bank
-- museum — *`museum` — музей; супермаркет — `supermarket`.*
-- bank — *`bank` — банк; супермаркет — `supermarket`.*
+**3 · Подруга показує на найбільший магазин на плані й називає його, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-05:i02; family: scripted_repeat_compare -->
+🎙 **supermarket**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-05:i04; family: speed_match -->
-supermarket — супермаркет · real — справжній · map — карта · museum — музей
+**4 · Подруга питає, де купити продукти. Скажіть їй повною фразою: тут є супермаркет.**
+<!-- interaction_id: en:lesson-04:session-05:i03; family: phrase_builder -->
+Плитки: `supermarket` `a` `There` `is` `here` `are` → **There is a supermarket here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a supermarket here.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-05:i05; family: listen_build_dictation -->
-🔊 *There is a supermarket.* Плитки: `supermarket` `a` `is` `There` `are` → **There is a supermarket.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a supermarket.`)*
+**5 · Картка слова — street**
+<!-- interaction_id: en:lesson-04:session-05:word:street; family: word_card -->
+> **street** — вулиця. There are quiet streets here — «Тут є тихі вулиці». Про вулицю з будинками, де живуть і ходять люди.
 
-**6 · Друг не знає району. Повідомте «Тут є музей»**
-<!-- interaction_id: en:lesson-04:session-05:i06; family: phrase_builder -->
-Плитки: `here` `museum` `a` `is` `There` `are` → **There is a museum here.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a museum here.`)*
+**6 · Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?**
+<!-- interaction_id: en:lesson-04:session-05:i04; family: context_gap_grammar -->
+___ → **street** · bridge · market
+- bridge — *bridge — це міст, а потрібне слово — street.*
+- market — *market — це ринок, а потрібне слово — street.*
 
-**7 · Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-05:i07; family: scripted_repeat_compare -->
-🎙 **It's real.**
+**7 · Послухайте сусідку й виберіть фразу**
+<!-- interaction_id: en:lesson-04:session-05:i05; family: listen_choose -->
+🔊 *There are streets here.* → **There are streets here.** · There is a street here. · There are streets nearby.
+- There is a street here. — *У записі — `are`, а в цьому варіанті — `is`.*
+- There are streets nearby. — *У записі — `here`, а в цьому варіанті — `nearby`.*
 
-**8 · Повідомте про наявність одного супермаркету**
+**8 · Картка слова — cafe**
+<!-- interaction_id: en:lesson-04:session-05:word:cafe; family: word_card -->
+> **cafe** — кафе. There is a cafe near the supermarket — «Поруч із супермаркетом є кафе». Про місце, де п’ють чай і каву.
+
+**9 · Сусідка показує на затишне місце, де п’ють чай, і називає його, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-05:i06; family: scripted_repeat_compare -->
+🎙 **cafe**
+
+**10 · Послухайте сусідку й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-05:i07; family: listen_build_dictation -->
+🔊 *There is a cafe here.* Плитки: `cafe` `here` `a` `There` `is` `are` → **There is a cafe here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a cafe here.`)*
+
+**11 · Картка слова — road**
+<!-- interaction_id: en:lesson-04:session-05:word:road; family: word_card -->
+> **road** — дорога. There are roads near the bridge — «Поруч із мостом є дороги». Про широку дорогу, по якій їдуть машини й автобуси.
+
+**12 · По ній з міста в місто їдуть машини й автобуси. Як вона називається?**
 <!-- interaction_id: en:lesson-04:session-05:i08; family: context_gap_grammar -->
-There is ___ supermarket here. → **a** · an · are
-- an — *Перший звук у `supermarket` приголосний: `a supermarket`.*
-- are — *`is` уже є; перед одним місцем потрібне `a`.*
+___ → **road** · bus · bench
+- bus — *bus — це автобус, а потрібне слово — road.*
+- bench — *bench — це лавка, а потрібне слово — road.*
 
-**9 · Послухайте, що людина говорить про яблуко**
-<!-- interaction_id: en:lesson-04:session-05:i09; family: listen_choose -->
-🔊 *It is real.* → **It is real.** · It is hidden. · It is visible.
-- It is hidden. — *У записі останнє слово — `real`, а в цьому варіанті — `hidden`.*
-- It is visible. — *У записі останнє слово — `real`, а в цьому варіанті — `visible`.*
+**13 · Подруга шукає, де випити чаю. Скажіть їй повною фразою: поруч є кафе.**
+<!-- interaction_id: en:lesson-04:session-05:i09; family: phrase_builder -->
+Плитки: `cafes` `nearby` `There` `are` `is` → **There are cafes nearby.**
+*(плитка `is` зайва: тут потрібно `are` — `There are cafes nearby.`)*
 
-**10 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-05:i10; family: speed_match -->
-supermarket — супермаркет · museum — музей · here — тут · there — там
+**14 · Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу**
+<!-- interaction_id: en:lesson-04:session-05:i10; family: context_gap_grammar -->
+There ___ a cafe near the supermarket. → **is** · are · am
+- are — *Кафе одне (далі стоїть a), тому потрібно is, а не are.*
+- am — *Слово am кажуть лише про себе: I am. Про місце потрібно is.*
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-05:i11; family: listen_build_dictation -->
-🔊 *That is a map.* Плитки: `map` `a` `is` `That` `are` → **That is a map.**
-*(плитка `are` зайва: тут потрібно `is` — `That is a map.`)*
-
-**12 · Друг не знає, що за будівля поруч. Назвіть її: «Це супермаркет»**
-<!-- interaction_id: en:lesson-04:session-05:i12; family: phrase_builder -->
-Плитки: `supermarket` `a` `is` `This` `are` → **This is a supermarket.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a supermarket.`)*
-
-**13 · Друг шукає карту. Ви побачили її на стійці. Повідомте «Тут є карта»**
-<!-- interaction_id: en:lesson-04:session-05:i13; family: scripted_repeat_compare -->
-🎙 **There is a map here.**
-
-**14 · Ви показуєте інший район на карті. Повідомте «Там є супермаркет»**
-<!-- interaction_id: en:lesson-04:session-05:i14; family: context_gap_grammar -->
-There ___ a supermarket there. → **is** · are · am
-- are — *Один супермаркет: `There is a supermarket there`. Останнє `there` — «там».*
-- am — *Для наявності одного місця потрібне `There is`.*
-
-**15 · Послухайте, яке місце є в районі**
-<!-- interaction_id: en:lesson-04:session-05:i15; family: listen_choose -->
-🔊 *There is a museum.* → **There is a museum.** · There is a supermarket. · There is a bank.
-- There is a supermarket. — *У записі останнє слово — `museum`, а в цьому варіанті — `supermarket`.*
-- There is a bank. — *У записі останнє слово — `museum`, а в цьому варіанті — `bank`.*
+**15 · Послухайте подругу й виберіть фразу**
+<!-- interaction_id: en:lesson-04:session-05:i11; family: listen_choose -->
+🔊 *There is a supermarket near the road.* → **There is a supermarket near the road.** · There are supermarkets near the road. · There is a supermarket near the street.
+- There are supermarkets near the road. — *У записі — `is`, а в цьому варіанті — `are`.*
+- There is a supermarket near the street. — *У записі — `road`, а в цьому варіанті — `street`.*
 
 **16 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-05:i16; family: speed_match -->
-supermarket — супермаркет · real — справжній · map — карта · museum — музей
+<!-- interaction_id: en:lesson-04:session-05:i12; family: speed_match -->
+supermarket — супермаркет · cafe — кафе · street — вулиця · market — ринок
 
-**17 · В іншій подорожі ви побачили супермаркет. Друг ще не знає про нього. Повідомте «Тут є супермаркет»**
+**17 · Послухайте сусідку й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-05:i13; family: listen_build_dictation -->
+🔊 *There are roads near the supermarket.* Плитки: `roads` `near` `the` `supermarket` `There` `are` `is` → **There are roads near the supermarket.**
+*(плитка `is` зайва: тут потрібно `are` — `There are roads near the supermarket.`)*
+
+**18 · Подруга питає, де можна випити чаю. Скажіть їй: «За супермаркетом є кафе».**
+<!-- interaction_id: en:lesson-04:session-05:i14; family: scripted_repeat_compare -->
+🎙 **There is a cafe behind the supermarket.**
+
+**19 · Сусідка шукає тихі місця для прогулянки. Скажіть їй повною фразою: за ринком є вулиці.**
+<!-- interaction_id: en:lesson-04:session-05:i15; family: phrase_builder -->
+Плитки: `streets` `behind` `the` `market` `There` `are` `is` → **There are streets behind the market.**
+*(плитка `is` зайва: тут потрібно `are` — `There are streets behind the market.`)*
+
+**20 · Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу**
+<!-- interaction_id: en:lesson-04:session-05:i16; family: context_gap_grammar -->
+There are ___ near the street. → **cafes** · cafe · a
+- cafe — *Кафе кілька, тому потрібно cafes з s на кінці.*
+- a — *Після There are слово a не ставимо: потрібно cafes.*
+
+**21 · Подруга питає, що поруч із супермаркетом. Скажіть їй: «Поруч із супермаркетом є кафе».**
 <!-- interaction_id: en:lesson-04:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There is a supermarket here.**
-
+🎙 **There are cafes near the supermarket.**

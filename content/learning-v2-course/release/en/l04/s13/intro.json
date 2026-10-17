@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-13",
   "learningOutcomeByLocale": {
-    "ru": "спросить о такси, назвать супермаркет и окно, объяснить общий доступ",
-    "uk": "запитати про таксі, назвати супермаркет і вікно, пояснити загальний доступ"
+    "ru": "отличить вопрос от сообщения по порядку слов: Is there a taxi? и There is a taxi.",
+    "uk": "відрізнити запитання від повідомлення за порядком слів: Is there a taxi? і There is a taxi."
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одно такси или несколько",
-        "uk": "Одне таксі чи кілька"
+        "ru": "Пустая стоянка",
+        "uk": "Порожня стоянка"
       },
       "bodyByLocale": {
-        "ru": "`taxi` — «такси». Одна машина — `a taxi`, несколько — `taxis`. По-русски слово «такси» не меняется, а по-английски у нескольких машин появляется `s`. `Is there a taxi here?` — «Здесь есть такси?» `Are there taxis here?` — тот же вопрос о нескольких машинах. Даже если вы купили полмагазина, одна большая машина остаётся `a taxi`.",
-        "uk": "`taxi` — «таксі». Одна машина — `a taxi`, кілька — `taxis`. Українською слово «таксі» не змінюється, а англійською в кількох машин з’являється `s`. `Is there a taxi here?` — «Тут є таксі?» `Are there taxis here?` — те саме запитання про кілька машин. Навіть якщо ви купили пів магазину, одна велика машина залишається `a taxi`."
+        "ru": "Вы с подругой вышли из магазина с тяжёлыми сумками, а на стоянке пусто. Вы ищете глазами машину, которая довезёт вас домой. taxi — «такси». Одна стоит у банка, на крыше горит огонёк. Подруга просит сказать, что вы видите: There is a taxi near the bank. — «Рядом с банком есть такси».",
+        "uk": "Ви з подругою вийшли з магазину з важкими сумками, а на стоянці порожньо. Ви шукаєте очима машину, яка довезе вас додому. taxi — «таксі». Одне стоїть біля банку, на даху світиться вогник. Подруга просить сказати, що ви бачите: There is a taxi near the bank. — «Поруч із банком є таксі»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-13:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли здесь одна машина такси.",
-          "uk": "Запитайте, чи є тут одна машина таксі."
+          "ru": "Подруга ждёт ответа. Скажите ей, что рядом с банком есть такси.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що поруч із банком є таксі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-13:intro1:r1",
-              "text": "Is there a taxi here?"
+              "text": "There is a taxi near the bank."
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r2",
-              "text": "Are there a taxi here?"
+              "text": "Is there a taxi near the bank?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r3",
-              "text": "Is there taxis here?"
+              "text": "There are a taxi near the bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-13:intro1:r1",
-              "text": "Is there a taxi here?"
+              "text": "There is a taxi near the bank."
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r2",
-              "text": "Are there a taxi here?"
+              "text": "Is there a taxi near the bank?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro1:r3",
-              "text": "Is there taxis here?"
+              "text": "There are a taxi near the bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли здесь одна машина такси.",
-          "uk": "Запитайте, чи є тут одна машина таксі."
+          "ru": "Подруга ждёт ответа. Скажите ей, что рядом с банком есть такси.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що поруч із банком є таксі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Магазин и окно",
-        "uk": "Магазин і вікно"
+        "ru": "Брат прилетает",
+        "uk": "Брат прилітає"
       },
       "bodyByLocale": {
-        "ru": "`supermarket` — «супермаркет». `That is a supermarket` — «То здание — супермаркет». `window` — «окно». `There is a window here` — «Здесь есть окно». Когда называем дальнее здание, подходит `That is`; когда сообщаем, что в этом месте есть окно, — `There is`.",
-        "uk": "`supermarket` — «супермаркет». `That is a supermarket` — «Та будівля — супермаркет». `window` — «вікно». `There is a window here` — «Тут є вікно». Коли називаємо далеку будівлю, підходить `That is`; коли повідомляємо, що в цьому місці є вікно, — `There is`."
+        "ru": "Завтра к вам прилетает брат, и вы хотите встретить его сами. Дорогу вы не знаете, поэтому подходите к прохожему с картой в руках. airport — «аэропорт». Слово начинается с гласного звука, поэтому перед ним an: Is there an airport near the city? — «Есть ли аэропорт рядом с городом?»",
+        "uk": "Завтра до вас прилітає брат, і ви хочете зустріти його самі. Дороги ви не знаєте, тому підходите до перехожого з мапою в руках. airport — «аеропорт». Слово починається з голосного звуку, тому перед ним an: Is there an airport near the city? — «Чи є аеропорт поруч із містом?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-13:intro2:q",
         "promptByLocale": {
-          "ru": "Вы указываете на дальнее здание. Скажите «То здание — супермаркет».",
-          "uk": "Ви вказуєте на далеку будівлю. Скажіть «Та будівля — супермаркет»."
+          "ru": "Прохожий смотрит на вашу карту. Спросите его, есть ли аэропорт рядом с городом.",
+          "uk": "Перехожий дивиться на вашу мапу. Запитайте його, чи є аеропорт поруч із містом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-13:intro2:r1",
-              "text": "That is a supermarket."
+              "text": "Is there an airport near the city?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r2",
-              "text": "That are a supermarket."
+              "text": "There is an airport near the city?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r3",
-              "text": "Those are supermarkets."
+              "text": "Is there a airport near the city?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-13:intro2:r1",
-              "text": "That is a supermarket."
+              "text": "Is there an airport near the city?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r2",
-              "text": "That are a supermarket."
+              "text": "There is an airport near the city?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro2:r3",
-              "text": "Those are supermarkets."
+              "text": "Is there a airport near the city?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы указываете на дальнее здание. Скажите «То здание — супермаркет».",
-          "uk": "Ви вказуєте на далеку будівлю. Скажіть «Та будівля — супермаркет»."
+          "ru": "Прохожий смотрит на вашу карту. Спросите его, есть ли аэропорт рядом с городом.",
+          "uk": "Перехожий дивиться на вашу мапу. Запитайте його, чи є аеропорт поруч із містом."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Можно всем",
-        "uk": "Можна всім"
+        "ru": "Грузовики у школы",
+        "uk": "Вантажівки біля школи"
       },
       "bodyByLocale": {
-        "ru": "`public` — «общественный, открытый для всех». Двор доступен всем посетителям, а не только жильцам или сотрудникам. О нём: `It is public` — «Он открыт для всех». Сокращённо: `It’s public`. Само слово не обещает, что там всё бесплатно: оно говорит об общем доступе.",
-        "uk": "`public` — «громадський, відкритий для всіх». Двір доступний усім відвідувачам, а не лише мешканцям чи працівникам. Про нього: `It is public` — «Він відкритий для всіх». Скорочено: `It’s public`. Саме слово не обіцяє, що там усе безкоштовно: воно говорить про загальний доступ."
+        "ru": "Вы переезжаете и ищете, на чём перевезти шкаф. Во дворе у школы стоят большие машины для грузов, и подруга просит назвать, что вы видите. truck — «грузовик». Грузовиков несколько: There are trucks near the school. — «Рядом со школой есть грузовики».",
+        "uk": "Ви переїжджаєте й шукаєте, на чому перевезти шафу. У дворі біля школи стоять великі машини для вантажів, і подруга просить назвати, що ви бачите. truck — «вантажівка». Вантажівок кілька: There are trucks near the school. — «Поруч зі школою є вантажівки»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-13:intro3:q",
         "promptByLocale": {
-          "ru": "Друг думает, что двор только для жильцов. Скажите с сокращением «Он открыт для всех».",
-          "uk": "Друг думає, що двір лише для мешканців. Скажіть зі скороченням «Він відкритий для всіх»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что рядом со школой есть грузовики.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що поруч зі школою є вантажівки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-13:intro3:r1",
-              "text": "It's public."
+              "text": "There are trucks near the school."
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r2",
-              "text": "It's private."
+              "text": "Are there trucks near the school?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r3",
-              "text": "It are public."
+              "text": "There is trucks near the school."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-13:intro3:r1",
-              "text": "It's public."
+              "text": "There are trucks near the school."
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r2",
-              "text": "It's private."
+              "text": "Are there trucks near the school?"
             },
             {
               "responseId": "en:lesson-04:session-13:intro3:r3",
-              "text": "It are public."
+              "text": "There is trucks near the school."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг думает, что двор только для жильцов. Скажите с сокращением «Он открыт для всех».",
-          "uk": "Друг думає, що двір лише для мешканців. Скажіть зі скороченням «Він відкритий для всіх»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что рядом со школой есть грузовики.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що поруч зі школою є вантажівки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "15b4c7c6d47e95fad9e943aa9b46f4e548b3543164ec55014664a7b55c7c95d2"
+  "introFingerprint": "5234d16b3dfeb375f544cd7953deea9412c02569bbd8766f195243dd7cd408d0"
 }

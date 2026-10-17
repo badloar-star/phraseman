@@ -1,138 +1,154 @@
-# Англійська · Урок 4 · Заняття 4 — Пошта й зрозуміла карта
+# Англійська · Урок 4 · Заняття 4 — Пошта й зрозуміла мапа
 
-**Ситуація.** Ви з другом шукаєте пошту на карті району. Одні позначки добре видно, інші приховані згином паперу. Ви розправляєте карту й уточнюєте, що тут є. Сумка з листами вже готова.
+**Ситуація.** Ви гуляєте районом з аудіогідом і слухаєте, що вам трапляється. Щоразу ви вибираєте: одне місце — There is a і назва, кілька місць — There are і назва з s на кінці.
 
-**Що ви опануєте:** повідомити про наявність пошти й розрізнити видиме, приховане та зрозуміле
-**Нові слова:** post office
+**Що ви опануєте:** вибрати There is або There are, коли ви чуєте про одне або кілька місць
+**Нові слова:** post office, bridge, restaurant, market
+**Повертаються:** bank, church, school, garden, near
 
 ---
 
 ## Інтро 1
 
-### Одне місце — два слова
+### Лист у конверті
 
-`post office` — «поштове відділення». Це одна назва з двох слів. `There is a post office` — «Є поштове відділення». Для одного місця потрібні `is` і `a`. Два слова в назві не означають дві черги. `There is a post office here` — «Тут є поштове відділення».
+Вам треба відправити листа, і ви йдете районом з аудіогідом у навушниках, поки подруга йде поруч. Гід каже, що ліворуч стоїть будівля з жовтою вивіскою, де приймають листи й посилки. post office — «пошта». Пошта одна: There is a post office here — «Тут є пошта».
 
-**Повідомте, що в районі є поштове відділення.**
+**Подруга питає, де відправити листа. Скажіть їй, що тут є пошта.**
 
-- ✅ **There is a post office.**
-- ❌ There are a post office. — *Відділення одне, хоча в назві два слова: `There is a post office`.*
-- ❌ There is post office. — *Перед одним відділенням потрібне `a`: `a post office`.*
+- ✅ **There is a post office here.**
+- ❌ There is post office here. — *Перед назвою одного місця потрібно a: There is a post office here.*
+- ❌ There are a post office here. — *Пошта одна, тому потрібно is: There is a post office here.*
 
 ---
 
 ## Інтро 2
 
-### Видно чи приховано
+### Інший берег річки
 
-`visible` — «видимий»: позначку на карті добре видно. Про неї: `It is visible` — «Її видно». `hidden` — «прихований»: іншу позначку закрив згин паперу. `It is hidden` — «Вона прихована». Це не оцінка зрозумілості: видима позначка теж може бути незрозумілою. `bag` — «сумка»: `This is a bag` — «Це сумка».
+Аудіогід веде вас далі, до річки. Подруга хоче перейти на інший берег. Через річку перекинуто кілька кам’яних мостів, і по них спокійно ідуть люди з сумками. bridge — «міст». Мостів кілька, тому додаємо s: There are bridges nearby — «Поруч є мости».
 
-**Позначка закрита згином паперу. Скажіть про неї «Вона прихована».**
+**Подруга питає, як перейти річку. Скажіть їй, що поруч є мости.**
 
-- ✅ **It is hidden.**
-- ❌ It is visible. — *`visible` — видно, а позначка закрита: `hidden`.*
-- ❌ It are hidden. — *Одна позначка: `It is hidden`.*
+- ✅ **There are bridges nearby.**
+- ❌ There is bridges nearby. — *Мостів кілька, тому потрібно are: There are bridges nearby.*
+- ❌ There are bridge nearby. — *Мостів кілька, тому потрібно bridges: There are bridges nearby.*
 
 ---
 
 ## Інтро 3
 
-### Тепер зрозуміло
+### Овочі по суботах
 
-`clear` — «зрозумілий, ясний»: друг пояснив схему маршруту, і тепер ви її розумієте. Про схему: `It is clear` — «Вона зрозуміла». Скорочення `It is` → `It’s`. `stations` — «станції»: `There are stations here` — «Тут є станції». Станцій кілька, тому `are`, без `a`.
+У суботу зранку сусідка кличе вас по свіжі овочі до сніданку. Неподалік від моста є місце, де стоїть багато прилавків з овочами й фруктами, і воно в районі одне. market — «ринок». There is a market near the bridge — «Поруч із мостом є ринок».
 
-**Після пояснення схема вам зрозуміла. Скажіть «Вона зрозуміла» зі скороченням.**
+**Сусідка питає, де купити овочі. Скажіть їй, що поруч із мостом є ринок.**
 
-- ✅ **It's clear.**
-- ❌ It's hidden. — *Це означає «Вона прихована». Про зрозумілу схему — `clear`.*
-- ❌ It are clear. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **There is a market near the bridge.**
+- ❌ There are a market near the bridge. — *Ринок один, тому потрібно is: There is a market near the bridge.*
+- ❌ There is a market behind the bridge. — *Ринок стоїть поруч із мостом, а не за ним: near, а не behind.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Назвіть річ у руках друга: «Це сумка»**
-<!-- interaction_id: en:lesson-04:session-04:i01; family: phrase_builder -->
-Плитки: `bag` `a` `is` `This` `are` → **This is a bag.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a bag.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-04:i01; family: speed_match -->
+post office — пошта · bridge — міст · restaurant — ресторан · market — ринок
 
-**2 · Послухайте й виберіть назву місця**
-<!-- interaction_id: en:lesson-04:session-04:i02; family: listen_choose -->
-🔊 *post office* → **post office** · bank · library
-- bank — *У записі перше слово — `post`, а в цьому варіанті — `bank`.*
-- library — *У записі перше слово — `post`, а в цьому варіанті — `library`.*
+**2 · Картка слова — post office**
+<!-- interaction_id: en:lesson-04:session-04:word:post-office; family: word_card -->
+> **post office** — пошта. There is a post office here — «Тут є пошта». Про місце, де відправляють листи й посилки.
 
-**3 · Назвіть поштове відділення англійською**
-<!-- interaction_id: en:lesson-04:session-04:i03; family: context_gap_grammar -->
-___ → **post office** · bank · library
-- bank — *`bank` — банк; поштове відділення — `post office`.*
-- library — *`library` — бібліотека; поштове відділення — `post office`.*
+**3 · Аудіогід зупиняється біля будівлі з жовтою вивіскою й називає місце, а ви повторюєте за ним слово**
+<!-- interaction_id: en:lesson-04:session-04:i02; family: scripted_repeat_compare -->
+🎙 **post office**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-04:i04; family: speed_match -->
-post office — поштове відділення · visible — видимий · hidden — прихований · stations — станції
+**4 · Подруга питає, де відправити листа. Скажіть їй повною фразою: тут є пошта.**
+<!-- interaction_id: en:lesson-04:session-04:i03; family: phrase_builder -->
+Плитки: `post` `office` `a` `There` `is` `here` `are` → **There is a post office here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a post office here.`)*
 
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-04:i05; family: listen_build_dictation -->
-🔊 *There is a post office.* Плитки: `office` `post` `a` `is` `There` `are` → **There is a post office.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a post office.`)*
+**5 · Картка слова — bridge**
+<!-- interaction_id: en:lesson-04:session-04:word:bridge; family: word_card -->
+> **bridge** — міст. There are bridges nearby — «Поруч є мости». Про конструкцію, по якій переходять через річку.
 
-**6 · Друг вивчає район. Повідомте «Тут є станції»**
-<!-- interaction_id: en:lesson-04:session-04:i06; family: phrase_builder -->
-Плитки: `here` `stations` `are` `There` `is` → **There are stations here.**
-*(плитка `is` зайва: тут потрібно `are` — `There are stations here.`)*
+**6 · Щоб перейти річку, потрібна довга конструкція над водою. Як вона називається?**
+<!-- interaction_id: en:lesson-04:session-04:i04; family: context_gap_grammar -->
+___ → **bridge** · bench · tree
+- bench — *bench — це лавка, а потрібне слово — bridge.*
+- tree — *tree — це дерево, а потрібне слово — bridge.*
 
-**7 · Після розгортання карти позначку добре видно. Скажіть «Її видно» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-04:i07; family: scripted_repeat_compare -->
-🎙 **It's visible.**
+**7 · Послухайте аудіогіда й виберіть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i05; family: listen_choose -->
+🔊 *There are bridges nearby.* → **There are bridges nearby.** · There is a bridge nearby. · There are bridges here.
+- There is a bridge nearby. — *У записі — `are`, а в цьому варіанті — `is`.*
+- There are bridges here. — *У записі — `nearby`, а в цьому варіанті — `here`.*
 
-**8 · Ви повідомляєте про одне поштове відділення**
+**8 · Картка слова — market**
+<!-- interaction_id: en:lesson-04:session-04:word:market; family: word_card -->
+> **market** — ринок. There is a market near the bridge — «Поруч із мостом є ринок». Про місце з прилавками овочів і фруктів.
+
+**9 · Подруга показує на овочеві прилавки й називає місце, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-04:i06; family: scripted_repeat_compare -->
+🎙 **market**
+
+**10 · Послухайте аудіогіда й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i07; family: listen_build_dictation -->
+🔊 *There is a market here.* Плитки: `market` `here` `a` `There` `is` `are` → **There is a market here.**
+*(плитка `are` зайва: тут потрібно `is` — `There is a market here.`)*
+
+**11 · Картка слова — restaurant**
+<!-- interaction_id: en:lesson-04:session-04:word:restaurant; family: word_card -->
+> **restaurant** — ресторан. There are restaurants nearby — «Поруч є ресторани». Про місце, де їдять за столом і платять за їжу.
+
+**12 · Ви голодні й хочете поїсти за столом, а не вдома. Як називається таке місце?**
 <!-- interaction_id: en:lesson-04:session-04:i08; family: context_gap_grammar -->
-There is ___ post office here. → **a** · an · are
-- an — *Перший звук у `post` приголосний: `a post office`.*
-- are — *`is` уже є; перед одним відділенням потрібне `a`.*
+___ → **restaurant** · museum · school
+- museum — *museum — це музей, а потрібне слово — restaurant.*
+- school — *school — це школа, а потрібне слово — restaurant.*
 
-**9 · Послухайте опис позначки на карті**
-<!-- interaction_id: en:lesson-04:session-04:i09; family: listen_choose -->
-🔊 *It is hidden.* → **It is hidden.** · It is visible. · It is clear.
-- It is visible. — *У записі останнє слово — `hidden`, а в цьому варіанті — `visible`.*
-- It is clear. — *У записі останнє слово — `hidden`, а в цьому варіанті — `clear`.*
+**13 · Подруга хоче повечеряти. Скажіть їй повною фразою: поруч є ресторани.**
+<!-- interaction_id: en:lesson-04:session-04:i09; family: phrase_builder -->
+Плитки: `restaurants` `nearby` `There` `are` `is` → **There are restaurants nearby.**
+*(плитка `is` зайва: тут потрібно `are` — `There are restaurants nearby.`)*
 
-**10 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-04:i10; family: speed_match -->
-clear — зрозумілий · bag — сумка · stations — станції · visible — видимий
+**14 · Послухайте подругу й виберіть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i10; family: listen_choose -->
+🔊 *There is a post office near the bank.* → **There is a post office near the bank.** · There is a post office behind the bank. · There is a market near the bank.
+- There is a post office behind the bank. — *У записі — `near`, а в цьому варіанті — `behind`.*
+- There is a market near the bank. — *У записі — `post`, а в цьому варіанті — `market`.*
 
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-04:session-04:i11; family: listen_build_dictation -->
-🔊 *This is a post office.* Плитки: `office` `post` `a` `is` `This` `are` → **This is a post office.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a post office.`)*
-
-**12 · Друг пояснив схему, і тепер ви її розумієте. Скажіть про неї «Вона зрозуміла» повною формою**
-<!-- interaction_id: en:lesson-04:session-04:i12; family: phrase_builder -->
-Плитки: `clear` `is` `It` `are` → **It is clear.**
-*(плитка `are` зайва: тут потрібно `is` — `It is clear.`)*
-
-**13 · Іншу позначку досі закриває згин. Скажіть «Вона прихована» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-04:i13; family: scripted_repeat_compare -->
-🎙 **It's hidden.**
-
-**14 · Ви показуєте інший район на карті. Повідомте «Там є станції»**
-<!-- interaction_id: en:lesson-04:session-04:i14; family: context_gap_grammar -->
-There ___ stations there. → **are** · is · am
-- is — *Станцій кілька: `There are stations there`. Останнє `there` — «там».*
-- am — *Для кількох станцій потрібне `There are`.*
-
-**15 · Послухайте опис іншої позначки**
-<!-- interaction_id: en:lesson-04:session-04:i15; family: listen_choose -->
-🔊 *It is visible.* → **It is visible.** · It is hidden. · It is clear.
-- It is hidden. — *У записі останнє слово — `visible`, а в цьому варіанті — `hidden`.*
-- It is clear. — *У записі останнє слово — `visible`, а в цьому варіанті — `clear`.*
+**15 · На мапі поруч із ринком позначено кілька ресторанів. Доповніть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i11; family: context_gap_grammar -->
+There ___ restaurants near the market. → **are** · is · a
+- is — *Ресторанів кілька, тому потрібно are, а не is.*
+- a — *Після There слово a не підходить: потрібно are, адже ресторанів кілька.*
 
 **16 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-04:i16; family: speed_match -->
-post office — поштове відділення · hidden — прихований · clear — зрозумілий · bag — сумка
+<!-- interaction_id: en:lesson-04:session-04:i12; family: speed_match -->
+bridge — міст · market — ринок · restaurant — ресторан · bank — банк
 
-**17 · Ви приїхали в інше місто й побачили поштове відділення. Друг ще не знає про нього. Повідомте «Тут є поштове відділення»**
+**17 · Послухайте аудіогіда й складіть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i13; family: listen_build_dictation -->
+🔊 *There are bridges behind the market.* Плитки: `bridges` `behind` `the` `market` `There` `are` `is` → **There are bridges behind the market.**
+*(плитка `is` зайва: тут потрібно `are` — `There are bridges behind the market.`)*
+
+**18 · Подруга просить повторити, де пошта. Скажіть їй: «Поруч із мостом є пошта».**
+<!-- interaction_id: en:lesson-04:session-04:i14; family: scripted_repeat_compare -->
+🎙 **There is a post office near the bridge.**
+
+**19 · Сусідка шукає, де купити овочі. Скажіть їй повною фразою: поруч зі школою є ринки.**
+<!-- interaction_id: en:lesson-04:session-04:i15; family: phrase_builder -->
+Плитки: `markets` `near` `the` `school` `There` `are` `is` → **There are markets near the school.**
+*(плитка `is` зайва: тут потрібно `are` — `There are markets near the school.`)*
+
+**20 · Послухайте подругу й виберіть фразу**
+<!-- interaction_id: en:lesson-04:session-04:i16; family: listen_choose -->
+🔊 *There are restaurants nearby.* → **There are restaurants nearby.** · There is a restaurant nearby. · There are bridges nearby.
+- There is a restaurant nearby. — *У записі — `are`, а в цьому варіанті — `is`.*
+- There are bridges nearby. — *У записі — `restaurants`, а в цьому варіанті — `bridges`.*
+
+**21 · Подруга питає, що за ринком. Скажіть їй: «За ринком є пошта».**
 <!-- interaction_id: en:lesson-04:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **There is a post office here.**
-
+🎙 **There is a post office behind the market.**

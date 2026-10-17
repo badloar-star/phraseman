@@ -1,137 +1,152 @@
-# Английский · Урок 4 · Занятие 11 — По городу на трамвае
+# Английский · Урок 4 · Занятие 11 — Трамваи, поезда и места
 
-**Ситуация.** Вы с другом изучаете транспорт нового города. Вам нужно найти банк, уточнить наличие комнаты и понять, срочное ли сообщение пришло другу.
+**Ситуация.** Вы осваиваете транспорт нового города: смотрите схему трамваев, едете с бабушкой и гуляете с братом у озера. Теперь вы спрашиваете не об одном предмете, а о нескольких сразу. Вопрос начинается с Are there, а перед названием нет a: Are there trams?
 
-**Что вы освоите:** спросить о трамваях и комнате, назвать банк и сообщить о срочности
-**Новые слова:** tram
+**Что вы освоите:** спросить, есть ли несколько трамваев, поездов или мест: Are there trams here?
+**Новые слова:** tram, seat, train, route
+**Возвращаются:** bank, park, school, lake, door, near
 
 ---
 
 ## Интро 1
 
-### Трамвай и трамваи
+### Транспортная карта
 
-`tram` — «трамвай», `trams` — «трамваи». `There is a tram` — «Есть трамвай». `Are there trams here?` — «Здесь есть трамваи?» Про один спрашиваем `Is there`, про несколько — `Are there`. Хоть трамвай и длинный, один трамвай всё равно требует `Is`, а не `Are`.
+Вы только приехали и стоите у большой транспортной карты. По ней идут красные линии, а рядом сотрудница справочной раскладывает листовки. tram — «трамвай». Трамваев на карте несколько, и вам нужны те, что рядом с банком: Are there trams near the bank? — «Есть ли трамваи рядом с банком?»
 
-**Спросите «Здесь есть трамваи?»**
+**Сотрудница справочной раскладывает листовки. Спросите её, есть ли трамваи рядом с банком.**
 
-- ✅ **Are there trams here?**
-- ❌ Is there trams here? — *Трамваи — несколько: `Are there trams here?`.*
-- ❌ There are trams here. — *Это сообщение. В вопросе сначала `Are there`.*
+- ✅ **Are there trams near the bank?**
+- ❌ Is there trams near the bank? — *Трамваев несколько, поэтому начинаем с Are there, а не с Is there.*
+- ❌ Are there a trams near the bank? — *Перед несколькими трамваями a не ставим: trams.*
 
 ---
 
 ## Интро 2
 
-### Комната и банк
+### Бабушка в трамвае
 
-`room` — «комната», `bank` — «банк». `Is there a room?` — «Есть ли комната?» `That is a bank` — «То здание — банк». `that` помогает указать на здание вдалеке. Не путайте сообщение о здании с вопросом, есть ли оно вообще.
+Вы с бабушкой вошли в переполненный трамвай, и ей тяжело стоять. Вы оглядываетесь: всё занято, а рядом стоит кондуктор. seat — «место для сидения». Мест у двери может быть несколько: Are there seats near the door? — «Есть ли места рядом с дверью?»
 
-**Друг показывает на дальнее здание. Скажите «То здание — банк».**
+**Кондуктор стоит рядом. Спросите его, есть ли места рядом с дверью.**
 
-- ✅ **That is a bank.**
-- ❌ Those are banks. — *Здесь одно здание: `That is a bank`.*
-- ❌ That are a bank. — *С `That` нужно `is`.*
+- ✅ **Are there seats near the door?**
+- ❌ Are there a seats near the door? — *Мест несколько, и a перед ними не ставим: seats.*
+- ❌ There are seats near the door? — *Вопрос начинаем с Are there, а не с There are.*
 
 ---
 
 ## Интро 3
 
-### Срочно или подождёт?
+### Озеро в маленьком городке
 
-`urgent` — «срочный». Друг получил сообщение, на которое нужно ответить прямо сейчас. О таком деле: `It is urgent` — «Это срочно». Сокращённо: `It’s urgent`. Здесь речь о времени: откладывать нельзя.
+Вы гуляете с братом у озера в маленьком городке, и он слышит далёкий гудок. Ему пора домой, а ехать он хочет по рельсам. Рядом сидит старик, который знает город. train — «поезд». Поездов может быть несколько: Are there trains near the lake? — «Есть ли поезда рядом с озером?»
 
-**На сообщение нужно ответить немедленно. Скажите «Это срочно» с сокращением.**
+**Старик сидит на скамейке рядом с вами. Спросите его, есть ли поезда рядом с озером.**
 
-- ✅ **It's urgent.**
-- ❌ It's comfortable. — *`comfortable` — удобный; срочный — `urgent`.*
-- ❌ It are urgent. — *С `It` нужно `is`: `It’s urgent`.*
+- ✅ **Are there trains near the lake?**
+- ❌ Are there train near the lake? — *Поездов несколько, поэтому trains, а не train.*
+- ❌ Is there trains near the lake? — *Поездов несколько, поэтому нужно Are, а не Is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Сообщите другу «Есть банк»**
-<!-- interaction_id: en:lesson-04:session-11:i01; family: phrase_builder -->
-Плитки: `bank` `a` `is` `There` `are` → **There is a bank.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a bank.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-11:i01; family: speed_match -->
+tram — трамвай · seat — место для сидения · train — поезд · route — маршрут
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-11:i02; family: listen_choose -->
-🔊 *tram* → **tram** · bank · room
-- bank — *В записи первое слово — `tram`, а в этом варианте — `bank`.*
-- room — *В записи первое слово — `tram`, а в этом варианте — `room`.*
+**2 · Карточка слова — tram**
+<!-- interaction_id: en:lesson-04:session-11:word:tram; family: word_card -->
+> **tram** — трамвай. Are there trams near the bank? — «Есть ли трамваи рядом с банком?» О городском транспорте, который едет по рельсам.
 
-**3 · Назовите трамвай одним английским словом**
-<!-- interaction_id: en:lesson-04:session-11:i03; family: context_gap_grammar -->
-___ → **tram** · bank · room
-- bank — *`bank` — банк; трамвай — `tram`.*
-- room — *`room` — комната; трамвай — `tram`.*
+**3 · Сотрудница справочной показывает на красную линию на карте и называет слово, а вы повторяете за ней**
+<!-- interaction_id: en:lesson-04:session-11:i02; family: scripted_repeat_compare -->
+🎙 **tram**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-11:i04; family: speed_match -->
-tram — трамвай · urgent — срочный · room — комната · bank — банк
+**4 · Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой: рядом есть трамваи?**
+<!-- interaction_id: en:lesson-04:session-11:i03; family: phrase_builder -->
+Плитки: `trams` `there` `Are` `near` `here` `Is` → **Are there trams near here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there trams near here?`)*
 
-**5 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-11:i05; family: listen_build_dictation -->
-🔊 *Is there a tram?* Плитки: `tram` `a` `there` `Is` → **Is there a tram?**
+**5 · Карточка слова — train**
+<!-- interaction_id: en:lesson-04:session-11:word:train; family: word_card -->
+> **train** — поезд. Are there trains near the lake? — «Есть ли поезда рядом с озером?» О составе, который едет по железной дороге между городами.
 
-**6 · Укажите на дальнее здание: «То здание — банк»**
-<!-- interaction_id: en:lesson-04:session-11:i06; family: phrase_builder -->
-Плитки: `bank` `a` `is` `That` `are` → **That is a bank.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is a bank.`)*
+**6 · На вокзале маленького городка вы слышите гудок. Что приходит по рельсам между городами? Как это называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-11:i04; family: context_gap_grammar -->
+___ → **train** · tram · bus
+- tram — *tram — это городской трамвай, а по железной дороге между городами едет train.*
+- bus — *bus — это автобус, у него нет рельсов, а на рельсах едет train.*
 
-**7 · Друг должен ответить на сообщение немедленно. Скажите «Это срочно» с сокращением**
-<!-- interaction_id: en:lesson-04:session-11:i07; family: scripted_repeat_compare -->
-🎙 **It's urgent.**
+**7 · Послушайте вопрос брата**
+<!-- interaction_id: en:lesson-04:session-11:i05; family: listen_choose -->
+🔊 *Are there trains here?* → **Are there trains here?** · Are there trams here? · Is there a train here?
+- Are there trams here? — *В записи спрашивают про `trains`, а в этом варианте про `trams`.*
+- Is there a train here? — *В записи вопрос `Are there` о нескольких поездах, а в этом варианте `Is there a` об одном.*
 
-**8 · Спросите «Здесь есть трамваи?»**
+**8 · Карточка слова — seat**
+<!-- interaction_id: en:lesson-04:session-11:word:seat; family: word_card -->
+> **seat** — место для сидения. Are there seats near the door? — «Есть ли места рядом с дверью?» О кресле в трамвае, автобусе, кино.
+
+**9 · Кондуктор в трамвае показывает на свободное кресло и называет слово, а вы повторяете за ним**
+<!-- interaction_id: en:lesson-04:session-11:i06; family: scripted_repeat_compare -->
+🎙 **seat**
+
+**10 · Послушайте бабушку и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-11:i07; family: listen_build_dictation -->
+🔊 *Are there seats here?* Плитки: `seats` `there` `Are` `here` `Is` → **Are there seats here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there seats here?`)*
+
+**11 · Карточка слова — route**
+<!-- interaction_id: en:lesson-04:session-11:word:route; family: word_card -->
+> **route** — маршрут. Are there tram routes here? — «Здесь есть трамвайные маршруты?» О пути, по которому ходит транспорт.
+
+**12 · На схеме цветная линия показывает путь, по которому ходит транспорт. Как называется такой путь по-английски?**
 <!-- interaction_id: en:lesson-04:session-11:i08; family: context_gap_grammar -->
-___ there trams here? → **Are** · Is · Am
-- Is — *Трамваи — несколько: `Are there trams here?`.*
-- Am — *Вопрос о нескольких трамваях начинается с `Are there`.*
+___ → **route** · seat · map
+- seat — *seat — это место для сидения, а путь транспорта называется route.*
+- map — *map — это вся карта, а путь транспорта на ней называется route.*
 
-**9 · Послушайте вопрос**
-<!-- interaction_id: en:lesson-04:session-11:i09; family: listen_choose -->
-🔊 *Is there a room?* → **Is there a room?** · Is there a bank? · Is there a tram?
-- Is there a bank? — *В записи последнее слово — `room`, а в этом варианте — `bank`.*
-- Is there a tram? — *В записи последнее слово — `room`, а в этом варианте — `tram`.*
+**13 · Вы изучаете схему трамваев. Спросите сотрудницу справочной полной фразой: здесь есть трамвайные маршруты?**
+<!-- interaction_id: en:lesson-04:session-11:i09; family: phrase_builder -->
+Плитки: `tram` `routes` `there` `Are` `here` `Is` → **Are there tram routes here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there tram routes here?`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-11:i10; family: speed_match -->
-tram — трамвай · trams — трамваи · room — комната · urgent — срочный
+route — маршрут · seat — место для сидения · bus — автобус · map — карта
 
-**11 · Послушайте и соберите сообщение**
-<!-- interaction_id: en:lesson-04:session-11:i11; family: listen_build_dictation -->
-🔊 *There is a room here.* Плитки: `here` `room` `a` `is` `There` `are` → **There is a room here.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a room here.`)*
+**15 · Послушайте вопрос прохожего**
+<!-- interaction_id: en:lesson-04:session-11:i11; family: listen_choose -->
+🔊 *Are there banks near here?* → **Are there banks near here?** · Are there parks near here? · Is there a bank near here?
+- Are there parks near here? — *В записи спрашивают про `banks`, а в этом варианте про `parks`.*
+- Is there a bank near here? — *В записи вопрос `Are there` о нескольких банках, а в этом варианте `Is there a` об одном.*
 
-**12 · Вы уже узнали о транспорте. Сообщите «Здесь есть трамваи»**
-<!-- interaction_id: en:lesson-04:session-11:i12; family: phrase_builder -->
-Плитки: `here` `trams` `are` `There` `is` → **There are trams here.**
-*(плитка `is` лишняя: здесь нужно `are` — `There are trams here.`)*
+**16 · Вы спрашиваете сотрудницу справочной о поездах. Дополните ваш вопрос**
+<!-- interaction_id: en:lesson-04:session-11:i12; family: context_gap_grammar -->
+___ there trains near here? → **Are** · Is · Am
+- Is — *Поездов несколько, поэтому начинаем с Are there, а не с Is there.*
+- Am — *Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.*
 
-**13 · Вы ищете банк. Спросите «Здесь есть банк?»**
-<!-- interaction_id: en:lesson-04:session-11:i13; family: scripted_repeat_compare -->
-🎙 **Is there a bank here?**
+**17 · Послушайте прохожего и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-11:i13; family: listen_build_dictation -->
+🔊 *Are there parks near here?* Плитки: `parks` `there` `Are` `near` `here` `Is` → **Are there parks near here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there parks near here?`)*
 
-**14 · Уточните, есть ли здесь комната**
-<!-- interaction_id: en:lesson-04:session-11:i14; family: context_gap_grammar -->
-Is there ___ room here? → **a** · an · are
-- an — *В `room` первый звук согласный: `a room`.*
-- are — *Перед одной комнатой нужно `a`: `a room`.*
+**18 · Сотрудница справочной показывает вам схему на остановке. Спросите её, есть ли здесь маршруты**
+<!-- interaction_id: en:lesson-04:session-11:i14; family: scripted_repeat_compare -->
+🎙 **Are there routes here?**
 
-**15 · Послушайте ответ о сообщении**
-<!-- interaction_id: en:lesson-04:session-11:i15; family: listen_choose -->
-🔊 *It is urgent.* → **It is urgent.** · It is comfortable. · It is impossible.
-- It is comfortable. — *В записи последнее слово — `urgent`, а в этом варианте — `comfortable`.*
-- It is impossible. — *В записи последнее слово — `urgent`, а в этом варианте — `impossible`.*
+**19 · Вы ищете школы рядом с домом. Спросите прохожего полной фразой: рядом есть школы?**
+<!-- interaction_id: en:lesson-04:session-11:i15; family: phrase_builder -->
+Плитки: `schools` `there` `Are` `near` `here` `Is` → **Are there schools near here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there schools near here?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-11:i16; family: speed_match -->
-tram — трамвай · urgent — срочный · room — комната · bank — банк
+tram — трамвай · train — поезд · seat — место для сидения · route — маршрут
 
-**17 · В следующей поездке вы хотите узнать, ходят ли в городе трамваи. Спросите «Здесь есть трамваи?»**
+**21 · Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой, есть ли здесь трамваи**
 <!-- interaction_id: en:lesson-04:session-11:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Are there trams here?**
-

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-11",
   "learningOutcomeByLocale": {
-    "ru": "спросить о трамваях и комнате, назвать банк и сообщить о срочности",
-    "uk": "запитати про трамваї та кімнату, назвати банк і повідомити про терміновість"
+    "ru": "спросить, есть ли несколько трамваев, поездов или мест: Are there trams here?",
+    "uk": "запитати, чи є кілька трамваїв, потягів або місць: Are there trams here?"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Трамвай и трамваи",
-        "uk": "Трамвай і трамваї"
+        "ru": "Транспортная карта",
+        "uk": "Транспортна мапа"
       },
       "bodyByLocale": {
-        "ru": "`tram` — «трамвай», `trams` — «трамваи». `There is a tram` — «Есть трамвай». `Are there trams here?` — «Здесь есть трамваи?» Про один спрашиваем `Is there`, про несколько — `Are there`. Хоть трамвай и длинный, один трамвай всё равно требует `Is`, а не `Are`.",
-        "uk": "`tram` — «трамвай», `trams` — «трамваї». `There is a tram` — «Є трамвай». `Are there trams here?` — «Тут є трамваї?» Про один запитуємо `Is there`, про кілька — `Are there`. Хоч трамвай і довгий, один трамвай усе одно потребує `Is`, а не `Are`."
+        "ru": "Вы только приехали и стоите у большой транспортной карты. По ней идут красные линии, а рядом сотрудница справочной раскладывает листовки. tram — «трамвай». Трамваев на карте несколько, и вам нужны те, что рядом с банком: Are there trams near the bank? — «Есть ли трамваи рядом с банком?»",
+        "uk": "Ви щойно приїхали й стоїте біля великої транспортної мапи. По ній ідуть червоні лінії, а поруч працівниця довідкової розкладає листівки. tram — «трамвай». Трамваїв на мапі кілька, і вам потрібні ті, що поруч із банком: Are there trams near the bank? — «Чи є трамваї поруч із банком?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-11:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите «Здесь есть трамваи?»",
-          "uk": "Запитайте «Тут є трамваї?»"
+          "ru": "Сотрудница справочной раскладывает листовки. Спросите её, есть ли трамваи рядом с банком.",
+          "uk": "Працівниця довідкової розкладає листівки. Запитайте її, чи є трамваї поруч із банком."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-11:intro1:r1",
-              "text": "Are there trams here?"
+              "text": "Are there trams near the bank?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r2",
-              "text": "Is there trams here?"
+              "text": "Is there trams near the bank?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r3",
-              "text": "There are trams here."
+              "text": "Are there a trams near the bank?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-11:intro1:r1",
-              "text": "Are there trams here?"
+              "text": "Are there trams near the bank?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r2",
-              "text": "Is there trams here?"
+              "text": "Is there trams near the bank?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro1:r3",
-              "text": "There are trams here."
+              "text": "Are there a trams near the bank?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Здесь есть трамваи?»",
-          "uk": "Запитайте «Тут є трамваї?»"
+          "ru": "Сотрудница справочной раскладывает листовки. Спросите её, есть ли трамваи рядом с банком.",
+          "uk": "Працівниця довідкової розкладає листівки. Запитайте її, чи є трамваї поруч із банком."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Комната и банк",
-        "uk": "Кімната й банк"
+        "ru": "Бабушка в трамвае",
+        "uk": "Бабуся в трамваї"
       },
       "bodyByLocale": {
-        "ru": "`room` — «комната», `bank` — «банк». `Is there a room?` — «Есть ли комната?» `That is a bank` — «То здание — банк». `that` помогает указать на здание вдалеке. Не путайте сообщение о здании с вопросом, есть ли оно вообще.",
-        "uk": "`room` — «кімната», `bank` — «банк». `Is there a room?` — «Чи є кімната?» `That is a bank` — «Та будівля — банк». `that` допомагає вказати на будівлю вдалині. Не плутайте повідомлення про будівлю із запитанням, чи є вона взагалі."
+        "ru": "Вы с бабушкой вошли в переполненный трамвай, и ей тяжело стоять. Вы оглядываетесь: всё занято, а рядом стоит кондуктор. seat — «место для сидения». Мест у двери может быть несколько: Are there seats near the door? — «Есть ли места рядом с дверью?»",
+        "uk": "Ви з бабусею зайшли до переповненого трамвая, і їй важко стояти. Ви озираєтеся: усе зайнято, а поруч стоїть кондуктор. seat — «місце для сидіння». Місць біля дверей може бути кілька: Are there seats near the door? — «Чи є місця поруч із дверима?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-11:intro2:q",
         "promptByLocale": {
-          "ru": "Друг показывает на дальнее здание. Скажите «То здание — банк».",
-          "uk": "Друг показує на далеку будівлю. Скажіть «Та будівля — банк»."
+          "ru": "Кондуктор стоит рядом. Спросите его, есть ли места рядом с дверью.",
+          "uk": "Кондуктор стоїть поруч. Запитайте його, чи є місця поруч із дверима."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-11:intro2:r1",
-              "text": "That is a bank."
+              "text": "Are there seats near the door?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r2",
-              "text": "Those are banks."
+              "text": "Are there a seats near the door?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r3",
-              "text": "That are a bank."
+              "text": "There are seats near the door?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-11:intro2:r1",
-              "text": "That is a bank."
+              "text": "Are there seats near the door?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r2",
-              "text": "Those are banks."
+              "text": "Are there a seats near the door?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro2:r3",
-              "text": "That are a bank."
+              "text": "There are seats near the door?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг показывает на дальнее здание. Скажите «То здание — банк».",
-          "uk": "Друг показує на далеку будівлю. Скажіть «Та будівля — банк»."
+          "ru": "Кондуктор стоит рядом. Спросите его, есть ли места рядом с дверью.",
+          "uk": "Кондуктор стоїть поруч. Запитайте його, чи є місця поруч із дверима."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Срочно или подождёт?",
-        "uk": "Терміново чи зачекає?"
+        "ru": "Озеро в маленьком городке",
+        "uk": "Озеро в маленькому містечку"
       },
       "bodyByLocale": {
-        "ru": "`urgent` — «срочный». Друг получил сообщение, на которое нужно ответить прямо сейчас. О таком деле: `It is urgent` — «Это срочно». Сокращённо: `It’s urgent`. Здесь речь о времени: откладывать нельзя.",
-        "uk": "`urgent` — «терміновий». Друг отримав повідомлення, на яке потрібно відповісти просто зараз. Про таку справу: `It is urgent` — «Це терміново». Скорочено: `It’s urgent`. Тут ідеться про час: відкладати не можна."
+        "ru": "Вы гуляете с братом у озера в маленьком городке, и он слышит далёкий гудок. Ему пора домой, а ехать он хочет по рельсам. Рядом сидит старик, который знает город. train — «поезд». Поездов может быть несколько: Are there trains near the lake? — «Есть ли поезда рядом с озером?»",
+        "uk": "Ви гуляєте з братом біля озера в маленькому містечку, і він чує далекий гудок. Йому час додому, а їхати він хоче рейками. Поруч сидить старий, який знає місто. train — «потяг». Потягів може бути кілька: Are there trains near the lake? — «Чи є потяги поруч з озером?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-11:intro3:q",
         "promptByLocale": {
-          "ru": "На сообщение нужно ответить немедленно. Скажите «Это срочно» с сокращением.",
-          "uk": "На повідомлення потрібно відповісти негайно. Скажіть «Це терміново» зі скороченням."
+          "ru": "Старик сидит на скамейке рядом с вами. Спросите его, есть ли поезда рядом с озером.",
+          "uk": "Старий сидить на лавці поруч із вами. Запитайте його, чи є потяги поруч з озером."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-11:intro3:r1",
-              "text": "It's urgent."
+              "text": "Are there trains near the lake?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r2",
-              "text": "It's comfortable."
+              "text": "Are there train near the lake?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r3",
-              "text": "It are urgent."
+              "text": "Is there trains near the lake?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-11:intro3:r1",
-              "text": "It's urgent."
+              "text": "Are there trains near the lake?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r2",
-              "text": "It's comfortable."
+              "text": "Are there train near the lake?"
             },
             {
               "responseId": "en:lesson-04:session-11:intro3:r3",
-              "text": "It are urgent."
+              "text": "Is there trains near the lake?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На сообщение нужно ответить немедленно. Скажите «Это срочно» с сокращением.",
-          "uk": "На повідомлення потрібно відповісти негайно. Скажіть «Це терміново» зі скороченням."
+          "ru": "Старик сидит на скамейке рядом с вами. Спросите его, есть ли поезда рядом с озером.",
+          "uk": "Старий сидить на лавці поруч із вами. Запитайте його, чи є потяги поруч з озером."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "50ffdcd2eaab7509e57d1cabeb8dd253db51cffbe757cdbf7cac03df41a5d2a3"
+  "introFingerprint": "e4859e45b42b5cf1e6b2d073cc0b5898503c018b4c086cbe21a4a2a553b8b166"
 }

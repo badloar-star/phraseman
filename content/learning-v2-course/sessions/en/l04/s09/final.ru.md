@@ -1,134 +1,152 @@
 # Английский · Урок 4 · Занятие 9 — Есть ли здесь стоматолог?
 
-**Ситуация.** Вы в новом районе и спрашиваете в справочной, есть ли здесь стоматолог. Заодно уточняете, есть ли аптека, библиотека и пекарня. На плане здания проверяете, предусмотрена ли дверь в нужном месте.
+**Ситуация.** Вы только переехали в новый район и ищете нужных людей и места. В справочной, в клинике и в торговом центре вы спрашиваете, есть ли врач, стоматолог, медсестра и туалет. Вопрос начинается с Is there, а потом идёт a или an и название.
 
-**Что вы освоите:** задать вопрос о наличии одного человека или места с Is there и нескольких мест с Are there
-**Новые слова:** dentist
+**Что вы освоите:** спросить, есть ли здесь один человек или одно место: Is there a dentist here?
+**Новые слова:** dentist, doctor, toilet, nurse
+**Возвращаются:** pharmacy, clinic, office, near
 
 ---
 
 ## Интро 1
 
-### Стоматолог — человек
+### Зубная боль в новом районе
 
-`dentist` — «стоматолог», врач, который лечит зубы. `clinic` называет место, а `dentist` — человека. `There is a dentist` — «Есть стоматолог». Для вопроса меняем начало: `Is there a dentist?` — «Есть ли стоматолог?» Начинаем с `Is there`, затем `a dentist`.
+Вы только переехали, а ночью у вас разболелся зуб. Утром вы зашли в справочную района, и сотрудница за стойкой готова помочь. Вам нужен врач, который лечит зубы. dentist — «стоматолог». Вопрос начинаем с Is there: Is there a dentist near here? — «Есть ли рядом стоматолог?»
 
-**Спросите, есть ли стоматолог.**
+**Сотрудница справочной слушает вас. Спросите, есть ли рядом стоматолог.**
 
-- ✅ **Is there a dentist?**
-- ❌ There is a dentist. — *Это сообщение. Для вопроса начинаем с `Is there`.*
-- ❌ Is there dentist? — *Перед одним специалистом нужно `a`: `a dentist`.*
+- ✅ **Is there a dentist near here?**
+- ❌ There is a dentist near here. — *Это сообщение, а вам нужен вопрос: начинаем с Is there.*
+- ❌ Is there dentist near here? — *Врач один, поэтому перед ним нужно a: a dentist.*
 
 ---
 
 ## Интро 2
 
-### Спрашиваем о местах
+### Пожилая соседка в клинике
 
-`pharmacy` — «аптека», `library` — «библиотека», `bakery` — «пекарня». `Is there a pharmacy here?` — «Здесь есть аптека?» Одно место — `Is there a`. Для нескольких библиотек: `Are there libraries here?` — «Здесь есть библиотеки?» С несколькими — `Are there`, без `a`. Вопрос не создаёт новую аптеку, но помогает её найти.
+Вы привели в клинику пожилую соседку: у неё закружилась голова. В холле тихо, а администратор за стойкой занят бумагами. Вам нужен человек, который лечит больных. doctor — «врач». Вопрос задаём так же: Is there a doctor here? — «Здесь есть врач?»
 
-**Спросите, есть ли здесь несколько библиотек.**
+**Администратор поднял на вас глаза. Спросите, есть ли здесь врач.**
 
-- ✅ **Are there libraries here?**
-- ❌ Is there libraries here? — *Библиотек несколько: `Are there libraries here?`.*
-- ❌ Are there a libraries here? — *Перед несколькими `libraries` не ставим `a`.*
+- ✅ **Is there a doctor here?**
+- ❌ Is there doctor here? — *Врач один, поэтому перед ним нужно a: a doctor.*
+- ❌ Are there a doctor here? — *Врач один, поэтому нужно Is, а не Are.*
 
 ---
 
 ## Интро 3
 
-### Возможно ли устроить встречу
+### Туалет в торговом центре
 
-`possible` — «возможный»: друг предлагает встретиться завтра, и вы знаете, что это возможно. `It is possible` — «Это возможно». `door` — «дверь»: вы смотрите план здания и спрашиваете о двери в отмеченной точке: `Is there a door here?` — «Здесь есть дверь?» Порядок вопроса тот же, что для места или человека.
+Вы с братом уже час гуляете по большому торговому центру, и ему срочно нужно помыть руки. Вокруг одни магазины, а нужной двери не видно. Рядом стоит охранник в форме. toilet — «туалет». Спросите его: Is there a toilet here? — «Здесь есть туалет?»
 
-**Вы знаете, что встретиться завтра возможно. Скажите «Это возможно».**
+**Охранник стоит рядом. Спросите его, есть ли здесь туалет.**
 
-- ✅ **It is possible.**
-- ❌ It is necessary. — *`necessary` — необходимо; здесь говорим о возможности: `possible`.*
-- ❌ It are possible. — *С `It` нужно `is`.*
+- ✅ **Is there a toilet here?**
+- ❌ There is a toilet here? — *Вопрос начинаем с Is there, а не с There is.*
+- ❌ Are there a toilet here? — *Туалет один, поэтому нужно Is, а не Are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Сообщите другу «Есть библиотека»**
-<!-- interaction_id: en:lesson-04:session-09:i01; family: phrase_builder -->
-Плитки: `library` `a` `is` `There` `are` → **There is a library.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a library.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-09:i01; family: speed_match -->
+dentist — стоматолог · doctor — врач · toilet — туалет · nurse — медсестра
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-09:i02; family: listen_choose -->
-🔊 *dentist* → **dentist** · clinic · pharmacy
-- clinic — *В записи первое слово — `dentist`, а в этом варианте — `clinic`.*
-- pharmacy — *В записи первое слово — `dentist`, а в этом варианте — `pharmacy`.*
+**2 · Карточка слова — dentist**
+<!-- interaction_id: en:lesson-04:session-09:word:dentist; family: word_card -->
+> **dentist** — стоматолог. Is there a dentist near here? — «Есть ли рядом стоматолог?» О враче, который лечит зубы.
 
-**3 · Назовите стоматолога одним английским словом**
-<!-- interaction_id: en:lesson-04:session-09:i03; family: context_gap_grammar -->
-___ → **dentist** · clinic · pharmacy
-- clinic — *`clinic` — клиника; стоматолог — `dentist`.*
-- pharmacy — *`pharmacy` — аптека; стоматолог — `dentist`.*
+**3 · Сотрудница справочной называет врача, который лечит зубы, а вы повторяете за ней слово**
+<!-- interaction_id: en:lesson-04:session-09:i02; family: scripted_repeat_compare -->
+🎙 **dentist**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-09:i04; family: speed_match -->
-dentist — стоматолог · possible — возможный · door — дверь · pharmacy — аптека
+**4 · Вы стоите у справочной. Спросите сотрудницу полной фразой: здесь есть стоматолог?**
+<!-- interaction_id: en:lesson-04:session-09:i03; family: phrase_builder -->
+Плитки: `dentist` `a` `there` `Is` `here` `Are` → **Is there a dentist here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a dentist here?`)*
 
-**5 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-09:i05; family: listen_build_dictation -->
-🔊 *Is there a dentist?* Плитки: `dentist` `a` `there` `Is` → **Is there a dentist?**
+**5 · Карточка слова — doctor**
+<!-- interaction_id: en:lesson-04:session-09:word:doctor; family: word_card -->
+> **doctor** — врач. Is there a doctor here? — «Здесь есть врач?» О человеке, который лечит больных.
 
-**6 · Вы в справочной. Спросите «Здесь есть аптека?»**
-<!-- interaction_id: en:lesson-04:session-09:i06; family: phrase_builder -->
-Плитки: `here` `pharmacy` `a` `there` `Is` → **Is there a pharmacy here?**
+**6 · Человек в белом халате лечит больных, и вы ищете именно его. Как он называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-09:i04; family: context_gap_grammar -->
+___ → **doctor** · dentist · clinic
+- dentist — *dentist — это стоматолог, он лечит только зубы, а врач вообще называется doctor.*
+- clinic — *clinic — это клиника, то есть место, а нужен человек: doctor.*
 
-**7 · Вы знаете, что встречу можно устроить завтра. Скажите «Это возможно» с сокращением**
-<!-- interaction_id: en:lesson-04:session-09:i07; family: scripted_repeat_compare -->
-🎙 **It's possible.**
+**7 · Послушайте вопрос подруги**
+<!-- interaction_id: en:lesson-04:session-09:i05; family: listen_choose -->
+🔊 *Is there a doctor here?* → **Is there a doctor here?** · Is there a dentist here? · There is a doctor here.
+- Is there a dentist here? — *В записи спрашивают про `doctor`, а в этом варианте про `dentist`.*
+- There is a doctor here. — *В записи вопрос `Is there`, а в этом варианте сообщение `There is`.*
 
-**8 · Спросите, есть ли здесь стоматолог**
+**8 · Карточка слова — toilet**
+<!-- interaction_id: en:lesson-04:session-09:word:toilet; family: word_card -->
+> **toilet** — туалет. Is there a toilet here? — «Здесь есть туалет?» О комнате в кафе, торговом центре, на вокзале.
+
+**9 · Охранник торгового центра показывает на дверь с табличкой и называет слово, а вы повторяете за ним**
+<!-- interaction_id: en:lesson-04:session-09:i06; family: scripted_repeat_compare -->
+🎙 **toilet**
+
+**10 · Послушайте брата и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-09:i07; family: listen_build_dictation -->
+🔊 *Is there a toilet here?* Плитки: `toilet` `a` `there` `Is` `here` `Are` → **Is there a toilet here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a toilet here?`)*
+
+**11 · Карточка слова — nurse**
+<!-- interaction_id: en:lesson-04:session-09:word:nurse; family: word_card -->
+> **nurse** — медсестра. Is there a nurse here? — «Здесь есть медсестра?» О помощнице врача, которая делает уколы.
+
+**12 · Рядом с врачом работает его помощница, которая делает уколы. Как называется её работа по-английски?**
 <!-- interaction_id: en:lesson-04:session-09:i08; family: context_gap_grammar -->
-___ there a dentist here? → **Is** · Are · Am
-- Are — *Один специалист: `Is there a dentist here?`.*
-- Am — *Вопрос об одном специалисте начинается с `Is there`.*
+___ → **nurse** · doctor · toilet
+- doctor — *doctor — это врач, а помощница врача, которая делает уколы, называется nurse.*
+- toilet — *toilet — это туалет, а человека, который делает уколы, зовут nurse.*
 
-**9 · Послушайте вопрос о месте в районе**
-<!-- interaction_id: en:lesson-04:session-09:i09; family: listen_choose -->
-🔊 *Is there a bakery?* → **Is there a bakery?** · Is there a pharmacy? · Is there a library?
-- Is there a pharmacy? — *В записи последнее слово — `bakery`, а в этом варианте — `pharmacy`.*
-- Is there a library? — *В записи последнее слово — `bakery`, а в этом варианте — `library`.*
+**13 · Вы в клинике. Спросите администратора полной фразой: здесь есть медсестра?**
+<!-- interaction_id: en:lesson-04:session-09:i09; family: phrase_builder -->
+Плитки: `nurse` `a` `there` `Is` `here` `Are` → **Is there a nurse here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a nurse here?`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-09:i10; family: speed_match -->
-possible — возможный · library — библиотека · bakery — пекарня · door — дверь
+dentist — стоматолог · nurse — медсестра · pharmacy — аптека · clinic — клиника
 
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-09:i11; family: listen_build_dictation -->
-🔊 *Are there libraries here?* Плитки: `here` `libraries` `there` `Are` → **Are there libraries here?**
+**15 · Послушайте вопрос прохожего**
+<!-- interaction_id: en:lesson-04:session-09:i11; family: listen_choose -->
+🔊 *Is there a pharmacy near here?* → **Is there a pharmacy near here?** · Is there a clinic near here? · Is there a pharmacy here?
+- Is there a clinic near here? — *В записи спрашивают про `pharmacy`, а в этом варианте про `clinic`.*
+- Is there a pharmacy here? — *В записи есть `near`, а в этом варианте его нет.*
 
-**12 · Вы показываете точку на плане здания. Спросите «Здесь есть дверь?»**
-<!-- interaction_id: en:lesson-04:session-09:i12; family: phrase_builder -->
-Плитки: `here` `door` `a` `there` `Is` → **Is there a door here?**
+**16 · Вы ищете аптеку. Дополните ваш вопрос**
+<!-- interaction_id: en:lesson-04:session-09:i12; family: context_gap_grammar -->
+___ there a pharmacy near here? → **Is** · Are · Am
+- Are — *Аптека одна, поэтому начинаем с Is there, а не с Are there.*
+- Am — *Am говорят только с I, а вопрос о наличии начинается с Is there.*
 
-**13 · Вы в другом районе и хотите найти пекарню. Спросите «Здесь есть пекарня?»**
-<!-- interaction_id: en:lesson-04:session-09:i13; family: scripted_repeat_compare -->
-🎙 **Is there a bakery here?**
+**17 · Послушайте сотрудницу и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-09:i13; family: listen_build_dictation -->
+🔊 *Is there a clinic near here?* Плитки: `clinic` `a` `there` `Is` `near` `here` `Are` → **Is there a clinic near here?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is there a clinic near here?`)*
 
-**14 · Друг показывает другой район на карте. Спросите «Там есть библиотеки?»**
-<!-- interaction_id: en:lesson-04:session-09:i14; family: context_gap_grammar -->
-___ there libraries there? → **Are** · Is · Am
-- Is — *Библиотек несколько: `Are there libraries there?`. Последнее `there` — «там».*
-- Am — *Для нескольких библиотек начинаем с `Are there`.*
+**18 · Администратор спрашивает, кого вы ищете. Спросите, есть ли здесь врач**
+<!-- interaction_id: en:lesson-04:session-09:i14; family: scripted_repeat_compare -->
+🎙 **Is there a doctor here?**
 
-**15 · Послушайте ответ о возможности встречи**
-<!-- interaction_id: en:lesson-04:session-09:i15; family: listen_choose -->
-🔊 *It is possible.* → **It is possible.** · It is necessary. · It is clear.
-- It is necessary. — *В записи последнее слово — `possible`, а в этом варианте — `necessary`.*
-- It is clear. — *В записи последнее слово — `possible`, а в этом варианте — `clear`.*
+**19 · В торговом центре вы ищете кабинет. Спросите охранника полной фразой: здесь есть кабинет?**
+<!-- interaction_id: en:lesson-04:session-09:i15; family: phrase_builder -->
+Плитки: `office` `an` `there` `Is` `here` `a` → **Is there an office here?**
+*(плитка `a` лишняя: здесь нужно `an` — `Is there an office here?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-09:i16; family: speed_match -->
-dentist — стоматолог · pharmacy — аптека · library — библиотека · bakery — пекарня
+toilet — туалет · nurse — медсестра · doctor — врач · dentist — стоматолог
 
-**17 · В поездке вы зашли в незнакомую клинику. Вы не знаете, работает ли здесь стоматолог. Спросите «Здесь есть стоматолог?»**
+**21 · У вас болит зуб. Спросите сотрудницу справочной полной фразой, есть ли рядом стоматолог**
 <!-- interaction_id: en:lesson-04:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there a dentist here?**
-
+🎙 **Is there a dentist near here?**

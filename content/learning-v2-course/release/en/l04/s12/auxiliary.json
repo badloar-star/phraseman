@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro1:r2": {
-          "ru": "Одна платформа: `Is there a platform here?`.",
-          "uk": "Одна платформа: `Is there a platform here?`."
+          "ru": "Платформ несколько, поэтому нужно are, а не is: Yes, there are.",
+          "uk": "Платформ кілька, тому потрібно are, а не is: Yes, there are."
         },
         "en:lesson-04:session-12:intro1:r3": {
-          "ru": "Это сообщение; вопрос начинается с `Is there`.",
-          "uk": "Це повідомлення; запитання починається з `Is there`."
+          "ru": "Вопрос начинался с Are there, поэтому и ответ с there: Yes, there are.",
+          "uk": "Запитання починалося з Are there, тому й відповідь з there: Yes, there are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro2:r2": {
-          "ru": "Одно почтовое отделение: `There is`.",
-          "uk": "Одне поштове відділення: `There is`."
+          "ru": "Расписаний несколько, поэтому нужно aren't, а не isn't.",
+          "uk": "Розкладів кілька, тому потрібно aren't, а не isn't."
         },
         "en:lesson-04:session-12:intro2:r3": {
-          "ru": "Перед одним отделением нужно `a`: `a post office`.",
-          "uk": "Перед одним відділенням потрібне `a`: `a post office`."
+          "ru": "Вопрос начинался с Are there, поэтому и ответ с there: No, there aren't.",
+          "uk": "Запитання починалося з Are there, тому й відповідь з there: No, there aren't."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro3:r2": {
-          "ru": "`urgent` — срочный; здесь нужно `private`.",
-          "uk": "`urgent` — терміновий; тут потрібне `private`."
+          "ru": "Эскалаторов несколько, поэтому начинаем с Are there, а не с Is there.",
+          "uk": "Ескалаторів кілька, тому починаємо з Are there, а не з Is there."
         },
         "en:lesson-04:session-12:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s private`.",
-          "uk": "З `It` потрібне `is`: `It’s private`."
+          "ru": "Перед несколькими эскалаторами a не ставим: escalators.",
+          "uk": "Перед кількома ескалаторами a не ставимо: escalators."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b3a872c3b1f86e084b7701d21cbad6ab18b3300ee1fa5bdb1187150002896940"
+  "auxiliaryFingerprint": "babc9de35df100775c283391d39a5a7d9ad01b4c8854a0652f9616b4cac3c8d4"
 }

@@ -1,136 +1,152 @@
 # Английский · Урок 4 · Занятие 12 — На вокзале
 
-**Ситуация.** Вы рассматриваете схему небольшого вокзала: ищете платформу и почту. В зале есть стол, а одну комнату открывают только для сотрудников.
+**Ситуация.** Вы на вокзале небольшого города: встречаете подругу и ждёте поезд вместе с братом. На вопрос о нескольких предметах вы отвечаете коротко, не повторяя вопрос: Yes, there are. или No, there aren't. Сами вы тоже спрашиваете о платформах, расписаниях и эскалаторах.
 
-**Что вы освоите:** спросить о платформе и столе, найти почту и объяснить, что комната не для всех
-**Новые слова:** platform
+**Что вы освоите:** коротко ответить на вопрос о нескольких предметах: Yes, there are. и No, there aren't.
+**Новые слова:** platform, timetable, escalator, carriage
+**Возвращаются:** train, seat, door, near
 
 ---
 
 ## Интро 1
 
-### Где ждут поезд
+### Подруга едет в поезде
 
-`platform` — «платформа» на вокзале: место у путей, где ждут поезд. Несколько — `platforms`. `Is there a platform here?` — «Здесь есть платформа?» `Are there platforms here?` — «Здесь есть платформы?» Платформа сама никуда не уедет: опоздать можно на поезд, а не на неё.
+Вы встречаете подругу на вокзале маленького города. Она звонит из поезда и спрашивает, где вас искать. platform — «платформа», длинная площадка у рельсов, куда подходит поезд. Подруга: Are there platforms here? — «Здесь есть платформы?» Вокруг вас их несколько. Ответьте: Yes, there are.
 
-**Спросите «Здесь есть платформа?»**
+**Подруга слушает вас в телефоне. Скажите ей коротко: да, платформы есть.**
 
-- ✅ **Is there a platform here?**
-- ❌ Are there a platform here? — *Одна платформа: `Is there a platform here?`.*
-- ❌ There is a platform here. — *Это сообщение; вопрос начинается с `Is there`.*
+- ✅ **Yes, there are.**
+- ❌ Yes, there is. — *Платформ несколько, поэтому нужно are, а не is: Yes, there are.*
+- ❌ Yes, they are. — *Вопрос начинался с Are there, поэтому и ответ с there: Yes, there are.*
 
 ---
 
 ## Интро 2
 
-### Почта и стол
+### Пустая стена
 
-`post office` — «почта», место, где отправляют письма. Это два слова, но одно место: `a post office`. `There is a post office here` — «Здесь есть почта». `table` — «стол»: `Is there a table?` — «Есть ли стол?»
+Вы с братом ждёте поезда на старом вокзале и смотрите на пустую стену. timetable — «расписание», таблица со временем отправления поездов. Брат спрашивает: Are there timetables here? — «Здесь есть расписания?» Вы видите только голые стены и ни одной таблицы. Ответьте: No, there aren't.
 
-**Вы нашли почту на схеме. Сообщите «Здесь есть почта».**
+**Брат стоит рядом с вами. Скажите ему коротко: нет, расписаний тут нет.**
 
-- ✅ **There is a post office here.**
-- ❌ There are a post office here. — *Одно почтовое отделение: `There is`.*
-- ❌ There is post office here. — *Перед одним отделением нужно `a`: `a post office`.*
+- ✅ **No, there aren't.**
+- ❌ No, there isn't. — *Расписаний несколько, поэтому нужно aren't, а не isn't.*
+- ❌ No, they aren't. — *Вопрос начинался с Are there, поэтому и ответ с there: No, there aren't.*
 
 ---
 
 ## Интро 3
 
-### Не для всех
+### Тяжёлая сумка
 
-`private` — «частный, личный; не для общего доступа». Комната на вокзале только для сотрудников. О ней можно сказать `It is private` — «Она не для общего доступа». Сокращённо: `It’s private`. Слово не означает, что дверь обязательно заперта: оно говорит, кому разрешено пользоваться помещением.
+Вы с мамой вошли на большой вокзал, а в руках у вас тяжёлая сумка. Подниматься на второй этаж по крутой лестнице тяжело. escalator — «эскалатор», лестница, которая едет сама. Рядом стоит охранник: Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?»
 
-**Друг спрашивает о комнате для сотрудников. Скажите с сокращением, что она не для общего доступа.**
+**Охранник стоит у двери. Спросите его, есть ли эскалаторы рядом с дверью.**
 
-- ✅ **It's private.**
-- ❌ It's urgent. — *`urgent` — срочный; здесь нужно `private`.*
-- ❌ It are private. — *С `It` нужно `is`: `It’s private`.*
+- ✅ **Are there escalators near the door?**
+- ❌ Is there escalators near the door? — *Эскалаторов несколько, поэтому начинаем с Are there, а не с Is there.*
+- ❌ Are there an escalators near the door? — *Перед несколькими эскалаторами a не ставим: escalators.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Сообщите «Есть стол»**
-<!-- interaction_id: en:lesson-04:session-12:i01; family: phrase_builder -->
-Плитки: `table` `a` `is` `There` `are` → **There is a table.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a table.`)*
+**1 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-04:session-12:i01; family: speed_match -->
+platform — платформа (на вокзале) · timetable — расписание · escalator — эскалатор · carriage — вагон
 
-**2 · Послушайте и выберите слово**
-<!-- interaction_id: en:lesson-04:session-12:i02; family: listen_choose -->
-🔊 *platform* → **platform** · tram · bank
-- tram — *В записи первое слово — `platform`, а в этом варианте — `tram`.*
-- bank — *В записи первое слово — `platform`, а в этом варианте — `bank`.*
+**2 · Карточка слова — platform**
+<!-- interaction_id: en:lesson-04:session-12:word:platform; family: word_card -->
+> **platform** — платформа. Are there platforms here? — «Здесь есть платформы?» О длинной площадке у рельсов, куда подходит поезд.
 
-**3 · Назовите платформу на вокзале одним словом**
-<!-- interaction_id: en:lesson-04:session-12:i03; family: context_gap_grammar -->
-___ → **platform** · tram · hotel
-- tram — *`tram` — трамвай; платформа — `platform`.*
-- hotel — *`hotel` — отель; платформа — `platform`.*
+**3 · Диктор на вокзале называет длинную площадку у рельсов, куда подходит поезд, а вы повторяете за ним слово**
+<!-- interaction_id: en:lesson-04:session-12:i02; family: scripted_repeat_compare -->
+🎙 **platform**
 
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-04:session-12:i04; family: speed_match -->
-platform — платформа · private — не для общего доступа · table — стол · post office — почта
+**4 · Вы вошли на вокзал. Спросите работницу справочной полной фразой: здесь есть платформы?**
+<!-- interaction_id: en:lesson-04:session-12:i03; family: phrase_builder -->
+Плитки: `platforms` `there` `Are` `here` `Is` → **Are there platforms here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there platforms here?`)*
 
-**5 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-12:i05; family: listen_build_dictation -->
-🔊 *Is there a platform?* Плитки: `platform` `a` `there` `Is` → **Is there a platform?**
+**5 · Карточка слова — timetable**
+<!-- interaction_id: en:lesson-04:session-12:word:timetable; family: word_card -->
+> **timetable** — расписание. Are there timetables here? — «Здесь есть расписания?» О таблице со временем отправления поездов и автобусов.
 
-**6 · По схеме сообщите «Здесь есть почта»**
-<!-- interaction_id: en:lesson-04:session-12:i06; family: phrase_builder -->
-Плитки: `here` `office` `post` `a` `is` `There` `are` → **There is a post office here.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is a post office here.`)*
+**6 · На стене висит таблица со временем отправления поездов. Как она называется по-английски?**
+<!-- interaction_id: en:lesson-04:session-12:i04; family: context_gap_grammar -->
+___ → **timetable** · map · ticket
+- map — *map — это карта места, а таблица со временем отправления называется timetable.*
+- ticket — *ticket — это билет, а таблица со временем называется timetable.*
 
-**7 · Комната только для сотрудников. Скажите с сокращением «Она не для общего доступа»**
-<!-- interaction_id: en:lesson-04:session-12:i07; family: scripted_repeat_compare -->
-🎙 **It's private.**
+**7 · Послушайте вопрос брата**
+<!-- interaction_id: en:lesson-04:session-12:i05; family: listen_choose -->
+🔊 *Are there timetables here?* → **Are there timetables here?** · Are there platforms here? · Is there a timetable here?
+- Are there platforms here? — *В записи спрашивают про `timetables`, а в этом варианте про `platforms`.*
+- Is there a timetable here? — *В записи вопрос `Are there` о нескольких расписаниях, а в этом варианте `Is there a` об одном.*
 
-**8 · Спросите «Здесь есть платформы?»**
+**8 · Карточка слова — escalator**
+<!-- interaction_id: en:lesson-04:session-12:word:escalator; family: word_card -->
+> **escalator** — эскалатор. Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?» О лестнице, которая едет сама.
+
+**9 · Охранник на вокзале показывает на движущиеся ступеньки и называет слово, а вы повторяете за ним**
+<!-- interaction_id: en:lesson-04:session-12:i06; family: scripted_repeat_compare -->
+🎙 **escalator**
+
+**10 · Послушайте маму и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-12:i07; family: listen_build_dictation -->
+🔊 *Are there escalators near here?* Плитки: `escalators` `there` `Are` `near` `here` `Is` → **Are there escalators near here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there escalators near here?`)*
+
+**11 · Карточка слова — carriage**
+<!-- interaction_id: en:lesson-04:session-12:word:carriage; family: word_card -->
+> **carriage** — вагон. Are there carriages here? — «Здесь есть вагоны?» О части поезда, где сидят пассажиры.
+
+**12 · Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?**
 <!-- interaction_id: en:lesson-04:session-12:i08; family: context_gap_grammar -->
-___ there platforms here? → **Are** · Is · Am
-- Is — *Платформ несколько: `Are there platforms here?`.*
-- Am — *Вопрос о нескольких платформах начинается с `Are there`.*
+___ → **carriage** · platform · seat
+- platform — *platform — это площадка у рельсов, а часть поезда называется carriage.*
+- seat — *seat — это место для сидения, а целая часть поезда называется carriage.*
 
-**9 · Послушайте вопрос**
-<!-- interaction_id: en:lesson-04:session-12:i09; family: listen_choose -->
-🔊 *Is there a table?* → **Is there a table?** · Is there a platform? · Is there a room?
-- Is there a platform? — *В записи последнее слово — `table`, а в этом варианте — `platform`.*
-- Is there a room? — *В записи последнее слово — `table`, а в этом варианте — `room`.*
+**13 · Вы стоите у состава. Спросите проводника полной фразой: здесь есть вагоны?**
+<!-- interaction_id: en:lesson-04:session-12:i09; family: phrase_builder -->
+Плитки: `carriages` `there` `Are` `here` `Is` → **Are there carriages here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there carriages here?`)*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-12:i10; family: speed_match -->
-platform — платформа · platforms — платформы · table — стол · private — не для общего доступа
+carriage — вагон · platform — платформа (на вокзале) · seat — место для сидения · train — поезд
 
-**11 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-04:session-12:i11; family: listen_build_dictation -->
-🔊 *Is there a post office?* Плитки: `office` `post` `a` `there` `Is` → **Is there a post office?**
+**15 · Послушайте короткий ответ**
+<!-- interaction_id: en:lesson-04:session-12:i11; family: listen_choose -->
+🔊 *Yes, there are.* → **Yes, there are.** · No, there aren't. · Yes, there is.
+- No, there aren't. — *В записи ответ начинается с `Yes`, а в этом варианте — с `No`.*
+- Yes, there is. — *В записи `there are`, а в этом варианте `there is`.*
 
-**12 · Укажите на место у путей вдалеке: «То — платформа»**
-<!-- interaction_id: en:lesson-04:session-12:i12; family: phrase_builder -->
-Плитки: `platform` `a` `is` `That` `are` → **That is a platform.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is a platform.`)*
+**16 · Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос**
+<!-- interaction_id: en:lesson-04:session-12:i12; family: context_gap_grammar -->
+___ there timetables near here? → **Are** · Is · Am
+- Is — *Расписаний несколько, поэтому начинаем с Are there, а не с Is there.*
+- Am — *Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.*
 
-**13 · Вам нужно положить сумку. Спросите «Здесь есть стол?»**
-<!-- interaction_id: en:lesson-04:session-12:i13; family: scripted_repeat_compare -->
-🎙 **Is there a table here?**
+**17 · Послушайте подругу и соберите вопрос**
+<!-- interaction_id: en:lesson-04:session-12:i13; family: listen_build_dictation -->
+🔊 *Are there platforms near here?* Плитки: `platforms` `there` `Are` `near` `here` `Is` → **Are there platforms near here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there platforms near here?`)*
 
-**14 · Вы нашли платформу. Сообщите «Здесь есть платформа»**
-<!-- interaction_id: en:lesson-04:session-12:i14; family: context_gap_grammar -->
-There ___ a platform here. → **is** · are · am
-- are — *Одна платформа: `There is a platform here`.*
-- am — *О наличии одной платформы говорим `There is`.*
+**18 · Мама спрашивает вас, как подняться наверх. Спросите охранника, есть ли здесь эскалаторы**
+<!-- interaction_id: en:lesson-04:session-12:i14; family: scripted_repeat_compare -->
+🎙 **Are there escalators here?**
 
-**15 · Послушайте объяснение о комнате**
-<!-- interaction_id: en:lesson-04:session-12:i15; family: listen_choose -->
-🔊 *It is private.* → **It is private.** · It is urgent. · It is comfortable.
-- It is urgent. — *В записи последнее слово — `private`, а в этом варианте — `urgent`.*
-- It is comfortable. — *В записи последнее слово — `private`, а в этом варианте — `comfortable`.*
+**19 · Вы стоите на платформе. Спросите работницу справочной полной фразой: рядом есть поезда?**
+<!-- interaction_id: en:lesson-04:session-12:i15; family: phrase_builder -->
+Плитки: `trains` `there` `Are` `near` `here` `Is` → **Are there trains near here?**
+*(плитка `Is` лишняя: здесь нужно `Are` — `Are there trains near here?`)*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-12:i16; family: speed_match -->
-platform — платформа · private — не для общего доступа · table — стол · post office — почта
+timetable — расписание · escalator — эскалатор · carriage — вагон · platform — платформа (на вокзале)
 
-**17 · На другом маленьком вокзале вы не видите места посадки. Спросите «Здесь есть платформа?»**
+**21 · Брат спрашивает, есть ли на этом вокзале расписания. Их нет. Ответьте ему коротко**
 <!-- interaction_id: en:lesson-04:session-12:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there a platform here?**
-
+🎙 **No, there aren't.**

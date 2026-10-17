@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-06:i01",
-    "correctText": "This is a pen.",
+    "correctText": "en:lesson-04:session-06:i01:p1=clinic\nen:lesson-04:session-06:i01:p2=office\nen:lesson-04:session-06:i01:p3=hall\nen:lesson-04:session-06:i01:p4=theatre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:word:clinic",
+    "correctText": "clinic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i02",
     "correctText": "clinic",
-    "correctResponseId": "en:lesson-04:session-06:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-06:i03",
-    "correctText": "clinic",
-    "correctResponseId": "en:lesson-04:session-06:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-06:i04",
-    "correctText": "en:lesson-04:session-06:i04:p1=clinic\nen:lesson-04:session-06:i04:p2=fake\nen:lesson-04:session-06:i04:p3=pen\nen:lesson-04:session-06:i04:p4=striped",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-06:i03",
+    "correctText": "There is a clinic upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:word:office",
+    "correctText": "office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i04",
+    "correctText": "office",
+    "correctResponseId": "en:lesson-04:session-06:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-06:i05",
-    "correctText": "There is a clinic.",
+    "correctText": "There is an office upstairs.",
+    "correctResponseId": "en:lesson-04:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:word:hall",
+    "correctText": "hall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i06",
-    "correctText": "There is a pen here.",
+    "correctText": "hall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i07",
-    "correctText": "It's fake.",
+    "correctText": "There is a big hall inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:word:theatre",
+    "correctText": "theatre",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i08",
-    "correctText": "a",
+    "correctText": "theatre",
     "correctResponseId": "en:lesson-04:session-06:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-06:i09",
-    "correctText": "It is striped.",
-    "correctResponseId": "en:lesson-04:session-06:i09:r1"
+    "correctText": "There is a theatre inside the building.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i10",
-    "correctText": "en:lesson-04:session-06:i10:p1=clinic\nen:lesson-04:session-06:i10:p2=pen\nen:lesson-04:session-06:i10:p3=here\nen:lesson-04:session-06:i10:p4=there",
-    "correctResponseId": null
+    "correctText": "There is a hall inside the building.",
+    "correctResponseId": "en:lesson-04:session-06:i10:r1"
   },
   {
     "interactionId": "en:lesson-04:session-06:i11",
-    "correctText": "That bag is striped.",
-    "correctResponseId": null
+    "correctText": "an",
+    "correctResponseId": "en:lesson-04:session-06:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-06:i12",
-    "correctText": "This is a clinic.",
+    "correctText": "en:lesson-04:session-06:i12:p1=clinic\nen:lesson-04:session-06:i12:p2=hall\nen:lesson-04:session-06:i12:p3=theatre\nen:lesson-04:session-06:i12:p4=building",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i13",
-    "correctText": "It's striped.",
+    "correctText": "There is an old theatre upstairs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-06:i14",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-04:session-06:i14:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-06:i15",
-    "correctText": "It is fake.",
-    "correctResponseId": "en:lesson-04:session-06:i15:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-06:i16",
-    "correctText": "en:lesson-04:session-06:i16:p1=clinic\nen:lesson-04:session-06:i16:p2=fake\nen:lesson-04:session-06:i16:p3=pen\nen:lesson-04:session-06:i16:p4=striped",
+    "correctText": "There is a clinic inside the building.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-06:i15",
+    "correctText": "There is a clean hall upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i16",
+    "correctText": "There is a theatre upstairs.",
+    "correctResponseId": "en:lesson-04:session-06:i16:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-06:i17",
-    "correctText": "There is a clinic here.",
+    "correctText": "There is an office inside the building.",
     "correctResponseId": null
   }
 ]

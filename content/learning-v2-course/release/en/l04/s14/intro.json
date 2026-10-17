@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-14",
   "learningOutcomeByLocale": {
-    "ru": "спросить о прачечной, назвать клинику и картинку, сказать, что ответ очевиден",
-    "uk": "запитати про пральню, назвати клініку й картинку, сказати, що відповідь очевидна"
+    "ru": "самому выбрать Is there a или Are there по числу предметов",
+    "uk": "самому вибрати Is there a чи Are there за кількістю предметів"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для стирки",
-        "uk": "Місце для прання"
+        "ru": "Нет чистых рубашек",
+        "uk": "Немає чистих сорочок"
       },
       "bodyByLocale": {
-        "ru": "`laundrette` — «прачечная самообслуживания»: туда приходят постирать вещи в общих машинах. `Is there a laundrette here?` — «Здесь есть прачечная самообслуживания?» Несколько таких мест — `laundrettes`. Чистых футболок уже нет: теперь `laundrette` интереснее любого музея.",
-        "uk": "`laundrette` — «пральня самообслуговування»: туди приходять випрати речі у спільних машинах. `Is there a laundrette here?` — «Тут є пральня самообслуговування?» Кілька таких місць — `laundrettes`. Чистих футболок уже немає: тепер `laundrette` цікавіша за будь-який музей."
+        "ru": "В поездке у вас с братом закончились чистые рубашки, а стирать их негде. Вы останавливаете прохожего на улице. laundrette — «прачечная самообслуживания», где стирают сами. Спросите у него: Is there a laundrette near the park? — «Есть ли прачечная рядом с парком?»",
+        "uk": "У подорожі у вас із братом закінчилися чисті сорочки, а прати їх ніде. Ви зупиняєте перехожого на вулиці. laundrette — «пральня самообслуговування», де перуть самі. Запитайте в нього: Is there a laundrette near the park? — «Чи є пральня поруч із парком?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-14:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли здесь прачечная самообслуживания.",
-          "uk": "Запитайте, чи є тут пральня самообслуговування."
+          "ru": "Прохожий остановился рядом с вами. Спросите, есть ли прачечная рядом с парком.",
+          "uk": "Перехожий зупинився поруч із вами. Запитайте, чи є пральня поруч із парком."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-14:intro1:r1",
-              "text": "Is there a laundrette here?"
+              "text": "Is there a laundrette near the park?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro1:r2",
-              "text": "Are there a laundrette here?"
+              "text": "Are there a laundrette near the park?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro1:r3",
-              "text": "There is a laundrette here."
+              "text": "Is there laundrette near the park?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-14:intro1:r1",
-              "text": "Is there a laundrette here?"
+              "text": "Is there a laundrette near the park?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro1:r2",
-              "text": "Are there a laundrette here?"
+              "text": "Are there a laundrette near the park?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro1:r3",
-              "text": "There is a laundrette here."
+              "text": "Is there laundrette near the park?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли здесь прачечная самообслуживания.",
-          "uk": "Запитайте, чи є тут пральня самообслуговування."
+          "ru": "Прохожий остановился рядом с вами. Спросите, есть ли прачечная рядом с парком.",
+          "uk": "Перехожий зупинився поруч із вами. Запитайте, чи є пральня поруч із парком."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вывеска и схема",
-        "uk": "Вивіска й схема"
+        "ru": "Мокрые вещи",
+        "uk": "Мокрі речі"
       },
       "bodyByLocale": {
-        "ru": "`picture` — «картинка, изображение». `There is a picture here` — «Здесь есть картинка». `clinic` — «клиника»: `That is a clinic` — «То здание — клиника». На схеме можно спросить `Is there a clinic?` — «Есть ли клиника?»",
-        "uk": "`picture` — «картинка, зображення». `There is a picture here` — «Тут є картинка». `clinic` — «клініка»: `That is a clinic` — «Та будівля — клініка». На схемі можна запитати `Is there a clinic?` — «Чи є клініка?»"
+        "ru": "В прачечной вы достали из машины мокрые вещи, и нести их домой тяжело. Вы не видите, где их сушат. dryer — «сушилка», машина для сушки белья. Таких машин в зале может быть несколько. Спросите работницу: Are there dryers near the door? — «Есть ли сушилки рядом с дверью?»",
+        "uk": "У пральні ви дістали з машини мокрі речі, і нести їх додому важко. Ви не бачите, де їх сушать. dryer — «сушарка», машина для сушіння білизни. Таких машин у залі може бути кілька. Запитайте працівницю: Are there dryers near the door? — «Чи є сушарки поруч із дверима?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-14:intro2:q",
         "promptByLocale": {
-          "ru": "Друг показывает на дальнее здание. Скажите «То здание — клиника».",
-          "uk": "Друг показує на далеку будівлю. Скажіть «Та будівля — клініка»."
+          "ru": "Работница прачечной стоит у стойки. Спросите её, есть ли сушилки рядом с дверью.",
+          "uk": "Працівниця пральні стоїть біля стійки. Запитайте її, чи є сушарки поруч із дверима."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-14:intro2:r1",
-              "text": "That is a clinic."
+              "text": "Are there dryers near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro2:r2",
-              "text": "That are a clinic."
+              "text": "Is there dryers near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro2:r3",
-              "text": "Those are clinics."
+              "text": "Are there a dryers near the door?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-14:intro2:r1",
-              "text": "That is a clinic."
+              "text": "Are there dryers near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro2:r2",
-              "text": "That are a clinic."
+              "text": "Is there dryers near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro2:r3",
-              "text": "Those are clinics."
+              "text": "Are there a dryers near the door?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг показывает на дальнее здание. Скажите «То здание — клиника».",
-          "uk": "Друг показує на далеку будівлю. Скажіть «Та будівля — клініка»."
+          "ru": "Работница прачечной стоит у стойки. Спросите её, есть ли сушилки рядом с дверью.",
+          "uk": "Працівниця пральні стоїть біля стійки. Запитайте її, чи є сушарки поруч із дверима."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "И так понятно",
-        "uk": "І так зрозуміло"
+        "ru": "Правила на двери",
+        "uk": "Правила на дверях"
       },
       "bodyByLocale": {
-        "ru": "`obvious` — «очевидный». На вывеске большая стиральная машина, и друг спрашивает, что здесь находится. Ответ теперь ясен: `It is obvious` — «Это очевидно». Сокращённо: `It’s obvious`. Так можно сказать о понятном ответе; в ответ на чужой вопрос фраза иногда звучит резко, поэтому не стоит упрекать ею человека за незнание.",
-        "uk": "`obvious` — «очевидний». На вивісці велика пральна машина, і друг запитує, що тут розташовано. Відповідь тепер зрозуміла: `It is obvious` — «Це очевидно». Скорочено: `It’s obvious`. Так можна сказати про зрозумілу відповідь; у відповідь на чуже запитання фраза іноді звучить різко, тому не варто дорікати нею людині за незнання."
+        "ru": "У двери прачечной висит лист с правилами, но руки заняты сумками, и подойти ближе вы не можете. Брат стоит у самой двери. notice — «объявление», лист бумаги со словами для всех. Спросите брата: Is there a notice near the door? — «Рядом с дверью есть объявление?»",
+        "uk": "Біля дверей пральні висить аркуш із правилами, але руки зайняті сумками, і підійти ближче ви не можете. Брат стоїть біля самих дверей. notice — «оголошення», аркуш паперу зі словами для всіх. Запитайте брата: Is there a notice near the door? — «Чи є поруч із дверима оголошення?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-14:intro3:q",
         "promptByLocale": {
-          "ru": "Вы с другом вместе разглядели вывеску и поняли ответ. Скажите «Это очевидно» с сокращением.",
-          "uk": "Ви з другом разом роздивилися вивіску й зрозуміли відповідь. Скажіть «Це очевидно» зі скороченням."
+          "ru": "Брат стоит у самой двери. Спросите его, есть ли рядом с дверью объявление.",
+          "uk": "Брат стоїть біля самих дверей. Запитайте його, чи є поруч із дверима оголошення."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-14:intro3:r1",
-              "text": "It's obvious."
+              "text": "Is there a notice near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro3:r2",
-              "text": "It's private."
+              "text": "Are there a notice near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro3:r3",
-              "text": "It are obvious."
+              "text": "There is a notice near the door?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-14:intro3:r1",
-              "text": "It's obvious."
+              "text": "Is there a notice near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro3:r2",
-              "text": "It's private."
+              "text": "Are there a notice near the door?"
             },
             {
               "responseId": "en:lesson-04:session-14:intro3:r3",
-              "text": "It are obvious."
+              "text": "There is a notice near the door?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с другом вместе разглядели вывеску и поняли ответ. Скажите «Это очевидно» с сокращением.",
-          "uk": "Ви з другом разом роздивилися вивіску й зрозуміли відповідь. Скажіть «Це очевидно» зі скороченням."
+          "ru": "Брат стоит у самой двери. Спросите его, есть ли рядом с дверью объявление.",
+          "uk": "Брат стоїть біля самих дверей. Запитайте його, чи є поруч із дверима оголошення."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe3490ddfb57e6fdc4b4fbff26182d8f976b545b1ed2514f750a5b4d717518bb"
+  "introFingerprint": "f71cd3e2eb9a77445170e612e7f0eb5f23c18cc335ae6189dd7bdbeffc1a81cf"
 }

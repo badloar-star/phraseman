@@ -1,136 +1,152 @@
-# Англійська · Урок 4 · Заняття 10 — Шукаємо готель
+# Англійська · Урок 4 · Заняття 10 — Шукаємо готель і відповідаємо коротко
 
-**Ситуація.** Ви з другом приїхали в нове місто й шукаєте готель. На карті також є сад. Розглядаючи план кімнати, ви запитуєте про замок, а потім обговорюєте час зустрічі.
+**Ситуація.** Ви приїхали до незнайомого міста й підказуєте туристці, братові та адміністраторові готелю, де можна зупинитися. Самі ви теж ставите запитання про готелі. Відповідайте коротко: Yes, there is. або No, there isn't. Відповідь іде окремою реплікою, запитання повторювати не потрібно.
 
-**Що ви опануєте:** запитати про наявність готелю й замка, повідомити про неможливість конкретного плану
-**Нові слова:** hotel
+**Що ви опануєте:** коротко відповісти на запитання про наявність: Yes, there is. і No, there isn't.
+**Нові слова:** hotel, hostel, reception, lobby
+**Повертаються:** bank, park, pharmacy, office, near
 
 ---
 
 ## Інтро 1
 
-### Чи є готель?
+### Туристка з валізою
 
-`hotel` — «готель». `There is a hotel` — «Є готель». Запитання: `Is there a hotel?` — «Чи є готель?» Один готель — `a hotel`, запитання починається з `Is there`. Валіза готова ночувати будь-де, але вам краще знайти кімнату.
+На вулиці до вас підійшла туристка з валізою. Вона шукає, де переночувати, і питає: Is there a hotel near here? — «Чи є тут поруч готель?» hotel — «готель». Ви знаєте, що він стоїть за банком. Відповідайте коротко: Yes, there is. — «Так, є».
 
-**Запитайте, чи є тут готель.**
+**Туристка чекає на вашу відповідь. Скажіть їй коротко: так, готель є.**
 
-- ✅ **Is there a hotel here?**
-- ❌ There is a hotel here. — *Це повідомлення; запитання починається з `Is there`.*
-- ❌ Is there hotel here? — *Перед одним готелем потрібне `a`: `a hotel`.*
+- ✅ **Yes, there is.**
+- ❌ Yes, it is. — *Запитання починалося з Is there, тому й відповідь починається з there: Yes, there is.*
+- ❌ Yes, there are. — *Готель один, тому потрібно is, а не are: Yes, there is.*
 
 ---
 
 ## Інтро 2
 
-### Сад і замок
+### Брат дзвонить із потяга
 
-`garden` — «сад»: `Is there a garden here?` — «Тут є сад?» `lock` — «замок» на дверях, не палац. `Is there a lock?` — «Чи є замок?» `There is a lock here` — «Тут є замок». Запитання й повідомлення відрізняються порядком `Is there` та `There is`.
+Ваш брат їде до міста потягом, грошей у нього мало. Він дзвонить вам: Is there a hostel near the park? — «Чи є хостел поруч із парком?» hostel — «хостел», недороге житло, де сплять в одній кімнаті. Ви знаєте район: там самі дорогі готелі. Відповідайте: No, there isn't.
 
-**Ви дивитеся план дверей і хочете дізнатися, чи передбачений замок. Запитайте «Чи є замок?»**
+**Брат слухає вас по телефону. Скажіть йому коротко: ні, хостелу там немає.**
 
-- ✅ **Is there a lock?**
-- ❌ There is a lock. — *Це повідомлення. Для запитання потрібне `Is there a lock?`.*
-- ❌ Are there a lock? — *Один замок: `Is there a lock?`.*
+- ✅ **No, there isn't.**
+- ❌ Yes, there isn't. — *З Yes кажемо is, а isn't іде з No: No, there isn't.*
+- ❌ No, it isn't. — *На запитання Is there… відповідаємо з there: No, there isn't.*
 
 ---
 
 ## Інтро 3
 
-### Це неможливо
+### Великий готель
 
-`impossible` — «неможливий». Друг пропонує зустрітися за хвилину, але ви ще далеко й точно не встигнете. Про такий план: `It is impossible` — «Це неможливо». Скорочено: `It’s impossible`. Це сильніше, ніж «важко»: за цих умов виконати план не можна.
+Ви з подругою зайшли до великого готелю й шукаєте, де отримати ключ від номера. Навколо стільки людей, що табличок не видно. reception — «стійка реєстрації». Поруч стоїть охоронець. Запитайте його: Is there a reception here? — «Чи є тут стійка реєстрації?»
 
-**Ви точно не встигнете на запропонований час. Скажіть про план «Це неможливо» зі скороченням.**
+**Охоронець стоїть біля входу. Запитайте його, чи є тут стійка реєстрації.**
 
-- ✅ **It's impossible.**
-- ❌ It's possible. — *`possible` — можливо, а тут неможливо: `impossible`.*
-- ❌ It are impossible. — *З `It` потрібне `is`, скорочено `It’s`.*
+- ✅ **Is there a reception here?**
+- ❌ Is there reception here? — *Стійка одна, тому перед нею потрібно a: a reception.*
+- ❌ There is a reception here? — *Запитання починаємо з Is there, а не з There is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Повідомте другові «Є сад»**
-<!-- interaction_id: en:lesson-04:session-10:i01; family: phrase_builder -->
-Плитки: `garden` `a` `is` `There` `are` → **There is a garden.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a garden.`)*
+**1 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-04:session-10:i01; family: speed_match -->
+hotel — готель · hostel — хостел · reception — стійка реєстрації · lobby — хол
 
-**2 · Послухайте й виберіть слово**
-<!-- interaction_id: en:lesson-04:session-10:i02; family: listen_choose -->
-🔊 *hotel* → **hotel** · hospital · garden
-- hospital — *У записі перше слово — `hotel`, а в цьому варіанті — `hospital`.*
-- garden — *У записі перше слово — `hotel`, а в цьому варіанті — `garden`.*
+**2 · Картка слова — hotel**
+<!-- interaction_id: en:lesson-04:session-10:word:hotel; family: word_card -->
+> **hotel** — готель. Is there a hotel near here? — «Чи є тут поруч готель?» Про будівлю, де можна винайняти номер на ніч.
 
-**3 · Назвіть готель одним англійським словом**
-<!-- interaction_id: en:lesson-04:session-10:i03; family: context_gap_grammar -->
-___ → **hotel** · hospital · clinic
-- hospital — *`hospital` — лікарня; готель — `hotel`.*
-- clinic — *`clinic` — клініка; готель — `hotel`.*
+**3 · Туристка з валізою називає місце, де хоче переночувати, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-10:i02; family: scripted_repeat_compare -->
+🎙 **hotel**
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-04:session-10:i04; family: speed_match -->
-hotel — готель · impossible — неможливий · lock — замок на дверях · garden — сад
+**4 · Ви показуєте туристці мапу. Запитайте її повною фразою: чи є тут поруч готель?**
+<!-- interaction_id: en:lesson-04:session-10:i03; family: phrase_builder -->
+Плитки: `hotel` `a` `there` `Is` `near` `here` `Are` → **Is there a hotel near here?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there a hotel near here?`)*
 
-**5 · Послухайте й складіть запитання**
-<!-- interaction_id: en:lesson-04:session-10:i05; family: listen_build_dictation -->
-🔊 *Is there a hotel?* Плитки: `hotel` `a` `there` `Is` → **Is there a hotel?**
+**5 · Картка слова — hostel**
+<!-- interaction_id: en:lesson-04:session-10:word:hostel; family: word_card -->
+> **hostel** — хостел. Is there a hostel near here? — «Чи є тут поруч хостел?» Про недороге житло зі спільними кімнатами.
 
-**6 · Ви вивчаєте район. Запитайте «Тут є сад?»**
-<!-- interaction_id: en:lesson-04:session-10:i06; family: phrase_builder -->
-Плитки: `here` `garden` `a` `there` `Is` → **Is there a garden here?**
+**6 · Брат шукає недороге житло, де сплять у спільній кімнаті з іншими гостями. Як воно називається англійською?**
+<!-- interaction_id: en:lesson-04:session-10:i04; family: context_gap_grammar -->
+___ → **hostel** · hotel · hospital
+- hotel — *hotel — це звичайний готель з окремими номерами, а житло зі спільною кімнатою називається hostel.*
+- hospital — *hospital — це лікарня, а недороге житло називається hostel.*
 
-**7 · Друг пропонує зустрітися за хвилину, а ви ще далеко й точно не встигнете. Скажіть «Це неможливо» зі скороченням**
-<!-- interaction_id: en:lesson-04:session-10:i07; family: scripted_repeat_compare -->
-🎙 **It's impossible.**
+**7 · Послухайте запитання брата**
+<!-- interaction_id: en:lesson-04:session-10:i05; family: listen_choose -->
+🔊 *Is there a hostel near here?* → **Is there a hostel near here?** · Is there a hotel near here? · Is there a hostel here?
+- Is there a hotel near here? — *У записі питають про `hostel`, а в цьому варіанті про `hotel`.*
+- Is there a hostel here? — *У записі є `near`, а в цьому варіанті його немає.*
 
-**8 · Запитайте про наявність одного готелю**
+**8 · Картка слова — reception**
+<!-- interaction_id: en:lesson-04:session-10:word:reception; family: word_card -->
+> **reception** — стійка реєстрації. Is there a reception here? — «Чи є тут стійка реєстрації?» Про місце в готелі, де видають ключ від номера.
+
+**9 · Адміністратор готелю називає місце, де вам видають ключ від номера, а ви повторюєте за нею слово**
+<!-- interaction_id: en:lesson-04:session-10:i06; family: scripted_repeat_compare -->
+🎙 **reception**
+
+**10 · Послухайте туристку й складіть її запитання**
+<!-- interaction_id: en:lesson-04:session-10:i07; family: listen_build_dictation -->
+🔊 *Is there a bank near here?* Плитки: `bank` `a` `there` `Is` `near` `here` `Are` → **Is there a bank near here?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there a bank near here?`)*
+
+**11 · Картка слова — lobby**
+<!-- interaction_id: en:lesson-04:session-10:word:lobby; family: word_card -->
+> **lobby** — хол. Is there a lobby here? — «Чи є тут хол?» Про великий зал біля входу до готелю.
+
+**12 · Просторий зал біля входу до готелю з диванами й кріслами для очікування. Як він називається англійською?**
 <!-- interaction_id: en:lesson-04:session-10:i08; family: context_gap_grammar -->
-Is there ___ hotel here? → **a** · an · are
-- an — *У `hotel` перший звук приголосний: `a hotel`.*
-- are — *Тут потрібен артикль перед одним готелем: `a`.*
+___ → **lobby** · reception · office
+- reception — *reception — це стійка, де видають ключ, а зал із диванами називається lobby.*
+- office — *office — це кабінет, а зал біля входу до готелю називається lobby.*
 
-**9 · Послухайте запитання про деталь дверей**
-<!-- interaction_id: en:lesson-04:session-10:i09; family: listen_choose -->
-🔊 *Is there a lock?* → **Is there a lock?** · Is there a garden? · Is there a hotel?
-- Is there a garden? — *У записі останнє слово — `lock`, а в цьому варіанті — `garden`.*
-- Is there a hotel? — *У записі останнє слово — `lock`, а в цьому варіанті — `hotel`.*
+**13 · Ви прийшли до готелю. Запитайте адміністратора повною фразою: чи є тут стійка реєстрації?**
+<!-- interaction_id: en:lesson-04:session-10:i09; family: phrase_builder -->
+Плитки: `reception` `a` `there` `Is` `here` `Are` → **Is there a reception here?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there a reception here?`)*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-10:i10; family: speed_match -->
-hotel — готель · lock — замок на дверях · here — тут · there — там
+hotel — готель · hostel — хостел · pharmacy — аптека · bank — банк
 
-**11 · Послухайте й складіть повідомлення**
-<!-- interaction_id: en:lesson-04:session-10:i11; family: listen_build_dictation -->
-🔊 *There is a lock here.* Плитки: `here` `lock` `a` `is` `There` `are` → **There is a lock here.**
-*(плитка `are` зайва: тут потрібно `is` — `There is a lock here.`)*
+**15 · Послухайте запитання туристки**
+<!-- interaction_id: en:lesson-04:session-10:i11; family: listen_choose -->
+🔊 *Is there a pharmacy near here?* → **Is there a pharmacy near here?** · Is there a bank near here? · Is there a pharmacy here?
+- Is there a bank near here? — *У записі питають про `pharmacy`, а в цьому варіанті про `bank`.*
+- Is there a pharmacy here? — *У записі є `near`, а в цьому варіанті його немає.*
 
-**12 · Друг не впізнає будівлю поруч. Назвіть її: «Це готель»**
-<!-- interaction_id: en:lesson-04:session-10:i12; family: phrase_builder -->
-Плитки: `hotel` `a` `is` `This` `are` → **This is a hotel.**
-*(плитка `are` зайва: тут потрібно `is` — `This is a hotel.`)*
+**16 · Туристка запитала, чи є поруч аптека. Ви знаєте, що є. Доповніть вашу коротку відповідь**
+<!-- interaction_id: en:lesson-04:session-10:i12; family: context_gap_grammar -->
+Yes, there ___. → **is** · are · am
+- are — *Аптека одна, тому потрібно is, а не are.*
+- am — *am кажуть лише з I, а після there для одного потрібно is.*
 
-**13 · Ви показуєте точку на плані дверей. Запитайте «Тут є замок?»**
+**17 · Туристка просить дізнатися в адміністратора готелю, чи є тут хостел. Поставте запитання адміністраторові**
 <!-- interaction_id: en:lesson-04:session-10:i13; family: scripted_repeat_compare -->
-🎙 **Is there a lock here?**
+🎙 **Is there a hostel here?**
 
-**14 · Друг показує інший район на карті. Запитайте «Там є сад?»**
-<!-- interaction_id: en:lesson-04:session-10:i14; family: context_gap_grammar -->
-___ there a garden there? → **Is** · Are · Am
-- Are — *Один сад: `Is there a garden there?`. Останнє `there` — «там».*
-- Am — *Запитання про один сад починається з `Is there`.*
+**18 · Послухайте охоронця й складіть запитання**
+<!-- interaction_id: en:lesson-04:session-10:i14; family: listen_build_dictation -->
+🔊 *Is there a lobby here?* Плитки: `lobby` `a` `there` `Is` `here` `Are` → **Is there a lobby here?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there a lobby here?`)*
 
-**15 · Послухайте відповідь про запропонований час зустрічі**
-<!-- interaction_id: en:lesson-04:session-10:i15; family: listen_choose -->
-🔊 *It is impossible.* → **It is impossible.** · It is possible. · It is necessary.
-- It is possible. — *У записі останнє слово — `impossible`, а в цьому варіанті — `possible`.*
-- It is necessary. — *У записі останнє слово — `impossible`, а в цьому варіанті — `necessary`.*
+**19 · Туристка шукає готель біля банку. Запитайте її повною фразою: чи є готель поруч із банком?**
+<!-- interaction_id: en:lesson-04:session-10:i15; family: phrase_builder -->
+Плитки: `hotel` `a` `there` `Is` `near` `the` `bank` `Are` → **Is there a hotel near the bank?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is there a hotel near the bank?`)*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-10:i16; family: speed_match -->
-hotel — готель · impossible — неможливий · lock — замок на дверях · garden — сад
+lobby — хол · reception — стійка реєстрації · hostel — хостел · hotel — готель
 
-**17 · В іншій подорожі ви приїхали в незнайоме місто й шукаєте нічліг. У довідковій службі запитайте «Тут є готель?»**
+**21 · Туристка питає, чи є поруч хостел. Ви знаєте, що немає. Відповідайте їй коротко**
 <!-- interaction_id: en:lesson-04:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Is there a hotel here?**
-
+🎙 **No, there isn't.**

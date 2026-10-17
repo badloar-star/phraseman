@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-08:intro1:r2": {
-          "ru": "Один район: `is`.",
-          "uk": "Один район: `is`."
+          "ru": "Вы оба знаете, о каком районе речь, поэтому the: The neighbourhood is quiet.",
+          "uk": "Ви обоє знаєте, про який район ідеться, тому the: The neighbourhood is quiet."
         },
         "en:lesson-04:session-08:intro1:r3": {
-          "ru": "Об одном районе: `This neighbourhood`.",
-          "uk": "Про один район: `This neighbourhood`."
+          "ru": "Район один, поэтому нужно is: The neighbourhood is quiet.",
+          "uk": "Район один, тому потрібно is: The neighbourhood is quiet."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-08:intro2:r2": {
-          "ru": "Одна библиотека: `There is a library here`.",
-          "uk": "Одна бібліотека: `There is a library here`."
+          "ru": "Переходов несколько, поэтому нужно are: There are crossings near the school.",
+          "uk": "Переходів кілька, тому потрібно are: There are crossings near the school."
         },
         "en:lesson-04:session-08:intro2:r3": {
-          "ru": "Перед одним местом нужно `a`: `a library`.",
-          "uk": "Перед одним місцем потрібне `a`: `a library`."
+          "ru": "Переходов несколько, поэтому нужно crossings: There are crossings near the school.",
+          "uk": "Переходів кілька, тому потрібно crossings: There are crossings near the school."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-08:intro3:r2": {
-          "ru": "Площадок несколько: `There are`.",
-          "uk": "Майданчиків кілька: `There are`."
+          "ru": "Торговый центр один, поэтому нужно is: There is a mall behind the park.",
+          "uk": "Торговий центр один, тому потрібно is: There is a mall behind the park."
         },
         "en:lesson-04:session-08:intro3:r3": {
-          "ru": "Перед несколькими площадками не ставим `a`.",
-          "uk": "Перед кількома майданчиками не ставимо `a`."
+          "ru": "Парк вы оба знаете, поэтому перед ним нужно the: behind the park.",
+          "uk": "Парк ви обоє знаєте, тому перед ним потрібно the: behind the park."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "eb7c61f08a3caf0695ff38cfa3db5069123c7f8b023a33741d6d57592eca09b0"
+  "auxiliaryFingerprint": "d012ab876d36b4289acb95e1ba2ca0aba1600e43f286586e97837d7bca246abc"
 }

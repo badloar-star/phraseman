@@ -1,0 +1,2371 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-14:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-14:i01:p1",
+              "target": "laundrette",
+              "meaningByLocale": {
+                "ru": "прачечная самообслуживания",
+                "uk": "пральня самообслуговування"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i01:p2",
+              "target": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка",
+                "uk": "сушарка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i01:p3",
+              "target": "notice",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i01:p4",
+              "target": "token",
+              "meaningByLocale": {
+                "ru": "жетон",
+                "uk": "жетон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laundrette",
+            "dryer",
+            "notice",
+            "token"
+          ],
+          "rightColumn": [
+            "прачечная самообслуживания",
+            "сушилка",
+            "объявление",
+            "жетон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:laundrette",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — laundrette",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:laundrette:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — laundrette",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:laundrette:audio",
+            "transcript": "laundrette"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:laundrette:r1",
+              "targetText": "laundrette",
+              "meaningByLocale": {
+                "ru": "прачечная самообслуживания. Is there a laundrette near the park? — «Есть ли прачечная рядом с парком?» О месте, где стирают сами.",
+                "uk": "пральня самообслуговування. Is there a laundrette near the park? — «Чи є пральня поруч із парком?» Про місце, де перуть самі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laundrette",
+            "definitionByLocale": {
+              "ru": "прачечная самообслуживания. Is there a laundrette near the park? — «Есть ли прачечная рядом с парком?» О месте, где стирают сами.",
+              "uk": "пральня самообслуговування. Is there a laundrette near the park? — «Чи є пральня поруч із парком?» Про місце, де перуть самі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Работница прачечной называет место, где стирают сами, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Работница прачечной называет место, где стирают сами, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i02:audio",
+            "transcript": "laundrette"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "laundrette",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы остановили прохожего на улице. Спросите его полной фразой: рядом есть прачечная?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы остановили прохожего на улице. Спросите его полной фразой: рядом есть прачечная?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there a laundrette near here?",
+          "localizedMeaning": {
+            "ru": "Вы остановили прохожего на улице. Спросите его полной фразой: рядом есть прачечная?",
+            "uk": "Ви зупинили перехожого на вулиці. Запитайте його повною фразою: чи є поруч пральня?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "laundrette",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы остановили прохожего на улице. Спросите его полной фразой: рядом есть прачечная?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a laundrette near here?`",
+                "uk": "тут потрібно `Is` — `Is there a laundrette near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:dryer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dryer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:dryer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dryer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:dryer:audio",
+            "transcript": "dryer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:dryer:r1",
+              "targetText": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка. Are there dryers near the door? — «Есть ли сушилки рядом с дверью?» О машине, которая сушит бельё после стирки.",
+                "uk": "сушарка. Are there dryers near the door? — «Чи є сушарки поруч із дверима?» Про машину, яка сушить білизну після прання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dryer",
+            "definitionByLocale": {
+              "ru": "сушилка. Are there dryers near the door? — «Есть ли сушилки рядом с дверью?» О машине, которая сушит бельё после стирки.",
+              "uk": "сушарка. Are there dryers near the door? — «Чи є сушарки поруч із дверима?» Про машину, яка сушить білизну після прання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i04:r1",
+            "text": "dryer"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i04:r2",
+            "text": "laundrette"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i04:r3",
+            "text": "oven"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?",
+            "uk": "Тепла машина сушить мокру білизну після прання. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-14:i04:r1",
+              "text": "dryer"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i04:r2",
+              "text": "laundrette"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i04:r3",
+              "text": "oven"
+            }
+          ],
+          "testedDimension": "Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i04:r2",
+              "correct": false,
+              "testedDimension": "Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "laundrette — это вся прачечная, а машина для сушки называется dryer.",
+                "uk": "laundrette — це вся пральня, а машина для сушіння називається dryer."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i04:r3",
+              "correct": false,
+              "testedDimension": "Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "oven — это духовка для еды, а машина для сушки белья называется dryer.",
+                "uk": "oven — це духовка для їжі, а машина для сушіння білизни називається dryer."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос работницы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i05:r1",
+            "text": "Are there dryers here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i05:r2",
+            "text": "Is there a dryer here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i05:r3",
+            "text": "Are there dryers near here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос работницы",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i05:audio",
+            "transcript": "Are there dryers here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:i05:r1",
+              "targetText": "Are there dryers here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i05:r2",
+              "targetText": "Is there a dryer here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i05:r3",
+              "targetText": "Are there dryers near here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос работницы",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких сушилках, а в этом варианте `Is there a` об одной.",
+                "uk": "У записі запитання `Are there` про кілька сушарок, а в цьому варіанті `Is there a` про одну."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос работницы",
+              "feedbackByLocale": {
+                "ru": "В записи нет слова `near`, а в этом варианте оно есть.",
+                "uk": "У записі немає слова `near`, а в цьому варіанті воно є."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:token",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — token",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:token:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — token",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:token:audio",
+            "transcript": "token"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:token:r1",
+              "targetText": "token",
+              "meaningByLocale": {
+                "ru": "жетон. Are there tokens here? — «Здесь есть жетоны?» О маленьком металлическом кружке, который запускает машину.",
+                "uk": "жетон. Are there tokens here? — «Чи є тут жетони?» Про маленьке металеве коло, яке запускає машину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "token",
+            "definitionByLocale": {
+              "ru": "жетон. Are there tokens here? — «Здесь есть жетоны?» О маленьком металлическом кружке, который запускает машину.",
+              "uk": "жетон. Are there tokens here? — «Чи є тут жетони?» Про маленьке металеве коло, яке запускає машину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Работница показывает вам металлический кружок для машины и называет слово, а вы повторяете за ней",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i06:audio"
+        ],
+        "accessibilityLabel": "Работница показывает вам металлический кружок для машины и называет слово, а вы повторяете за ней",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i06:audio",
+            "transcript": "token"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "token",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте работницу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте работницу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i07:audio",
+            "transcript": "Are there tokens here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there tokens here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "tokens",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте работницу и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there tokens here?`",
+                "uk": "тут потрібно `Are` — `Are there tokens here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:notice",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — notice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:notice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — notice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:notice:audio",
+            "transcript": "notice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:notice:r1",
+              "targetText": "notice",
+              "meaningByLocale": {
+                "ru": "объявление. Is there a notice near the door? — «Рядом с дверью есть объявление?» О листе бумаги с правилами на стене или двери.",
+                "uk": "оголошення. Is there a notice near the door? — «Чи є поруч із дверима оголошення?» Про аркуш паперу з правилами на стіні чи дверях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "notice",
+            "definitionByLocale": {
+              "ru": "объявление. Is there a notice near the door? — «Рядом с дверью есть объявление?» О листе бумаги с правилами на стене или двери.",
+              "uk": "оголошення. Is there a notice near the door? — «Чи є поруч із дверима оголошення?» Про аркуш паперу з правилами на стіні чи дверях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i08:r1",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i08:r2",
+            "text": "token"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i08:r3",
+            "text": "map"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?",
+            "uk": "На дверях пральні висить аркуш паперу з правилами. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-14:i08:r1",
+              "text": "notice"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i08:r2",
+              "text": "token"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i08:r3",
+              "text": "map"
+            }
+          ],
+          "testedDimension": "На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "token — это жетон для машины, а лист с правилами называется notice.",
+                "uk": "token — це жетон для машини, а аркуш із правилами називається notice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "map — это карта, а лист с правилами называется notice.",
+                "uk": "map — це мапа, а аркуш із правилами називається notice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у стены прачечной. Спросите брата полной фразой: здесь есть объявление?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у стены прачечной. Спросите брата полной фразой: здесь есть объявление?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there a notice here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у стены прачечной. Спросите брата полной фразой: здесь есть объявление?",
+            "uk": "Ви стоїте біля стіни пральні. Запитайте брата повною фразою: чи є тут оголошення?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "notice",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите у стены прачечной. Спросите брата полной фразой: здесь есть объявление?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a notice here?`",
+                "uk": "тут потрібно `Is` — `Is there a notice here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-14:i10:p1",
+              "target": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка",
+                "uk": "сушарка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i10:p2",
+              "target": "token",
+              "meaningByLocale": {
+                "ru": "жетон",
+                "uk": "жетон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i10:p3",
+              "target": "notice",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i10:p4",
+              "target": "coin",
+              "meaningByLocale": {
+                "ru": "монета",
+                "uk": "монета"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dryer",
+            "token",
+            "notice",
+            "coin"
+          ],
+          "rightColumn": [
+            "сушилка",
+            "жетон",
+            "объявление",
+            "монета"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос прохожего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i11:r1",
+            "text": "Are there laundrettes near here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i11:r2",
+            "text": "Is there a laundrette near here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i11:r3",
+            "text": "Are there dryers near here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос прохожего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i11:audio",
+            "transcript": "Are there laundrettes near here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:i11:r1",
+              "targetText": "Are there laundrettes near here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i11:r2",
+              "targetText": "Is there a laundrette near here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i11:r3",
+              "targetText": "Are there dryers near here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких прачечных, а в этом варианте `Is there a` об одной.",
+                "uk": "У записі запитання `Are there` про кілька пралень, а в цьому варіанті `Is there a` про одну."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос прохожего",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `laundrettes`, а в этом варианте про `dryers`.",
+                "uk": "У записі питають про `laundrettes`, а в цьому варіанті про `dryers`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете работницу о жетонах. Дополните ваш вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i12:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i12:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i12:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете работницу о жетонах. Дополните ваш вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете работницу о жетонах. Дополните ваш вопрос",
+            "uk": "Ви питаєте працівницю про жетони. Доповніть ваше запитання"
+          },
+          "gappedTargetPhrase": "___ there tokens near here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-14:i12:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i12:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i12:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете работницу о жетонах. Дополните ваш вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете работницу о жетонах. Дополните ваш вопрос",
+              "feedbackByLocale": {
+                "ru": "Жетонов несколько, поэтому начинаем с Are there, а не с Is there.",
+                "uk": "Жетонів кілька, тому починаємо з Are there, а не з Is there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете работницу о жетонах. Дополните ваш вопрос",
+              "feedbackByLocale": {
+                "ru": "Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.",
+                "uk": "Am кажуть лише з I, а запитання про кілька предметів починається з Are there."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i13:audio",
+            "transcript": "Is there a dryer near the door?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there a dryer near the door?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "dryer",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a dryer near the door?`",
+                "uk": "тут потрібно `Is` — `Is there a dryer near the door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат стоит у стены с листами бумаги. Спросите его, есть ли здесь объявления",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Брат стоит у стены с листами бумаги. Спросите его, есть ли здесь объявления",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i14:audio",
+            "transcript": "Are there notices here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there notices here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ищете, где постирать. Спросите прохожего полной фразой: здесь есть прачечные?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете, где постирать. Спросите прохожего полной фразой: здесь есть прачечные?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there laundrettes here?",
+          "localizedMeaning": {
+            "ru": "Вы ищете, где постирать. Спросите прохожего полной фразой: здесь есть прачечные?",
+            "uk": "Ви шукаєте, де попрати. Запитайте перехожого повною фразою: чи є тут пральні?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "laundrettes",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы ищете, где постирать. Спросите прохожего полной фразой: здесь есть прачечные?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there laundrettes here?`",
+                "uk": "тут потрібно `Are` — `Are there laundrettes here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-14:i16:p1",
+              "target": "laundrette",
+              "meaningByLocale": {
+                "ru": "прачечная самообслуживания",
+                "uk": "пральня самообслуговування"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i16:p2",
+              "target": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка",
+                "uk": "сушарка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i16:p3",
+              "target": "token",
+              "meaningByLocale": {
+                "ru": "жетон",
+                "uk": "жетон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i16:p4",
+              "target": "notice",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laundrette",
+            "dryer",
+            "token",
+            "notice"
+          ],
+          "rightColumn": [
+            "прачечная самообслуживания",
+            "сушилка",
+            "жетон",
+            "объявление"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы стоите на улице с мокрыми рубашками. Спросите прохожего полной фразой, есть ли рядом с банком прачечная",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Вы стоите на улице с мокрыми рубашками. Спросите прохожего полной фразой, есть ли рядом с банком прачечная",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i17:audio",
+            "transcript": "Is there a laundrette near the bank?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a laundrette near the bank?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-14:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-14:i01:p1",
+              "target": "laundrette",
+              "meaningByLocale": {
+                "ru": "прачечная самообслуживания",
+                "uk": "пральня самообслуговування"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i01:p2",
+              "target": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка",
+                "uk": "сушарка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i01:p3",
+              "target": "notice",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i01:p4",
+              "target": "token",
+              "meaningByLocale": {
+                "ru": "жетон",
+                "uk": "жетон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laundrette",
+            "dryer",
+            "notice",
+            "token"
+          ],
+          "rightColumn": [
+            "пральня самообслуговування",
+            "сушарка",
+            "оголошення",
+            "жетон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:laundrette",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — laundrette",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:laundrette:audio"
+        ],
+        "accessibilityLabel": "Картка слова — laundrette",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:laundrette:audio",
+            "transcript": "laundrette"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:laundrette:r1",
+              "targetText": "laundrette",
+              "meaningByLocale": {
+                "ru": "прачечная самообслуживания. Is there a laundrette near the park? — «Есть ли прачечная рядом с парком?» О месте, где стирают сами.",
+                "uk": "пральня самообслуговування. Is there a laundrette near the park? — «Чи є пральня поруч із парком?» Про місце, де перуть самі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laundrette",
+            "definitionByLocale": {
+              "ru": "прачечная самообслуживания. Is there a laundrette near the park? — «Есть ли прачечная рядом с парком?» О месте, где стирают сами.",
+              "uk": "пральня самообслуговування. Is there a laundrette near the park? — «Чи є пральня поруч із парком?» Про місце, де перуть самі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Працівниця пральні називає місце, де перуть самі, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Працівниця пральні називає місце, де перуть самі, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i02:audio",
+            "transcript": "laundrette"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "laundrette",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви зупинили перехожого на вулиці. Запитайте його повною фразою: чи є поруч пральня?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зупинили перехожого на вулиці. Запитайте його повною фразою: чи є поруч пральня?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there a laundrette near here?",
+          "localizedMeaning": {
+            "ru": "Вы остановили прохожего на улице. Спросите его полной фразой: рядом есть прачечная?",
+            "uk": "Ви зупинили перехожого на вулиці. Запитайте його повною фразою: чи є поруч пральня?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "laundrette",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви зупинили перехожого на вулиці. Запитайте його повною фразою: чи є поруч пральня?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a laundrette near here?`",
+                "uk": "тут потрібно `Is` — `Is there a laundrette near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:dryer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dryer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:dryer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dryer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:dryer:audio",
+            "transcript": "dryer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:dryer:r1",
+              "targetText": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка. Are there dryers near the door? — «Есть ли сушилки рядом с дверью?» О машине, которая сушит бельё после стирки.",
+                "uk": "сушарка. Are there dryers near the door? — «Чи є сушарки поруч із дверима?» Про машину, яка сушить білизну після прання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dryer",
+            "definitionByLocale": {
+              "ru": "сушилка. Are there dryers near the door? — «Есть ли сушилки рядом с дверью?» О машине, которая сушит бельё после стирки.",
+              "uk": "сушарка. Are there dryers near the door? — «Чи є сушарки поруч із дверима?» Про машину, яка сушить білизну після прання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тепла машина сушить мокру білизну після прання. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i04:r1",
+            "text": "dryer"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i04:r2",
+            "text": "laundrette"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i04:r3",
+            "text": "oven"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тепла машина сушить мокру білизну після прання. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тёплая машина сушит мокрое бельё после стирки. Как она называется по-английски?",
+            "uk": "Тепла машина сушить мокру білизну після прання. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-14:i04:r1",
+              "text": "dryer"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i04:r2",
+              "text": "laundrette"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i04:r3",
+              "text": "oven"
+            }
+          ],
+          "testedDimension": "Тепла машина сушить мокру білизну після прання. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i04:r2",
+              "correct": false,
+              "testedDimension": "Тепла машина сушить мокру білизну після прання. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "laundrette — это вся прачечная, а машина для сушки называется dryer.",
+                "uk": "laundrette — це вся пральня, а машина для сушіння називається dryer."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i04:r3",
+              "correct": false,
+              "testedDimension": "Тепла машина сушить мокру білизну після прання. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "oven — это духовка для еды, а машина для сушки белья называется dryer.",
+                "uk": "oven — це духовка для їжі, а машина для сушіння білизни називається dryer."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання працівниці",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i05:r1",
+            "text": "Are there dryers here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i05:r2",
+            "text": "Is there a dryer here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i05:r3",
+            "text": "Are there dryers near here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання працівниці",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i05:audio",
+            "transcript": "Are there dryers here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:i05:r1",
+              "targetText": "Are there dryers here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i05:r2",
+              "targetText": "Is there a dryer here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i05:r3",
+              "targetText": "Are there dryers near here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання працівниці",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких сушилках, а в этом варианте `Is there a` об одной.",
+                "uk": "У записі запитання `Are there` про кілька сушарок, а в цьому варіанті `Is there a` про одну."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання працівниці",
+              "feedbackByLocale": {
+                "ru": "В записи нет слова `near`, а в этом варианте оно есть.",
+                "uk": "У записі немає слова `near`, а в цьому варіанті воно є."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:token",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — token",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:token:audio"
+        ],
+        "accessibilityLabel": "Картка слова — token",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:token:audio",
+            "transcript": "token"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:token:r1",
+              "targetText": "token",
+              "meaningByLocale": {
+                "ru": "жетон. Are there tokens here? — «Здесь есть жетоны?» О маленьком металлическом кружке, который запускает машину.",
+                "uk": "жетон. Are there tokens here? — «Чи є тут жетони?» Про маленьке металеве коло, яке запускає машину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "token",
+            "definitionByLocale": {
+              "ru": "жетон. Are there tokens here? — «Здесь есть жетоны?» О маленьком металлическом кружке, который запускает машину.",
+              "uk": "жетон. Are there tokens here? — «Чи є тут жетони?» Про маленьке металеве коло, яке запускає машину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Працівниця показує вам металеве коло для машини й називає слово, а ви повторюєте за нею",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i06:audio"
+        ],
+        "accessibilityLabel": "Працівниця показує вам металеве коло для машини й називає слово, а ви повторюєте за нею",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i06:audio",
+            "transcript": "token"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "token",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте працівницю й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте працівницю й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i07:audio",
+            "transcript": "Are there tokens here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there tokens here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "tokens",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте працівницю й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there tokens here?`",
+                "uk": "тут потрібно `Are` — `Are there tokens here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:word:notice",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — notice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:word:notice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — notice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:word:notice:audio",
+            "transcript": "notice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:word:notice:r1",
+              "targetText": "notice",
+              "meaningByLocale": {
+                "ru": "объявление. Is there a notice near the door? — «Рядом с дверью есть объявление?» О листе бумаги с правилами на стене или двери.",
+                "uk": "оголошення. Is there a notice near the door? — «Чи є поруч із дверима оголошення?» Про аркуш паперу з правилами на стіні чи дверях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "notice",
+            "definitionByLocale": {
+              "ru": "объявление. Is there a notice near the door? — «Рядом с дверью есть объявление?» О листе бумаги с правилами на стене или двери.",
+              "uk": "оголошення. Is there a notice near the door? — «Чи є поруч із дверима оголошення?» Про аркуш паперу з правилами на стіні чи дверях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На дверях пральні висить аркуш паперу з правилами. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i08:r1",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i08:r2",
+            "text": "token"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i08:r3",
+            "text": "map"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На дверях пральні висить аркуш паперу з правилами. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На двери прачечной висит лист бумаги с правилами. Как он называется по-английски?",
+            "uk": "На дверях пральні висить аркуш паперу з правилами. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-14:i08:r1",
+              "text": "notice"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i08:r2",
+              "text": "token"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i08:r3",
+              "text": "map"
+            }
+          ],
+          "testedDimension": "На дверях пральні висить аркуш паперу з правилами. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "На дверях пральні висить аркуш паперу з правилами. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "token — это жетон для машины, а лист с правилами называется notice.",
+                "uk": "token — це жетон для машини, а аркуш із правилами називається notice."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "На дверях пральні висить аркуш паперу з правилами. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "map — это карта, а лист с правилами называется notice.",
+                "uk": "map — це мапа, а аркуш із правилами називається notice."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля стіни пральні. Запитайте брата повною фразою: чи є тут оголошення?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля стіни пральні. Запитайте брата повною фразою: чи є тут оголошення?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is there a notice here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у стены прачечной. Спросите брата полной фразой: здесь есть объявление?",
+            "uk": "Ви стоїте біля стіни пральні. Запитайте брата повною фразою: чи є тут оголошення?"
+          },
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "notice",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля стіни пральні. Запитайте брата повною фразою: чи є тут оголошення?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a notice here?`",
+                "uk": "тут потрібно `Is` — `Is there a notice here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-14:i10:p1",
+              "target": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка",
+                "uk": "сушарка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i10:p2",
+              "target": "token",
+              "meaningByLocale": {
+                "ru": "жетон",
+                "uk": "жетон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i10:p3",
+              "target": "notice",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i10:p4",
+              "target": "coin",
+              "meaningByLocale": {
+                "ru": "монета",
+                "uk": "монета"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dryer",
+            "token",
+            "notice",
+            "coin"
+          ],
+          "rightColumn": [
+            "сушарка",
+            "жетон",
+            "оголошення",
+            "монета"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання перехожого",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i11:r1",
+            "text": "Are there laundrettes near here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i11:r2",
+            "text": "Is there a laundrette near here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i11:r3",
+            "text": "Are there dryers near here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання перехожого",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i11:audio",
+            "transcript": "Are there laundrettes near here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-14:i11:r1",
+              "targetText": "Are there laundrettes near here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i11:r2",
+              "targetText": "Is there a laundrette near here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i11:r3",
+              "targetText": "Are there dryers near here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких прачечных, а в этом варианте `Is there a` об одной.",
+                "uk": "У записі запитання `Are there` про кілька пралень, а в цьому варіанті `Is there a` про одну."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання перехожого",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `laundrettes`, а в этом варианте про `dryers`.",
+                "uk": "У записі питають про `laundrettes`, а в цьому варіанті про `dryers`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви питаєте працівницю про жетони. Доповніть ваше запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i12:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i12:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i12:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте працівницю про жетони. Доповніть ваше запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете работницу о жетонах. Дополните ваш вопрос",
+            "uk": "Ви питаєте працівницю про жетони. Доповніть ваше запитання"
+          },
+          "gappedTargetPhrase": "___ there tokens near here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-14:i12:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i12:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i12:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Ви питаєте працівницю про жетони. Доповніть ваше запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви питаєте працівницю про жетони. Доповніть ваше запитання",
+              "feedbackByLocale": {
+                "ru": "Жетонов несколько, поэтому начинаем с Are there, а не с Is there.",
+                "uk": "Жетонів кілька, тому починаємо з Are there, а не з Is there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви питаєте працівницю про жетони. Доповніть ваше запитання",
+              "feedbackByLocale": {
+                "ru": "Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.",
+                "uk": "Am кажуть лише з I, а запитання про кілька предметів починається з Are there."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i13:audio",
+            "transcript": "Is there a dryer near the door?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is there a dryer near the door?",
+          "orderedTokens": [
+            "Is",
+            "there",
+            "a",
+            "dryer",
+            "near",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is there a dryer near the door?`",
+                "uk": "тут потрібно `Is` — `Is there a dryer near the door?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат стоїть біля стіни з аркушами паперу. Запитайте його, чи є тут оголошення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Брат стоїть біля стіни з аркушами паперу. Запитайте його, чи є тут оголошення",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i14:audio",
+            "transcript": "Are there notices here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there notices here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви шукаєте, де попрати. Запитайте перехожого повною фразою: чи є тут пральні?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте, де попрати. Запитайте перехожого повною фразою: чи є тут пральні?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there laundrettes here?",
+          "localizedMeaning": {
+            "ru": "Вы ищете, где постирать. Спросите прохожего полной фразой: здесь есть прачечные?",
+            "uk": "Ви шукаєте, де попрати. Запитайте перехожого повною фразою: чи є тут пральні?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "laundrettes",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-14:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви шукаєте, де попрати. Запитайте перехожого повною фразою: чи є тут пральні?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there laundrettes here?`",
+                "uk": "тут потрібно `Are` — `Are there laundrettes here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-14:i16:p1",
+              "target": "laundrette",
+              "meaningByLocale": {
+                "ru": "прачечная самообслуживания",
+                "uk": "пральня самообслуговування"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i16:p2",
+              "target": "dryer",
+              "meaningByLocale": {
+                "ru": "сушилка",
+                "uk": "сушарка"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i16:p3",
+              "target": "token",
+              "meaningByLocale": {
+                "ru": "жетон",
+                "uk": "жетон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-14:i16:p4",
+              "target": "notice",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "laundrette",
+            "dryer",
+            "token",
+            "notice"
+          ],
+          "rightColumn": [
+            "пральня самообслуговування",
+            "сушарка",
+            "жетон",
+            "оголошення"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви стоїте на вулиці з мокрими сорочками. Запитайте перехожого повною фразою, чи є поруч із банком пральня",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Ви стоїте на вулиці з мокрими сорочками. Запитайте перехожого повною фразою, чи є поруч із банком пральня",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-14:i17:audio",
+            "transcript": "Is there a laundrette near the bank?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a laundrette near the bank?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-14:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:word:laundrette",
+      "correctText": "laundrette",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i02",
+      "correctText": "laundrette",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i03",
+      "correctText": "Is there a laundrette near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:word:dryer",
+      "correctText": "dryer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i04",
+      "correctText": "dryer",
+      "correctResponseId": "en:lesson-04:session-14:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i05",
+      "correctText": "Are there dryers here?",
+      "correctResponseId": "en:lesson-04:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:word:token",
+      "correctText": "token",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i06",
+      "correctText": "token",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i07",
+      "correctText": "Are there tokens here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:word:notice",
+      "correctText": "notice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i08",
+      "correctText": "notice",
+      "correctResponseId": "en:lesson-04:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i09",
+      "correctText": "Is there a notice here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i11",
+      "correctText": "Are there laundrettes near here?",
+      "correctResponseId": "en:lesson-04:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i12",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-04:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i13",
+      "correctText": "Is there a dryer near the door?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i14",
+      "correctText": "Are there notices here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i15",
+      "correctText": "Are there laundrettes here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i17",
+      "correctText": "Is there a laundrette near the bank?",
+      "correctResponseId": null
+    }
+  ]
+}

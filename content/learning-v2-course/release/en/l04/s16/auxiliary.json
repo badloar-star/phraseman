@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro1:r2": {
-          "ru": "Один бассейн: `Is there a swimming pool here?`.",
-          "uk": "Один басейн: `Is there a swimming pool here?`."
+          "ru": "Вопрос начинаем с Is there, а не с There is.",
+          "uk": "Запитання починаємо з Is there, а не з There is."
         },
         "en:lesson-04:session-16:intro1:r3": {
-          "ru": "Перед одним бассейном нужно `a`: `a swimming pool`.",
-          "uk": "Перед одним басейном потрібне `a`: `a swimming pool`."
+          "ru": "Бассейн один, поэтому перед ним нужно a: a swimming pool.",
+          "uk": "Басейн один, тому перед ним потрібно a: a swimming pool."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro2:r2": {
-          "ru": "Один отель: `There is a hotel here`.",
-          "uk": "Один готель: `There is a hotel here`."
+          "ru": "Это вопрос, а вы сообщаете: порядок слов There is.",
+          "uk": "Це запитання, а ви повідомляєте: порядок слів There is."
         },
         "en:lesson-04:session-16:intro2:r3": {
-          "ru": "Это вопрос. Вы уже нашли отель и сообщаете: `There is`.",
-          "uk": "Це запитання. Ви вже знайшли готель і повідомляєте: `There is`."
+          "ru": "Сауна одна, поэтому нужно is: There is a sauna.",
+          "uk": "Сауна одна, тому потрібно is: There is a sauna."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro3:r2": {
-          "ru": "`laundrettes` — несколько мест: `Are there`.",
-          "uk": "`laundrettes` — кілька місць: `Are there`."
+          "ru": "Спасатель один, поэтому перед ним нужно a: a lifeguard.",
+          "uk": "Рятувальник один, тому перед ним потрібно a: a lifeguard."
         },
         "en:lesson-04:session-16:intro3:r3": {
-          "ru": "Перед несколькими местами не нужно `a`.",
-          "uk": "Перед кількома місцями не потрібне `a`."
+          "ru": "Спасатель один, поэтому нужно Is there, а не Are there.",
+          "uk": "Рятувальник один, тому потрібно Is there, а не Are there."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ec937fe9b534e4ecc87eed68e1d5719889f746e28599d5baf9471e27ec5ecc4e"
+  "auxiliaryFingerprint": "3ebdd5aec4836500539b1716ea872c5284872e35731920a7e1411a5b64b14630"
 }

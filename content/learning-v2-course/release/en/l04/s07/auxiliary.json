@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-07:intro1:r2": {
-          "ru": "Площадка одна: `There is a playground here`.",
-          "uk": "Майданчик один: `There is a playground here`."
+          "ru": "Перед названием одного места нужно a: There is a playground here.",
+          "uk": "Перед назвою одного місця потрібно a: There is a playground here."
         },
         "en:lesson-04:session-07:intro1:r3": {
-          "ru": "Перед одной площадкой нужно `a`: `a playground`.",
-          "uk": "Перед одним майданчиком потрібне `a`: `a playground`."
+          "ru": "Площадка одна, поэтому нужно is: There is a playground here.",
+          "uk": "Майданчик один, тому потрібно is: There is a playground here."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-07:intro2:r2": {
-          "ru": "Кафе несколько: `There are`.",
-          "uk": "Кафе кілька: `There are`."
+          "ru": "Парков несколько, поэтому нужно parks: There are parks nearby.",
+          "uk": "Парків кілька, тому потрібно parks: There are parks nearby."
         },
         "en:lesson-04:session-07:intro2:r3": {
-          "ru": "Перед несколькими `cafes` не ставим `a`.",
-          "uk": "Перед кількома `cafes` не ставимо `a`."
+          "ru": "Парков несколько, поэтому нужно are: There are parks nearby.",
+          "uk": "Парків кілька, тому потрібно are: There are parks nearby."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-07:intro3:r2": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Озеро одно, поэтому нужно is: There is a lake behind the park.",
+          "uk": "Озеро одне, тому потрібно is: There is a lake behind the park."
         },
         "en:lesson-04:session-07:intro3:r3": {
-          "ru": "`striped` — полосатая. Здесь говорим о необходимости: `necessary`.",
-          "uk": "`striped` — смугаста. Тут говоримо про необхідність: `necessary`."
+          "ru": "Парк вы оба знаете, поэтому перед ним нужно the: behind the park.",
+          "uk": "Парк ви обоє знаєте, тому перед ним потрібно the: behind the park."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9fe866b89d9e1a84e35b671e59e6a9eccae4f97795513b36a8f615d19aa60b0e"
+  "auxiliaryFingerprint": "84eb38ea3aa92b9bac9a907ba152f0fcf688577dbcbc53e7fe8e6ae1872d7268"
 }

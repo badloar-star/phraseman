@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-01:intro1:r2": {
-          "ru": "Нужно полное начало `There is`.",
-          "uk": "Потрібен повний початок `There is`."
+          "ru": "Нужно полное начало There is: There is a pharmacy here.",
+          "uk": "Потрібен повний початок There is: There is a pharmacy here."
         },
         "en:lesson-04:session-01:intro1:r3": {
-          "ru": "Перед названием одной аптеки нужно `a`.",
-          "uk": "Перед назвою однієї аптеки потрібне `a`."
+          "ru": "Перед названием одного места нужно a: There is a pharmacy here.",
+          "uk": "Перед назвою одного місця потрібно a: There is a pharmacy here."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-01:intro2:r2": {
-          "ru": "Одна библиотека: `There is a library`.",
-          "uk": "Одна бібліотека: `There is a library`."
+          "ru": "Слово library начинается с согласного звука, поэтому нужно a: There is a library nearby.",
+          "uk": "Слово library починається з приголосного звуку, тому потрібно a: There is a library nearby."
         },
         "en:lesson-04:session-01:intro2:r3": {
-          "ru": "Перед `library` нужно `a`, поскольку первый звук согласный.",
-          "uk": "Перед `library` потрібне `a`, оскільки перший звук приголосний."
+          "ru": "Библиотека одна, поэтому нужно is: There is a library nearby.",
+          "uk": "Бібліотека одна, тому потрібно is: There is a library nearby."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-01:intro3:r2": {
-          "ru": "Ключей несколько: `There are`.",
-          "uk": "Ключів кілька: `There are`."
+          "ru": "Перед названием одного места нужно a: There is a bakery here.",
+          "uk": "Перед назвою одного місця потрібно a: There is a bakery here."
         },
         "en:lesson-04:session-01:intro3:r3": {
-          "ru": "Перед несколькими `keys` артикль `a` не ставим.",
-          "uk": "Перед кількома `keys` артикля `a` не ставимо."
+          "ru": "О пекарне вы говорите подруге впервые, поэтому нужно a, а не the: There is a bakery here.",
+          "uk": "Про пекарню ви говорите подрузі вперше, тому потрібно a, а не the: There is a bakery here."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d4249d4f5cb0a2d96241def9d0395fa0566bc08ae8ed04bc182deeb813d840d1"
+  "auxiliaryFingerprint": "6fbcc2d8c9c4ab9df88a1e352074ebebead210e0ce37478658a2b843248b94f4"
 }

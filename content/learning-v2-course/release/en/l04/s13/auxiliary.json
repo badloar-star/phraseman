@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-13:intro1:r2": {
-          "ru": "Одна машина — `a taxi`, поэтому `Is there`.",
-          "uk": "Одна машина — `a taxi`, тому `Is there`."
+          "ru": "Это вопрос, а вы сообщаете: порядок слов There is.",
+          "uk": "Це запитання, а ви повідомляєте: порядок слів There is."
         },
         "en:lesson-04:session-13:intro1:r3": {
-          "ru": "`taxis` — несколько; с `Is there` нужно `a taxi`.",
-          "uk": "`taxis` — кілька; з `Is there` потрібне `a taxi`."
+          "ru": "Такси одно, поэтому нужно is: There is a taxi.",
+          "uk": "Таксі одне, тому потрібно is: There is a taxi."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-13:intro2:r2": {
-          "ru": "С `That` нужно `is`.",
-          "uk": "З `That` потрібне `is`."
+          "ru": "Вопрос начинаем с Is there, а не с There is.",
+          "uk": "Запитання починаємо з Is there, а не з There is."
         },
         "en:lesson-04:session-13:intro2:r3": {
-          "ru": "Здесь одно здание: `That is a supermarket`.",
-          "uk": "Тут одна будівля: `That is a supermarket`."
+          "ru": "Airport начинается с гласного звука, поэтому нужно an.",
+          "uk": "Airport починається з голосного звуку, тому потрібно an."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-13:intro3:r2": {
-          "ru": "`private` — частный, не для общего доступа; здесь нужно `public`.",
-          "uk": "`private` — приватний, не для загального доступу; тут потрібне `public`."
+          "ru": "Это вопрос, а вы сообщаете: порядок слов There are.",
+          "uk": "Це запитання, а ви повідомляєте: порядок слів There are."
         },
         "en:lesson-04:session-13:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s public`.",
-          "uk": "З `It` потрібне `is`: `It’s public`."
+          "ru": "Грузовиков несколько, поэтому нужно are, а не is.",
+          "uk": "Вантажівок кілька, тому потрібно are, а не is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "41ca4ae6194b304578cd93ed9a90f181cd73cdc9228ff0800b957fb27435f408"
+  "auxiliaryFingerprint": "b2fe2e51ce1863aee6a487e3a6091878bf1e882dc9773d2ae0982d3858419103"
 }

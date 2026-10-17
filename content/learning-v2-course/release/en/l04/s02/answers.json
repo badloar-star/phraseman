@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-02:i01",
-    "correctText": "This is an apple.",
+    "correctText": "en:lesson-04:session-02:i01:p1=garden\nen:lesson-04:session-02:i01:p2=behind\nen:lesson-04:session-02:i01:p3=near\nen:lesson-04:session-02:i01:p4=cinema",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-02:word:garden",
+    "correctText": "garden",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i02",
     "correctText": "garden",
-    "correctResponseId": "en:lesson-04:session-02:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-02:i03",
-    "correctText": "garden",
-    "correctResponseId": "en:lesson-04:session-02:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-02:i04",
-    "correctText": "en:lesson-04:session-02:i04:p1=garden\nen:lesson-04:session-02:i04:p2=confident\nen:lesson-04:session-02:i04:p3=relaxed\nen:lesson-04:session-02:i04:p4=cinema",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-02:i03",
+    "correctText": "There is a garden here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-02:word:behind",
+    "correctText": "behind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-02:i04",
+    "correctText": "behind",
+    "correctResponseId": "en:lesson-04:session-02:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-02:i05",
-    "correctText": "There is a garden.",
+    "correctText": "There is a garden behind the building.",
+    "correctResponseId": "en:lesson-04:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-02:word:near",
+    "correctText": "near",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i06",
-    "correctText": "There is a cinema here.",
+    "correctText": "near",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i07",
-    "correctText": "I'm confident.",
+    "correctText": "There is a bench near the garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-02:word:cinema",
+    "correctText": "cinema",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i08",
-    "correctText": "a",
+    "correctText": "cinema",
     "correctResponseId": "en:lesson-04:session-02:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-02:i09",
-    "correctText": "I am satisfied.",
-    "correctResponseId": "en:lesson-04:session-02:i09:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-02:i10",
-    "correctText": "en:lesson-04:session-02:i10:p1=satisfied\nen:lesson-04:session-02:i10:p2=apple\nen:lesson-04:session-02:i10:p3=cinema\nen:lesson-04:session-02:i10:p4=relaxed",
+    "correctText": "There is a bakery near the garden.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-02:i10",
+    "correctText": "There is a cinema near the library.",
+    "correctResponseId": "en:lesson-04:session-02:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-02:i11",
-    "correctText": "This is a garden.",
+    "correctText": "en:lesson-04:session-02:i11:p1=garden\nen:lesson-04:session-02:i11:p2=near\nen:lesson-04:session-02:i11:p3=bench\nen:lesson-04:session-02:i11:p4=tree",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i12",
-    "correctText": "I am relaxed.",
-    "correctResponseId": null
+    "correctText": "an",
+    "correctResponseId": "en:lesson-04:session-02:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-02:i13",
-    "correctText": "I'm satisfied.",
+    "correctText": "There is a hospital behind the building.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i14",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-04:session-02:i14:r1"
+    "correctText": "There is a garden behind the building.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i15",
-    "correctText": "I am confident.",
-    "correctResponseId": "en:lesson-04:session-02:i15:r1"
+    "correctText": "There is a big bench near the tree.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i16",
-    "correctText": "en:lesson-04:session-02:i16:p1=garden\nen:lesson-04:session-02:i16:p2=confident\nen:lesson-04:session-02:i16:p3=satisfied\nen:lesson-04:session-02:i16:p4=apple",
+    "correctText": "en:lesson-04:session-02:i16:p1=cinema\nen:lesson-04:session-02:i16:p2=behind\nen:lesson-04:session-02:i16:p3=garden\nen:lesson-04:session-02:i16:p4=near",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-02:i17",
-    "correctText": "There is a garden here.",
+    "correctText": "There is a cinema near the garden.",
     "correctResponseId": null
   }
 ]

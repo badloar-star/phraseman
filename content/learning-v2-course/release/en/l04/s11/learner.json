@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-04:session-11:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Сообщите другу «Есть банк»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите другу «Есть банк»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a bank.",
-        "localizedMeaning": {
-          "ru": "Сообщите другу «Есть банк»",
-          "uk": "Повідомте другові «Є банк»"
-        },
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "bank"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-11:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Сообщите другу «Есть банк»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a bank.`",
-              "uk": "тут потрібно `is` — `There is a bank.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-11:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-11:i02:r1",
-          "text": "tram"
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i02:r2",
-          "text": "bank"
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i02:r3",
-          "text": "room"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-11:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-11:i02:audio",
-          "transcript": "tram"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-11:i02:r1",
-            "targetText": "tram",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i02:r2",
-            "targetText": "bank",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i02:r3",
-            "targetText": "room",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-11:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `tram`, а в этом варианте — `bank`.",
-              "uk": "У записі перше слово — `tram`, а в цьому варіанті — `bank`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `tram`, а в этом варианте — `room`.",
-              "uk": "У записі перше слово — `tram`, а в цьому варіанті — `room`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-11:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите трамвай одним английским словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-11:i03:r1",
-          "text": "tram"
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i03:r2",
-          "text": "bank"
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i03:r3",
-          "text": "room"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите трамвай одним английским словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите трамвай одним английским словом",
-          "uk": "Назвіть трамвай одним англійським словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-11:i03:r1",
-            "text": "tram"
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i03:r2",
-            "text": "bank"
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i03:r3",
-            "text": "room"
-          }
-        ],
-        "testedDimension": "Назовите трамвай одним английским словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-11:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите трамвай одним английским словом",
-            "feedbackByLocale": {
-              "ru": "`bank` — банк; трамвай — `tram`.",
-              "uk": "`bank` — банк; трамвай — `tram`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите трамвай одним английским словом",
-            "feedbackByLocale": {
-              "ru": "`room` — комната; трамвай — `tram`.",
-              "uk": "`room` — кімната; трамвай — `tram`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-11:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -208,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-11:i04:p1",
+            "pairId": "en:lesson-04:session-11:i01:p1",
             "target": "tram",
             "meaningByLocale": {
               "ru": "трамвай",
@@ -216,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-11:i04:p2",
-            "target": "urgent",
+            "pairId": "en:lesson-04:session-11:i01:p2",
+            "target": "seat",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "место для сидения",
+              "uk": "місце для сидіння"
             }
           },
           {
-            "pairId": "en:lesson-04:session-11:i04:p3",
-            "target": "room",
+            "pairId": "en:lesson-04:session-11:i01:p3",
+            "target": "train",
             "meaningByLocale": {
-              "ru": "комната",
-              "uk": "кімната"
+              "ru": "поезд",
+              "uk": "потяг"
             }
           },
           {
-            "pairId": "en:lesson-04:session-11:i04:p4",
-            "target": "bank",
+            "pairId": "en:lesson-04:session-11:i01:p4",
+            "target": "route",
             "meaningByLocale": {
-              "ru": "банк",
-              "uk": "банк"
+              "ru": "маршрут",
+              "uk": "маршрут"
             }
           }
         ],
         "leftColumn": [
           "tram",
-          "urgent",
-          "room",
-          "bank"
+          "seat",
+          "train",
+          "route"
         ],
         "rightColumn": [
           "трамвай",
-          "срочный",
-          "комната",
-          "банк"
+          "место для сидения",
+          "поезд",
+          "маршрут"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,107 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-11:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-11:word:tram",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tram",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-11:i05:audio"
+        "en:lesson-04:session-11:word:tram:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Карточка слова — tram",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-11:i05:audio",
-          "transcript": "Is there a tram?"
+          "audioTargetId": "en:lesson-04:session-11:word:tram:audio",
+          "transcript": "tram"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is there a tram?",
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "tram"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-11:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Укажите на дальнее здание: «То здание — банк»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Укажите на дальнее здание: «То здание — банк»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "That is a bank.",
-        "localizedMeaning": {
-          "ru": "Укажите на дальнее здание: «То здание — банк»",
-          "uk": "Укажіть на далеку будівлю: «Та будівля — банк»"
-        },
-        "orderedTokens": [
-          "That",
-          "is",
-          "a",
-          "bank"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-11:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Укажите на дальнее здание: «То здание — банк»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That is a bank.`",
-              "uk": "тут потрібно `is` — `That is a bank.`"
+            "responseId": "en:lesson-04:session-11:word:tram:r1",
+            "targetText": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай. Are there trams near the bank? — «Есть ли трамваи рядом с банком?» О городском транспорте, который едет по рельсам.",
+              "uk": "трамвай. Are there trams near the bank? — «Чи є трамваї поруч із банком?» Про міський транспорт, який їде рейками."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tram",
+          "definitionByLocale": {
+            "ru": "трамвай. Are there trams near the bank? — «Есть ли трамваи рядом с банком?» О городском транспорте, который едет по рельсам.",
+            "uk": "трамвай. Are there trams near the bank? — «Чи є трамваї поруч із банком?» Про міський транспорт, який їде рейками."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-11:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-11:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг должен ответить на сообщение немедленно. Скажите «Это срочно» с сокращением",
+      "prompt": "Сотрудница справочной показывает на красную линию на карте и называет слово, а вы повторяете за ней",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-11:i07:audio"
+        "en:lesson-04:session-11:i02:audio"
       ],
-      "accessibilityLabel": "Друг должен ответить на сообщение немедленно. Скажите «Это срочно» с сокращением",
+      "accessibilityLabel": "Сотрудница справочной показывает на красную линию на карте и называет слово, а вы повторяете за ней",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-11:i07:audio",
-          "transcript": "It's urgent."
+          "audioTargetId": "en:lesson-04:session-11:i02:audio",
+          "transcript": "tram"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's urgent.",
+        "targetPhrase": "tram",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -381,68 +153,157 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-11:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой: рядом есть трамваи?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой: рядом есть трамваи?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there trams near here?",
+        "localizedMeaning": {
+          "ru": "Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой: рядом есть трамваи?",
+          "uk": "Ви стоїте біля транспортної мапи. Запитайте працівницю довідкової повною фразою: чи є поруч трамваї?"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "trams",
+          "near",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой: рядом есть трамваи?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are there trams near here?`",
+              "uk": "тут потрібно `Are` — `Are there trams near here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:word:train",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — train",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:word:train:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — train",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-11:word:train:audio",
+          "transcript": "train"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-11:word:train:r1",
+            "targetText": "train",
+            "meaningByLocale": {
+              "ru": "поезд. Are there trains near the lake? — «Есть ли поезда рядом с озером?» О составе, который едет по железной дороге между городами.",
+              "uk": "потяг. Are there trains near the lake? — «Чи є потяги поруч з озером?» Про состав, який їде залізницею між містами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "train",
+          "definitionByLocale": {
+            "ru": "поезд. Are there trains near the lake? — «Есть ли поезда рядом с озером?» О составе, который едет по железной дороге между городами.",
+            "uk": "потяг. Are there trains near the lake? — «Чи є потяги поруч з озером?» Про состав, який їде залізницею між містами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите «Здесь есть трамваи?»",
+      "prompt": "На вокзале маленького городка вы слышите гудок. Что приходит по рельсам между городами? Как это называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-11:i08:r1",
-          "text": "Are"
+          "responseId": "en:lesson-04:session-11:i04:r1",
+          "text": "train"
         },
         {
-          "responseId": "en:lesson-04:session-11:i08:r2",
-          "text": "Is"
+          "responseId": "en:lesson-04:session-11:i04:r2",
+          "text": "tram"
         },
         {
-          "responseId": "en:lesson-04:session-11:i08:r3",
-          "text": "Am"
+          "responseId": "en:lesson-04:session-11:i04:r3",
+          "text": "bus"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Здесь есть трамваи?»",
+      "accessibilityLabel": "На вокзале маленького городка вы слышите гудок. Что приходит по рельсам между городами? Как это называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Здесь есть трамваи?»",
-          "uk": "Запитайте «Тут є трамваї?»"
+          "ru": "На вокзале маленького городка вы слышите гудок. Что приходит по рельсам между городами? Как это называется по-английски?",
+          "uk": "На вокзалі маленького містечка ви чуєте гудок. Що приходить рейками між містами? Як це називається англійською?"
         },
-        "gappedTargetPhrase": "___ there trams here?",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-11:i08:r1",
-            "text": "Are"
+            "responseId": "en:lesson-04:session-11:i04:r1",
+            "text": "train"
           },
           {
-            "responseId": "en:lesson-04:session-11:i08:r2",
-            "text": "Is"
+            "responseId": "en:lesson-04:session-11:i04:r2",
+            "text": "tram"
           },
           {
-            "responseId": "en:lesson-04:session-11:i08:r3",
-            "text": "Am"
+            "responseId": "en:lesson-04:session-11:i04:r3",
+            "text": "bus"
           }
         ],
-        "testedDimension": "Спросите «Здесь есть трамваи?»",
+        "testedDimension": "На вокзале маленького городка вы слышите гудок. Что приходит по рельсам между городами? Как это называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-11:i08:r2",
+            "responseId": "en:lesson-04:session-11:i04:r2",
             "correct": false,
-            "testedDimension": "Спросите «Здесь есть трамваи?»",
+            "testedDimension": "На вокзале маленького городка вы слышите гудок. Что приходит по рельсам между городами? Как это называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Трамваи — несколько: `Are there trams here?`.",
-              "uk": "Трамваїв кілька: `Are there trams here?`."
+              "ru": "tram — это городской трамвай, а по железной дороге между городами едет train.",
+              "uk": "tram — це міський трамвай, а залізницею між містами їде train."
             }
           },
           {
-            "responseId": "en:lesson-04:session-11:i08:r3",
+            "responseId": "en:lesson-04:session-11:i04:r3",
             "correct": false,
-            "testedDimension": "Спросите «Здесь есть трамваи?»",
+            "testedDimension": "На вокзале маленького городка вы слышите гудок. Что приходит по рельсам между городами? Как это называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Вопрос о нескольких трамваях начинается с `Are there`.",
-              "uk": "Запитання про кілька трамваїв починається з `Are there`."
+              "ru": "bus — это автобус, у него нет рельсов, а на рельсах едет train.",
+              "uk": "bus — це автобус, він не має рейок, а рейками їде train."
             }
           }
         ]
@@ -450,73 +311,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-11:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте вопрос брата",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-11:i09:r1",
-          "text": "Is there a room?"
+          "responseId": "en:lesson-04:session-11:i05:r1",
+          "text": "Are there trains here?"
         },
         {
-          "responseId": "en:lesson-04:session-11:i09:r2",
-          "text": "Is there a bank?"
+          "responseId": "en:lesson-04:session-11:i05:r2",
+          "text": "Are there trams here?"
         },
         {
-          "responseId": "en:lesson-04:session-11:i09:r3",
-          "text": "Is there a tram?"
+          "responseId": "en:lesson-04:session-11:i05:r3",
+          "text": "Is there a train here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-11:i09:audio"
+        "en:lesson-04:session-11:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте вопрос брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-11:i09:audio",
-          "transcript": "Is there a room?"
+          "audioTargetId": "en:lesson-04:session-11:i05:audio",
+          "transcript": "Are there trains here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-11:i09:r1",
-            "targetText": "Is there a room?",
+            "responseId": "en:lesson-04:session-11:i05:r1",
+            "targetText": "Are there trains here?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-11:i09:r2",
-            "targetText": "Is there a bank?",
+            "responseId": "en:lesson-04:session-11:i05:r2",
+            "targetText": "Are there trams here?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-11:i09:r3",
-            "targetText": "Is there a tram?",
+            "responseId": "en:lesson-04:session-11:i05:r3",
+            "targetText": "Is there a train here?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-11:i09:r2",
+            "responseId": "en:lesson-04:session-11:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `room`, а в этом варианте — `bank`.",
-              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `bank`."
+              "ru": "В записи спрашивают про `trains`, а в этом варианте про `trams`.",
+              "uk": "У записі питають про `trains`, а в цьому варіанті про `trams`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-11:i09:r3",
+            "responseId": "en:lesson-04:session-11:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте вопрос брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `room`, а в этом варианте — `tram`.",
-              "uk": "У записі останнє слово — `room`, а в цьому варіанті — `tram`."
+              "ru": "В записи вопрос `Are there` о нескольких поездах, а в этом варианте `Is there a` об одном.",
+              "uk": "У записі запитання `Are there` про кілька потягів, а в цьому варіанті `Is there a` про один."
             }
           }
         ],
@@ -526,9 +387,291 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-11:i10",
+      "interactionId": "en:lesson-04:session-11:word:seat",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:word:seat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-11:word:seat:audio",
+          "transcript": "seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-11:word:seat:r1",
+            "targetText": "seat",
+            "meaningByLocale": {
+              "ru": "место для сидения. Are there seats near the door? — «Есть ли места рядом с дверью?» О кресле в трамвае, автобусе, кино.",
+              "uk": "місце для сидіння. Are there seats near the door? — «Чи є місця поруч із дверима?» Про крісло в трамваї, автобусі, кіно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seat",
+          "definitionByLocale": {
+            "ru": "место для сидения. Are there seats near the door? — «Есть ли места рядом с дверью?» О кресле в трамвае, автобусе, кино.",
+            "uk": "місце для сидіння. Are there seats near the door? — «Чи є місця поруч із дверима?» Про крісло в трамваї, автобусі, кіно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Кондуктор в трамвае показывает на свободное кресло и называет слово, а вы повторяете за ним",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i06:audio"
+      ],
+      "accessibilityLabel": "Кондуктор в трамвае показывает на свободное кресло и называет слово, а вы повторяете за ним",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-11:i06:audio",
+          "transcript": "seat"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "seat",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте бабушку и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте бабушку и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-11:i07:audio",
+          "transcript": "Are there seats here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are there seats here?",
+        "orderedTokens": [
+          "Are",
+          "there",
+          "seats",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте бабушку и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are there seats here?`",
+              "uk": "тут потрібно `Are` — `Are there seats here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:word:route",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — route",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:word:route:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — route",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-11:word:route:audio",
+          "transcript": "route"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-11:word:route:r1",
+            "targetText": "route",
+            "meaningByLocale": {
+              "ru": "маршрут. Are there tram routes here? — «Здесь есть трамвайные маршруты?» О пути, по которому ходит транспорт.",
+              "uk": "маршрут. Are there tram routes here? — «Чи є тут трамвайні маршрути?» Про шлях, яким ходить транспорт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "route",
+          "definitionByLocale": {
+            "ru": "маршрут. Are there tram routes here? — «Здесь есть трамвайные маршруты?» О пути, по которому ходит транспорт.",
+            "uk": "маршрут. Are there tram routes here? — «Чи є тут трамвайні маршрути?» Про шлях, яким ходить транспорт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На схеме цветная линия показывает путь, по которому ходит транспорт. Как называется такой путь по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-11:i08:r1",
+          "text": "route"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i08:r2",
+          "text": "seat"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i08:r3",
+          "text": "map"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На схеме цветная линия показывает путь, по которому ходит транспорт. Как называется такой путь по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На схеме цветная линия показывает путь, по которому ходит транспорт. Как называется такой путь по-английски?",
+          "uk": "На схемі кольорова лінія показує шлях, яким ходить транспорт. Як називається такий шлях англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-11:i08:r1",
+            "text": "route"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i08:r2",
+            "text": "seat"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i08:r3",
+            "text": "map"
+          }
+        ],
+        "testedDimension": "На схеме цветная линия показывает путь, по которому ходит транспорт. Как называется такой путь по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "На схеме цветная линия показывает путь, по которому ходит транспорт. Как называется такой путь по-английски?",
+            "feedbackByLocale": {
+              "ru": "seat — это место для сидения, а путь транспорта называется route.",
+              "uk": "seat — це місце для сидіння, а шлях транспорту називається route."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "На схеме цветная линия показывает путь, по которому ходит транспорт. Как называется такой путь по-английски?",
+            "feedbackByLocale": {
+              "ru": "map — это вся карта, а путь транспорта на ней называется route.",
+              "uk": "map — це вся мапа, а шлях транспорту на ній називається route."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы изучаете схему трамваев. Спросите сотрудницу справочной полной фразой: здесь есть трамвайные маршруты?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы изучаете схему трамваев. Спросите сотрудницу справочной полной фразой: здесь есть трамвайные маршруты?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there tram routes here?",
+        "localizedMeaning": {
+          "ru": "Вы изучаете схему трамваев. Спросите сотрудницу справочной полной фразой: здесь есть трамвайные маршруты?",
+          "uk": "Ви вивчаєте схему трамваїв. Запитайте працівницю довідкової повною фразою: чи є тут трамвайні маршрути?"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "tram",
+          "routes",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы изучаете схему трамваев. Спросите сотрудницу справочной полной фразой: здесь есть трамвайные маршруты?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are there tram routes here?`",
+              "uk": "тут потрібно `Are` — `Are there tram routes here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -541,48 +684,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-11:i10:p1",
-            "target": "tram",
+            "target": "route",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "маршрут",
+              "uk": "маршрут"
             }
           },
           {
             "pairId": "en:lesson-04:session-11:i10:p2",
-            "target": "trams",
+            "target": "seat",
             "meaningByLocale": {
-              "ru": "трамваи",
-              "uk": "трамваї"
+              "ru": "место для сидения",
+              "uk": "місце для сидіння"
             }
           },
           {
             "pairId": "en:lesson-04:session-11:i10:p3",
-            "target": "room",
+            "target": "bus",
             "meaningByLocale": {
-              "ru": "комната",
-              "uk": "кімната"
+              "ru": "автобус",
+              "uk": "автобус"
             }
           },
           {
             "pairId": "en:lesson-04:session-11:i10:p4",
-            "target": "urgent",
+            "target": "map",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "карта",
+              "uk": "мапа"
             }
           }
         ],
         "leftColumn": [
-          "tram",
-          "trams",
-          "room",
-          "urgent"
+          "route",
+          "seat",
+          "bus",
+          "map"
         ],
         "rightColumn": [
-          "трамвай",
-          "трамваи",
-          "комната",
-          "срочный"
+          "маршрут",
+          "место для сидения",
+          "автобус",
+          "карта"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -600,88 +743,188 @@
     },
     {
       "interactionId": "en:lesson-04:session-11:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос прохожего",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-11:i11:r1",
+          "text": "Are there banks near here?"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i11:r2",
+          "text": "Are there parks near here?"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i11:r3",
+          "text": "Is there a bank near here?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-11:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте вопрос прохожего",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-11:i11:audio",
-          "transcript": "There is a room here."
+          "transcript": "Are there banks near here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There is a room here.",
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "room",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-11:i11:tile:d1",
+            "responseId": "en:lesson-04:session-11:i11:r1",
+            "targetText": "Are there banks near here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i11:r2",
+            "targetText": "Are there parks near here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i11:r3",
+            "targetText": "Is there a bank near here?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте вопрос прохожего",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a room here.`",
-              "uk": "тут потрібно `is` — `There is a room here.`"
+              "ru": "В записи спрашивают про `banks`, а в этом варианте про `parks`.",
+              "uk": "У записі питають про `banks`, а в цьому варіанті про `parks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос прохожего",
+            "feedbackByLocale": {
+              "ru": "В записи вопрос `Are there` о нескольких банках, а в этом варианте `Is there a` об одном.",
+              "uk": "У записі запитання `Are there` про кілька банків, а в цьому варіанті `Is there a` про один."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-11:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы уже узнали о транспорте. Сообщите «Здесь есть трамваи»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы спрашиваете сотрудницу справочной о поездах. Дополните ваш вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-11:i12:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i12:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i12:r3",
+          "text": "Am"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже узнали о транспорте. Сообщите «Здесь есть трамваи»",
+      "accessibilityLabel": "Вы спрашиваете сотрудницу справочной о поездах. Дополните ваш вопрос",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There are trams here.",
-        "localizedMeaning": {
-          "ru": "Вы уже узнали о транспорте. Сообщите «Здесь есть трамваи»",
-          "uk": "Ви вже дізналися про транспорт. Повідомте «Тут є трамваї»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы спрашиваете сотрудницу справочной о поездах. Дополните ваш вопрос",
+          "uk": "Ви питаєте працівницю довідкової про потяги. Доповніть ваше запитання"
         },
+        "gappedTargetPhrase": "___ there trains near here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-11:i12:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i12:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i12:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Вы спрашиваете сотрудницу справочной о поездах. Дополните ваш вопрос",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы спрашиваете сотрудницу справочной о поездах. Дополните ваш вопрос",
+            "feedbackByLocale": {
+              "ru": "Поездов несколько, поэтому начинаем с Are there, а не с Is there.",
+              "uk": "Потягів кілька, тому починаємо з Are there, а не з Is there."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы спрашиваете сотрудницу справочной о поездах. Дополните ваш вопрос",
+            "feedbackByLocale": {
+              "ru": "Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.",
+              "uk": "Am кажуть лише з I, а запитання про кілька предметів починається з Are there."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте прохожего и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте прохожего и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-11:i13:audio",
+          "transcript": "Are there parks near here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are there parks near here?",
         "orderedTokens": [
-          "There",
-          "are",
-          "trams",
+          "Are",
+          "there",
+          "parks",
+          "near",
           "here"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-11:i12:tile:d1",
+            "responseId": "en:lesson-04:session-11:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Вы уже узнали о транспорте. Сообщите «Здесь есть трамваи»",
+            "testedDimension": "Послушайте прохожего и соберите вопрос",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `There are trams here.`",
-              "uk": "тут потрібно `are` — `There are trams here.`"
+              "ru": "здесь нужно `Are` — `Are there parks near here?`",
+              "uk": "тут потрібно `Are` — `Are there parks near here?`"
             }
           }
         ],
@@ -693,26 +936,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-11:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-11:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ищете банк. Спросите «Здесь есть банк?»",
+      "prompt": "Сотрудница справочной показывает вам схему на остановке. Спросите её, есть ли здесь маршруты",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-11:i13:audio"
+        "en:lesson-04:session-11:i14:audio"
       ],
-      "accessibilityLabel": "Вы ищете банк. Спросите «Здесь есть банк?»",
+      "accessibilityLabel": "Сотрудница справочной показывает вам схему на остановке. Спросите её, есть ли здесь маршруты",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-11:i13:audio",
-          "transcript": "Is there a bank here?"
+          "audioTargetId": "en:lesson-04:session-11:i14:audio",
+          "transcript": "Are there routes here?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a bank here?",
+        "targetPhrase": "Are there routes here?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -726,153 +969,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-11:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Уточните, есть ли здесь комната",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-11:i14:r1",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i14:r2",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i14:r3",
-          "text": "are"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ищете школы рядом с домом. Спросите прохожего полной фразой: рядом есть школы?",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните, есть ли здесь комната",
+      "accessibilityLabel": "Вы ищете школы рядом с домом. Спросите прохожего полной фразой: рядом есть школы?",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Уточните, есть ли здесь комната",
-          "uk": "Уточніть, чи є тут кімната"
+        "family": "phrase_builder",
+        "targetPhrase": "Are there schools near here?",
+        "localizedMeaning": {
+          "ru": "Вы ищете школы рядом с домом. Спросите прохожего полной фразой: рядом есть школы?",
+          "uk": "Ви шукаєте школи поруч із домом. Запитайте перехожого повною фразою: чи є поруч школи?"
         },
-        "gappedTargetPhrase": "Is there ___ room here?",
-        "gapOptions": [
+        "orderedTokens": [
+          "Are",
+          "there",
+          "schools",
+          "near",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-11:i14:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i14:r2",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i14:r3",
-            "text": "are"
+            "responseId": "en:lesson-04:session-11:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы ищете школы рядом с домом. Спросите прохожего полной фразой: рядом есть школы?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are there schools near here?`",
+              "uk": "тут потрібно `Are` — `Are there schools near here?`"
+            }
           }
         ],
-        "testedDimension": "Уточните, есть ли здесь комната",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-11:i14:r2",
-            "correct": false,
-            "testedDimension": "Уточните, есть ли здесь комната",
-            "feedbackByLocale": {
-              "ru": "В `room` первый звук согласный: `a room`.",
-              "uk": "У `room` перший звук приголосний: `a room`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i14:r3",
-            "correct": false,
-            "testedDimension": "Уточните, есть ли здесь комната",
-            "feedbackByLocale": {
-              "ru": "Перед одной комнатой нужно `a`: `a room`.",
-              "uk": "Перед однією кімнатою потрібне `a`: `a room`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-11:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте ответ о сообщении",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-11:i15:r1",
-          "text": "It is urgent."
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i15:r2",
-          "text": "It is comfortable."
-        },
-        {
-          "responseId": "en:lesson-04:session-11:i15:r3",
-          "text": "It is impossible."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-11:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте ответ о сообщении",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-11:i15:audio",
-          "transcript": "It is urgent."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-11:i15:r1",
-            "targetText": "It is urgent.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i15:r2",
-            "targetText": "It is comfortable.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i15:r3",
-            "targetText": "It is impossible.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-11:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте ответ о сообщении",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `urgent`, а в этом варианте — `comfortable`.",
-              "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `comfortable`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-11:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте ответ о сообщении",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `urgent`, а в этом варианте — `impossible`.",
-              "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `impossible`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-11:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -894,40 +1038,40 @@
           },
           {
             "pairId": "en:lesson-04:session-11:i16:p2",
-            "target": "urgent",
+            "target": "train",
             "meaningByLocale": {
-              "ru": "срочный",
-              "uk": "терміновий"
+              "ru": "поезд",
+              "uk": "потяг"
             }
           },
           {
             "pairId": "en:lesson-04:session-11:i16:p3",
-            "target": "room",
+            "target": "seat",
             "meaningByLocale": {
-              "ru": "комната",
-              "uk": "кімната"
+              "ru": "место для сидения",
+              "uk": "місце для сидіння"
             }
           },
           {
             "pairId": "en:lesson-04:session-11:i16:p4",
-            "target": "bank",
+            "target": "route",
             "meaningByLocale": {
-              "ru": "банк",
-              "uk": "банк"
+              "ru": "маршрут",
+              "uk": "маршрут"
             }
           }
         ],
         "leftColumn": [
           "tram",
-          "urgent",
-          "room",
-          "bank"
+          "train",
+          "seat",
+          "route"
         ],
         "rightColumn": [
           "трамвай",
-          "срочный",
-          "комната",
-          "банк"
+          "поезд",
+          "место для сидения",
+          "маршрут"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -945,17 +1089,17 @@
     },
     {
       "interactionId": "en:lesson-04:session-11:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В следующей поездке вы хотите узнать, ходят ли в городе трамваи. Спросите «Здесь есть трамваи?»",
+      "prompt": "Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой, есть ли здесь трамваи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-11:i17:audio"
       ],
-      "accessibilityLabel": "В следующей поездке вы хотите узнать, ходят ли в городе трамваи. Спросите «Здесь есть трамваи?»",
+      "accessibilityLabel": "Вы стоите у транспортной карты. Спросите сотрудницу справочной полной фразой, есть ли здесь трамваи",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -985,11 +1129,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "48189615155f5fe380e109181febff9b465070b38010078643edd75ba131978d"
+  "learnerFingerprint": "d5466fd9d6043383eabdf2ae589c88e5a3811446fa2e6e83df6339c326da3408"
 }

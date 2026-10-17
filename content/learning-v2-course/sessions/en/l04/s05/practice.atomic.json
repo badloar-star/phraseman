@@ -1,0 +1,2363 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-05:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-05:i01:p1",
+              "target": "supermarket",
+              "meaningByLocale": {
+                "ru": "супермаркет",
+                "uk": "супермаркет"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i01:p2",
+              "target": "street",
+              "meaningByLocale": {
+                "ru": "улица",
+                "uk": "вулиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i01:p3",
+              "target": "cafe",
+              "meaningByLocale": {
+                "ru": "кафе",
+                "uk": "кафе"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i01:p4",
+              "target": "road",
+              "meaningByLocale": {
+                "ru": "дорога",
+                "uk": "дорога"
+              }
+            }
+          ],
+          "leftColumn": [
+            "supermarket",
+            "street",
+            "cafe",
+            "road"
+          ],
+          "rightColumn": [
+            "супермаркет",
+            "улица",
+            "кафе",
+            "дорога"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:supermarket",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — supermarket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:supermarket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — supermarket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:supermarket:audio",
+            "transcript": "supermarket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:supermarket:r1",
+              "targetText": "supermarket",
+              "meaningByLocale": {
+                "ru": "супермаркет. There is a supermarket nearby — «Рядом есть супермаркет». О большом магазине, где есть почти все продукты.",
+                "uk": "супермаркет. There is a supermarket nearby — «Поруч є супермаркет». Про великий магазин, де є майже всі продукти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "supermarket",
+            "definitionByLocale": {
+              "ru": "супермаркет. There is a supermarket nearby — «Рядом есть супермаркет». О большом магазине, где есть почти все продукты.",
+              "uk": "супермаркет. There is a supermarket nearby — «Поруч є супермаркет». Про великий магазин, де є майже всі продукти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показывает на самый большой магазин на плане и называет его, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показывает на самый большой магазин на плане и называет его, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i02:audio",
+            "transcript": "supermarket"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "supermarket",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, где купить продукты. Скажите ей полной фразой: здесь есть супермаркет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, где купить продукты. Скажите ей полной фразой: здесь есть супермаркет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a supermarket here.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, где купить продукты. Скажите ей полной фразой: здесь есть супермаркет.",
+            "uk": "Подруга питає, де купити продукти. Скажіть їй повною фразою: тут є супермаркет."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "supermarket",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, где купить продукты. Скажите ей полной фразой: здесь есть супермаркет.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a supermarket here.`",
+                "uk": "тут потрібно `is` — `There is a supermarket here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:street",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — street",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:street:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — street",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:street:audio",
+            "transcript": "street"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:street:r1",
+              "targetText": "street",
+              "meaningByLocale": {
+                "ru": "улица. There are quiet streets here — «Здесь есть тихие улицы». Об улице с домами, где живут и ходят люди.",
+                "uk": "вулиця. There are quiet streets here — «Тут є тихі вулиці». Про вулицю з будинками, де живуть і ходять люди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "street",
+            "definitionByLocale": {
+              "ru": "улица. There are quiet streets here — «Здесь есть тихие улицы». Об улице с домами, где живут и ходят люди.",
+              "uk": "вулиця. There are quiet streets here — «Тут є тихі вулиці». Про вулицю з будинками, де живуть і ходять люди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы живёте на ней: вдоль неё стоят дома и магазины, и по ней ходят люди. Как она называется?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i04:r1",
+            "text": "street"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i04:r2",
+            "text": "bridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i04:r3",
+            "text": "market"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы живёте на ней: вдоль неё стоят дома и магазины, и по ней ходят люди. Как она называется?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы живёте на ней: вдоль неё стоят дома и магазины, и по ней ходят люди. Как она называется?",
+            "uk": "Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i04:r1",
+              "text": "street"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i04:r2",
+              "text": "bridge"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i04:r3",
+              "text": "market"
+            }
+          ],
+          "testedDimension": "Вы живёте на ней: вдоль неё стоят дома и магазины, и по ней ходят люди. Как она называется?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы живёте на ней: вдоль неё стоят дома и магазины, и по ней ходят люди. Как она называется?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а нужное слово — street.",
+                "uk": "bridge — це міст, а потрібне слово — street."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы живёте на ней: вдоль неё стоят дома и магазины, и по ней ходят люди. Как она называется?",
+              "feedbackByLocale": {
+                "ru": "market — это рынок, а нужное слово — street.",
+                "uk": "market — це ринок, а потрібне слово — street."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i05:r1",
+            "text": "There are streets here."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i05:r2",
+            "text": "There is a street here."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i05:r3",
+            "text": "There are streets nearby."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i05:audio",
+            "transcript": "There are streets here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:i05:r1",
+              "targetText": "There are streets here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i05:r2",
+              "targetText": "There is a street here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i05:r3",
+              "targetText": "There are streets nearby.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `are`, а в этом варианте — `is`.",
+                "uk": "У записі — `are`, а в цьому варіанті — `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `here`, а в этом варианте — `nearby`.",
+                "uk": "У записі — `here`, а в цьому варіанті — `nearby`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:cafe",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cafe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:cafe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cafe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:cafe:audio",
+            "transcript": "cafe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:cafe:r1",
+              "targetText": "cafe",
+              "meaningByLocale": {
+                "ru": "кафе. There is a cafe near the supermarket — «Рядом с супермаркетом есть кафе». О месте, где пьют чай и кофе.",
+                "uk": "кафе. There is a cafe near the supermarket — «Поруч із супермаркетом є кафе». Про місце, де п’ють чай і каву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cafe",
+            "definitionByLocale": {
+              "ru": "кафе. There is a cafe near the supermarket — «Рядом с супермаркетом есть кафе». О месте, где пьют чай и кофе.",
+              "uk": "кафе. There is a cafe near the supermarket — «Поруч із супермаркетом є кафе». Про місце, де п’ють чай і каву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка показывает на уютное место, где пьют чай, и называет его, а вы повторяете за ней слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i06:audio"
+        ],
+        "accessibilityLabel": "Соседка показывает на уютное место, где пьют чай, и называет его, а вы повторяете за ней слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i06:audio",
+            "transcript": "cafe"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "cafe",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i07:audio",
+            "transcript": "There is a cafe here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a cafe here.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "cafe",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a cafe here.`",
+                "uk": "тут потрібно `is` — `There is a cafe here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:road",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — road",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:road:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — road",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:road:audio",
+            "transcript": "road"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:road:r1",
+              "targetText": "road",
+              "meaningByLocale": {
+                "ru": "дорога. There are roads near the bridge — «Рядом с мостом есть дороги». О широкой дороге, по которой едут машины и автобусы.",
+                "uk": "дорога. There are roads near the bridge — «Поруч із мостом є дороги». Про широку дорогу, по якій їдуть машини й автобуси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "road",
+            "definitionByLocale": {
+              "ru": "дорога. There are roads near the bridge — «Рядом с мостом есть дороги». О широкой дороге, по которой едут машины и автобусы.",
+              "uk": "дорога. There are roads near the bridge — «Поруч із мостом є дороги». Про широку дорогу, по якій їдуть машини й автобуси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "По ней из города в город едут машины и автобусы. Как она называется?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i08:r1",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i08:r2",
+            "text": "bus"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i08:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "По ней из города в город едут машины и автобусы. Как она называется?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "По ней из города в город едут машины и автобусы. Как она называется?",
+            "uk": "По ній з міста в місто їдуть машини й автобуси. Як вона називається?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i08:r1",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i08:r2",
+              "text": "bus"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i08:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "По ней из города в город едут машины и автобусы. Как она называется?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "По ней из города в город едут машины и автобусы. Как она называется?",
+              "feedbackByLocale": {
+                "ru": "bus — это автобус, а нужное слово — road.",
+                "uk": "bus — це автобус, а потрібне слово — road."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "По ней из города в город едут машины и автобусы. Как она называется?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а нужное слово — road.",
+                "uk": "bench — це лавка, а потрібне слово — road."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет, где выпить чаю. Скажите ей полной фразой: рядом есть кафе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет, где выпить чаю. Скажите ей полной фразой: рядом есть кафе.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are cafes nearby.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет, где выпить чаю. Скажите ей полной фразой: рядом есть кафе.",
+            "uk": "Подруга шукає, де випити чаю. Скажіть їй повною фразою: поруч є кафе."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "cafes",
+            "nearby"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет, где выпить чаю. Скажите ей полной фразой: рядом есть кафе.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are cafes nearby.`",
+                "uk": "тут потрібно `are` — `There are cafes nearby.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы видите на плане одно кафе рядом с супермаркетом. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i10:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i10:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i10:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы видите на плане одно кафе рядом с супермаркетом. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы видите на плане одно кафе рядом с супермаркетом. Дополните фразу",
+            "uk": "Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There ___ a cafe near the supermarket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i10:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i10:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i10:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы видите на плане одно кафе рядом с супермаркетом. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i10:r2",
+              "correct": false,
+              "testedDimension": "Вы видите на плане одно кафе рядом с супермаркетом. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Кафе одно (после есть a), поэтому нужно is, а не are.",
+                "uk": "Кафе одне (далі стоїть a), тому потрібно is, а не are."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i10:r3",
+              "correct": false,
+              "testedDimension": "Вы видите на плане одно кафе рядом с супермаркетом. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Слово am говорят только о себе: I am. О месте нужно is.",
+                "uk": "Слово am кажуть лише про себе: I am. Про місце потрібно is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i11:r1",
+            "text": "There is a supermarket near the road."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i11:r2",
+            "text": "There are supermarkets near the road."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i11:r3",
+            "text": "There is a supermarket near the street."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i11:audio",
+            "transcript": "There is a supermarket near the road."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:i11:r1",
+              "targetText": "There is a supermarket near the road.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i11:r2",
+              "targetText": "There are supermarkets near the road.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i11:r3",
+              "targetText": "There is a supermarket near the street.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `is`, а в этом варианте — `are`.",
+                "uk": "У записі — `is`, а в цьому варіанті — `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `road`, а в этом варианте — `street`.",
+                "uk": "У записі — `road`, а в цьому варіанті — `street`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-05:i12:p1",
+              "target": "supermarket",
+              "meaningByLocale": {
+                "ru": "супермаркет",
+                "uk": "супермаркет"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i12:p2",
+              "target": "cafe",
+              "meaningByLocale": {
+                "ru": "кафе",
+                "uk": "кафе"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i12:p3",
+              "target": "street",
+              "meaningByLocale": {
+                "ru": "улица",
+                "uk": "вулиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i12:p4",
+              "target": "market",
+              "meaningByLocale": {
+                "ru": "рынок",
+                "uk": "ринок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "supermarket",
+            "cafe",
+            "street",
+            "market"
+          ],
+          "rightColumn": [
+            "супермаркет",
+            "кафе",
+            "улица",
+            "рынок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i13:audio",
+            "transcript": "There are roads near the supermarket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are roads near the supermarket.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "roads",
+            "near",
+            "the",
+            "supermarket"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are roads near the supermarket.`",
+                "uk": "тут потрібно `are` — `There are roads near the supermarket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, где можно выпить чаю. Скажите ей: «За супермаркетом есть кафе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, где можно выпить чаю. Скажите ей: «За супермаркетом есть кафе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i14:audio",
+            "transcript": "There is a cafe behind the supermarket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a cafe behind the supermarket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка ищет тихие места для прогулки. Скажите ей полной фразой: за рынком есть улицы.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка ищет тихие места для прогулки. Скажите ей полной фразой: за рынком есть улицы.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are streets behind the market.",
+          "localizedMeaning": {
+            "ru": "Соседка ищет тихие места для прогулки. Скажите ей полной фразой: за рынком есть улицы.",
+            "uk": "Сусідка шукає тихі місця для прогулянки. Скажіть їй повною фразою: за ринком є вулиці."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "streets",
+            "behind",
+            "the",
+            "market"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка ищет тихие места для прогулки. Скажите ей полной фразой: за рынком есть улицы.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are streets behind the market.`",
+                "uk": "тут потрібно `are` — `There are streets behind the market.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы показываете на плане несколько кафе рядом с улицей. Дополните фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i16:r1",
+            "text": "cafes"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i16:r2",
+            "text": "cafe"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i16:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете на плане несколько кафе рядом с улицей. Дополните фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете на плане несколько кафе рядом с улицей. Дополните фразу",
+            "uk": "Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There are ___ near the street.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i16:r1",
+              "text": "cafes"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i16:r2",
+              "text": "cafe"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i16:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы показываете на плане несколько кафе рядом с улицей. Дополните фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы показываете на плане несколько кафе рядом с улицей. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "Кафе несколько, поэтому нужно cafes с s на конце.",
+                "uk": "Кафе кілька, тому потрібно cafes з s на кінці."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы показываете на плане несколько кафе рядом с улицей. Дополните фразу",
+              "feedbackByLocale": {
+                "ru": "После There are слово a не ставим: нужно cafes.",
+                "uk": "Після There are слово a не ставимо: потрібно cafes."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, что рядом с супермаркетом. Скажите ей: «Рядом с супермаркетом есть кафе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, что рядом с супермаркетом. Скажите ей: «Рядом с супермаркетом есть кафе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i17:audio",
+            "transcript": "There are cafes near the supermarket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are cafes near the supermarket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-05:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-05:i01:p1",
+              "target": "supermarket",
+              "meaningByLocale": {
+                "ru": "супермаркет",
+                "uk": "супермаркет"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i01:p2",
+              "target": "street",
+              "meaningByLocale": {
+                "ru": "улица",
+                "uk": "вулиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i01:p3",
+              "target": "cafe",
+              "meaningByLocale": {
+                "ru": "кафе",
+                "uk": "кафе"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i01:p4",
+              "target": "road",
+              "meaningByLocale": {
+                "ru": "дорога",
+                "uk": "дорога"
+              }
+            }
+          ],
+          "leftColumn": [
+            "supermarket",
+            "street",
+            "cafe",
+            "road"
+          ],
+          "rightColumn": [
+            "супермаркет",
+            "вулиця",
+            "кафе",
+            "дорога"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:supermarket",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — supermarket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:supermarket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — supermarket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:supermarket:audio",
+            "transcript": "supermarket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:supermarket:r1",
+              "targetText": "supermarket",
+              "meaningByLocale": {
+                "ru": "супермаркет. There is a supermarket nearby — «Рядом есть супермаркет». О большом магазине, где есть почти все продукты.",
+                "uk": "супермаркет. There is a supermarket nearby — «Поруч є супермаркет». Про великий магазин, де є майже всі продукти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "supermarket",
+            "definitionByLocale": {
+              "ru": "супермаркет. There is a supermarket nearby — «Рядом есть супермаркет». О большом магазине, где есть почти все продукты.",
+              "uk": "супермаркет. There is a supermarket nearby — «Поруч є супермаркет». Про великий магазин, де є майже всі продукти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга показує на найбільший магазин на плані й називає його, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Подруга показує на найбільший магазин на плані й називає його, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i02:audio",
+            "transcript": "supermarket"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "supermarket",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, де купити продукти. Скажіть їй повною фразою: тут є супермаркет.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, де купити продукти. Скажіть їй повною фразою: тут є супермаркет.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is a supermarket here.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, где купить продукты. Скажите ей полной фразой: здесь есть супермаркет.",
+            "uk": "Подруга питає, де купити продукти. Скажіть їй повною фразою: тут є супермаркет."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "supermarket",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, де купити продукти. Скажіть їй повною фразою: тут є супермаркет.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a supermarket here.`",
+                "uk": "тут потрібно `is` — `There is a supermarket here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:street",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — street",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:street:audio"
+        ],
+        "accessibilityLabel": "Картка слова — street",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:street:audio",
+            "transcript": "street"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:street:r1",
+              "targetText": "street",
+              "meaningByLocale": {
+                "ru": "улица. There are quiet streets here — «Здесь есть тихие улицы». Об улице с домами, где живут и ходят люди.",
+                "uk": "вулиця. There are quiet streets here — «Тут є тихі вулиці». Про вулицю з будинками, де живуть і ходять люди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "street",
+            "definitionByLocale": {
+              "ru": "улица. There are quiet streets here — «Здесь есть тихие улицы». Об улице с домами, где живут и ходят люди.",
+              "uk": "вулиця. There are quiet streets here — «Тут є тихі вулиці». Про вулицю з будинками, де живуть і ходять люди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i04:r1",
+            "text": "street"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i04:r2",
+            "text": "bridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i04:r3",
+            "text": "market"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы живёте на ней: вдоль неё стоят дома и магазины, и по ней ходят люди. Как она называется?",
+            "uk": "Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i04:r1",
+              "text": "street"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i04:r2",
+              "text": "bridge"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i04:r3",
+              "text": "market"
+            }
+          ],
+          "testedDimension": "Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?",
+              "feedbackByLocale": {
+                "ru": "bridge — это мост, а нужное слово — street.",
+                "uk": "bridge — це міст, а потрібне слово — street."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви живете на ній: уздовж неї стоять будинки й магазини, і по ній ходять люди. Як вона називається?",
+              "feedbackByLocale": {
+                "ru": "market — это рынок, а нужное слово — street.",
+                "uk": "market — це ринок, а потрібне слово — street."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i05:r1",
+            "text": "There are streets here."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i05:r2",
+            "text": "There is a street here."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i05:r3",
+            "text": "There are streets nearby."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i05:audio",
+            "transcript": "There are streets here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:i05:r1",
+              "targetText": "There are streets here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i05:r2",
+              "targetText": "There is a street here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i05:r3",
+              "targetText": "There are streets nearby.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `are`, а в этом варианте — `is`.",
+                "uk": "У записі — `are`, а в цьому варіанті — `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `here`, а в этом варианте — `nearby`.",
+                "uk": "У записі — `here`, а в цьому варіанті — `nearby`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:cafe",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cafe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:cafe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cafe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:cafe:audio",
+            "transcript": "cafe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:cafe:r1",
+              "targetText": "cafe",
+              "meaningByLocale": {
+                "ru": "кафе. There is a cafe near the supermarket — «Рядом с супермаркетом есть кафе». О месте, где пьют чай и кофе.",
+                "uk": "кафе. There is a cafe near the supermarket — «Поруч із супермаркетом є кафе». Про місце, де п’ють чай і каву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cafe",
+            "definitionByLocale": {
+              "ru": "кафе. There is a cafe near the supermarket — «Рядом с супермаркетом есть кафе». О месте, где пьют чай и кофе.",
+              "uk": "кафе. There is a cafe near the supermarket — «Поруч із супермаркетом є кафе». Про місце, де п’ють чай і каву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка показує на затишне місце, де п’ють чай, і називає його, а ви повторюєте за нею слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i06:audio"
+        ],
+        "accessibilityLabel": "Сусідка показує на затишне місце, де п’ють чай, і називає його, а ви повторюєте за нею слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i06:audio",
+            "transcript": "cafe"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "cafe",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i07:audio",
+            "transcript": "There is a cafe here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a cafe here.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "cafe",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `There is a cafe here.`",
+                "uk": "тут потрібно `is` — `There is a cafe here.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:word:road",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — road",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:word:road:audio"
+        ],
+        "accessibilityLabel": "Картка слова — road",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:word:road:audio",
+            "transcript": "road"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:word:road:r1",
+              "targetText": "road",
+              "meaningByLocale": {
+                "ru": "дорога. There are roads near the bridge — «Рядом с мостом есть дороги». О широкой дороге, по которой едут машины и автобусы.",
+                "uk": "дорога. There are roads near the bridge — «Поруч із мостом є дороги». Про широку дорогу, по якій їдуть машини й автобуси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "road",
+            "definitionByLocale": {
+              "ru": "дорога. There are roads near the bridge — «Рядом с мостом есть дороги». О широкой дороге, по которой едут машины и автобусы.",
+              "uk": "дорога. There are roads near the bridge — «Поруч із мостом є дороги». Про широку дорогу, по якій їдуть машини й автобуси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "По ній з міста в місто їдуть машини й автобуси. Як вона називається?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i08:r1",
+            "text": "road"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i08:r2",
+            "text": "bus"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i08:r3",
+            "text": "bench"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "По ній з міста в місто їдуть машини й автобуси. Як вона називається?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "По ней из города в город едут машины и автобусы. Как она называется?",
+            "uk": "По ній з міста в місто їдуть машини й автобуси. Як вона називається?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i08:r1",
+              "text": "road"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i08:r2",
+              "text": "bus"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i08:r3",
+              "text": "bench"
+            }
+          ],
+          "testedDimension": "По ній з міста в місто їдуть машини й автобуси. Як вона називається?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "По ній з міста в місто їдуть машини й автобуси. Як вона називається?",
+              "feedbackByLocale": {
+                "ru": "bus — это автобус, а нужное слово — road.",
+                "uk": "bus — це автобус, а потрібне слово — road."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "По ній з міста в місто їдуть машини й автобуси. Як вона називається?",
+              "feedbackByLocale": {
+                "ru": "bench — это скамейка, а нужное слово — road.",
+                "uk": "bench — це лавка, а потрібне слово — road."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає, де випити чаю. Скажіть їй повною фразою: поруч є кафе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає, де випити чаю. Скажіть їй повною фразою: поруч є кафе.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are cafes nearby.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет, где выпить чаю. Скажите ей полной фразой: рядом есть кафе.",
+            "uk": "Подруга шукає, де випити чаю. Скажіть їй повною фразою: поруч є кафе."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "cafes",
+            "nearby"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає, де випити чаю. Скажіть їй повною фразою: поруч є кафе.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are cafes nearby.`",
+                "uk": "тут потрібно `are` — `There are cafes nearby.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i10:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i10:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i10:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы видите на плане одно кафе рядом с супермаркетом. Дополните фразу",
+            "uk": "Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There ___ a cafe near the supermarket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i10:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i10:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i10:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i10:r2",
+              "correct": false,
+              "testedDimension": "Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Кафе одно (после есть a), поэтому нужно is, а не are.",
+                "uk": "Кафе одне (далі стоїть a), тому потрібно is, а не are."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i10:r3",
+              "correct": false,
+              "testedDimension": "Ви бачите на плані одне кафе поруч із супермаркетом. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Слово am говорят только о себе: I am. О месте нужно is.",
+                "uk": "Слово am кажуть лише про себе: I am. Про місце потрібно is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i11:r1",
+            "text": "There is a supermarket near the road."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i11:r2",
+            "text": "There are supermarkets near the road."
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i11:r3",
+            "text": "There is a supermarket near the street."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i11:audio",
+            "transcript": "There is a supermarket near the road."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-05:i11:r1",
+              "targetText": "There is a supermarket near the road.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i11:r2",
+              "targetText": "There are supermarkets near the road.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i11:r3",
+              "targetText": "There is a supermarket near the street.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `is`, а в этом варианте — `are`.",
+                "uk": "У записі — `is`, а в цьому варіанті — `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи — `road`, а в этом варианте — `street`.",
+                "uk": "У записі — `road`, а в цьому варіанті — `street`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-05:i12:p1",
+              "target": "supermarket",
+              "meaningByLocale": {
+                "ru": "супермаркет",
+                "uk": "супермаркет"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i12:p2",
+              "target": "cafe",
+              "meaningByLocale": {
+                "ru": "кафе",
+                "uk": "кафе"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i12:p3",
+              "target": "street",
+              "meaningByLocale": {
+                "ru": "улица",
+                "uk": "вулиця"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-05:i12:p4",
+              "target": "market",
+              "meaningByLocale": {
+                "ru": "рынок",
+                "uk": "ринок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "supermarket",
+            "cafe",
+            "street",
+            "market"
+          ],
+          "rightColumn": [
+            "супермаркет",
+            "кафе",
+            "вулиця",
+            "ринок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i13:audio",
+            "transcript": "There are roads near the supermarket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There are roads near the supermarket.",
+          "orderedTokens": [
+            "There",
+            "are",
+            "roads",
+            "near",
+            "the",
+            "supermarket"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are roads near the supermarket.`",
+                "uk": "тут потрібно `are` — `There are roads near the supermarket.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, де можна випити чаю. Скажіть їй: «За супермаркетом є кафе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, де можна випити чаю. Скажіть їй: «За супермаркетом є кафе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i14:audio",
+            "transcript": "There is a cafe behind the supermarket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There is a cafe behind the supermarket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка шукає тихі місця для прогулянки. Скажіть їй повною фразою: за ринком є вулиці.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка шукає тихі місця для прогулянки. Скажіть їй повною фразою: за ринком є вулиці.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are streets behind the market.",
+          "localizedMeaning": {
+            "ru": "Соседка ищет тихие места для прогулки. Скажите ей полной фразой: за рынком есть улицы.",
+            "uk": "Сусідка шукає тихі місця для прогулянки. Скажіть їй повною фразою: за ринком є вулиці."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "streets",
+            "behind",
+            "the",
+            "market"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка шукає тихі місця для прогулянки. Скажіть їй повною фразою: за ринком є вулиці.",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `There are streets behind the market.`",
+                "uk": "тут потрібно `are` — `There are streets behind the market.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i16:r1",
+            "text": "cafes"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i16:r2",
+            "text": "cafe"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i16:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете на плане несколько кафе рядом с улицей. Дополните фразу",
+            "uk": "Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу"
+          },
+          "gappedTargetPhrase": "There are ___ near the street.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-05:i16:r1",
+              "text": "cafes"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i16:r2",
+              "text": "cafe"
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i16:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-05:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "Кафе несколько, поэтому нужно cafes с s на конце.",
+                "uk": "Кафе кілька, тому потрібно cafes з s на кінці."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-05:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви показуєте на плані кілька кафе поруч із вулицею. Доповніть фразу",
+              "feedbackByLocale": {
+                "ru": "После There are слово a не ставим: нужно cafes.",
+                "uk": "Після There are слово a не ставимо: потрібно cafes."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-05:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, що поруч із супермаркетом. Скажіть їй: «Поруч із супермаркетом є кафе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, що поруч із супермаркетом. Скажіть їй: «Поруч із супермаркетом є кафе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-05:i17:audio",
+            "transcript": "There are cafes near the supermarket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are cafes near the supermarket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-05:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:word:supermarket",
+      "correctText": "supermarket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i02",
+      "correctText": "supermarket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i03",
+      "correctText": "There is a supermarket here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:word:street",
+      "correctText": "street",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i04",
+      "correctText": "street",
+      "correctResponseId": "en:lesson-04:session-05:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i05",
+      "correctText": "There are streets here.",
+      "correctResponseId": "en:lesson-04:session-05:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:word:cafe",
+      "correctText": "cafe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i06",
+      "correctText": "cafe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i07",
+      "correctText": "There is a cafe here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:word:road",
+      "correctText": "road",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i08",
+      "correctText": "road",
+      "correctResponseId": "en:lesson-04:session-05:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i09",
+      "correctText": "There are cafes nearby.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i10",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-04:session-05:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i11",
+      "correctText": "There is a supermarket near the road.",
+      "correctResponseId": "en:lesson-04:session-05:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i12",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i13",
+      "correctText": "There are roads near the supermarket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i14",
+      "correctText": "There is a cafe behind the supermarket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i15",
+      "correctText": "There are streets behind the market.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i16",
+      "correctText": "cafes",
+      "correctResponseId": "en:lesson-04:session-05:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i17",
+      "correctText": "There are cafes near the supermarket.",
+      "correctResponseId": null
+    }
+  ]
+}

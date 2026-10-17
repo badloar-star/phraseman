@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-05",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о наличии супермаркета и назвать знакомые предметы с this и that",
-    "uk": "повідомити про наявність супермаркету й назвати знайомі предмети з this та that"
+    "ru": "отличить одно место от нескольких: There is a cafe и There are cafes",
+    "uk": "відрізнити одне місце від кількох: There is a cafe і There are cafes"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для покупок",
-        "uk": "Місце для покупок"
+        "ru": "Продукты на неделю",
+        "uk": "Продукти на тиждень"
       },
       "bodyByLocale": {
-        "ru": "`supermarket` — «супермаркет»: большой магазин с продуктами и другими товарами. `There is a supermarket` — «Есть супермаркет». Один супермаркет — `is` и `a`. `There is a supermarket here` — «Здесь есть супермаркет». Слово длинное, но второй тележки для него не нужно.",
-        "uk": "`supermarket` — «супермаркет»: великий магазин із продуктами та іншими товарами. `There is a supermarket` — «Є супермаркет». Один супермаркет — `is` і `a`. `There is a supermarket here` — «Тут є супермаркет». Слово довге, але другого візка для нього не потрібно."
+        "ru": "По листовке доставки вы выбираете, где купить продукты на неделю. Подруга показывает на самый большой магазин на плане: там есть почти всё, от хлеба до мыла. supermarket — «супермаркет». Магазин один: There is a supermarket nearby — «Рядом есть супермаркет».",
+        "uk": "За листівкою доставки ви вибираєте, де купити продукти на тиждень. Подруга показує на найбільший магазин на плані: там є майже все, від хліба до мила. supermarket — «супермаркет». Магазин один: There is a supermarket nearby — «Поруч є супермаркет»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-05:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите, что в районе есть супермаркет.",
-          "uk": "Повідомте, що в районі є супермаркет."
+          "ru": "Подруга спрашивает, где купить продукты на неделю. Скажите ей, что рядом есть супермаркет.",
+          "uk": "Подруга питає, де купити продукти на тиждень. Скажіть їй, що поруч є супермаркет."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-05:intro1:r1",
-              "text": "There is a supermarket."
+              "text": "There is a supermarket nearby."
             },
             {
               "responseId": "en:lesson-04:session-05:intro1:r2",
-              "text": "There are a supermarket."
+              "text": "There is supermarket nearby."
             },
             {
               "responseId": "en:lesson-04:session-05:intro1:r3",
-              "text": "There is supermarket."
+              "text": "There are a supermarket nearby."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-05:intro1:r1",
-              "text": "There is a supermarket."
+              "text": "There is a supermarket nearby."
             },
             {
               "responseId": "en:lesson-04:session-05:intro1:r2",
-              "text": "There are a supermarket."
+              "text": "There is supermarket nearby."
             },
             {
               "responseId": "en:lesson-04:session-05:intro1:r3",
-              "text": "There is supermarket."
+              "text": "There are a supermarket nearby."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что в районе есть супермаркет.",
-          "uk": "Повідомте, що в районі є супермаркет."
+          "ru": "Подруга спрашивает, где купить продукты на неделю. Скажите ей, что рядом есть супермаркет.",
+          "uk": "Подруга питає, де купити продукти на тиждень. Скажіть їй, що поруч є супермаркет."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Карта и музей",
-        "uk": "Карта й музей"
+        "ru": "Где гулять",
+        "uk": "Де гуляти"
       },
       "bodyByLocale": {
-        "ru": "`map` — «карта»: `This is a map` — «Это карта», показываем рядом. `That is a map` — «То — карта», показываем дальше. `museum` — «музей»: `There is a museum here` — «Здесь есть музей». Первые фразы называют предмет, а `There is` сообщает, что место есть.",
-        "uk": "`map` — «карта»: `This is a map` — «Це карта», показуємо поруч. `That is a map` — «То — карта», показуємо далі. `museum` — «музей»: `There is a museum here` — «Тут є музей». Перші фрази називають предмет, а `There is` повідомляє, що місце є."
+        "ru": "Соседка спрашивает, где в вашем районе приятно гулять пешком. На плане из листовки вы ведёте пальцем по нескольким длинным улицам с деревьями, где почти нет машин. street — «улица». Улиц несколько: There are quiet streets here — «Здесь есть тихие улицы».",
+        "uk": "Сусідка питає, де у вашому районі приємно гуляти пішки. На плані з листівки ви повільно ведете пальцем кількома довгими вулицями з деревами, де майже немає машин. street — «вулиця». Вулиць кілька: There are quiet streets here — «Тут є тихі вулиці»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-05:intro2:q",
         "promptByLocale": {
-          "ru": "Вы держите карту и показываете её другу. Скажите «Это карта».",
-          "uk": "Ви тримаєте карту й показуєте її другові. Скажіть «Це карта»."
+          "ru": "Соседка спрашивает, где можно гулять. Скажите ей, что здесь есть тихие улицы.",
+          "uk": "Сусідка питає, де можна гуляти. Скажіть їй, що тут є тихі вулиці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-05:intro2:r1",
-              "text": "This is a map."
+              "text": "There are quiet streets here."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r2",
-              "text": "These are a map."
+              "text": "There is quiet streets here."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r3",
-              "text": "This are a map."
+              "text": "There are quiet street here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-05:intro2:r1",
-              "text": "This is a map."
+              "text": "There are quiet streets here."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r2",
-              "text": "These are a map."
+              "text": "There is quiet streets here."
             },
             {
               "responseId": "en:lesson-04:session-05:intro2:r3",
-              "text": "This are a map."
+              "text": "There are quiet street here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы держите карту и показываете её другу. Скажите «Это карта».",
-          "uk": "Ви тримаєте карту й показуєте її другові. Скажіть «Це карта»."
+          "ru": "Соседка спрашивает, где можно гулять. Скажите ей, что здесь есть тихие улицы.",
+          "uk": "Сусідка питає, де можна гуляти. Скажіть їй, що тут є тихі вулиці."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Настоящее яблоко",
-        "uk": "Справжнє яблуко"
+        "ru": "Чай после покупок",
+        "uk": "Чай після покупок"
       },
       "bodyByLocale": {
-        "ru": "`real` — «настоящий»: перед вами настоящее яблоко, а не искусственное. О нём: `It is real` — «Оно настоящее». Сокращённо: `It’s real`. Это характеристика предмета; она не сообщает, где он находится.",
-        "uk": "`real` — «справжній»: перед вами справжнє яблуко, а не штучне. Про нього: `It is real` — «Воно справжнє». Скорочено: `It’s real`. Це характеристика предмета; вона не повідомляє, де він розташований."
+        "ru": "После покупок вы с подругой устали. На углу вы видите уютное место, где можно выпить чаю и посидеть. Оно одно и стоит прямо возле супермаркета. cafe — «кафе». Место одно: There is a cafe near the supermarket — «Рядом с супермаркетом есть кафе».",
+        "uk": "Після покупок ви з подругою втомилися. На розі ви бачите затишне місце, де можна випити чаю й посидіти. Воно одне й стоїть прямо біля супермаркету. cafe — «кафе». Місце одне: There is a cafe near the supermarket — «Поруч із супермаркетом є кафе»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-05:intro3:q",
         "promptByLocale": {
-          "ru": "Друг думает, что яблоко искусственное. Скажите «Оно настоящее» с сокращением.",
-          "uk": "Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням."
+          "ru": "Подруга хочет выпить чаю. Скажите ей, что рядом с супермаркетом есть кафе.",
+          "uk": "Подруга хоче випити чаю. Скажіть їй, що поруч із супермаркетом є кафе."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-05:intro3:r1",
-              "text": "It's real."
+              "text": "There is a cafe near the supermarket."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r2",
-              "text": "It are real."
+              "text": "There is an cafe near the supermarket."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r3",
-              "text": "It's hidden."
+              "text": "There is a cafe near supermarket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-05:intro3:r1",
-              "text": "It's real."
+              "text": "There is a cafe near the supermarket."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r2",
-              "text": "It are real."
+              "text": "There is an cafe near the supermarket."
             },
             {
               "responseId": "en:lesson-04:session-05:intro3:r3",
-              "text": "It's hidden."
+              "text": "There is a cafe near supermarket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг думает, что яблоко искусственное. Скажите «Оно настоящее» с сокращением.",
-          "uk": "Друг думає, що яблуко штучне. Скажіть «Воно справжнє» зі скороченням."
+          "ru": "Подруга хочет выпить чаю. Скажите ей, что рядом с супермаркетом есть кафе.",
+          "uk": "Подруга хоче випити чаю. Скажіть їй, що поруч із супермаркетом є кафе."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0a5642dafc8d3a0a4d54822acbb6b917f41f2ed3082355eeb501efb46820a699"
+  "introFingerprint": "2f99990f0123fb46ecc8048624a53fcb7c7e85f1e2a3ad36343fc2847223ce29"
 }

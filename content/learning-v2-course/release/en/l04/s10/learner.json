@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-04:session-10:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Сообщите другу «Есть сад»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите другу «Есть сад»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a garden.",
-        "localizedMeaning": {
-          "ru": "Сообщите другу «Есть сад»",
-          "uk": "Повідомте другові «Є сад»"
-        },
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "garden"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-10:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Сообщите другу «Есть сад»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a garden.`",
-              "uk": "тут потрібно `is` — `There is a garden.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-10:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-10:i02:r1",
-          "text": "hotel"
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i02:r2",
-          "text": "hospital"
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i02:r3",
-          "text": "garden"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-10:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-10:i02:audio",
-          "transcript": "hotel"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-10:i02:r1",
-            "targetText": "hotel",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i02:r2",
-            "targetText": "hospital",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i02:r3",
-            "targetText": "garden",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-10:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `hotel`, а в этом варианте — `hospital`.",
-              "uk": "У записі перше слово — `hotel`, а в цьому варіанті — `hospital`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `hotel`, а в этом варианте — `garden`.",
-              "uk": "У записі перше слово — `hotel`, а в цьому варіанті — `garden`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-10:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите отель одним английским словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-10:i03:r1",
-          "text": "hotel"
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i03:r2",
-          "text": "hospital"
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i03:r3",
-          "text": "clinic"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите отель одним английским словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите отель одним английским словом",
-          "uk": "Назвіть готель одним англійським словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-10:i03:r1",
-            "text": "hotel"
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i03:r2",
-            "text": "hospital"
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i03:r3",
-            "text": "clinic"
-          }
-        ],
-        "testedDimension": "Назовите отель одним английским словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-10:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите отель одним английским словом",
-            "feedbackByLocale": {
-              "ru": "`hospital` — больница; отель — `hotel`.",
-              "uk": "`hospital` — лікарня; готель — `hotel`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите отель одним английским словом",
-            "feedbackByLocale": {
-              "ru": "`clinic` — клиника; отель — `hotel`.",
-              "uk": "`clinic` — клініка; готель — `hotel`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-10:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -208,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-10:i04:p1",
+            "pairId": "en:lesson-04:session-10:i01:p1",
             "target": "hotel",
             "meaningByLocale": {
               "ru": "отель",
@@ -216,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-10:i04:p2",
-            "target": "impossible",
+            "pairId": "en:lesson-04:session-10:i01:p2",
+            "target": "hostel",
             "meaningByLocale": {
-              "ru": "невозможный",
-              "uk": "неможливий"
+              "ru": "хостел",
+              "uk": "хостел"
             }
           },
           {
-            "pairId": "en:lesson-04:session-10:i04:p3",
-            "target": "lock",
+            "pairId": "en:lesson-04:session-10:i01:p3",
+            "target": "reception",
             "meaningByLocale": {
-              "ru": "замок на двери",
-              "uk": "замок на дверях"
+              "ru": "стойка регистрации",
+              "uk": "стійка реєстрації"
             }
           },
           {
-            "pairId": "en:lesson-04:session-10:i04:p4",
-            "target": "garden",
+            "pairId": "en:lesson-04:session-10:i01:p4",
+            "target": "lobby",
             "meaningByLocale": {
-              "ru": "сад",
-              "uk": "сад"
+              "ru": "холл",
+              "uk": "хол"
             }
           }
         ],
         "leftColumn": [
           "hotel",
-          "impossible",
-          "lock",
-          "garden"
+          "hostel",
+          "reception",
+          "lobby"
         ],
         "rightColumn": [
           "отель",
-          "невозможный",
-          "замок на двери",
-          "сад"
+          "хостел",
+          "стойка регистрации",
+          "холл"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,96 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-10:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-10:word:hotel",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hotel",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-10:i05:audio"
+        "en:lesson-04:session-10:word:hotel:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Карточка слова — hotel",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-10:i05:audio",
-          "transcript": "Is there a hotel?"
+          "audioTargetId": "en:lesson-04:session-10:word:hotel:audio",
+          "transcript": "hotel"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is there a hotel?",
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "hotel"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-10:word:hotel:r1",
+            "targetText": "hotel",
+            "meaningByLocale": {
+              "ru": "отель. Is there a hotel near here? — «Есть ли здесь рядом отель?» О здании, где можно снять номер на ночь.",
+              "uk": "готель. Is there a hotel near here? — «Чи є тут поруч готель?» Про будівлю, де можна винайняти номер на ніч."
+            }
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hotel",
+          "definitionByLocale": {
+            "ru": "отель. Is there a hotel near here? — «Есть ли здесь рядом отель?» О здании, где можно снять номер на ночь.",
+            "uk": "готель. Is there a hotel near here? — «Чи є тут поруч готель?» Про будівлю, де можна винайняти номер на ніч."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-10:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы изучаете район. Спросите «Здесь есть сад?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вы изучаете район. Спросите «Здесь есть сад?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Is there a garden here?",
-        "localizedMeaning": {
-          "ru": "Вы изучаете район. Спросите «Здесь есть сад?»",
-          "uk": "Ви вивчаєте район. Запитайте «Тут є сад?»"
-        },
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "garden",
-          "here"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-10:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-10:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг предлагает встретиться через минуту, а вы ещё далеко и точно не успеете. Скажите «Это невозможно» с сокращением",
+      "prompt": "Туристка с чемоданом называет место, где хочет переночевать, а вы повторяете за ней слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-10:i07:audio"
+        "en:lesson-04:session-10:i02:audio"
       ],
-      "accessibilityLabel": "Друг предлагает встретиться через минуту, а вы ещё далеко и точно не успеете. Скажите «Это невозможно» с сокращением",
+      "accessibilityLabel": "Туристка с чемоданом называет место, где хочет переночевать, а вы повторяете за ней слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-10:i07:audio",
-          "transcript": "It's impossible."
+          "audioTargetId": "en:lesson-04:session-10:i02:audio",
+          "transcript": "hotel"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's impossible.",
+        "targetPhrase": "hotel",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -370,68 +153,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-10:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете туристке карту. Спросите её полной фразой: здесь рядом есть отель?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете туристке карту. Спросите её полной фразой: здесь рядом есть отель?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a hotel near here?",
+        "localizedMeaning": {
+          "ru": "Вы показываете туристке карту. Спросите её полной фразой: здесь рядом есть отель?",
+          "uk": "Ви показуєте туристці мапу. Запитайте її повною фразою: чи є тут поруч готель?"
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "hotel",
+          "near",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-10:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете туристке карту. Спросите её полной фразой: здесь рядом есть отель?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a hotel near here?`",
+              "uk": "тут потрібно `Is` — `Is there a hotel near here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:word:hostel",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hostel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-10:word:hostel:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hostel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-10:word:hostel:audio",
+          "transcript": "hostel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-10:word:hostel:r1",
+            "targetText": "hostel",
+            "meaningByLocale": {
+              "ru": "хостел. Is there a hostel near here? — «Есть ли здесь рядом хостел?» О недорогом жилье с общими комнатами.",
+              "uk": "хостел. Is there a hostel near here? — «Чи є тут поруч хостел?» Про недороге житло зі спільними кімнатами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hostel",
+          "definitionByLocale": {
+            "ru": "хостел. Is there a hostel near here? — «Есть ли здесь рядом хостел?» О недорогом жилье с общими комнатами.",
+            "uk": "хостел. Is there a hostel near here? — «Чи є тут поруч хостел?» Про недороге житло зі спільними кімнатами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о наличии одного отеля",
+      "prompt": "Брат ищет недорогое жильё, где спят в общей комнате с другими гостями. Как оно называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-10:i08:r1",
-          "text": "a"
+          "responseId": "en:lesson-04:session-10:i04:r1",
+          "text": "hostel"
         },
         {
-          "responseId": "en:lesson-04:session-10:i08:r2",
-          "text": "an"
+          "responseId": "en:lesson-04:session-10:i04:r2",
+          "text": "hotel"
         },
         {
-          "responseId": "en:lesson-04:session-10:i08:r3",
-          "text": "are"
+          "responseId": "en:lesson-04:session-10:i04:r3",
+          "text": "hospital"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о наличии одного отеля",
+      "accessibilityLabel": "Брат ищет недорогое жильё, где спят в общей комнате с другими гостями. Как оно называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о наличии одного отеля",
-          "uk": "Запитайте про наявність одного готелю"
+          "ru": "Брат ищет недорогое жильё, где спят в общей комнате с другими гостями. Как оно называется по-английски?",
+          "uk": "Брат шукає недороге житло, де сплять у спільній кімнаті з іншими гостями. Як воно називається англійською?"
         },
-        "gappedTargetPhrase": "Is there ___ hotel here?",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-10:i08:r1",
-            "text": "a"
+            "responseId": "en:lesson-04:session-10:i04:r1",
+            "text": "hostel"
           },
           {
-            "responseId": "en:lesson-04:session-10:i08:r2",
-            "text": "an"
+            "responseId": "en:lesson-04:session-10:i04:r2",
+            "text": "hotel"
           },
           {
-            "responseId": "en:lesson-04:session-10:i08:r3",
-            "text": "are"
+            "responseId": "en:lesson-04:session-10:i04:r3",
+            "text": "hospital"
           }
         ],
-        "testedDimension": "Спросите о наличии одного отеля",
+        "testedDimension": "Брат ищет недорогое жильё, где спят в общей комнате с другими гостями. Как оно называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-10:i08:r2",
+            "responseId": "en:lesson-04:session-10:i04:r2",
             "correct": false,
-            "testedDimension": "Спросите о наличии одного отеля",
+            "testedDimension": "Брат ищет недорогое жильё, где спят в общей комнате с другими гостями. Как оно называется по-английски?",
             "feedbackByLocale": {
-              "ru": "В `hotel` первый звук согласный: `a hotel`.",
-              "uk": "У `hotel` перший звук приголосний: `a hotel`."
+              "ru": "hotel — это обычный отель с отдельными номерами, а жильё с общей комнатой называется hostel.",
+              "uk": "hotel — це звичайний готель з окремими номерами, а житло зі спільною кімнатою називається hostel."
             }
           },
           {
-            "responseId": "en:lesson-04:session-10:i08:r3",
+            "responseId": "en:lesson-04:session-10:i04:r3",
             "correct": false,
-            "testedDimension": "Спросите о наличии одного отеля",
+            "testedDimension": "Брат ищет недорогое жильё, где спят в общей комнате с другими гостями. Как оно называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Здесь нужен артикль перед одним отелем: `a`.",
-              "uk": "Тут потрібен артикль перед одним готелем: `a`."
+              "ru": "hospital — это больница, а недорогое жильё называется hostel.",
+              "uk": "hospital — це лікарня, а недороге житло називається hostel."
             }
           }
         ]
@@ -439,73 +312,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-10:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос о детали двери",
+      "prompt": "Послушайте вопрос брата",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-10:i09:r1",
-          "text": "Is there a lock?"
+          "responseId": "en:lesson-04:session-10:i05:r1",
+          "text": "Is there a hostel near here?"
         },
         {
-          "responseId": "en:lesson-04:session-10:i09:r2",
-          "text": "Is there a garden?"
+          "responseId": "en:lesson-04:session-10:i05:r2",
+          "text": "Is there a hotel near here?"
         },
         {
-          "responseId": "en:lesson-04:session-10:i09:r3",
-          "text": "Is there a hotel?"
+          "responseId": "en:lesson-04:session-10:i05:r3",
+          "text": "Is there a hostel here?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-10:i09:audio"
+        "en:lesson-04:session-10:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос о детали двери",
+      "accessibilityLabel": "Послушайте вопрос брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-10:i09:audio",
-          "transcript": "Is there a lock?"
+          "audioTargetId": "en:lesson-04:session-10:i05:audio",
+          "transcript": "Is there a hostel near here?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-10:i09:r1",
-            "targetText": "Is there a lock?",
+            "responseId": "en:lesson-04:session-10:i05:r1",
+            "targetText": "Is there a hostel near here?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-10:i09:r2",
-            "targetText": "Is there a garden?",
+            "responseId": "en:lesson-04:session-10:i05:r2",
+            "targetText": "Is there a hotel near here?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-10:i09:r3",
-            "targetText": "Is there a hotel?",
+            "responseId": "en:lesson-04:session-10:i05:r3",
+            "targetText": "Is there a hostel here?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-10:i09:r2",
+            "responseId": "en:lesson-04:session-10:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о детали двери",
+            "testedDimension": "Послушайте вопрос брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lock`, а в этом варианте — `garden`.",
-              "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `garden`."
+              "ru": "В записи спрашивают про `hostel`, а в этом варианте про `hotel`.",
+              "uk": "У записі питають про `hostel`, а в цьому варіанті про `hotel`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-10:i09:r3",
+            "responseId": "en:lesson-04:session-10:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос о детали двери",
+            "testedDimension": "Послушайте вопрос брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lock`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `hotel`."
+              "ru": "В записи есть `near`, а в этом варианте его нет.",
+              "uk": "У записі є `near`, а в цьому варіанті його немає."
             }
           }
         ],
@@ -515,9 +388,293 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-10:i10",
+      "interactionId": "en:lesson-04:session-10:word:reception",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reception",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-10:word:reception:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reception",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-10:word:reception:audio",
+          "transcript": "reception"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-10:word:reception:r1",
+            "targetText": "reception",
+            "meaningByLocale": {
+              "ru": "стойка регистрации. Is there a reception here? — «Здесь есть стойка регистрации?» О месте в отеле, где выдают ключ от номера.",
+              "uk": "стійка реєстрації. Is there a reception here? — «Чи є тут стійка реєстрації?» Про місце в готелі, де видають ключ від номера."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reception",
+          "definitionByLocale": {
+            "ru": "стойка регистрации. Is there a reception here? — «Здесь есть стойка регистрации?» О месте в отеле, где выдают ключ от номера.",
+            "uk": "стійка реєстрації. Is there a reception here? — «Чи є тут стійка реєстрації?» Про місце в готелі, де видають ключ від номера."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Администратор отеля называет место, где вам выдают ключ от номера, а вы повторяете за ней слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Администратор отеля называет место, где вам выдают ключ от номера, а вы повторяете за ней слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-10:i06:audio",
+          "transcript": "reception"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "reception",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте туристку и соберите её вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте туристку и соберите её вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-10:i07:audio",
+          "transcript": "Is there a bank near here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a bank near here?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "bank",
+          "near",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-10:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте туристку и соберите её вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a bank near here?`",
+              "uk": "тут потрібно `Is` — `Is there a bank near here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:word:lobby",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lobby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-10:word:lobby:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lobby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-10:word:lobby:audio",
+          "transcript": "lobby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-10:word:lobby:r1",
+            "targetText": "lobby",
+            "meaningByLocale": {
+              "ru": "холл. Is there a lobby here? — «Здесь есть холл?» О большом зале у входа в отель.",
+              "uk": "хол. Is there a lobby here? — «Чи є тут хол?» Про великий зал біля входу до готелю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lobby",
+          "definitionByLocale": {
+            "ru": "холл. Is there a lobby here? — «Здесь есть холл?» О большом зале у входа в отель.",
+            "uk": "хол. Is there a lobby here? — «Чи є тут хол?» Про великий зал біля входу до готелю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Просторный зал у входа в отель с диванами и креслами для ожидания. Как он называется по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-10:i08:r1",
+          "text": "lobby"
+        },
+        {
+          "responseId": "en:lesson-04:session-10:i08:r2",
+          "text": "reception"
+        },
+        {
+          "responseId": "en:lesson-04:session-10:i08:r3",
+          "text": "office"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Просторный зал у входа в отель с диванами и креслами для ожидания. Как он называется по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Просторный зал у входа в отель с диванами и креслами для ожидания. Как он называется по-английски?",
+          "uk": "Просторий зал біля входу до готелю з диванами й кріслами для очікування. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-10:i08:r1",
+            "text": "lobby"
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i08:r2",
+            "text": "reception"
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i08:r3",
+            "text": "office"
+          }
+        ],
+        "testedDimension": "Просторный зал у входа в отель с диванами и креслами для ожидания. Как он называется по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Просторный зал у входа в отель с диванами и креслами для ожидания. Как он называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "reception — это стойка, где выдают ключ, а зал с диванами называется lobby.",
+              "uk": "reception — це стійка, де видають ключ, а зал із диванами називається lobby."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Просторный зал у входа в отель с диванами и креслами для ожидания. Как он называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "office — это кабинет, а зал у входа в отель называется lobby.",
+              "uk": "office — це кабінет, а зал біля входу до готелю називається lobby."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы пришли в отель. Спросите администратора полной фразой: здесь есть стойка регистрации?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пришли в отель. Спросите администратора полной фразой: здесь есть стойка регистрации?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a reception here?",
+        "localizedMeaning": {
+          "ru": "Вы пришли в отель. Спросите администратора полной фразой: здесь есть стойка регистрации?",
+          "uk": "Ви прийшли до готелю. Запитайте адміністратора повною фразою: чи є тут стійка реєстрації?"
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "reception",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-10:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы пришли в отель. Спросите администратора полной фразой: здесь есть стойка регистрации?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a reception here?`",
+              "uk": "тут потрібно `Is` — `Is there a reception here?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -538,40 +695,40 @@
           },
           {
             "pairId": "en:lesson-04:session-10:i10:p2",
-            "target": "lock",
+            "target": "hostel",
             "meaningByLocale": {
-              "ru": "замок на двери",
-              "uk": "замок на дверях"
+              "ru": "хостел",
+              "uk": "хостел"
             }
           },
           {
             "pairId": "en:lesson-04:session-10:i10:p3",
-            "target": "here",
+            "target": "pharmacy",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "аптека",
+              "uk": "аптека"
             }
           },
           {
             "pairId": "en:lesson-04:session-10:i10:p4",
-            "target": "there",
+            "target": "bank",
             "meaningByLocale": {
-              "ru": "там",
-              "uk": "там"
+              "ru": "банк",
+              "uk": "банк"
             }
           }
         ],
         "leftColumn": [
           "hotel",
-          "lock",
-          "here",
-          "there"
+          "hostel",
+          "pharmacy",
+          "bank"
         ],
         "rightColumn": [
           "отель",
-          "замок на двери",
-          "здесь",
-          "там"
+          "хостел",
+          "аптека",
+          "банк"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -589,119 +746,170 @@
     },
     {
       "interactionId": "en:lesson-04:session-10:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос туристки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-10:i11:r1",
+          "text": "Is there a pharmacy near here?"
+        },
+        {
+          "responseId": "en:lesson-04:session-10:i11:r2",
+          "text": "Is there a bank near here?"
+        },
+        {
+          "responseId": "en:lesson-04:session-10:i11:r3",
+          "text": "Is there a pharmacy here?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-10:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите сообщение",
+      "accessibilityLabel": "Послушайте вопрос туристки",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-10:i11:audio",
-          "transcript": "There is a lock here."
+          "transcript": "Is there a pharmacy near here?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There is a lock here.",
-        "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "lock",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-10:i11:tile:d1",
+            "responseId": "en:lesson-04:session-10:i11:r1",
+            "targetText": "Is there a pharmacy near here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i11:r2",
+            "targetText": "Is there a bank near here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i11:r3",
+            "targetText": "Is there a pharmacy here?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-10:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите сообщение",
+            "testedDimension": "Послушайте вопрос туристки",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a lock here.`",
-              "uk": "тут потрібно `is` — `There is a lock here.`"
+              "ru": "В записи спрашивают про `pharmacy`, а в этом варианте про `bank`.",
+              "uk": "У записі питають про `pharmacy`, а в цьому варіанті про `bank`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос туристки",
+            "feedbackByLocale": {
+              "ru": "В записи есть `near`, а в этом варианте его нет.",
+              "uk": "У записі є `near`, а в цьому варіанті його немає."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-10:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг не узнаёт здание рядом. Назовите его: «Это отель»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Туристка спросила, есть ли рядом аптека. Вы знаете, что есть. Дополните ваш короткий ответ",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-10:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-10:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-10:i12:r3",
+          "text": "am"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг не узнаёт здание рядом. Назовите его: «Это отель»",
+      "accessibilityLabel": "Туристка спросила, есть ли рядом аптека. Вы знаете, что есть. Дополните ваш короткий ответ",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is a hotel.",
-        "localizedMeaning": {
-          "ru": "Друг не узнаёт здание рядом. Назовите его: «Это отель»",
-          "uk": "Друг не впізнає будівлю поруч. Назвіть її: «Це готель»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Туристка спросила, есть ли рядом аптека. Вы знаете, что есть. Дополните ваш короткий ответ",
+          "uk": "Туристка запитала, чи є поруч аптека. Ви знаєте, що є. Доповніть вашу коротку відповідь"
         },
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "hotel"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "gappedTargetPhrase": "Yes, there ___.",
+        "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-10:i12:tile:d1",
-            "correct": false,
-            "testedDimension": "Друг не узнаёт здание рядом. Назовите его: «Это отель»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a hotel.`",
-              "uk": "тут потрібно `is` — `This is a hotel.`"
-            }
+            "responseId": "en:lesson-04:session-10:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i12:r3",
+            "text": "am"
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "testedDimension": "Туристка спросила, есть ли рядом аптека. Вы знаете, что есть. Дополните ваш короткий ответ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Туристка спросила, есть ли рядом аптека. Вы знаете, что есть. Дополните ваш короткий ответ",
+            "feedbackByLocale": {
+              "ru": "Аптека одна, поэтому нужно is, а не are.",
+              "uk": "Аптека одна, тому потрібно is, а не are."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Туристка спросила, есть ли рядом аптека. Вы знаете, что есть. Дополните ваш короткий ответ",
+            "feedbackByLocale": {
+              "ru": "am говорят только с I, а после there для одного нужно is.",
+              "uk": "am кажуть лише з I, а після there для одного потрібно is."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-10:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы показываете точку на плане двери. Спросите «Здесь есть замок?»",
+      "prompt": "Туристка просит узнать у администратора отеля, есть ли здесь хостел. Задайте вопрос администратору",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-10:i13:audio"
       ],
-      "accessibilityLabel": "Вы показываете точку на плане двери. Спросите «Здесь есть замок?»",
+      "accessibilityLabel": "Туристка просит узнать у администратора отеля, есть ли здесь хостел. Задайте вопрос администратору",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-10:i13:audio",
-          "transcript": "Is there a lock here?"
+          "transcript": "Is there a hostel here?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a lock here?",
+        "targetPhrase": "Is there a hostel here?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -716,152 +924,104 @@
     },
     {
       "interactionId": "en:lesson-04:session-10:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Друг показывает другой район на карте. Спросите «Там есть сад?»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-10:i14:r1",
-          "text": "Is"
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i14:r2",
-          "text": "Are"
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i14:r3",
-          "text": "Am"
-        }
-      ],
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте охранника и соберите вопрос",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг показывает другой район на карте. Спросите «Там есть сад?»",
+      "audioTargetIds": [
+        "en:lesson-04:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте охранника и соберите вопрос",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Друг показывает другой район на карте. Спросите «Там есть сад?»",
-          "uk": "Друг показує інший район на карті. Запитайте «Там є сад?»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-10:i14:audio",
+          "transcript": "Is there a lobby here?"
         },
-        "gappedTargetPhrase": "___ there a garden there?",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a lobby here?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "lobby",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-10:i14:r1",
-            "text": "Is"
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i14:r2",
-            "text": "Are"
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i14:r3",
-            "text": "Am"
+            "responseId": "en:lesson-04:session-10:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте охранника и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a lobby here?`",
+              "uk": "тут потрібно `Is` — `Is there a lobby here?`"
+            }
           }
         ],
-        "testedDimension": "Друг показывает другой район на карте. Спросите «Там есть сад?»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-10:i14:r2",
-            "correct": false,
-            "testedDimension": "Друг показывает другой район на карте. Спросите «Там есть сад?»",
-            "feedbackByLocale": {
-              "ru": "Один сад: `Is there a garden there?`. Последнее `there` — «там».",
-              "uk": "Один сад: `Is there a garden there?`. Останнє `there` — «там»."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i14:r3",
-            "correct": false,
-            "testedDimension": "Друг показывает другой район на карте. Спросите «Там есть сад?»",
-            "feedbackByLocale": {
-              "ru": "Вопрос об одном саде начинается с `Is there`.",
-              "uk": "Запитання про один сад починається з `Is there`."
-            }
-          }
-        ]
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-10:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте ответ о предложенном времени встречи",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-10:i15:r1",
-          "text": "It is impossible."
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i15:r2",
-          "text": "It is possible."
-        },
-        {
-          "responseId": "en:lesson-04:session-10:i15:r3",
-          "text": "It is necessary."
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Туристка ищет отель около банка. Спросите её полной фразой: отель есть рядом с банком?",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-10:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте ответ о предложенном времени встречи",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Туристка ищет отель около банка. Спросите её полной фразой: отель есть рядом с банком?",
       "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-10:i15:audio",
-          "transcript": "It is impossible."
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a hotel near the bank?",
+        "localizedMeaning": {
+          "ru": "Туристка ищет отель около банка. Спросите её полной фразой: отель есть рядом с банком?",
+          "uk": "Туристка шукає готель біля банку. Запитайте її повною фразою: чи є готель поруч із банком?"
         },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-10:i15:r1",
-            "targetText": "It is impossible.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i15:r2",
-            "targetText": "It is possible.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i15:r3",
-            "targetText": "It is necessary.",
-            "meaningByLocale": null
-          }
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "hotel",
+          "near",
+          "the",
+          "bank"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-10:i15:r2",
+            "responseId": "en:lesson-04:session-10:i15:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте ответ о предложенном времени встречи",
+            "testedDimension": "Туристка ищет отель около банка. Спросите её полной фразой: отель есть рядом с банком?",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `impossible`, а в этом варианте — `possible`.",
-              "uk": "У записі останнє слово — `impossible`, а в цьому варіанті — `possible`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-10:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте ответ о предложенном времени встречи",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `impossible`, а в этом варианте — `necessary`.",
-              "uk": "У записі останнє слово — `impossible`, а в цьому варіанті — `necessary`."
+              "ru": "здесь нужно `Is` — `Is there a hotel near the bank?`",
+              "uk": "тут потрібно `Is` — `Is there a hotel near the bank?`"
             }
           }
         ],
-        "isWordCard": false,
-        "wordCard": null
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-10:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -875,48 +1035,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-10:i16:p1",
+            "target": "lobby",
+            "meaningByLocale": {
+              "ru": "холл",
+              "uk": "хол"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-10:i16:p2",
+            "target": "reception",
+            "meaningByLocale": {
+              "ru": "стойка регистрации",
+              "uk": "стійка реєстрації"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-10:i16:p3",
+            "target": "hostel",
+            "meaningByLocale": {
+              "ru": "хостел",
+              "uk": "хостел"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-10:i16:p4",
             "target": "hotel",
             "meaningByLocale": {
               "ru": "отель",
               "uk": "готель"
             }
-          },
-          {
-            "pairId": "en:lesson-04:session-10:i16:p2",
-            "target": "impossible",
-            "meaningByLocale": {
-              "ru": "невозможный",
-              "uk": "неможливий"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-10:i16:p3",
-            "target": "lock",
-            "meaningByLocale": {
-              "ru": "замок на двери",
-              "uk": "замок на дверях"
-            }
-          },
-          {
-            "pairId": "en:lesson-04:session-10:i16:p4",
-            "target": "garden",
-            "meaningByLocale": {
-              "ru": "сад",
-              "uk": "сад"
-            }
           }
         ],
         "leftColumn": [
-          "hotel",
-          "impossible",
-          "lock",
-          "garden"
+          "lobby",
+          "reception",
+          "hostel",
+          "hotel"
         ],
         "rightColumn": [
-          "отель",
-          "невозможный",
-          "замок на двери",
-          "сад"
+          "холл",
+          "стойка регистрации",
+          "хостел",
+          "отель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -934,25 +1094,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-10:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В другой поездке вы приехали в незнакомый город и ищете ночлег. У справочной спросите «Здесь есть отель?»",
+      "prompt": "Туристка спрашивает, есть ли рядом хостел. Вы знаете, что нет. Ответьте ей коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-10:i17:audio"
       ],
-      "accessibilityLabel": "В другой поездке вы приехали в незнакомый город и ищете ночлег. У справочной спросите «Здесь есть отель?»",
+      "accessibilityLabel": "Туристка спрашивает, есть ли рядом хостел. Вы знаете, что нет. Ответьте ей коротко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-10:i17:audio",
-          "transcript": "Is there a hotel here?"
+          "transcript": "No, there isn't."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a hotel here?",
+        "targetPhrase": "No, there isn't.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -974,11 +1134,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f75867fe509b4cd1b7c0f5f76c06328112a220b292afaeaa6e285097fa7f836e"
+  "learnerFingerprint": "f9ecc876c338b6ca03b8e3fd45399bbba29b47f1e286a7f4e29e7433504dead8"
 }

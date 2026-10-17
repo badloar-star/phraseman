@@ -1,0 +1,2365 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-04:session-12",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-04:session-12:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-12:i01:p1",
+              "target": "platform",
+              "meaningByLocale": {
+                "ru": "платформа (на вокзале)",
+                "uk": "платформа (на вокзалі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i01:p2",
+              "target": "timetable",
+              "meaningByLocale": {
+                "ru": "расписание",
+                "uk": "розклад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i01:p3",
+              "target": "escalator",
+              "meaningByLocale": {
+                "ru": "эскалатор",
+                "uk": "ескалатор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i01:p4",
+              "target": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон",
+                "uk": "вагон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "platform",
+            "timetable",
+            "escalator",
+            "carriage"
+          ],
+          "rightColumn": [
+            "платформа (на вокзале)",
+            "расписание",
+            "эскалатор",
+            "вагон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:platform",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — platform",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:platform:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — platform",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:platform:audio",
+            "transcript": "platform"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:platform:r1",
+              "targetText": "platform",
+              "meaningByLocale": {
+                "ru": "платформа. Are there platforms here? — «Здесь есть платформы?» О длинной площадке у рельсов, куда подходит поезд.",
+                "uk": "платформа. Are there platforms here? — «Чи є тут платформи?» Про довгий майданчик біля рейок, куди підходить потяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "platform",
+            "definitionByLocale": {
+              "ru": "платформа. Are there platforms here? — «Здесь есть платформы?» О длинной площадке у рельсов, куда подходит поезд.",
+              "uk": "платформа. Are there platforms here? — «Чи є тут платформи?» Про довгий майданчик біля рейок, куди підходить потяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Диктор на вокзале называет длинную площадку у рельсов, куда подходит поезд, а вы повторяете за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Диктор на вокзале называет длинную площадку у рельсов, куда подходит поезд, а вы повторяете за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i02:audio",
+            "transcript": "platform"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "platform",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы вошли на вокзал. Спросите работницу справочной полной фразой: здесь есть платформы?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вошли на вокзал. Спросите работницу справочной полной фразой: здесь есть платформы?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there platforms here?",
+          "localizedMeaning": {
+            "ru": "Вы вошли на вокзал. Спросите работницу справочной полной фразой: здесь есть платформы?",
+            "uk": "Ви зайшли на вокзал. Запитайте працівницю довідкової повною фразою: чи є тут платформи?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "platforms",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы вошли на вокзал. Спросите работницу справочной полной фразой: здесь есть платформы?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there platforms here?`",
+                "uk": "тут потрібно `Are` — `Are there platforms here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:timetable",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — timetable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:timetable:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — timetable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:timetable:audio",
+            "transcript": "timetable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:timetable:r1",
+              "targetText": "timetable",
+              "meaningByLocale": {
+                "ru": "расписание. Are there timetables here? — «Здесь есть расписания?» О таблице со временем отправления поездов и автобусов.",
+                "uk": "розклад. Are there timetables here? — «Чи є тут розклади?» Про таблицю з часом відправлення потягів і автобусів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "timetable",
+            "definitionByLocale": {
+              "ru": "расписание. Are there timetables here? — «Здесь есть расписания?» О таблице со временем отправления поездов и автобусов.",
+              "uk": "розклад. Are there timetables here? — «Чи є тут розклади?» Про таблицю з часом відправлення потягів і автобусів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На стене висит таблица со временем отправления поездов. Как она называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i04:r1",
+            "text": "timetable"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i04:r2",
+            "text": "map"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i04:r3",
+            "text": "ticket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На стене висит таблица со временем отправления поездов. Как она называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На стене висит таблица со временем отправления поездов. Как она называется по-английски?",
+            "uk": "На стіні висить таблиця з часом відправлення потягів. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-12:i04:r1",
+              "text": "timetable"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i04:r2",
+              "text": "map"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i04:r3",
+              "text": "ticket"
+            }
+          ],
+          "testedDimension": "На стене висит таблица со временем отправления поездов. Как она называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i04:r2",
+              "correct": false,
+              "testedDimension": "На стене висит таблица со временем отправления поездов. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "map — это карта места, а таблица со временем отправления называется timetable.",
+                "uk": "map — це мапа місця, а таблиця з часом відправлення називається timetable."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i04:r3",
+              "correct": false,
+              "testedDimension": "На стене висит таблица со временем отправления поездов. Как она называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "ticket — это билет, а таблица со временем называется timetable.",
+                "uk": "ticket — це квиток, а таблиця з часом називається timetable."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i05:r1",
+            "text": "Are there timetables here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i05:r2",
+            "text": "Are there platforms here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i05:r3",
+            "text": "Is there a timetable here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i05:audio",
+            "transcript": "Are there timetables here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:i05:r1",
+              "targetText": "Are there timetables here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i05:r2",
+              "targetText": "Are there platforms here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i05:r3",
+              "targetText": "Is there a timetable here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `timetables`, а в этом варианте про `platforms`.",
+                "uk": "У записі питають про `timetables`, а в цьому варіанті про `platforms`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос брата",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких расписаниях, а в этом варианте `Is there a` об одном.",
+                "uk": "У записі запитання `Are there` про кілька розкладів, а в цьому варіанті `Is there a` про один."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:escalator",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — escalator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:escalator:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — escalator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:escalator:audio",
+            "transcript": "escalator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:escalator:r1",
+              "targetText": "escalator",
+              "meaningByLocale": {
+                "ru": "эскалатор. Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?» О лестнице, которая едет сама.",
+                "uk": "ескалатор. Are there escalators near the door? — «Чи є ескалатори поруч із дверима?» Про сходи, які їдуть самі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "escalator",
+            "definitionByLocale": {
+              "ru": "эскалатор. Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?» О лестнице, которая едет сама.",
+              "uk": "ескалатор. Are there escalators near the door? — «Чи є ескалатори поруч із дверима?» Про сходи, які їдуть самі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Охранник на вокзале показывает на движущиеся ступеньки и называет слово, а вы повторяете за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i06:audio"
+        ],
+        "accessibilityLabel": "Охранник на вокзале показывает на движущиеся ступеньки и называет слово, а вы повторяете за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i06:audio",
+            "transcript": "escalator"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "escalator",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте маму и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте маму и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i07:audio",
+            "transcript": "Are there escalators near here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there escalators near here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "escalators",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте маму и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there escalators near here?`",
+                "uk": "тут потрібно `Are` — `Are there escalators near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:carriage",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — carriage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:carriage:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — carriage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:carriage:audio",
+            "transcript": "carriage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:carriage:r1",
+              "targetText": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон. Are there carriages here? — «Здесь есть вагоны?» О части поезда, где сидят пассажиры.",
+                "uk": "вагон. Are there carriages here? — «Чи є тут вагони?» Про частину потяга, де сидять пасажири."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carriage",
+            "definitionByLocale": {
+              "ru": "вагон. Are there carriages here? — «Здесь есть вагоны?» О части поезда, где сидят пассажиры.",
+              "uk": "вагон. Are there carriages here? — «Чи є тут вагони?» Про частину потяга, де сидять пасажири."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i08:r1",
+            "text": "carriage"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i08:r2",
+            "text": "platform"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i08:r3",
+            "text": "seat"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?",
+            "uk": "Потяг складається з частин, у кожній їдуть пасажири. Як називається одна така частина англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-12:i08:r1",
+              "text": "carriage"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i08:r2",
+              "text": "platform"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i08:r3",
+              "text": "seat"
+            }
+          ],
+          "testedDimension": "Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?",
+              "feedbackByLocale": {
+                "ru": "platform — это площадка у рельсов, а часть поезда называется carriage.",
+                "uk": "platform — це майданчик біля рейок, а частина потяга називається carriage."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?",
+              "feedbackByLocale": {
+                "ru": "seat — это место для сидения, а целая часть поезда называется carriage.",
+                "uk": "seat — це місце для сидіння, а ціла частина потяга називається carriage."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у состава. Спросите проводника полной фразой: здесь есть вагоны?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у состава. Спросите проводника полной фразой: здесь есть вагоны?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there carriages here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у состава. Спросите проводника полной фразой: здесь есть вагоны?",
+            "uk": "Ви стоїте біля состава. Запитайте провідника повною фразою: чи є тут вагони?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "carriages",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите у состава. Спросите проводника полной фразой: здесь есть вагоны?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there carriages here?`",
+                "uk": "тут потрібно `Are` — `Are there carriages here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-12:i10:p1",
+              "target": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон",
+                "uk": "вагон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i10:p2",
+              "target": "platform",
+              "meaningByLocale": {
+                "ru": "платформа (на вокзале)",
+                "uk": "платформа (на вокзалі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i10:p3",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "место для сидения",
+                "uk": "місце для сидіння"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i10:p4",
+              "target": "train",
+              "meaningByLocale": {
+                "ru": "поезд",
+                "uk": "потяг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carriage",
+            "platform",
+            "seat",
+            "train"
+          ],
+          "rightColumn": [
+            "вагон",
+            "платформа (на вокзале)",
+            "место для сидения",
+            "поезд"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте короткий ответ",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i11:r1",
+            "text": "Yes, there are."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i11:r2",
+            "text": "No, there aren't."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i11:r3",
+            "text": "Yes, there is."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте короткий ответ",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i11:audio",
+            "transcript": "Yes, there are."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:i11:r1",
+              "targetText": "Yes, there are.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i11:r2",
+              "targetText": "No, there aren't.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i11:r3",
+              "targetText": "Yes, there is.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте короткий ответ",
+              "feedbackByLocale": {
+                "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+                "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте короткий ответ",
+              "feedbackByLocale": {
+                "ru": "В записи `there are`, а в этом варианте `there is`.",
+                "uk": "У записі `there are`, а в цьому варіанті `there is`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i12:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i12:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i12:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос",
+            "uk": "Ви питаєте працівницю довідкової про розклади. Доповніть ваше запитання"
+          },
+          "gappedTargetPhrase": "___ there timetables near here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-12:i12:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i12:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i12:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос",
+              "feedbackByLocale": {
+                "ru": "Расписаний несколько, поэтому начинаем с Are there, а не с Is there.",
+                "uk": "Розкладів кілька, тому починаємо з Are there, а не з Is there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос",
+              "feedbackByLocale": {
+                "ru": "Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.",
+                "uk": "Am кажуть лише з I, а запитання про кілька предметів починається з Are there."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i13:audio",
+            "transcript": "Are there platforms near here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there platforms near here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "platforms",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there platforms near here?`",
+                "uk": "тут потрібно `Are` — `Are there platforms near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама спрашивает вас, как подняться наверх. Спросите охранника, есть ли здесь эскалаторы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i14:audio"
+        ],
+        "accessibilityLabel": "Мама спрашивает вас, как подняться наверх. Спросите охранника, есть ли здесь эскалаторы",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i14:audio",
+            "transcript": "Are there escalators here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there escalators here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите на платформе. Спросите работницу справочной полной фразой: рядом есть поезда?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите на платформе. Спросите работницу справочной полной фразой: рядом есть поезда?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there trains near here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите на платформе. Спросите работницу справочной полной фразой: рядом есть поезда?",
+            "uk": "Ви стоїте на платформі. Запитайте працівницю довідкової повною фразою: чи є поруч потяги?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "trains",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите на платформе. Спросите работницу справочной полной фразой: рядом есть поезда?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there trains near here?`",
+                "uk": "тут потрібно `Are` — `Are there trains near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-12:i16:p1",
+              "target": "timetable",
+              "meaningByLocale": {
+                "ru": "расписание",
+                "uk": "розклад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i16:p2",
+              "target": "escalator",
+              "meaningByLocale": {
+                "ru": "эскалатор",
+                "uk": "ескалатор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i16:p3",
+              "target": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон",
+                "uk": "вагон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i16:p4",
+              "target": "platform",
+              "meaningByLocale": {
+                "ru": "платформа (на вокзале)",
+                "uk": "платформа (на вокзалі)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "timetable",
+            "escalator",
+            "carriage",
+            "platform"
+          ],
+          "rightColumn": [
+            "расписание",
+            "эскалатор",
+            "вагон",
+            "платформа (на вокзале)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат спрашивает, есть ли на этом вокзале расписания. Их нет. Ответьте ему коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Брат спрашивает, есть ли на этом вокзале расписания. Их нет. Ответьте ему коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i17:audio",
+            "transcript": "No, there aren't."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there aren't.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-04:session-12:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-12:i01:p1",
+              "target": "platform",
+              "meaningByLocale": {
+                "ru": "платформа (на вокзале)",
+                "uk": "платформа (на вокзалі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i01:p2",
+              "target": "timetable",
+              "meaningByLocale": {
+                "ru": "расписание",
+                "uk": "розклад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i01:p3",
+              "target": "escalator",
+              "meaningByLocale": {
+                "ru": "эскалатор",
+                "uk": "ескалатор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i01:p4",
+              "target": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон",
+                "uk": "вагон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "platform",
+            "timetable",
+            "escalator",
+            "carriage"
+          ],
+          "rightColumn": [
+            "платформа (на вокзалі)",
+            "розклад",
+            "ескалатор",
+            "вагон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:platform",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — platform",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:platform:audio"
+        ],
+        "accessibilityLabel": "Картка слова — platform",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:platform:audio",
+            "transcript": "platform"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:platform:r1",
+              "targetText": "platform",
+              "meaningByLocale": {
+                "ru": "платформа. Are there platforms here? — «Здесь есть платформы?» О длинной площадке у рельсов, куда подходит поезд.",
+                "uk": "платформа. Are there platforms here? — «Чи є тут платформи?» Про довгий майданчик біля рейок, куди підходить потяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "platform",
+            "definitionByLocale": {
+              "ru": "платформа. Are there platforms here? — «Здесь есть платформы?» О длинной площадке у рельсов, куда подходит поезд.",
+              "uk": "платформа. Are there platforms here? — «Чи є тут платформи?» Про довгий майданчик біля рейок, куди підходить потяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Диктор на вокзалі називає довгий майданчик біля рейок, куди підходить потяг, а ви повторюєте за ним слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Диктор на вокзалі називає довгий майданчик біля рейок, куди підходить потяг, а ви повторюєте за ним слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i02:audio",
+            "transcript": "platform"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "platform",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви зайшли на вокзал. Запитайте працівницю довідкової повною фразою: чи є тут платформи?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зайшли на вокзал. Запитайте працівницю довідкової повною фразою: чи є тут платформи?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there platforms here?",
+          "localizedMeaning": {
+            "ru": "Вы вошли на вокзал. Спросите работницу справочной полной фразой: здесь есть платформы?",
+            "uk": "Ви зайшли на вокзал. Запитайте працівницю довідкової повною фразою: чи є тут платформи?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "platforms",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви зайшли на вокзал. Запитайте працівницю довідкової повною фразою: чи є тут платформи?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there platforms here?`",
+                "uk": "тут потрібно `Are` — `Are there platforms here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:timetable",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — timetable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:timetable:audio"
+        ],
+        "accessibilityLabel": "Картка слова — timetable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:timetable:audio",
+            "transcript": "timetable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:timetable:r1",
+              "targetText": "timetable",
+              "meaningByLocale": {
+                "ru": "расписание. Are there timetables here? — «Здесь есть расписания?» О таблице со временем отправления поездов и автобусов.",
+                "uk": "розклад. Are there timetables here? — «Чи є тут розклади?» Про таблицю з часом відправлення потягів і автобусів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "timetable",
+            "definitionByLocale": {
+              "ru": "расписание. Are there timetables here? — «Здесь есть расписания?» О таблице со временем отправления поездов и автобусов.",
+              "uk": "розклад. Are there timetables here? — «Чи є тут розклади?» Про таблицю з часом відправлення потягів і автобусів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На стіні висить таблиця з часом відправлення потягів. Як вона називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i04:r1",
+            "text": "timetable"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i04:r2",
+            "text": "map"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i04:r3",
+            "text": "ticket"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На стіні висить таблиця з часом відправлення потягів. Як вона називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На стене висит таблица со временем отправления поездов. Как она называется по-английски?",
+            "uk": "На стіні висить таблиця з часом відправлення потягів. Як вона називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-12:i04:r1",
+              "text": "timetable"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i04:r2",
+              "text": "map"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i04:r3",
+              "text": "ticket"
+            }
+          ],
+          "testedDimension": "На стіні висить таблиця з часом відправлення потягів. Як вона називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i04:r2",
+              "correct": false,
+              "testedDimension": "На стіні висить таблиця з часом відправлення потягів. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "map — это карта места, а таблица со временем отправления называется timetable.",
+                "uk": "map — це мапа місця, а таблиця з часом відправлення називається timetable."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i04:r3",
+              "correct": false,
+              "testedDimension": "На стіні висить таблиця з часом відправлення потягів. Як вона називається англійською?",
+              "feedbackByLocale": {
+                "ru": "ticket — это билет, а таблица со временем называется timetable.",
+                "uk": "ticket — це квиток, а таблиця з часом називається timetable."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запитання брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i05:r1",
+            "text": "Are there timetables here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i05:r2",
+            "text": "Are there platforms here?"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i05:r3",
+            "text": "Is there a timetable here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте запитання брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i05:audio",
+            "transcript": "Are there timetables here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:i05:r1",
+              "targetText": "Are there timetables here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i05:r2",
+              "targetText": "Are there platforms here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i05:r3",
+              "targetText": "Is there a timetable here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи спрашивают про `timetables`, а в этом варианте про `platforms`.",
+                "uk": "У записі питають про `timetables`, а в цьому варіанті про `platforms`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте запитання брата",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос `Are there` о нескольких расписаниях, а в этом варианте `Is there a` об одном.",
+                "uk": "У записі запитання `Are there` про кілька розкладів, а в цьому варіанті `Is there a` про один."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:escalator",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — escalator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:escalator:audio"
+        ],
+        "accessibilityLabel": "Картка слова — escalator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:escalator:audio",
+            "transcript": "escalator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:escalator:r1",
+              "targetText": "escalator",
+              "meaningByLocale": {
+                "ru": "эскалатор. Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?» О лестнице, которая едет сама.",
+                "uk": "ескалатор. Are there escalators near the door? — «Чи є ескалатори поруч із дверима?» Про сходи, які їдуть самі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "escalator",
+            "definitionByLocale": {
+              "ru": "эскалатор. Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?» О лестнице, которая едет сама.",
+              "uk": "ескалатор. Are there escalators near the door? — «Чи є ескалатори поруч із дверима?» Про сходи, які їдуть самі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Охоронець на вокзалі показує на рухомі сходи й називає слово, а ви повторюєте за ним",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i06:audio"
+        ],
+        "accessibilityLabel": "Охоронець на вокзалі показує на рухомі сходи й називає слово, а ви повторюєте за ним",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i06:audio",
+            "transcript": "escalator"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "escalator",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте маму й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте маму й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i07:audio",
+            "transcript": "Are there escalators near here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there escalators near here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "escalators",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте маму й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there escalators near here?`",
+                "uk": "тут потрібно `Are` — `Are there escalators near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:word:carriage",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — carriage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:word:carriage:audio"
+        ],
+        "accessibilityLabel": "Картка слова — carriage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:word:carriage:audio",
+            "transcript": "carriage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:word:carriage:r1",
+              "targetText": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон. Are there carriages here? — «Здесь есть вагоны?» О части поезда, где сидят пассажиры.",
+                "uk": "вагон. Are there carriages here? — «Чи є тут вагони?» Про частину потяга, де сидять пасажири."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carriage",
+            "definitionByLocale": {
+              "ru": "вагон. Are there carriages here? — «Здесь есть вагоны?» О части поезда, где сидят пассажиры.",
+              "uk": "вагон. Are there carriages here? — «Чи є тут вагони?» Про частину потяга, де сидять пасажири."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Потяг складається з частин, у кожній їдуть пасажири. Як називається одна така частина англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i08:r1",
+            "text": "carriage"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i08:r2",
+            "text": "platform"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i08:r3",
+            "text": "seat"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Потяг складається з частин, у кожній їдуть пасажири. Як називається одна така частина англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Поезд состоит из частей, в каждой едут пассажиры. Как называется одна такая часть по-английски?",
+            "uk": "Потяг складається з частин, у кожній їдуть пасажири. Як називається одна така частина англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-12:i08:r1",
+              "text": "carriage"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i08:r2",
+              "text": "platform"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i08:r3",
+              "text": "seat"
+            }
+          ],
+          "testedDimension": "Потяг складається з частин, у кожній їдуть пасажири. Як називається одна така частина англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Потяг складається з частин, у кожній їдуть пасажири. Як називається одна така частина англійською?",
+              "feedbackByLocale": {
+                "ru": "platform — это площадка у рельсов, а часть поезда называется carriage.",
+                "uk": "platform — це майданчик біля рейок, а частина потяга називається carriage."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Потяг складається з частин, у кожній їдуть пасажири. Як називається одна така частина англійською?",
+              "feedbackByLocale": {
+                "ru": "seat — это место для сидения, а целая часть поезда называется carriage.",
+                "uk": "seat — це місце для сидіння, а ціла частина потяга називається carriage."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля состава. Запитайте провідника повною фразою: чи є тут вагони?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля состава. Запитайте провідника повною фразою: чи є тут вагони?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there carriages here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у состава. Спросите проводника полной фразой: здесь есть вагоны?",
+            "uk": "Ви стоїте біля состава. Запитайте провідника повною фразою: чи є тут вагони?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "carriages",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля состава. Запитайте провідника повною фразою: чи є тут вагони?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there carriages here?`",
+                "uk": "тут потрібно `Are` — `Are there carriages here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-12:i10:p1",
+              "target": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон",
+                "uk": "вагон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i10:p2",
+              "target": "platform",
+              "meaningByLocale": {
+                "ru": "платформа (на вокзале)",
+                "uk": "платформа (на вокзалі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i10:p3",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "место для сидения",
+                "uk": "місце для сидіння"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i10:p4",
+              "target": "train",
+              "meaningByLocale": {
+                "ru": "поезд",
+                "uk": "потяг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carriage",
+            "platform",
+            "seat",
+            "train"
+          ],
+          "rightColumn": [
+            "вагон",
+            "платформа (на вокзалі)",
+            "місце для сидіння",
+            "потяг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте коротку відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i11:r1",
+            "text": "Yes, there are."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i11:r2",
+            "text": "No, there aren't."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i11:r3",
+            "text": "Yes, there is."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте коротку відповідь",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i11:audio",
+            "transcript": "Yes, there are."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-04:session-12:i11:r1",
+              "targetText": "Yes, there are.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i11:r2",
+              "targetText": "No, there aren't.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i11:r3",
+              "targetText": "Yes, there is.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте коротку відповідь",
+              "feedbackByLocale": {
+                "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+                "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте коротку відповідь",
+              "feedbackByLocale": {
+                "ru": "В записи `there are`, а в этом варианте `there is`.",
+                "uk": "У записі `there are`, а в цьому варіанті `there is`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви питаєте працівницю довідкової про розклади. Доповніть ваше запитання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i12:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i12:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i12:r3",
+            "text": "Am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте працівницю довідкової про розклади. Доповніть ваше запитання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спрашиваете работницу справочной о расписаниях. Дополните ваш вопрос",
+            "uk": "Ви питаєте працівницю довідкової про розклади. Доповніть ваше запитання"
+          },
+          "gappedTargetPhrase": "___ there timetables near here?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-04:session-12:i12:r1",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i12:r2",
+              "text": "Is"
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i12:r3",
+              "text": "Am"
+            }
+          ],
+          "testedDimension": "Ви питаєте працівницю довідкової про розклади. Доповніть ваше запитання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви питаєте працівницю довідкової про розклади. Доповніть ваше запитання",
+              "feedbackByLocale": {
+                "ru": "Расписаний несколько, поэтому начинаем с Are there, а не с Is there.",
+                "uk": "Розкладів кілька, тому починаємо з Are there, а не з Is there."
+              }
+            },
+            {
+              "responseId": "en:lesson-04:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви питаєте працівницю довідкової про розклади. Доповніть ваше запитання",
+              "feedbackByLocale": {
+                "ru": "Am говорят только с I, а вопрос о нескольких предметах начинается с Are there.",
+                "uk": "Am кажуть лише з I, а запитання про кілька предметів починається з Are there."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i13:audio",
+            "transcript": "Are there platforms near here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are there platforms near here?",
+          "orderedTokens": [
+            "Are",
+            "there",
+            "platforms",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there platforms near here?`",
+                "uk": "тут потрібно `Are` — `Are there platforms near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мама питає вас, як піднятися нагору. Запитайте охоронця, чи є тут ескалатори",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i14:audio"
+        ],
+        "accessibilityLabel": "Мама питає вас, як піднятися нагору. Запитайте охоронця, чи є тут ескалатори",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i14:audio",
+            "transcript": "Are there escalators here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are there escalators here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте на платформі. Запитайте працівницю довідкової повною фразою: чи є поруч потяги?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте на платформі. Запитайте працівницю довідкової повною фразою: чи є поруч потяги?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Are there trains near here?",
+          "localizedMeaning": {
+            "ru": "Вы стоите на платформе. Спросите работницу справочной полной фразой: рядом есть поезда?",
+            "uk": "Ви стоїте на платформі. Запитайте працівницю довідкової повною фразою: чи є поруч потяги?"
+          },
+          "orderedTokens": [
+            "Are",
+            "there",
+            "trains",
+            "near",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-04:session-12:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте на платформі. Запитайте працівницю довідкової повною фразою: чи є поруч потяги?",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Are` — `Are there trains near here?`",
+                "uk": "тут потрібно `Are` — `Are there trains near here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-04:session-12:i16:p1",
+              "target": "timetable",
+              "meaningByLocale": {
+                "ru": "расписание",
+                "uk": "розклад"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i16:p2",
+              "target": "escalator",
+              "meaningByLocale": {
+                "ru": "эскалатор",
+                "uk": "ескалатор"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i16:p3",
+              "target": "carriage",
+              "meaningByLocale": {
+                "ru": "вагон",
+                "uk": "вагон"
+              }
+            },
+            {
+              "pairId": "en:lesson-04:session-12:i16:p4",
+              "target": "platform",
+              "meaningByLocale": {
+                "ru": "платформа (на вокзале)",
+                "uk": "платформа (на вокзалі)"
+              }
+            }
+          ],
+          "leftColumn": [
+            "timetable",
+            "escalator",
+            "carriage",
+            "platform"
+          ],
+          "rightColumn": [
+            "розклад",
+            "ескалатор",
+            "вагон",
+            "платформа (на вокзалі)"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-04:session-12:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат питає, чи є на цьому вокзалі розклади. Їх немає. Відповідайте йому коротко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-04:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Брат питає, чи є на цьому вокзалі розклади. Їх немає. Відповідайте йому коротко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-04:session-12:i17:audio",
+            "transcript": "No, there aren't."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "No, there aren't.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-04:session-12:i01",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:word:platform",
+      "correctText": "platform",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i02",
+      "correctText": "platform",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i03",
+      "correctText": "Are there platforms here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:word:timetable",
+      "correctText": "timetable",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i04",
+      "correctText": "timetable",
+      "correctResponseId": "en:lesson-04:session-12:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i05",
+      "correctText": "Are there timetables here?",
+      "correctResponseId": "en:lesson-04:session-12:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:word:escalator",
+      "correctText": "escalator",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i06",
+      "correctText": "escalator",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i07",
+      "correctText": "Are there escalators near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:word:carriage",
+      "correctText": "carriage",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i08",
+      "correctText": "carriage",
+      "correctResponseId": "en:lesson-04:session-12:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i09",
+      "correctText": "Are there carriages here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i11",
+      "correctText": "Yes, there are.",
+      "correctResponseId": "en:lesson-04:session-12:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i12",
+      "correctText": "Are",
+      "correctResponseId": "en:lesson-04:session-12:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i13",
+      "correctText": "Are there platforms near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i14",
+      "correctText": "Are there escalators here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i15",
+      "correctText": "Are there trains near here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i17",
+      "correctText": "No, there aren't.",
+      "correctResponseId": null
+    }
+  ]
+}

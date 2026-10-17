@@ -46,6 +46,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useVideoFavorites } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
 import { hapticTap } from '../hooks/use-haptics';
+import BackGlyph from '../components/v2/BackGlyph';
 
 const LOG = '[VIDEO-SCREEN]';
 
@@ -234,7 +235,7 @@ export default function LingmanVideoWatchScreen() {
         {/* зачем (макет video-redesign #c1, экран 3): сверху «назад» слева и закладка ролика справа, затем плеер с полосой прогресса. */}
         <View style={styles.topbar}>
           <Pressable testID="lingman-video-watch-close" accessibilityRole="button" accessibilityLabel={copy.back} onPress={close} hitSlop={8} style={styles.topButton}>
-            <Ionicons name="chevron-back" size={24} color={g.text} />
+            <BackGlyph size={24} color={g.text} />
           </Pressable>
           <Pressable
             testID={`video-save-${videoId}`}

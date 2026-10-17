@@ -32,6 +32,7 @@ import {
   type ShopCategoryId,
   type ShopItem,
 } from './shop_catalog';
+import BackGlyph from '../components/v2/BackGlyph';
 
 /**
  * shop.tsx — магазин: две валюты, товары по три в ряд, фильтр-док снизу.
@@ -335,7 +336,7 @@ function ShopScreenImpl() {
           onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
           style={({ pressed }) => [styles.backButton, { opacity: pressed ? 0.7 : 1 }]}
         >
-          <Ionicons name="chevron-back" size={24} color={t.textMuted} />
+          <BackGlyph size={24} color={t.textMuted} />
         </Pressable>
         <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{triLang(lang, COPY.screenTitle)}</Text>
       </View>

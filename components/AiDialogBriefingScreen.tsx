@@ -25,6 +25,7 @@ import ScreenGradient from './ScreenGradient';
 import PressableScale from './feedback/PressableScale';
 import { triLang } from '../constants/i18n';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import BackGlyph from './v2/BackGlyph';
 
 type AiDialogBriefingScreenProps = {
   scenario: DialogScenario;
@@ -146,7 +147,7 @@ export default function AiDialogBriefingScreen({
             hitSlop={12}
             style={{ padding: ds.spacing.sm }}
           >
-            <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
+            <BackGlyph size={26} color={t.textPrimary} />
           </PressableScale>
         </View>
 

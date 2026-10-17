@@ -23,6 +23,7 @@ import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
 import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
+import BackGlyph from '../v2/BackGlyph';
 
 export { spireZonesFor };
 import { runeWord } from '../../constants/runes';
@@ -74,7 +75,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
     <View style={s.root} testID="spire-all-screen">
       <View style={s.header}>
         <V2Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={spireText(lang, 'back')} style={[s.back, { backgroundColor: p.control }, sh.nested]} testID="spire-all-back">
-          <Ionicons name="chevron-back" size={20} color={p.text} />
+          <BackGlyph size={20} color={p.text} />
         </V2Pressable>
         <View style={s.headText}>
           <Text accessibilityRole="header" style={[s.headTitle, { color: p.text }]}>{spireText(lang, 'allMembers')}</Text>

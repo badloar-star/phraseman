@@ -12,6 +12,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../v2/ShadowSurface';
 import { FlowText } from '../text-integrity';
 import type { StudyTarget } from '../../app/study_target';
+import BackGlyph from '../v2/BackGlyph';
 
 // зачем (video.html `.lang`): флаг 24×15 изучаемого языка в пилюле «EN ⌄».
 const STUDY_FLAG: Record<StudyTarget, number> = {
@@ -61,7 +62,7 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
       <View style={styles.titleRow}>
         {onBack ? (
           <TapScale accessibilityRole="button" accessibilityLabel={back} onPress={onBack} style={actionButton}>
-            <Ionicons name="chevron-back" size={22} color={g.text} />
+            <BackGlyph size={22} color={g.text} />
           </TapScale>
         ) : null}
         <FlowText testID="youtube-channel-title" provenance={title ? 'authored' : 'external'} accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title ?? channel.displayName}</FlowText>

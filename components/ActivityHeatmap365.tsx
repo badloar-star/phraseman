@@ -29,6 +29,7 @@ import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 import { accentGraphicOf } from '../constants/themeAccentRoles';
+import BackGlyph from './v2/BackGlyph';
 
 const EXEMPT_COLOR_1 = '#211D17'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
 const EXEMPT_COLOR_2 = '#15120E'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
@@ -328,7 +329,7 @@ function MonthSelector({
         hitSlop={10}
         style={[styles.compareNavButton, { opacity: canPrevious ? 1 : 0.42 }]}
       >
-        <Ionicons name="chevron-back" size={16} color={color} />
+        <BackGlyph size={16} color={color} />
       </TouchableOpacity>
       <FlowText
         testID="activity-365-month-selector-label"
@@ -569,7 +570,7 @@ export function MonthExplorerModal({
             onPress={() => currentIndex > 0 && onMonthChange(monthKeys[currentIndex - 1]!)}
             style={[styles.iconButton, { opacity: currentIndex > 0 ? 1 : 0.28 }]}
           >
-            <Ionicons name="chevron-back" size={20} color={monthGlass.text} />
+            <BackGlyph size={20} color={monthGlass.text} />
           </TouchableOpacity>
           <FlowText
             testID="activity-365-month-modal-title"

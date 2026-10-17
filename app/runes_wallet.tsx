@@ -35,6 +35,7 @@ import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { peekRunesBalance, subscribeRunesBalance, getRunesBalance, type RunesBalance } from './runes_system';
 import { getDevCoinBalanceOverride } from './dev_coin_rank';
+import BackGlyph from '../components/v2/BackGlyph';
 
 const COUNT_PULSE_MS = 700;
 const COUNT_PULSE_EASE = Easing.bezier(0.2, 1.25, 0.4, 1);
@@ -133,7 +134,7 @@ export default function RunesWalletScreen() {
             scaleTo={0.94}
             style={styles.backButton}
           >
-            <Ionicons name="chevron-back" size={21} color={p.text} />
+            <BackGlyph size={21} color={p.text} />
           </V2Pressable>
         </View>
         {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как во всех экранах профиля. */}

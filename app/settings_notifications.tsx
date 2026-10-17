@@ -40,6 +40,7 @@ import { swallowError } from './debug-logger';
 import { isDevRobotNoCloud, noteRobotNoCloudSkip } from './dev_robot_no_cloud';
 import { getDevReminderTime } from './dev_robot_display';
 import { SettingsGlassEyebrow } from '../components/settings/SettingsGlassRows';
+import BackGlyph from '../components/v2/BackGlyph';
 const HOURS   = Array.from({ length: 24 }, (_, i) => i);
 const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 const VISIBLE = 3;
@@ -492,7 +493,7 @@ export default function SettingsNotifications() {
                 contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
               >
                 {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
-              <Ionicons name="chevron-back" size={21} color={glass.text} />
+              <BackGlyph size={21} color={glass.text} />
               </PressableHybrid>
               <View
                 pointerEvents="none"

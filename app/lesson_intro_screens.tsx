@@ -64,6 +64,7 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import { LessonIntroExampleRow, introExampleEnStyle } from '../components/lessons/LessonIntroGlass';
 import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import BackGlyph from '../components/v2/BackGlyph';
 interface LessonIntroScreensProps {
   introScreens: LessonIntroScreen[];
   lessonId: number;
@@ -758,7 +759,7 @@ export default function LessonIntroScreens({
               },
             ]}
           >
-            <Ionicons name="chevron-back" size={20} color={introGlass.text} />
+            <BackGlyph size={20} color={introGlass.text} />
           </TapScale>
 
           <View style={styles.headerCopy}>

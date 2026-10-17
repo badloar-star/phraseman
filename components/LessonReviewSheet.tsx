@@ -10,6 +10,7 @@ import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { KitSheetModal } from './v2/KitSheetModal';
+import BackGlyph from './v2/BackGlyph';
 
 type Props = {
   visible: boolean;
@@ -78,7 +79,7 @@ function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPr
               })}
               style={[styles.arrow, { opacity: atStart ? 0.25 : 1 }]}
             >
-              <Ionicons name="chevron-back" size={28} color={glass.secondary} />
+              <BackGlyph size={28} color={glass.secondary} />
             </TapScale>
 
             <View style={styles.phraseBox}>

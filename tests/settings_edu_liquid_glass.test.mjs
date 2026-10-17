@@ -16,7 +16,8 @@ test('learning settings use the approved liquid-glass shell without losing setti
   assert.match(source, /paddingLeft:\s*insets\.left/);
   assert.match(source, /paddingRight:\s*insets\.right/);
   // зачем (10.10): «назад» — голый шеврон по макету profile.html `.rb.bare` (7aae452a2), без круга; область тапа 48×44.
-  assert.match(source, /style=\{\{ width: 48, height: 44,[\s\S]{0,800}name="chevron-back"/);
+  // 17.10 (слово владельца): шеврон — общий значок «назад» BackGlyph (контур макета kit.js)
+  assert.match(source, /style=\{\{ width: 48, height: 44,[\s\S]{0,800}<BackGlyph/);
   assert.match(source, /fontSize:\s*34,[\s\S]*lineHeight:\s*40/);
   assert.match(source, /fontSize:\s*34,[\s\S]*marginTop:\s*10/);
   assert.match(source, /fontSize:\s*16, lineHeight:\s*22, marginTop:\s*7/);

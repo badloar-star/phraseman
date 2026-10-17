@@ -161,6 +161,7 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     '../components/ContentWrap': { __esModule: true, default: 'ContentWrap' },
     '../components/DuoPressable': { __esModule: true, default: 'DuoPressable' },
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
+    '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' }, // 17.10: «назад» — общий значок BackGlyph (слово владельца)
     '../components/feedback/FullscreenHybridEntrance': { __esModule: true, default: props => React.createElement('FullscreenHybridEntrance', props, ...props.slots) },
     '../components/ThemeContext': { FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 }, useTheme: () => ({ fontSize: 'medium', uiScale: 1, liquidGlassThemeId: themeId }) },
     '../components/LangContext': { useLang: () => ({ lang }) },

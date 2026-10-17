@@ -23,6 +23,7 @@ import {
   isUserNotificationVisible,
   loadOlderUserNotifications,
   markUserNotificationsRead,
+  probeUserNotificationsHead,
   readCachedUserNotifications,
   refreshUserNotificationsOnce,
   type UserNotification,
@@ -44,6 +45,7 @@ import { nestedBoxShadow, useShadowGlass } from './v2/ShadowSurface';
 import { KitSheetModal } from './v2/KitSheetModal';
 import auth from '@react-native-firebase/auth';
 import { noAndroidOutline } from '../constants/androidGlow';
+import BackGlyph from './v2/BackGlyph';
 
 const EXEMPT_COLOR_1 = 'rgba(99,217,143,0.35)'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
 const EXEMPT_COLOR_2 = '#2E9E63'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
@@ -257,9 +259,11 @@ function NotificationCenterButton({
     const generation = ++requestGenerationRef.current;
     let authoritativeResultApplied = false;
     const refreshOnce = () => {
-      void refreshUserNotificationsOnce({
+      // зачем (владелец 17.10 «друзья должны находиться мгновенно, а не через полчаса»): полный перечит раз в 12 ч прятал
+      // заявку в друзья часами. Сначала проба одного документа (≤1 раз в минуту), полный список — только если пришло новое.
+      void probeUserNotificationsHead('home_focus').then((probed) => probed ?? refreshUserNotificationsOnce({
         minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
-      }).then((list) => {
+      })).then((list) => {
         if (alive && requestGenerationRef.current === generation) {
           authoritativeResultApplied = true;
           setItems(hideNotificationIds(list, hiddenNotificationIdsRef.current));
@@ -670,7 +674,7 @@ function NotificationCenterButton({
                 hitSlop={5}
               style={[styles.closeButton, { backgroundColor: t.bgSurface }]}
               >
-                <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
+                <BackGlyph size={22} color={t.textPrimary} />
               </TouchableOpacity>
             ) : null}
             <View style={{ flex: 1, minWidth: 0 }}>

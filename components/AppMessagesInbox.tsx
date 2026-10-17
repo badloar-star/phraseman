@@ -56,6 +56,7 @@ import { nestedBoxShadow, raisedBoxShadow } from './v2/ShadowSurface';
 import { RowDivider } from './v2/RowDivider';
 import { isDevInboxEmpty } from '../app/dev_robot_display';
 import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
+import BackGlyph from './v2/BackGlyph';
 
 const BLUR_RENDER_GRACE_MS = 450;
 const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
@@ -740,7 +741,7 @@ function AppMessagesInbox({
               onPress={() => setEmbeddedPage((page) => Math.max(0, page - 1))}
               style={[styles.roundIcon, { opacity: safeEmbeddedPage === 0 ? 0.35 : 1, backgroundColor: chrome.card }]}
             >
-              <Ionicons name="chevron-back" size={20} color={chrome.text} />
+              <BackGlyph size={20} color={chrome.text} />
             </KitTouchable>
             <Text style={[styles.embeddedSectionMeta, { color: chrome.soft }]}>
               {safeEmbeddedPage + 1}/{maxEmbeddedPage + 1}
@@ -1004,7 +1005,7 @@ function AppMessagesInbox({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={[styles.roundIcon, { backgroundColor: chrome.card }]}
           >
-            <Ionicons name="chevron-back" size={22} color={chrome.text} />
+            <BackGlyph size={22} color={chrome.text} />
           </KitTouchable>
         </View>
         <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
@@ -1066,7 +1067,7 @@ function AppMessagesInbox({
             }}
             style={[styles.roundIcon, { backgroundColor: chrome.card }]}
           >
-            <Ionicons name="chevron-back" size={22} color={chrome.text} />
+            <BackGlyph size={22} color={chrome.text} />
           </KitTouchable>
           <Text style={[styles.embeddedSectionTitle, { color: chrome.text }]}>{copy.team}</Text>
         </View>

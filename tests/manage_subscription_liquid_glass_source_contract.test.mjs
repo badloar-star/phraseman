@@ -202,6 +202,7 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     '../components/feedback/FullscreenHybridEntrance': { __esModule: true, default: 'FullscreenHybridEntrance' },
     '../components/keyboardAvoidance': { useKeyboardBottomInset: () => 0 },
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
+    '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' }, // 17.10: «назад» — общий значок BackGlyph (слово владельца)
     '../hooks/use-screen': { useScreen: () => ({ contentMaxW: 640, rawBottomInset: 0 }) },
     '../constants/liquidGlassThemePalette': { liquidGlassTokens: id => { calls.tokenIds.push(id); return glass; } },
     '../constants/i18n': { triLang: (active, copy) => copy[active], Lang: {} },

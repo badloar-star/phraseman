@@ -831,7 +831,7 @@ export default function ManageSubscription() {
               contentStyle={[S.closeFace, { backgroundColor: glass.opaqueControl }]}
             >
               {/* зачем: паритет с макетом profile.html PRF-10 — «назад» шевроном */}
-              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
+              <BackGlyph size={22} color={glass.lightTint} />
             </PressableHybrid>
 
             <Text testID="manage-subscription-title" style={[S.screenTitle, { color: glass.text, fontSize: scaled(34), lineHeight: scaled(40) }]}>
@@ -1239,3 +1239,5 @@ const S = StyleSheet.create({
   offerStatNum: { fontWeight: '700', letterSpacing: -0.3, flexShrink: 1 },
   offerStatLabel: { fontWeight: '400', textAlign: 'center', flexShrink: 1 },
 });
+
+import BackGlyph from '../components/v2/BackGlyph';

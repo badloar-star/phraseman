@@ -31,6 +31,7 @@ import { useThemesMemLog } from '../components/settings/themesMemLog';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
+import BackGlyph from '../components/v2/BackGlyph';
 
 // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
 // модалка покупки темы за жемчуг удалена целиком (D45).
@@ -231,7 +232,7 @@ export default function SettingsThemes() {
               // зачем: паритет profile.html PRF-06 (13.10): «назад» — голый шеврон 21 без круга, как на соседних экранах настроек; область нажатия 48×44
               contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              <Ionicons name="chevron-back" size={21} color={glass.text} />
+              <BackGlyph size={21} color={glass.text} />
             </PressableHybrid>
             <View style={styles.head}>
               <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(styles.title.lineHeight) }]}>

@@ -153,7 +153,7 @@ export default function SupportReportScreen() {
             contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
           >
             {/* зачем: паритет с макетом profile.html PRF-09 — «назад» шевроном */}
-            <Ionicons name="chevron-back" size={21} color={glass.text} />
+            <BackGlyph size={21} color={glass.text} />
           </PressableHybrid>
           <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5 /* зачем: паритет profile.html PRF-09 (13.10) */, marginTop: 10 }}>
             {L('Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc')}
@@ -334,3 +334,5 @@ export default function SupportReportScreen() {
     </ScreenGradient>
   );
 }
+
+import BackGlyph from '../components/v2/BackGlyph';

@@ -78,6 +78,7 @@ import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — 
 import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
+import BackGlyph from '../components/v2/BackGlyph';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -2334,7 +2335,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             hitSlop={10}
             style={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
           >
-            <Ionicons name="chevron-back" size={21} color={statsGlass.text}/>
+            <BackGlyph size={21} color={statsGlass.text}/>
           </TapScale>)}
           <FlowText
             testID="stats-header-title"

@@ -41,6 +41,7 @@ import {
   VIP_SURVEY_QUESTIONS,
   type VipSurveyAnswers,
 } from '../app/vip_survey_content';
+import BackGlyph from './v2/BackGlyph';
 
 type Props = {
   visible: boolean;
@@ -450,7 +451,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
               onPress={goBack}
               style={[styles.roundButton, { opacity: step <= 0 ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
             >
-              <Ionicons name="chevron-back" size={21} color={chrome.text} />
+              <BackGlyph size={21} color={chrome.text} />
             </PressableHybrid>
             <View style={styles.progressWrap}>
               <Text style={[styles.progressText, { color: chrome.muted }]}>

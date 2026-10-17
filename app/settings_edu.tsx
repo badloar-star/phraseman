@@ -33,6 +33,7 @@ import { getVoicesOnce, voiceTitle } from './flashcards/tts_voices';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import BackGlyph from '../components/v2/BackGlyph';
 
 export {
   DEFAULT_SETTINGS,
@@ -393,7 +394,7 @@ export default function SettingsEdu() {
               contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
               {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
-              <Ionicons name="chevron-back" size={21} color={glass.text} />
+              <BackGlyph size={21} color={glass.text} />
             </PressableHybrid>
             <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {loc.edu.title}

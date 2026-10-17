@@ -11,6 +11,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { KIT_MOTION } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import PressableHybrid from '../PressableHybrid';
+import BackGlyph from '../v2/BackGlyph';
 
 // зачем (координатор 05.10): у макета нет своего перехода страницы, поэтому страница поднимается
 // единственным движением кита «поверхность снизу» — kit.css:150 `.sheet` 440 мс (.2,1,.3,1) в обе стороны,
@@ -134,7 +135,7 @@ export default function StreakStagesModal({
               style={{ width: 44, height: 44, alignSelf: 'auto' }}
               contentStyle={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
             >
-              <Ionicons name="chevron-back" size={22} color={glass.text} />
+              <BackGlyph size={22} color={glass.text} />
             </PressableHybrid>
             <Text accessibilityRole="header" style={{ flex: 1, color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700' }}>
               {title}

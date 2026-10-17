@@ -3,6 +3,7 @@
 Governance-ID: TG-916DA611857A
 Governance-ID: TG-5943A06581DF
 Governance-ID: TG-19C99400BDCD
+Governance-ID: TG-F5B2791E6C82
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: слово владельца 17.10 «кнопки Объяснить не должно быть ВЕЗДЕ»; «у кнопки назад есть ассет — поставить, проверить везде».

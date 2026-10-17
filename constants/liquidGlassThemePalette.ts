@@ -205,8 +205,10 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   const accentText = legibleOn(built.accentText, built.text, [...accentOnTint, flattenOver(built.accentSoft, plateTint)], 4.55);
   // зачем (находка контраста «Авроры» 12.10): у градиентных тем в светлом оформлении сырой `accent` — пастель (1,0–1,8 на фоне/карточке с level ≈ 0,55–0,75), и кольца/полосы/точки на нём невидимы.
   // accentGraphic = accent, пока он держит ≥ 3:1 на ВСЕХ поверхностях; иначе тот же оттенок, углублённый в сторону текста темы. В тёмном оформлении и там, где accent и так виден, совпадает с accent.
+  // зачем (координатор 17.10, «кнопки нигде не сливаются»): графика акцента (точки, полоса прогресса) лежит и на заливке buttonFill (дорожка, пилюля) — держим ≥ 3,2:1 и к ней
+  const earlyButtonFill = deriveLiquidGlassButtonRoles({ ...built, bad: (deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles).bad }).buttonFill;
   const accentGraphic = legibleOn(built.accent, built.text, [
-    built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet,
+    built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet, earlyButtonFill,
   ], 3.2);
   // зачем (TS2345, координатор 13.10): `bad` — роль палитры, а не базового токена; считаем роли палитры один раз и отдаём `bad` ролям кнопок (dangerFill/dangerInk).
   const paletteRoles = deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles;

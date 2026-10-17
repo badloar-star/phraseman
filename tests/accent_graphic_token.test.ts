@@ -14,7 +14,8 @@ describe('accentGraphic — цвет графики темы', () => {
       for (const intensity of INTENSITIES) {
         it(`${id}/${appearance}/${intensity}`, () => {
           const g = liquidGlassTokens(id, { appearance, intensity, level: liquidGlassLevelForIntensity(intensity) });
-          const surfaces = [g.bg, g.bgTop, g.bgBottom, g.opaqueCard, g.opaqueControl, g.opaqueSheet];
+          // зачем (17.10): графика акцента лежит и на заливке buttonFill (дорожка прогресса, пилюля счётчика) — она в списке поверхностей, как и в самом токене
+          const surfaces = [g.bg, g.bgTop, g.bgBottom, g.opaqueCard, g.opaqueControl, g.opaqueSheet, g.buttonFill];
           const worstGraphic = Math.min(...surfaces.map((s) => paletteContrast(solid(g.accentGraphic), solid(s))));
           expect(worstGraphic).toBeGreaterThanOrEqual(3);
           const worstAccent = Math.min(...surfaces.map((s) => paletteContrast(solid(g.accent), solid(s))));

@@ -183,9 +183,9 @@ function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlu
         >
           <View style={[styles.grabber, { backgroundColor: g.opaqueControl }]} />
           <View style={[styles.mic, { backgroundColor: g.accentSoft }]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-            <Ionicons name="mic-outline" size={30} color={g.accent} />
-            <View style={[styles.badge, { backgroundColor: g.accent, boxShadow: `0 0 0 2.5px ${g.opaqueCard}` }]}>
-              <Text style={[styles.badgeText, { color: g.accentInk }]} maxFontSizeMultiplier={1.2}>{remaining}</Text>
+            <Ionicons name="mic-outline" size={30} color={g.accentGraphic} />
+            <View style={[styles.badge, { backgroundColor: g.ctaFill, boxShadow: `0 0 0 2.5px ${g.opaqueCard}` }]}>
+              <Text style={[styles.badgeText, { color: g.ctaFillInk }]} maxFontSizeMultiplier={1.2}>{remaining}</Text>
             </View>
           </View>
           <Text style={[styles.title, { color: g.text }]} maxFontSizeMultiplier={1.4} accessibilityRole="header">{copy.title}</Text>
@@ -194,9 +194,9 @@ function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlu
             <Text style={[styles.bodyEm, { color: g.text }]}>{attempts}</Text>
             {copy.tail}
           </Text>
-          <View style={[styles.counter, { backgroundColor: g.opaqueControl }]} accessibilityLabel={`${copy.today} · ${remaining} ${copy.of} ${limit}`}>
+          <View style={[styles.counter, { backgroundColor: g.buttonFill }]} accessibilityLabel={`${copy.today} · ${remaining} ${copy.of} ${limit}`}>
             {dots.map((on, index) => (
-              <View key={index} /* guard-ok: постоянный ряд из limit точек, не сортируется */ style={[styles.dot, on ? { backgroundColor: g.accent } : { backgroundColor: g.secondary, opacity: 0.35 }]} />
+              <View key={index} /* guard-ok: постоянный ряд из limit точек, не сортируется */ style={[styles.dot, on ? { backgroundColor: g.accentGraphic } : { backgroundColor: g.secondary, opacity: 0.35 }]} />
             ))}
             <Text style={[styles.counterText, { color: g.text }]} maxFontSizeMultiplier={1.3}>{`${copy.today} · ${remaining} ${copy.of} ${limit}`}</Text>
           </View>

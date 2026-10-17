@@ -6,7 +6,7 @@ import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import { colorWithAlpha } from '../../v2/plateAlpha';
-import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
+import { useHomePlateStyle } from './homePlate';
 import { nestedBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 
@@ -53,6 +53,9 @@ type Props = {
  * “Продолжить обучение”»): надписи-оверлайна нет, счётчик переехал в строку полосы —
  * две строки вместо четырёх, высота 80 вместо ≈ 158.
  */
+// зачем (аудит контраста 17.10): плашка номера урока лежит на арте (картинка) и стрелка — маленькие вложенные элементы; при альфе 0,5 подпись на светлом/тёмном арте читалась 2,8–3,5:1. Для них заливка плотнее (0,9); сама плашка карточки остаётся 0,5 по приказу владельца.
+const BADGE_ON_ART_ALPHA = 0.9;
+
 export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false, busy = false, hideProgress = false }: Props) {
   useRenderCause('home:continue', () => ({ title, done, total, art, artAccent, artWide, badge, accessibilityLabel, onPress, onLongPress, pending, busy, hideProgress }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
@@ -88,7 +91,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
         {badge && !pending ? (
           <View
             onLayout={logLayout('badge')}
-            style={[s.badge, { backgroundColor: colorWithAlpha(p.control, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}
+            style={[s.badge, { backgroundColor: colorWithAlpha(p.control, BADGE_ON_ART_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}
           >
             <Text style={[s.badgeText, { color: p.text }]}>{badge}</Text>
           </View>
@@ -105,7 +108,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
             <View style={s.track} />
           ) : (
             <>
-              <View style={[s.track, { backgroundColor: p.track }]}>
+              <View style={[s.track, { backgroundColor: shadowGlass.buttonFill }]}>
                 {/* Ширина задаётся сразу — первый кадр = финальная геометрия. */}
                 {pending ? null : <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />}
               </View>
@@ -116,7 +119,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artAccent 
               )}
             </>
           )}
-          <View style={[s.arrow, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}>
+          <View style={[s.arrow, { backgroundColor: colorWithAlpha(shadowGlass.buttonFill, BADGE_ON_ART_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}>
             <Ionicons name="chevron-forward" size={16} color={p.text} />
           </View>
         </View>

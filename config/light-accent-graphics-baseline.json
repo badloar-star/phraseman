@@ -1,6 +1,6 @@
 {
   "_comment": "Базовая линия числа мест, где графика/текст/значок красится сырым accent (scripts/light_accent_graphics_scan.mjs). Может только УМЕНЬШАТЬСЯ: починили место — уменьшите число; новое место — используйте accentBorder/progressGradient/accentText или пометьте строку `light-accent-ok: причина`.",
-  "total": 36,
+  "total": 35,
   "_locked": {
     "app/flashcards/CardsGlassKit.tsx": "замок владельца: раздел «Карточки» не правим (в т.ч. комментарием); место учтено в базе до снятия замка"
   },
@@ -10,7 +10,6 @@
     "app/_motion_showcase.tsx": 1,
     "app/ai_companion_session.tsx": 2,
     "app/ai_dialog_session.tsx": 5,
-    "app/flashcards/CollectionListView.tsx": 1,
     "app/flashcards/CardsGlassKit.tsx": 1,
     "app/flashcards_swipe.tsx": 1,
     "app/flashcards_voice_picker.tsx": 1,

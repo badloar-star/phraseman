@@ -271,6 +271,34 @@
 
 **Предложение владельцу на утро (R103, адресно, без `--force`, по одной функции, с проверкой журнала после каждой):** `levelSpinStarGrant`, `submitLearningV2CourseSessionCompletedV1`, `submitFeedbackEntry`, `reEngagePushCron`, `legacyBonusConvertMine`, `onboardingLevelRecord`, `communityAuthorRemoveCard`. Отдельно и не ночью: ИИ-диалоги (пп. 5–6) и восстановление аккаунта (п. 2, сперва правка кода).
 
+### R103 — утренний порядок адресной выкладки (готовит Ревизор; выкладка только после «да» владельца в чате Ревизора)
+
+Общее для каждой строки:
+- Перед первой: `git pull` не нужен — общее дерево. `npm --prefix functions run build` идёт сам (predeploy вместе со сторожем `functions_runtime_parity_gate`).
+- Команда: `firebase deploy --only functions:<имя> --project phraseman-ea0b3` — без `--force`, по одной.
+- После каждой: `gcloud functions describe <имя> --gen2 --region us-central1 --project phraseman-ea0b3 --format="value(state,updateTime,serviceConfig.availableCpu)"` → ACTIVE и свежее время. Плюс `gcloud logging read 'resource.labels.service_name="<имя в нижнем регистре>" AND severity>=ERROR' --freshness=15m --project phraseman-ea0b3` — пусто.
+- Откат: исходник прежней версии лежит в `gs://gcf-v2-sources-…/<имя>/function-source.zip` (generation в §10 и tsv) — пересборка как в шаге 2 (`gcloud functions deploy … --source gs://…`).
+
+| # | Функция | Что сломано без неё у людей (сборка 2.0) | Особая проверка после | Риск |
+|---|---|---|---|---|
+| 1 | `submitLearningV2CourseSessionCompletedV1` | итоги 23 занятий урока 1 (> 22 ответов) отвергаются навсегда; очередь встаёт, итоги ВСЕХ следующих занятий не доходят до сервера | в журнале нет `invalid-argument`; на тестовом телефоне пройти L01 s08 (28 ответов) → `[V2-…session_completed_sync]` drained | низкий: зовёт только 2.0 |
+| 2 | `levelSpinStarGrant` | монеты за жалобы и «Дневной путь» не зачисляются (`level_spin_star_composite_invalid`) | `[COIN-WALLET]` source=report_reward/daily_journey без reject | средний (деньги). **Только после выхода 2.0:** в HEAD белый список (coin_wallet_policy.ts:44-45, D148) — старые сборки из стора получат отказ на спины, квесты и компенсацию подарков. Это решение D148, но выкладывать не раньше релиза |
+| 3 | `submitFeedbackEntry` | отзыв с итога занятия V2 не отправляется (`kind_invalid`) | журнал без ошибок; отзыв с итога V2 доходит | низкий |
+| 4 | `reEngagePushCron` | пуши «вернись / серия ждёт» не доходят до Америки и UTC+12+ (один прогон 10:00 UTC) | `gcloud scheduler jobs describe firebase-schedule-reEngagePushCron-us-central1 --location us-central1` → `0 10,22 * * *`; в 22:00 UTC — строка `reEngagePushCron {…}` | низкий; +≈450 чтений/сут |
+| 5 | `legacyBonusConvertMine` | старые бонусы 1.x не превращаются в монеты, окна «Встречайте 2.0» нет (сейчас 404 на старте) | ⚠️ выключатель `remote_config/app.bools.legacy_bonus_enabled` в проде **не задан** → после выкладки функция отвечает `disabled`, ничего не начисляет. Включение — отдельное «да» владельца (деньги) | низкий при выключенном флаге |
+| 6 | `onboardingLevelRecord` | статистика экрана уровня не пишется, ответ висит в pending | журнал без ошибок | низкий |
+| 7 | `communityAuthorRemoveCard` | автор удаляет карточку из опубликованного набора → через 6 неудач она возвращается с тостом «нет связи» | журнал без ошибок | низкий/средний (правка опубликованного) |
+
+Не в этом списке (отдельно, не ночью): восстановление аккаунта по коду (п. 2 таблицы выше — сначала правка кода Входа и security-review Ревизора); ИИ-диалоги — ниже.
+
+### R103-AI — `premiumDialogSend` / `premiumDialogTranslate` / `premiumDialogStream` (перепроверено Ревизором)
+- Прод: Send выложен 17.09, Translate 14.09, Stream — код того же времени (17.10 только пересборка доли ядра из своего архива).
+- `premiumDialogSend`: прод не отдаёт `resetAtMs`/`quotaVersion` (src/premium_dialog.ts:1143, `quotaVersion` 0 вхождений), а клиент с 30.09 (1e2f77929, D111 месячный лимит) без них отбрасывает ответ — `dialog_response_invalid` (app/ai_dialog_client.ts:128-139, :431; app/ai_dialog_daily_quota.ts:68-79). **Компаньон «Тео»** (только Plus, app/ai_companion_session.tsx:232) — ни одного ответа в 2.0, при этом сервер уже списал квоту и заплатил OpenAI.
+- `premiumDialogTranslate`: прод не знает `direction` и не отдаёт `variants` → «Как сказать…» (DialogHowToSaySheet `direction: 'to_study'`) всегда в ошибке (`[DIALOG-HOWTO] empty variants`).
+- Язык: прод разрешает только en/fr (`resolveStudyTarget`: `fr ? fr : en`), а 2.0 открывает диалоги на es/de (`DIALOGUE_OWNER_RELEASED_TARGETS = ['es','fr','de']`) → испанский и немецкий диалог отвечает по-английски (и Send, и Stream). В HEAD — `resolveDialogueStudyTarget` с es/de.
+- Кого касается: только сборки ≥ 30.09 (2.0). Старые из стора разбирают прежний ответ.
+- Лечение: адресный деплой трёх вместе. Риск средний: их зовут и старые сборки, а в HEAD квота месячная (D111) — нужна проверка владельца Диалогов, что старые сборки не ломаются (лишние поля в ответе и новая квота). Решение утром; без этого в 2.0 нерабочие компаньон, «Как сказать…» и es/de.
+
 ### Как клиент 18.10 переживает отсутствие трёх функций (проверено по коду)
 | Функция | Что видит человек | Нагрузка |
 |---|---|---|

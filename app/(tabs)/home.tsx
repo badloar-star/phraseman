@@ -54,6 +54,7 @@ import StoryAvatarSlot from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
+import { sameSnapshotSection } from '../home_snapshot_equal';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -706,10 +707,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
+    // зачем ([HOME-SETSTATE] 18.10, координатор; замер: appSnapshot менялся 9 из 23 рендеров окна возврата): писатели снимка пересобирают секции с новым updatedAt — по ссылке это «новое»,
+    // хотя имя, серия и монеты те же. Сравниваем по содержимому без updatedAt (его Главная не читает): та же ссылка → без перерисовки; вид не меняется.
     const appSnapshot = useAppSnapshotSelector((snapshot) => ({
         profile: snapshot.profile,
         progress: snapshot.progress,
-    }), (a, b) => a.profile === b.profile && a.progress === b.progress);
+    }), (a, b) => sameSnapshotSection(a.profile, b.profile) && sameSnapshotSection(a.progress, b.progress));
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const snapshotName = appSnapshot.profile?.name ?? '';
     const snapshotStreak = appSnapshot.progress?.streak ?? 0;
@@ -2699,6 +2702,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
     // зачем ((в)): ПОСЛЕДНИЙ объявленный пассивный эффект Главной — к нему все её эффекты первого монтирования уже отработали.
     useEffect(() => { logHomeFirstMountEffectsTiming(); }, []);
+    // зачем ([HOME-SETSTATE] 18.10): опрос, окно недели и «С возвращением» отдают НОВЫЙ объект на каждый рендер, и в журнале они значились «изменившимися» всегда — настоящую причину не было видно (14 из 23 рендеров окна). Теперь в снимке их значимые поля.
     // зачем (координатор 15.10, «перерисовки Главной»): [HOME-RENDERS] — сколько раз и ПОЧЕМУ рендерится Главная за 10 с после холодного старта и после возврата на вкладку (окно открывает смена homeRuntimeActive).
     // Перечислены состояния и контексты корня; рендер без изменений в списке пишется как parent_or_unlisted (родитель или хук, которого здесь нет). В релизе — пустая функция, снимок не строится.
     useRenderCause('home', () => ({
@@ -2708,7 +2712,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
         celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance, runesKnown, belowFoldReady,
         overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
-        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurvey, weekMoment, welcomeBack, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
+        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,
     }), homeRuntimeActive, true);
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>

@@ -83,6 +83,7 @@ describe('по замеру coldstart_1315_r2: результат хука «Д�
     expect(read('app/use_coin_rank_enough_moment.ts')).toContain('return useMemo(() => ({ visible: visible && offer !== null, offer, close }), [visible, offer, close]);');
     const home = read('app/(tabs)/home.tsx');
     expect(home).toContain('rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close');
-    expect(home).toContain('goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurvey, weekMoment, welcomeBack, appSnapshot');
+    // перепин 18.10 ([HOME-SETSTATE], Дизайн): опрос, окно недели и «С возвращением» отдают новый объект на каждый рендер — в снимке их значимые поля, иначе в журнале они «менялись» всегда
+    expect(home).toContain('goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot');
   });
 });

@@ -34,6 +34,7 @@ const languages = file('app/flashcards/pack_languages.ts');
 // зачем (05.10): чистые модули без зависимостей — грузим настоящие, а не подделки.
 const customCardAccess = file('app/flashcards/custom_card_access.ts');
 const myPacksDataIntegrity = file('app/flashcards/myPacksDataIntegrity.ts');
+const speechLocale = file('app/study_speech_locale.ts', {});
 function device() {
   const storage = new Map();
   let fail = false;
@@ -56,7 +57,8 @@ function device() {
     // зачем (13.10, №11; 61a8248b1): addFlashcard проверяет Plus через getVerifiedPremiumAccessStatus({ allowCloudRefresh: false }) с потолком 5 с
     '../app/premium_guard': { getVerifiedPremiumStatus: async () => true, getVerifiedPremiumAccessStatus: async () => true },
     '../app/feature_gates': { isFeatureFreeForEveryone: () => true },
-    '../app/target_storage_keys': { flashcardsSavedKey: t => t === 'fr' ? 'fr' : 'en', storageStudyTarget: t => t === 'fr' ? 'fr' : 'en' },
+    // зачем (18.10, красные тесты; координатор): после 15.10 loadAllSavedFlashcards читает все 5 языков наборов (PACK_LANGUAGES). Прежняя заглушка отдавала ключ 'en' для es/de/it и читала одни и те же карточки 4 раза (4 вместо 1) — в проде ключ у каждого языка свой (scopedOrLegacyKey), баг был в заглушке, не в коде.
+    '../app/target_storage_keys': { flashcardsSavedKey: t => (t && t !== 'en' ? t : 'en'), storageStudyTarget: t => (t && t !== 'en' ? t : 'en') },
     '../app/account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: t => t === token, withAccountTransitionLock: fn => fn() },
     '../app/account_scope_key': { accountScopeKey: () => 'test-account' },
     '../app/flashcards/pack_languages': languages,
@@ -80,7 +82,10 @@ test('equal text in EN and ES is not a duplicate; repeat ES is', async () => {
   assert.equal(await api.addFlashcard({ ...card, packLanguage: 'en' }, 'en'), 'added');
   assert.equal(await api.addFlashcard({ ...card, packLanguage: 'es' }, 'es'), 'added');
   assert.equal(await api.addFlashcard({ ...card, packLanguage: 'es' }, 'es'), 'duplicate');
-  assert.equal((await api.loadFlashcards('en')).length, 2);
+  // зачем (18.10): в проде у каждого языка набора свой контур хранения (es → ключ es), поэтому одна карточка в en и одна в es, а не две в en; прежняя «2» держалась на заглушке ключей.
+  assert.equal((await api.loadFlashcards('en')).length, 1);
+  assert.equal((await api.loadFlashcards('es')).length, 1);
+  assert.equal((await api.loadAllSavedFlashcards()).length, 2);
 });
 test('failed delete is rejected and disk/cache retain card', async () => {
   const { api, storage, failWrites } = device();
@@ -116,7 +121,8 @@ test('drafts follow the requested pack language without losing another language'
     './schema': { COMMUNITY_PACK_CARD_COUNT_MAX: 50 }, './ugcCardThemePresets': { UGC_CARD_THEME_IDS: ['a'] },
     '../target_storage_keys': { communityPackCreateDraftKey: (target,locale) => `${target}:${locale}` },
     // зачем (13.10, №11; 5b1caa8ee): dev-черновик packdraft — выключен, как в сторе
-    '../dev_cards_state': { getDevPackDraft: () => null },
+    // зачем (18.10): loadCommunityPackCreateDraft теперь спрашивает isDevPackDraftNone (режим «пустой черновик») — вне dev он всегда false
+    '../dev_cards_state': { getDevPackDraft: () => null, isDevPackDraftNone: () => false },
     '../flashcards/pack_deck_meta': file('app/flashcards/pack_deck_meta.ts', { './pack_languages': languages }), // зачем (13.10, №11; ee01d089a): уровень набора в черновике
     '../debug-logger': { DebugLogger: { error: () => {} } }, '../flashcards/pack_languages': languages,
     '../account_generation': { captureAccountGeneration: () => ({}), isCurrentAccountGeneration: () => true, withAccountTransitionLock: fn => fn() },
@@ -243,6 +249,8 @@ test('local saves serialize, preserve other contours and persist publication ide
 test('front speech uses the explicit French/German language', () => {
   const infer = extract('hooks/use-audio.ts', 'inferExpoSpeechLanguage', {
     UK_MARKERS: /[іїєґ]/i, CYRILLIC_RE: /[а-яіїєґ]/i, LATIN_LETTER_RE: /[a-zÀ-ž]/i,
+    // зачем (18.10): таблица языков речи вынесена в app/study_speech_locale.ts (R49/R57) — берём настоящую, а не копию
+    STUDY_SPEECH_LOCALE: speechLocale.STUDY_SPEECH_LOCALE, speechStudyLanguageOf: speechLocale.speechStudyLanguageOf,
   });
   assert.equal(infer('Bonjour', 'fr'), 'fr-FR');
   assert.equal(infer('Guten Tag', 'de'), 'de-DE');

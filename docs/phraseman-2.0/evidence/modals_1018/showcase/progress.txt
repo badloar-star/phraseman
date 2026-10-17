@@ -1,0 +1,27 @@
+19:33:25 themed_confirm_default ok
+19:33:42 themed_confirm_accent ok
+19:34:02 themed_choice_two ok
+19:34:19 themed_choice_three ok
+19:34:36 report_user_modal ok
+19:38:00 report_pack_modal НЕ НАЙДЕН «Жалоба на набор карточек (UGC)»
+19:38:24 nickname_edit_modal ok
+19:38:44 certificate_name_modal ok
+19:39:18 banner-offline ok
+19:40:23 banner-promo ok
+19:41:27 banner-rank-change ok
+19:42:32 banner-referral-invite-art ok
+19:46:08 celebrations-roulette-win-modal НЕ НАЙДЕН «Рулетка — карточка выигрыша»
+19:49:33 celebrations-roulette-win-celebration НЕ НАЙДЕН «Рулетка — праздничная вспышка (конфетти)»
+19:50:20 celebrations-referral-friend-reward НЕ НАЙДЕН «Друг принёс ключ (награда за друга)»
+19:52:01 celebrations-dialog-victory НЕ НАЙДЕН «Салют финала ИИ-диалога»
+19:53:26 ai-dialog-consent ok
+19:53:44 ai-explain-consent ok
+19:54:04 notification-permission ok
+19:57:33 mistake-eli5 НЕ НАЙДЕН «Объясни проще (разбор ошибки)»
+19:58:04 fc-deck-picker-sheet ok
+20:01:38 section-sheet-header НЕ НАЙДЕН «Шапка шторки раздела (крестик)»
+20:05:15 update_modal НЕ НАЙДЕН «Обновление приложения»
+20:08:49 release_notes_modal НЕ НАЙДЕН «Что нового (релиз-ноуты)»
+20:12:22 personal_admin_message_modal НЕ НАЙДЕН «Личное сообщение от команды»
+20:12:55 vip_survey_modal ok
+20:16:22 vip_survey_review_prompt_modal НЕ НАЙДЕН «Просьба об отзыве после Plus»

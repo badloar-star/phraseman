@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-56:i01",
-    "correctText": "This is a hospital.",
+    "correctText": "en:lesson-03:session-56:i01:p1=mat\nen:lesson-03:session-56:i01:p2=tray\nen:lesson-03:session-56:i01:p3=hook\nen:lesson-03:session-56:i01:p4=bin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:word:mat",
+    "correctText": "mat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i02",
-    "correctText": "cinema",
-    "correctResponseId": "en:lesson-03:session-56:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-56:i03",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-03:session-56:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-56:i04",
-    "correctText": "en:lesson-03:session-56:i04:p1=hospital\nen:lesson-03:session-56:i04:p2=cinema\nen:lesson-03:session-56:i04:p3=libraries\nen:lesson-03:session-56:i04:p4=stations",
+    "correctText": "mat",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-56:i03",
+    "correctText": "This is a brown mat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:word:tray",
+    "correctText": "tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:i04",
+    "correctText": "tray",
+    "correctResponseId": "en:lesson-03:session-56:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-56:i05",
-    "correctText": "Those stations are there.",
+    "correctText": "Those are grey mats.",
+    "correctResponseId": "en:lesson-03:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:word:hook",
+    "correctText": "hook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i06",
-    "correctText": "Where is the museum?",
+    "correctText": "hook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i07",
-    "correctText": "It's striped.",
+    "correctText": "That round tray is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-56:word:bin",
+    "correctText": "bin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i08",
-    "correctText": "These",
+    "correctText": "bin",
     "correctResponseId": "en:lesson-03:session-56:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-56:i09",
-    "correctText": "The museum is there.",
-    "correctResponseId": "en:lesson-03:session-56:i09:r1"
+    "correctText": "These metal hooks are new.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i10",
-    "correctText": "en:lesson-03:session-56:i10:p1=museum\nen:lesson-03:session-56:i10:p2=striped\nen:lesson-03:session-56:i10:p3=cafes\nen:lesson-03:session-56:i10:p4=cinema",
+    "correctText": "en:lesson-03:session-56:i10:p1=mat\nen:lesson-03:session-56:i10:p2=tray\nen:lesson-03:session-56:i10:p3=curtain\nen:lesson-03:session-56:i10:p4=towel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i11",
-    "correctText": "The cinema is here.",
-    "correctResponseId": null
+    "correctText": "Is that bin black?",
+    "correctResponseId": "en:lesson-03:session-56:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-56:i12",
-    "correctText": "Where are the cafes?",
-    "correctResponseId": null
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-56:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-56:i13",
-    "correctText": "The hospital is there.",
+    "correctText": "These are black bins.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i14",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-56:i14:r1"
+    "correctText": "that oval tray",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i15",
-    "correctText": "The libraries are there.",
-    "correctResponseId": "en:lesson-03:session-56:i15:r1"
+    "correctText": "Is the beige mat here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i16",
-    "correctText": "en:lesson-03:session-56:i16:p1=stations\nen:lesson-03:session-56:i16:p2=cafes\nen:lesson-03:session-56:i16:p3=museum\nen:lesson-03:session-56:i16:p4=striped",
+    "correctText": "en:lesson-03:session-56:i16:p1=bin\nen:lesson-03:session-56:i16:p2=hook\nen:lesson-03:session-56:i16:p3=tray\nen:lesson-03:session-56:i16:p4=mat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-56:i17",
-    "correctText": "Where are the stations?",
+    "correctText": "That bin is white.",
     "correctResponseId": null
   }
 ]

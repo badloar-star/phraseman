@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-46:i01",
-    "correctText": "The ticket is here.",
+    "correctText": "The ceiling is dirty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i02",
-    "correctText": "airport",
+    "correctText": "The door is open.",
     "correctResponseId": "en:lesson-03:session-46:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-46:i03",
-    "correctText": "airport",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-46:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-46:i04",
-    "correctText": "en:lesson-03:session-46:i04:p1=airport\nen:lesson-03:session-46:i04:p2=useless\nen:lesson-03:session-46:i04:p3=appropriate\nen:lesson-03:session-46:i04:p4=ticket",
+    "correctText": "en:lesson-03:session-46:i04:p1=roof\nen:lesson-03:session-46:i04:p2=lift\nen:lesson-03:session-46:i04:p3=stairs\nen:lesson-03:session-46:i04:p4=balcony",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i05",
-    "correctText": "This is an airport.",
+    "correctText": "The wall is dark.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i06",
-    "correctText": "The airport is there.",
+    "correctText": "This is a window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:word:roof",
+    "correctText": "roof",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i07",
-    "correctText": "It's useless.",
+    "correctText": "roof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:word:lift",
+    "correctText": "lift",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i08",
-    "correctText": "an",
+    "correctText": "lift",
     "correctResponseId": "en:lesson-03:session-46:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-46:i09",
-    "correctText": "It is appropriate.",
+    "correctText": "The roof is old.",
     "correctResponseId": "en:lesson-03:session-46:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-46:i10",
-    "correctText": "en:lesson-03:session-46:i10:p1=airport\nen:lesson-03:session-46:i10:p2=ticket\nen:lesson-03:session-46:i10:p3=here\nen:lesson-03:session-46:i10:p4=there",
+    "correctText": "en:lesson-03:session-46:i10:p1=roof\nen:lesson-03:session-46:i10:p2=door\nen:lesson-03:session-46:i10:p3=window\nen:lesson-03:session-46:i10:p4=wall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i11",
-    "correctText": "That ticket is there.",
+    "correctText": "The lift is slow.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i12",
-    "correctText": "That is an airport.",
+    "correctText": "The lift is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:word:stairs",
+    "correctText": "stairs",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i13",
-    "correctText": "It's appropriate.",
+    "correctText": "stairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-46:word:balcony",
+    "correctText": "balcony",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i14",
-    "correctText": "is",
+    "correctText": "balcony",
     "correctResponseId": "en:lesson-03:session-46:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-46:i15",
-    "correctText": "It is useless.",
+    "correctText": "The stairs are narrow.",
     "correctResponseId": "en:lesson-03:session-46:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-46:i16",
-    "correctText": "en:lesson-03:session-46:i16:p1=airport\nen:lesson-03:session-46:i16:p2=useless\nen:lesson-03:session-46:i16:p3=appropriate\nen:lesson-03:session-46:i16:p4=ticket",
+    "correctText": "en:lesson-03:session-46:i16:p1=balcony\nen:lesson-03:session-46:i16:p2=stairs\nen:lesson-03:session-46:i16:p3=lift\nen:lesson-03:session-46:i16:p4=roof",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-46:i17",
-    "correctText": "The airport is here.",
+    "correctText": "The balcony is open.",
     "correctResponseId": null
   }
 ]

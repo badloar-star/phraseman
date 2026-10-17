@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-49:i01",
-    "correctText": "The kitchen is here.",
+    "correctText": "en:lesson-03:session-49:i01:p1=red\nen:lesson-03:session-49:i01:p2=green\nen:lesson-03:session-49:i01:p3=blue\nen:lesson-03:session-49:i01:p4=brown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-49:word:red",
+    "correctText": "red",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i02",
-    "correctText": "hospital",
-    "correctResponseId": "en:lesson-03:session-49:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-49:i03",
-    "correctText": "hospital",
-    "correctResponseId": "en:lesson-03:session-49:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-49:i04",
-    "correctText": "en:lesson-03:session-49:i04:p1=hospital\nen:lesson-03:session-49:i04:p2=cheap\nen:lesson-03:session-49:i04:p3=unacceptable\nen:lesson-03:session-49:i04:p4=kitchen",
+    "correctText": "red",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-49:i03",
+    "correctText": "This is a red bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-49:word:green",
+    "correctText": "green",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-49:i04",
+    "correctText": "green",
+    "correctResponseId": "en:lesson-03:session-49:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-49:i05",
-    "correctText": "This is a hospital.",
+    "correctText": "It is a green lamp.",
+    "correctResponseId": "en:lesson-03:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-49:word:blue",
+    "correctText": "blue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i06",
-    "correctText": "The hospital is here.",
+    "correctText": "blue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i07",
-    "correctText": "It's cheap.",
+    "correctText": "This is a blue cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-49:word:brown",
+    "correctText": "brown",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i08",
-    "correctText": "a",
+    "correctText": "brown",
     "correctResponseId": "en:lesson-03:session-49:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-49:i09",
-    "correctText": "It is unacceptable.",
-    "correctResponseId": "en:lesson-03:session-49:i09:r1"
+    "correctText": "That is a brown rug.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i10",
-    "correctText": "en:lesson-03:session-49:i10:p1=hospital\nen:lesson-03:session-49:i10:p2=kitchen\nen:lesson-03:session-49:i10:p3=here\nen:lesson-03:session-49:i10:p4=there",
+    "correctText": "en:lesson-03:session-49:i10:p1=blue\nen:lesson-03:session-49:i10:p2=brown\nen:lesson-03:session-49:i10:p3=sofa\nen:lesson-03:session-49:i10:p4=rug",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i11",
-    "correctText": "That kitchen is there.",
-    "correctResponseId": null
+    "correctText": "Is it a brown cup?",
+    "correctResponseId": "en:lesson-03:session-49:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-49:i12",
-    "correctText": "That is a hospital.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-49:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-49:i13",
-    "correctText": "It's unacceptable.",
+    "correctText": "That is a red sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i14",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-03:session-49:i14:r1"
+    "correctText": "a green lamp",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i15",
-    "correctText": "It is cheap.",
-    "correctResponseId": "en:lesson-03:session-49:i15:r1"
+    "correctText": "Is this a red rug?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i16",
-    "correctText": "en:lesson-03:session-49:i16:p1=hospital\nen:lesson-03:session-49:i16:p2=cheap\nen:lesson-03:session-49:i16:p3=unacceptable\nen:lesson-03:session-49:i16:p4=kitchen",
+    "correctText": "en:lesson-03:session-49:i16:p1=brown\nen:lesson-03:session-49:i16:p2=green\nen:lesson-03:session-49:i16:p3=red\nen:lesson-03:session-49:i16:p4=blue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-49:i17",
-    "correctText": "The hospital is there.",
+    "correctText": "It is a brown rug.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-49",
   "learningOutcomeByLocale": {
-    "ru": "назвать больницу с a и указать место конкретной больницы с the",
-    "uk": "назвати лікарню з a й указати місце конкретної лікарні з the"
+    "ru": "назвать один предмет с цветом: a red cup, a blue sofa",
+    "uk": "назвати один предмет із кольором: a red cup, a blue sofa"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна больница",
-        "uk": "Одна лікарня"
+        "ru": "Подарок брату",
+        "uk": "Подарунок братові"
       },
       "bodyByLocale": {
-        "ru": "`hospital` — «больница». `This is a hospital` — «Это больница»: вы называете место на плане. Перед `hospital` нужно `a`: начальный `h` здесь произносится, слово начинается с согласного звука. Не ориентируйтесь на букву `o` после него. Большая вывеска не меняет артикль: всё равно `a hospital`.",
-        "uk": "`hospital` — «лікарня». `This is a hospital` — «Це лікарня»: ви називаєте місце на плані. Перед `hospital` потрібне `a`: початкове `h` тут вимовляється, слово починається з приголосного звука. Не орієнтуйтеся на літеру `o` після нього. Велика вивіска не змінює артикль: однаково `a hospital`."
+        "ru": "Вы выбираете подарок брату в магазине посуды. Он любит яркие вещи, и вам понравилась чашка цвета помидора. Продавец спрашивает, какая чашка вам нужна. red — «красный». Цвет ставим после a и перед чашкой: It is a red cup — «Это красная чашка».",
+        "uk": "Ви вибираєте подарунок братові в магазині посуду. Він любить яскраві речі, і вам сподобалася чашка кольору помідора. Продавець питає, яка чашка вам потрібна. red — «червоний». Колір ставимо після a і перед чашкою: It is a red cup — «Це червона чашка»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-49:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите больницу одним английским словом.",
-          "uk": "Назвіть лікарню одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что это красная чашка.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що це червона чашка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-49:intro1:r1",
-              "text": "hospital"
+              "text": "It is a red cup."
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r2",
-              "text": "hotel"
+              "text": "It is red a cup."
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r3",
-              "text": "airport"
+              "text": "It is a cup red."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-49:intro1:r1",
-              "text": "hospital"
+              "text": "It is a red cup."
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r2",
-              "text": "hotel"
+              "text": "It is red a cup."
             },
             {
               "responseId": "en:lesson-03:session-49:intro1:r3",
-              "text": "airport"
+              "text": "It is a cup red."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите больницу одним английским словом.",
-          "uk": "Назвіть лікарню одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что это красная чашка.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що це червона чашка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Больница вашего района",
-        "uk": "Лікарня вашого району"
+        "ru": "Диван в магазине мебели",
+        "uk": "Диван у меблевому магазині"
       },
       "bodyByLocale": {
-        "ru": "`The hospital is here` — «Больница здесь». Речь о конкретной больнице, которую вы ищете вместе на плане района. `the hospital` указывает на понятное вам обоим место. Для одного места нужно `is`. Если просто называете объект дальше на плане: `That is a hospital` — «Это больница».",
-        "uk": "`The hospital is here` — «Лікарня тут». Ідеться про конкретну лікарню, яку ви шукаєте разом на плані району. `the hospital` вказує на зрозуміле вам обом місце. Для одного місця потрібне `is`. Якщо просто називаєте об’єкт далі на плані: `That is a hospital` — «Це лікарня»."
+        "ru": "Вы с подругой зашли в магазин мебели. У стены стоит большой диван цвета неба в ясный день, и подруга просит вас назвать его продавцу. Вы подходите ближе и кладёте на диван руку. blue — «синий, голубой». This is a blue sofa — «Это синий диван».",
+        "uk": "Ви з подругою зайшли до меблевого магазину. Біля стіни стоїть великий диван кольору неба в ясний день, і подруга просить вас назвати його продавцю. Ви підходите ближче й кладете на диван руку. blue — «синій, блакитний». This is a blue sofa — «Це синій диван»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-49:intro2:q",
         "promptByLocale": {
-          "ru": "Вы нашли на плане больницу, которую искали вместе. Скажите «Больница здесь».",
-          "uk": "Ви знайшли на плані лікарню, яку шукали разом. Скажіть «Лікарня тут»."
+          "ru": "Подруга показывает на диван рядом с вами. Скажите продавцу, что это синий диван.",
+          "uk": "Подруга показує на диван поруч із вами. Скажіть продавцю, що це синій диван."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-49:intro2:r1",
-              "text": "The hospital is here."
+              "text": "This is a blue sofa."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r2",
-              "text": "The hospital are here."
+              "text": "This is blue a sofa."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r3",
-              "text": "The hospitals are here."
+              "text": "This a blue sofa."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-49:intro2:r1",
-              "text": "The hospital is here."
+              "text": "This is a blue sofa."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r2",
-              "text": "The hospital are here."
+              "text": "This is blue a sofa."
             },
             {
               "responseId": "en:lesson-03:session-49:intro2:r3",
-              "text": "The hospitals are here."
+              "text": "This a blue sofa."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы нашли на плане больницу, которую искали вместе. Скажите «Больница здесь».",
-          "uk": "Ви знайшли на плані лікарню, яку шукали разом. Скажіть «Лікарня тут»."
+          "ru": "Подруга показывает на диван рядом с вами. Скажите продавцу, что это синий диван.",
+          "uk": "Подруга показує на диван поруч із вами. Скажіть продавцю, що це синій диван."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Цена и неподходящий вариант",
-        "uk": "Ціна й невдалий варіант"
+        "ru": "Лампа на рынке",
+        "uk": "Лампа на ринку"
       },
       "bodyByLocale": {
-        "ru": "`cheap` — «дешёвый, недорогой». О вещи с низкой ценой: `It is cheap` — «Она недорогая». В этом примере оцениваем цену, а не качество. `unacceptable` — «неприемлемый»: предложенное время доставки совершенно не подходит. О нём: `It is unacceptable` — «Это неприемлемо». Это сильнее, чем просто «неидеально». А гостю можно показать знакомую кухню: `The kitchen is here` — «Кухня здесь».",
-        "uk": "`cheap` — «дешевий, недорогий». Про річ із низькою ціною: `It is cheap` — «Вона недорога». У цьому прикладі оцінюємо ціну, а не якість. `unacceptable` — «неприйнятний»: запропонований час доставки зовсім не підходить. Про нього: `It is unacceptable` — «Це неприйнятно». Це сильніше, ніж просто «неідеально». А гостеві можна показати знайому кухню: `The kitchen is here` — «Кухня тут»."
+        "ru": "На рынке продавец расставил лампы на длинном столе. Одна стоит далеко от вас, у стены, и у неё абажур цвета травы. Вы смотрите на неё через весь ряд. Подруга спрашивает, какую лампу вы заметили. green — «зелёный». That is a green lamp — «Это зелёная лампа».",
+        "uk": "На ринку продавець розставив лампи на довгому столі. Одна стоїть далеко від вас, біля стіни, і в неї абажур кольору трави. Ви дивитеся на неї через увесь ряд. Подруга питає, яку лампу ви помітили. green — «зелений». That is a green lamp — «Це зелена лампа»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-49:intro3:q",
         "promptByLocale": {
-          "ru": "Предложенное время доставки совершенно не подходит. Скажите «Это неприемлемо».",
-          "uk": "Запропонований час доставки зовсім не підходить. Скажіть «Це неприйнятно»."
+          "ru": "Лампа далеко от вас. Скажите подруге, что это зелёная лампа.",
+          "uk": "Лампа далеко від вас. Скажіть подрузі, що це зелена лампа."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-49:intro3:r1",
-              "text": "It is unacceptable."
+              "text": "That is a green lamp."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r2",
-              "text": "It is acceptable."
+              "text": "This is a green lamp."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r3",
-              "text": "It are unacceptable."
+              "text": "That is a lamp green."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-49:intro3:r1",
-              "text": "It is unacceptable."
+              "text": "That is a green lamp."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r2",
-              "text": "It is acceptable."
+              "text": "This is a green lamp."
             },
             {
               "responseId": "en:lesson-03:session-49:intro3:r3",
-              "text": "It are unacceptable."
+              "text": "That is a lamp green."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предложенное время доставки совершенно не подходит. Скажите «Это неприемлемо».",
-          "uk": "Запропонований час доставки зовсім не підходить. Скажіть «Це неприйнятно»."
+          "ru": "Лампа далеко от вас. Скажите подруге, что это зелёная лампа.",
+          "uk": "Лампа далеко від вас. Скажіть подрузі, що це зелена лампа."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "078ca09a16d48de2890b6fb19b51a2af138264f953a65a56ea84a47354eca610"
+  "introFingerprint": "df45d9941496e0b513d7ee130911ad0b4e8609f1dcd82fe5ffad2b826c71fffa"
 }

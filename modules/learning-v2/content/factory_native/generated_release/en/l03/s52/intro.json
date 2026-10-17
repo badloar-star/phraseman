@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-52",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько станций и указать место конкретной группы с the и are",
-    "uk": "назвати кілька станцій і вказати місце конкретної групи з the та are"
+    "ru": "показать на один предмет и назвать его признак: This round table, That oval mirror",
+    "uk": "показати на один предмет і назвати його ознаку: This round table, That oval mirror"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Несколько станций",
-        "uk": "Кілька станцій"
+        "ru": "Стол для кухни",
+        "uk": "Стіл для кухні"
       },
       "bodyByLocale": {
-        "ru": "`stations` — «станции», одна — `station`. В нашей поездке речь о железнодорожных станциях. Для нескольких добавляем `s`: `These are stations` — «Это станции», показываем на несколько рядом на карте. Десять поездов на одной станции не делают из неё десять станций.",
-        "uk": "`stations` — «станції», одна — `station`. У нашій поїздці йдеться про залізничні станції. Для кількох додаємо `s`: `These are stations` — «Це станції», показуємо на кілька поруч на карті. Десять поїздів на одній станції не роблять із неї десять станцій."
+        "ru": "Вы с подругой выбираете стол для кухни. Один стол стоит рядом с вами, и у него круглая столешница, как у большой тарелки. Продавец просит вас оценить его. round — «круглый». Слово ставим между this и столом: This round table is heavy — «Этот круглый стол тяжёлый».",
+        "uk": "Ви з подругою вибираєте стіл для кухні. Один стіл стоїть поруч із вами, і в нього кругла стільниця, як у великої тарілки. Продавець просить вас оцінити його. round — «круглий». Слово ставимо між this і столом: This round table is heavy — «Цей круглий стіл важкий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-52:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите несколько станций одним английским словом.",
-          "uk": "Назвіть кілька станцій одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что этот круглый стол тяжёлый.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що цей круглий стіл важкий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-52:intro1:r1",
-              "text": "stations"
+              "text": "This round table is heavy."
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r2",
-              "text": "station"
+              "text": "This table round is heavy."
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r3",
-              "text": "hotels"
+              "text": "This round table are heavy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-52:intro1:r1",
-              "text": "stations"
+              "text": "This round table is heavy."
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r2",
-              "text": "station"
+              "text": "This table round is heavy."
             },
             {
               "responseId": "en:lesson-03:session-52:intro1:r3",
-              "text": "hotels"
+              "text": "This round table are heavy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите несколько станций одним английским словом.",
-          "uk": "Назвіть кілька станцій одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что этот круглый стол тяжёлый.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що цей круглий стіл важкий."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Станции вашего маршрута",
-        "uk": "Станції вашого маршруту"
+        "ru": "Зеркало на дальней стене",
+        "uk": "Дзеркало на дальній стіні"
       },
       "bodyByLocale": {
-        "ru": "`The stations are here` — «Станции здесь»: это конкретные станции вашего маршрута, понятные вам обоим. `The` подходит для группы, а после `stations` нужно `are`. Для группы дальше: `Those stations are there` — «Те станции там».",
-        "uk": "`The stations are here` — «Станції тут»: це конкретні станції вашого маршруту, зрозумілі вам обом. `The` підходить для групи, а після `stations` потрібне `are`. Для групи далі: `Those stations are there` — «Ті станції там»."
+        "ru": "На дальней стене магазина висит зеркало в форме яйца. На нём ещё осталась заводская бирка, и подруга спрашивает, новое ли оно. Вы видите его через весь зал. Зеркало далеко, поэтому that. oval — «овальный». That oval mirror is new — «То овальное зеркало новое».",
+        "uk": "На дальній стіні магазину висить дзеркало у формі яйця. На ньому ще лишилася заводська бирка, і подруга питає, чи воно нове. Ви бачите його через увесь зал. Дзеркало далеко, тому that. oval — «овальний». That oval mirror is new — «Те овальне дзеркало нове»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-52:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже обсудили станции маршрута. Покажите их на карте: «Станции здесь».",
-          "uk": "Ви вже обговорили станції маршруту. Покажіть їх на карті: «Станції тут»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что то овальное зеркало новое.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що те овальне дзеркало нове."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-52:intro2:r1",
-              "text": "The stations are here."
+              "text": "That oval mirror is new."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r2",
-              "text": "The stations is here."
+              "text": "This oval mirror is new."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r3",
-              "text": "The station is here."
+              "text": "That mirror oval is new."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-52:intro2:r1",
-              "text": "The stations are here."
+              "text": "That oval mirror is new."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r2",
-              "text": "The stations is here."
+              "text": "This oval mirror is new."
             },
             {
               "responseId": "en:lesson-03:session-52:intro2:r3",
-              "text": "The station is here."
+              "text": "That mirror oval is new."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже обсудили станции маршрута. Покажите их на карте: «Станции здесь».",
-          "uk": "Ви вже обговорили станції маршруту. Покажіть їх на карті: «Станції тут»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что то овальное зеркало новое.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що те овальне дзеркало нове."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вес и справедливость",
-        "uk": "Вага й справедливість"
+        "ru": "Табурет в детском уголке",
+        "uk": "Табурет у дитячому куточку"
       },
       "bodyByLocale": {
-        "ru": "`light` — «лёгкий» по весу. О сумке, которую легко нести: `It is light` — «Она лёгкая». Здесь не говорим о цвете или освещении. `fair` — «справедливый»: каждый друг по очереди выбирает место прогулки. Об этом правиле: `It is fair` — «Это справедливо». `hotels` — отели; выбранные отели там: `The hotels are there`.",
-        "uk": "`light` — «легкий» за вагою. Про сумку, яку легко нести: `It is light` — «Вона легка». Тут не говоримо про колір чи освітлення. `fair` — «справедливий»: кожен друг по черзі вибирає місце прогулянки. Про це правило: `It is fair` — «Це справедливо». `hotels` — готелі; вибрані готелі там: `The hotels are there`."
+        "ru": "В детском уголке магазина стоит табурет. Он совсем невысокий: ребёнок достаёт ногами до пола. Табурет рядом с вами, а на бирке написана цена. Подруга спрашивает, дорого ли он. low — «низкий». This low stool is cheap — «Этот низкий табурет недорогой».",
+        "uk": "У дитячому куточку магазину стоїть табурет. Він зовсім невисокий: дитина сягає ногами до підлоги. Табурет поруч із вами, а на бирці написана ціна. Подруга питає, чи він дорогий. low — «низький». This low stool is cheap — «Цей низький табурет недорогий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-52:intro3:q",
         "promptByLocale": {
-          "ru": "Каждый по очереди выбирает место прогулки. Вы считаете такое правило справедливым. Скажите «Это справедливо».",
-          "uk": "Кожен по черзі вибирає місце прогулянки. Ви вважаєте таке правило справедливим. Скажіть «Це справедливо»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что этот низкий табурет недорогой.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що цей низький табурет недорогий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-52:intro3:r1",
-              "text": "It is fair."
+              "text": "This low stool is cheap."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r2",
-              "text": "It is light."
+              "text": "This low stool are cheap."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r3",
-              "text": "It are fair."
+              "text": "This stool low is cheap."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-52:intro3:r1",
-              "text": "It is fair."
+              "text": "This low stool is cheap."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r2",
-              "text": "It is light."
+              "text": "This low stool are cheap."
             },
             {
               "responseId": "en:lesson-03:session-52:intro3:r3",
-              "text": "It are fair."
+              "text": "This stool low is cheap."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Каждый по очереди выбирает место прогулки. Вы считаете такое правило справедливым. Скажите «Это справедливо».",
-          "uk": "Кожен по черзі вибирає місце прогулянки. Ви вважаєте таке правило справедливим. Скажіть «Це справедливо»."
+          "ru": "Подруга ждёт ответа. Скажите ей, что этот низкий табурет недорогой.",
+          "uk": "Подруга чекає на відповідь. Скажіть їй, що цей низький табурет недорогий."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "da26722d8d4ace8cc9ccd6d9ff783f283b42d34e201ef07a6fb8a6eecfea51f3"
+  "introFingerprint": "6897cba9fdfa6d104edb941397577f037532bf5a9b365e297e116a13a3fc71e3"
 }

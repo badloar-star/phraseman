@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-43:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-43:intro1:r2": {
-          "ru": "`bedroom` — одна спальня. Несколько — `bedrooms`.",
-          "uk": "`bedroom` — одна спальня. Кілька — `bedrooms`."
+          "ru": "Вы говорите о книгах вообще, а не о каких-то определённых, поэтому без the: Books are heavy.",
+          "uk": "Ви говорите про книжки взагалі, а не про якісь певні, тому без the: Books are heavy."
         },
         "en:lesson-03:session-43:intro1:r3": {
-          "ru": "`bottles` — бутылки. Спальни — `bedrooms`.",
-          "uk": "`bottles` — пляшки. Спальні — `bedrooms`."
+          "ru": "Книг много, поэтому нужно are: Books are heavy.",
+          "uk": "Книжок багато, тому потрібно are: Books are heavy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-43:intro2:r2": {
-          "ru": "Спален несколько: нужно `are`.",
-          "uk": "Спалень кілька: потрібне `are`."
+          "ru": "Вы оба смотрите на конкретные журналы, поэтому the: The magazines are new.",
+          "uk": "Ви обоє дивитеся на конкретні журнали, тому the: The magazines are new."
         },
         "en:lesson-03:session-43:intro2:r3": {
-          "ru": "Так говорят об одной спальне. Здесь несколько: `The bedrooms are there`.",
-          "uk": "Так говорять про одну спальню. Тут кілька: `The bedrooms are there`."
+          "ru": "Журналов несколько, поэтому нужно are: The magazines are new.",
+          "uk": "Журналів кілька, тому потрібно are: The magazines are new."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-43:intro3:r2": {
-          "ru": "`uncertain` — неуверенный. Здесь описываем терпение: `patient`.",
-          "uk": "`uncertain` — невпевнений. Тут описуємо терпіння: `patient`."
+          "ru": "Вы говорите о газетах вообще, а не о конкретных, поэтому без the: Newspapers are cheap.",
+          "uk": "Ви говорите про газети взагалі, а не про конкретні, тому без the: Newspapers are cheap."
         },
         "en:lesson-03:session-43:intro3:r3": {
-          "ru": "С `He` нужно `is`.",
-          "uk": "З `He` потрібне `is`."
+          "ru": "Газет много, поэтому нужно newspapers с s: Newspapers are cheap.",
+          "uk": "Газет багато, тому потрібно newspapers з s: Newspapers are cheap."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4ac2620cefaab1d2ff5416252ba03d95a6cf63a2077331a7251792365513ff63"
+  "auxiliaryFingerprint": "52866bcf848019b9376b5446f3e71651c97c958368e572cf49693472824aee5c"
 }

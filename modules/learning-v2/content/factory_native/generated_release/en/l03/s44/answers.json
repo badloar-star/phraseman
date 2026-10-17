@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-44:i01",
-    "correctText": "The children are here.",
+    "correctText": "A basket is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i02",
-    "correctText": "hotels",
+    "correctText": "A basket is here.",
     "correctResponseId": "en:lesson-03:session-44:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-44:i03",
-    "correctText": "hotels",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-44:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-44:i04",
-    "correctText": "en:lesson-03:session-44:i04:p1=hotels\nen:lesson-03:session-44:i04:p2=curious\nen:lesson-03:session-44:i04:p3=legal\nen:lesson-03:session-44:i04:p4=children",
+    "correctText": "en:lesson-03:session-44:i04:p1=customer\nen:lesson-03:session-44:i04:p2=seller\nen:lesson-03:session-44:i04:p3=assistant\nen:lesson-03:session-44:i04:p4=queue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i05",
-    "correctText": "These are hotels.",
+    "correctText": "The basket is full.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i06",
-    "correctText": "The hotels are here.",
+    "correctText": "An umbrella is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:word:customer",
+    "correctText": "customer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i07",
-    "correctText": "They're curious.",
+    "correctText": "customer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:word:seller",
+    "correctText": "seller",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i08",
-    "correctText": "Those",
+    "correctText": "seller",
     "correctResponseId": "en:lesson-03:session-44:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-44:i09",
-    "correctText": "It is legal.",
+    "correctText": "A customer is happy.",
     "correctResponseId": "en:lesson-03:session-44:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-44:i10",
-    "correctText": "en:lesson-03:session-44:i10:p1=hotels\nen:lesson-03:session-44:i10:p2=children\nen:lesson-03:session-44:i10:p3=here\nen:lesson-03:session-44:i10:p4=there",
+    "correctText": "en:lesson-03:session-44:i10:p1=customer\nen:lesson-03:session-44:i10:p2=basket\nen:lesson-03:session-44:i10:p3=trolley\nen:lesson-03:session-44:i10:p4=umbrella",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i11",
-    "correctText": "The children are curious.",
+    "correctText": "The seller is busy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i12",
-    "correctText": "Those hotels are there.",
+    "correctText": "The seller is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:word:assistant",
+    "correctText": "assistant",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i13",
-    "correctText": "It's legal.",
+    "correctText": "assistant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-44:word:queue",
+    "correctText": "queue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i14",
-    "correctText": "are",
+    "correctText": "queue",
     "correctResponseId": "en:lesson-03:session-44:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-44:i15",
-    "correctText": "They are curious.",
+    "correctText": "An assistant is here.",
     "correctResponseId": "en:lesson-03:session-44:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-44:i16",
-    "correctText": "en:lesson-03:session-44:i16:p1=hotels\nen:lesson-03:session-44:i16:p2=curious\nen:lesson-03:session-44:i16:p3=legal\nen:lesson-03:session-44:i16:p4=children",
+    "correctText": "en:lesson-03:session-44:i16:p1=queue\nen:lesson-03:session-44:i16:p2=assistant\nen:lesson-03:session-44:i16:p3=seller\nen:lesson-03:session-44:i16:p4=customer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-44:i17",
-    "correctText": "The hotels are there.",
+    "correctText": "The queue is long.",
     "correctResponseId": null
   }
 ]

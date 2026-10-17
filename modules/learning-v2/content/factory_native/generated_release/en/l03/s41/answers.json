@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-41:i01",
-    "correctText": "The phone is here.",
+    "correctText": "A box is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i02",
-    "correctText": "kitchen",
+    "correctText": "A bag is here.",
     "correctResponseId": "en:lesson-03:session-41:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-41:i03",
-    "correctText": "kitchen",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-41:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-41:i04",
-    "correctText": "en:lesson-03:session-41:i04:p1=kitchen\nen:lesson-03:session-41:i04:p2=honest\nen:lesson-03:session-41:i04:p3=accurate\nen:lesson-03:session-41:i04:p4=phone",
+    "correctText": "en:lesson-03:session-41:i04:p1=receipt\nen:lesson-03:session-41:i04:p2=cashier\nen:lesson-03:session-41:i04:p3=mistake\nen:lesson-03:session-41:i04:p4=counter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i05",
-    "correctText": "This is a kitchen.",
+    "correctText": "The bag is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i06",
-    "correctText": "The kitchen is here.",
+    "correctText": "This is a lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:word:receipt",
+    "correctText": "receipt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i07",
-    "correctText": "He's honest.",
+    "correctText": "receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:word:cashier",
+    "correctText": "cashier",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i08",
-    "correctText": "a",
+    "correctText": "cashier",
     "correctResponseId": "en:lesson-03:session-41:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-41:i09",
-    "correctText": "It is accurate.",
+    "correctText": "A receipt is here.",
     "correctResponseId": "en:lesson-03:session-41:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-41:i10",
-    "correctText": "en:lesson-03:session-41:i10:p1=kitchen\nen:lesson-03:session-41:i10:p2=phone\nen:lesson-03:session-41:i10:p3=here\nen:lesson-03:session-41:i10:p4=there",
+    "correctText": "en:lesson-03:session-41:i10:p1=receipt\nen:lesson-03:session-41:i10:p2=bag\nen:lesson-03:session-41:i10:p3=box\nen:lesson-03:session-41:i10:p4=lamp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i11",
-    "correctText": "That phone is there.",
+    "correctText": "A cashier is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i12",
-    "correctText": "That is a kitchen.",
+    "correctText": "The cashier is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:word:mistake",
+    "correctText": "mistake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i13",
-    "correctText": "It's accurate.",
+    "correctText": "mistake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:word:counter",
+    "correctText": "counter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i14",
-    "correctText": "is",
+    "correctText": "counter",
     "correctResponseId": "en:lesson-03:session-41:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-41:i15",
-    "correctText": "He is honest.",
+    "correctText": "The mistake is here.",
     "correctResponseId": "en:lesson-03:session-41:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-41:i16",
-    "correctText": "en:lesson-03:session-41:i16:p1=kitchen\nen:lesson-03:session-41:i16:p2=honest\nen:lesson-03:session-41:i16:p3=accurate\nen:lesson-03:session-41:i16:p4=phone",
+    "correctText": "en:lesson-03:session-41:i16:p1=counter\nen:lesson-03:session-41:i16:p2=mistake\nen:lesson-03:session-41:i16:p3=cashier\nen:lesson-03:session-41:i16:p4=receipt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i17",
-    "correctText": "The kitchen is there.",
+    "correctText": "The counter is here.",
     "correctResponseId": null
   }
 ]

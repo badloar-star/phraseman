@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-03:session-54:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви впізнаєте аеропорт, у якому вже бували. Скажіть «Цей аеропорт знайомий»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви впізнаєте аеропорт, у якому вже бували. Скажіть «Цей аеропорт знайомий»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This airport is familiar.",
-        "localizedMeaning": {
-          "ru": "Вы узнаёте аэропорт, в котором уже бывали. Скажите «Этот аэропорт знакомый»",
-          "uk": "Ви впізнаєте аеропорт, у якому вже бували. Скажіть «Цей аеропорт знайомий»"
-        },
-        "orderedTokens": [
-          "This",
-          "airport",
-          "is",
-          "familiar"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-54:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Ви впізнаєте аеропорт, у якому вже бували. Скажіть «Цей аеропорт знайомий»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This airport is familiar.`",
-              "uk": "тут потрібно `is` — `This airport is familiar.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-54:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-54:i02:r1",
-          "text": "striped"
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i02:r2",
-          "text": "full"
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i02:r3",
-          "text": "heavy"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-54:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-54:i02:audio",
-          "transcript": "striped"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-54:i02:r1",
-            "targetText": "striped",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i02:r2",
-            "targetText": "full",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i02:r3",
-            "targetText": "heavy",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-54:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `striped`, а в этом варианте — `full`.",
-              "uk": "У записі перше слово — `striped`, а в цьому варіанті — `full`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `striped`, а в этом варианте — `heavy`.",
-              "uk": "У записі перше слово — `striped`, а в цьому варіанті — `heavy`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-54:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть одним словом опис «смугастий»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-54:i03:r1",
-          "text": "striped"
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i03:r2",
-          "text": "full"
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i03:r3",
-          "text": "familiar"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть одним словом опис «смугастий»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите одним словом описание «полосатый»",
-          "uk": "Назвіть одним словом опис «смугастий»"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-54:i03:r1",
-            "text": "striped"
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i03:r2",
-            "text": "full"
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i03:r3",
-            "text": "familiar"
-          }
-        ],
-        "testedDimension": "Назвіть одним словом опис «смугастий»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-54:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть одним словом опис «смугастий»",
-            "feedbackByLocale": {
-              "ru": "`full` — полный; полосатый — `striped`.",
-              "uk": "`full` — повний; смугастий — `striped`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть одним словом опис «смугастий»",
-            "feedbackByLocale": {
-              "ru": "`familiar` — знакомый; полосатый — `striped`.",
-              "uk": "`familiar` — знайомий; смугастий — `striped`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-54:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -208,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-54:i04:p1",
+            "pairId": "en:lesson-03:session-54:i01:p1",
             "target": "striped",
             "meaningByLocale": {
               "ru": "полосатый",
@@ -216,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-03:session-54:i04:p2",
-            "target": "familiar",
+            "pairId": "en:lesson-03:session-54:i01:p2",
+            "target": "checked",
             "meaningByLocale": {
-              "ru": "знакомый",
-              "uk": "знайомий"
+              "ru": "клетчатый",
+              "uk": "картатий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-54:i04:p3",
-            "target": "unfamiliar",
+            "pairId": "en:lesson-03:session-54:i01:p3",
+            "target": "spotted",
             "meaningByLocale": {
-              "ru": "незнакомый",
-              "uk": "незнайомий"
+              "ru": "в горошек, пятнистый",
+              "uk": "у горошок, плямистий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-54:i04:p4",
-            "target": "airport",
+            "pairId": "en:lesson-03:session-54:i01:p4",
+            "target": "floral",
             "meaningByLocale": {
-              "ru": "аэропорт",
-              "uk": "аеропорт"
+              "ru": "цветочный (с цветами)",
+              "uk": "квітковий (з квітами)"
             }
           }
         ],
         "leftColumn": [
           "striped",
-          "familiar",
-          "unfamiliar",
-          "airport"
+          "checked",
+          "spotted",
+          "floral"
         ],
         "rightColumn": [
           "смугастий",
-          "знайомий",
-          "незнайомий",
-          "аеропорт"
+          "картатий",
+          "у горошок, плямистий",
+          "квітковий (з квітами)"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,119 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-54:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-03:session-54:word:striped",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — striped",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-54:i05:audio"
+        "en:lesson-03:session-54:word:striped:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — striped",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-54:i05:audio",
-          "transcript": "It is striped."
+          "audioTargetId": "en:lesson-03:session-54:word:striped:audio",
+          "transcript": "striped"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "It is striped.",
-        "orderedTokens": [
-          "It",
-          "is",
-          "striped"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-54:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is striped.`",
-              "uk": "тут потрібно `is` — `It is striped.`"
+            "responseId": "en:lesson-03:session-54:word:striped:r1",
+            "targetText": "striped",
+            "meaningByLocale": {
+              "ru": "полосатый. This striped scarf is new — «Этот полосатый шарф новый». О шарфе, футболке, ткани, обоях.",
+              "uk": "смугастий. This striped scarf is new — «Цей смугастий шарф новий». Про шарф, футболку, тканину, шпалери."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "striped",
+          "definitionByLocale": {
+            "ru": "полосатый. This striped scarf is new — «Этот полосатый шарф новый». О шарфе, футболке, ткани, обоях.",
+            "uk": "смугастий. This striped scarf is new — «Цей смугастий шарф новий». Про шарф, футболку, тканину, шпалери."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-54:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Покажіть на сумку поруч: «Це смугаста сумка»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть на сумку поруч: «Це смугаста сумка»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is a striped bag.",
-        "localizedMeaning": {
-          "ru": "Покажите на сумку рядом: «Это полосатая сумка»",
-          "uk": "Покажіть на сумку поруч: «Це смугаста сумка»"
-        },
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "striped",
-          "bag"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-54:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Покажіть на сумку поруч: «Це смугаста сумка»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a striped bag.`",
-              "uk": "тут потрібно `is` — `This is a striped bag.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-54:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-03:session-54:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг показує інший аеропорт, який ви бачите вперше. Скажіть «Він незнайомий» зі скороченням",
+      "prompt": "Подруга показує на тільняшку моряка й називає малюнок на ній, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-54:i07:audio"
+        "en:lesson-03:session-54:i02:audio"
       ],
-      "accessibilityLabel": "Друг показує інший аеропорт, який ви бачите вперше. Скажіть «Він незнайомий» зі скороченням",
+      "accessibilityLabel": "Подруга показує на тільняшку моряка й називає малюнок на ній, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-54:i07:audio",
-          "transcript": "It's unfamiliar."
+          "audioTargetId": "en:lesson-03:session-54:i02:audio",
+          "transcript": "striped"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unfamiliar.",
+        "targetPhrase": "striped",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,68 +153,157 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-54:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Плед лежить поруч із вами. Скажіть продавцю повною фразою: цей смугастий плед м’який.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Плед лежить поруч із вами. Скажіть продавцю повною фразою: цей смугастий плед м’який.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This striped blanket is soft.",
+        "localizedMeaning": {
+          "ru": "Плед лежит рядом с вами. Скажите продавцу полной фразой: этот полосатый плед мягкий.",
+          "uk": "Плед лежить поруч із вами. Скажіть продавцю повною фразою: цей смугастий плед м’який."
+        },
+        "orderedTokens": [
+          "This",
+          "striped",
+          "blanket",
+          "is",
+          "soft"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-54:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Плед лежить поруч із вами. Скажіть продавцю повною фразою: цей смугастий плед м’який.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This striped blanket is soft.`",
+              "uk": "тут потрібно `is` — `This striped blanket is soft.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:word:checked",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — checked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-54:word:checked:audio"
+      ],
+      "accessibilityLabel": "Картка слова — checked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-54:word:checked:audio",
+          "transcript": "checked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-54:word:checked:r1",
+            "targetText": "checked",
+            "meaningByLocale": {
+              "ru": "клетчатый. That checked shirt is old — «Та клетчатая рубашка старая». О рубашке, пледе, скатерти.",
+              "uk": "картатий. That checked shirt is old — «Та картата сорочка стара». Про сорочку, плед, скатертину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "checked",
+          "definitionByLocale": {
+            "ru": "клетчатый. That checked shirt is old — «Та клетчатая рубашка старая». О рубашке, пледе, скатерти.",
+            "uk": "картатий. That checked shirt is old — «Та картата сорочка стара». Про сорочку, плед, скатертину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви називаєте одну смугасту сумку",
+      "prompt": "Подруга показує на тканину з квадратів, як шахова дошка. Як називається такий малюнок англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-54:i08:r1",
-          "text": "a"
+          "responseId": "en:lesson-03:session-54:i04:r1",
+          "text": "checked"
         },
         {
-          "responseId": "en:lesson-03:session-54:i08:r2",
-          "text": "an"
+          "responseId": "en:lesson-03:session-54:i04:r2",
+          "text": "striped"
         },
         {
-          "responseId": "en:lesson-03:session-54:i08:r3",
-          "text": "are"
+          "responseId": "en:lesson-03:session-54:i04:r3",
+          "text": "plain"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви називаєте одну смугасту сумку",
+      "accessibilityLabel": "Подруга показує на тканину з квадратів, як шахова дошка. Як називається такий малюнок англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы называете одну полосатую сумку",
-          "uk": "Ви називаєте одну смугасту сумку"
+          "ru": "Подруга показывает на ткань из квадратов, как шахматная доска. Как называется такой рисунок по-английски?",
+          "uk": "Подруга показує на тканину з квадратів, як шахова дошка. Як називається такий малюнок англійською?"
         },
-        "gappedTargetPhrase": "This is ___ striped bag.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-54:i08:r1",
-            "text": "a"
+            "responseId": "en:lesson-03:session-54:i04:r1",
+            "text": "checked"
           },
           {
-            "responseId": "en:lesson-03:session-54:i08:r2",
-            "text": "an"
+            "responseId": "en:lesson-03:session-54:i04:r2",
+            "text": "striped"
           },
           {
-            "responseId": "en:lesson-03:session-54:i08:r3",
-            "text": "are"
+            "responseId": "en:lesson-03:session-54:i04:r3",
+            "text": "plain"
           }
         ],
-        "testedDimension": "Ви називаєте одну смугасту сумку",
+        "testedDimension": "Подруга показує на тканину з квадратів, як шахова дошка. Як називається такий малюнок англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-54:i08:r2",
+            "responseId": "en:lesson-03:session-54:i04:r2",
             "correct": false,
-            "testedDimension": "Ви називаєте одну смугасту сумку",
+            "testedDimension": "Подруга показує на тканину з квадратів, як шахова дошка. Як називається такий малюнок англійською?",
             "feedbackByLocale": {
-              "ru": "После артикля согласный звук: `a striped bag`.",
-              "uk": "Після артикля приголосний звук: `a striped bag`."
+              "ru": "striped — это полосатый, а у шахматной доски квадраты: checked.",
+              "uk": "striped — це смугастий, а в шахової дошки квадрати: checked."
             }
           },
           {
-            "responseId": "en:lesson-03:session-54:i08:r3",
+            "responseId": "en:lesson-03:session-54:i04:r3",
             "correct": false,
-            "testedDimension": "Ви називаєте одну смугасту сумку",
+            "testedDimension": "Подруга показує на тканину з квадратів, як шахова дошка. Як називається такий малюнок англійською?",
             "feedbackByLocale": {
-              "ru": "`is` уже есть. Перед описанием одной сумки нужно `a`.",
-              "uk": "`is` уже є. Перед описом однієї сумки потрібне `a`."
+              "ru": "plain — это без рисунка, а здесь квадраты: checked.",
+              "uk": "plain — це без малюнка, а тут квадрати: checked."
             }
           }
         ]
@@ -462,73 +311,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-54:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис номера, про який немає відомостей",
+      "prompt": "Послухайте, що продавець каже про сорочку",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-54:i09:r1",
-          "text": "It is unknown."
+          "responseId": "en:lesson-03:session-54:i05:r1",
+          "text": "That striped shirt is new."
         },
         {
-          "responseId": "en:lesson-03:session-54:i09:r2",
-          "text": "It is reliable."
+          "responseId": "en:lesson-03:session-54:i05:r2",
+          "text": "That checked shirt is new."
         },
         {
-          "responseId": "en:lesson-03:session-54:i09:r3",
-          "text": "It is familiar."
+          "responseId": "en:lesson-03:session-54:i05:r3",
+          "text": "That striped shirt is old."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-54:i09:audio"
+        "en:lesson-03:session-54:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте опис номера, про який немає відомостей",
+      "accessibilityLabel": "Послухайте, що продавець каже про сорочку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-54:i09:audio",
-          "transcript": "It is unknown."
+          "audioTargetId": "en:lesson-03:session-54:i05:audio",
+          "transcript": "That striped shirt is new."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-54:i09:r1",
-            "targetText": "It is unknown.",
+            "responseId": "en:lesson-03:session-54:i05:r1",
+            "targetText": "That striped shirt is new.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-54:i09:r2",
-            "targetText": "It is reliable.",
+            "responseId": "en:lesson-03:session-54:i05:r2",
+            "targetText": "That checked shirt is new.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-54:i09:r3",
-            "targetText": "It is familiar.",
+            "responseId": "en:lesson-03:session-54:i05:r3",
+            "targetText": "That striped shirt is old.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-54:i09:r2",
+            "responseId": "en:lesson-03:session-54:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис номера, про який немає відомостей",
+            "testedDimension": "Послухайте, що продавець каже про сорочку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unknown`, а в этом варианте — `reliable`.",
-              "uk": "У записі останнє слово — `unknown`, а в цьому варіанті — `reliable`."
+              "ru": "В записи рисунок — `striped`, а в этом варианте — `checked`.",
+              "uk": "У записі малюнок — `striped`, а в цьому варіанті — `checked`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-54:i09:r3",
+            "responseId": "en:lesson-03:session-54:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис номера, про який немає відомостей",
+            "testedDimension": "Послухайте, що продавець каже про сорочку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unknown`, а в этом варианте — `familiar`.",
-              "uk": "У записі останнє слово — `unknown`, а в цьому варіанті — `familiar`."
+              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
+              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
             }
           }
         ],
@@ -538,9 +387,292 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-54:i10",
+      "interactionId": "en:lesson-03:session-54:word:spotted",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spotted",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-54:word:spotted:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spotted",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-54:word:spotted:audio",
+          "transcript": "spotted"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-54:word:spotted:r1",
+            "targetText": "spotted",
+            "meaningByLocale": {
+              "ru": "в горошек, пятнистый. Those spotted socks are warm — «Те носки в горошек тёплые». О носках, платье, ткани.",
+              "uk": "у горошок, плямистий. Those spotted socks are warm — «Ті шкарпетки в горошок теплі». Про шкарпетки, сукню, тканину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spotted",
+          "definitionByLocale": {
+            "ru": "в горошек, пятнистый. Those spotted socks are warm — «Те носки в горошек тёплые». О носках, платье, ткани.",
+            "uk": "у горошок, плямистий. Those spotted socks are warm — «Ті шкарпетки в горошок теплі». Про шкарпетки, сукню, тканину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга показує на тканину у великий горошок і називає малюнок, а ви повторюєте за нею слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Подруга показує на тканину у великий горошок і називає малюнок, а ви повторюєте за нею слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-54:i06:audio",
+          "transcript": "spotted"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "spotted",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте подругу й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-54:i07:audio",
+          "transcript": "Those spotted socks are old."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Those spotted socks are old.",
+        "orderedTokens": [
+          "Those",
+          "spotted",
+          "socks",
+          "are",
+          "old"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-54:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `Those spotted socks are old.`",
+              "uk": "тут потрібно `are` — `Those spotted socks are old.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:word:floral",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — floral",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-54:word:floral:audio"
+      ],
+      "accessibilityLabel": "Картка слова — floral",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-54:word:floral:audio",
+          "transcript": "floral"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-54:word:floral:r1",
+            "targetText": "floral",
+            "meaningByLocale": {
+              "ru": "цветочный, с рисунком из цветов. This floral dress is cheap — «Это цветочное платье недорогое». О платье, ткани, чашке, занавеске.",
+              "uk": "квітковий, з малюнком із квітів. This floral dress is cheap — «Ця квіткова сукня недорога». Про сукню, тканину, чашку, завісу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floral",
+          "definitionByLocale": {
+            "ru": "цветочный, с рисунком из цветов. This floral dress is cheap — «Это цветочное платье недорогое». О платье, ткани, чашке, занавеске.",
+            "uk": "квітковий, з малюнком із квітів. This floral dress is cheap — «Ця квіткова сукня недорога». Про сукню, тканину, чашку, завісу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга показує на тканину, на якій намальовані квіти. Як називається такий малюнок англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-54:i08:r1",
+          "text": "floral"
+        },
+        {
+          "responseId": "en:lesson-03:session-54:i08:r2",
+          "text": "spotted"
+        },
+        {
+          "responseId": "en:lesson-03:session-54:i08:r3",
+          "text": "plain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга показує на тканину, на якій намальовані квіти. Як називається такий малюнок англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга показывает на ткань, на которой нарисованы цветы. Как называется такой рисунок по-английски?",
+          "uk": "Подруга показує на тканину, на якій намальовані квіти. Як називається такий малюнок англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i08:r1",
+            "text": "floral"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i08:r2",
+            "text": "spotted"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i08:r3",
+            "text": "plain"
+          }
+        ],
+        "testedDimension": "Подруга показує на тканину, на якій намальовані квіти. Як називається такий малюнок англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга показує на тканину, на якій намальовані квіти. Як називається такий малюнок англійською?",
+            "feedbackByLocale": {
+              "ru": "spotted — это в горошек, а на этой ткани цветы: floral.",
+              "uk": "spotted — це в горошок, а на цій тканині квіти: floral."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга показує на тканину, на якій намальовані квіти. Як називається такий малюнок англійською?",
+            "feedbackByLocale": {
+              "ru": "plain — это без рисунка, а здесь цветы: floral.",
+              "uk": "plain — це без малюнка, а тут квіти: floral."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сукня лежить поруч із вами. Скажіть продавцю повною фразою: ця квіткова сукня недорога.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сукня лежить поруч із вами. Скажіть продавцю повною фразою: ця квіткова сукня недорога.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This floral dress is cheap.",
+        "localizedMeaning": {
+          "ru": "Платье лежит рядом с вами. Скажите продавцу полной фразой: это цветочное платье недорогое.",
+          "uk": "Сукня лежить поруч із вами. Скажіть продавцю повною фразою: ця квіткова сукня недорога."
+        },
+        "orderedTokens": [
+          "This",
+          "floral",
+          "dress",
+          "is",
+          "cheap"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-54:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Сукня лежить поруч із вами. Скажіть продавцю повною фразою: ця квіткова сукня недорога.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This floral dress is cheap.`",
+              "uk": "тут потрібно `is` — `This floral dress is cheap.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -553,48 +685,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-54:i10:p1",
-            "target": "unknown",
+            "target": "spotted",
             "meaningByLocale": {
-              "ru": "неизвестный",
-              "uk": "невідомий"
+              "ru": "в горошек, пятнистый",
+              "uk": "у горошок, плямистий"
             }
           },
           {
             "pairId": "en:lesson-03:session-54:i10:p2",
-            "target": "reliable",
+            "target": "floral",
             "meaningByLocale": {
-              "ru": "надёжный",
-              "uk": "надійний"
+              "ru": "цветочный (с цветами)",
+              "uk": "квітковий (з квітами)"
             }
           },
           {
             "pairId": "en:lesson-03:session-54:i10:p3",
-            "target": "airport",
+            "target": "scarf",
             "meaningByLocale": {
-              "ru": "аэропорт",
-              "uk": "аеропорт"
+              "ru": "шарф",
+              "uk": "шарф"
             }
           },
           {
             "pairId": "en:lesson-03:session-54:i10:p4",
-            "target": "familiar",
+            "target": "dress",
             "meaningByLocale": {
-              "ru": "знакомый",
-              "uk": "знайомий"
+              "ru": "платье",
+              "uk": "сукня"
             }
           }
         ],
         "leftColumn": [
-          "unknown",
-          "reliable",
-          "airport",
-          "familiar"
+          "spotted",
+          "floral",
+          "scarf",
+          "dress"
         ],
         "rightColumn": [
-          "невідомий",
-          "надійний",
-          "аеропорт",
-          "знайомий"
+          "у горошок, плямистий",
+          "квітковий (з квітами)",
+          "шарф",
+          "сукня"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,87 +744,188 @@
     },
     {
       "interactionId": "en:lesson-03:session-54:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання подруги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-54:i11:r1",
+          "text": "Is that striped scarf old?"
+        },
+        {
+          "responseId": "en:lesson-03:session-54:i11:r2",
+          "text": "Is that checked scarf old?"
+        },
+        {
+          "responseId": "en:lesson-03:session-54:i11:r3",
+          "text": "Is this striped scarf old?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-54:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте запитання подруги",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-54:i11:audio",
-          "transcript": "That bag is striped."
+          "transcript": "Is that striped scarf old?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That bag is striped.",
-        "orderedTokens": [
-          "That",
-          "bag",
-          "is",
-          "striped"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-54:i11:tile:d1",
+            "responseId": "en:lesson-03:session-54:i11:r1",
+            "targetText": "Is that striped scarf old?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i11:r2",
+            "targetText": "Is that checked scarf old?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i11:r3",
+            "targetText": "Is this striped scarf old?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-54:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте запитання подруги",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That bag is striped.`",
-              "uk": "тут потрібно `is` — `That bag is striped.`"
+              "ru": "В записи рисунок — `striped`, а в этом варианте — `checked`.",
+              "uk": "У записі малюнок — `striped`, а в цьому варіанті — `checked`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання подруги",
+            "feedbackByLocale": {
+              "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
+              "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-54:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Аеропорт для подорожі вже вибрано. Запитайте «Де аеропорт?»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сукня лежить поруч із вами. Доповніть фразу, не ставлячи слова поруч",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-54:i12:r1",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-54:i12:r2",
+          "text": "A this"
+        },
+        {
+          "responseId": "en:lesson-03:session-54:i12:r3",
+          "text": "The this"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Аеропорт для подорожі вже вибрано. Запитайте «Де аеропорт?»",
+      "accessibilityLabel": "Сукня лежить поруч із вами. Доповніть фразу, не ставлячи слова поруч",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where is the airport?",
-        "localizedMeaning": {
-          "ru": "Аэропорт для поездки уже выбран. Спросите «Где аэропорт?»",
-          "uk": "Аеропорт для подорожі вже вибрано. Запитайте «Де аеропорт?»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Платье лежит рядом с вами. Дополните фразу, не ставя слова рядом",
+          "uk": "Сукня лежить поруч із вами. Доповніть фразу, не ставлячи слова поруч"
         },
+        "gappedTargetPhrase": "___ spotted dress is new.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i12:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r2",
+            "text": "A this"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r3",
+            "text": "The this"
+          }
+        ],
+        "testedDimension": "Сукня лежить поруч із вами. Доповніть фразу, не ставлячи слова поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Сукня лежить поруч із вами. Доповніть фразу, не ставлячи слова поруч",
+            "feedbackByLocale": {
+              "ru": "Слова a и this вместе не ставим: This spotted dress.",
+              "uk": "Слова a і this разом не ставимо: This spotted dress."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Сукня лежить поруч із вами. Доповніть фразу, не ставлячи слова поруч",
+            "feedbackByLocale": {
+              "ru": "Слова the и this вместе не ставим: This spotted dress.",
+              "uk": "Слова the і this разом не ставимо: This spotted dress."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте продавця й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте продавця й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-54:i13:audio",
+          "transcript": "The checked shirt is new."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The checked shirt is new.",
         "orderedTokens": [
-          "Where",
+          "The",
+          "checked",
+          "shirt",
           "is",
-          "the",
-          "airport"
+          "new"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-54:i12:tile:d1",
+            "responseId": "en:lesson-03:session-54:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Аеропорт для подорожі вже вибрано. Запитайте «Де аеропорт?»",
+            "testedDimension": "Послухайте продавця й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Where is the airport?`",
-              "uk": "тут потрібно `is` — `Where is the airport?`"
+              "ru": "здесь нужно `is` — `The checked shirt is new.`",
+              "uk": "тут потрібно `is` — `The checked shirt is new.`"
             }
           }
         ],
@@ -704,26 +937,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-54:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-03:session-54:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сервіс не раз виконував обіцяне. Скажіть про нього «Він надійний» зі скороченням",
+      "prompt": "Подруга питає, який шарф вам потрібен. Скажіть їй, що той смугастий",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-54:i13:audio"
+        "en:lesson-03:session-54:i14:audio"
       ],
-      "accessibilityLabel": "Сервіс не раз виконував обіцяне. Скажіть про нього «Він надійний» зі скороченням",
+      "accessibilityLabel": "Подруга питає, який шарф вам потрібен. Скажіть їй, що той смугастий",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-54:i13:audio",
-          "transcript": "It's reliable."
+          "audioTargetId": "en:lesson-03:session-54:i14:audio",
+          "transcript": "that striped scarf"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's reliable.",
+        "targetPhrase": "that striped scarf",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -737,153 +970,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-54:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Ви описуєте одну сумку далі від себе",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-54:i14:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i14:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i14:r3",
-          "text": "am"
-        }
-      ],
+      "interactionId": "en:lesson-03:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте сорочку, про яку вже говорили з продавцем. Запитайте його, чи тут картата сорочка.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви описуєте одну сумку далі від себе",
+      "accessibilityLabel": "Ви шукаєте сорочку, про яку вже говорили з продавцем. Запитайте його, чи тут картата сорочка.",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы описываете одну сумку дальше от себя",
-          "uk": "Ви описуєте одну сумку далі від себе"
+        "family": "phrase_builder",
+        "targetPhrase": "Is the checked shirt here?",
+        "localizedMeaning": {
+          "ru": "Вы ищете рубашку, о которой уже говорили с продавцом. Спросите его, здесь ли клетчатая рубашка.",
+          "uk": "Ви шукаєте сорочку, про яку вже говорили з продавцем. Запитайте його, чи тут картата сорочка."
         },
-        "gappedTargetPhrase": "That bag ___ striped.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Is",
+          "the",
+          "checked",
+          "shirt",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-54:i14:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i14:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i14:r3",
-            "text": "am"
+            "responseId": "en:lesson-03:session-54:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте сорочку, про яку вже говорили з продавцем. Запитайте його, чи тут картата сорочка.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is the checked shirt here?`",
+              "uk": "тут потрібно `Is` — `Is the checked shirt here?`"
+            }
           }
         ],
-        "testedDimension": "Ви описуєте одну сумку далі від себе",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-54:i14:r2",
-            "correct": false,
-            "testedDimension": "Ви описуєте одну сумку далі від себе",
-            "feedbackByLocale": {
-              "ru": "Одна сумка: `That bag is striped`.",
-              "uk": "Одна сумка: `That bag is striped`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i14:r3",
-            "correct": false,
-            "testedDimension": "Ви описуєте одну сумку далі від себе",
-            "feedbackByLocale": {
-              "ru": "С `That bag` нужно `is`.",
-              "uk": "З `That bag` потрібне `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-54:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте опис місця, яке людина бачить уперше",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-54:i15:r1",
-          "text": "It is unfamiliar."
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i15:r2",
-          "text": "It is familiar."
-        },
-        {
-          "responseId": "en:lesson-03:session-54:i15:r3",
-          "text": "It is striped."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-54:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте опис місця, яке людина бачить уперше",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-54:i15:audio",
-          "transcript": "It is unfamiliar."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-54:i15:r1",
-            "targetText": "It is unfamiliar.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i15:r2",
-            "targetText": "It is familiar.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i15:r3",
-            "targetText": "It is striped.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-54:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте опис місця, яке людина бачить уперше",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `familiar`.",
-              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `familiar`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-54:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте опис місця, яке людина бачить уперше",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unfamiliar`, а в этом варианте — `striped`.",
-              "uk": "У записі останнє слово — `unfamiliar`, а в цьому варіанті — `striped`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-54:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,48 +1031,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-54:i16:p1",
+            "target": "floral",
+            "meaningByLocale": {
+              "ru": "цветочный (с цветами)",
+              "uk": "квітковий (з квітами)"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-54:i16:p2",
+            "target": "spotted",
+            "meaningByLocale": {
+              "ru": "в горошек, пятнистый",
+              "uk": "у горошок, плямистий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-54:i16:p3",
+            "target": "checked",
+            "meaningByLocale": {
+              "ru": "клетчатый",
+              "uk": "картатий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-54:i16:p4",
             "target": "striped",
             "meaningByLocale": {
               "ru": "полосатый",
               "uk": "смугастий"
             }
-          },
-          {
-            "pairId": "en:lesson-03:session-54:i16:p2",
-            "target": "unfamiliar",
-            "meaningByLocale": {
-              "ru": "незнакомый",
-              "uk": "незнайомий"
-            }
-          },
-          {
-            "pairId": "en:lesson-03:session-54:i16:p3",
-            "target": "unknown",
-            "meaningByLocale": {
-              "ru": "неизвестный",
-              "uk": "невідомий"
-            }
-          },
-          {
-            "pairId": "en:lesson-03:session-54:i16:p4",
-            "target": "reliable",
-            "meaningByLocale": {
-              "ru": "надёжный",
-              "uk": "надійний"
-            }
           }
         ],
         "leftColumn": [
-          "striped",
-          "unfamiliar",
-          "unknown",
-          "reliable"
+          "floral",
+          "spotted",
+          "checked",
+          "striped"
         ],
         "rightColumn": [
-          "смугастий",
-          "незнайомий",
-          "невідомий",
-          "надійний"
+          "квітковий (з квітами)",
+          "у горошок, плямистий",
+          "картатий",
+          "смугастий"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1090,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-54:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншій подорожі друг шукає сумку зі смугами. Ви показуєте на сумку поруч із собою. Скажіть «Ця сумка смугаста»",
+      "prompt": "Продавець питає про шкарпетки на полиці. Відповідайте йому коротко: ці шкарпетки в горошок нові.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-54:i17:audio"
       ],
-      "accessibilityLabel": "В іншій подорожі друг шукає сумку зі смугами. Ви показуєте на сумку поруч із собою. Скажіть «Ця сумка смугаста»",
+      "accessibilityLabel": "Продавець питає про шкарпетки на полиці. Відповідайте йому коротко: ці шкарпетки в горошок нові.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-54:i17:audio",
-          "transcript": "This bag is striped."
+          "transcript": "These spotted socks are new."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This bag is striped.",
+        "targetPhrase": "These spotted socks are new.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1130,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4b043a8a1d460b935704c81fe9ff52731dc33a48bfa445097a3764fb173889c"
+  "learnerFingerprint": "b463f7f4a43c3043c59ca688e5dee388ea42fe57dedcf3edc5bf807ee2420aa5"
 }

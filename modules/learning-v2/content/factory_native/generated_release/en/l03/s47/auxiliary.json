@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-47:intro1:r2": {
-          "ru": "`restaurant` — один ресторан. Несколько — `restaurants`.",
-          "uk": "`restaurant` — один ресторан. Кілька — `restaurants`."
+          "ru": "Шуруп вы называете впервые, поэтому a: This is a screw.",
+          "uk": "Шуруп ви називаєте вперше, тому a: This is a screw."
         },
         "en:lesson-03:session-47:intro1:r3": {
-          "ru": "`hotels` — отели. Рестораны — `restaurants`.",
-          "uk": "`hotels` — готелі. Ресторани — `restaurants`."
+          "ru": "Слово screw начинается с согласного звука, поэтому a: This is a screw.",
+          "uk": "Слово screw починається з приголосного звуку, тому a: This is a screw."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-47:intro2:r2": {
-          "ru": "Ресторанов несколько: нужно `are`.",
-          "uk": "Ресторанів кілька: потрібне `are`."
+          "ru": "Вы оба смотрите на гвозди из этой коробки, поэтому the: The nails are long.",
+          "uk": "Ви обоє дивитеся на цвяхи з цієї коробки, тому the: The nails are long."
         },
         "en:lesson-03:session-47:intro2:r3": {
-          "ru": "Так говорят об одном ресторане. Здесь несколько: `The restaurants are there`.",
-          "uk": "Так говорять про один ресторан. Тут кілька: `The restaurants are there`."
+          "ru": "Гвоздей несколько, поэтому нужно are: The nails are long.",
+          "uk": "Цвяхів кілька, тому потрібно are: The nails are long."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-47:intro3:r2": {
-          "ru": "`dangerous` — опасно. Здесь вариант устраивает: `acceptable`.",
-          "uk": "`dangerous` — небезпечно. Тут варіант влаштовує: `acceptable`."
+          "ru": "Вы говорите о гаечных ключах вообще, а не о конкретных, поэтому без the: Wrenches are expensive.",
+          "uk": "Ви говорите про гайкові ключі взагалі, а не про конкретні, тому без the: Wrenches are expensive."
         },
         "en:lesson-03:session-47:intro3:r3": {
-          "ru": "Речь об одном варианте: `It is acceptable`.",
-          "uk": "Ідеться про один варіант: `It is acceptable`."
+          "ru": "Ключей несколько, поэтому нужно wrenches: Wrenches are expensive.",
+          "uk": "Ключів кілька, тому потрібно wrenches: Wrenches are expensive."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "997c5cd053f06d494019ed459c8963c0af7799d0af051598091fb927f36c9d01"
+  "auxiliaryFingerprint": "5e4cb5dee63478f515a2db911cba8a0e545ff067d4cebbd584c66f83366e0f84"
 }

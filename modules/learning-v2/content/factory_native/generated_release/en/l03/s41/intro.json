@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-41",
   "learningOutcomeByLocale": {
-    "ru": "назвать кухню и затем вернуться к той же комнате с the",
-    "uk": "назвати кухню й потім повернутися до тієї самої кімнати з the"
+    "ru": "называть предмет впервые с a и возвращаться к нему же с the",
+    "uk": "називати предмет уперше з a і повертатися до нього ж із the"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Назвать комнату",
-        "uk": "Назвати кімнату"
+        "ru": "Человек у выхода",
+        "uk": "Людина біля виходу"
       },
       "bodyByLocale": {
-        "ru": "`kitchen` — «кухня», комната, где готовят еду. `This is a kitchen` — «Это кухня»: вы называете, что это за комната. Перед `kitchen` здесь нужно `a`: первый звук согласный. Даже если в кухне пока нет еды, она всё равно `a kitchen`.",
-        "uk": "`kitchen` — «кухня», кімната, де готують їжу. `This is a kitchen` — «Це кухня»: ви називаєте, що це за кімната. Перед `kitchen` тут потрібне `a`: перший звук приголосний. Навіть якщо в кухні поки немає їжі, вона однаково `a kitchen`."
+        "ru": "Вы с подругой зашли в магазин за продуктами. У выхода сидит человек, который принимает деньги и пробивает товары. cashier — «кассир». Подруга впервые его видит и спрашивает, кто там. Кассира вы называете впервые, поэтому a: A cashier is here — «Здесь кассир».",
+        "uk": "Ви з подругою зайшли до магазину по продукти. Біля виходу сидить людина, яка приймає гроші й пробиває товари. cashier — «касир». Подруга вперше бачить його й питає, хто там. Касира ви називаєте вперше, тому a: A cashier is here — «Тут касир»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-41:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите кухню одним английским словом.",
-          "uk": "Назвіть кухню одним англійським словом."
+          "ru": "Подруга спрашивает, кто сидит у выхода. Скажите про кассира в первый раз: «Здесь кассир».",
+          "uk": "Подруга питає, хто сидить біля виходу. Скажіть про касира вперше: «Тут касир»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-41:intro1:r1",
-              "text": "kitchen"
+              "text": "A cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r2",
-              "text": "room"
+              "text": "The cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r3",
-              "text": "window"
+              "text": "A cashier are here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-41:intro1:r1",
-              "text": "kitchen"
+              "text": "A cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r2",
-              "text": "room"
+              "text": "The cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r3",
-              "text": "window"
+              "text": "A cashier are here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите кухню одним английским словом.",
-          "uk": "Назвіть кухню одним англійським словом."
+          "ru": "Подруга спрашивает, кто сидит у выхода. Скажите про кассира в первый раз: «Здесь кассир».",
+          "uk": "Подруга питає, хто сидить біля виходу. Скажіть про касира вперше: «Тут касир»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Теперь та самая кухня",
-        "uk": "Тепер та сама кухня"
+        "ru": "Бумажка в руке",
+        "uk": "Папірець у руці"
       },
       "bodyByLocale": {
-        "ru": "Вы уже показали кухню и сказали `This is a kitchen`. Теперь говорите о ней же: `The kitchen is here` — «Кухня здесь». `the kitchen` означает конкретную кухню: вы оба понимаете, какую именно. `The` можно использовать и без предыдущего упоминания, если из ситуации ясно, какая кухня имеется в виду.",
-        "uk": "Ви вже показали кухню й сказали `This is a kitchen`. Тепер говорите про неї ж: `The kitchen is here` — «Кухня тут». `the kitchen` означає конкретну кухню: ви обоє розумієте, яку саме. `The` можна використовувати й без попередньої згадки, якщо із ситуації зрозуміло, яка кухня мається на увазі."
+        "ru": "Вы заплатили, и кассир отдаёт вам бумажку со списком покупок и суммой. Подруга не видела её раньше и спрашивает, что это. receipt — «чек». Бумажку вы называете впервые, поэтому a: This is a receipt — «Это чек». Слово начинается с согласного звука, значит, нужно a.",
+        "uk": "Ви заплатили, і касир віддає вам папірець зі списком покупок і сумою. Подруга не бачила її раніше й питає, що це. receipt — «чек». Папірець ви називаєте вперше, тому a: This is a receipt — «Це чек». Слово починається з приголосного звуку, отже, потрібно a."
       },
       "question": {
         "interactionId": "en:lesson-03:session-41:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже показали кухню. Укажите место той же комнаты: «Кухня здесь».",
-          "uk": "Ви вже показали кухню. Укажіть місце тієї самої кімнати: «Кухня тут»."
+          "ru": "Подруга спрашивает, что за бумажка у вас в руке. Скажите: «Это чек».",
+          "uk": "Подруга питає, що за папірець у вас у руці. Скажіть: «Це чек»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-41:intro2:r1",
-              "text": "The kitchen is here."
+              "text": "This is a receipt."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r2",
-              "text": "The kitchen are here."
+              "text": "This is an receipt."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r3",
-              "text": "The kitchens are here."
+              "text": "This are a receipt."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-41:intro2:r1",
-              "text": "The kitchen is here."
+              "text": "This is a receipt."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r2",
-              "text": "The kitchen are here."
+              "text": "This is an receipt."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r3",
-              "text": "The kitchens are here."
+              "text": "This are a receipt."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже показали кухню. Укажите место той же комнаты: «Кухня здесь».",
-          "uk": "Ви вже показали кухню. Укажіть місце тієї самої кімнати: «Кухня тут»."
+          "ru": "Подруга спрашивает, что за бумажка у вас в руке. Скажите: «Это чек».",
+          "uk": "Подруга питає, що за папірець у вас у руці. Скажіть: «Це чек»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Честный хозяин и точная схема",
-        "uk": "Чесний господар і точна схема"
+        "ru": "Неверная цена",
+        "uk": "Неправильна ціна"
       },
       "bodyByLocale": {
-        "ru": "`honest` — «честный»: хозяин не скрывает недостатки дома. `He is honest` — «Он честный». `accurate` — «точный»: схема верно показывает расположение комнат. О ней: `It is accurate` — «Она точная». Честность относится здесь к человеку, точность — к схеме. О телефоне Анны: `The phone is here` — «Телефон здесь».",
-        "uk": "`honest` — «чесний»: господар не приховує недоліків будинку. `He is honest` — «Він чесний». `accurate` — «точний»: схема правильно показує розташування кімнат. Про неї: `It is accurate` — «Вона точна». Чесність тут стосується людини, точність — схеми. Про телефон Анни: `The phone is here` — «Телефон тут»."
+        "ru": "Вы вместе с подругой читаете чек и видите, что одна цена записана дважды. mistake — «ошибка». Сначала вы сказали подруге: This is a mistake — «Это ошибка». Теперь показываете на неё пальцем на чеке. Вы оба знаете, о какой ошибке речь, поэтому the.",
+        "uk": "Ви разом із подругою читаєте чек і бачите, що одна ціна записана двічі. mistake — «помилка». Спершу ви сказали подрузі: This is a mistake — «Це помилка». Тепер показуєте на неї пальцем на чеку. Ви обоє знаєте, про яку помилку мова, тому the."
       },
       "question": {
         "interactionId": "en:lesson-03:session-41:intro3:q",
         "promptByLocale": {
-          "ru": "Схема верно показывает расположение комнат. Скажите о ней «Она точная».",
-          "uk": "Схема правильно показує розташування кімнат. Скажіть про неї «Вона точна»."
+          "ru": "Вы уже назвали ошибку подруге. Теперь покажите на неё: «Ошибка здесь».",
+          "uk": "Ви вже назвали помилку подрузі. Тепер покажіть на неї: «Помилка тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-41:intro3:r1",
-              "text": "It is accurate."
+              "text": "The mistake is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r2",
-              "text": "It is honest."
+              "text": "A mistake is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r3",
-              "text": "It are accurate."
+              "text": "The mistake are here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-41:intro3:r1",
-              "text": "It is accurate."
+              "text": "The mistake is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r2",
-              "text": "It is honest."
+              "text": "A mistake is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r3",
-              "text": "It are accurate."
+              "text": "The mistake are here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Схема верно показывает расположение комнат. Скажите о ней «Она точная».",
-          "uk": "Схема правильно показує розташування кімнат. Скажіть про неї «Вона точна»."
+          "ru": "Вы уже назвали ошибку подруге. Теперь покажите на неё: «Ошибка здесь».",
+          "uk": "Ви вже назвали помилку подрузі. Тепер покажіть на неї: «Помилка тут»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe39ffba86a8d8281df2a3b73a92448e291ae08c67383b67af4f0224f7c4c989"
+  "introFingerprint": "d28667a0e64f36ccbaceaede4331017eb386450998d834db65eb665f3d846204"
 }

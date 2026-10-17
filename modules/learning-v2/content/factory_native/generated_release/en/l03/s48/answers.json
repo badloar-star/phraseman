@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-48:i01",
-    "correctText": "The kitchen is here.",
+    "correctText": "This is a parcel.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i02",
-    "correctText": "The bathroom is there.",
+    "correctText": "The parcel is here.",
     "correctResponseId": "en:lesson-03:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i03",
-    "correctText": "are",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i04",
-    "correctText": "en:lesson-03:session-48:i04:p1=kitchen\nen:lesson-03:session-48:i04:p2=bathroom\nen:lesson-03:session-48:i04:p3=bedrooms\nen:lesson-03:session-48:i04:p4=hotels",
+    "correctText": "en:lesson-03:session-48:i04:p1=item\nen:lesson-03:session-48:i04:p2=order\nen:lesson-03:session-48:i04:p3=total\nen:lesson-03:session-48:i04:p4=refund",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i05",
-    "correctText": "These are hotels.",
+    "correctText": "An envelope is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i06",
-    "correctText": "This is an office.",
+    "correctText": "The bottles are full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:word:order",
+    "correctText": "order",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i07",
-    "correctText": "The airport is there.",
+    "correctText": "order",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:word:item",
+    "correctText": "item",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i08",
-    "correctText": "an",
+    "correctText": "item",
     "correctResponseId": "en:lesson-03:session-48:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i09",
-    "correctText": "Those are restaurants.",
+    "correctText": "The order is complete.",
     "correctResponseId": "en:lesson-03:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i10",
-    "correctText": "en:lesson-03:session-48:i10:p1=office\nen:lesson-03:session-48:i10:p2=airport\nen:lesson-03:session-48:i10:p3=restaurants\nen:lesson-03:session-48:i10:p4=hotels",
+    "correctText": "en:lesson-03:session-48:i10:p1=order\nen:lesson-03:session-48:i10:p2=parcel\nen:lesson-03:session-48:i10:p3=box\nen:lesson-03:session-48:i10:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i11",
-    "correctText": "This is a kitchen.",
+    "correctText": "An item is missing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i12",
-    "correctText": "The bedrooms are here.",
+    "correctText": "The item is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:word:total",
+    "correctText": "total",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i13",
-    "correctText": "The bathroom is here.",
+    "correctText": "total",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-48:word:refund",
+    "correctText": "refund",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i14",
-    "correctText": "are",
+    "correctText": "refund",
     "correctResponseId": "en:lesson-03:session-48:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i15",
-    "correctText": "That is an airport.",
+    "correctText": "The total is correct.",
     "correctResponseId": "en:lesson-03:session-48:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-48:i16",
-    "correctText": "en:lesson-03:session-48:i16:p1=a kitchen\nen:lesson-03:session-48:i16:p2=an office\nen:lesson-03:session-48:i16:p3=an airport\nen:lesson-03:session-48:i16:p4=a bathroom",
+    "correctText": "en:lesson-03:session-48:i16:p1=refund\nen:lesson-03:session-48:i16:p2=total\nen:lesson-03:session-48:i16:p3=item\nen:lesson-03:session-48:i16:p4=order",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-48:i17",
-    "correctText": "The restaurants are here.",
+    "correctText": "The refund is late.",
     "correctResponseId": null
   }
 ]

@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-03:session-56:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Назвіть незнайому другові будівлю поруч: «Це лікарня»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть незнайому другові будівлю поруч: «Це лікарня»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is a hospital.",
-        "localizedMeaning": {
-          "ru": "Назовите незнакомое другу здание рядом: «Это больница»",
-          "uk": "Назвіть незнайому другові будівлю поруч: «Це лікарня»"
-        },
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "hospital"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-56:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Назвіть незнайому другові будівлю поруч: «Це лікарня»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a hospital.`",
-              "uk": "тут потрібно `is` — `This is a hospital.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-56:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-56:i02:r1",
-          "text": "cinema"
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i02:r2",
-          "text": "museum"
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i02:r3",
-          "text": "hospital"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-56:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-56:i02:audio",
-          "transcript": "cinema"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-56:i02:r1",
-            "targetText": "cinema",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i02:r2",
-            "targetText": "museum",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i02:r3",
-            "targetText": "hospital",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-56:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `cinema`, а в этом варианте — `museum`.",
-              "uk": "У записі перше слово — `cinema`, а в цьому варіанті — `museum`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `cinema`, а в этом варианте — `hospital`.",
-              "uk": "У записі перше слово — `cinema`, а в цьому варіанті — `hospital`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-56:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Ви показуєте кілька бібліотек, які вже обговорили",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-56:i03:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i03:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i03:r3",
-          "text": "am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте кілька бібліотек, які вже обговорили",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы показываете несколько библиотек, которые уже обсудили",
-          "uk": "Ви показуєте кілька бібліотек, які вже обговорили"
-        },
-        "gappedTargetPhrase": "The libraries ___ here.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-56:i03:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i03:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i03:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Ви показуєте кілька бібліотек, які вже обговорили",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-56:i03:r2",
-            "correct": false,
-            "testedDimension": "Ви показуєте кілька бібліотек, які вже обговорили",
-            "feedbackByLocale": {
-              "ru": "Библиотек несколько: `are`.",
-              "uk": "Бібліотек кілька: `are`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i03:r3",
-            "correct": false,
-            "testedDimension": "Ви показуєте кілька бібліотек, які вже обговорили",
-            "feedbackByLocale": {
-              "ru": "С `The libraries` нужно `are`.",
-              "uk": "З `The libraries` потрібне `are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-56:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -208,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-56:i04:p1",
-            "target": "hospital",
+            "pairId": "en:lesson-03:session-56:i01:p1",
+            "target": "mat",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "коврик",
+              "uk": "килимок"
             }
           },
           {
-            "pairId": "en:lesson-03:session-56:i04:p2",
-            "target": "cinema",
+            "pairId": "en:lesson-03:session-56:i01:p2",
+            "target": "tray",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "поднос",
+              "uk": "піднос"
             }
           },
           {
-            "pairId": "en:lesson-03:session-56:i04:p3",
-            "target": "libraries",
+            "pairId": "en:lesson-03:session-56:i01:p3",
+            "target": "hook",
             "meaningByLocale": {
-              "ru": "библиотеки",
-              "uk": "бібліотеки"
+              "ru": "крючок",
+              "uk": "гачок"
             }
           },
           {
-            "pairId": "en:lesson-03:session-56:i04:p4",
-            "target": "stations",
+            "pairId": "en:lesson-03:session-56:i01:p4",
+            "target": "bin",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "ведро для мусора",
+              "uk": "відро для сміття"
             }
           }
         ],
         "leftColumn": [
-          "hospital",
-          "cinema",
-          "libraries",
-          "stations"
+          "mat",
+          "tray",
+          "hook",
+          "bin"
         ],
         "rightColumn": [
-          "лікарня",
-          "кінотеатр",
-          "бібліотеки",
-          "станції"
+          "килимок",
+          "піднос",
+          "гачок",
+          "відро для сміття"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,119 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-56:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-03:session-56:word:mat",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mat",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-56:i05:audio"
+        "en:lesson-03:session-56:word:mat:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — mat",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-56:i05:audio",
-          "transcript": "Those stations are there."
+          "audioTargetId": "en:lesson-03:session-56:word:mat:audio",
+          "transcript": "mat"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Those stations are there.",
-        "orderedTokens": [
-          "Those",
-          "stations",
-          "are",
-          "there"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-56:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Those stations are there.`",
-              "uk": "тут потрібно `are` — `Those stations are there.`"
+            "responseId": "en:lesson-03:session-56:word:mat:r1",
+            "targetText": "mat",
+            "meaningByLocale": {
+              "ru": "коврик. This is a grey mat — «Это серый коврик». О коврике у двери, в ванной, для йоги.",
+              "uk": "килимок. This is a grey mat — «Це сірий килимок». Про килимок біля дверей, у ванній, для йоги."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mat",
+          "definitionByLocale": {
+            "ru": "коврик. This is a grey mat — «Это серый коврик». О коврике у двери, в ванной, для йоги.",
+            "uk": "килимок. This is a grey mat — «Це сірий килимок». Про килимок біля дверей, у ванній, для йоги."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-56:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Музей для відвідування вже вибрано. Запитайте «Де музей?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Музей для відвідування вже вибрано. Запитайте «Де музей?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where is the museum?",
-        "localizedMeaning": {
-          "ru": "Музей для посещения уже выбран. Спросите «Где музей?»",
-          "uk": "Музей для відвідування вже вибрано. Запитайте «Де музей?»"
-        },
-        "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "museum"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-56:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Музей для відвідування вже вибрано. Запитайте «Де музей?»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Where is the museum?`",
-              "uk": "тут потрібно `is` — `Where is the museum?`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-56:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-03:session-56:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про візерунок вашої сумки. Скажіть «Вона смугаста» зі скороченням",
+      "prompt": "Подруга показує на килимок біля дверей і називає його, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-56:i07:audio"
+        "en:lesson-03:session-56:i02:audio"
       ],
-      "accessibilityLabel": "Друг запитує про візерунок вашої сумки. Скажіть «Вона смугаста» зі скороченням",
+      "accessibilityLabel": "Подруга показує на килимок біля дверей і називає його, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-56:i07:audio",
-          "transcript": "It's striped."
+          "audioTargetId": "en:lesson-03:session-56:i02:audio",
+          "transcript": "mat"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's striped.",
+        "targetPhrase": "mat",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,68 +153,157 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-56:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Килимок лежить поруч із вами. Скажіть продавцю повною фразою: це коричневий килимок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Килимок лежить поруч із вами. Скажіть продавцю повною фразою: це коричневий килимок.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a brown mat.",
+        "localizedMeaning": {
+          "ru": "Коврик лежит рядом с вами. Скажите продавцу полной фразой: это коричневый коврик.",
+          "uk": "Килимок лежить поруч із вами. Скажіть продавцю повною фразою: це коричневий килимок."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "brown",
+          "mat"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Килимок лежить поруч із вами. Скажіть продавцю повною фразою: це коричневий килимок.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a brown mat.`",
+              "uk": "тут потрібно `is` — `This is a brown mat.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:word:tray",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tray",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:word:tray:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tray",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:word:tray:audio",
+          "transcript": "tray"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-56:word:tray:r1",
+            "targetText": "tray",
+            "meaningByLocale": {
+              "ru": "поднос. Those are metal trays — «Это металлические подносы». О подносе для чашек и тарелок.",
+              "uk": "піднос. Those are metal trays — «Це металеві підноси». Про піднос для чашок і тарілок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tray",
+          "definitionByLocale": {
+            "ru": "поднос. Those are metal trays — «Это металлические подносы». О подносе для чашек и тарелок.",
+            "uk": "піднос. Those are metal trays — «Це металеві підноси». Про піднос для чашок і тарілок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви показуєте на кілька кафе поруч на карті",
+      "prompt": "Подруга несе чашки на пласкому предметі з ручками. Як він називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-56:i08:r1",
-          "text": "These"
+          "responseId": "en:lesson-03:session-56:i04:r1",
+          "text": "tray"
         },
         {
-          "responseId": "en:lesson-03:session-56:i08:r2",
-          "text": "This"
+          "responseId": "en:lesson-03:session-56:i04:r2",
+          "text": "mat"
         },
         {
-          "responseId": "en:lesson-03:session-56:i08:r3",
-          "text": "That"
+          "responseId": "en:lesson-03:session-56:i04:r3",
+          "text": "bowl"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на кілька кафе поруч на карті",
+      "accessibilityLabel": "Подруга несе чашки на пласкому предметі з ручками. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы показываете на несколько кафе рядом на карте",
-          "uk": "Ви показуєте на кілька кафе поруч на карті"
+          "ru": "Подруга несёт чашки на плоском предмете с ручками. Как он называется по-английски?",
+          "uk": "Подруга несе чашки на пласкому предметі з ручками. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "___ are cafes.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-56:i08:r1",
-            "text": "These"
+            "responseId": "en:lesson-03:session-56:i04:r1",
+            "text": "tray"
           },
           {
-            "responseId": "en:lesson-03:session-56:i08:r2",
-            "text": "This"
+            "responseId": "en:lesson-03:session-56:i04:r2",
+            "text": "mat"
           },
           {
-            "responseId": "en:lesson-03:session-56:i08:r3",
-            "text": "That"
+            "responseId": "en:lesson-03:session-56:i04:r3",
+            "text": "bowl"
           }
         ],
-        "testedDimension": "Ви показуєте на кілька кафе поруч на карті",
+        "testedDimension": "Подруга несе чашки на пласкому предметі з ручками. Як він називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-56:i08:r2",
+            "responseId": "en:lesson-03:session-56:i04:r2",
             "correct": false,
-            "testedDimension": "Ви показуєте на кілька кафе поруч на карті",
+            "testedDimension": "Подруга несе чашки на пласкому предметі з ручками. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "Кафе несколько рядом: `These`.",
-              "uk": "Кафе кілька поруч: `These`."
+              "ru": "mat — это коврик, а плоский предмет для чашек называется tray.",
+              "uk": "mat — це килимок, а плаский предмет для чашок називається tray."
             }
           },
           {
-            "responseId": "en:lesson-03:session-56:i08:r3",
+            "responseId": "en:lesson-03:session-56:i04:r3",
             "correct": false,
-            "testedDimension": "Ви показуєте на кілька кафе поруч на карті",
+            "testedDimension": "Подруга несе чашки на пласкому предметі з ручками. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`That` для одного дальше. Здесь несколько рядом: `These`.",
-              "uk": "`That` для одного далі. Тут кілька поруч: `These`."
+              "ru": "bowl — это миска, а плоский предмет для чашек называется tray.",
+              "uk": "bowl — це миска, а плаский предмет для чашок називається tray."
             }
           }
         ]
@@ -462,73 +311,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-56:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що друг говорить про вибраний музей",
+      "prompt": "Послухайте, що продавець каже про килимки",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-56:i09:r1",
-          "text": "The museum is there."
+          "responseId": "en:lesson-03:session-56:i05:r1",
+          "text": "Those are grey mats."
         },
         {
-          "responseId": "en:lesson-03:session-56:i09:r2",
-          "text": "The museum is here."
+          "responseId": "en:lesson-03:session-56:i05:r2",
+          "text": "That is a grey mat."
         },
         {
-          "responseId": "en:lesson-03:session-56:i09:r3",
-          "text": "The museum is full."
+          "responseId": "en:lesson-03:session-56:i05:r3",
+          "text": "Those are grey trays."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-56:i09:audio"
+        "en:lesson-03:session-56:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, що друг говорить про вибраний музей",
+      "accessibilityLabel": "Послухайте, що продавець каже про килимки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-56:i09:audio",
-          "transcript": "The museum is there."
+          "audioTargetId": "en:lesson-03:session-56:i05:audio",
+          "transcript": "Those are grey mats."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-56:i09:r1",
-            "targetText": "The museum is there.",
+            "responseId": "en:lesson-03:session-56:i05:r1",
+            "targetText": "Those are grey mats.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-56:i09:r2",
-            "targetText": "The museum is here.",
+            "responseId": "en:lesson-03:session-56:i05:r2",
+            "targetText": "That is a grey mat.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-56:i09:r3",
-            "targetText": "The museum is full.",
+            "responseId": "en:lesson-03:session-56:i05:r3",
+            "targetText": "Those are grey trays.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-56:i09:r2",
+            "responseId": "en:lesson-03:session-56:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що друг говорить про вибраний музей",
+            "testedDimension": "Послухайте, що продавець каже про килимки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `there`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `there`, а в цьому варіанті — `here`."
+              "ru": "В записи `Those are` и несколько ковриков, а в этом варианте `That is a` и один коврик.",
+              "uk": "У записі `Those are` і кілька килимків, а в цьому варіанті `That is a` і один килимок."
             }
           },
           {
-            "responseId": "en:lesson-03:session-56:i09:r3",
+            "responseId": "en:lesson-03:session-56:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що друг говорить про вибраний музей",
+            "testedDimension": "Послухайте, що продавець каже про килимки",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `there`, а в этом варианте — `full`.",
-              "uk": "У записі останнє слово — `there`, а в цьому варіанті — `full`."
+              "ru": "В записи последнее слово — `mats`, а в этом варианте — `trays`.",
+              "uk": "У записі останнє слово — `mats`, а в цьому варіанті — `trays`."
             }
           }
         ],
@@ -538,9 +387,292 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-56:i10",
+      "interactionId": "en:lesson-03:session-56:word:hook",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:word:hook:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:word:hook:audio",
+          "transcript": "hook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-56:word:hook:r1",
+            "targetText": "hook",
+            "meaningByLocale": {
+              "ru": "крючок. That metal hook is cheap — «Тот металлический крючок недорогой». О крючке для пальто, полотенца, ключей.",
+              "uk": "гачок. That metal hook is cheap — «Той металевий гачок недорогий». Про гачок для пальта, рушника, ключів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hook",
+          "definitionByLocale": {
+            "ru": "крючок. That metal hook is cheap — «Тот металлический крючок недорогой». О крючке для пальто, полотенца, ключей.",
+            "uk": "гачок. That metal hook is cheap — «Той металевий гачок недорогий». Про гачок для пальта, рушника, ключів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Продавець показує на гачок для пальта й називає його, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Продавець показує на гачок для пальта й називає його, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i06:audio",
+          "transcript": "hook"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "hook",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте подругу й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i07:audio",
+          "transcript": "That round tray is clean."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That round tray is clean.",
+        "orderedTokens": [
+          "That",
+          "round",
+          "tray",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `That round tray is clean.`",
+              "uk": "тут потрібно `is` — `That round tray is clean.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:word:bin",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:word:bin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:word:bin:audio",
+          "transcript": "bin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-56:word:bin:r1",
+            "targetText": "bin",
+            "meaningByLocale": {
+              "ru": "ведро для мусора. The bin is black — «Ведро для мусора чёрное». О мусорном ведре на кухне и во дворе.",
+              "uk": "відро для сміття. The bin is black — «Відро для сміття чорне». Про сміттєве відро на кухні й у дворі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bin",
+          "definitionByLocale": {
+            "ru": "ведро для мусора. The bin is black — «Ведро для мусора чёрное». О мусорном ведре на кухне и во дворе.",
+            "uk": "відро для сміття. The bin is black — «Відро для сміття чорне». Про сміттєве відро на кухні й у дворі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга показує на відро для сміття під раковиною. Як воно називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i08:r1",
+          "text": "bin"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i08:r2",
+          "text": "tray"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i08:r3",
+          "text": "hook"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга показує на відро для сміття під раковиною. Як воно називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга показывает на ведро для мусора под раковиной. Как оно называется по-английски?",
+          "uk": "Подруга показує на відро для сміття під раковиною. Як воно називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-56:i08:r1",
+            "text": "bin"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i08:r2",
+            "text": "tray"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i08:r3",
+            "text": "hook"
+          }
+        ],
+        "testedDimension": "Подруга показує на відро для сміття під раковиною. Як воно називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга показує на відро для сміття під раковиною. Як воно називається англійською?",
+            "feedbackByLocale": {
+              "ru": "tray — это поднос, а ведро для мусора называется bin.",
+              "uk": "tray — це піднос, а відро для сміття називається bin."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга показує на відро для сміття під раковиною. Як воно називається англійською?",
+            "feedbackByLocale": {
+              "ru": "hook — это крючок, а ведро для мусора называется bin.",
+              "uk": "hook — це гачок, а відро для сміття називається bin."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гачки висять поруч із вами. Скажіть подрузі повною фразою: ці металеві гачки нові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гачки висять поруч із вами. Скажіть подрузі повною фразою: ці металеві гачки нові.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These metal hooks are new.",
+        "localizedMeaning": {
+          "ru": "Крючки висят рядом с вами. Скажите подруге полной фразой: эти металлические крючки новые.",
+          "uk": "Гачки висять поруч із вами. Скажіть подрузі повною фразою: ці металеві гачки нові."
+        },
+        "orderedTokens": [
+          "These",
+          "metal",
+          "hooks",
+          "are",
+          "new"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Гачки висять поруч із вами. Скажіть подрузі повною фразою: ці металеві гачки нові.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `These metal hooks are new.`",
+              "uk": "тут потрібно `are` — `These metal hooks are new.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -553,48 +685,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-56:i10:p1",
-            "target": "museum",
+            "target": "mat",
             "meaningByLocale": {
-              "ru": "музей",
-              "uk": "музей"
+              "ru": "коврик",
+              "uk": "килимок"
             }
           },
           {
             "pairId": "en:lesson-03:session-56:i10:p2",
-            "target": "striped",
+            "target": "tray",
             "meaningByLocale": {
-              "ru": "полосатый",
-              "uk": "смугастий"
+              "ru": "поднос",
+              "uk": "піднос"
             }
           },
           {
             "pairId": "en:lesson-03:session-56:i10:p3",
-            "target": "cafes",
+            "target": "curtain",
             "meaningByLocale": {
-              "ru": "кафе",
-              "uk": "кафе"
+              "ru": "занавеска",
+              "uk": "завіса"
             }
           },
           {
             "pairId": "en:lesson-03:session-56:i10:p4",
-            "target": "cinema",
+            "target": "towel",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "полотенце",
+              "uk": "рушник"
             }
           }
         ],
         "leftColumn": [
-          "museum",
-          "striped",
-          "cafes",
-          "cinema"
+          "mat",
+          "tray",
+          "curtain",
+          "towel"
         ],
         "rightColumn": [
-          "музей",
-          "смугастий",
-          "кафе",
-          "кінотеатр"
+          "килимок",
+          "піднос",
+          "завіса",
+          "рушник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,87 +744,187 @@
     },
     {
       "interactionId": "en:lesson-03:session-56:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте запитання продавця",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i11:r1",
+          "text": "Is that bin black?"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i11:r2",
+          "text": "Is this bin black?"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i11:r3",
+          "text": "Is that bin white?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-56:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте запитання продавця",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-56:i11:audio",
-          "transcript": "The cinema is here."
+          "transcript": "Is that bin black?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The cinema is here.",
-        "orderedTokens": [
-          "The",
-          "cinema",
-          "is",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-56:i11:tile:d1",
+            "responseId": "en:lesson-03:session-56:i11:r1",
+            "targetText": "Is that bin black?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i11:r2",
+            "targetText": "Is this bin black?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i11:r3",
+            "targetText": "Is that bin white?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте запитання продавця",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The cinema is here.`",
-              "uk": "тут потрібно `is` — `The cinema is here.`"
+              "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
+              "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте запитання продавця",
+            "feedbackByLocale": {
+              "ru": "В записи цвет — `black`, а в этом варианте — `white`.",
+              "uk": "У записі колір — `black`, а в цьому варіанті — `white`."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-56:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви обговорювали кілька кафе для зустрічі. Запитайте «Де кафе?»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Килимок оливкового кольору лежить поруч із вами. Доповніть фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-56:i12:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i12:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-56:i12:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви обговорювали кілька кафе для зустрічі. Запитайте «Де кафе?»",
+      "accessibilityLabel": "Килимок оливкового кольору лежить поруч із вами. Доповніть фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where are the cafes?",
-        "localizedMeaning": {
-          "ru": "Вы обсуждали несколько кафе для встречи. Спросите «Где кафе?»",
-          "uk": "Ви обговорювали кілька кафе для зустрічі. Запитайте «Де кафе?»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коврик оливкового цвета лежит рядом с вами. Дополните фразу",
+          "uk": "Килимок оливкового кольору лежить поруч із вами. Доповніть фразу"
         },
+        "gappedTargetPhrase": "It is ___ olive mat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-56:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Килимок оливкового кольору лежить поруч із вами. Доповніть фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Килимок оливкового кольору лежить поруч із вами. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Слово olive начинается с гласного звука, поэтому нужно an, а не a.",
+              "uk": "Слово olive починається з голосного звуку, тому потрібно an, а не a."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Килимок оливкового кольору лежить поруч із вами. Доповніть фразу",
+            "feedbackByLocale": {
+              "ru": "Здесь речь об одном коврике: нужно an, а не are.",
+              "uk": "Тут ідеться про один килимок: потрібно an, а не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте продавця й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте продавця й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-56:i13:audio",
+          "transcript": "These are black bins."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These are black bins.",
         "orderedTokens": [
-          "Where",
+          "These",
           "are",
-          "the",
-          "cafes"
+          "black",
+          "bins"
         ],
         "authoredDistractorTokens": [
           "is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-56:i12:tile:d1",
+            "responseId": "en:lesson-03:session-56:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Ви обговорювали кілька кафе для зустрічі. Запитайте «Де кафе?»",
+            "testedDimension": "Послухайте продавця й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Where are the cafes?`",
-              "uk": "тут потрібно `are` — `Where are the cafes?`"
+              "ru": "здесь нужно `are` — `These are black bins.`",
+              "uk": "тут потрібно `are` — `These are black bins.`"
             }
           }
         ],
@@ -704,26 +936,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-56:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-03:session-56:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг шукає лікарню, яку ви вже обговорювали. Покажіть її далі на карті: «Лікарня там»",
+      "prompt": "Подруга питає, який піднос вам потрібен. Скажіть їй, що той овальний",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-56:i13:audio"
+        "en:lesson-03:session-56:i14:audio"
       ],
-      "accessibilityLabel": "Друг шукає лікарню, яку ви вже обговорювали. Покажіть її далі на карті: «Лікарня там»",
+      "accessibilityLabel": "Подруга питає, який піднос вам потрібен. Скажіть їй, що той овальний",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-56:i13:audio",
-          "transcript": "The hospital is there."
+          "audioTargetId": "en:lesson-03:session-56:i14:audio",
+          "transcript": "that oval tray"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The hospital is there.",
+        "targetPhrase": "that oval tray",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -737,153 +969,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-56:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Ви описуєте одну сумку поруч",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-56:i14:r1",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i14:r2",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i14:r3",
-          "text": "am"
-        }
-      ],
+      "interactionId": "en:lesson-03:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте килимок, про який уже говорили з продавцем. Запитайте його, чи тут бежевий килимок.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви описуєте одну сумку поруч",
+      "accessibilityLabel": "Ви шукаєте килимок, про який уже говорили з продавцем. Запитайте його, чи тут бежевий килимок.",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы описываете одну сумку рядом",
-          "uk": "Ви описуєте одну сумку поруч"
+        "family": "phrase_builder",
+        "targetPhrase": "Is the beige mat here?",
+        "localizedMeaning": {
+          "ru": "Вы ищете коврик, о котором уже говорили с продавцом. Спросите его, здесь ли бежевый коврик.",
+          "uk": "Ви шукаєте килимок, про який уже говорили з продавцем. Запитайте його, чи тут бежевий килимок."
         },
-        "gappedTargetPhrase": "This bag ___ striped.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Is",
+          "the",
+          "beige",
+          "mat",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-56:i14:r1",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i14:r2",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i14:r3",
-            "text": "am"
+            "responseId": "en:lesson-03:session-56:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте килимок, про який уже говорили з продавцем. Запитайте його, чи тут бежевий килимок.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is the beige mat here?`",
+              "uk": "тут потрібно `Is` — `Is the beige mat here?`"
+            }
           }
         ],
-        "testedDimension": "Ви описуєте одну сумку поруч",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-56:i14:r2",
-            "correct": false,
-            "testedDimension": "Ви описуєте одну сумку поруч",
-            "feedbackByLocale": {
-              "ru": "Одна сумка: `This bag is striped`.",
-              "uk": "Одна сумка: `This bag is striped`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i14:r3",
-            "correct": false,
-            "testedDimension": "Ви описуєте одну сумку поруч",
-            "feedbackByLocale": {
-              "ru": "С `This bag` нужно `is`.",
-              "uk": "З `This bag` потрібне `is`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-56:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про вибрані бібліотеки",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-56:i15:r1",
-          "text": "The libraries are there."
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i15:r2",
-          "text": "The libraries are here."
-        },
-        {
-          "responseId": "en:lesson-03:session-56:i15:r3",
-          "text": "The libraries are full."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-56:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте повідомлення про вибрані бібліотеки",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-56:i15:audio",
-          "transcript": "The libraries are there."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-56:i15:r1",
-            "targetText": "The libraries are there.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i15:r2",
-            "targetText": "The libraries are here.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i15:r3",
-            "targetText": "The libraries are full.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-56:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте повідомлення про вибрані бібліотеки",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `there`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `there`, а в цьому варіанті — `here`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-56:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте повідомлення про вибрані бібліотеки",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `there`, а в этом варианте — `full`.",
-              "uk": "У записі останнє слово — `there`, а в цьому варіанті — `full`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-56:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,48 +1030,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-56:i16:p1",
-            "target": "stations",
+            "target": "bin",
             "meaningByLocale": {
-              "ru": "станции",
-              "uk": "станції"
+              "ru": "ведро для мусора",
+              "uk": "відро для сміття"
             }
           },
           {
             "pairId": "en:lesson-03:session-56:i16:p2",
-            "target": "cafes",
+            "target": "hook",
             "meaningByLocale": {
-              "ru": "кафе",
-              "uk": "кафе"
+              "ru": "крючок",
+              "uk": "гачок"
             }
           },
           {
             "pairId": "en:lesson-03:session-56:i16:p3",
-            "target": "museum",
+            "target": "tray",
             "meaningByLocale": {
-              "ru": "музей",
-              "uk": "музей"
+              "ru": "поднос",
+              "uk": "піднос"
             }
           },
           {
             "pairId": "en:lesson-03:session-56:i16:p4",
-            "target": "striped",
+            "target": "mat",
             "meaningByLocale": {
-              "ru": "полосатый",
-              "uk": "смугастий"
+              "ru": "коврик",
+              "uk": "килимок"
             }
           }
         ],
         "leftColumn": [
-          "stations",
-          "cafes",
-          "museum",
-          "striped"
+          "bin",
+          "hook",
+          "tray",
+          "mat"
         ],
         "rightColumn": [
-          "станції",
-          "кафе",
-          "музей",
-          "смугастий"
+          "відро для сміття",
+          "гачок",
+          "піднос",
+          "килимок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1089,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-56:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому місті ви вже вибрали кілька станцій маршруту. Друг тримає карту. Запитайте «Де станції?», маючи на увазі вибрані станції",
+      "prompt": "Продавець питає про відро біля стіни. Відповідайте йому коротко: те відро біле.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-56:i17:audio"
       ],
-      "accessibilityLabel": "В іншому місті ви вже вибрали кілька станцій маршруту. Друг тримає карту. Запитайте «Де станції?», маючи на увазі вибрані станції",
+      "accessibilityLabel": "Продавець питає про відро біля стіни. Відповідайте йому коротко: те відро біле.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-56:i17:audio",
-          "transcript": "Where are the stations?"
+          "transcript": "That bin is white."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are the stations?",
+        "targetPhrase": "That bin is white.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1129,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "28af6f56852ca70e2e17d4791ad840c7bf64eabb25fee1971e1daf43049fae04"
+  "learnerFingerprint": "b0e5818f0ac9309157a83c076ff20ff356eaf828ea5e6d4daf3608a553fb3f8f"
 }

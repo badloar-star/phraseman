@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-41:intro1:r2": {
-          "ru": "`room` — комната вообще. Кухня — `kitchen`.",
-          "uk": "`room` — кімната загалом. Кухня — `kitchen`."
+          "ru": "О кассире вы говорите впервые, поэтому a: A cashier is here.",
+          "uk": "Про касира ви говорите вперше, тому a: A cashier is here."
         },
         "en:lesson-03:session-41:intro1:r3": {
-          "ru": "`window` — окно. Кухня — `kitchen`.",
-          "uk": "`window` — вікно. Кухня — `kitchen`."
+          "ru": "Кассир один, поэтому нужно is: A cashier is here.",
+          "uk": "Касир один, тому потрібно is: A cashier is here."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-41:intro2:r2": {
-          "ru": "Кухня одна: нужно `is`.",
-          "uk": "Кухня одна: потрібне `is`."
+          "ru": "Слово receipt начинается с согласного звука, поэтому a: This is a receipt.",
+          "uk": "Слово receipt починається з приголосного звуку, тому a: This is a receipt."
         },
         "en:lesson-03:session-41:intro2:r3": {
-          "ru": "Так говорят о нескольких кухнях. Здесь одна: `The kitchen is here`.",
-          "uk": "Так говорять про кілька кухонь. Тут одна: `The kitchen is here`."
+          "ru": "Чек один, поэтому нужно is: This is a receipt.",
+          "uk": "Чек один, тому потрібно is: This is a receipt."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-41:intro3:r2": {
-          "ru": "`honest` здесь описывает честного человека. О точной схеме — `accurate`.",
-          "uk": "`honest` тут описує чесну людину. Про точну схему — `accurate`."
+          "ru": "Ошибку вы уже назвали, вы оба знаете, о какой речь, поэтому the: The mistake is here.",
+          "uk": "Помилку ви вже назвали, ви обоє знаєте, про яку мова, тому the: The mistake is here."
         },
         "en:lesson-03:session-41:intro3:r3": {
-          "ru": "Речь об одной схеме: `It is accurate`.",
-          "uk": "Ідеться про одну схему: `It is accurate`."
+          "ru": "Ошибка одна, поэтому нужно is: The mistake is here.",
+          "uk": "Помилка одна, тому потрібно is: The mistake is here."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "61c1d2598747b765b31cf62d265ca44ef793a00476577c9ce2cdbd8589688284"
+  "auxiliaryFingerprint": "f5235a2b2743137f64d7c5bf7b2b3bc159d9751b32f020f9ec15995eb943f4c7"
 }

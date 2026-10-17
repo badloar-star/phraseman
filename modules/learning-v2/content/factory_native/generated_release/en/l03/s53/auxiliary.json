@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-53:intro1:r2": {
-          "ru": "Перед `museum` нужно `a`: `a museum`.",
-          "uk": "Перед `museum` потрібне `a`: `a museum`."
+          "ru": "Коробок несколько, поэтому нужно boxes.",
+          "uk": "Коробок кілька, тому потрібно boxes."
         },
         "en:lesson-03:session-53:intro1:r3": {
-          "ru": "Одно место: `This is a museum`.",
-          "uk": "Одне місце: `This is a museum`."
+          "ru": "Коробок несколько, поэтому не This, а These: These metal boxes.",
+          "uk": "Коробок кілька, тому не This, а These: These metal boxes."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-53:intro2:r2": {
-          "ru": "Один музей: `Where is the museum?`.",
-          "uk": "Один музей: `Where is the museum?`."
+          "ru": "Перчаток несколько, поэтому не is, а are: Those leather gloves are new.",
+          "uk": "Рукавичок кілька, тому не is, а are: Those leather gloves are new."
         },
         "en:lesson-03:session-53:intro2:r3": {
-          "ru": "`What` спрашивает, что это. Где находится музей — `Where`.",
-          "uk": "`What` запитує, що це. Де розташований музей — `Where`."
+          "ru": "Перчатки лежат далеко, а these говорим о близком: Those leather gloves are new.",
+          "uk": "Рукавички лежать далеко, а these кажемо про близьке: Those leather gloves are new."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-53:intro3:r2": {
-          "ru": "`unfair` — несправедливый. Полная бутылка — `full`.",
-          "uk": "`unfair` — несправедливий. Повна пляшка — `full`."
+          "ru": "Слово rubber ставим перед boots: These rubber boots.",
+          "uk": "Слово rubber ставимо перед boots: These rubber boots."
         },
         "en:lesson-03:session-53:intro3:r3": {
-          "ru": "Об одной бутылке: `It is full`.",
-          "uk": "Про одну пляшку: `It is full`."
+          "ru": "Сапог несколько, поэтому нужно are: These rubber boots are old.",
+          "uk": "Чобіт кілька, тому потрібно are: These rubber boots are old."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0e9901581125769b83806dde6685fc5acee97c9094472ceb6c022a899f7c4351"
+  "auxiliaryFingerprint": "ef0c97755bdbc490da3b44e3b2743bde2f551999174daaf1dbbac48445adb61e"
 }

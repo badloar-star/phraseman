@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-50",
   "learningOutcomeByLocale": {
-    "ru": "назвать кинотеатр с a и указать место конкретного кинотеатра с the",
-    "uk": "назвати кінотеатр з a й указати місце конкретного кінотеатру з the"
+    "ru": "назвать цвет одного предмета и нескольких: a black chair, black chairs",
+    "uk": "назвати колір одного предмета й кількох: a black chair, black chairs"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для просмотра фильма",
-        "uk": "Місце для перегляду фільму"
+        "ru": "Стулья для кухни",
+        "uk": "Стільці для кухні"
       },
       "bodyByLocale": {
-        "ru": "`cinema` — «кинотеатр». `This is a cinema` — «Это кинотеатр»: называем место на карте. Перед `cinema` нужно `a`: слово начинается с согласного звука, хотя первая буква `c` здесь звучит иначе, чем в `car`. Для одного кинотеатра используем `is`. Даже сто зрителей не превращают один кинотеатр в сто кинотеатров.",
-        "uk": "`cinema` — «кінотеатр». `This is a cinema` — «Це кінотеатр»: називаємо місце на карті. Перед `cinema` потрібне `a`: слово починається з приголосного звука, хоча перша літера `c` тут звучить інакше, ніж у `car`. Для одного кінотеатру використовуємо `is`. Навіть сто глядачів не перетворюють один кінотеатр на сто кінотеатрів."
+        "ru": "Вы с подругой выбираете стулья для кухни. В магазине у стола стоят четыре одинаковых, они рядом с вами. black — «чёрный». Стульев несколько, поэтому a не нужно: These are black chairs — «Это чёрные стулья». Продавец стоит рядом и ждёт, что вы скажете.",
+        "uk": "Ви з подругою вибираєте стільці для кухні. У магазині біля столу стоять чотири однакові, вони поруч із вами. black — «чорний». Стільців кілька, тому a не потрібно: These are black chairs — «Це чорні стільці». Продавець стоїть поруч і чекає, що ви скажете."
       },
       "question": {
         "interactionId": "en:lesson-03:session-50:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите кинотеатр одним английским словом.",
-          "uk": "Назвіть кінотеатр одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что это чёрные стулья.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що це чорні стільці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-50:intro1:r1",
-              "text": "cinema"
+              "text": "These are black chairs."
             },
             {
               "responseId": "en:lesson-03:session-50:intro1:r2",
-              "text": "hospital"
+              "text": "These are a black chairs."
             },
             {
               "responseId": "en:lesson-03:session-50:intro1:r3",
-              "text": "office"
+              "text": "These are black chair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-50:intro1:r1",
-              "text": "cinema"
+              "text": "These are black chairs."
             },
             {
               "responseId": "en:lesson-03:session-50:intro1:r2",
-              "text": "hospital"
+              "text": "These are a black chairs."
             },
             {
               "responseId": "en:lesson-03:session-50:intro1:r3",
-              "text": "office"
+              "text": "These are black chair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите кинотеатр одним английским словом.",
-          "uk": "Назвіть кінотеатр одним англійським словом."
+          "ru": "Продавец ждёт ответа. Скажите ему, что это чёрные стулья.",
+          "uk": "Продавець чекає на відповідь. Скажіть йому, що це чорні стільці."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нужный кинотеатр",
-        "uk": "Потрібний кінотеатр"
+        "ru": "Полотенца на дальней полке",
+        "uk": "Рушники на дальній полиці"
       },
       "bodyByLocale": {
-        "ru": "`The cinema is there` — «Кинотеатр там». Вы с Анной уже знаете, в какой кинотеатр идёте: речь о понятном вам обоим месте. Поэтому `the cinema`. Если просто называете один объект дальше на карте: `That is a cinema` — «Это кинотеатр».",
-        "uk": "`The cinema is there` — «Кінотеатр там». Ви з Анною вже знаєте, до якого кінотеатру йдете: ідеться про зрозуміле вам обом місце. Тому `the cinema`. Якщо просто називаєте один об’єкт далі на карті: `That is a cinema` — «Це кінотеатр»."
+        "ru": "В магазине для ванной комнаты вы замечаете на дальней полке стопку полотенец цвета свежего снега, аккуратно сложенных. Подруга хочет знать, что вы там увидели. white — «белый». Полотенец несколько, и они далеко: Those are white towels — «Это белые полотенца».",
+        "uk": "У магазині для ванної кімнати ви помічаєте на дальній полиці стос рушників кольору свіжого снігу, акуратно складених. Подруга хоче знати, що ви там побачили. white — «білий». Рушників кілька, і вони далеко: Those are white towels — «Це білі рушники»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-50:intro2:q",
         "promptByLocale": {
-          "ru": "Вы нашли в дальней части карты кинотеатр вашей встречи. Скажите «Кинотеатр там».",
-          "uk": "Ви знайшли в дальній частині карти кінотеатр вашої зустрічі. Скажіть «Кінотеатр там»."
+          "ru": "Полотенца лежат далеко от вас. Скажите подруге, что это белые полотенца.",
+          "uk": "Рушники лежать далеко від вас. Скажіть подрузі, що це білі рушники."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-50:intro2:r1",
-              "text": "The cinema is there."
+              "text": "Those are white towels."
             },
             {
               "responseId": "en:lesson-03:session-50:intro2:r2",
-              "text": "The cinema are there."
+              "text": "Those is white towels."
             },
             {
               "responseId": "en:lesson-03:session-50:intro2:r3",
-              "text": "The cinemas are there."
+              "text": "These are white towels."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-50:intro2:r1",
-              "text": "The cinema is there."
+              "text": "Those are white towels."
             },
             {
               "responseId": "en:lesson-03:session-50:intro2:r2",
-              "text": "The cinema are there."
+              "text": "Those is white towels."
             },
             {
               "responseId": "en:lesson-03:session-50:intro2:r3",
-              "text": "The cinemas are there."
+              "text": "These are white towels."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы нашли в дальней части карты кинотеатр вашей встречи. Скажите «Кинотеатр там».",
-          "uk": "Ви знайшли в дальній частині карти кінотеатр вашої зустрічі. Скажіть «Кінотеатр там»."
+          "ru": "Полотенца лежат далеко от вас. Скажите подруге, что это белые полотенца.",
+          "uk": "Рушники лежать далеко від вас. Скажіть подрузі, що це білі рушники."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Цена и результат",
-        "uk": "Ціна й результат"
+        "ru": "Подушки на рынке",
+        "uk": "Подушки на ринку"
       },
       "bodyByLocale": {
-        "ru": "`expensive` — «дорогой», когда цена высокая. О билете: `It is expensive` — «Он дорогой». `effective` — «эффективный, действенный»: способ даёт нужный результат. Общая карта помогла всем найти место встречи; о таком способе можно сказать `It is effective` — «Он эффективный». Это не оценка цены. Перед выходом гость ищет ванную комнату: `The bathroom is here` — «Ванная комната здесь».",
-        "uk": "`expensive` — «дорогий», коли ціна висока. Про квиток: `It is expensive` — «Він дорогий». `effective` — «ефективний, дієвий»: спосіб дає потрібний результат. Спільна карта допомогла всім знайти місце зустрічі; про такий спосіб можна сказати `It is effective` — «Він ефективний». Це не оцінка ціни. Перед виходом гість шукає ванну кімнату: `The bathroom is here` — «Ванна кімната тут»."
+        "ru": "На рынке продавец раскладывает перед вами подушки для дивана. Они лежат прямо на прилавке, цвета мокрого асфальта. Вы хотите проверить, что это за подушки. grey — «серый». Подушек несколько и они рядом: Are these grey pillows? — «Это серые подушки?»",
+        "uk": "На ринку продавець розкладає перед вами подушки для дивана. Вони лежать просто на прилавку, кольору мокрого асфальту. Ви хочете перевірити, що це за подушки. grey — «сірий». Подушок кілька й вони поруч: Are these grey pillows? — «Це сірі подушки?»"
       },
       "question": {
         "interactionId": "en:lesson-03:session-50:intro3:q",
         "promptByLocale": {
-          "ru": "Билет стоит дорого. Скажите о нём «Он дорогой».",
-          "uk": "Квиток коштує дорого. Скажіть про нього «Він дорогий»."
+          "ru": "Продавец разложил подушки на прилавке. Спросите его, серые ли это подушки.",
+          "uk": "Продавець розклав подушки на прилавку. Запитайте його, чи це сірі подушки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-50:intro3:r1",
-              "text": "It is expensive."
+              "text": "Are these grey pillows?"
             },
             {
               "responseId": "en:lesson-03:session-50:intro3:r2",
-              "text": "It is cheap."
+              "text": "Is these grey pillows?"
             },
             {
               "responseId": "en:lesson-03:session-50:intro3:r3",
-              "text": "It are expensive."
+              "text": "Are these grey pillow?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-50:intro3:r1",
-              "text": "It is expensive."
+              "text": "Are these grey pillows?"
             },
             {
               "responseId": "en:lesson-03:session-50:intro3:r2",
-              "text": "It is cheap."
+              "text": "Is these grey pillows?"
             },
             {
               "responseId": "en:lesson-03:session-50:intro3:r3",
-              "text": "It are expensive."
+              "text": "Are these grey pillow?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Билет стоит дорого. Скажите о нём «Он дорогой».",
-          "uk": "Квиток коштує дорого. Скажіть про нього «Він дорогий»."
+          "ru": "Продавец разложил подушки на прилавке. Спросите его, серые ли это подушки.",
+          "uk": "Продавець розклав подушки на прилавку. Запитайте його, чи це сірі подушки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "89bc06f678109cd934fd308049a486be1d1c86da70ba997b7d249f0cffda9848"
+  "introFingerprint": "54440f3f544609fc348e53528b10fe556ebf89d50a5c85b21ab600040d184220"
 }

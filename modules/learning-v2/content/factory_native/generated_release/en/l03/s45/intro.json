@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-45",
   "learningOutcomeByLocale": {
-    "ru": "назвать офис с an и затем говорить о понятном собеседнику офисе с the",
-    "uk": "назвати офіс з an і потім говорити про зрозумілий співрозмовникові офіс із the"
+    "ru": "выбирать между a, an и the по тому, назван ли предмет впервые и понятен ли он обоим",
+    "uk": "вибирати між a, an і the за тим, чи названо предмет уперше й чи зрозумілий він обом"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один офис",
-        "uk": "Один офіс"
+        "ru": "Тесная куртка",
+        "uk": "Тісна куртка"
       },
       "bodyByLocale": {
-        "ru": "`office` — «офис»: помещение, где работают. `This is an office` — «Это офис». Перед `office` нужно `an`, потому что слово начинается с гласного звука. Выбираем по звуку, а не по размеру помещения: даже крошечному офису полагается целое `an`.",
-        "uk": "`office` — «офіс»: приміщення, де працюють. `This is an office` — «Це офіс». Перед `office` потрібне `an`, бо слово починається з голосного звука. Вибираємо за звуком, а не за розміром приміщення: навіть крихітному офісу належить ціле `an`."
+        "ru": "Вы примеряете куртку в магазине, и она вам мала. Вы с продавцом смотрите на ярлык с цифрой внутри. size — «размер». Эта цифра понятна вам обоим, поэтому the: The size is small — «Размер маленький». Если речь о любом размере вообще, было бы a size.",
+        "uk": "Ви міряєте куртку в магазині, і вона вам замала. Ви з продавцем дивитеся на ярлик із цифрою всередині. size — «розмір». Ця цифра зрозуміла вам обом, тому the: The size is small — «Розмір малий». Якби мова йшла про будь-який розмір узагалі, було б a size."
       },
       "question": {
         "interactionId": "en:lesson-03:session-45:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите офис одним английским словом.",
-          "uk": "Назвіть офіс одним англійським словом."
+          "ru": "Продавец смотрит на ту же куртку. Скажите ему: «Размер маленький».",
+          "uk": "Продавець дивиться на ту саму куртку. Скажіть йому: «Розмір малий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-45:intro1:r1",
-              "text": "office"
+              "text": "The size is small."
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r2",
-              "text": "kitchen"
+              "text": "A size is small."
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r3",
-              "text": "bathroom"
+              "text": "The size are small."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-45:intro1:r1",
-              "text": "office"
+              "text": "The size is small."
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r2",
-              "text": "kitchen"
+              "text": "A size is small."
             },
             {
               "responseId": "en:lesson-03:session-45:intro1:r3",
-              "text": "bathroom"
+              "text": "The size are small."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите офис одним английским словом.",
-          "uk": "Назвіть офіс одним англійським словом."
+          "ru": "Продавец смотрит на ту же куртку. Скажите ему: «Размер маленький».",
+          "uk": "Продавець дивиться на ту саму куртку. Скажіть йому: «Розмір малий»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тот самый офис",
-        "uk": "Той самий офіс"
+        "ru": "Надпись на коробке",
+        "uk": "Напис на коробці"
       },
       "bodyByLocale": {
-        "ru": "`The office is here` — «Офис здесь». Это конкретный офис, который вы ищете вместе: собеседник понимает, о каком месте речь. `the office` можно сказать и при первом упоминании, если нужный офис ясен из ситуации. Для одного офиса нужно `is`.",
-        "uk": "`The office is here` — «Офіс тут». Це конкретний офіс, який ви шукаєте разом: співрозмовник розуміє, про яке місце йдеться. `the office` можна сказати й за першої згадки, якщо потрібний офіс зрозумілий із ситуації. Для одного офісу потрібне `is`."
+        "ru": "Вы с подругой выбираете электрический чайник на вашу кухню. На коробке напечатаны буквы и цифры, и подруга спрашивает, что это за надпись. model — «модель». Надпись называет вид чайника, и вы называете её впервые, поэтому a: This is a model — «Это модель».",
+        "uk": "Ви з подругою обираєте електричний чайник на вашу кухню. На коробці надруковані літери й цифри, і подруга питає, що це за напис. model — «модель». Напис називає вид чайника, і ви називаєте його вперше, тому a: This is a model — «Це модель»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-45:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже обсудили нужный офис и теперь нашли его на схеме. Скажите «Офис здесь».",
-          "uk": "Ви вже обговорили потрібний офіс і тепер знайшли його на схемі. Скажіть «Офіс тут»."
+          "ru": "Подруга спрашивает про надпись на коробке. Скажите ей: «Это модель».",
+          "uk": "Подруга питає про напис на коробці. Скажіть їй: «Це модель»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-45:intro2:r1",
-              "text": "The office is here."
+              "text": "This is a model."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r2",
-              "text": "The office are here."
+              "text": "This is the model."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r3",
-              "text": "The offices are here."
+              "text": "This is an model."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-45:intro2:r1",
-              "text": "The office is here."
+              "text": "This is a model."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r2",
-              "text": "The office are here."
+              "text": "This is the model."
             },
             {
               "responseId": "en:lesson-03:session-45:intro2:r3",
-              "text": "The offices are here."
+              "text": "This is an model."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже обсудили нужный офис и теперь нашли его на схеме. Скажите «Офис здесь».",
-          "uk": "Ви вже обговорили потрібний офіс і тепер знайшли його на схемі. Скажіть «Офіс тут»."
+          "ru": "Подруга спрашивает про надпись на коробке. Скажите ей: «Это модель».",
+          "uk": "Подруга питає про напис на коробці. Скажіть їй: «Це модель»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Полезная схема и запрет",
-        "uk": "Корисна схема й заборона"
+        "ru": "Шарф другого цвета",
+        "uk": "Шарф іншого кольору"
       },
       "bodyByLocale": {
-        "ru": "`useful` — «полезный»: схема помогает найти офис. О ней: `It is useful` — «Она полезная». `illegal` — «незаконный, запрещённый законом». В нашей ситуации Анна прочла правила: парковаться в выбранном месте запрещено законом. Об этом действии: `It is illegal` — «Это незаконно». Говорим о действии, а не о самой машине. Машина по-английски — `car`.",
-        "uk": "`useful` — «корисний»: схема допомагає знайти офіс. Про неї: `It is useful` — «Вона корисна». `illegal` — «незаконний, заборонений законом». У нашій ситуації Анна прочитала правила: паркуватися у вибраному місці заборонено законом. Про цю дію: `It is illegal` — «Це незаконно». Говоримо про дію, а не про саму машину. Машина англійською — `car`."
+        "ru": "Вы забрали заказанный шарф. Продавец говорит, что в списке записан другой цвет. colour — «цвет». Вы оба смотрите на этот шарф, и его цвет понятен вам обоим, поэтому the: The colour is wrong — «Цвет не тот». Слово colour начинается с согласного звука.",
+        "uk": "Ви забрали замовлений шарф. Продавець каже, що в списку записаний інший колір. colour — «колір». Ви обоє дивитеся на цей шарф, і його колір зрозумілий вам обом, тому the: The colour is wrong — «Колір не той». Слово colour починається з приголосного звуку."
       },
       "question": {
         "interactionId": "en:lesson-03:session-45:intro3:q",
         "promptByLocale": {
-          "ru": "Схема помогает найти нужный офис. Скажите о ней «Она полезная».",
-          "uk": "Схема допомагає знайти потрібний офіс. Скажіть про неї «Вона корисна»."
+          "ru": "Продавец показывает на шарф, который видите вы оба. Скажите ему: «Цвет не тот».",
+          "uk": "Продавець показує на шарф, який бачите ви обоє. Скажіть йому: «Колір не той»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-45:intro3:r1",
-              "text": "It is useful."
+              "text": "The colour is wrong."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r2",
-              "text": "It is useless."
+              "text": "A colour is wrong."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r3",
-              "text": "It are useful."
+              "text": "The colour are wrong."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-45:intro3:r1",
-              "text": "It is useful."
+              "text": "The colour is wrong."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r2",
-              "text": "It is useless."
+              "text": "A colour is wrong."
             },
             {
               "responseId": "en:lesson-03:session-45:intro3:r3",
-              "text": "It are useful."
+              "text": "The colour are wrong."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Схема помогает найти нужный офис. Скажите о ней «Она полезная».",
-          "uk": "Схема допомагає знайти потрібний офіс. Скажіть про неї «Вона корисна»."
+          "ru": "Продавец показывает на шарф, который видите вы оба. Скажите ему: «Цвет не тот».",
+          "uk": "Продавець показує на шарф, який бачите ви обоє. Скажіть йому: «Колір не той»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b901075d990835d720b3c619ede8ebb908c32959dbb665f6fa7a088ba9fdaf98"
+  "introFingerprint": "8a5972740885f0074ee4424d42647ed5808447586ba7d35c3bea094c88c358a7"
 }

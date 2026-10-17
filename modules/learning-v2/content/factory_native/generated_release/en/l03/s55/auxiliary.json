@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-03:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-55:intro1:r2": {
-          "ru": "`cafe` — одно кафе. Несколько — `cafes`.",
-          "uk": "`cafe` — одне кафе. Кілька — `cafes`."
+          "ru": "Форма одна, поэтому нужно is: The shape is oval.",
+          "uk": "Форма одна, тому потрібно is: The shape is oval."
         },
         "en:lesson-03:session-55:intro1:r3": {
-          "ru": "`restaurants` — рестораны. Кафе — `cafes`.",
-          "uk": "`restaurants` — ресторани. Кафе — `cafes`."
+          "ru": "Сначала называем признак: The shape, потом какая она: is oval.",
+          "uk": "Спершу називаємо ознаку: The shape, потім яка вона: is oval."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-55:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-55:intro2:r2": {
-          "ru": "Кафе несколько: `Where are the cafes?`.",
-          "uk": "Кафе кілька: `Where are the cafes?`."
+          "ru": "Материал один, поэтому нужно is: The material is leather.",
+          "uk": "Матеріал один, тому потрібно is: The material is leather."
         },
         "en:lesson-03:session-55:intro2:r3": {
-          "ru": "Место спрашиваем с `Where`, а не `What`.",
-          "uk": "Про місце запитуємо з `Where`, а не `What`."
+          "ru": "Сначала называем признак: The material, потом что это: is leather.",
+          "uk": "Спершу називаємо ознаку: The material, потім що це: is leather."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-03:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-55:intro3:r2": {
-          "ru": "Здесь Анна выполняет обещанное: `responsible`.",
-          "uk": "Тут Анна виконує обіцяне: `responsible`."
+          "ru": "Узор один, поэтому нужно is: The pattern is floral.",
+          "uk": "Візерунок один, тому потрібно is: The pattern is floral."
         },
         "en:lesson-03:session-55:intro3:r3": {
-          "ru": "После `She` нужно `is`.",
-          "uk": "Після `She` потрібне `is`."
+          "ru": "Сначала называем признак: The pattern, потом какой он: is floral.",
+          "uk": "Спершу називаємо ознаку: The pattern, потім який він: is floral."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f0b2d3afa414fa6f89c2dae81bcdcec9a9911b633a3bf5cf92df3b4c99659525"
+  "auxiliaryFingerprint": "51a07f1a514eb24b1b843af4dafa04d141ee3484e05c4a008666fcd107f57166"
 }

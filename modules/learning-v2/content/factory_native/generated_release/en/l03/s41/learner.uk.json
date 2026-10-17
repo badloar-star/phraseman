@@ -9,35 +9,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна шукає свій телефон. Він лежить поруч. Скажіть «Телефон тут»",
+      "prompt": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна шукає свій телефон. Він лежить поруч. Скажіть «Телефон тут»",
+      "accessibilityLabel": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The phone is here.",
+        "targetPhrase": "A box is here.",
         "localizedMeaning": {
-          "ru": "Анна ищет свой телефон. Он лежит рядом. Скажите «Телефон здесь»",
-          "uk": "Анна шукає свій телефон. Він лежить поруч. Скажіть «Телефон тут»"
+          "ru": "Вы впервые показываете подруге коробку на полу. Скажите: «Здесь коробка».",
+          "uk": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка»."
         },
         "orderedTokens": [
-          "The",
-          "phone",
+          "A",
+          "box",
           "is",
           "here"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "The"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна шукає свій телефон. Він лежить поруч. Скажіть «Телефон тут»",
+            "testedDimension": "Ви вперше показуєте подрузі коробку на підлозі. Скажіть: «Тут коробка».",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The phone is here.`",
-              "uk": "тут потрібно `is` — `The phone is here.`"
+              "ru": "здесь нужно `A` — `A box is here.`",
+              "uk": "тут потрібно `A` — `A box is here.`"
             }
           }
         ],
@@ -54,47 +54,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i02:r1",
-          "text": "kitchen"
+          "text": "A bag is here."
         },
         {
           "responseId": "en:lesson-03:session-41:i02:r2",
-          "text": "children"
+          "text": "The bag is here."
         },
         {
           "responseId": "en:lesson-03:session-41:i02:r3",
-          "text": "ticket"
+          "text": "A bag is there."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i02:audio",
-          "transcript": "kitchen"
+          "transcript": "A bag is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-41:i02:r1",
-            "targetText": "kitchen",
+            "targetText": "A bag is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-41:i02:r2",
-            "targetText": "children",
+            "targetText": "The bag is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-41:i02:r3",
-            "targetText": "ticket",
+            "targetText": "A bag is there.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +103,19 @@
           {
             "responseId": "en:lesson-03:session-41:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `kitchen`, а в этом варианте — `children`.",
-              "uk": "У записі перше слово — `kitchen`, а в цьому варіанті — `children`."
+              "ru": "В записи первое слово — `A` (предмет назван впервые), а в этом варианте — `The`.",
+              "uk": "У записі перше слово — `A` (предмет названо вперше), а в цьому варіанті — `The`."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `kitchen`, а в этом варианте — `ticket`.",
-              "uk": "У записі перше слово — `kitchen`, а в цьому варіанті — `ticket`."
+              "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+              "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
             }
           }
         ],
@@ -130,63 +130,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть кімнату для приготування їжі одним англійським словом",
+      "prompt": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i03:r1",
-          "text": "kitchen"
+          "text": "The"
         },
         {
           "responseId": "en:lesson-03:session-41:i03:r2",
-          "text": "room"
+          "text": "A"
         },
         {
           "responseId": "en:lesson-03:session-41:i03:r3",
-          "text": "window"
+          "text": "An"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть кімнату для приготування їжі одним англійським словом",
+      "accessibilityLabel": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите комнату для приготовления еды одним английским словом",
-          "uk": "Назвіть кімнату для приготування їжі одним англійським словом"
+          "ru": "Вы уже показали подруге сумку и теперь говорите о ней же. Дополните фразу",
+          "uk": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "___ bag is here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-41:i03:r1",
-            "text": "kitchen"
+            "text": "The"
           },
           {
             "responseId": "en:lesson-03:session-41:i03:r2",
-            "text": "room"
+            "text": "A"
           },
           {
             "responseId": "en:lesson-03:session-41:i03:r3",
-            "text": "window"
+            "text": "An"
           }
         ],
-        "testedDimension": "Назвіть кімнату для приготування їжі одним англійським словом",
+        "testedDimension": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть кімнату для приготування їжі одним англійським словом",
+            "testedDimension": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "`room` — комната вообще. Здесь называем кухню: `kitchen`.",
-              "uk": "`room` — кімната загалом. Тут називаємо кухню: `kitchen`."
+              "ru": "Сумку вы уже показали, поэтому нужно The, а не A.",
+              "uk": "Сумку ви вже показали, тому потрібно The, а не A."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть кімнату для приготування їжі одним англійським словом",
+            "testedDimension": "Ви вже показали подрузі сумку й тепер говорите про неї ж. Доповніть фразу",
             "feedbackByLocale": {
-              "ru": "`window` — окно. Кухня — `kitchen`.",
-              "uk": "`window` — вікно. Кухня — `kitchen`."
+              "ru": "Сумку вы уже показали, поэтому нужно The, а перед bag an не бывает.",
+              "uk": "Сумку ви вже показали, тому потрібно The, а перед bag an не буває."
             }
           }
         ]
@@ -209,48 +209,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-41:i04:p1",
-            "target": "kitchen",
+            "target": "receipt",
             "meaningByLocale": {
-              "ru": "кухня",
-              "uk": "кухня"
+              "ru": "чек",
+              "uk": "чек"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i04:p2",
-            "target": "honest",
+            "target": "cashier",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "кассир",
+              "uk": "касир"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i04:p3",
-            "target": "accurate",
+            "target": "mistake",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "ошибка",
+              "uk": "помилка"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i04:p4",
-            "target": "phone",
+            "target": "counter",
             "meaningByLocale": {
-              "ru": "телефон",
-              "uk": "телефон"
+              "ru": "прилавок",
+              "uk": "прилавок"
             }
           }
         ],
         "leftColumn": [
-          "kitchen",
-          "honest",
-          "accurate",
-          "phone"
+          "receipt",
+          "cashier",
+          "mistake",
+          "counter"
         ],
         "rightColumn": [
-          "кухня",
-          "чесний",
-          "точний",
-          "телефон"
+          "чек",
+          "касир",
+          "помилка",
+          "прилавок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -272,38 +272,38 @@
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i05:audio",
-          "transcript": "This is a kitchen."
+          "transcript": "The bag is here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a kitchen.",
+        "hiddenTargetPhrase": "The bag is here.",
         "orderedTokens": [
-          "This",
+          "The",
+          "bag",
           "is",
-          "a",
-          "kitchen"
+          "here"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "A"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a kitchen.`",
-              "uk": "тут потрібно `is` — `This is a kitchen.`"
+              "ru": "здесь нужно `The` — `The bag is here.`",
+              "uk": "тут потрібно `The` — `The bag is here.`"
             }
           }
         ],
@@ -320,35 +320,35 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви вже показали кухню й тепер указуєте, де вона. Скажіть «Кухня тут»",
+      "prompt": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вже показали кухню й тепер указуєте, де вона. Скажіть «Кухня тут»",
+      "accessibilityLabel": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The kitchen is here.",
+        "targetPhrase": "This is a lamp.",
         "localizedMeaning": {
-          "ru": "Вы уже показали кухню и теперь указываете, где она. Скажите «Кухня здесь»",
-          "uk": "Ви вже показали кухню й тепер указуєте, де вона. Скажіть «Кухня тут»"
+          "ru": "Вы впервые называете лампу. Скажите подруге: «Это лампа».",
+          "uk": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа»."
         },
         "orderedTokens": [
-          "The",
-          "kitchen",
+          "This",
           "is",
-          "here"
+          "a",
+          "lamp"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "the"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви вже показали кухню й тепер указуєте, де вона. Скажіть «Кухня тут»",
+            "testedDimension": "Ви вперше називаєте лампу. Скажіть подрузі: «Це лампа».",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The kitchen is here.`",
-              "uk": "тут потрібно `is` — `The kitchen is here.`"
+              "ru": "здесь нужно `a` — `This is a lamp.`",
+              "uk": "тут потрібно `a` — `This is a lamp.`"
             }
           }
         ],
@@ -360,26 +360,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-41:i07",
+      "interactionId": "en:lesson-03:session-41:word:receipt",
       "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — receipt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:word:receipt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — receipt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:word:receipt:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:word:receipt:r1",
+            "targetText": "receipt",
+            "meaningByLocale": {
+              "ru": "чек. This is a receipt — «Это чек». О бумажке со списком покупок и суммой, которую выдают после оплаты.",
+              "uk": "чек. This is a receipt — «Це чек». Про папірець зі списком покупок і сумою, який видають після оплати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receipt",
+          "definitionByLocale": {
+            "ru": "чек. This is a receipt — «Это чек». О бумажке со списком покупок и суммой, которую выдают после оплаты.",
+            "uk": "чек. This is a receipt — «Це чек». Про папірець зі списком покупок і сумою, який видають після оплати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i07",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Господар не приховує недоліків будинку. Скажіть «Він чесний» зі скороченням",
+      "prompt": "Касир простягає вам папірець і називає його, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i07:audio"
       ],
-      "accessibilityLabel": "Господар не приховує недоліків будинку. Скажіть «Він чесний» зі скороченням",
+      "accessibilityLabel": "Касир простягає вам папірець і називає його, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i07:audio",
-          "transcript": "He's honest."
+          "transcript": "receipt"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's honest.",
+        "targetPhrase": "receipt",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,68 +436,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-41:word:cashier",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cashier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:word:cashier:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cashier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:word:cashier:audio",
+          "transcript": "cashier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:word:cashier:r1",
+            "targetText": "cashier",
+            "meaningByLocale": {
+              "ru": "кассир. A cashier is here — «Здесь кассир». О человеке, который принимает деньги и пробивает товары.",
+              "uk": "касир. A cashier is here — «Тут касир». Про людину, яка приймає гроші й пробиває товари."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cashier",
+          "definitionByLocale": {
+            "ru": "кассир. A cashier is here — «Здесь кассир». О человеке, который принимает деньги и пробивает товары.",
+            "uk": "касир. A cashier is here — «Тут касир». Про людину, яка приймає гроші й пробиває товари."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-41:i08",
-      "ordinal": 11,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви називаєте, що це за кімната: кухня",
+      "prompt": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i08:r1",
-          "text": "a"
+          "text": "cashier"
         },
         {
           "responseId": "en:lesson-03:session-41:i08:r2",
-          "text": "an"
+          "text": "coin"
         },
         {
           "responseId": "en:lesson-03:session-41:i08:r3",
-          "text": "are"
+          "text": "ticket"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви називаєте, що це за кімната: кухня",
+      "accessibilityLabel": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы называете, что это за комната: кухня",
-          "uk": "Ви називаєте, що це за кімната: кухня"
+          "ru": "Подруга спрашивает, как по-английски называется человек, который принимает деньги у кассы",
+          "uk": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси"
         },
-        "gappedTargetPhrase": "This is ___ kitchen.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-41:i08:r1",
-            "text": "a"
+            "text": "cashier"
           },
           {
             "responseId": "en:lesson-03:session-41:i08:r2",
-            "text": "an"
+            "text": "coin"
           },
           {
             "responseId": "en:lesson-03:session-41:i08:r3",
-            "text": "are"
+            "text": "ticket"
           }
         ],
-        "testedDimension": "Ви називаєте, що це за кімната: кухня",
+        "testedDimension": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i08:r2",
             "correct": false,
-            "testedDimension": "Ви називаєте, що це за кімната: кухня",
+            "testedDimension": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
             "feedbackByLocale": {
-              "ru": "`kitchen` начинается с согласного звука: `a kitchen`.",
-              "uk": "`kitchen` починається з приголосного звука: `a kitchen`."
+              "ru": "coin — это монета, а человека у кассы зовут cashier.",
+              "uk": "coin — це монета, а людину біля каси звати cashier."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i08:r3",
             "correct": false,
-            "testedDimension": "Ви називаєте, що це за кімната: кухня",
+            "testedDimension": "Подруга питає, як англійською називається людина, яка приймає гроші біля каси",
             "feedbackByLocale": {
-              "ru": "Здесь перед названием комнаты нужно `a`: `a kitchen`.",
-              "uk": "Тут перед назвою кімнати потрібне `a`: `a kitchen`."
+              "ru": "ticket — это билет, а человека у кассы зовут cashier.",
+              "uk": "ticket — це квиток, а людину біля каси звати cashier."
             }
           }
         ]
@@ -463,51 +549,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-41:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис схеми",
+      "prompt": "Послухайте, що каже касир",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i09:r1",
-          "text": "It is accurate."
+          "text": "A receipt is here."
         },
         {
           "responseId": "en:lesson-03:session-41:i09:r2",
-          "text": "It is relevant."
+          "text": "The receipt is here."
         },
         {
           "responseId": "en:lesson-03:session-41:i09:r3",
-          "text": "It is unusual."
+          "text": "A receipt is there."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте опис схеми",
+      "accessibilityLabel": "Послухайте, що каже касир",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i09:audio",
-          "transcript": "It is accurate."
+          "transcript": "A receipt is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-41:i09:r1",
-            "targetText": "It is accurate.",
+            "targetText": "A receipt is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-41:i09:r2",
-            "targetText": "It is relevant.",
+            "targetText": "The receipt is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-41:i09:r3",
-            "targetText": "It is unusual.",
+            "targetText": "A receipt is there.",
             "meaningByLocale": null
           }
         ],
@@ -516,19 +602,19 @@
           {
             "responseId": "en:lesson-03:session-41:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис схеми",
+            "testedDimension": "Послухайте, що каже касир",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `relevant`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `relevant`."
+              "ru": "В записи первое слово — `A` (чек назван впервые), а в этом варианте — `The`.",
+              "uk": "У записі перше слово — `A` (чек названо вперше), а в цьому варіанті — `The`."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис схеми",
+            "testedDimension": "Послухайте, що каже касир",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `accurate`, а в этом варианте — `unusual`.",
-              "uk": "У записі останнє слово — `accurate`, а в цьому варіанті — `unusual`."
+              "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+              "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
             }
           }
         ],
@@ -539,7 +625,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-41:i10",
-      "ordinal": 13,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -553,48 +639,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-41:i10:p1",
-            "target": "kitchen",
+            "target": "receipt",
             "meaningByLocale": {
-              "ru": "кухня",
-              "uk": "кухня"
+              "ru": "чек",
+              "uk": "чек"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i10:p2",
-            "target": "phone",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "телефон",
-              "uk": "телефон"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i10:p3",
-            "target": "here",
+            "target": "box",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "коробка",
+              "uk": "коробка"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i10:p4",
-            "target": "there",
+            "target": "lamp",
             "meaningByLocale": {
-              "ru": "там",
-              "uk": "там"
+              "ru": "лампа",
+              "uk": "лампа"
             }
           }
         ],
         "leftColumn": [
-          "kitchen",
-          "phone",
-          "here",
-          "there"
+          "receipt",
+          "bag",
+          "box",
+          "lamp"
         ],
         "rightColumn": [
-          "кухня",
-          "телефон",
-          "тут",
-          "там"
+          "чек",
+          "сумка",
+          "коробка",
+          "лампа"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -612,42 +698,42 @@
     },
     {
       "interactionId": "en:lesson-03:session-41:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i11:audio",
-          "transcript": "That phone is there."
+          "transcript": "A cashier is here."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "That phone is there.",
+        "hiddenTargetPhrase": "A cashier is here.",
         "orderedTokens": [
-          "That",
-          "phone",
+          "A",
+          "cashier",
           "is",
-          "there"
+          "here"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "The"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That phone is there.`",
-              "uk": "тут потрібно `is` — `That phone is there.`"
+              "ru": "здесь нужно `A` — `A cashier is here.`",
+              "uk": "тут потрібно `A` — `A cashier is here.`"
             }
           }
         ],
@@ -660,39 +746,39 @@
     },
     {
       "interactionId": "en:lesson-03:session-41:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте на кімнату далі коридором. Назвіть її: «Це кухня», зі словом для одного далі",
+      "prompt": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте на кімнату далі коридором. Назвіть її: «Це кухня», зі словом для одного далі",
+      "accessibilityLabel": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "That is a kitchen.",
+        "targetPhrase": "The cashier is here.",
         "localizedMeaning": {
-          "ru": "Вы показываете на комнату дальше по коридору. Назовите её: «Это кухня», со словом для одного дальше",
-          "uk": "Ви показуєте на кімнату далі коридором. Назвіть її: «Це кухня», зі словом для одного далі"
+          "ru": "Вы уже показали подруге кассира и теперь говорите о нём же. Скажите: «Кассир здесь».",
+          "uk": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут»."
         },
         "orderedTokens": [
-          "That",
+          "The",
+          "cashier",
           "is",
-          "a",
-          "kitchen"
+          "here"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "A"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви показуєте на кімнату далі коридором. Назвіть її: «Це кухня», зі словом для одного далі",
+            "testedDimension": "Ви вже показали подрузі касира й тепер говорите про нього ж. Скажіть: «Касир тут».",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That is a kitchen.`",
-              "uk": "тут потрібно `is` — `That is a kitchen.`"
+              "ru": "здесь нужно `The` — `The cashier is here.`",
+              "uk": "тут потрібно `The` — `The cashier is here.`"
             }
           }
         ],
@@ -704,26 +790,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-41:word:mistake",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mistake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:word:mistake:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mistake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:word:mistake:audio",
+          "transcript": "mistake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:word:mistake:r1",
+            "targetText": "mistake",
+            "meaningByLocale": {
+              "ru": "ошибка. The mistake is here — «Ошибка здесь». О том, что записано или сделано неверно.",
+              "uk": "помилка. The mistake is here — «Помилка тут». Про те, що записано або зроблено неправильно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mistake",
+          "definitionByLocale": {
+            "ru": "ошибка. The mistake is here — «Ошибка здесь». О том, что записано или сделано неверно.",
+            "uk": "помилка. The mistake is here — «Помилка тут». Про те, що записано або зроблено неправильно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-41:i13",
-      "ordinal": 16,
+      "ordinal": 19,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Схема відповідає розташуванню кімнат. Скажіть про неї «Вона точна» зі скороченням",
+      "prompt": "Подруга показує на неправильну ціну й називає її, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i13:audio"
       ],
-      "accessibilityLabel": "Схема відповідає розташуванню кімнат. Скажіть про неї «Вона точна» зі скороченням",
+      "accessibilityLabel": "Подруга показує на неправильну ціну й називає її, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i13:audio",
-          "transcript": "It's accurate."
+          "transcript": "mistake"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's accurate.",
+        "targetPhrase": "mistake",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -737,68 +866,111 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-41:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-41:word:counter",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — counter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:word:counter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — counter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:word:counter:audio",
+          "transcript": "counter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:word:counter:r1",
+            "targetText": "counter",
+            "meaningByLocale": {
+              "ru": "прилавок. A counter is here — «Здесь прилавок». О длинной стойке, на которую кладут покупки.",
+              "uk": "прилавок. A counter is here — «Тут прилавок». Про довгу стійку, на яку кладуть покупки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "counter",
+          "definitionByLocale": {
+            "ru": "прилавок. A counter is here — «Здесь прилавок». О длинной стойке, на которую кладут покупки.",
+            "uk": "прилавок. A counter is here — «Тут прилавок». Про довгу стійку, на яку кладуть покупки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви уточнюєте місце однієї вже знайомої кухні",
+      "prompt": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i14:r1",
-          "text": "is"
+          "text": "counter"
         },
         {
           "responseId": "en:lesson-03:session-41:i14:r2",
-          "text": "are"
+          "text": "floor"
         },
         {
           "responseId": "en:lesson-03:session-41:i14:r3",
-          "text": "am"
+          "text": "wall"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви уточнюєте місце однієї вже знайомої кухні",
+      "accessibilityLabel": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уточняете место одной уже знакомой кухни",
-          "uk": "Ви уточнюєте місце однієї вже знайомої кухні"
+          "ru": "Кассир стоит за длинной стойкой, на которую кладут покупки. Как называется эта стойка по-английски?",
+          "uk": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?"
         },
-        "gappedTargetPhrase": "The kitchen ___ here.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-41:i14:r1",
-            "text": "is"
+            "text": "counter"
           },
           {
             "responseId": "en:lesson-03:session-41:i14:r2",
-            "text": "are"
+            "text": "floor"
           },
           {
             "responseId": "en:lesson-03:session-41:i14:r3",
-            "text": "am"
+            "text": "wall"
           }
         ],
-        "testedDimension": "Ви уточнюєте місце однієї вже знайомої кухні",
+        "testedDimension": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i14:r2",
             "correct": false,
-            "testedDimension": "Ви уточнюєте місце однієї вже знайомої кухні",
+            "testedDimension": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
             "feedbackByLocale": {
-              "ru": "Кухня одна: `The kitchen is here`.",
-              "uk": "Кухня одна: `The kitchen is here`."
+              "ru": "floor — это пол, а стойка для покупок называется counter.",
+              "uk": "floor — це підлога, а стійка для покупок називається counter."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i14:r3",
             "correct": false,
-            "testedDimension": "Ви уточнюєте місце однієї вже знайомої кухні",
+            "testedDimension": "Касир стоїть за довгою стійкою, на яку кладуть покупки. Як називається ця стійка англійською?",
             "feedbackByLocale": {
-              "ru": "С `The kitchen` нужно `is`.",
-              "uk": "З `The kitchen` потрібне `is`."
+              "ru": "wall — это стена, а стойка для покупок называется counter.",
+              "uk": "wall — це стіна, а стійка для покупок називається counter."
             }
           }
         ]
@@ -807,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-03:session-41:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис господаря",
+      "prompt": "Послухайте, що каже подруга",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i15:r1",
-          "text": "He is honest."
+          "text": "The mistake is here."
         },
         {
           "responseId": "en:lesson-03:session-41:i15:r2",
-          "text": "He is brave."
+          "text": "A mistake is here."
         },
         {
           "responseId": "en:lesson-03:session-41:i15:r3",
-          "text": "He is weak."
+          "text": "The mistake is there."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте опис господаря",
+      "accessibilityLabel": "Послухайте, що каже подруга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i15:audio",
-          "transcript": "He is honest."
+          "transcript": "The mistake is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-41:i15:r1",
-            "targetText": "He is honest.",
+            "targetText": "The mistake is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r2",
-            "targetText": "He is brave.",
+            "targetText": "A mistake is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r3",
-            "targetText": "He is weak.",
+            "targetText": "The mistake is there.",
             "meaningByLocale": null
           }
         ],
@@ -860,19 +1032,19 @@
           {
             "responseId": "en:lesson-03:session-41:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис господаря",
+            "testedDimension": "Послухайте, що каже подруга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `brave`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `brave`."
+              "ru": "В записи первое слово — `The` (об ошибке уже шла речь), а в этом варианте — `A`.",
+              "uk": "У записі перше слово — `The` (про помилку вже йшлося), а в цьому варіанті — `A`."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис господаря",
+            "testedDimension": "Послухайте, що каже подруга",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `honest`, а в этом варианте — `weak`.",
-              "uk": "У записі останнє слово — `honest`, а в цьому варіанті — `weak`."
+              "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
+              "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
             }
           }
         ],
@@ -883,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-41:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-41:i16:p1",
-            "target": "kitchen",
+            "target": "counter",
             "meaningByLocale": {
-              "ru": "кухня",
-              "uk": "кухня"
+              "ru": "прилавок",
+              "uk": "прилавок"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i16:p2",
-            "target": "honest",
+            "target": "mistake",
             "meaningByLocale": {
-              "ru": "честный",
-              "uk": "чесний"
+              "ru": "ошибка",
+              "uk": "помилка"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i16:p3",
-            "target": "accurate",
+            "target": "cashier",
             "meaningByLocale": {
-              "ru": "точный",
-              "uk": "точний"
+              "ru": "кассир",
+              "uk": "касир"
             }
           },
           {
             "pairId": "en:lesson-03:session-41:i16:p4",
-            "target": "phone",
+            "target": "receipt",
             "meaningByLocale": {
-              "ru": "телефон",
-              "uk": "телефон"
+              "ru": "чек",
+              "uk": "чек"
             }
           }
         ],
         "leftColumn": [
-          "kitchen",
-          "honest",
-          "accurate",
-          "phone"
+          "counter",
+          "mistake",
+          "cashier",
+          "receipt"
         ],
         "rightColumn": [
-          "кухня",
-          "чесний",
-          "точний",
-          "телефон"
+          "прилавок",
+          "помилка",
+          "касир",
+          "чек"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -956,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-41:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому будинку ви вже оглянули кухню разом із гостем. Тепер гість забув, де вона. Ви показуєте вдалину. Скажіть повним реченням «Кухня там», повертаючись до тієї самої кімнати",
+      "prompt": "Ви вже показали подрузі прилавок і тепер повертаєтеся до нього. Скажіть: «Прилавок тут».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i17:audio"
       ],
-      "accessibilityLabel": "В іншому будинку ви вже оглянули кухню разом із гостем. Тепер гість забув, де вона. Ви показуєте вдалину. Скажіть повним реченням «Кухня там», повертаючись до тієї самої кімнати",
+      "accessibilityLabel": "Ви вже показали подрузі прилавок і тепер повертаєтеся до нього. Скажіть: «Прилавок тут».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i17:audio",
-          "transcript": "The kitchen is there."
+          "transcript": "The counter is here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The kitchen is there.",
+        "targetPhrase": "The counter is here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -996,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1040e9cdfd49dcdc4e4ecf68779bb9ffaa0f9d9231e33ce90a55e70469c231d7"
+  "learnerFingerprint": "063ae41e58027ed98c3ef8292ef222088ab9e13bb973051c3731239ef15a8a14"
 }

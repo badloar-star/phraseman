@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-43",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько спален и говорить о конкретных комнатах с the и are",
-    "uk": "назвати кілька спалень і говорити про конкретні кімнати з the та are"
+    "ru": "говорить о нескольких предметах вообще без артикля, а о конкретных — с the",
+    "uk": "говорити про кілька предметів узагалі без артикля, а про конкретні — із the"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна спальня, несколько спален",
-        "uk": "Одна спальня, кілька спалень"
+        "ru": "Подарки из общей стопки",
+        "uk": "Подарунки із загальної купи"
       },
       "bodyByLocale": {
-        "ru": "`bedrooms` — «спальни», одна — `bedroom`. Спальня — комната для сна. Для нескольких добавляем `s`: `These are bedrooms` — «Это спальни», показываем на комнаты рядом. Несколько подушек не делают из одной спальни несколько: считаем комнаты.",
-        "uk": "`bedrooms` — «спальні», одна — `bedroom`. Спальня — кімната для сну. Для кількох додаємо `s`: `These are bedrooms` — «Це спальні», показуємо на кімнати поруч. Кілька подушок не роблять з однієї спальні кілька: рахуємо кімнати."
+        "ru": "Вы с подругой выбираете подарки из общей стопки на ярмарке. Подруга предлагает взять побольше книг, а вы уже несёте тяжёлую сумку и отвечаете. book — «книга». Вы говорите о книгах вообще, не о конкретных, поэтому без the: Books are heavy — «Книги тяжёлые».",
+        "uk": "Ви з подругою обираєте подарунки із загальної купи на ярмарку. Подруга пропонує взяти побільше книжок, а ви вже несете важку сумку й відповідаєте. book — «книга». Ви говорите про книжки взагалі, не про конкретні, тому без the: Books are heavy — «Книжки важкі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите несколько спален одним английским словом.",
-          "uk": "Назвіть кілька спалень одним англійським словом."
+          "ru": "Подруга предлагает взять побольше книг. Скажите о книгах вообще: «Книги тяжёлые».",
+          "uk": "Подруга пропонує взяти побільше книжок. Скажіть про книжки взагалі: «Книжки важкі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-43:intro1:r1",
-              "text": "bedrooms"
+              "text": "Books are heavy."
             },
             {
               "responseId": "en:lesson-03:session-43:intro1:r2",
-              "text": "bedroom"
+              "text": "The books are heavy."
             },
             {
               "responseId": "en:lesson-03:session-43:intro1:r3",
-              "text": "bottles"
+              "text": "Books is heavy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-43:intro1:r1",
-              "text": "bedrooms"
+              "text": "Books are heavy."
             },
             {
               "responseId": "en:lesson-03:session-43:intro1:r2",
-              "text": "bedroom"
+              "text": "The books are heavy."
             },
             {
               "responseId": "en:lesson-03:session-43:intro1:r3",
-              "text": "bottles"
+              "text": "Books is heavy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите несколько спален одним английским словом.",
-          "uk": "Назвіть кілька спалень одним англійським словом."
+          "ru": "Подруга предлагает взять побольше книг. Скажите о книгах вообще: «Книги тяжёлые».",
+          "uk": "Подруга пропонує взяти побільше книжок. Скажіть про книжки взагалі: «Книжки важкі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Те самые комнаты",
-        "uk": "Ті самі кімнати"
+        "ru": "Журналы на верхней полке",
+        "uk": "Журнали на верхній полиці"
       },
       "bodyByLocale": {
-        "ru": "`The bedrooms are there` — «Спальни там»: вы говорите о конкретных спальнях этого дома, понятных вам обоим. `The` подходит и для нескольких. Число показывает `bedrooms`, поэтому нужно `are`. `Those bedrooms are there` — «Те спальни там»: `those` прямо указывает на несколько комнат дальше.",
-        "uk": "`The bedrooms are there` — «Спальні там»: ви говорите про конкретні спальні цього будинку, зрозумілі вам обом. `The` підходить і для кількох. Число показує `bedrooms`, тому потрібне `are`. `Those bedrooms are there` — «Ті спальні там»: `those` прямо вказує на кілька кімнат далі."
+        "ru": "Продавец на воскресной ярмарке показывает вам на три журнала на верхней полке. Вы оба их видите и обсуждаете, брать ли их все. magazine — «журнал». Журналов несколько, и они понятны вам обоим, поэтому the: The magazines are new — «Журналы новые».",
+        "uk": "Продавець на недільному ярмарку показує вам на три журнали на верхній полиці. Ви обоє їх бачите й обговорюєте, чи брати їх усі. magazine — «журнал». Журналів кілька, і вони зрозумілі вам обом, тому the: The magazines are new — «Журнали нові»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "Вы уже обсудили спальни дома. Скажите о тех же комнатах «Спальни там».",
-          "uk": "Ви вже обговорили спальні будинку. Скажіть про ті самі кімнати «Спальні там»."
+          "ru": "Продавец показывает на журналы, которые видите вы оба. Скажите: «Журналы новые».",
+          "uk": "Продавець показує на журнали, які бачите ви обоє. Скажіть: «Журнали нові»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-43:intro2:r1",
-              "text": "The bedrooms are there."
+              "text": "The magazines are new."
             },
             {
               "responseId": "en:lesson-03:session-43:intro2:r2",
-              "text": "The bedrooms is there."
+              "text": "Magazines are new."
             },
             {
               "responseId": "en:lesson-03:session-43:intro2:r3",
-              "text": "The bedroom is there."
+              "text": "The magazines is new."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-43:intro2:r1",
-              "text": "The bedrooms are there."
+              "text": "The magazines are new."
             },
             {
               "responseId": "en:lesson-03:session-43:intro2:r2",
-              "text": "The bedrooms is there."
+              "text": "Magazines are new."
             },
             {
               "responseId": "en:lesson-03:session-43:intro2:r3",
-              "text": "The bedroom is there."
+              "text": "The magazines is new."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже обсудили спальни дома. Скажите о тех же комнатах «Спальни там».",
-          "uk": "Ви вже обговорили спальні будинку. Скажіть про ті самі кімнати «Спальні там»."
+          "ru": "Продавец показывает на журналы, которые видите вы оба. Скажите: «Журналы новые».",
+          "uk": "Продавець показує на журнали, які бачите ви обоє. Скажіть: «Журнали нові»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не торопимся с ответом",
-        "uk": "Не поспішаємо з відповіддю"
+        "ru": "Газеты у киоска",
+        "uk": "Газети біля кіоска"
       },
       "bodyByLocale": {
-        "ru": "`patient` — «терпеливый». Хозяин спокойно ждёт, пока вы рассмотрите фотографии: `He is patient` — «Он терпеливый». `uncertain` — «неуверенный», когда нет уверенности в ответе. Анна может сказать `I am uncertain` — «Я не уверена». Фотографии рядом: `The photos are here` — «Фотографии здесь».",
-        "uk": "`patient` — «терплячий». Господар спокійно чекає, поки ви розглянете фотографії: `He is patient` — «Він терплячий». `uncertain` — «невпевнений», коли немає впевненості у відповіді. Анна може сказати `I am uncertain` — «Я не впевнена». Фотографії поруч: `The photos are here` — «Фотографії тут»."
+        "ru": "Брат ждёт вас у киоска на углу и с интересом спрашивает, почему вы взяли газету, а не журнал. newspaper — «газета». Вы коротко объясняете ему не про какие-то определённые газеты, а про газеты вообще, поэтому без the: Newspapers are cheap — «Газеты дешёвые».",
+        "uk": "Брат чекає на вас біля кіоска на розі й з цікавістю питає, чому ви взяли газету, а не журнал. newspaper — «газета». Ви коротко пояснюєте йому не про якісь певні газети, а про газети взагалі, тому без the: Newspapers are cheap — «Газети дешеві»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Хозяин спокойно ждёт и не торопит вас. Скажите «Он терпеливый».",
-          "uk": "Господар спокійно чекає й не квапить вас. Скажіть «Він терплячий»."
+          "ru": "Брат спрашивает, почему вы взяли газету. Скажите о газетах вообще: «Газеты дешёвые».",
+          "uk": "Брат питає, чому ви взяли газету. Скажіть про газети взагалі: «Газети дешеві»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-43:intro3:r1",
-              "text": "He is patient."
+              "text": "Newspapers are cheap."
             },
             {
               "responseId": "en:lesson-03:session-43:intro3:r2",
-              "text": "He is uncertain."
+              "text": "The newspapers are cheap."
             },
             {
               "responseId": "en:lesson-03:session-43:intro3:r3",
-              "text": "He are patient."
+              "text": "Newspaper are cheap."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-43:intro3:r1",
-              "text": "He is patient."
+              "text": "Newspapers are cheap."
             },
             {
               "responseId": "en:lesson-03:session-43:intro3:r2",
-              "text": "He is uncertain."
+              "text": "The newspapers are cheap."
             },
             {
               "responseId": "en:lesson-03:session-43:intro3:r3",
-              "text": "He are patient."
+              "text": "Newspaper are cheap."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Хозяин спокойно ждёт и не торопит вас. Скажите «Он терпеливый».",
-          "uk": "Господар спокійно чекає й не квапить вас. Скажіть «Він терплячий»."
+          "ru": "Брат спрашивает, почему вы взяли газету. Скажите о газетах вообще: «Газеты дешёвые».",
+          "uk": "Брат питає, чому ви взяли газету. Скажіть про газети взагалі: «Газети дешеві»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "250f4deeff1819a7f16c9baa810a67eeb716b30be8390836d1a029598bd451f1"
+  "introFingerprint": "c5ec51756f013ed38a038441f7ee57eae7d0288e566adab357592ad84dfdeafc"
 }

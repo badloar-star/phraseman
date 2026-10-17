@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-03:session-51:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The bedrooms are there.",
-        "localizedMeaning": {
-          "ru": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
-          "uk": "Ви вже показали Анні спальні. Тепер укажіть, де вони: «Спальні там»"
-        },
-        "orderedTokens": [
-          "The",
-          "bedrooms",
-          "are",
-          "there"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Вы уже показали Анне спальни. Теперь укажите, где они: «Спальни там»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The bedrooms are there.`",
-              "uk": "тут потрібно `are` — `The bedrooms are there.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i02:r1",
-          "text": "libraries"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i02:r2",
-          "text": "bedrooms"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i02:r3",
-          "text": "restaurants"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i02:audio",
-          "transcript": "libraries"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-51:i02:r1",
-            "targetText": "libraries",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i02:r2",
-            "targetText": "bedrooms",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i02:r3",
-            "targetText": "restaurants",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `libraries`, а в этом варианте — `bedrooms`.",
-              "uk": "У записі перше слово — `libraries`, а в цьому варіанті — `bedrooms`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `libraries`, а в этом варианте — `restaurants`.",
-              "uk": "У записі перше слово — `libraries`, а в цьому варіанті — `restaurants`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите несколько библиотек одним английским словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i03:r1",
-          "text": "libraries"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i03:r2",
-          "text": "library"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i03:r3",
-          "text": "librarys"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите несколько библиотек одним английским словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите несколько библиотек одним английским словом",
-          "uk": "Назвіть кілька бібліотек одним англійським словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-51:i03:r1",
-            "text": "libraries"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i03:r2",
-            "text": "library"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i03:r3",
-            "text": "librarys"
-          }
-        ],
-        "testedDimension": "Назовите несколько библиотек одним английским словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите несколько библиотек одним английским словом",
-            "feedbackByLocale": {
-              "ru": "`library` — одна библиотека. Несколько — `libraries`.",
-              "uk": "`library` — одна бібліотека. Кілька — `libraries`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите несколько библиотек одним английским словом",
-            "feedbackByLocale": {
-              "ru": "Заменяем конечное `y` на `ies`: `libraries`.",
-              "uk": "Замінюємо кінцеве `y` на `ies`: `libraries`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -208,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-03:session-51:i04:p1",
-            "target": "libraries",
+            "pairId": "en:lesson-03:session-51:i01:p1",
+            "target": "yellow",
             "meaningByLocale": {
-              "ru": "библиотеки",
-              "uk": "бібліотеки"
+              "ru": "жёлтый",
+              "uk": "жовтий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-51:i04:p2",
-            "target": "heavy",
+            "pairId": "en:lesson-03:session-51:i01:p2",
+            "target": "purple",
             "meaningByLocale": {
-              "ru": "тяжёлый",
-              "uk": "важкий"
+              "ru": "фиолетовый",
+              "uk": "фіолетовий"
             }
           },
           {
-            "pairId": "en:lesson-03:session-51:i04:p3",
-            "target": "ineffective",
+            "pairId": "en:lesson-03:session-51:i01:p3",
+            "target": "navy",
             "meaningByLocale": {
-              "ru": "неэффективный",
-              "uk": "неефективний"
+              "ru": "тёмно-синий",
+              "uk": "темно-синій"
             }
           },
           {
-            "pairId": "en:lesson-03:session-51:i04:p4",
-            "target": "bedrooms",
+            "pairId": "en:lesson-03:session-51:i01:p4",
+            "target": "olive",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "оливковый",
+              "uk": "оливковий"
             }
           }
         ],
         "leftColumn": [
-          "libraries",
-          "heavy",
-          "ineffective",
-          "bedrooms"
+          "yellow",
+          "purple",
+          "navy",
+          "olive"
         ],
         "rightColumn": [
-          "библиотеки",
-          "тяжёлый",
-          "неэффективный",
-          "спальни"
+          "жёлтый",
+          "фиолетовый",
+          "тёмно-синий",
+          "оливковый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,118 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-03:session-51:word:yellow",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — yellow",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-51:i05:audio"
+        "en:lesson-03:session-51:word:yellow:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Карточка слова — yellow",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i05:audio",
-          "transcript": "These are libraries."
+          "audioTargetId": "en:lesson-03:session-51:word:yellow:audio",
+          "transcript": "yellow"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These are libraries.",
-        "orderedTokens": [
-          "These",
-          "are",
-          "libraries"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-51:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These are libraries.`",
-              "uk": "тут потрібно `are` — `These are libraries.`"
+            "responseId": "en:lesson-03:session-51:word:yellow:r1",
+            "targetText": "yellow",
+            "meaningByLocale": {
+              "ru": "жёлтый. It is a yellow vase — «Это жёлтая ваза». О цвете лимона и солнца.",
+              "uk": "жовтий. It is a yellow vase — «Це жовта ваза». Про колір лимона й сонця."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yellow",
+          "definitionByLocale": {
+            "ru": "жёлтый. It is a yellow vase — «Это жёлтая ваза». О цвете лимона и солнца.",
+            "uk": "жовтий. It is a yellow vase — «Це жовта ваза». Про колір лимона й сонця."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The libraries are here.",
-        "localizedMeaning": {
-          "ru": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
-          "uk": "Ви показуєте на карті бібліотеки, які вже вибрали. Скажіть «Бібліотеки тут»"
-        },
-        "orderedTokens": [
-          "The",
-          "libraries",
-          "are",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Вы показываете на карте библиотеки, которые уже выбрали. Скажите «Библиотеки здесь»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The libraries are here.`",
-              "uk": "тут потрібно `are` — `The libraries are here.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-03:session-51:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коробку с книгами трудно поднять. Скажите «Она тяжёлая» с сокращением",
+      "prompt": "Подруга показывает на солнце за окном и называет его цвет, а вы повторяете за ней слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-51:i07:audio"
+        "en:lesson-03:session-51:i02:audio"
       ],
-      "accessibilityLabel": "Коробку с книгами трудно поднять. Скажите «Она тяжёлая» с сокращением",
+      "accessibilityLabel": "Подруга показывает на солнце за окном и называет его цвет, а вы повторяете за ней слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i07:audio",
-          "transcript": "It's heavy."
+          "audioTargetId": "en:lesson-03:session-51:i02:audio",
+          "transcript": "yellow"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's heavy.",
+        "targetPhrase": "yellow",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -392,68 +153,157 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваза стоит рядом с вами. Скажите подруге полной фразой: это жёлтая ваза.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваза стоит рядом с вами. Скажите подруге полной фразой: это жёлтая ваза.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a yellow vase.",
+        "localizedMeaning": {
+          "ru": "Ваза стоит рядом с вами. Скажите подруге полной фразой: это жёлтая ваза.",
+          "uk": "Ваза стоїть поруч із вами. Скажіть подрузі повною фразою: це жовта ваза."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "yellow",
+          "vase"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Ваза стоит рядом с вами. Скажите подруге полной фразой: это жёлтая ваза.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `This is a yellow vase.`",
+              "uk": "тут потрібно `is` — `This is a yellow vase.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:word:purple",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — purple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:word:purple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — purple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:word:purple:audio",
+          "transcript": "purple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:word:purple:r1",
+            "targetText": "purple",
+            "meaningByLocale": {
+              "ru": "фиолетовый. This is a purple scarf — «Это фиолетовый шарф». О цвете сливы и сирени.",
+              "uk": "фіолетовий. This is a purple scarf — «Це фіолетовий шарф». Про колір сливи й бузку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "purple",
+          "definitionByLocale": {
+            "ru": "фиолетовый. This is a purple scarf — «Это фиолетовый шарф». О цвете сливы и сирени.",
+            "uk": "фіолетовий. This is a purple scarf — «Це фіолетовий шарф». Про колір сливи й бузку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы показываете на несколько библиотек в дальней части карты",
+      "prompt": "Подруга показывает на спелую сливу в вазе с фруктами. Как называется цвет сливы по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-51:i08:r1",
-          "text": "Those"
+          "responseId": "en:lesson-03:session-51:i04:r1",
+          "text": "purple"
         },
         {
-          "responseId": "en:lesson-03:session-51:i08:r2",
-          "text": "That"
+          "responseId": "en:lesson-03:session-51:i04:r2",
+          "text": "yellow"
         },
         {
-          "responseId": "en:lesson-03:session-51:i08:r3",
-          "text": "This"
+          "responseId": "en:lesson-03:session-51:i04:r3",
+          "text": "pink"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете на несколько библиотек в дальней части карты",
+      "accessibilityLabel": "Подруга показывает на спелую сливу в вазе с фруктами. Как называется цвет сливы по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы показываете на несколько библиотек в дальней части карты",
-          "uk": "Ви показуєте на кілька бібліотек у дальній частині карти"
+          "ru": "Подруга показывает на спелую сливу в вазе с фруктами. Как называется цвет сливы по-английски?",
+          "uk": "Подруга показує на стиглу сливу у вазі з фруктами. Як називається колір сливи англійською?"
         },
-        "gappedTargetPhrase": "___ are libraries.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-51:i08:r1",
-            "text": "Those"
+            "responseId": "en:lesson-03:session-51:i04:r1",
+            "text": "purple"
           },
           {
-            "responseId": "en:lesson-03:session-51:i08:r2",
-            "text": "That"
+            "responseId": "en:lesson-03:session-51:i04:r2",
+            "text": "yellow"
           },
           {
-            "responseId": "en:lesson-03:session-51:i08:r3",
-            "text": "This"
+            "responseId": "en:lesson-03:session-51:i04:r3",
+            "text": "pink"
           }
         ],
-        "testedDimension": "Вы показываете на несколько библиотек в дальней части карты",
+        "testedDimension": "Подруга показывает на спелую сливу в вазе с фруктами. Как называется цвет сливы по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-51:i08:r2",
+            "responseId": "en:lesson-03:session-51:i04:r2",
             "correct": false,
-            "testedDimension": "Вы показываете на несколько библиотек в дальней части карты",
+            "testedDimension": "Подруга показывает на спелую сливу в вазе с фруктами. Как называется цвет сливы по-английски?",
             "feedbackByLocale": {
-              "ru": "`That` — один объект. Здесь несколько дальше: `Those`.",
-              "uk": "`That` — один об’єкт. Тут кілька далі: `Those`."
+              "ru": "yellow — это жёлтый, а слива другого цвета: purple.",
+              "uk": "yellow — це жовтий, а слива іншого кольору: purple."
             }
           },
           {
-            "responseId": "en:lesson-03:session-51:i08:r3",
+            "responseId": "en:lesson-03:session-51:i04:r3",
             "correct": false,
-            "testedDimension": "Вы показываете на несколько библиотек в дальней части карты",
+            "testedDimension": "Подруга показывает на спелую сливу в вазе с фруктами. Как называется цвет сливы по-английски?",
             "feedbackByLocale": {
-              "ru": "`This` — один рядом. Здесь несколько дальше: `Those`.",
-              "uk": "`This` — один поруч. Тут кілька далі: `Those`."
+              "ru": "pink — это розовый, а слива темнее и глубже: purple.",
+              "uk": "pink — це рожевий, а слива темніша й глибша: purple."
             }
           }
         ]
@@ -461,73 +311,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-03:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте оценку старого способа подписывать коробки",
+      "prompt": "Послушайте, что продавец говорит о шарфе",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-51:i09:r1",
-          "text": "It is ineffective."
+          "responseId": "en:lesson-03:session-51:i05:r1",
+          "text": "It is a yellow scarf."
         },
         {
-          "responseId": "en:lesson-03:session-51:i09:r2",
-          "text": "It is effective."
+          "responseId": "en:lesson-03:session-51:i05:r2",
+          "text": "It is a purple scarf."
         },
         {
-          "responseId": "en:lesson-03:session-51:i09:r3",
-          "text": "It is expensive."
+          "responseId": "en:lesson-03:session-51:i05:r3",
+          "text": "It is a yellow vase."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-51:i09:audio"
+        "en:lesson-03:session-51:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте оценку старого способа подписывать коробки",
+      "accessibilityLabel": "Послушайте, что продавец говорит о шарфе",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i09:audio",
-          "transcript": "It is ineffective."
+          "audioTargetId": "en:lesson-03:session-51:i05:audio",
+          "transcript": "It is a yellow scarf."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-51:i09:r1",
-            "targetText": "It is ineffective.",
+            "responseId": "en:lesson-03:session-51:i05:r1",
+            "targetText": "It is a yellow scarf.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-51:i09:r2",
-            "targetText": "It is effective.",
+            "responseId": "en:lesson-03:session-51:i05:r2",
+            "targetText": "It is a purple scarf.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-51:i09:r3",
-            "targetText": "It is expensive.",
+            "responseId": "en:lesson-03:session-51:i05:r3",
+            "targetText": "It is a yellow vase.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-51:i09:r2",
+            "responseId": "en:lesson-03:session-51:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте оценку старого способа подписывать коробки",
+            "testedDimension": "Послушайте, что продавец говорит о шарфе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ineffective`, а в этом варианте — `effective`.",
-              "uk": "У записі останнє слово — `ineffective`, а в цьому варіанті — `effective`."
+              "ru": "В записи цвет — `yellow`, а в этом варианте — `purple`.",
+              "uk": "У записі колір — `yellow`, а в цьому варіанті — `purple`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-51:i09:r3",
+            "responseId": "en:lesson-03:session-51:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте оценку старого способа подписывать коробки",
+            "testedDimension": "Послушайте, что продавец говорит о шарфе",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ineffective`, а в этом варианте — `expensive`.",
-              "uk": "У записі останнє слово — `ineffective`, а в цьому варіанті — `expensive`."
+              "ru": "В записи последнее слово — `scarf`, а в этом варианте — `vase`.",
+              "uk": "У записі останнє слово — `scarf`, а в цьому варіанті — `vase`."
             }
           }
         ],
@@ -537,9 +387,292 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i10",
+      "interactionId": "en:lesson-03:session-51:word:olive",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — olive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:word:olive:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — olive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:word:olive:audio",
+          "transcript": "olive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:word:olive:r1",
+            "targetText": "olive",
+            "meaningByLocale": {
+              "ru": "оливковый. It is an olive coat — «Это оливковое пальто». О тёмно-зелёном цвете с серым оттенком, как у оливок.",
+              "uk": "оливковий. It is an olive coat — «Це оливкове пальто». Про темно-зелений колір із сірим відтінком, як у оливок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "olive",
+          "definitionByLocale": {
+            "ru": "оливковый. It is an olive coat — «Это оливковое пальто». О тёмно-зелёном цвете с серым оттенком, как у оливок.",
+            "uk": "оливковий. It is an olive coat — «Це оливкове пальто». Про темно-зелений колір із сірим відтінком, як у оливок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Продавец показывает зелёную оливку в банке и называет её цвет, а вы повторяете за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Продавец показывает зелёную оливку в банке и называет её цвет, а вы повторяете за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i06:audio",
+          "transcript": "olive"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "olive",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте подругу и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i07:audio",
+          "transcript": "It is an olive vase."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is an olive vase.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "an",
+          "olive",
+          "vase"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `an` — `It is an olive vase.`",
+              "uk": "тут потрібно `an` — `It is an olive vase.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:word:navy",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — navy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:word:navy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — navy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:word:navy:audio",
+          "transcript": "navy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:word:navy:r1",
+            "targetText": "navy",
+            "meaningByLocale": {
+              "ru": "тёмно-синий. That is a navy coat — «Это тёмно-синее пальто». О цвете морской формы и глубокой ночи.",
+              "uk": "темно-синій. That is a navy coat — «Це темно-синє пальто». Про колір морської форми й глибокої ночі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "navy",
+          "definitionByLocale": {
+            "ru": "тёмно-синий. That is a navy coat — «Это тёмно-синее пальто». О цвете морской формы и глубокой ночи.",
+            "uk": "темно-синій. That is a navy coat — «Це темно-синє пальто». Про колір морської форми й глибокої ночі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга показывает на форму моряка. Её цвет — тёмно-синий. Как он называется по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i08:r1",
+          "text": "navy"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i08:r2",
+          "text": "blue"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i08:r3",
+          "text": "olive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга показывает на форму моряка. Её цвет — тёмно-синий. Как он называется по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга показывает на форму моряка. Её цвет — тёмно-синий. Как он называется по-английски?",
+          "uk": "Подруга показує на форму моряка. Її колір — темно-синій. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i08:r1",
+            "text": "navy"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i08:r2",
+            "text": "blue"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i08:r3",
+            "text": "olive"
+          }
+        ],
+        "testedDimension": "Подруга показывает на форму моряка. Её цвет — тёмно-синий. Как он называется по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Подруга показывает на форму моряка. Её цвет — тёмно-синий. Как он называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "blue — это синий, голубой, а форма моряка тёмно-синяя: navy.",
+              "uk": "blue — це синій, блакитний, а форма моряка темно-синя: navy."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Подруга показывает на форму моряка. Её цвет — тёмно-синий. Как он называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "olive — это оливковый, а форма моряка другого цвета: navy.",
+              "uk": "olive — це оливковий, а форма моряка іншого кольору: navy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пальто висит далеко у двери. Скажите продавцу полной фразой: это тёмно-синее пальто.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пальто висит далеко у двери. Скажите продавцу полной фразой: это тёмно-синее пальто.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a navy coat.",
+        "localizedMeaning": {
+          "ru": "Пальто висит далеко у двери. Скажите продавцу полной фразой: это тёмно-синее пальто.",
+          "uk": "Пальто висить далеко біля дверей. Скажіть продавцю повною фразою: це темно-синє пальто."
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "navy",
+          "coat"
+        ],
+        "authoredDistractorTokens": [
+          "This"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Пальто висит далеко у двери. Скажите продавцу полной фразой: это тёмно-синее пальто.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `That` — `That is a navy coat.`",
+              "uk": "тут потрібно `That` — `That is a navy coat.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -552,48 +685,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-51:i10:p1",
-            "target": "libraries",
+            "target": "navy",
             "meaningByLocale": {
-              "ru": "библиотеки",
-              "uk": "бібліотеки"
+              "ru": "тёмно-синий",
+              "uk": "темно-синій"
             }
           },
           {
             "pairId": "en:lesson-03:session-51:i10:p2",
-            "target": "bedrooms",
+            "target": "olive",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "оливковый",
+              "uk": "оливковий"
             }
           },
           {
             "pairId": "en:lesson-03:session-51:i10:p3",
-            "target": "here",
+            "target": "pink",
             "meaningByLocale": {
-              "ru": "здесь",
-              "uk": "тут"
+              "ru": "розовый",
+              "uk": "рожевий"
             }
           },
           {
             "pairId": "en:lesson-03:session-51:i10:p4",
-            "target": "there",
+            "target": "yellow",
             "meaningByLocale": {
-              "ru": "там",
-              "uk": "там"
+              "ru": "жёлтый",
+              "uk": "жовтий"
             }
           }
         ],
         "leftColumn": [
-          "libraries",
-          "bedrooms",
-          "here",
-          "there"
+          "navy",
+          "olive",
+          "pink",
+          "yellow"
         ],
         "rightColumn": [
-          "библиотеки",
-          "спальни",
-          "здесь",
-          "там"
+          "тёмно-синий",
+          "оливковый",
+          "розовый",
+          "жёлтый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,87 +744,188 @@
     },
     {
       "interactionId": "en:lesson-03:session-51:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос подруги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i11:r1",
+          "text": "Is it an olive scarf?"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i11:r2",
+          "text": "Is it a navy scarf?"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i11:r3",
+          "text": "Is it an olive coat?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-51:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте вопрос подруги",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-51:i11:audio",
-          "transcript": "These bedrooms are here."
+          "transcript": "Is it an olive scarf?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These bedrooms are here.",
-        "orderedTokens": [
-          "These",
-          "bedrooms",
-          "are",
-          "here"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-51:i11:tile:d1",
+            "responseId": "en:lesson-03:session-51:i11:r1",
+            "targetText": "Is it an olive scarf?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i11:r2",
+            "targetText": "Is it a navy scarf?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i11:r3",
+            "targetText": "Is it an olive coat?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте вопрос подруги",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These bedrooms are here.`",
-              "uk": "тут потрібно `are` — `These bedrooms are here.`"
+              "ru": "В записи `an olive`, а в этом варианте `a navy`: перед olive нужно an, перед navy — a.",
+              "uk": "У записі `an olive`, а в цьому варіанті `a navy`: перед olive потрібно an, перед navy — a."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос подруги",
+            "feedbackByLocale": {
+              "ru": "В записи последнее слово — `scarf`, а в этом варианте — `coat`.",
+              "uk": "У записі останнє слово — `scarf`, а в цьому варіанті — `coat`."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-51:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга показывает вазу цвета апельсина. Этот цвет по-английски тоже orange, как и сам фрукт. Дополните фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i12:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i12:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i12:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
+      "accessibilityLabel": "Подруга показывает вазу цвета апельсина. Этот цвет по-английски тоже orange, как и сам фрукт. Дополните фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Those libraries are there.",
-        "localizedMeaning": {
-          "ru": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
-          "uk": "Ви показуєте на бібліотеки далі на карті. Скажіть «Ті бібліотеки там»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга показывает вазу цвета апельсина. Этот цвет по-английски тоже orange, как и сам фрукт. Дополните фразу",
+          "uk": "Подруга показує вазу кольору апельсина. Цей колір англійською теж orange, як і сам фрукт. Доповніть фразу"
         },
+        "gappedTargetPhrase": "It is ___ orange vase.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Подруга показывает вазу цвета апельсина. Этот цвет по-английски тоже orange, как и сам фрукт. Дополните фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Подруга показывает вазу цвета апельсина. Этот цвет по-английски тоже orange, как и сам фрукт. Дополните фразу",
+            "feedbackByLocale": {
+              "ru": "Слово orange начинается с гласного звука, поэтому нужно an, а не a.",
+              "uk": "Слово orange починається з голосного звуку, тому потрібно an, а не a."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Подруга показывает вазу цвета апельсина. Этот цвет по-английски тоже orange, как и сам фрукт. Дополните фразу",
+            "feedbackByLocale": {
+              "ru": "Здесь речь об одной вазе: нужно an, а не are.",
+              "uk": "Тут ідеться про одну вазу: потрібно an, а не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте продавца и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте продавца и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i13:audio",
+          "transcript": "This is a pink vase."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a pink vase.",
         "orderedTokens": [
-          "Those",
-          "libraries",
-          "are",
-          "there"
+          "This",
+          "is",
+          "a",
+          "pink",
+          "vase"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "an"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-51:i12:tile:d1",
+            "responseId": "en:lesson-03:session-51:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Вы показываете на библиотеки дальше на карте. Скажите «Те библиотеки там»",
+            "testedDimension": "Послушайте продавца и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Those libraries are there.`",
-              "uk": "тут потрібно `are` — `Those libraries are there.`"
+              "ru": "здесь нужно `a` — `This is a pink vase.`",
+              "uk": "тут потрібно `a` — `This is a pink vase.`"
             }
           }
         ],
@@ -703,26 +937,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-03:session-51:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Старый способ подписывать коробки не помогает найти вещи. Скажите о способе «Он неэффективный» с сокращением",
+      "prompt": "Подруга спрашивает, какой шарф вам нужен. Скажите ей, что фиолетовый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-51:i13:audio"
+        "en:lesson-03:session-51:i14:audio"
       ],
-      "accessibilityLabel": "Старый способ подписывать коробки не помогает найти вещи. Скажите о способе «Он неэффективный» с сокращением",
+      "accessibilityLabel": "Подруга спрашивает, какой шарф вам нужен. Скажите ей, что фиолетовый",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i13:audio",
-          "transcript": "It's ineffective."
+          "audioTargetId": "en:lesson-03:session-51:i14:audio",
+          "transcript": "a purple scarf"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's ineffective.",
+        "targetPhrase": "a purple scarf",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -736,153 +970,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-51:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вы говорите о нескольких выбранных библиотеках",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i14:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i14:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i14:r3",
-          "text": "am"
-        }
-      ],
+      "interactionId": "en:lesson-03:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пальто висит далеко. Спросите продавца, оливковое ли оно.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы говорите о нескольких выбранных библиотеках",
+      "accessibilityLabel": "Пальто висит далеко. Спросите продавца, оливковое ли оно.",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы говорите о нескольких выбранных библиотеках",
-          "uk": "Ви говорите про кілька вибраних бібліотек"
+        "family": "phrase_builder",
+        "targetPhrase": "Is that an olive coat?",
+        "localizedMeaning": {
+          "ru": "Пальто висит далеко. Спросите продавца, оливковое ли оно.",
+          "uk": "Пальто висить далеко. Запитайте продавця, чи воно оливкове."
         },
-        "gappedTargetPhrase": "The libraries ___ here.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Is",
+          "that",
+          "an",
+          "olive",
+          "coat"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-03:session-51:i14:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r3",
-            "text": "am"
+            "responseId": "en:lesson-03:session-51:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Пальто висит далеко. Спросите продавца, оливковое ли оно.",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is that an olive coat?`",
+              "uk": "тут потрібно `Is` — `Is that an olive coat?`"
+            }
           }
         ],
-        "testedDimension": "Вы говорите о нескольких выбранных библиотеках",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i14:r2",
-            "correct": false,
-            "testedDimension": "Вы говорите о нескольких выбранных библиотеках",
-            "feedbackByLocale": {
-              "ru": "Библиотек несколько: `The libraries are here`.",
-              "uk": "Бібліотек кілька: `The libraries are here`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i14:r3",
-            "correct": false,
-            "testedDimension": "Вы говорите о нескольких выбранных библиотеках",
-            "feedbackByLocale": {
-              "ru": "С `The libraries` нужно `are`.",
-              "uk": "З `The libraries` потрібне `are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-51:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте описание коробки с книгами",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-51:i15:r1",
-          "text": "It is heavy."
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i15:r2",
-          "text": "It is cheap."
-        },
-        {
-          "responseId": "en:lesson-03:session-51:i15:r3",
-          "text": "It is useful."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-51:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте описание коробки с книгами",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-51:i15:audio",
-          "transcript": "It is heavy."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-51:i15:r1",
-            "targetText": "It is heavy.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i15:r2",
-            "targetText": "It is cheap.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i15:r3",
-            "targetText": "It is useful.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-51:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте описание коробки с книгами",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `cheap`.",
-              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `cheap`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-51:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте описание коробки с книгами",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `heavy`, а в этом варианте — `useful`.",
-              "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `useful`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-51:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -896,48 +1031,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-51:i16:p1",
-            "target": "libraries",
+            "target": "olive",
             "meaningByLocale": {
-              "ru": "библиотеки",
-              "uk": "бібліотеки"
+              "ru": "оливковый",
+              "uk": "оливковий"
             }
           },
           {
             "pairId": "en:lesson-03:session-51:i16:p2",
-            "target": "heavy",
+            "target": "yellow",
             "meaningByLocale": {
-              "ru": "тяжёлый",
-              "uk": "важкий"
+              "ru": "жёлтый",
+              "uk": "жовтий"
             }
           },
           {
             "pairId": "en:lesson-03:session-51:i16:p3",
-            "target": "ineffective",
+            "target": "navy",
             "meaningByLocale": {
-              "ru": "неэффективный",
-              "uk": "неефективний"
+              "ru": "тёмно-синий",
+              "uk": "темно-синій"
             }
           },
           {
             "pairId": "en:lesson-03:session-51:i16:p4",
-            "target": "bedrooms",
+            "target": "purple",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "фиолетовый",
+              "uk": "фіолетовий"
             }
           }
         ],
         "leftColumn": [
-          "libraries",
-          "heavy",
-          "ineffective",
-          "bedrooms"
+          "olive",
+          "yellow",
+          "navy",
+          "purple"
         ],
         "rightColumn": [
-          "библиотеки",
-          "тяжёлый",
-          "неэффективный",
-          "спальни"
+          "оливковый",
+          "жёлтый",
+          "тёмно-синий",
+          "фиолетовый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -955,25 +1090,25 @@
     },
     {
       "interactionId": "en:lesson-03:session-51:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В другом районе вы с другом уже выбрали библиотеки. Друг ищет их на карте, а вы нашли их в дальней части. Скажите «Библиотеки там», говоря о выбранной группе",
+      "prompt": "Продавец спрашивает, какой шарф лежит перед вами. Ответьте ему коротко: оливковый.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-51:i17:audio"
       ],
-      "accessibilityLabel": "В другом районе вы с другом уже выбрали библиотеки. Друг ищет их на карте, а вы нашли их в дальней части. Скажите «Библиотеки там», говоря о выбранной группе",
+      "accessibilityLabel": "Продавец спрашивает, какой шарф лежит перед вами. Ответьте ему коротко: оливковый.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-51:i17:audio",
-          "transcript": "The libraries are there."
+          "transcript": "This is an olive scarf."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The libraries are there.",
+        "targetPhrase": "This is an olive scarf.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -995,11 +1130,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7c5429658ddc9375373addaf5dce80ee415dec495ece82d08ab8047e010dacf2"
+  "learnerFingerprint": "e46d9e910690a8563a52aa3e6851ed10e76d52473c4ec3cc6d4cd963cff07773"
 }

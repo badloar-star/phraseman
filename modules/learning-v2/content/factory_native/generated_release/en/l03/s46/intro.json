@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-46",
   "learningOutcomeByLocale": {
-    "ru": "назвать аэропорт с an и указать место конкретного аэропорта с the",
-    "uk": "назвати аеропорт з an і вказати місце конкретного аеропорту з the"
+    "ru": "говорить the о том, что в здании одно и понятно собеседнику",
+    "uk": "казати the про те, що в будівлі одне й зрозуміле співрозмовнику"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-03:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один аэропорт",
-        "uk": "Один аеропорт"
+        "ru": "Верх дома",
+        "uk": "Верх будинку"
       },
       "bodyByLocale": {
-        "ru": "`airport` — «аэропорт». `This is an airport` — «Это аэропорт»: вы показываете место на карте и называете его. Перед `airport` нужно `an`, потому что слово начинается с гласного звука. Самолётов может быть много, а аэропорт на карте один: поэтому `is`.",
-        "uk": "`airport` — «аеропорт». `This is an airport` — «Це аеропорт»: ви показуєте місце на карті й називаєте його. Перед `airport` потрібне `an`, бо слово починається з голосного звука. Літаків може бути багато, а аеропорт на карті один: тому `is`."
+        "ru": "Вы с братом стоите во дворе и осматриваете только что купленный дом. Брат поднимает голову, смотрит на самый верх дома и спрашивает, что с ним. roof — «крыша». У дома одна крыша, и она понятна вам обоим, поэтому the: The roof is old — «Крыша старая».",
+        "uk": "Ви з братом стоїте на подвір’ї й оглядаєте щойно куплений будинок. Брат піднімає голову, дивиться на самий верх будинку і питає, що з ним. roof — «дах». У будинку один дах, і він зрозумілий вам обом, тому the: The roof is old — «Дах старий»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-46:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите аэропорт одним английским словом.",
-          "uk": "Назвіть аеропорт одним англійським словом."
+          "ru": "Брат спрашивает, что с верхом дома. Скажите ему: «Крыша старая».",
+          "uk": "Брат питає, що з верхом будинку. Скажіть йому: «Дах старий»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-46:intro1:r1",
-              "text": "airport"
+              "text": "The roof is old."
             },
             {
               "responseId": "en:lesson-03:session-46:intro1:r2",
-              "text": "office"
+              "text": "A roof is old."
             },
             {
               "responseId": "en:lesson-03:session-46:intro1:r3",
-              "text": "hotel"
+              "text": "The roof are old."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-46:intro1:r1",
-              "text": "airport"
+              "text": "The roof is old."
             },
             {
               "responseId": "en:lesson-03:session-46:intro1:r2",
-              "text": "office"
+              "text": "A roof is old."
             },
             {
               "responseId": "en:lesson-03:session-46:intro1:r3",
-              "text": "hotel"
+              "text": "The roof are old."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите аэропорт одним английским словом.",
-          "uk": "Назвіть аеропорт одним англійським словом."
+          "ru": "Брат спрашивает, что с верхом дома. Скажите ему: «Крыша старая».",
+          "uk": "Брат питає, що з верхом будинку. Скажіть йому: «Дах старий»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-03:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нужный вам аэропорт",
-        "uk": "Потрібний вам аеропорт"
+        "ru": "Лифт в подъезде",
+        "uk": "Ліфт у під’їзді"
       },
       "bodyByLocale": {
-        "ru": "`The airport is there` — «Аэропорт там». Речь о конкретном аэропорте вашей поездки, понятном вам обоим. Поэтому `the airport`, даже если вы ещё не называли его вслух. На карте можно показать один объект дальше: `That is an airport` — «Это аэропорт».",
-        "uk": "`The airport is there` — «Аеропорт там». Ідеться про конкретний аеропорт вашої поїздки, зрозумілий вам обом. Тому `the airport`, навіть якщо ви ще не називали його вголос. На карті можна показати один об’єкт далі: `That is an airport` — «Це аеропорт»."
+        "ru": "Вы с соседкой зашли в подъезд нового дома и хотите подняться на пятый этаж. Кабина, которая возит людей по этажам, там одна на весь подъезд. lift — «лифт». Вы обе знаете, о каком лифте речь, поэтому the: The lift is slow — «Лифт медленный».",
+        "uk": "Ви із сусідкою зайшли в під’їзд нового будинку й хочете піднятися на п’ятий поверх. Кабіна, яка возить людей по поверхах, там одна на весь під’їзд. lift — «ліфт». Ви обидві знаєте, про який ліфт мова, тому the: The lift is slow — «Ліфт повільний»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-46:intro2:q",
         "promptByLocale": {
-          "ru": "Вы с Анной уже знаете, из какого аэропорта вылетаете. Укажите его на дальней части карты: «Аэропорт там».",
-          "uk": "Ви з Анною вже знаєте, з якого аеропорту вилітаєте. Укажіть його на дальній частині карти: «Аеропорт там»."
+          "ru": "Соседка ждёт кабину рядом с вами. Скажите ей про лифт: «Лифт медленный».",
+          "uk": "Сусідка чекає кабіну поруч із вами. Скажіть їй про ліфт: «Ліфт повільний»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-46:intro2:r1",
-              "text": "The airport is there."
+              "text": "The lift is slow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro2:r2",
-              "text": "The airport are there."
+              "text": "A lift is slow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro2:r3",
-              "text": "The airports are there."
+              "text": "The lift are slow."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-46:intro2:r1",
-              "text": "The airport is there."
+              "text": "The lift is slow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro2:r2",
-              "text": "The airport are there."
+              "text": "A lift is slow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro2:r3",
-              "text": "The airports are there."
+              "text": "The lift are slow."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы с Анной уже знаете, из какого аэропорта вылетаете. Укажите его на дальней части карты: «Аэропорт там».",
-          "uk": "Ви з Анною вже знаєте, з якого аеропорту вилітаєте. Укажіть його на дальній частині карти: «Аеропорт там»."
+          "ru": "Соседка ждёт кабину рядом с вами. Скажите ей про лифт: «Лифт медленный».",
+          "uk": "Сусідка чекає кабіну поруч із вами. Скажіть їй про ліфт: «Ліфт повільний»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-03:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что поможет в поездке",
-        "uk": "Що допоможе в поїздці"
+        "ru": "Пешком по этажам",
+        "uk": "Пішки по поверхах"
       },
       "bodyByLocale": {
-        "ru": "`useless` — «бесполезный»: карта другого города не помогает найти нужный аэропорт. О ней: `It is useless` — «Она бесполезная». `appropriate` — «подходящий, уместный»: выбранная одежда подходит для деловой встречи. О выбранном варианте: `It is appropriate` — «Это уместно». `appropriate` оценивает соответствие ситуации, а не законность. `ticket` — билет; ваш билет здесь: `The ticket is here`.",
-        "uk": "`useless` — «некорисний, марний»: карта іншого міста не допомагає знайти потрібний аеропорт. Про неї: `It is useless` — «Вона некорисна». `appropriate` — «доречний, відповідний»: вибраний одяг підходить для ділової зустрічі. Про вибраний варіант: `It is appropriate` — «Це доречно». `appropriate` оцінює відповідність ситуації, а не законність. `ticket` — квиток; ваш квиток тут: `The ticket is here`."
+        "ru": "Лифт не работает, и вы идёте наверх с соседкой по ступеням, держась за перила. stairs — «лестница»: так называют все ступени между этажами, и слово всегда стоит во множественном числе. В подъезде она одна, поэтому the: The stairs are narrow — «Лестница узкая».",
+        "uk": "Ліфт не працює, і ви йдете нагору із сусідкою по сходинках, тримаючись за поручні. stairs — «сходи»: так називають усі сходинки між поверхами, і слово завжди стоїть у множині. У під’їзді вони одні, тому the: The stairs are narrow — «Сходи вузькі»."
       },
       "question": {
         "interactionId": "en:lesson-03:session-46:intro3:q",
         "promptByLocale": {
-          "ru": "Карта другого города не помогает найти ваш аэропорт. Скажите о ней «Она бесполезная».",
-          "uk": "Карта іншого міста не допомагає знайти ваш аеропорт. Скажіть про неї «Вона некорисна»."
+          "ru": "Вы поднимаетесь по лестнице вместе с соседкой. Скажите ей: «Лестница узкая».",
+          "uk": "Ви підіймаєтеся сходами разом із сусідкою. Скажіть їй: «Сходи вузькі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-46:intro3:r1",
-              "text": "It is useless."
+              "text": "The stairs are narrow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro3:r2",
-              "text": "It is useful."
+              "text": "The stairs is narrow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro3:r3",
-              "text": "It are useless."
+              "text": "A stairs are narrow."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-46:intro3:r1",
-              "text": "It is useless."
+              "text": "The stairs are narrow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro3:r2",
-              "text": "It is useful."
+              "text": "The stairs is narrow."
             },
             {
               "responseId": "en:lesson-03:session-46:intro3:r3",
-              "text": "It are useless."
+              "text": "A stairs are narrow."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Карта другого города не помогает найти ваш аэропорт. Скажите о ней «Она бесполезная».",
-          "uk": "Карта іншого міста не допомагає знайти ваш аеропорт. Скажіть про неї «Вона некорисна»."
+          "ru": "Вы поднимаетесь по лестнице вместе с соседкой. Скажите ей: «Лестница узкая».",
+          "uk": "Ви підіймаєтеся сходами разом із сусідкою. Скажіть їй: «Сходи вузькі»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cfa4adcf7d3677204213fccc946db838c191602041eec37175f51a6d75330852"
+  "introFingerprint": "a8e7773540b279956030953760303f99db33f67152254acefe05a45ec1efe97b"
 }

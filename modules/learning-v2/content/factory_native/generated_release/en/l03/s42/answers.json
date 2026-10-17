@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-03:session-42:i01",
-    "correctText": "The wallet is here.",
+    "correctText": "The door is open.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i02",
-    "correctText": "bathroom",
+    "correctText": "The window is closed.",
     "correctResponseId": "en:lesson-03:session-42:i02:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i03",
-    "correctText": "bathroom",
+    "correctText": "The",
     "correctResponseId": "en:lesson-03:session-42:i03:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i04",
-    "correctText": "en:lesson-03:session-42:i04:p1=bathroom\nen:lesson-03:session-42:i04:p2=polite\nen:lesson-03:session-42:i04:p3=inaccurate\nen:lesson-03:session-42:i04:p4=wallet",
+    "correctText": "en:lesson-03:session-42:i04:p1=handle\nen:lesson-03:session-42:i04:p2=bell\nen:lesson-03:session-42:i04:p3=wheel\nen:lesson-03:session-42:i04:p4=cord",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i05",
-    "correctText": "This is a bathroom.",
+    "correctText": "The key is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i06",
-    "correctText": "The bathroom is there.",
+    "correctText": "The mirror is dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:word:handle",
+    "correctText": "handle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i07",
-    "correctText": "He's polite.",
+    "correctText": "handle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:word:bell",
+    "correctText": "bell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i08",
-    "correctText": "a",
+    "correctText": "bell",
     "correctResponseId": "en:lesson-03:session-42:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i09",
-    "correctText": "It is inaccurate.",
+    "correctText": "The handle is broken.",
     "correctResponseId": "en:lesson-03:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i10",
-    "correctText": "en:lesson-03:session-42:i10:p1=bathroom\nen:lesson-03:session-42:i10:p2=wallet\nen:lesson-03:session-42:i10:p3=here\nen:lesson-03:session-42:i10:p4=there",
+    "correctText": "en:lesson-03:session-42:i10:p1=handle\nen:lesson-03:session-42:i10:p2=door\nen:lesson-03:session-42:i10:p3=window\nen:lesson-03:session-42:i10:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i11",
-    "correctText": "That wallet is there.",
+    "correctText": "The bell is old.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i12",
-    "correctText": "That is a bathroom.",
+    "correctText": "The bell is loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:word:wheel",
+    "correctText": "wheel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i13",
-    "correctText": "It's inaccurate.",
+    "correctText": "wheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:word:cord",
+    "correctText": "cord",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i14",
-    "correctText": "is",
+    "correctText": "cord",
     "correctResponseId": "en:lesson-03:session-42:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i15",
-    "correctText": "He is polite.",
+    "correctText": "The wheel is loose.",
     "correctResponseId": "en:lesson-03:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i16",
-    "correctText": "en:lesson-03:session-42:i16:p1=bathroom\nen:lesson-03:session-42:i16:p2=polite\nen:lesson-03:session-42:i16:p3=inaccurate\nen:lesson-03:session-42:i16:p4=wallet",
+    "correctText": "en:lesson-03:session-42:i16:p1=wheel\nen:lesson-03:session-42:i16:p2=cord\nen:lesson-03:session-42:i16:p3=bell\nen:lesson-03:session-42:i16:p4=handle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i17",
-    "correctText": "The bathroom is here.",
+    "correctText": "The cord is torn.",
     "correctResponseId": null
   }
 ]

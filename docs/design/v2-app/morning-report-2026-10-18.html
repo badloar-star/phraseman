@@ -78,9 +78,9 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <p class="lead">Всё, что сделано за 17.10, что ещё в работе, сколько стоит сервер и какие решения нужны от вас сегодня. Статусы: <span class="st ok">готово</span> <span class="st wip">в работе</span> <span class="st red">мешает сборке</span> <span class="st own">ждёт вашего решения</span></p>
 
   <div class="kpis">
-    <div class="kpi"><b id="k-done">23 из 40</b><span>задач дня готово</span></div>
-    <div class="kpi"><b id="k-open">205</b><span>занятий нового курса открыто</span></div>
-    <div class="kpi"><b id="k-rew">136 из 441</b><span>занятий переписано (100 уже в приложении)</span></div>
+    <div class="kpi"><b id="k-done">24 из 40</b><span>задач дня готово</span></div>
+    <div class="kpi"><b id="k-open">441 из 441</b><span>занятий нового курса открыто</span></div>
+    <div class="kpi"><b id="k-rew">152 из 441</b><span>занятий переписано (уроки 1–2, урок 3 по 40-е — в приложении)</span></div>
     <div class="kpi"><b id="k-voice">0 из 444</b><span>голосов с расхождением текста — исправлено</span></div>
     <div class="kpi"><b>≈&nbsp;62&nbsp;€ → ≈&nbsp;50&nbsp;€</b><span>сервер в месяц, дальше цель ≈ 6–9 €</span></div>
     <div class="kpi"><b>9</b><span>решений ждут вас + 3 для сведения</span></div>
@@ -95,7 +95,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
     <h2><span class="n">1</span>Что сделано за 17.10</h2>
     <p class="sub">Задачи R79–R118 из журнала выпуска. Хеш — номер изменения в коде, по нему всё находится.</p>
     <div class="list">
-      <div class="it"><span class="id">R79</span><div><div class="t">Новый курс открыт целиком</div><div class="d">Все 8 уроков в каталоге (441 занятие), человеку доступно 205; звук для них есть и проверен. <code>9543b98c2</code> <code>2d7da68ad</code></div></div><span class="st ok">готово</span></div>
+      <div class="it"><span class="id">R79</span><div><div class="t">Новый курс открыт целиком</div><div class="d">Все 8 уроков — 441 занятие — открыты людям (вечером потолок поднят с 205 до 441); звук для всех есть и проверен. <code>9543b98c2</code> <code>2d7da68ad</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R80</span><div><div class="t">Вкладка «Обучение» открывает новые уроки</div><div class="d">Старые уроки — отдельной кнопкой на месте «Новые уроки». Кадры Сверки — в работе. <code>98f738846</code> <code>c92f7585d</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R81</span><div><div class="t">Кольца с монетой ушли с Главной</div><div class="d">На Главной — просто задания дня; кольцо заполняется на экране «Сегодня» («Смотреть все»). <code>8b41a51b7</code> <code>c9a5ca93d</code></div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R82</span><div><div class="t">Предупреждение о голосовом лимите при старте занятия</div><div class="d">Шторка снизу, как вы выбрали: «голоса на всё занятие не хватит», с Plus — без лимита. <code>eb0cf55d1</code> <code>1c2823b95</code></div></div><span class="st ok">готово</span></div>
@@ -133,13 +133,14 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
       <div class="it"><span class="id">R114</span><div><div class="t">Голоса нового курса совпадают с текстом</div><div class="d">Было 444 расхождения — стало 0; звук всех 441 занятий прошёл проверку.</div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R115</span><div><div class="t">69 красных проверок кода</div><div class="d">Список собран, чинят владельцы участков (макеты и паритет — «Макеты»).</div></div><span class="st red">мешает сборке</span></div>
       <div class="it"><span class="id">R116</span><div><div class="t">Опросы 2.0: макет и 36 вопросов готовы</div><div class="d">Переведены на 9 языков. Ждут четырёх ваших решений — раздел 5.</div></div><span class="st own">ваше решение</span></div>
-      <div class="it"><span class="id">R117</span><div><div class="t">«Сегодня»: прогресс задания мог теряться</div><div class="d">Гонка между выплатой награды и новым событием задания. Чинится; функцию наград выкладывать только после этого фикса.</div></div><span class="st red">мешает сборке</span></div>
+      <div class="it"><span class="id">R117</span><div><div class="t">«Сегодня»: прогресс задания мог теряться</div><div class="d">Исправлено: невыданные награды переносятся на следующий день, шапка сверяет числа. Функцию наград (levelSpinStarGrant) по-прежнему выкладывать только после выхода 2.0.</div></div><span class="st ok">готово</span></div>
       <div class="it"><span class="id">R118</span><div><div class="t">Проверка, что починка красных сторожей их не ослабила</div><div class="d">Ревизор проверил перепривязки — честные.</div></div><span class="st wip">в работе</span></div>
     </div>
   </section>
 
   <section id="night">
     <h2><span class="n">1б</span>Сделано за ночь</h2>
+    <div class="card" style="margin-bottom:12px;background:var(--raised)"><div style="font-weight:700">22:00–23:15 — главное</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Новый курс открыт целиком: все 441 занятие (было 205).</li><li>В приложение перенесены ещё 55 занятий — уроки 1–2 и урок 3 по 40-е.</li><li>Главная перерисовывается почти в 3 раза реже: 122 → 44 перерисовок.</li><li>«Сегодня»: награды больше не теряются — невыданные переносятся на завтра.</li><li>Восстановление по коду: защита от подбора готова, ждёт итоговой проверки.</li><li>Окна Моментов сверены: совпадает 2, отличий 24, переснять 4.</li><li>Опросы 2.0 можно запустить частично без сборки (1 в день, 3 вопроса).</li></ul><details><summary>хэши</summary><span class="hash">ee736a6bc c0363cc4d df39f5374 47250af15 b12b5b9a0 916ae8081 07818d3da eaab2f154 ca4b00413 cb4349b88</span></details></div>
     <p class="sub">С 20:00 17.10 — 121 изменение. Коротко по участкам; номера изменений спрятаны под «хэши».</p>
     <div class="grid2">
       <div class="card"><div style="font-weight:700">Новый курс</div><ul class="risk" style="margin-top:6px;color:var(--sec)"><li>Урок 2 переписан целиком, урок 3 — по 24-е занятие.</li><li>Уроки 1 и 2 (по 44-е) перенесены в приложение: тексты, карточки, звук.</li><li>Голоса совпадают с текстом: было 444 расхождения — стало 0; звук всех 441 занятий прошёл проверку.</li><li>Новый курс — только для русского и украинского интерфейса, остальным — классический.</li></ul><details><summary>хэши</summary><span class="hash">f5dd4f747 851b14a35 fd447f448 241d7b4e4 d5acec0a4 da9191fb8 05cf3a61b a151b0dec 89b824857</span></details></div>
@@ -159,7 +160,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
     <h2><span class="n">2</span>Анимированные окна</h2>
     <p class="sub">Проход Сверки по всем анимированным окнам: кадр, ✅ или 🔴 и что не так.</p>
     <!-- зачем: раздел заполняется из docs/phraseman-2.0/evidence/modals_1018/README.md, когда Сверка его закоммитит (≈ 07:00) -->
-    <div class="wait" id="modals-wait">Таблица Сверки будет здесь к ≈ 07:00 — кадры миниатюрами, ✅/🔴 и что не так.</div>
+    <div class="wait" id="modals-wait">Окна Моментов ночью сверены с эталоном: совпадает 2, есть отличия 24, ждут пересъёмки 4 — исправления у Моментов. Полная таблица Сверки с кадрами — к ≈ 07:00.</div>
   </section>
 
   <!-- ─────────────────────────── 3 ─────────────────────────── -->
@@ -169,15 +170,15 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
     <div class="grid2">
       <div class="card">
         <div style="font-weight:700">Открыто людям</div>
-        <div style="font-size:30px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums">205 <span style="font-size:16px;color:var(--sec);font-weight:600">из 441 в каталоге</span></div>
-        <div class="bar" aria-hidden="true"><i class="b" style="width:46.5%"></i></div>
-        <p class="sub" style="margin:10px 0 0">Было 15 занятий — подняли до 205 по вашему слову 17.10. Звук есть у всех 441: машинная проверка нашла 4 мелких замечания. <span class="hash">9543b98c2 · 648f2ec14</span></p>
+        <div style="font-size:30px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums">441 <span style="font-size:16px;color:var(--sec);font-weight:600">из 441 — все</span></div>
+        <div class="bar" aria-hidden="true"><i class="b" style="width:100%"></i></div>
+        <p class="sub" style="margin:10px 0 0">Было 15 занятий — днём подняли до 205, вечером до всех 441 по вашему слову 17.10. Звук есть у всех 441: машинная проверка нашла 4 мелких замечания. <span class="hash">9543b98c2 · 648f2ec14</span></p>
       </div>
       <div class="card">
         <div style="font-weight:700">Переписано по правилу 16.10</div>
-        <div style="font-size:30px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums">84 <span style="font-size:16px;color:var(--sec);font-weight:600">из 441</span></div>
-        <div class="bar" aria-hidden="true"><i style="width:19%"></i></div>
-        <p class="sub" style="margin:10px 0 0">Урок 1 — все 56; урок 2 — с 1-го по 28-е. В каждом: 4 новых слова с карточкой прямо перед заданием, три разных вступления, озвучка. <span class="hash">19c4ec903 · a1ab0dd90 · f7ba42125</span></p>
+        <div style="font-size:30px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums">152 <span style="font-size:16px;color:var(--sec);font-weight:600">из 441</span></div>
+        <div class="bar" aria-hidden="true"><i style="width:34.5%"></i></div>
+        <p class="sub" style="margin:10px 0 0">Уроки 1 и 2 — все 56; урок 3 — с 1-го по 40-е, всё это уже в приложении. В каждом: 4 новых слова с карточкой прямо перед заданием, три разных вступления, озвучка. <span class="hash">19c4ec903 · a1ab0dd90 · f7ba42125</span></p>
       </div>
     </div>
     <div class="card" style="margin-top:12px">
@@ -271,7 +272,7 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
         </div>
         <div class="opts"><span>(а)</span><span>(б)</span><span class="rec">(в)</span></div></div>
       <div class="card"><h3>4. Опросы (R107) — 4 вопроса</h3>
-        <p>1) Утвердить набор из 36 вопросов (вычеркнуть или добавить). 2) Награда за опрос: энергия +1, монеты или без награды. 3) Сколько опросов в день — предложено 3. 4) Старые опросы выключить целиком в день выхода новых (ответы остаются в админке).</p>
+        <p><b style="color:var(--tx)">Можно запустить частично без новой сборки:</b> 1 опрос в день, 3 вопроса — нынешнее приложение это уже поддерживает. Полный вариант — со сборкой. 1) Утвердить набор из 36 вопросов (вычеркнуть или добавить). 2) Награда за опрос: энергия +1, монеты или без награды. 3) Сколько опросов в день — предложено 3. 4) Старые опросы выключить целиком в день выхода новых (ответы остаются в админке).</p>
         <div class="opts"><span class="rec">Набор как есть</span><span class="rec">Энергия +1</span><span class="rec">3 в день</span><span class="rec">Старые выключить</span></div></div>
       <div class="card"><h3>5. «Почему так» в Диалогах</h3>
         <p>«Объяснить» в уроках и ошибках убрано. В Диалогах осталась похожая кнопка «Почему так» — это отдельная функция, её не трогали без вас.</p>
@@ -286,8 +287,9 @@ ul.risk { margin: 0; padding-left: 20px; } ul.risk li { margin: 6px 0; } ul.risk
   <section id="left">
     <h2><span class="n">6</span>Что осталось и риски</h2>
     <div class="card" style="margin-bottom:12px"><div style="font-weight:700;color:var(--red)">Найдено ночью и чинится</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
-      <li><b>«Сегодня» (R117)</b> — прогресс задания дня мог теряться: выплата награды и новое событие задания шли наперегонки. Чинится; функцию наград (levelSpinStarGrant) выкладывать только после этого фикса.</li>
-      <li><b>Восстановление по коду (R111)</b> — код исправлен; проверка безопасности потребовала защиту от подбора: дневной предел неверных кодов на аккаунт и на того, кто вводит. В работе у Входа; выкладка утром после неё.</li>
+      <li><b>«Сегодня» (R117)</b> — прогресс задания дня мог теряться (выплата награды и новое событие шли наперегонки). <b style="color:var(--ok)">Исправлено вечером.</b></li>
+      <li><b>«Встречайте PhraseMan 2.0» — «Итого 0 монет»</b> при показанных бонусах: пересчёт бонусов в монеты в окне не срабатывал. Чинится (Моменты).</li>
+      <li><b>Восстановление по коду (R111)</b> — код исправлен; проверка безопасности потребовала защиту от подбора: дневной предел неверных кодов на аккаунт и на того, кто вводит. Защита сделана (ключи лимитов шифруются HMAC с существующим секретом, хранятся не дольше суток), абзац политики дописан; R111 открыт до итоговой проверки. Выкладка утром после неё.</li>
     </ul></div>
     <div class="grid2">
       <div class="card"><div style="font-weight:700;color:var(--red)">Мешает сборке</div><ul class="risk" style="margin-top:6px;color:var(--sec)">
